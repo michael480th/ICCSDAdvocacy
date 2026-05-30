@@ -97,25 +97,58 @@ FY2023." You assemble it yourself.
 
 ---
 
+## 4a. The Auditor of State search — confirmed recipe
+
+The Auditor of State's [Audit Reports search](https://www.auditor.iowa.gov/reports/audit-reports)
+exposes exactly the filters needed, encoded in the URL:
+
+- **`EntityTypeID=40`** → **"School"** entity type — the single filter that returns *all*
+  districts.
+- **`ReportPeriodEnding` / `ReportPeriodEndingTo`** → fiscal-year-end date range (e.g.
+  `06/30/2015` … `06/30/2025`). Iowa school FYE is June 30, so *Period Ending 06/30/2023 = FY2023.*
+- `keyword`, `CategoryID` (e.g. *Financial Statement*), `FirmID`, `ReleaseDate…` → optional
+  narrowing.
+
+The results render as a **table** — `Entity | Type of Entity | Audit Category | Release Date |
+Period Ending | Firm | Details` — and that table **already answers the "completed by year"
+question without opening a single PDF**:
+
+- **Completion:** count the rows per *Period Ending* year. Expected denominator ≈ 325; districts
+  with no row for a year are **behind/delinquent.**
+- **Timeliness:** *Release Date* minus *Period Ending* = how late. The deadline is ~9 months
+  (by March 31), so anything beyond that is a late filing.
+
+**Worked example — Iowa City CSD (the advocacy case):** the search shows its **FY2023** audit
+(period ending 06/30/2023) was not **released until 11/10/2025 — ~28 months late** — and there is
+**no FY2024 or FY2025 row at all.** Earlier years were roughly on time (FY2020 released 01/28/2021,
+FY2021 released 01/24/2022). That gap is the bond-rating story, visible directly in the table.
+
+Opinions and findings (the "passed/clean" detail) still require opening each report PDF via the
+*Details* link — that's the only part that isn't in the table.
+
 ## 5. The method (automated): `scripts/iowa_audit_scraper.py`
 
-The scraper produces two CSVs from the primary source:
+The scraper uses the recipe above. It produces two CSVs from the primary source:
 
 1. **`iowa_audit_reports.csv`** — one row per district per fiscal year found:
-   `entity_name, fiscal_year, report_date, audited_by, opinion,
-   num_financial_findings, num_statutory_findings, material_weakness,
-   significant_deficiency, going_concern, report_url`
+   `entity_name, fiscal_year, period_ending, release_date, months_to_release,
+   late_filing, audit_category, audited_by, opinion, num_financial_findings,
+   num_statutory_findings, material_weakness, significant_deficiency,
+   going_concern, report_url`
 2. **`iowa_audit_summary_by_year.csv`** — the answer to your question, aggregated:
-   `fiscal_year, districts_with_filed_audit, unmodified_opinions,
-   modified_opinions, zero_findings, with_material_weakness,
-   completion_rate_vs_325`
+   `fiscal_year, districts_with_filed_audit, completion_rate_vs_expected,
+   late_filings, unmodified_opinions, modified_opinions, zero_findings,
+   with_material_weakness`
 
-It works in two modes so it's useful regardless of how the site serves files:
+It works in three modes:
 
-- **`scrape`** — walk the Auditor of State audit-reports index, filter to school districts,
-  download each PDF.
-- **`parse`** — read a folder of already-downloaded PDFs and emit the CSVs. (Use this if the
-  index is JavaScript-rendered and you download PDFs by hand or via the site's export.)
+- **`scrape`** — query the search with `EntityTypeID=40` over a fiscal-year range, read the
+  **results table** (completion + timeliness, no PDFs needed), and page through results. Add
+  `--with-pdfs` to also download each report and fill in opinion/findings.
+- **`parse-html`** — if the results are JavaScript-rendered and the live request returns nothing,
+  save the results page from your browser (right-click → *Save As* → "Webpage, HTML Only") and
+  point this at the file. Same table parsing, zero network guesswork.
+- **`parse`** — read a folder of already-downloaded report PDFs and extract opinion/findings.
 
 Opinion and findings are detected from the **standardized Iowa CSD report wording** (the Auditor
 of State publishes a CSD report template, so the language is consistent across firms):
@@ -128,19 +161,26 @@ of State publishes a CSD report template, so the language is consistent across f
   *Other Findings Related to Required Statutory Reporting*; plus material-weakness /
   significant-deficiency / going-concern flags.
 
-> The Auditor of State site is a CMS whose exact search endpoint/selectors must be confirmed
-> against the live page; the script centralizes those in clearly-marked constants at the top so
-> `scrape` mode can be pointed at the right URL without touching parsing logic. The `parse` mode
-> needs no network knowledge at all and is the reliable path.
+> The search recipe (`EntityTypeID=40`, `ReportPeriodEnding…` range) is confirmed from the live
+> URL and built into the script. If the result grid turns out to be loaded by a later JavaScript
+> request (so the first HTTP response has no table), use `parse-html` on a page saved from the
+> browser — it needs no network knowledge at all.
 
 ### Running it
 
 ```bash
 pip install requests beautifulsoup4 pdfplumber
-# Option A — you have a folder of downloaded district audit PDFs:
-python scripts/iowa_audit_scraper.py parse --pdf-dir ./audit_pdfs --out ./out
-# Option B — attempt to scrape the index, then parse:
+
+# Completion + timeliness for FY2015–FY2025, straight from the results table:
 python scripts/iowa_audit_scraper.py scrape --years 2015-2025 --out ./out
+# ...same, but also open every PDF to add opinion + findings (slow):
+python scripts/iowa_audit_scraper.py scrape --years 2015-2025 --with-pdfs --out ./out
+
+# If results are JavaScript-rendered, save the page in your browser, then:
+python scripts/iowa_audit_scraper.py parse-html --html-file results.html --out ./out
+
+# Or opinion/findings from a folder of downloaded PDFs:
+python scripts/iowa_audit_scraper.py parse --pdf-dir ./audit_pdfs --out ./out
 ```
 
 ---
@@ -151,8 +191,11 @@ This report was compiled in a sandboxed environment whose **network egress is re
 allowlist that excludes all `iowa.gov` domains**, and the Auditor of State / Dept. of Education
 sites additionally **bot-block automated fetching**. The empirical by-year counts therefore have
 to be produced by running the scraper from a normal internet connection. Everything structural
-above (the requirement, the deadline, the two-filing distinction, the source of truth) is
-confirmed; the counts are one scraper run away.
+above (the requirement, the deadline, the two-filing distinction, the source of truth, and the
+exact search recipe) is confirmed; the counts are one scraper run — or even a few manual searches
+— away. For **completion and timeliness** you don't even need the scraper: set *Type of Entity =
+School*, leave the keyword blank, set a *Period Ending* range, and count the rows per year right
+in the browser.
 
 ---
 
