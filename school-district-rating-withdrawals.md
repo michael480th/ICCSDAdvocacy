@@ -5,6 +5,11 @@
 information (e.g., the district failed to deliver audited financial statements in time).
 **Downgrades do not count** — a withdrawal is the more severe action and is the focus here.
 
+**Companion data:** structured spreadsheets live in [`data/`](data/) —
+[`confirmed-rating-actions.csv`](data/confirmed-rating-actions.csv) (named district cases),
+[`mississippi-delinquent-audits.csv`](data/mississippi-delinquent-audits.csv) (the at-risk
+population), and [`data/README.md`](data/README.md) (aggregate anchors + method).
+
 **Research date:** May 2026. Compiled from multi-source web research (Moody's/S&P/Fitch
 policy documents, SEC, MSRB/GFOA, Bond Buyer, Bloomberg, GFRC/UIC, and local news).
 Primary agency pages (Moody's, S&P, Bond Buyer, Bloomberg) bot-block automated fetching;
@@ -42,22 +47,35 @@ These are cases where the **district itself** held the rating and it was **withd
 specifically for missing/late audited financials. Public reporting on individually named
 districts is sparse; these are the cleanest confirmed examples.
 
-| District | State | Agency | Year withdrawn | Stated reason | Notes |
-|---|---|---|---|---|---|
-| **Iowa City Community School District** | IA | Moody's | 2024 (still unrated as of May 2026) | "Lack of information" — FY2023 (then FY2024/FY2025) audits not completed | Loss of rating blocked ~$25M of planned borrowing; new rating not expected until ~2028 |
-| **DeKalb County School District** | GA | Moody's | 2020 | Wanted FY2018 audited financials; district filed them >1 year late (Dec 2019) | Placed under review Jan 2020, then withdrawn; reinstated after audits delivered Oct 2020 |
-| **Jackson County School District** | GA | Moody's | ~2018 | Insufficient information | Named in Moody's local-government "insufficient information" actions; details thinner |
+| District | State | Agency | Year withdrawn | Prior rating | Stated reason | Confidence |
+|---|---|---|---|---|---|---|
+| **Iowa City Community School District** | IA | Moody's | 2024 (still unrated as of May 2026) | **Aa2** | "Lack of information" — FY2023 (then FY2024/FY2025) audits not completed | High |
+| **DeKalb County School District** | GA | Moody's | 2020 | Aa-band (notch unverified) | FY2018 audited financials filed >1 year late (Dec 2019) | High |
+| **White Bear Lake Area Schools (ISD No. 624)** | MN | S&P | ~2023 | not stated | Appears in S&P's "Various Ratings Withdrawn On 70 U.S. Public Finance Issuers Due To Lack Of Timely Information" | **Medium — verify via EMMA** |
 
-**Prior ratings:** Both DeKalb and Iowa City carried high "Aa"-band GO ratings before
-withdrawal, but the *exact notch* (Aa1/Aa2/Aa3) was not confirmable from public secondary
-sources. To pin these down, pull the actual Moody's rating-action PDFs and the issuers'
-EMMA/MSRB filings directly.
+> **Correction to the earlier draft:** *Jackson County School District (GA)* was previously
+> listed here as a confirmed ~2018 withdrawal. A deeper search could **not** confirm it — the
+> single entity actually *withdrawn* in Moody's June 2018 "insufficient information" action was
+> **Spring Valley, NY (a village)**, not a school district. Jackson County SD is now treated as
+> an **unverified lead** (see `data/confirmed-rating-actions.csv`). This is exactly the kind of
+> claim that requires a primary EMMA/agency filing before it can be relied upon.
+
+**Iowa City's prior rating (Aa2) is now confirmed.** DeKalb's exact notch and the White Bear
+Lake action type still need a primary EMMA/MSRB filing to confirm.
+
+### "On review / CreditWatch" — the precursor step (NOT withdrawals)
+
+These districts were flagged for missing/late financials but did **not** (or not yet) lose the
+rating — useful because "under review for lack of information" is the step that precedes a
+withdrawal:
+
+- **Talbot County School District (GA)** — Moody's placed it on review (Jun 2018), then
+  *confirmed* the rating at **A3** (Aug 2018). Review resolved; rating retained.
+- **Milwaukee Public Schools (WI)** — S&P **CreditWatch negative** (Dec 2024, prior **A+**) over
+  late FY2022-23 / FY2023-24 audits and ~$81M of withheld state aid; partial resolution Aug 2025.
 
 ### Closely related — but NOT clean school-district withdrawals (do not count these)
 
-- **Milwaukee Public Schools (WI)** — Moody's placed it on **CreditWatch negative** (not a
-  confirmed withdrawal) over a late FY2022-23 audit (submitted Dec 2024, latest of all 421
-  WI districts). State also withheld ~$42M in aid.
 - **Coventry, RI** — Moody's **withdrew** the rating in 2024 for "lack of sufficient
   information" (no FY2022-23 audit), and the driver was a ~$5M **school** deficit / planned
   $25M school-construction bond — but the **rated issuer was the Town**, not the district.
