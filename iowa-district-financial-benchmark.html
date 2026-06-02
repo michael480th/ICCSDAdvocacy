@@ -3,44 +3,40 @@
 <title>Iowa Large-District Financial Benchmark · FY2020–FY2025</title>
 <style>
 :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f8fafc}
-*{box-sizing:border-box}
-body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:var(--bg)}
-.wrap{max-width:1180px;margin:0 auto;padding:34px 22px 80px}
+*{box-sizing:border-box} body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:var(--bg)}
+.wrap{max-width:1200px;margin:0 auto;padding:34px 22px 80px}
 h1{font-size:30px;margin:0 0 4px} h2{font-size:21px;margin:42px 0 12px;border-bottom:2px solid var(--line);padding-bottom:6px}
 .sub{color:var(--mut);margin:0 0 8px} a{color:#2563eb}
 .cards-summary{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
-.sumbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;flex:1;min-width:150px}
-.sumbox b{font-size:26px;display:block}
-.sumbox span{color:var(--mut);font-size:13px}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:13.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.sumbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;flex:1;min-width:140px}
+.sumbox b{font-size:26px;display:block} .sumbox span{color:var(--mut);font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-th{background:#f1f5f9;cursor:pointer;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#475569}
+th{background:#f1f5f9;cursor:pointer;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:#475569}
 th:hover{background:#e2e8f0}
-td.dist{font-weight:600;white-space:normal;min-width:150px} td.rk{color:var(--mut)}
-td.lab,.lab{font-size:12px;color:#334155;white-space:normal;min-width:120px}
-.flags{white-space:normal;min-width:200px}
-.badge{color:#fff;border-radius:6px;padding:2px 8px;font-weight:700;font-size:12.5px}
-.badge.na{background:#cbd5e1}
+td.dist{font-weight:600;white-space:normal;min-width:140px} td.rk{color:var(--mut)}
+.lab{font-size:12px;color:#334155;white-space:normal;min-width:118px} .flags{white-space:normal;min-width:210px}
+.badge{color:#fff;border-radius:6px;padding:2px 8px;font-weight:700;font-size:12.5px} .badge.na{background:#cbd5e1}
 .flag{display:inline-block;background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;border-radius:5px;padding:1px 6px;margin:1px 2px;font-size:11px}
 .ok{color:#16a34a;font-size:12px} .pos{color:#16a34a} .neg{color:#dc2626}
+.w-high{color:#15803d} .w-mid{color:#a16207} .w-low{color:#b45309}
 .legend{display:flex;gap:8px;align-items:center;margin:8px 0 2px;color:var(--mut);font-size:12px}
 .scale{height:10px;width:160px;border-radius:5px;background:linear-gradient(90deg,rgb(220,38,38),rgb(234,179,8),rgb(22,163,74))}
-.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start} @media(max-width:900px){.layout{grid-template-columns:1fr}}
 .quad{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
 .quad .ax{font-size:10px;fill:#94a3b8;text-anchor:middle} .quad .axt{font-size:11px;fill:#475569;text-anchor:middle;font-weight:600}
 .quad .lbl{font-size:9px;fill:#334155;text-anchor:middle} .quad .qn{font-size:10px;fill:#cbd5e1;text-anchor:middle;font-style:italic}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin-top:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(335px,1fr));gap:16px;margin-top:14px}
 .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px}
 .ch{display:flex;justify-content:space-between;align-items:center} .ch h3{margin:0;font-size:16px}
 .comp{color:#fff;font-weight:800;border-radius:8px;padding:3px 11px;font-size:15px}
-.meta{color:var(--mut);font-size:12.5px;margin:5px 0 11px}
+.meta{color:var(--mut);font-size:12px;margin:5px 0 11px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-bottom:11px}
 .grid .k,.sparks .k{display:block;color:var(--mut);font-size:11px;margin-bottom:2px}
 .grid>div{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:4px}
-.sparks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.sparks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
 .sparks>div{display:flex;flex-direction:column} .sparks b{font-size:13px} .spark{margin:2px 0}
-.kv{font-size:12px;color:#475569;border-top:1px solid var(--line);padding-top:8px} .kv span{color:var(--mut)}
+.kv{font-size:11.5px;color:#475569;border-top:1px solid var(--line);padding-top:8px} .kv span{color:var(--mut)}
 .cardflags{margin-top:8px}
 .note{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:8px;padding:14px 18px;margin:14px 0;font-size:14px}
 .note h4{margin:0 0 6px} .note ul{margin:6px 0 0 18px;padding:0} .note li{margin:3px 0}
@@ -48,172 +44,183 @@ footer{color:var(--mut);font-size:12px;margin-top:50px;border-top:1px solid var(
 </style></head><body><div class="wrap">
 
 <h1>Iowa Large-District Financial Benchmark</h1>
-<p class="sub">15 of Iowa's largest school districts · audited ACFRs, FY2020–FY2025 · compiled June 2026</p>
+<p class="sub">15 of Iowa's largest school districts · audited ACFRs + Iowa DOM state data · FY2020–FY2025 · June 2026</p>
 
 <div class="cards-summary">
   <div class="sumbox"><b>15</b><span>districts benchmarked</span></div>
-  <div class="sumbox"><b>88</b><span>audited district-years extracted</span></div>
+  <div class="sumbox"><b>88+90</b><span>audited + state district-years</span></div>
   <div class="sumbox"><b>14/15</b><span>in a capital "building" posture</span></div>
-  <div class="sumbox"><b>8/15</b><span>running a multi-yr operating deficit</span></div>
+  <div class="sumbox"><b>8/15</b><span>multi-yr operating deficit</span></div>
+  <div class="sumbox"><b>1/15</b><span>thin spending authority (UAB&lt;5%)</span></div>
 </div>
 
 <div class="note">
 <h4>Executive summary</h4>
-<p>Across the FY2020–FY2025 window, the dominant story is a <b>General Fund operating squeeze</b>:
-the expiration of one-time federal ESSER aid colliding with declining enrollment and rising
-personnel/plant costs. 8 of 15 districts now run a multi-year operating deficit, and several
-have drawn reserves down sharply from their FY2022–FY2023 ESSER-era peaks. Yet
-<b>14 of 15 are simultaneously in a capital "building" posture</b> — funded through Iowa's
-<b>restricted</b> SAVE (statewide-penny) and GO/PPEL streams, which are walled off from the
-General Fund. The framework's central discipline — scoring operating <b>health</b> and reporting
-<b>quality</b> separately from the <b>strategic/capital</b> posture — is what keeps these from being
-conflated.</p>
+<p>This edition is <b>anchored on Unspent Authorized Budget (UAB)</b> — Iowa's #1 financial-health
+indicator and the binding legal constraint on a district's spending — sourced from the Iowa DOM
+report and weighted <b>50%</b> of the Health pillar (audited solvency 30%, operating-margin trend
+20%). Because UAB is state-computed, it exists even where audits do not (Iowa City FY24/FY25).</p>
 <ul>
-<li><b>Healthiest:</b> Pleasant Valley and Waukee — genuine enrollment growth, reserves rising even
-through heavy construction, clean audits with continuous GFOA recognition.</li>
-<li><b>Most distressed, two different ways:</b> <b>Waterloo</b> — operating collapse (FY2025 solvency
-<b>−5.6%</b>, negative GF balance) while issuing $87M of new SAVE debt; and <b>Iowa City</b> — a
-<b>reporting</b> collapse (FY2023 audit 26 months late with two material weaknesses, FY2024/FY2025
-unfiled, Moody's rating withdrawn). One fails on Health, the other on Operational Quality.</li>
-<li><b>The reserve cliff is broad:</b> Burlington, Johnston, College/Prairie, West Des Moines and Des
-Moines all show steep post-ESSER reserve drawdowns despite clean audits.</li>
+<li><b>Cash ≠ spending authority — and it re-ranks the field.</b> Districts that looked stressed on
+audited <i>reserves</i> are fine on <i>authority</i>: <b>Burlington</b> (solvency 8% but UAB <b>28%</b>)
+and <b>Johnston</b> (solvency 8% but UAB <b>21%</b>) drew down cash while keeping ample authority —
+exactly what ISFIS says UAB is for. They rank mid-pack, not at the bottom.</li>
+<li><b>The two genuinely distressed districts fail differently.</b> <b>Iowa City</b> — UAB went
+<b>negative in FY2023</b> (the unlawful, SBRC-trigger condition), sits at ~2% today, is levying
+<b>57% of its cash-reserve cap</b> to stay liquid, and has <b>not filed FY2024/FY2025 audits</b>
+(Moody's rating withdrawn). <b>Waterloo</b> — an operating collapse: UAB halved to 7.5%, audited
+solvency <b>−5.6%</b>, negative GF balance, while issuing $87M of new SAVE debt.</li>
+<li><b>The post-ESSER operating squeeze is broad</b> — 8 of 15 run a multi-year deficit —
+but <b>14 of 15 keep building</b> through Iowa's restricted SAVE/GO streams. Operating health,
+reporting quality, and capital posture are scored separately so these don't get conflated.</li>
+<li><b>Healthiest:</b> Pleasant Valley and Waukee — growing enrollment, UAB above 22%/30%, clean
+audits, continuous GFOA. Muscatine ranks high on a strong UAB (20%) despite the sharpest enrollment
+decline, by restraining spending.</li>
 </ul>
 </div>
 
 <h2>Health × Quality map</h2>
-<p class="sub">Horizontal = financial health · vertical = operational/reporting quality · bubble size = enrollment · color = composite score.</p>
-<div class="layout">
-  <div><svg viewBox="0 0 560 420" class="quad"><rect x="48" y="48" width="464" height="324" fill="#fafafa" stroke="#e2e8f0"/><line x1="280.0" y1="48" x2="280.0" y2="372" stroke="#e2e8f0" stroke-dasharray="4"/><line x1="48" y1="210.0" x2="512" y2="210.0" stroke="#e2e8f0" stroke-dasharray="4"/><text x="48.0" y="388" class="ax">1</text><text x="36" y="375.0" class="ax" text-anchor="end">1</text><text x="164.0" y="388" class="ax">2</text><text x="36" y="294.0" class="ax" text-anchor="end">2</text><text x="280.0" y="388" class="ax">3</text><text x="36" y="213.0" class="ax" text-anchor="end">3</text><text x="396.0" y="388" class="ax">4</text><text x="36" y="132.0" class="ax" text-anchor="end">4</text><text x="512.0" y="388" class="ax">5</text><text x="36" y="51.0" class="ax" text-anchor="end">5</text><text x="280.0" y="408" class="axt">Financial Health →</text><text x="16" y="210.0" class="axt" transform="rotate(-90 16 210.0)">Operational Quality →</text><text x="430.79999999999995" y="72.30000000000001" class="qn">strong + trustworthy</text><text x="65.39999999999999" y="351.75" class="qn">distressed</text><circle cx="512.0" cy="48.0" r="10.6" fill="rgb(22,163,74)" fill-opacity="0.55" stroke="rgb(22,163,74)" stroke-width="1.5"><title>Pleasant Valley CSD: H 5.0, Q 5.0, composite 5.0</title></circle><text x="512.0" y="34.4" class="lbl">Pleasant Valley</text><circle cx="512.0" cy="48.0" r="16.1" fill="rgb(22,163,74)" fill-opacity="0.55" stroke="rgb(22,163,74)" stroke-width="1.5"><title>Waukee CSD: H 5.0, Q 5.0, composite 5.0</title></circle><text x="512.0" y="28.9" class="lbl">Waukee</text><circle cx="512.0" cy="145.2" r="15.7" fill="rgb(53,143,68)" fill-opacity="0.55" stroke="rgb(53,143,68)" stroke-width="1.5"><title>Davenport CSD: H 5.0, Q 3.8, composite 4.36</title></circle><text x="512.0" y="126.5" class="lbl">Davenport</text><circle cx="419.2" cy="48.0" r="9.8" fill="rgb(56,141,67)" fill-opacity="0.55" stroke="rgb(56,141,67)" stroke-width="1.5"><title>Muscatine CSD: H 4.2, Q 5.0, composite 4.3</title></circle><text x="419.2" y="35.2" class="lbl">Muscatine</text><circle cx="349.6" cy="48.0" r="17.5" fill="rgb(70,132,65)" fill-opacity="0.55" stroke="rgb(70,132,65)" stroke-width="1.5"><title>Cedar Rapids CSD: H 3.6, Q 5.0, composite 4.02</title></circle><text x="349.6" y="27.5" class="lbl">Cedar Rapids</text><circle cx="396.0" cy="112.8" r="15.3" fill="rgb(71,131,65)" fill-opacity="0.55" stroke="rgb(71,131,65)" stroke-width="1.5"><title>Ankeny CSD: H 4.0, Q 4.2, composite 4.0</title></circle><text x="396.0" y="94.5" class="lbl">Ankeny</text><circle cx="338.0" cy="48.0" r="13.4" fill="rgb(76,128,64)" fill-opacity="0.55" stroke="rgb(76,128,64)" stroke-width="1.5"><title>Dubuque CSD: H 3.5, Q 5.0, composite 3.9</title></circle><text x="338.0" y="31.6" class="lbl">Dubuque</text><circle cx="361.2" cy="112.8" r="11.9" fill="rgb(76,128,64)" fill-opacity="0.55" stroke="rgb(76,128,64)" stroke-width="1.5"><title>Linn-Mar CSD: H 3.7, Q 4.2, composite 3.9</title></circle><text x="361.2" y="97.9" class="lbl">Linn-Mar</text><circle cx="291.6" cy="48.0" r="12.5" fill="rgb(86,122,62)" fill-opacity="0.55" stroke="rgb(86,122,62)" stroke-width="1.5"><title>West Des Moines CSD: H 3.1, Q 5.0, composite 3.69</title></circle><text x="291.6" y="32.5" class="lbl">West Des Moines</text><circle cx="222.0" cy="48.0" r="9.5" fill="rgb(98,114,60)" fill-opacity="0.55" stroke="rgb(98,114,60)" stroke-width="1.5"><title>Burlington CSD: H 2.5, Q 5.0, composite 3.45</title></circle><text x="222.0" y="35.5" class="lbl">Burlington</text><circle cx="256.8" cy="193.8" r="27.0" fill="rgb(128,95,54)" fill-opacity="0.55" stroke="rgb(128,95,54)" stroke-width="1.5"><title>Des Moines Independent CSD: H 2.8, Q 3.2, composite 2.84</title></circle><text x="256.8" y="163.8" class="lbl">Des Moines</text><circle cx="187.2" cy="145.2" r="11.5" fill="rgb(130,94,54)" fill-opacity="0.55" stroke="rgb(130,94,54)" stroke-width="1.5"><title>Johnston CSD: H 2.2, Q 3.8, composite 2.81</title></circle><text x="187.2" y="130.7" class="lbl">Johnston</text><circle cx="187.2" cy="145.2" r="10.3" fill="rgb(134,92,53)" fill-opacity="0.55" stroke="rgb(134,92,53)" stroke-width="1.5"><title>College CSD (Prairie): H 2.2, Q 3.8, composite 2.73</title></circle><text x="187.2" y="131.9" class="lbl">College</text><circle cx="280.0" cy="372.0" r="16.4" fill="rgb(153,80,50)" fill-opacity="0.55" stroke="rgb(153,80,50)" stroke-width="1.5"><title>Iowa City CSD: H 3.0, Q 1.0, composite 2.35</title></circle><text x="280.0" y="352.6" class="lbl">Iowa City</text><circle cx="48.0" cy="169.5" r="14.0" fill="rgb(169,69,47)" fill-opacity="0.55" stroke="rgb(169,69,47)" stroke-width="1.5"><title>Waterloo CSD: H 1.0, Q 3.5, composite 2.02</title></circle><text x="48.0" y="152.5" class="lbl">Waterloo</text></svg></div>
-  <div class="note" style="border-left-color:#16a34a">
-  <h4>How to read the map</h4>
-  <p>Top-right is the goal: financially strong <i>and</i> trustworthy reporting. Bubbles low on the
-  vertical axis (Iowa City) have a reporting/controls problem regardless of the balance-sheet numbers;
-  bubbles far left (Waterloo) have an operating-solvency problem regardless of how clean the audit is.
-  A district can be a confident "builder" from either position — which is why building posture is a
-  <b>label</b>, reported beside the scores rather than baked into them.</p>
-  </div>
-</div>
+<p class="sub">Horizontal = UAB-anchored financial health · vertical = operational/reporting quality · bubble = enrollment · color = composite.</p>
+<div class="layout"><div><svg viewBox="0 0 560 420" class="quad"><rect x="48" y="48" width="464" height="324" fill="#fafafa" stroke="#e2e8f0"/><line x1="280.0" y1="48" x2="280.0" y2="372" stroke="#e2e8f0" stroke-dasharray="4"/><line x1="48" y1="210.0" x2="512" y2="210.0" stroke="#e2e8f0" stroke-dasharray="4"/><text x="48.0" y="388" class="ax">1</text><text x="36" y="375.0" class="ax" text-anchor="end">1</text><text x="164.0" y="388" class="ax">2</text><text x="36" y="294.0" class="ax" text-anchor="end">2</text><text x="280.0" y="388" class="ax">3</text><text x="36" y="213.0" class="ax" text-anchor="end">3</text><text x="396.0" y="388" class="ax">4</text><text x="36" y="132.0" class="ax" text-anchor="end">4</text><text x="512.0" y="388" class="ax">5</text><text x="36" y="51.0" class="ax" text-anchor="end">5</text><text x="280.0" y="408" class="axt">Financial Health (UAB-anchored) →</text><text x="16" y="210.0" class="axt" transform="rotate(-90 16 210.0)">Operational Quality →</text><text x="442.40000000000003" y="68.25" class="qn">strong + trustworthy</text><text x="59.60000000000001" y="355.8" class="qn">distressed</text><circle cx="512.0" cy="48.0" r="10.6" fill="rgb(22,163,74)" fill-opacity="0.55" stroke="rgb(22,163,74)" stroke-width="1.5"><title>Pleasant Valley CSD: Health 5.0, Quality 5.0, composite 5.0</title></circle><text x="512.0" y="34.4" class="lbl">Pleasant Valley</text><circle cx="467.9" cy="48.0" r="15.9" fill="rgb(33,155,71)" fill-opacity="0.55" stroke="rgb(33,155,71)" stroke-width="1.5"><title>Waukee CSD: Health 4.62, Quality 5.0, composite 4.77</title></circle><text x="467.9" y="29.1" class="lbl">Waukee</text><circle cx="432.0" cy="48.0" r="9.9" fill="rgb(50,144,68)" fill-opacity="0.55" stroke="rgb(50,144,68)" stroke-width="1.5"><title>Muscatine CSD: Health 4.31, Quality 5.0, composite 4.42</title></circle><text x="432.0" y="35.1" class="lbl">Muscatine</text><circle cx="467.9" cy="145.2" r="16.0" fill="rgb(61,138,66)" fill-opacity="0.55" stroke="rgb(61,138,66)" stroke-width="1.5"><title>Davenport CSD: Health 4.62, Quality 3.8, composite 4.2</title></circle><text x="467.9" y="126.2" class="lbl">Davenport</text><circle cx="372.8" cy="48.0" r="17.5" fill="rgb(63,137,66)" fill-opacity="0.55" stroke="rgb(63,137,66)" stroke-width="1.5"><title>Cedar Rapids CSD: Health 3.8, Quality 5.0, composite 4.17</title></circle><text x="372.8" y="27.5" class="lbl">Cedar Rapids</text><circle cx="365.8" cy="48.0" r="13.5" fill="rgb(64,136,66)" fill-opacity="0.55" stroke="rgb(64,136,66)" stroke-width="1.5"><title>Dubuque CSD: Health 3.74, Quality 5.0, composite 4.15</title></circle><text x="365.8" y="31.5" class="lbl">Dubuque</text><circle cx="382.1" cy="112.8" r="15.2" fill="rgb(66,135,65)" fill-opacity="0.55" stroke="rgb(66,135,65)" stroke-width="1.5"><title>Ankeny CSD: Health 3.88, Quality 4.2, composite 4.11</title></circle><text x="382.1" y="94.6" class="lbl">Ankeny</text><circle cx="331.0" cy="48.0" r="12.6" fill="rgb(71,131,65)" fill-opacity="0.55" stroke="rgb(71,131,65)" stroke-width="1.5"><title>West Des Moines CSD: Health 3.44, Quality 5.0, composite 4.0</title></circle><text x="331.0" y="32.4" class="lbl">West Des Moines</text><circle cx="369.3" cy="112.8" r="11.9" fill="rgb(72,131,64)" fill-opacity="0.55" stroke="rgb(72,131,64)" stroke-width="1.5"><title>Linn-Mar CSD: Health 3.77, Quality 4.2, composite 3.98</title></circle><text x="369.3" y="97.9" class="lbl">Linn-Mar</text><circle cx="325.2" cy="48.0" r="9.5" fill="rgb(75,128,64)" fill-opacity="0.55" stroke="rgb(75,128,64)" stroke-width="1.5"><title>Burlington CSD: Health 3.39, Quality 5.0, composite 3.91</title></circle><text x="325.2" y="35.5" class="lbl">Burlington</text><circle cx="331.0" cy="145.2" r="11.4" fill="rgb(94,117,60)" fill-opacity="0.55" stroke="rgb(94,117,60)" stroke-width="1.5"><title>Johnston CSD: Health 3.44, Quality 3.8, composite 3.53</title></circle><text x="331.0" y="130.8" class="lbl">Johnston</text><circle cx="332.2" cy="193.8" r="27.0" fill="rgb(108,108,58)" fill-opacity="0.55" stroke="rgb(108,108,58)" stroke-width="1.5"><title>Des Moines Independent CSD: Health 3.45, Quality 3.2, composite 3.26</title></circle><text x="332.2" y="163.8" class="lbl">Des Moines</text><circle cx="273.0" cy="145.2" r="10.3" fill="rgb(111,106,57)" fill-opacity="0.55" stroke="rgb(111,106,57)" stroke-width="1.5"><title>College CSD (Prairie): Health 2.94, Quality 3.8, composite 3.2</title></circle><text x="273.0" y="131.9" class="lbl">College</text><circle cx="135.0" cy="169.5" r="14.0" fill="rgb(144,85,51)" fill-opacity="0.55" stroke="rgb(144,85,51)" stroke-width="1.5"><title>Waterloo CSD: Health 1.75, Quality 3.5, composite 2.52</title></circle><text x="135.0" y="152.5" class="lbl">Waterloo</text><circle cx="253.3" cy="372.0" r="16.3" fill="rgb(155,78,49)" fill-opacity="0.55" stroke="rgb(155,78,49)" stroke-width="1.5"><title>Iowa City CSD: Health 2.77, Quality 1.0, composite 2.31</title></circle><text x="253.3" y="352.7" class="lbl">Iowa City</text></svg></div>
+<div class="note" style="border-left-color:#16a34a"><h4>Reading the map</h4>
+<p>Top-right = strong <i>and</i> trustworthy. Iowa City sits at the bottom (reporting collapse)
+regardless of its balance sheet; Waterloo sits far left (operating/authority collapse) regardless of
+its clean audit. A district can be a confident "builder" from either position — which is why building
+posture is a <b>label</b>, reported beside the scores rather than baked into them.</p></div></div>
 
 <h2>Master benchmark table</h2>
-<div class="legend">Score scale (1–5): <span>weak</span><div class="scale"></div><span>strong</span> &nbsp;·&nbsp; click any column header to sort.</div>
+<div class="legend">Score scale (1–5): <span>weak</span><div class="scale"></div><span>strong</span> · click any header to sort · <b>UAB</b> = spending authority (Iowa's #1 metric).</div>
 <table id="bt"><thead><tr>
-<th>#</th><th>District</th><th>Size</th><th>Enroll.</th><th>Enr. trend</th><th>Strategic posture</th>
-<th>Solvency (last)</th><th>Op. margin (3yr)</th>
-<th>Health</th><th>Quality</th><th>Cap. sustain.</th><th>Composite</th><th>Flags</th>
+<th>#</th><th>District</th><th>Size</th><th>Wealth</th><th>Enr. trend</th><th>Strategic posture</th>
+<th>UAB %</th><th>Solvency %</th><th>Health</th><th>Quality</th><th>Cap. sust.</th><th>Composite</th><th>Flags</th>
 </tr></thead><tbody>
 <tr>
 <td class="rk">1</td><td class="dist">Pleasant Valley CSD</td>
-<td>5–10k</td><td>5498.0</td><td class="pos">+1.4%/yr</td>
+<td>5–10k</td><td class="w-mid">mid</td>
+<td class="pos">+1.9%/yr</td>
 <td class="lab">Building — growth-driven</td>
-<td>22.4%</td><td class="pos">2.2%</td>
+<td class=""><b>22.8%</b></td>
+<td>22.7%</td>
 <td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td>
-<td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td>
-<td class="flags"><span class="ok">— none —</span></td></tr><tr>
+<td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td class="flags"><span class="flag">Cash-reserve-levy at cap</span></td></tr><tr>
 <td class="rk">2</td><td class="dist">Waukee CSD</td>
-<td>10–15k</td><td>14016.0</td><td class="pos">+3.7%/yr</td>
+<td>10–15k</td><td class="w-high">high</td>
+<td class="pos">+4.1%/yr</td>
 <td class="lab">Building — growth-driven</td>
-<td>17.9%</td><td class="pos">3.2%</td>
-<td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td>
-<td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td>
-<td class="flags"><span class="ok">— none —</span></td></tr><tr>
-<td class="rk">3</td><td class="dist">Davenport CSD</td>
-<td>10–15k</td><td>13370.0</td><td class="neg">-1.6%/yr</td>
+<td class=""><b>29.9%</b></td>
+<td>18.1%</td>
+<td><span class="badge" style="background:rgb(40,151,70)">4.6</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(36,153,71)">4.7</span></td>
+<td><span class="badge" style="background:rgb(33,155,71)">4.8</span></td><td class="flags"><span class="flag">Heavy cash-reserve-levy reliance</span></td></tr><tr>
+<td class="rk">3</td><td class="dist">Muscatine CSD</td>
+<td>&lt;5k</td><td class="w-low">low</td>
+<td class="neg">-2.0%/yr</td>
 <td class="lab">Building — renewal (declining enrollment)</td>
-<td>24.1%</td><td class="pos">4.6%</td>
-<td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(66,134,65)">4.1</span></td>
-<td><span class="badge" style="background:rgb(53,143,68)">4.4</span></td>
-<td class="flags"><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">4</td><td class="dist">Muscatine CSD</td>
-<td><5k</td><td>4315.9</td><td class="neg">-2.1%/yr</td>
+<td class=""><b>20.5%</b></td>
+<td>15.4%</td>
+<td><span class="badge" style="background:rgb(56,141,67)">4.3</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(82,124,62)">3.8</span></td>
+<td><span class="badge" style="background:rgb(50,144,68)">4.4</span></td><td class="flags"><span class="ok">— none —</span></td></tr><tr>
+<td class="rk">4</td><td class="dist">Davenport CSD</td>
+<td>10–15k</td><td class="w-mid">mid</td>
+<td class="neg">-1.7%/yr</td>
 <td class="lab">Building — renewal (declining enrollment)</td>
-<td>15.2%</td><td class="pos">0.9%</td>
-<td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(96,116,60)">3.5</span></td>
-<td><span class="badge" style="background:rgb(56,141,67)">4.3</span></td>
-<td class="flags"><span class="ok">— none —</span></td></tr><tr>
+<td class=""><b>18.6%</b></td>
+<td>24.4%</td>
+<td><span class="badge" style="background:rgb(40,151,70)">4.6</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(66,134,65)">4.1</span></td>
+<td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td class="flags"><span class="flag">Recent significant deficiency</span></td></tr><tr>
 <td class="rk">5</td><td class="dist">Cedar Rapids CSD</td>
-<td>>15k</td><td>16120.0</td><td class="neg">-0.9%/yr</td>
+<td>&gt;15k</td><td class="w-mid">mid</td>
+<td class="neg">-1.0%/yr</td>
 <td class="lab">Building — renewal</td>
-<td>13.8%</td><td class="neg">-0.5%</td>
-<td><span class="badge" style="background:rgb(91,119,61)">3.6</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(106,109,58)">3.3</span></td>
-<td><span class="badge" style="background:rgb(70,132,65)">4.0</span></td>
-<td class="flags"><span class="ok">— none —</span></td></tr><tr>
-<td class="rk">6</td><td class="dist">Ankeny CSD</td>
-<td>10–15k</td><td>12753.83</td><td class="pos">+0.8%/yr</td>
+<td class=""><b>13.0%</b></td>
+<td>14.0%</td>
+<td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(90,119,61)">3.6</span></td>
+<td><span class="badge" style="background:rgb(63,137,66)">4.2</span></td><td class="flags"><span class="ok">— none —</span></td></tr><tr>
+<td class="rk">6</td><td class="dist">Dubuque CSD</td>
+<td>5–10k</td><td class="w-mid">mid</td>
+<td class="neg">-0.8%/yr</td>
 <td class="lab">Building — renewal</td>
-<td>13.4%</td><td class="pos">1.0%</td>
-<td><span class="badge" style="background:rgb(71,131,65)">4.0</span></td><td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td><span class="badge" style="background:rgb(86,122,62)">3.7</span></td>
-<td><span class="badge" style="background:rgb(71,131,65)">4.0</span></td>
-<td class="flags"><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">7</td><td class="dist">Dubuque CSD</td>
-<td>5–10k</td><td>9862.9</td><td class="neg">-1.2%/yr</td>
-<td class="lab">Building — renewal (declining enrollment)</td>
-<td>15.4%</td><td class="neg">-2.1%</td>
-<td><span class="badge" style="background:rgb(96,116,60)">3.5</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(121,100,56)">3.0</span></td>
-<td><span class="badge" style="background:rgb(76,128,64)">3.9</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span></td></tr><tr>
-<td class="rk">8</td><td class="dist">Linn-Mar CSD</td>
-<td>5–10k</td><td>7494.0</td><td class="neg">-0.5%/yr</td>
+<td class=""><b>11.1%</b></td>
+<td>15.6%</td>
+<td><span class="badge" style="background:rgb(84,123,62)">3.7</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(91,119,61)">3.6</span></td>
+<td><span class="badge" style="background:rgb(64,136,66)">4.2</span></td><td class="flags"><span class="flag">Cash-reserve-levy at cap</span><span class="flag">Multi-yr operating deficit</span></td></tr><tr>
+<td class="rk">7</td><td class="dist">Ankeny CSD</td>
+<td>10–15k</td><td class="w-high">high</td>
+<td class="pos">+1.1%/yr</td>
+<td class="lab">Building — growth-driven</td>
+<td class=""><b>14.0%</b></td>
+<td>13.5%</td>
+<td><span class="badge" style="background:rgb(77,128,63)">3.9</span></td><td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td><span class="badge" style="background:rgb(54,142,68)">4.3</span></td>
+<td><span class="badge" style="background:rgb(66,135,65)">4.1</span></td><td class="flags"><span class="flag">Recent significant deficiency</span></td></tr><tr>
+<td class="rk">8</td><td class="dist">West Des Moines CSD</td>
+<td>5–10k</td><td class="w-high">high</td>
+<td class="neg">-0.7%/yr</td>
 <td class="lab">Building — renewal</td>
-<td>9.5%</td><td class="pos">2.5%</td>
-<td><span class="badge" style="background:rgb(86,122,62)">3.7</span></td><td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td>
-<td><span class="badge" style="background:rgb(76,128,64)">3.9</span></td>
-<td class="flags"><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">9</td><td class="dist">West Des Moines CSD</td>
-<td>5–10k</td><td>8526.0</td><td class="neg">-1.1%/yr</td>
-<td class="lab">Building — renewal (declining enrollment)</td>
-<td>11.4%</td><td class="neg">-2.2%</td>
-<td><span class="badge" style="background:rgb(116,103,56)">3.1</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(130,94,54)">2.8</span></td>
-<td><span class="badge" style="background:rgb(86,122,62)">3.7</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span></td></tr><tr>
+<td class=""><b>11.0%</b></td>
+<td>11.6%</td>
+<td><span class="badge" style="background:rgb(99,114,59)">3.4</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(97,115,60)">3.5</span></td>
+<td><span class="badge" style="background:rgb(71,131,65)">4.0</span></td><td class="flags"><span class="flag">Multi-yr operating deficit</span></td></tr><tr>
+<td class="rk">9</td><td class="dist">Linn-Mar CSD</td>
+<td>5–10k</td><td class="w-low">low</td>
+<td class="pos">+0.0%/yr</td>
+<td class="lab">Building — renewal</td>
+<td class=""><b>10.3%</b></td>
+<td>9.6%</td>
+<td><span class="badge" style="background:rgb(82,124,62)">3.8</span></td><td><span class="badge" style="background:rgb(61,138,66)">4.2</span></td><td><span class="badge" style="background:rgb(71,132,65)">4.0</span></td>
+<td><span class="badge" style="background:rgb(72,131,64)">4.0</span></td><td class="flags"><span class="flag">Heavy cash-reserve-levy reliance</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
 <td class="rk">10</td><td class="dist">Burlington CSD</td>
-<td><5k</td><td>3913.0</td><td class="">+0.0%/yr</td>
-<td class="lab">Building — renewal</td>
-<td>8.4%</td><td class="neg">-2.2%</td>
-<td><span class="badge" style="background:rgb(145,84,51)">2.5</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(130,94,54)">2.8</span></td>
-<td><span class="badge" style="background:rgb(98,114,60)">3.5</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span></td></tr><tr>
-<td class="rk">11</td><td class="dist">Des Moines Independent CSD</td>
-<td>>15k</td><td>30836.0</td><td class="neg">-1.1%/yr</td>
+<td>&lt;5k</td><td class="w-low">low</td>
+<td class="neg">-1.7%/yr</td>
 <td class="lab">Building — renewal (declining enrollment)</td>
-<td>25.2%</td><td class="neg">-4.1%</td>
-<td><span class="badge" style="background:rgb(130,94,54)">2.8</span></td><td><span class="badge" style="background:rgb(111,106,57)">3.2</span></td><td><span class="badge" style="background:rgb(150,81,50)">2.4</span></td>
-<td><span class="badge" style="background:rgb(128,95,54)">2.8</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">12</td><td class="dist">Johnston CSD</td>
-<td>5–10k</td><td>6984.8</td><td class="neg">-0.6%/yr</td>
+<td class=""><b>28.5%</b></td>
+<td>8.5%</td>
+<td><span class="badge" style="background:rgb(101,112,59)">3.4</span></td><td><span class="badge" style="background:rgb(22,163,74)">5.0</span></td><td><span class="badge" style="background:rgb(110,107,57)">3.2</span></td>
+<td><span class="badge" style="background:rgb(75,128,64)">3.9</span></td><td class="flags"><span class="flag">Multi-yr operating deficit</span></td></tr><tr>
+<td class="rk">11</td><td class="dist">Johnston CSD</td>
+<td>5–10k</td><td class="w-mid">mid</td>
+<td class="neg">-0.6%/yr</td>
 <td class="lab">Maintain</td>
-<td>7.7%</td><td class="neg">-3.8%</td>
-<td><span class="badge" style="background:rgb(160,75,48)">2.2</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(150,81,50)">2.4</span></td>
-<td><span class="badge" style="background:rgb(130,94,54)">2.8</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">13</td><td class="dist">College CSD (Prairie)</td>
-<td>5–10k</td><td>5089.0</td><td class="neg">-2.0%/yr</td>
+<td class=""><b>20.7%</b></td>
+<td>7.7%</td>
+<td><span class="badge" style="background:rgb(99,114,59)">3.4</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(107,109,58)">3.3</span></td>
+<td><span class="badge" style="background:rgb(94,117,60)">3.5</span></td><td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
+<td class="rk">12</td><td class="dist">Des Moines Independent CSD</td>
+<td>&gt;15k</td><td class="w-low">low</td>
+<td class="neg">-1.2%/yr</td>
 <td class="lab">Building — renewal (declining enrollment)</td>
-<td>6.5%</td><td class="neg">-3.9%</td>
-<td><span class="badge" style="background:rgb(160,75,48)">2.2</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(165,72,47)">2.1</span></td>
-<td><span class="badge" style="background:rgb(134,92,53)">2.7</span></td>
-<td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
-<td class="rk">14</td><td class="dist">Iowa City CSD</td>
-<td>10–15k</td><td>14440.0</td><td class="neg">-0.3%/yr</td>
+<td class=""><b>18.1%</b></td>
+<td>25.5%</td>
+<td><span class="badge" style="background:rgb(98,114,60)">3.5</span></td><td><span class="badge" style="background:rgb(111,106,57)">3.2</span></td><td><span class="badge" style="background:rgb(119,101,56)">3.0</span></td>
+<td><span class="badge" style="background:rgb(108,108,58)">3.3</span></td><td class="flags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
+<td class="rk">13</td><td class="dist">College CSD (Prairie)</td>
+<td>5–10k</td><td class="w-high">high</td>
+<td class="neg">-0.2%/yr</td>
 <td class="lab">Building — renewal</td>
-<td>2.5%</td><td class="pos">0.3%</td>
-<td><span class="badge" style="background:rgb(121,100,56)">3.0</span></td><td><span class="badge" style="background:rgb(220,38,38)">1.0</span></td><td><span class="badge" style="background:rgb(111,106,57)">3.2</span></td>
-<td><span class="badge" style="background:rgb(153,80,50)">2.4</span></td>
-<td class="flags"><span class="flag">Solvency &lt;5%</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span><span class="flag">FY24/FY25 audit missing (stale)</span></td></tr><tr>
-<td class="rk">15</td><td class="dist">Waterloo CSD</td>
-<td>10–15k</td><td>10812.0</td><td class="neg">-0.1%/yr</td>
+<td class=""><b>14.1%</b></td>
+<td>6.6%</td>
+<td><span class="badge" style="background:rgb(123,98,55)">2.9</span></td><td><span class="badge" style="background:rgb(81,125,63)">3.8</span></td><td><span class="badge" style="background:rgb(131,93,54)">2.8</span></td>
+<td><span class="badge" style="background:rgb(111,106,57)">3.2</span></td><td class="flags"><span class="flag">Cash-reserve-levy at cap</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent significant deficiency</span></td></tr><tr>
+<td class="rk">14</td><td class="dist">Waterloo CSD</td>
+<td>10–15k</td><td class="w-low">low</td>
+<td class="neg">-0.1%/yr</td>
 <td class="lab">Building — renewal</td>
-<td>-5.6%</td><td class="neg">-9.7%</td>
-<td><span class="badge" style="background:rgb(220,38,38)">1.0</span></td><td><span class="badge" style="background:rgb(96,116,60)">3.5</span></td><td><span class="badge" style="background:rgb(190,56,43)">1.6</span></td>
-<td><span class="badge" style="background:rgb(169,69,47)">2.0</span></td>
-<td class="flags"><span class="flag">Negative solvency</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent material weakness</span><span class="flag">Negative GF unassigned balance</span></td></tr>
+<td class=""><b>7.5%</b></td>
+<td>-5.7%</td>
+<td><span class="badge" style="background:rgb(182,61,44)">1.8</span></td><td><span class="badge" style="background:rgb(96,116,60)">3.5</span></td><td><span class="badge" style="background:rgb(150,81,50)">2.4</span></td>
+<td><span class="badge" style="background:rgb(144,85,51)">2.5</span></td><td class="flags"><span class="flag">UAB falling &gt;6pp</span><span class="flag">Negative solvency</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent material weakness</span><span class="flag">Negative GF unassigned balance</span></td></tr><tr>
+<td class="rk">15</td><td class="dist">Iowa City CSD</td>
+<td>10–15k</td><td class="w-high">high</td>
+<td class="pos">+0.1%/yr</td>
+<td class="lab">Building — renewal</td>
+<td class="neg"><b>2.3%</b></td>
+<td>2.5%</td>
+<td><span class="badge" style="background:rgb(132,93,53)">2.8</span></td><td><span class="badge" style="background:rgb(220,38,38)">1.0</span></td><td><span class="badge" style="background:rgb(100,113,59)">3.4</span></td>
+<td><span class="badge" style="background:rgb(155,78,49)">2.3</span></td><td class="flags"><span class="flag">UAB went negative</span><span class="flag">Thin UAB (&lt;5%)</span><span class="flag">Heavy cash-reserve-levy reliance</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span><span class="flag">FY24/FY25 audit missing (stale)</span></td></tr>
 </tbody></table>
 
 <h2>District scorecards</h2>
 <div class="cards"><div class="card">
-  <div class="ch"><h3>Pleasant Valley CSD</h3>
-    <span class="comp" style="background:rgb(22,163,74)">5.00</span></div>
-  <div class="meta">5–10k · enrollment 5498.0 · 2020–2025 · <b>Building — growth-driven</b></div>
+  <div class="ch"><h3>Pleasant Valley CSD</h3><span class="comp" style="background:rgb(22,163,74)">5.00</span></div>
+  <div class="meta">5–10k · 5538 students · <b>Building — growth-driven</b> · mid wealth ($388,045/pupil)</div>
   <div class="grid">
     <div><span class="k">Health</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
@@ -221,304 +228,294 @@ Moines all show steep post-ESSER reserve drawdowns despite clean audits.</li>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,14.6 31.8,9.6 60.6,10.3 89.4,10.6 118.2,6.1 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>22.4%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,21.6 31.8,3.0 60.6,31.3 89.4,33.4 118.2,10.5 147.0,19.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="19.6" r="2.6" fill="#16a34a"/></svg><b>2.5%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,10.3 31.8,6.9 60.6,7.8 89.4,6.9 118.2,4.3 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b class="pos">22.8%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,14.7 31.8,9.8 60.6,10.6 89.4,10.9 118.2,6.3 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>22.7%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,21.6 31.8,3.0 60.6,31.3 89.4,33.4 118.2,10.5 147.0,19.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="19.6" r="2.6" fill="#16a34a"/></svg><b class="pos">2.5%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $49M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="ok">no auto-flags</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $49M
+     · <span>GO-limit room:</span> $224M left · <span>Cash-reserve levy:</span> 18% of cap</div>
+  <div class="cardflags"><span class="flag">Cash-reserve-levy at cap</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Waukee CSD</h3>
-    <span class="comp" style="background:rgb(22,163,74)">5.00</span></div>
-  <div class="meta">10–15k · enrollment 14016.0 · 2020–2025 · <b>Building — growth-driven</b></div>
+  <div class="ch"><h3>Waukee CSD</h3><span class="comp" style="background:rgb(33,155,71)">4.77</span></div>
+  <div class="meta">10–15k · 13674 students · <b>Building — growth-driven</b> · high wealth ($465,560/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(40,151,70)">4.6</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(36,153,71)">4.7</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,10.4 31.8,10.9 60.6,14.5 89.4,14.2 118.2,7.3 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>17.9%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="29.5" x2="147" y2="29.5" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,34.5 31.8,24.9 60.6,35.0 89.4,21.4 118.2,3.0 147.0,11.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="11.1" r="2.6" fill="#16a34a"/></svg><b>3.3%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,3.4 31.8,3.0 60.6,3.6 89.4,4.9 118.2,5.4 147.0,6.5" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="6.5" r="2.6" fill="#16a34a"/></svg><b class="pos">29.9%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,10.7 31.8,11.2 60.6,14.7 89.4,14.5 118.2,7.6 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>18.1%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="29.5" x2="147" y2="29.5" stroke="#e2e8f0"/><polyline points="3.0,34.5 31.8,24.9 60.6,35.0 89.4,21.4 118.2,3.0 147.0,11.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="11.1" r="2.6" fill="#16a34a"/></svg><b class="pos">3.3%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $388M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $388M
+     · <span>GO-limit room:</span> $332M left · <span>Cash-reserve levy:</span> 58% of cap</div>
+  <div class="cardflags"><span class="flag">Heavy cash-reserve-levy reliance</span></div>
+</div><div class="card">
+  <div class="ch"><h3>Muscatine CSD</h3><span class="comp" style="background:rgb(50,144,68)">4.42</span></div>
+  <div class="meta">&lt;5k · 4423 students · <b>Building — renewal (declining enrollment)</b> · low wealth ($343,661/pupil)</div>
+  <div class="grid">
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(56,141,67)">4.3</span></div>
+    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(82,124,62)">3.8</span></div>
+    <div><span class="k">Recognition</span>GFOA/ASBO</div>
+  </div>
+  <div class="sparks">
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,8.7 31.8,6.5 60.6,3.3 89.4,5.1 118.2,3.0 147.0,3.3" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.3" r="2.6" fill="#16a34a"/></svg><b class="pos">20.5%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,3.0 31.8,4.8 60.6,4.8 89.4,8.2 118.2,8.2 147.0,10.9" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="10.9" r="2.6" fill="#16a34a"/></svg><b>15.4%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.4" x2="147" y2="20.4" stroke="#e2e8f0"/><polyline points="3.0,35.0 31.8,22.9 60.6,8.2 89.4,3.0 118.2,13.0 147.0,31.3" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="31.3" r="2.6" fill="#dc2626"/></svg><b class="pos">-2.2%</b></div>
+  </div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $22M
+     · <span>GO-limit room:</span> $141M left · <span>Cash-reserve levy:</span> 8% of cap</div>
   <div class="cardflags"><span class="ok">no auto-flags</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Davenport CSD</h3>
-    <span class="comp" style="background:rgb(53,143,68)">4.36</span></div>
-  <div class="meta">10–15k · enrollment 13370.0 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>Davenport CSD</h3><span class="comp" style="background:rgb(61,138,66)">4.20</span></div>
+  <div class="meta">10–15k · 13786 students · <b>Building — renewal (declining enrollment)</b> · mid wealth ($374,017/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(40,151,70)">4.6</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
     <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(66,134,65)">4.1</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,20.6 31.8,19.2 60.6,13.3 89.4,6.1 118.2,4.5 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>24.1%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="27.8" x2="147" y2="27.8" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,15.4 31.8,23.0 60.6,18.2 89.4,3.0 118.2,5.1 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-2.5%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,33.1 31.8,28.1 60.6,21.7 89.4,14.6 118.2,9.3 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b class="pos">18.6%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,20.7 31.8,19.3 60.6,13.5 89.4,6.4 118.2,4.7 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>24.4%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="27.8" x2="147" y2="27.8" stroke="#e2e8f0"/><polyline points="3.0,15.4 31.8,23.0 60.6,18.2 89.4,3.0 118.2,5.1 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="pos">-2.5%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $74M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $74M
+     · <span>GO-limit room:</span> $495M left · <span>Cash-reserve levy:</span> 0% of cap</div>
   <div class="cardflags"><span class="flag">Recent significant deficiency</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Muscatine CSD</h3>
-    <span class="comp" style="background:rgb(56,141,67)">4.30</span></div>
-  <div class="meta"><5k · enrollment 4315.9 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>Cedar Rapids CSD</h3><span class="comp" style="background:rgb(63,137,66)">4.17</span></div>
+  <div class="meta">&gt;15k · 16140 students · <b>Building — renewal</b> · mid wealth ($379,354/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(61,138,66)">4.2</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(96,116,60)">3.5</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(90,119,61)">3.6</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,3.0 31.8,4.8 60.6,4.8 89.4,8.2 118.2,8.2 147.0,11.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="11.0" r="2.6" fill="#16a34a"/></svg><b>15.2%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.4" x2="147" y2="20.4" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,35.0 31.8,22.9 60.6,8.2 89.4,3.0 118.2,13.0 147.0,31.3" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="31.3" r="2.6" fill="#dc2626"/></svg><b>-2.2%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,16.9 31.8,10.5 60.6,7.0 89.4,7.2 118.2,3.0 147.0,4.2" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="4.2" r="2.6" fill="#16a34a"/></svg><b class="pos">13.0%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,12.5 31.8,8.8 60.6,12.0 89.4,4.0 118.2,3.0 147.0,9.4" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="9.4" r="2.6" fill="#16a34a"/></svg><b>14.0%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="14.6" x2="147" y2="14.6" stroke="#e2e8f0"/><polyline points="3.0,27.3 31.8,10.1 60.6,6.5 89.4,3.0 118.2,12.1 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-4.5%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $22M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $118M
+     · <span>GO-limit room:</span> $683M left · <span>Cash-reserve levy:</span> 18% of cap</div>
   <div class="cardflags"><span class="ok">no auto-flags</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Cedar Rapids CSD</h3>
-    <span class="comp" style="background:rgb(70,132,65)">4.02</span></div>
-  <div class="meta">>15k · enrollment 16120.0 · 2020–2025 · <b>Building — renewal</b></div>
+  <div class="ch"><h3>Dubuque CSD</h3><span class="comp" style="background:rgb(64,136,66)">4.15</span></div>
+  <div class="meta">5–10k · 9996 students · <b>Building — renewal</b> · mid wealth ($421,965/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(91,119,61)">3.6</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(84,123,62)">3.7</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(106,109,58)">3.3</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(91,119,61)">3.6</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,12.5 31.8,8.8 60.6,12.0 89.4,4.0 118.2,3.0 147.0,9.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="9.6" r="2.6" fill="#16a34a"/></svg><b>13.8%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="14.6" x2="147" y2="14.6" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,27.3 31.8,10.1 60.6,6.5 89.4,3.0 118.2,12.1 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-4.5%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,13.9 31.8,8.5 60.6,6.3 89.4,7.4 118.2,7.4 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b class="pos">11.1%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,13.6 31.8,7.9 60.6,3.0 89.4,3.8 118.2,8.4 147.0,9.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="9.6" r="2.6" fill="#16a34a"/></svg><b>15.6%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="22.1" x2="147" y2="22.1" stroke="#e2e8f0"/><polyline points="3.0,23.5 31.8,3.0 60.6,10.1 89.4,30.8 118.2,35.0 147.0,24.5" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.5" r="2.6" fill="#dc2626"/></svg><b class="neg">-0.6%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $118M &nbsp;·&nbsp; <span>Personnel %GF:</span> 79% (est., MD&A)</div>
-  <div class="cardflags"><span class="ok">no auto-flags</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $81M
+     · <span>GO-limit room:</span> $436M left · <span>Cash-reserve levy:</span> 11% of cap</div>
+  <div class="cardflags"><span class="flag">Cash-reserve-levy at cap</span><span class="flag">Multi-yr operating deficit</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Ankeny CSD</h3>
-    <span class="comp" style="background:rgb(71,131,65)">4.00</span></div>
-  <div class="meta">10–15k · enrollment 12753.83 · 2020–2025 · <b>Building — renewal</b></div>
+  <div class="ch"><h3>Ankeny CSD</h3><span class="comp" style="background:rgb(66,135,65)">4.11</span></div>
+  <div class="meta">10–15k · 12637 students · <b>Building — growth-driven</b> · high wealth ($438,953/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(71,131,65)">4.0</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(77,128,63)">3.9</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(61,138,66)">4.2</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(86,122,62)">3.7</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(54,142,68)">4.3</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.1 31.8,5.2 60.6,7.1 89.4,12.9 118.2,8.6 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>13.4%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="32.1" x2="147" y2="32.1" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,24.7 31.8,15.0 60.6,28.6 89.4,34.0 118.2,35.0 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>3.5%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,3.0 31.8,4.5 60.6,6.4 89.4,10.8 118.2,13.6 147.0,9.5" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="9.5" r="2.6" fill="#16a34a"/></svg><b class="pos">14.0%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,13.3 31.8,5.5 60.6,7.3 89.4,13.2 118.2,8.8 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b>13.5%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="32.1" x2="147" y2="32.1" stroke="#e2e8f0"/><polyline points="3.0,24.7 31.8,15.0 60.6,28.6 89.4,34.0 118.2,35.0 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b class="pos">3.5%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $75M &nbsp;·&nbsp; <span>Personnel %GF:</span> 77% (est., MD&A)</div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $75M
+     · <span>GO-limit room:</span> $542M left · <span>Cash-reserve levy:</span> 29% of cap</div>
   <div class="cardflags"><span class="flag">Recent significant deficiency</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Dubuque CSD</h3>
-    <span class="comp" style="background:rgb(76,128,64)">3.90</span></div>
-  <div class="meta">5–10k · enrollment 9862.9 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>West Des Moines CSD</h3><span class="comp" style="background:rgb(71,131,65)">4.00</span></div>
+  <div class="meta">5–10k · 8614 students · <b>Building — renewal</b> · high wealth ($660,340/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(96,116,60)">3.5</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(99,114,59)">3.4</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(121,100,56)">3.0</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(97,115,60)">3.5</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.6 31.8,7.9 60.6,3.0 89.4,3.8 118.2,8.4 147.0,9.8" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="9.8" r="2.6" fill="#16a34a"/></svg><b>15.4%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="22.1" x2="147" y2="22.1" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,23.5 31.8,3.0 60.6,10.1 89.4,30.8 118.2,35.0 147.0,24.5" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.5" r="2.6" fill="#dc2626"/></svg><b>-0.6%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,3.0 31.8,8.7 60.6,6.5 89.4,8.6 118.2,11.5 147.0,7.7" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="7.7" r="2.6" fill="#16a34a"/></svg><b class="pos">11.0%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,19.1 31.8,17.4 60.6,8.3 89.4,3.0 118.2,8.7 147.0,16.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="16.1" r="2.6" fill="#16a34a"/></svg><b>11.6%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.0" x2="147" y2="20.0" stroke="#e2e8f0"/><polyline points="3.0,13.7 31.8,9.8 60.6,3.0 89.4,11.3 118.2,33.0 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-5.1%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $81M &nbsp;·&nbsp; <span>Personnel %GF:</span> 85% (est., MD&A)</div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $103M
+     · <span>GO-limit room:</span> $482M left · <span>Cash-reserve levy:</span> 3% of cap</div>
   <div class="cardflags"><span class="flag">Multi-yr operating deficit</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Linn-Mar CSD</h3>
-    <span class="comp" style="background:rgb(76,128,64)">3.90</span></div>
-  <div class="meta">5–10k · enrollment 7494.0 · 2020–2025 · <b>Building — renewal</b></div>
+  <div class="ch"><h3>Linn-Mar CSD</h3><span class="comp" style="background:rgb(72,131,64)">3.98</span></div>
+  <div class="meta">5–10k · 7567 students · <b>Building — renewal</b> · low wealth ($351,560/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(86,122,62)">3.7</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(82,124,62)">3.8</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(61,138,66)">4.2</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(71,132,65)">4.0</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,8.9 31.8,3.0 60.6,7.1 89.4,20.0 118.2,20.7 147.0,13.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="13.6" r="2.6" fill="#16a34a"/></svg><b>9.5%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,21.5 31.8,3.0 147.0,5.9" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="5.9" r="2.6" fill="#16a34a"/></svg><b>2.9%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,6.7 31.8,3.0 60.6,8.3 89.4,14.6 118.2,15.2 147.0,13.9" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="13.9" r="2.6" fill="#16a34a"/></svg><b class="pos">10.3%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,8.8 31.8,3.0 60.6,7.0 89.4,20.0 118.2,20.7 147.0,13.4" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="13.4" r="2.6" fill="#16a34a"/></svg><b>9.6%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,21.5 31.8,3.0 147.0,5.9" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="5.9" r="2.6" fill="#16a34a"/></svg><b class="pos">2.9%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $124M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Recent significant deficiency</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $124M
+     · <span>GO-limit room:</span> $206M left · <span>Cash-reserve levy:</span> 44% of cap</div>
+  <div class="cardflags"><span class="flag">Heavy cash-reserve-levy reliance</span><span class="flag">Recent significant deficiency</span></div>
 </div><div class="card">
-  <div class="ch"><h3>West Des Moines CSD</h3>
-    <span class="comp" style="background:rgb(86,122,62)">3.69</span></div>
-  <div class="meta">5–10k · enrollment 8526.0 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>Burlington CSD</h3><span class="comp" style="background:rgb(75,128,64)">3.91</span></div>
+  <div class="meta">&lt;5k · 3797 students · <b>Building — renewal (declining enrollment)</b> · low wealth ($317,238/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(116,103,56)">3.1</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(101,112,59)">3.4</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(130,94,54)">2.8</span></div>
-    <div><span class="k">Recognition</span>GFOA/ASBO</div>
-  </div>
-  <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,19.1 31.8,17.4 60.6,8.3 89.4,3.0 118.2,8.7 147.0,16.2" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="16.2" r="2.6" fill="#16a34a"/></svg><b>11.4%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.0" x2="147" y2="20.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.7 31.8,9.8 60.6,3.0 89.4,11.3 118.2,33.0 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-5.1%</b></div>
-  </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $103M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span></div>
-</div><div class="card">
-  <div class="ch"><h3>Burlington CSD</h3>
-    <span class="comp" style="background:rgb(98,114,60)">3.45</span></div>
-  <div class="meta"><5k · enrollment 3913.0 · 2020–2025 · <b>Building — renewal</b></div>
-  <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(145,84,51)">2.5</span></div>
-    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(22,163,74)">5.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(130,94,54)">2.8</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(110,107,57)">3.2</span></div>
     <div><span class="k">Recognition</span>—</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,4.3 31.8,4.3 60.6,3.0 89.4,5.3 118.2,13.9 147.0,24.8" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.8" r="2.6" fill="#16a34a"/></svg><b>8.4%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="16.8" x2="147" y2="16.8" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,17.4 31.8,13.9 60.6,11.5 89.4,3.0 118.2,24.9 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-9.7%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,3.3 31.8,3.0 60.6,3.1 89.4,4.6 118.2,6.1 147.0,6.8" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="6.8" r="2.6" fill="#16a34a"/></svg><b class="pos">28.5%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,4.2 31.8,4.3 60.6,3.0 89.4,5.3 118.2,13.8 147.0,24.7" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.7" r="2.6" fill="#16a34a"/></svg><b>8.5%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="16.8" x2="147" y2="16.8" stroke="#e2e8f0"/><polyline points="3.0,17.4 31.8,13.9 60.6,11.5 89.4,3.0 118.2,24.9 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-9.7%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $40M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $40M
+     · <span>GO-limit room:</span> $111M left · <span>Cash-reserve levy:</span> 0% of cap</div>
+  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Des Moines Independent CSD</h3>
-    <span class="comp" style="background:rgb(128,95,54)">2.84</span></div>
-  <div class="meta">>15k · enrollment 30836.0 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>Johnston CSD</h3><span class="comp" style="background:rgb(94,117,60)">3.53</span></div>
+  <div class="meta">5–10k · 6838 students · <b>Maintain</b> · mid wealth ($419,056/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(130,94,54)">2.8</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(99,114,59)">3.4</span></div>
+    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(107,109,58)">3.3</span></div>
+    <div><span class="k">Recognition</span>—</div>
+  </div>
+  <div class="sparks">
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,13.5 31.8,9.3 60.6,5.7 89.4,4.8 118.2,3.0 147.0,4.3" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="4.3" r="2.6" fill="#16a34a"/></svg><b class="pos">20.7%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,14.4 31.8,10.4 60.6,3.0 89.4,7.7 118.2,14.3 147.0,23.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="23.0" r="2.6" fill="#16a34a"/></svg><b>7.7%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="19.0" x2="147" y2="19.0" stroke="#e2e8f0"/><polyline points="3.0,27.5 31.8,4.8 60.6,3.0 89.4,22.1 118.2,33.6 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-5.4%</b></div>
+  </div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $26M
+     · <span>GO-limit room:</span> $286M left · <span>Cash-reserve levy:</span> 16% of cap</div>
+  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent significant deficiency</span></div>
+</div><div class="card">
+  <div class="ch"><h3>Des Moines Independent CSD</h3><span class="comp" style="background:rgb(108,108,58)">3.26</span></div>
+  <div class="meta">&gt;15k · 30802 students · <b>Building — renewal (declining enrollment)</b> · low wealth ($293,406/pupil)</div>
+  <div class="grid">
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(98,114,60)">3.5</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(111,106,57)">3.2</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(150,81,50)">2.4</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(119,101,56)">3.0</span></div>
     <div><span class="k">Recognition</span>GFOA/ASBO</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,15.9 31.8,6.6 60.6,3.0 89.4,3.7 118.2,4.3 147.0,12.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="12.1" r="2.6" fill="#16a34a"/></svg><b>25.2%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.1" x2="147" y2="20.1" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,11.1 31.8,3.0 60.6,22.2 89.4,19.4 118.2,24.2 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-10.0%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,27.1 31.8,14.0 60.6,12.2 89.4,8.0 118.2,3.0 147.0,7.4" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="7.4" r="2.6" fill="#16a34a"/></svg><b class="pos">18.1%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,15.9 31.8,6.6 60.6,3.0 89.4,3.7 118.2,4.2 147.0,12.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="12.0" r="2.6" fill="#16a34a"/></svg><b>25.5%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="20.1" x2="147" y2="20.1" stroke="#e2e8f0"/><polyline points="3.0,11.1 31.8,3.0 60.6,22.2 89.4,19.4 118.2,24.2 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-10.0%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $81M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $81M
+     · <span>GO-limit room:</span> $887M left · <span>Cash-reserve levy:</span> 0% of cap</div>
+  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span></div>
 </div><div class="card">
-  <div class="ch"><h3>Johnston CSD</h3>
-    <span class="comp" style="background:rgb(130,94,54)">2.81</span></div>
-  <div class="meta">5–10k · enrollment 6984.8 · 2020–2025 · <b>Maintain</b></div>
+  <div class="ch"><h3>College CSD (Prairie)</h3><span class="comp" style="background:rgb(111,106,57)">3.20</span></div>
+  <div class="meta">5–10k · 5075 students · <b>Building — renewal</b> · high wealth ($516,559/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(160,75,48)">2.2</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(123,98,55)">2.9</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(131,93,54)">2.8</span></div>
+    <div><span class="k">Recognition</span>—</div>
+  </div>
+  <div class="sparks">
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,12.1 31.8,8.0 60.6,6.2 89.4,3.0 118.2,4.7 147.0,7.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="7.1" r="2.6" fill="#16a34a"/></svg><b class="pos">14.1%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,8.3 31.8,3.0 60.6,4.2 89.4,6.7 118.2,14.9 147.0,24.7" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.7" r="2.6" fill="#16a34a"/></svg><b>6.6%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="17.9" x2="147" y2="17.9" stroke="#e2e8f0"/><polyline points="3.0,13.3 31.8,3.0 60.6,17.9 89.4,23.4 118.2,33.7 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b class="neg">-5.2%</b></div>
+  </div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $204M
+     · <span>GO-limit room:</span> $103M left · <span>Cash-reserve levy:</span> 14% of cap</div>
+  <div class="cardflags"><span class="flag">Cash-reserve-levy at cap</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent significant deficiency</span></div>
+</div><div class="card">
+  <div class="ch"><h3>Waterloo CSD</h3><span class="comp" style="background:rgb(144,85,51)">2.52</span></div>
+  <div class="meta">10–15k · 10732 students · <b>Building — renewal</b> · low wealth ($259,946/pupil)</div>
+  <div class="grid">
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(182,61,44)">1.8</span></div>
+    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(96,116,60)">3.5</span></div>
     <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(150,81,50)">2.4</span></div>
     <div><span class="k">Recognition</span>—</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,14.4 31.8,10.4 60.6,3.0 89.4,7.7 118.2,14.3 147.0,23.1" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="23.1" r="2.6" fill="#16a34a"/></svg><b>7.7%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="19.0" x2="147" y2="19.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,27.5 31.8,4.8 60.6,3.0 89.4,22.1 118.2,33.6 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-5.4%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,14.0 31.8,5.7 60.6,3.2 89.4,3.0 118.2,14.4 147.0,22.8" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="22.8" r="2.6" fill="#16a34a"/></svg><b class="pos">7.5%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="28.3" x2="147" y2="28.3" stroke="#e2e8f0"/><polyline points="3.0,13.6 31.8,5.8 60.6,3.0 89.4,3.2 118.2,20.4 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-5.7%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="12.7" x2="147" y2="12.7" stroke="#e2e8f0"/><polyline points="3.0,15.0 31.8,3.0 60.6,7.2 89.4,12.6 118.2,35.0 147.0,32.2" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="32.2" r="2.6" fill="#dc2626"/></svg><b class="neg">-13.6%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $26M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent significant deficiency</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $153M
+     · <span>GO-limit room:</span> $284M left · <span>Cash-reserve levy:</span> 6% of cap</div>
+  <div class="cardflags"><span class="flag">UAB falling &gt;6pp</span><span class="flag">Negative solvency</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Recent material weakness</span><span class="flag">Negative GF unassigned balance</span></div>
 </div><div class="card">
-  <div class="ch"><h3>College CSD (Prairie)</h3>
-    <span class="comp" style="background:rgb(134,92,53)">2.73</span></div>
-  <div class="meta">5–10k · enrollment 5089.0 · 2020–2025 · <b>Building — renewal (declining enrollment)</b></div>
+  <div class="ch"><h3>Iowa City CSD</h3><span class="comp" style="background:rgb(155,78,49)">2.31</span></div>
+  <div class="meta">10–15k · 14379 students · <b>Building — renewal</b> · high wealth ($501,754/pupil)</div>
   <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(160,75,48)">2.2</span></div>
-    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(81,125,63)">3.8</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(165,72,47)">2.1</span></div>
-    <div><span class="k">Recognition</span>—</div>
-  </div>
-  <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,8.3 31.8,3.0 60.6,4.3 89.4,6.7 118.2,14.9 147.0,24.7" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="24.7" r="2.6" fill="#16a34a"/></svg><b>6.5%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="17.9" x2="147" y2="17.9" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.3 31.8,3.0 60.6,17.9 89.4,23.4 118.2,33.7 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-5.2%</b></div>
-  </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $204M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent significant deficiency</span></div>
-</div><div class="card">
-  <div class="ch"><h3>Iowa City CSD</h3>
-    <span class="comp" style="background:rgb(153,80,50)">2.35</span></div>
-  <div class="meta">10–15k · enrollment 14440.0 · 2020–2023 · <b>Building — renewal</b></div>
-  <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(121,100,56)">3.0</span></div>
+    <div><span class="k">Health</span><span class="badge" style="background:rgb(132,93,53)">2.8</span></div>
     <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(220,38,38)">1.0</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(111,106,57)">3.2</span></div>
+    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(100,113,59)">3.4</span></div>
     <div><span class="k">Recognition</span>—</div>
   </div>
   <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2023)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.8 51.0,3.0 99.0,20.8 147.0,22.7" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="22.7" r="2.6" fill="#16a34a"/></svg><b>2.5%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="19.4" x2="147" y2="19.4" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,30.6 51.0,3.0 99.0,35.0 147.0,15.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="15.0" r="2.6" fill="#16a34a"/></svg><b>0.8%</b></div>
+    <div><span class="k">UAB % of max budget (FY20–25)</span><svg width="150" height="38" class="spark"><line x1="3" y1="24.0" x2="147" y2="24.0" stroke="#e2e8f0"/><polyline points="3.0,13.4 31.8,8.7 60.6,22.9 89.4,35.0 118.2,9.1 147.0,3.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="3.0" r="2.6" fill="#16a34a"/></svg><b class="neg">2.3%</b></div>
+    <div><span class="k">Solvency % (audited)</span><svg width="150" height="38" class="spark"><line x1="3" y1="35.0" x2="147" y2="35.0" stroke="#e2e8f0"/><polyline points="3.0,13.7 51.0,3.0 99.0,20.8 147.0,22.6" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="22.6" r="2.6" fill="#16a34a"/></svg><b>2.5%</b></div>
+    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="19.4" x2="147" y2="19.4" stroke="#e2e8f0"/><polyline points="3.0,30.6 51.0,3.0 99.0,35.0 147.0,15.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="15.0" r="2.6" fill="#16a34a"/></svg><b class="pos">0.8%</b></div>
   </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $322M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Solvency &lt;5%</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span><span class="flag">FY24/FY25 audit missing (stale)</span></div>
-</div><div class="card">
-  <div class="ch"><h3>Waterloo CSD</h3>
-    <span class="comp" style="background:rgb(169,69,47)">2.02</span></div>
-  <div class="meta">10–15k · enrollment 10812.0 · 2020–2025 · <b>Building — renewal</b></div>
-  <div class="grid">
-    <div><span class="k">Health</span><span class="badge" style="background:rgb(220,38,38)">1.0</span></div>
-    <div><span class="k">Op. Quality</span><span class="badge" style="background:rgb(96,116,60)">3.5</span></div>
-    <div><span class="k">Capital sustain.</span><span class="badge" style="background:rgb(190,56,43)">1.6</span></div>
-    <div><span class="k">Recognition</span>—</div>
-  </div>
-  <div class="sparks">
-    <div><span class="k">Solvency % (FY2020–2025)</span><svg width="150" height="38" class="spark"><line x1="3" y1="28.4" x2="147" y2="28.4" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,13.7 31.8,5.8 60.6,3.0 89.4,3.2 118.2,20.5 147.0,35.0" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="35.0" r="2.6" fill="#dc2626"/></svg><b>-5.6%</b></div>
-    <div><span class="k">Operating margin %</span><svg width="150" height="38" class="spark"><line x1="3" y1="12.7" x2="147" y2="12.7" stroke="#e2e8f0" stroke-width="1"/><polyline points="3.0,15.0 31.8,3.0 60.6,7.2 89.4,12.6 118.2,35.0 147.0,32.2" fill="none" stroke="#475569" stroke-width="1.5"/><circle cx="147.0" cy="32.2" r="2.6" fill="#dc2626"/></svg><b>-13.6%</b></div>
-  </div>
-  <div class="kv"><span>Latest opinion:</span> unmodified &nbsp;·&nbsp;
-     <span>Debt o/s:</span> $153M &nbsp;·&nbsp; <span>Personnel %GF:</span> not in audits</div>
-  <div class="cardflags"><span class="flag">Negative solvency</span><span class="flag">Multi-yr operating deficit</span><span class="flag">Reserve drawdown &gt;8pp</span><span class="flag">Recent material weakness</span><span class="flag">Negative GF unassigned balance</span></div>
+  <div class="kv"><span>Opinion:</span> unmodified · <span>Debt:</span> $322M
+     · <span>GO-limit room:</span> $574M left · <span>Cash-reserve levy:</span> 57% of cap</div>
+  <div class="cardflags"><span class="flag">UAB went negative</span><span class="flag">Thin UAB (&lt;5%)</span><span class="flag">Heavy cash-reserve-levy reliance</span><span class="flag">Recent material weakness</span><span class="flag">Recent significant deficiency</span><span class="flag">FY24/FY25 audit missing (stale)</span></div>
 </div></div>
 
 <h2>Methodology &amp; confidence</h2>
 <div class="note">
 <h4>How the scores were built</h4>
 <ul>
-<li><b>Source:</b> each district's audited ACFRs (FY2020–FY2025) were text-extracted and parsed
-field-by-field with a never-invent / blank-and-flag rule. Iowa City has only FY2020–FY2023 (FY2024/FY2025
-were never filed); it is scored on available data and carries a stale-data / missing-recent-year penalty.</li>
-<li><b>Pillars (1–5):</b> <b>Health</b> = solvency level + 3-yr operating margin + reserve trend;
-<b>Operational Quality</b> = audit opinion, material weaknesses / significant deficiencies / repeat
-findings, timeliness &amp; data currency, GFOA/ASBO recognition; <b>Capital-sustainability</b> = can the
-building program be afforded (health × enrollment trajectory × margin). <b>Composite = 0.40·Health +
-0.35·Quality + 0.25·Capital-sustainability.</b> Strategic posture is a label, not scored good/bad.</li>
-<li><b>Benchmark bands</b> follow ISFIS/IASB Iowa norms (solvency 5–15% target). All 15 are treated as
-one peer set ("Iowa's large districts"); size and enrollment trajectory are reported as context.</li>
+<li><b>Two data layers:</b> audited ACFRs (FY2020–FY2025, text-extracted field-by-field) +
+the Iowa DOM state-data layer (UAB, AEA flow-through, certified enrollment, cash-reserve levy &amp;
+20% cap, levy rates, valuation, at-risk). State data is <b>unaudited</b> but exists where audits do
+not — so Iowa City carries FY24/FY25 UAB and a stale/missing-audit Quality penalty.</li>
+<li><b>Pillar A — Health = 0.50·UAB + 0.30·Solvency + 0.20·Operating-margin trend.</b> UAB% (of max
+authorized budget) is the primary input; <b>negative UAB</b> is a hard flag. Solvency is recomputed
+uniformly using the DOM AEA flow-through denominator (the ISFIS formula). <b>Pillar C — Quality</b>:
+opinion, material weaknesses / significant deficiencies / repeat findings, timeliness &amp; data
+currency, GFOA/ASBO. <b>Capital-sustainability</b>: health × enrollment trajectory × margin × GO-debt
+headroom (vs. the 5%-of-actual-value limit). <b>Composite = 0.40·Health + 0.35·Quality +
+0.25·Capital-sustainability.</b> Strategic posture is a label, not scored.</li>
+<li><b>Context layers:</b> property-wealth tertiles (taxable valuation/pupil), GO-debt headroom, and
+cash-reserve-levy reliance (who taxes to stay liquid). All 15 are one peer set; Iowa benchmark bands
+(ISFIS/IASB) anchor the scales.</li>
 </ul>
-<h4>Known limitations</h4>
+<h4>Notes &amp; limits</h4>
 <ul>
-<li><b>Personnel-cost ratio (framework metric A8) is largely unavailable</b> — no district breaks
-salaries/benefits out by object in the General Fund statements; MD&amp;A narratives cite "~80%". Only a
-few districts (Ankeny, Cedar Rapids, Dubuque est.) could be populated. Reliable cross-district staffing
-ratios require the state CAR / DOM data, not the audits.</li>
-<li><b>Unspent Authorized Budget (UAB) — Iowa's #1 health indicator — is not in the audits.</b> Spending
-authority lives in the DOM Unspent Authorized Budget report and SBRC actions (e.g., Cedar Rapids' reported
-~$18M at-risk reduction did not appear in its ACFRs). Solvency is used here as the audit-available proxy.</li>
-<li>Solvency numerator = Unassigned + Assigned GF balance; "Committed" balances are excluded uniformly.
-Net pension (IPERS) swings are actuarial, not cash, and are read in context.</li>
+<li><b>Enrollment</b> uses the DOM funding/budget figure (uniform, complete; ~1–3% from audit
+"certified enrollment" due to the one-year funding lag).</li>
+<li><b>Personnel-cost ratio (A8)</b> remains audit-limited (most districts don't break salaries out by
+object in the GF statements; MD&amp;A cites ~80%).</li>
+<li>Solvency numerator = Unassigned + Assigned GF balance ("Committed" excluded uniformly). IPERS
+pension swings are actuarial, not cash. Cash-reserve-levy "reliance" is context, not a demerit — for
+a growth district (Waukee) it funds expansion; for Iowa City it signals taxing to stay liquid.</li>
 </ul>
 </div>
 
-<footer>
-Generated from <code>scripts/build_analysis.py</code> + <code>scripts/build_report.py</code>.
-Data: <code>data/iowa-district-financials.csv</code> (88 district-years),
-<code>data/iowa-district-scorecards.csv</code>. Methodology:
-<code>iowa-district-financial-analysis-framework.md</code>. Every figure traces to an audited ACFR;
-unaudited substitutes (CAR/DOM) would be needed to fill the gaps noted above.
-</footer>
+<footer>Generated from <code>scripts/extract_dom.py</code> → <code>scripts/build_analysis.py</code> →
+<code>scripts/build_report.py</code>. Data: <code>data/iowa-district-financials.csv</code> (audited),
+<code>data/dom/</code> (state), <code>data/iowa-district-scorecards.csv</code> (scores). Method:
+<code>iowa-district-financial-analysis-framework.md</code>.</footer>
 </div>
 <script>
-document.querySelectorAll('#bt th').forEach((th,idx)=>{
- th.addEventListener('click',()=>{
-  const tb=th.closest('table').querySelector('tbody');
-  const rows=[...tb.rows];
-  const asc=th._asc=!th._asc;
-  const num=s=>{const m=s.replace('%','').replace('+','').match(/-?\d+\.?\d*/);return m?parseFloat(m[0]):NaN};
-  rows.sort((a,b)=>{
-   let x=a.cells[idx].innerText.trim(),y=b.cells[idx].innerText.trim();
-   let nx=num(x),ny=num(y);
-   if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx;
-   return asc?x.localeCompare(y):y.localeCompare(x);
-  });
-  rows.forEach(r=>tb.appendChild(r));
- });
-});
-</script>
-</body></html>
+document.querySelectorAll('#bt th').forEach((th,idx)=>{th.addEventListener('click',()=>{
+ const tb=th.closest('table').querySelector('tbody'); const rows=[...tb.rows]; const asc=th._asc=!th._asc;
+ const num=s=>{const m=s.replace('%','').replace('+','').match(/-?\d+\.?\d*/);return m?parseFloat(m[0]):NaN};
+ rows.sort((a,b)=>{let x=a.cells[idx].innerText.trim(),y=b.cells[idx].innerText.trim();let nx=num(x),ny=num(y);
+  if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx; return asc?x.localeCompare(y):y.localeCompare(x);});
+ rows.forEach(r=>tb.appendChild(r));});});
+</script></body></html>
