@@ -209,17 +209,22 @@ __DEEPDIVE__
 <div class="note">
 <h4>How the scores were built</h4>
 <ul>
-<li><b>Two data layers:</b> audited ACFRs (FY2020–FY2025, text-extracted field-by-field) +
-the Iowa DOM state-data layer (UAB, AEA flow-through, certified enrollment, cash-reserve levy &amp;
-20% cap, levy rates, valuation, at-risk). State data is <b>unaudited</b> but exists where audits do
-not — so Iowa City carries FY24/FY25 UAB and a stale/missing-audit Quality penalty.</li>
+<li><b>Three data layers:</b> audited ACFRs (FY2020–FY2025, field-by-field) + the Iowa DOM state-data
+layer (UAB, AEA flow-through, certified enrollment, cash-reserve levy &amp; 20% cap, levy rates,
+valuation, at-risk) + an audit-<b>notes</b> layer (net-position components, total assets/liabilities,
+construction commitments, authorized-but-unissued debt, and the debt-service schedule). State data is
+<b>unaudited</b> but exists where audits do not — so Iowa City carries FY24/FY25 UAB and a
+stale/missing-audit Quality penalty.</li>
 <li><b>Pillar A — Health = 0.50·UAB + 0.30·Solvency + 0.20·Operating-margin trend.</b> UAB% (of max
 authorized budget) is the primary input; <b>negative UAB</b> is a hard flag. Solvency is recomputed
 uniformly using the DOM AEA flow-through denominator (the ISFIS formula). <b>Pillar C — Quality</b>:
 opinion, material weaknesses / significant deficiencies / repeat findings, timeliness &amp; data
-currency, GFOA/ASBO. <b>Capital-sustainability</b>: health × enrollment trajectory × margin × GO-debt
-headroom (vs. the 5%-of-actual-value limit). <b>Composite = 0.40·Health + 0.35·Quality +
-0.25·Capital-sustainability.</b> Strategic posture is a label, not scored.</li>
+currency, GFOA/ASBO. <b>Capital-sustainability</b> = 0.35·Health + 0.20·Enrollment + 0.15·Margin +
+<b>0.20·Forward-capital burden</b> (total future debt service + construction commitments per pupil) +
+0.10·GO-debt headroom — so a district committing heavily relative to its means scores lower.
+<b>Composite = 0.40·Health + 0.35·Quality + 0.25·Capital-sustainability.</b> Strategic posture is a
+label, not scored. <b>A per-district "How this score is built" panel</b> (in the deep-dive) shows every
+component value and weight.</li>
 <li><b>Context layers:</b> property-wealth tertiles (taxable valuation/pupil), GO-debt headroom, and
 cash-reserve-levy reliance (who taxes to stay liquid). All 15 are one peer set; Iowa benchmark bands
 (ISFIS/IASB) anchor the scales.</li>
@@ -260,6 +265,8 @@ for i, c in enumerate(cards, 1):
         size=c["size"].replace("&gt;", ">").replace("&lt;", "<"), wealth=c["wealth"],
         enrollment=c["enrollment"], vpp=c["val_per_pupil"], debt_last=c["debt_last"],
         debt_room=c["debt_room_m"], crl_pct=c["crl_pct"], atrisk=c["atrisk"],
+        total_future_ds=c["total_future_ds"], auth_unissued=c["auth_unissued"],
+        forward_load=c["forward_load_pp"], math=c["math"],
         cert=c["cert"], flags=c["flags"], narrative=c["narrative"], series=c["deep"])
 options = "".join(f'<option value="{html.escape(d)}">{html.escape(d)}</option>' for d in order)
 
@@ -285,6 +292,13 @@ DEEP_SECTION = r"""
 .dchart .xt{font-size:9px;fill:#94a3b8;text-anchor:middle} .dchart .zl{stroke:#cbd5e1;stroke-width:1}
 .dchart .gl{stroke:#f1f5f9;stroke-width:1} .dchart .lg{font-size:9px}
 .nochart{font-size:11px;color:#94a3b8;padding:20px 6px}
+.csec{font-size:14px;margin:18px 0 8px;color:#0f172a;border-bottom:1px solid #e2e8f0;padding-bottom:4px}
+.smath{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.mblock{border:1px solid #e2e8f0;border-radius:9px;padding:10px 12px} .mblock.comp{background:#f0f9ff;border-color:#bae6fd}
+.mh{font-size:12px;font-weight:600;color:#334155;margin-bottom:6px}
+.mt{width:100%;border-collapse:collapse;font-size:12px} .mt td{padding:3px 4px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.mt .ml{color:#475569} .mt .mwt{color:#94a3b8;font-size:11px;white-space:nowrap} .mt .mn{color:#94a3b8;font-size:11px}
+.mt .badge{font-size:11px;padding:1px 6px}
 </style>
 
 <h2>Analyze one district</h2>
@@ -314,6 +328,9 @@ const CHARTS = [
  {t:"Taxable valuation",k:["taxable_val"],c:["#15803d"],f:"b"},
  {t:"Total levy rate ($/$1,000)",k:["levy_rate"],c:["#7c3aed"],f:"r"},
  {t:"At-risk dollars generated",k:["atrisk"],c:["#dc2626"],f:"k"},
+ {t:"Net position: components",k:["net_invest","restricted_np","unrestricted_np2"],c:["#2563eb","#0891b2","#dc2626"],lab:["Net inv. cap","Restricted","Unrestr."],f:"m",z:true},
+ {t:"Balance sheet: assets vs liabilities",k:["total_assets","total_liabilities"],c:["#16a34a","#dc2626"],lab:["Assets","Liab."],f:"m"},
+ {t:"Construction commitments (year-end)",k:["constr_commit"],c:["#a16207"],f:"m"},
 ];
 function col(v){if(v==null)return"#cbd5e1";let t=Math.max(0,Math.min(1,(v-1)/4));
  let r=Math.round(220-t*198),g=Math.round(38+t*125),b=Math.round(38+t*36);return`rgb(${r},${g},${b})`;}
@@ -349,11 +366,22 @@ function renderDeep(name){
    ${chip("Operational Quality",d.quality,d.cert?"GFOA/ASBO":"")}
    ${chip("Capital sustainability",d.cap_sust,"")}
    ${chip("Composite",d.composite,"")}</div>`;
- h+=`<div class="dctx"><span>Debt outstanding:</span> $${d.debt_last.toFixed(0)}M &nbsp;·&nbsp; <span>GO-limit room:</span> ${d.debt_room!=null?"$"+d.debt_room.toLocaleString()+"M":"n/a"} &nbsp;·&nbsp; <span>Cash-reserve levy:</span> ${d.crl_pct!=null?d.crl_pct.toFixed(0)+"% of cap":"—"} &nbsp;·&nbsp; <span>At-risk $:</span> ${d.atrisk!=null?"$"+(d.atrisk/1e3).toFixed(0)+"K":"—"}</div>`;
+ h+=`<div class="dctx"><span>Debt outstanding:</span> $${d.debt_last.toFixed(0)}M &nbsp;·&nbsp; <span>Total future debt service:</span> ${d.total_future_ds?"$"+(d.total_future_ds/1e6).toFixed(0)+"M":"—"} &nbsp;·&nbsp; <span>Authorized-unissued GO:</span> ${d.auth_unissued?"$"+(d.auth_unissued/1e6).toFixed(0)+"M":"—"} &nbsp;·&nbsp; <span>GO-limit room:</span> ${d.debt_room!=null?"$"+d.debt_room.toLocaleString()+"M":"n/a"} &nbsp;·&nbsp; <span>Cash-reserve levy:</span> ${d.crl_pct!=null?d.crl_pct.toFixed(0)+"% of cap":"—"} &nbsp;·&nbsp; <span>At-risk $:</span> ${d.atrisk!=null?"$"+(d.atrisk/1e3).toFixed(0)+"K":"—"}</div>`;
  h+=`<div class="dflags">${d.flags.map(x=>'<span class="flag">'+x+'</span>').join("")||'<span class="ok">no auto-flags</span>'}</div>`;
  h+=`<p class="dnarr">${d.narrative}</p>`;
- h+=`<div class="dcharts">${CHARTS.map(def=>'<div class="dcard">'+chart(def,d.series)+'</div>').join("")}</div>`;
+ h+=scoreMath(d);
+ h+=`<h4 class="csec">Trends (FY2020–FY2025)</h4><div class="dcharts">${CHARTS.map(def=>'<div class="dcard">'+chart(def,d.series)+'</div>').join("")}</div>`;
  document.getElementById("deep").innerHTML=h;}
+function mb(v){return typeof v=="number"?`<span class="badge" style="background:${col(v)}">${v%1?v.toFixed(1):v}</span>`:v;}
+function scoreMath(d){
+ const m=d.math; if(!m)return"";
+ const rows=(parts,w)=>parts.map((p,i)=>`<tr><td class="ml">${p[0]}</td><td class="mwt">${w?"× "+w[i].toFixed(2):""}</td><td>${mb(p[1])}</td><td class="mn">${p[2]||""}</td></tr>`).join("");
+ let h='<div class="smath"><h4 class="csec">How this score is built</h4>';
+ h+=`<div class="mblock"><div class="mh">Health = 0.50·UAB + 0.30·Solvency + 0.20·Margin &rarr; ${m.health.total.toFixed(2)}</div><table class="mt">${rows(m.health.parts,m.health.weights)}</table></div>`;
+ h+=`<div class="mblock"><div class="mh">Operational Quality (base 5, adjusted) &rarr; ${m.quality.total.toFixed(1)}</div><table class="mt">`+m.quality.items.map(it=>`<tr><td class="ml">${it[0]}</td><td></td><td class="${it[1]<0?'neg':it[1]>0?'pos':''}">${it[1]>0?"+":""}${it[1]?it[1]:""}</td><td></td></tr>`).join("")+`</table></div>`;
+ h+=`<div class="mblock"><div class="mh">Capital sustainability = 0.35·Health + 0.20·Enroll + 0.15·Margin + 0.20·ForwardBurden + 0.10·DebtRoom &rarr; ${m.capsust.total.toFixed(2)}</div><table class="mt">${rows(m.capsust.parts,m.capsust.weights)}</table></div>`;
+ h+=`<div class="mblock comp"><div class="mh">Composite = 0.40·Health + 0.35·Quality + 0.25·Capital &rarr; ${m.composite.total.toFixed(2)}</div><table class="mt">${rows(m.composite.parts.map(p=>[p[0],p[1],""]),m.composite.weights)}</table></div>`;
+ return h+"</div>";}
 document.getElementById("dd").addEventListener("change",e=>renderDeep(e.target.value));
 renderDeep(ORDER[0]);
 </script>

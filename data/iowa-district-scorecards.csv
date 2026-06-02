@@ -1,16 +1,16 @@
 rank,district,size,enrollment,enr_cagr_pct,wealth_tertile,val_per_pupil,strategic_label,uab_last_pct,uab_trend_pp,uab_min_pct,solvency_last_pct,op_margin_3yr_avg_pct,cash_reserve_levy_pct_cap,debt_vs_5pct_limit,health_score,quality_score,capital_sustainability,composite,flags
-1,Pleasant Valley CSD,5–10k,5538,1.92,mid,388045,Building — growth-driven,22.83,3.4,17.63,22.72,2.2,17.8,0.03,5.0,5.0,5.0,5.0,Cash-reserve-levy at cap
-2,Waukee CSD,10–15k,13674,4.08,high,465560,Building — growth-driven,29.87,-3.0,29.87,18.06,3.2,57.9,0.49,4.62,5.0,4.7,4.77,Heavy cash-reserve-levy reliance
-3,Muscatine CSD,<5k,4423,-2.0,low,343661,Building — renewal (declining enrollment),20.49,-0.0,17.05,15.4,0.9,7.8,0.0,4.31,5.0,3.77,4.42,
-4,Davenport CSD,10–15k,13786,-1.74,mid,374017,Building — renewal (declining enrollment),18.59,10.9,1.08,24.39,4.6,0.0,0.0,4.62,3.8,4.1,4.2,Recent significant deficiency
-5,Cedar Rapids CSD,>15k,16140,-0.99,mid,379354,Building — renewal,12.96,1.2,7.61,13.96,-0.5,17.6,0.0,3.8,5.0,3.62,4.17,
-6,Dubuque CSD,5–10k,9996,-0.85,mid,421965,Building — renewal,11.08,1.1,7.31,15.55,-2.1,10.7,0.0,3.74,5.0,3.6,4.15,Cash-reserve-levy at cap; Multi-yr operating deficit
-7,Ankeny CSD,10–15k,12637,1.08,high,438953,Building — growth-driven,14.01,-1.7,11.8,13.54,1.0,29.0,0.03,3.88,4.2,4.35,4.11,Recent significant deficiency
-8,West Des Moines CSD,5–10k,8614,-0.74,high,660340,Building — renewal,11.0,-0.5,9.44,11.55,-2.2,3.0,0.08,3.44,5.0,3.48,4.0,Multi-yr operating deficit
-9,Linn-Mar CSD,5–10k,7567,0.03,low,351560,Building — renewal,10.27,-2.8,9.64,9.62,2.5,43.7,0.22,3.77,4.2,4.01,3.98,Heavy cash-reserve-levy reliance; Recent significant deficiency
-10,Burlington CSD,<5k,3797,-1.7,low,317238,Building — renewal (declining enrollment),28.51,-3.8,28.51,8.5,-2.2,0.0,0.0,3.39,5.0,3.21,3.91,Multi-yr operating deficit
-11,Johnston CSD,5–10k,6838,-0.63,mid,419056,Maintain,20.66,0.9,14.46,7.74,-3.8,16.2,0.0,3.44,3.8,3.28,3.53,Multi-yr operating deficit; Recent significant deficiency
-12,Des Moines Independent CSD,>15k,30802,-1.24,low,293406,Building — renewal (declining enrollment),18.14,3.2,5.21,25.48,-4.1,0.0,0.0,3.45,3.2,3.03,3.26,Multi-yr operating deficit; Recent material weakness; Recent significant deficiency
-13,College CSD (Prairie),5–10k,5075,-0.25,high,516559,Building — renewal,14.14,-0.5,11.62,6.6,-3.9,14.3,0.59,2.94,3.8,2.78,3.2,Cash-reserve-levy at cap; Multi-yr operating deficit; Recent significant deficiency
-14,Waterloo CSD,10–15k,10732,-0.08,low,259946,Building — renewal,7.54,-12.1,7.54,-5.69,-9.7,6.3,0.0,1.75,3.5,2.4,2.52,UAB falling >6pp; Negative solvency; Multi-yr operating deficit; Recent material weakness; Negative GF unassigned balance
-15,Iowa City CSD,10–15k,14379,0.13,high,501754,Building — renewal,2.31,2.2,-1.21,2.46,0.3,57.3,0.21,2.77,1.0,3.41,2.31,UAB went negative; Thin UAB (<5%); Heavy cash-reserve-levy reliance; Recent material weakness; Recent significant deficiency; FY24/FY25 audit missing (stale)
+1,Pleasant Valley CSD,5–10k,5538,1.92,mid,388045,Building — growth-driven,22.83,3.4,17.63,22.72,2.2,17.8,0.03,5.0,5.0,4.6,4.9,Cash-reserve-levy at cap
+2,Waukee CSD,10–15k,13674,4.08,high,465560,Building — growth-driven,29.87,-3.0,29.87,18.06,3.2,57.9,0.49,4.62,5.0,3.97,4.59,Heavy cash-reserve-levy reliance; Heavy forward capital load
+3,Muscatine CSD,<5k,4423,-2.0,low,343661,Building — renewal (declining enrollment),20.49,-0.0,17.05,15.4,0.9,7.8,0.0,4.31,5.0,3.81,4.43,
+4,Davenport CSD,10–15k,13786,-1.74,mid,374017,Building — renewal (declining enrollment),18.59,10.9,1.08,24.39,4.6,0.0,0.0,4.62,3.8,3.87,4.15,Recent significant deficiency
+5,Cedar Rapids CSD,>15k,16140,-0.99,mid,379354,Building — renewal,12.96,1.2,7.61,13.96,-0.5,17.6,0.0,3.8,5.0,3.48,4.14,
+6,Dubuque CSD,5–10k,9996,-0.85,mid,421965,Building — renewal,11.08,1.1,7.31,15.55,-2.1,10.7,0.0,3.74,5.0,3.46,4.11,Cash-reserve-levy at cap; Multi-yr operating deficit
+7,Ankeny CSD,10–15k,12637,1.08,high,438953,Building — growth-driven,14.01,-1.7,11.8,13.54,1.0,29.0,0.03,3.88,4.2,4.26,4.09,Large authorized-unissued GO bond; Recent significant deficiency
+8,West Des Moines CSD,5–10k,8614,-0.74,high,660340,Building — renewal,11.0,-0.5,9.44,11.55,-2.2,3.0,0.08,3.44,5.0,3.35,3.96,Multi-yr operating deficit; Large authorized-unissued GO bond
+9,Burlington CSD,<5k,3797,-1.7,low,317238,Building — renewal (declining enrollment),28.51,-3.8,28.51,8.5,-2.2,0.0,0.0,3.39,5.0,3.14,3.89,Multi-yr operating deficit
+10,Linn-Mar CSD,5–10k,7567,0.03,low,351560,Building — renewal,10.27,-2.8,9.64,9.62,2.5,43.7,0.22,3.77,4.2,3.57,3.87,Heavy cash-reserve-levy reliance; Recent significant deficiency
+11,Johnston CSD,5–10k,6838,-0.63,mid,419056,Maintain,20.66,0.9,14.46,7.74,-3.8,16.2,0.0,3.44,3.8,3.6,3.61,Multi-yr operating deficit; Recent significant deficiency
+12,Des Moines Independent CSD,>15k,30802,-1.24,low,293406,Building — renewal (declining enrollment),18.14,3.2,5.21,25.48,-4.1,0.0,0.0,3.45,3.2,3.41,3.35,Multi-yr operating deficit; Large authorized-unissued GO bond; Recent material weakness; Recent significant deficiency
+13,College CSD (Prairie),5–10k,5075,-0.25,high,516559,Building — renewal,14.14,-0.5,11.62,6.6,-3.9,14.3,0.59,2.94,3.8,2.43,3.11,Cash-reserve-levy at cap; Multi-yr operating deficit; Heavy forward capital load; Recent significant deficiency
+14,Waterloo CSD,10–15k,10732,-0.08,low,259946,Building — renewal,7.54,-12.1,7.54,-5.69,-9.7,6.3,0.0,1.75,3.5,2.26,2.49,UAB falling >6pp; Negative solvency; Multi-yr operating deficit; Heavy forward capital load; Recent material weakness; Negative GF unassigned balance
+15,Iowa City CSD,10–15k,14379,0.13,high,501754,Building — renewal,2.31,2.2,-1.21,2.46,0.3,57.3,0.21,2.77,1.0,3.07,2.23,UAB went negative; Thin UAB (<5%); Heavy cash-reserve-levy reliance; Heavy forward capital load; Recent material weakness; Recent significant deficiency; FY24/FY25 audit missing (stale)

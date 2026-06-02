@@ -52,6 +52,14 @@ ISL   = keyed("levy-rates-and-valuation.csv", "isl_rate")
 ASSESS = {r["district"]: f(r["assessed_actual_with_ge"]) for r in loadcsv(f"{DOM}/assessed-valuation-latest.csv")}
 ATRISK = keyed("at-risk.csv", "atrisk_dollars_generated")
 
+# ---- notes layer (balance sheet + forward capital commitments) ----
+NOTES = {}
+for r in loadcsv("data/iowa-district-notes.csv"):
+    NOTES[(r["district"], int(str(r["fiscal_year"]).replace("FY", "").strip()))] = r
+def notes_latest(d):
+    ys = [y for (dd, y) in NOTES if dd == d]
+    return NOTES.get((d, max(ys))) if ys else {}
+
 DISTRICTS = sorted(A.keys())
 
 def band(v, cuts, scores):
@@ -76,21 +84,31 @@ def solvency_series(d):
 # ---- components ----
 def uab_component(d):
     s = series(d, UAB)
-    if not s: return 3.0, None, None, None
+    if not s: return 3.0, None, None, None, 3, 3
     last = s[-1][1]
     ref = s[-4][1] if len(s) >= 4 else s[0][1]
     lvl = band(last, [0, 5, 10, 20], [1, 2, 3, 4, 5])
     trend = last - ref
     tr = band(trend, [-6, -3, 0, 3], [1, 2, 3, 4, 5])
-    return round(0.75*lvl + 0.25*tr, 2), last, round(trend, 1), min(v for _, v in s)
+    return round(0.75*lvl + 0.25*tr, 2), last, round(trend, 1), min(v for _, v in s), lvl, tr
 
 def solvency_part(d):
     s = solvency_series(d)
-    if not s: return 3.0, None, None
+    if not s: return 3.0, None, None, 3, 3
     last = s[-1][1]; ref = s[-4][1] if len(s) >= 4 else s[0][1]
     lvl = band(last, [0, 5, 10, 15, 25], [1, 2, 3, 4, 5, 4.5])
     tr = band(last-ref, [-8, -4, 0, 3], [1, 2, 3, 4, 5])
-    return round(0.6*lvl + 0.4*tr, 2), last, round(last-ref, 1)
+    return round(0.6*lvl + 0.4*tr, 2), last, round(last-ref, 1), lvl, tr
+
+def forward_burden(d):
+    """Forward capital load per pupil (total future debt service + construction commitments)
+    -> 1-5 (higher = lighter load = more sustainable)."""
+    nl = notes_latest(d)
+    tfds = f(nl.get("total_future_debt_service")); cc = f(nl.get("construction_commitments")) or 0
+    _, enr = enroll(d)
+    if tfds is None or not enr: return 3.0, None
+    load_pp = (tfds + cc) / enr
+    return band(load_pp, [5000, 10000, 20000, 35000], [5, 4, 3, 2, 1]), round(load_pp)
 
 def margin3(d):
     m = [f(A[d][y]["operating_margin_pct"]) for y in sorted(A[d]) if f(A[d][y]["operating_margin_pct"]) is not None]
@@ -107,16 +125,18 @@ def quality(d):
     rep_recent = any(yn(r, "repeat_finding") for r in last2)
     cert = yn(last, "gfoa_cert") or d in ASBO
     stale = max(yrs) < 2025
-    s = 5.0
-    if not opinion_ok: s -= 2.0
-    if mw_recent: s -= 1.5
-    elif mw_ever: s -= 0.5
-    if sd_recent: s -= 0.75
-    if rep_recent: s -= 0.5
-    if stale: s -= 2.5            # missing-recent-year + stale (Iowa City)
-    if d == "Iowa City CSD": s -= 0.5
-    if cert: s += 0.5
-    return max(1.0, min(5.0, round(s, 1))), cert, mw_recent, sd_recent, stale
+    s = 5.0; items = [("Base", 5.0)]
+    if not opinion_ok: s -= 2.0; items.append(("Opinion not unmodified", -2.0))
+    if mw_recent: s -= 1.5; items.append(("Material weakness (last 3 yrs)", -1.5))
+    elif mw_ever: s -= 0.5; items.append(("Material weakness (earlier)", -0.5))
+    if sd_recent: s -= 0.75; items.append(("Significant deficiency (recent)", -0.75))
+    if rep_recent: s -= 0.5; items.append(("Repeat finding (recent)", -0.5))
+    if stale: s -= 2.5; items.append(("FY24/FY25 audit missing / stale", -2.5))
+    if d == "Iowa City CSD": s -= 0.5; items.append(("$35M restatement + 26-mo-late filing", -0.5))
+    if cert: s += 0.5; items.append(("GFOA/ASBO certificate", +0.5))
+    total = max(1.0, min(5.0, round(s, 1)))
+    if total != round(s, 1): items.append(("(floored to 1.0)" if s < 1 else "(capped at 5.0)", 0))
+    return total, cert, mw_recent, sd_recent, stale, items
 
 def enroll(d):
     s = series(d, ENR)
@@ -166,20 +186,24 @@ for i, d in enumerate(ranked):
 # ---- assemble ----
 cards = []
 for d in DISTRICTS:
-    uc, uab_last, uab_trend, uab_min = uab_component(d)
-    sc, solv_last, solv_trend = solvency_part(d)
+    uc, uab_last, uab_trend, uab_min, uab_lvl, uab_tr = uab_component(d)
+    sc, solv_last, solv_trend, solv_lvl, solv_tr = solvency_part(d)
     m3 = margin3(d) if margin3(d) is not None else 0.0
     mc = band(m3, [-6, -3, 0, 2], [1, 2, 3, 4, 5])
     H = round(0.50*uc + 0.30*sc + 0.20*mc, 2)
-    Q, cert, mw_recent, sd_recent, stale = quality(d)
+    Q, cert, mw_recent, sd_recent, stale, q_items = quality(d)
     cagr, enr_last = enroll(d)
     label, ci = strategic(d, cagr)
     enr_s = 5 if (cagr is not None and cagr > 1) else (3 if (cagr is None or cagr > -1) else 2)
     dh_ratio, dh_room = debt_headroom(d)
     dh_s = 5 if dh_ratio is None else band(dh_ratio, [0.3, 0.5, 0.7, 0.9], [5, 4, 3, 2, 1])
-    CS = round(0.40*H + 0.25*enr_s + 0.20*mc + 0.15*dh_s, 2)
+    fb_s, forward_load_pp = forward_burden(d)        # forward capital load per pupil -> 1-5
+    CS = round(0.35*H + 0.20*enr_s + 0.15*mc + 0.20*fb_s + 0.10*dh_s, 2)
     composite = round(0.40*H + 0.35*Q + 0.25*CS, 2)
 
+    nl = notes_latest(d)
+    auth_unissued = f(nl.get("authorized_unissued_debt"))
+    tfds = f(nl.get("total_future_debt_service")); constr = f(nl.get("construction_commitments"))
     crl_last = f(CRLp.get((d, 2025)))
     crl_max = (CRLmx.get((d, 2025)) or "").strip() == "Y"
     flags = []
@@ -190,6 +214,8 @@ for d in DISTRICTS:
     elif crl_max: flags.append("Cash-reserve-levy at cap")
     if solv_last is not None and solv_last < 0: flags.append("Negative solvency")
     if m3 < -2: flags.append("Multi-yr operating deficit")
+    if forward_load_pp is not None and forward_load_pp > 30000: flags.append("Heavy forward capital load")
+    if auth_unissued and auth_unissued > 50_000_000: flags.append("Large authorized-unissued GO bond")
     if mw_recent: flags.append("Recent material weakness")
     if sd_recent: flags.append("Recent significant deficiency")
     if stale: flags.append("FY24/FY25 audit missing (stale)")
@@ -197,7 +223,23 @@ for d in DISTRICTS:
     last = A[d][max(A[d])]
     if (f(last["gf_unassigned"]) or 0) < 0: flags.append("Negative GF unassigned balance")
 
+    math = dict(
+        health=dict(weights=[0.50, 0.30, 0.20],
+            parts=[("UAB", uc, f"level {uab_lvl} (UAB {uab_last}%) + trend {uab_tr} ({uab_trend:+}pp)" if uab_last is not None else "n/a"),
+                   ("Solvency", sc, f"level {solv_lvl} (solv {solv_last}%) + trend {solv_tr} ({solv_trend:+}pp)" if solv_last is not None else "n/a"),
+                   ("Margin trend", mc, f"3-yr avg op margin {m3}%")], total=H),
+        quality=dict(items=q_items, total=Q),
+        capsust=dict(weights=[0.35, 0.20, 0.15, 0.20, 0.10],
+            parts=[("Health", H, ""), ("Enrollment", enr_s, f"{cagr:+}%/yr" if cagr is not None else "n/a"),
+                   ("Margin", mc, f"{m3}%"),
+                   ("Forward capital burden", fb_s, f"${forward_load_pp:,}/pupil future debt svc + commitments" if forward_load_pp else "n/a"),
+                   ("GO-debt headroom", dh_s, f"{dh_ratio} of 5% limit" if dh_ratio is not None else "no GO debt")], total=CS),
+        composite=dict(weights=[0.40, 0.35, 0.25], parts=[("Health", H), ("Quality", Q), ("Capital sust.", CS)], total=composite),
+    )
+
     cards.append(dict(
+        auth_unissued=auth_unissued, total_future_ds=tfds, constr_commit=constr,
+        forward_load_pp=forward_load_pp, math=math,
         district=d, size=("&gt;15k" if (enr_last or 0) > 15000 else "10–15k" if (enr_last or 0) > 10000
                           else "5–10k" if (enr_last or 0) > 5000 else "&lt;5k"),
         enrollment=round(enr_last) if enr_last else None, enr_cagr=cagr, wealth=tert.get(d, "?"),
@@ -288,6 +330,14 @@ for c in cards:
         "taxable_val":[f(TAXV.get((d,y))) for y in ys],
         "levy_rate":[f(GTR.get((d,y))) for y in ys],
         "atrisk":[f(ATRISK.get((d,y))) for y in ys],
+        # balance sheet + forward commitments (notes layer)
+        "net_invest":[f(NOTES.get((d,y),{}).get("net_invest_capital_assets")) for y in ys],
+        "restricted_np":[f(NOTES.get((d,y),{}).get("restricted_net_position")) for y in ys],
+        "unrestricted_np2":[f(NOTES.get((d,y),{}).get("unrestricted_net_position")) for y in ys],
+        "total_np":[f(NOTES.get((d,y),{}).get("total_net_position")) for y in ys],
+        "total_assets":[f(NOTES.get((d,y),{}).get("total_assets")) for y in ys],
+        "total_liabilities":[f(NOTES.get((d,y),{}).get("total_liabilities")) for y in ys],
+        "constr_commit":[f(NOTES.get((d,y),{}).get("construction_commitments")) for y in ys],
     }
     c["narrative"] = NARR.get(d, "")
 
