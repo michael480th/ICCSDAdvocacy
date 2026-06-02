@@ -231,6 +231,66 @@ with open(f"{OUT_DATA}/iowa-district-scorecards.csv", "w", newline="") as fh:
                     c["solv_last"], c["marg3"], c["crl_pct"], c["debt_headroom_ratio"],
                     c["health"], c["quality"], c["cap_sust"], c["composite"], "; ".join(c["flags"])])
 
+# ---- enrich each card with full multi-year series + curated narrative (for the deep-dive) ----
+UABd = keyed("unspent-authorized-budget.csv", "unspent_authorized_budget")
+MAXB = keyed("unspent-authorized-budget.csv", "max_authorized_budget")
+GTR  = keyed("levy-rates-and-valuation.csv", "grand_total_rate")
+TAXV = keyed("levy-rates-and-valuation.csv", "taxable_valuation")
+CRLd = keyed("cash-reserve-levy.csv", "cash_reserve_levy")
+
+def aud(d, y, col):
+    r = A[d].get(y); return f(r[col]) if r else None
+
+NARR = {
+"Pleasant Valley CSD":"The healthiest profile in the set. Genuine enrollment growth (+1.9%/yr) funded a $27M junior-high build while UAB rose to 22.8% and audited solvency to 22.7% — building from strength, not borrowing against it. Six straight clean audits and a GFOA certificate every year. The model of a growth district living within its means.",
+"Waukee CSD":"Iowa's fastest grower (+4.1%/yr; enrollment up ~20% over six years), absorbing a $324M GO-bond multi-school program without strain: UAB near 30% (the highest in the set), positive operating margins, clean audits, and GFOA continuously since 2012. Its 58%-of-cap cash-reserve levy is funding expansion, not plugging holes.",
+"Muscatine CSD":"Ranks third despite the sharpest enrollment decline in the group (−10% over six years) by restraining spending: UAB held at 20.5% and solvency at 15%, with six clean audits and GFOA since FY2023. Proof that a shrinking district can stay financially strong if it adjusts staffing and costs as enrollment falls.",
+"Davenport CSD":"A turnaround story: from conditional accreditation and multiple material weaknesses (FY2020–21) to a fully clean FY2025 audit, with UAB climbing from 1% to 19% and solvency to 24%. The FY2025 operating margin turned negative as ESSER aid expired, and a $76M SAVE-funded build is underway — the next few years test whether the gains hold.",
+"Cedar Rapids CSD":"A solid large urban district: UAB recovered to 13%, solvency 14%, clean RSM audits, and GFOA for 30+ years. FY2025 swung to a −4.5% margin (a ~$10M deficit) on the ESSER cliff. Actively building via SAVE (Trailside Elementary opened); the news-reported ~$18M SBRC at-risk reduction sits outside the audited statements, in the DOM/SBRC record.",
+"Dubuque CSD":"Steady and well-run: UAB stable near 11%, solvency 15%, six clean audits, and ASBO recognition. SAVE-funded construction continues despite a −6% enrollment slide. The one nagging item is a certified-enrollment data variance that recurs every year and spiked to 17.0 in FY2025.",
+"Ankeny CSD":"A growth district running a tight ship: UAB 14%, solvency recovered to 13.4%, GFOA for 12+ years, with a $130M GO bond on the November-2025 ballot. FY2025 brought its first significant deficiency (enterprise-fund reconciliation) and a rising findings count — internal controls lagging the district's rapid scale.",
+"West Des Moines CSD":"Built big — ~$109M of construction placed in service in FY2024 — and is now digesting it: UAB 11%, solvency slid from 19% to 11% on back-to-back operating deficits. Six clean audits, GFOA 30+ years, and a high-wealth tax base provide cushion.",
+"Linn-Mar CSD":"Middle of the pack: UAB ~10%, solvency dipped to 6.7% then recovered to 9.5% with a positive FY2025 margin. Building a Performing Arts Center; a multi-year segregation-of-duties deficiency (FY2020–22) was resolved but a new nutrition-fund item appeared in FY2025. Holds ASBO, not GFOA.",
+"Burlington CSD":"The clearest 'cash is not authority' case: audited solvency collapsed to 8% on the ESSER cliff plus a $44M high-school renovation, but UAB is among the highest in the set at 28% — it spent down accumulated cash, not spending authority, and levies $0 cash reserve. Six clean audits. Far healthier than a reserve-only read suggests.",
+"Johnston CSD":"A similar story to Burlington: solvency fell to 7.7% across three deficit years, but UAB is strong and rising at 21%. The real flag is on the audit side — a new auditor in FY2024 immediately identified three segregation-of-duties deficiencies that persisted into FY2025.",
+"Des Moines Independent CSD":"Iowa's largest district has deep reserves (solvency 25%, UAB 18%) but a sharp FY2025 reversal — a −10% margin that drew down ~$40M — and a FY2025 material weakness (OPEB misallocated for ~7 years) pull its scores down. Voters authorized new GO bonds in November 2025, signaling a fresh capital cycle.",
+"College CSD (Prairie)":"Building aggressively — GO debt rose from $112M to $149M for a new building, now ~59% of its 5%-of-value debt limit (the highest in the set) — while reserves erode: solvency to 6.6% across four straight deficits, though UAB (14%) is steadier. Clean opinions; the district is at its cash-reserve-levy cap.",
+"Waterloo CSD":"Operating distress: audited solvency went negative (−5.6%), the GF balance flipped to −$7M, the FY2025 margin was −13.6%, and UAB halved to 7.5% and is falling — all while issuing $87M of new SAVE debt. Recurring material weaknesses (FY2021, FY2023). The worst operating position in the set.",
+"Iowa City CSD":"The distress case on both authority and reporting. UAB went negative in FY2023 — the unlawful, SBRC-trigger condition — and sits near 2% today, while the district levies 57% of its cash-reserve cap just to stay liquid. The FY2023 audit arrived 26 months late with two material weaknesses and ~$1M+ in unreconciled bank accounts; FY2024 and FY2025 remain unfiled and Moody's withdrew the district's rating.",
+}
+
+for c in cards:
+    d = c["district"]; ys = YEARS
+    sv = dict(solvency_series(d))
+    c["deep"] = {
+        "years": ys,
+        "uab_pct":[f(UAB.get((d,y))) for y in ys],
+        "uab_dollar":[f(UABd.get((d,y))) for y in ys],
+        "max_budget":[f(MAXB.get((d,y))) for y in ys],
+        "solvency":[sv.get(y) for y in ys],
+        "op_margin":[aud(d,y,"operating_margin_pct") for y in ys],
+        "enrollment":[f(ENR.get((d,y))) for y in ys],
+        "gf_rev":[aud(d,y,"gf_revenue") for y in ys],
+        "gf_exp":[aud(d,y,"gf_expenditure") for y in ys],
+        "gf_unassigned":[aud(d,y,"gf_unassigned") for y in ys],
+        "gf_total_fb":[aud(d,y,"gf_total_fund_balance") for y in ys],
+        "go_debt":[aud(d,y,"go_debt_outstanding") for y in ys],
+        "save_debt":[aud(d,y,"save_rev_bonds") for y in ys],
+        "capital_add":[aud(d,y,"capital_additions") for y in ys],
+        "depreciation":[aud(d,y,"depreciation") for y in ys],
+        "cip":[aud(d,y,"construction_in_progress") for y in ys],
+        "ipers":[aud(d,y,"ipers_npl") for y in ys],
+        "opeb":[aud(d,y,"opeb_liability") for y in ys],
+        "unrestricted_np":[aud(d,y,"unrestricted_net_position") for y in ys],
+        "cash":[aud(d,y,"cash_and_investments") for y in ys],
+        "crl":[f(CRLd.get((d,y))) for y in ys],
+        "crl_pct":[f(CRLp.get((d,y))) for y in ys],
+        "taxable_val":[f(TAXV.get((d,y))) for y in ys],
+        "levy_rate":[f(GTR.get((d,y))) for y in ys],
+        "atrisk":[f(ATRISK.get((d,y))) for y in ys],
+    }
+    c["narrative"] = NARR.get(d, "")
+
 json.dump(cards, open("/tmp/audit/cards.json", "w"))
 print(f"Scored {len(cards)} districts (UAB-anchored).\n")
 print(f"{'#':>2} {'composite':>9} {'H':>4} {'Q':>4} {'CS':>4}  {'UAB%':>6} {'solv%':>6}  district / label")

@@ -28,7 +28,7 @@ def spark(series, kind_zero=True):
     path = " ".join(f"{X(i):.1f},{Y(v):.1f}" for i, v in pts)
     lx, lv = pts[-1]
     dot = f'<circle cx="{X(lx):.1f}" cy="{Y(lv):.1f}" r="2.6" fill="{"#16a34a" if lv>=0 else "#dc2626"}"/>'
-    return f'<svg width="{W}" height="{H}" class="spark">{z}<polyline points="{path}" fill="none" stroke="#475569" stroke-width="1.5"/>{dot}</svg>'
+    return f'<svg viewBox="0 0 {W} {H}" class="spark" preserveAspectRatio="xMidYMid meet">{z}<polyline points="{path}" fill="none" stroke="#475569" stroke-width="1.5"/>{dot}</svg>'
 
 def quadrant():
     W, H, m = 560, 420, 48
@@ -137,7 +137,8 @@ td.dist{{font-weight:600;white-space:normal;min-width:140px}} td.rk{{color:var(-
 .grid .k,.sparks .k{{display:block;color:var(--mut);font-size:11px;margin-bottom:2px}}
 .grid>div{{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:4px}}
 .sparks{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}}
-.sparks>div{{display:flex;flex-direction:column}} .sparks b{{font-size:13px}} .spark{{margin:2px 0}}
+.sparks>div{{display:flex;flex-direction:column;min-width:0}} .sparks b{{font-size:13px}}
+.spark{{width:100%;height:auto;display:block;margin:2px 0}}
 .kv{{font-size:11.5px;color:#475569;border-top:1px solid var(--line);padding-top:8px}} .kv span{{color:var(--mut)}}
 .cardflags{{margin-top:8px}}
 .note{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:8px;padding:14px 18px;margin:14px 0;font-size:14px}}
@@ -202,6 +203,8 @@ posture is a <b>label</b>, reported beside the scores rather than baked into the
 <h2>District scorecards</h2>
 <div class="cards">{''.join(cardhtml)}</div>
 
+__DEEPDIVE__
+
 <h2>Methodology &amp; confidence</h2>
 <div class="note">
 <h4>How the scores were built</h4>
@@ -246,5 +249,120 @@ document.querySelectorAll('#bt th').forEach((th,idx)=>{{th.addEventListener('cli
   if(!isNaN(nx)&&!isNaN(ny))return asc?nx-ny:ny-nx; return asc?x.localeCompare(y):y.localeCompare(x);}});
  rows.forEach(r=>tb.appendChild(r));}});}});
 </script></body></html>"""
+# ---------- deep-dive section (dropdown -> per-district charts + narrative) ----------
+order = [c["district"] for c in cards]
+deep_data = {}
+for i, c in enumerate(cards, 1):
+    deep_data[c["district"]] = dict(
+        rank=i, n=len(cards), composite=c["composite"], health=c["health"],
+        quality=c["quality"], cap_sust=c["cap_sust"], uab_last=c["uab_last"],
+        solv_last=c["solv_last"], marg3=c["marg3"], label=c["label"],
+        size=c["size"].replace("&gt;", ">").replace("&lt;", "<"), wealth=c["wealth"],
+        enrollment=c["enrollment"], vpp=c["val_per_pupil"], debt_last=c["debt_last"],
+        debt_room=c["debt_room_m"], crl_pct=c["crl_pct"], atrisk=c["atrisk"],
+        cert=c["cert"], flags=c["flags"], narrative=c["narrative"], series=c["deep"])
+options = "".join(f'<option value="{html.escape(d)}">{html.escape(d)}</option>' for d in order)
+
+DEEP_SECTION = r"""
+<style>
+.ddwrap{margin:6px 0 4px} #dd{font-size:15px;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;min-width:300px}
+#deep{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 22px;margin-top:12px}
+.dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dhead h3{margin:0;font-size:21px} .dhead .rank{font-size:13px;color:#64748b;font-weight:500}
+.dmeta{color:#64748b;font-size:13.5px;margin-top:4px}
+.dcomp{color:#fff;font-weight:800;border-radius:10px;padding:6px 14px;font-size:20px}
+.dscores{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.dchip{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:8px 12px;display:flex;flex-direction:column;gap:4px;min-width:130px}
+.dchip .cl{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
+.dchip .badge{align-self:flex-start;color:#fff;border-radius:6px;padding:2px 9px;font-weight:700;font-size:14px}
+.dchip .csub{font-size:11px;color:#475569}
+.dctx{font-size:13px;color:#475569;margin:4px 0 10px} .dctx span{color:#94a3b8}
+.dflags{margin:8px 0} .dnarr{font-size:14.5px;line-height:1.6;background:#f8fafc;border-left:3px solid #2563eb;border-radius:6px;padding:12px 15px;margin:10px 0 18px}
+.dcharts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.dcard{border:1px solid #e2e8f0;border-radius:9px;padding:6px 8px 2px}
+.dchart{width:100%;height:auto;display:block}
+.dchart .ct{font-size:11px;fill:#334155;font-weight:600} .dchart .yt{font-size:9px;fill:#94a3b8;text-anchor:end}
+.dchart .xt{font-size:9px;fill:#94a3b8;text-anchor:middle} .dchart .zl{stroke:#cbd5e1;stroke-width:1}
+.dchart .gl{stroke:#f1f5f9;stroke-width:1} .dchart .lg{font-size:9px}
+.nochart{font-size:11px;color:#94a3b8;padding:20px 6px}
+</style>
+
+<h2>Analyze one district</h2>
+<p class="sub">Pick a district — every chart, score, and the narrative below update to that district.</p>
+<div class="ddwrap"><select id="dd">__OPTIONS__</select></div>
+<div id="deep"></div>
+
+<script>
+const DEEP = __DEEP_JSON__;
+const ORDER = __ORDER__;
+const CHARTS = [
+ {t:"UAB % of max budget",k:["uab_pct"],c:["#2563eb"],f:"pct",z:true},
+ {t:"Spending authority $: UAB vs max",k:["uab_dollar","max_budget"],c:["#2563eb","#94a3b8"],lab:["UAB","Max"],f:"m"},
+ {t:"Solvency % (audited)",k:["solvency"],c:["#0891b2"],f:"pct",z:true},
+ {t:"Operating margin %",k:["op_margin"],c:["#7c3aed"],f:"pct",z:true},
+ {t:"GF revenue vs expenditure",k:["gf_rev","gf_exp"],c:["#16a34a","#dc2626"],lab:["Rev","Exp"],f:"m"},
+ {t:"GF fund balance: unassigned vs total",k:["gf_unassigned","gf_total_fb"],c:["#2563eb","#94a3b8"],lab:["Unassigned","Total"],f:"m",z:true},
+ {t:"Certified enrollment",k:["enrollment"],c:["#0d9488"],f:"n"},
+ {t:"Debt outstanding: GO vs SAVE",k:["go_debt","save_debt"],c:["#b45309","#0891b2"],lab:["GO","SAVE"],f:"m"},
+ {t:"Capital additions vs depreciation",k:["capital_add","depreciation"],c:["#16a34a","#94a3b8"],lab:["Additions","Deprec."],f:"m"},
+ {t:"Construction in progress",k:["cip"],c:["#a16207"],f:"m"},
+ {t:"IPERS pension vs OPEB liability",k:["ipers","opeb"],c:["#7c3aed","#94a3b8"],lab:["IPERS","OPEB"],f:"m"},
+ {t:"Unrestricted net position",k:["unrestricted_np"],c:["#0891b2"],f:"m",z:true},
+ {t:"Cash & investments",k:["cash"],c:["#0d9488"],f:"m"},
+ {t:"Cash-reserve levy $",k:["crl"],c:["#b45309"],f:"m"},
+ {t:"Cash-reserve levy % of 20% cap",k:["crl_pct"],c:["#b45309"],f:"pct"},
+ {t:"Taxable valuation",k:["taxable_val"],c:["#15803d"],f:"b"},
+ {t:"Total levy rate ($/$1,000)",k:["levy_rate"],c:["#7c3aed"],f:"r"},
+ {t:"At-risk dollars generated",k:["atrisk"],c:["#dc2626"],f:"k"},
+];
+function col(v){if(v==null)return"#cbd5e1";let t=Math.max(0,Math.min(1,(v-1)/4));
+ let r=Math.round(220-t*198),g=Math.round(38+t*125),b=Math.round(38+t*36);return`rgb(${r},${g},${b})`;}
+function fmt(v,f){if(v==null)return"—";
+ if(f=="pct")return v.toFixed(1)+"%"; if(f=="m")return"$"+(v/1e6).toFixed(Math.abs(v)>=1e8?0:1)+"M";
+ if(f=="b")return"$"+(v/1e9).toFixed(2)+"B"; if(f=="k")return"$"+(v/1e3).toFixed(0)+"K";
+ if(f=="n")return Math.round(v).toLocaleString(); if(f=="r")return v.toFixed(2); return v;}
+function chart(def,S){
+ const years=S.years,W=360,H=200,L=46,R=12,T=24,B=22;
+ let vals=[]; def.k.forEach(k=>(S[k]||[]).forEach(v=>{if(v!=null)vals.push(v)}));
+ if(def.z)vals.push(0);
+ if(!vals.length)return'<div class="nochart">'+def.t+': no data</div>';
+ let lo=Math.min(...vals),hi=Math.max(...vals); if(lo===hi)hi=lo+Math.abs(lo||1)*0.1+1;
+ let pad=(hi-lo)*0.10; lo-=pad; hi+=pad; if(def.z&&lo>0)lo=0; if(def.z&&hi<0)hi=0;
+ const X=i=>L+i*(W-L-R)/(years.length-1), Y=v=>H-B-(v-lo)*(H-T-B)/(hi-lo);
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="dchart"><text x="${L}" y="13" class="ct">${def.t}</text>`;
+ [lo,(lo+hi)/2,hi].forEach(t=>{s+=`<line x1="${L}" y1="${Y(t).toFixed(1)}" x2="${W-R}" y2="${Y(t).toFixed(1)}" class="gl"/><text x="${L-5}" y="${(Y(t)+3).toFixed(1)}" class="yt">${fmt(t,def.f)}</text>`;});
+ if(def.z&&lo<=0&&hi>=0)s+=`<line x1="${L}" y1="${Y(0).toFixed(1)}" x2="${W-R}" y2="${Y(0).toFixed(1)}" class="zl"/>`;
+ years.forEach((yr,i)=>s+=`<text x="${X(i).toFixed(1)}" y="${H-7}" class="xt">'${String(yr).slice(2)}</text>`);
+ def.k.forEach((k,ki)=>{const a=S[k]||[],p=[];a.forEach((v,i)=>{if(v!=null)p.push([i,v])});if(!p.length)return;
+  if(p.length>1)s+=`<polyline points="${p.map(q=>X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)).join(' ')}" fill="none" stroke="${def.c[ki]}" stroke-width="2"/>`;
+  const lp=p[p.length-1];s+=`<circle cx="${X(lp[0]).toFixed(1)}" cy="${Y(lp[1]).toFixed(1)}" r="3" fill="${def.c[ki]}"/>`;});
+ if(def.lab){let lx=L+2;def.lab.forEach((nm,ki)=>{s+=`<rect x="${lx}" y="17" width="8" height="8" fill="${def.c[ki]}" rx="1"/><text x="${lx+11}" y="24" class="lg" fill="#475569">${nm}</text>`;lx+=12+nm.length*5.5+12;});}
+ return s+'</svg>';}
+function chip(label,v,sub){return`<div class="dchip"><span class="cl">${label}</span><span class="badge" style="background:${col(v)}">${v.toFixed(1)}</span>${sub?'<span class="csub">'+sub+'</span>':''}</div>`;}
+function renderDeep(name){
+ const d=DEEP[name];let h="";
+ h+=`<div class="dhead"><div><h3>${name} <span class="rank">#${d.rank} of ${d.n}</span></h3>
+   <div class="dmeta">${d.size} · ${d.enrollment?d.enrollment.toLocaleString():"—"} students · ${d.wealth} wealth${d.vpp?" ($"+d.vpp.toLocaleString()+"/pupil)":""} · <b>${d.label}</b></div></div>
+   <span class="dcomp" style="background:${col(d.composite)}">${d.composite.toFixed(2)}</span></div>`;
+ h+=`<div class="dscores">
+   ${chip("Health",d.health,"UAB "+fmt(d.uab_last,"pct")+" · Solv "+fmt(d.solv_last,"pct")+" · Margin "+fmt(d.marg3,"pct"))}
+   ${chip("Operational Quality",d.quality,d.cert?"GFOA/ASBO":"")}
+   ${chip("Capital sustainability",d.cap_sust,"")}
+   ${chip("Composite",d.composite,"")}</div>`;
+ h+=`<div class="dctx"><span>Debt outstanding:</span> $${d.debt_last.toFixed(0)}M &nbsp;·&nbsp; <span>GO-limit room:</span> ${d.debt_room!=null?"$"+d.debt_room.toLocaleString()+"M":"n/a"} &nbsp;·&nbsp; <span>Cash-reserve levy:</span> ${d.crl_pct!=null?d.crl_pct.toFixed(0)+"% of cap":"—"} &nbsp;·&nbsp; <span>At-risk $:</span> ${d.atrisk!=null?"$"+(d.atrisk/1e3).toFixed(0)+"K":"—"}</div>`;
+ h+=`<div class="dflags">${d.flags.map(x=>'<span class="flag">'+x+'</span>').join("")||'<span class="ok">no auto-flags</span>'}</div>`;
+ h+=`<p class="dnarr">${d.narrative}</p>`;
+ h+=`<div class="dcharts">${CHARTS.map(def=>'<div class="dcard">'+chart(def,d.series)+'</div>').join("")}</div>`;
+ document.getElementById("deep").innerHTML=h;}
+document.getElementById("dd").addEventListener("change",e=>renderDeep(e.target.value));
+renderDeep(ORDER[0]);
+</script>
+"""
+DEEP_SECTION = (DEEP_SECTION
+                .replace("__DEEP_JSON__", json.dumps(deep_data))
+                .replace("__ORDER__", json.dumps(order))
+                .replace("__OPTIONS__", options))
+DOC = DOC.replace("__DEEPDIVE__", DEEP_SECTION)
+
 open("iowa-district-financial-benchmark.html", "w").write(DOC)
 print("Wrote iowa-district-financial-benchmark.html (%d KB)" % (len(DOC)//1024))
