@@ -157,6 +157,7 @@ graded largely from the auditor's product, not the dollars.
 | C3 | **Repeat findings** | None | Same finding recurring year over year = not remediating | Findings (multi-yr) |
 | C4 | **Single Audit / federal compliance** | Clean | Questioned costs, noncompliance | Single Audit section |
 | C5 | **Timeliness** | Filed within statutory window; report date close to FYE | Late / multi-year backlog (the Iowa City cautionary case) | Report date vs. FYE |
+| C5b | **Most-recent-year present?** | FY2025 (and FY2024) audit present in the archive | **Most recent year(s) missing/unfiled** = late or non-filing — strongest negative tell, withdrawal territory | Archive inventory vs. Auditor of State |
 | C6 | **Disclosure depth & detail** | Rich MD&A, full debt/pension/lease notes, GASB 87/96 adopted, complete statistical section | Boilerplate MD&A, thin notes, missing schedules | Whole report |
 | C7 | **Recognition / external validation** | GFOA Certificate of Achievement; ASBO Certificate of Excellence | None | Intro section |
 | C8 | **Restatements / prior-period adjustments** | None / explained routine | Unexplained restatements, beginning-balance corrections = control weakness | Notes |
@@ -168,6 +169,20 @@ findings + on-time + deep disclosure + GFOA/ASBO recognition + budget actuals th
 certified budget. The strongest negative single signal is **late/missing audits** (rating-withdrawal
 territory — see companion report `school-district-rating-withdrawals.md`); the strongest positive is
 **no repeat findings + GFOA certificate + early filing**.
+
+> **The "missing recent year" rule (critical for this dataset).** The archive covers FY2020–FY2025,
+> but a district that did not file its FY2024 or FY2025 audit will simply be *absent* for that year.
+> **Treat a missing recent year as a finding, not a blank.** A large district whose most recent
+> available audit is FY2023 in a FY2025 world is exhibiting the exact late/non-filing pattern that
+> precedes a rating withdrawal (the Iowa City case, documented in this repo). So:
+> 1. **Confirm it's a true non-filing, not an upload gap** — cross-check the Auditor of State's
+>    published report list. "Not in our folder" ≠ "not filed"; only the former is a district problem,
+>    but a confirmed non-filing is a serious Pillar C penalty.
+> 2. **Score from the most-recent-*available* year, but penalize the staleness** — do not let a clean
+>    but two-years-stale FY2023 report earn the same Pillar C standing as a current FY2025 clean filing.
+> 3. **Flag every district by its data currency** so a stale-but-clean record can never silently
+>    outrank a current one, and so trend metrics (UAB direction, reserve drawdown) are read against the
+>    *right* end year.
 
 ---
 
@@ -188,7 +203,8 @@ profile — it orders districts and flags outliers for human reading.
    weights: **Health 40% · Operational Quality 35% · Capital-Sustainability 25%.** (Strategic
    *label* is reported alongside, not folded into the number.)
 5. **Flag, don't just rank.** Auto-flag any: negative/declining UAB, solvency <5%, repeat audit
-   findings, late filing, ESSER-cliff exposure, debt near the 5% constitutional limit.
+   findings, late filing, **most-recent-year (FY2024/FY2025) audit missing/unfiled**, stale data
+   currency, ESSER-cliff exposure, debt near the 5% constitutional limit.
 6. **Sensitivity / honesty check.** Re-run with alternate weights; if a district's standing
    swings hard, say so. Note every metric that was missing or Low-confidence for that district.
 
@@ -218,16 +234,23 @@ restatement_flag, gfoa_cert_flag, asbo_cert_flag, certified_budget_overrun_flag,
 source_page_refs, confidence
 ```
 
-Derived/scored columns (computed, not transcribed): `peer_bucket`, `pillarA_health_score`,
-`pillarB_strategic_label`, `pillarB_capital_sustainability`, `pillarC_quality_score`,
-`composite_score`, `flags`.
+Derived/scored columns (computed, not transcribed): `peer_bucket`, `latest_year_available`,
+`years_covered`, `recent_year_missing_flag`, `data_currency` (current / 1-yr-stale / 2+-yr-stale),
+`pillarA_health_score`, `pillarB_strategic_label`, `pillarB_capital_sustainability`,
+`pillarC_quality_score`, `composite_score`, `flags`. `latest_year_available` and
+`recent_year_missing_flag` are set at the **district** level during inventory (§6, step 1), before
+any per-year extraction.
 
 ---
 
 ## 6. Extraction workflow (analysis phase, later)
 
-1. **Inventory** the archive: district × fiscal year coverage; note gaps (a gap is itself a
-   finding for Pillar C).
+1. **Inventory** the archive first: build the district × fiscal-year coverage grid across the
+   FY2020–FY2025 window. For each district record `latest_year_available`, `years_covered`, and
+   whether FY2024/FY2025 is absent. A **missing recent year is a finding (C5b), not just a gap** —
+   confirm it against the Auditor of State's published report list to separate a true non-filing
+   (a real Pillar C penalty) from a mere upload omission, then set `recent_year_missing_flag` and
+   `data_currency` before any number is extracted.
 2. **Cross-reference Iowa public data** to validate PDF figures — DOE certified enrollment, DOM
    Aid & Levy and the **Unspent Authorized Budget report**, and State Auditor report dates. These
    are authoritative independent checks on what the PDF says.
