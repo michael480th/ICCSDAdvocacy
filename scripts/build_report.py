@@ -320,6 +320,10 @@ DEEP_SECTION = r"""
 .dchart .xt{font-size:9px;fill:#94a3b8;text-anchor:middle} .dchart .zl{stroke:#cbd5e1;stroke-width:1}
 .dchart .gl{stroke:#f1f5f9;stroke-width:1} .dchart .lg{font-size:9px}
 .nochart{font-size:11px;color:#94a3b8;padding:20px 6px}
+.dchart .bandlbl{font-size:8px;fill:#16a34a;text-anchor:end;opacity:.75}
+.cap{font-size:11px;color:#475569;line-height:1.4;padding:6px 8px 2px}
+.cap .vd{display:inline-block;margin-top:2px} .cap .vd.g{color:#16a34a} .cap .vd.w{color:#b45309} .cap .vd.r{color:#dc2626} .cap .vd.n{color:#475569}
+.csub2{font-weight:400;color:#94a3b8;font-size:12px}
 .csec{font-size:14px;margin:18px 0 8px;color:#0f172a;border-bottom:1px solid #e2e8f0;padding-bottom:4px}
 .smath{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
 .mblock{border:1px solid #e2e8f0;border-radius:9px;padding:10px 12px} .mblock.comp{background:#f0f9ff;border-color:#bae6fd}
@@ -338,28 +342,62 @@ DEEP_SECTION = r"""
 const DEEP = __DEEP_JSON__;
 const ORDER = __ORDER__;
 const CHARTS = [
- {t:"UAB % of max budget",k:["uab_pct"],c:["#2563eb"],f:"pct",z:true},
- {t:"Spending authority $: UAB vs max",k:["uab_dollar","max_budget"],c:["#2563eb","#94a3b8"],lab:["UAB","Max"],f:"m"},
- {t:"Solvency % (audited)",k:["solvency"],c:["#0891b2"],f:"pct",z:true},
- {t:"Operating margin %",k:["op_margin"],c:["#7c3aed"],f:"pct",z:true},
- {t:"GF revenue vs expenditure",k:["gf_rev","gf_exp"],c:["#16a34a","#dc2626"],lab:["Rev","Exp"],f:"m"},
- {t:"GF fund balance: unassigned vs total",k:["gf_unassigned","gf_total_fb"],c:["#2563eb","#94a3b8"],lab:["Unassigned","Total"],f:"m",z:true},
- {t:"Certified enrollment",k:["enrollment"],c:["#0d9488"],f:"n"},
- {t:"Debt outstanding: GO vs SAVE",k:["go_debt","save_debt"],c:["#b45309","#0891b2"],lab:["GO","SAVE"],f:"m"},
- {t:"Capital additions vs depreciation",k:["capital_add","depreciation"],c:["#16a34a","#94a3b8"],lab:["Additions","Deprec."],f:"m"},
- {t:"Construction in progress",k:["cip"],c:["#a16207"],f:"m"},
- {t:"IPERS pension vs OPEB liability",k:["ipers","opeb"],c:["#7c3aed","#94a3b8"],lab:["IPERS","OPEB"],f:"m"},
- {t:"Unrestricted net position",k:["unrestricted_np"],c:["#0891b2"],f:"m",z:true},
- {t:"Cash & investments",k:["cash"],c:["#0d9488"],f:"m"},
- {t:"Cash-reserve levy $",k:["crl"],c:["#b45309"],f:"m"},
- {t:"Cash-reserve levy % of 20% cap",k:["crl_pct"],c:["#b45309"],f:"pct"},
- {t:"Taxable valuation",k:["taxable_val"],c:["#15803d"],f:"b"},
- {t:"Total levy rate ($/$1,000)",k:["levy_rate"],c:["#7c3aed"],f:"r"},
- {t:"At-risk dollars generated",k:["atrisk"],c:["#dc2626"],f:"k"},
- {t:"Net position: components",k:["net_invest","restricted_np","unrestricted_np2"],c:["#2563eb","#0891b2","#dc2626"],lab:["Net inv. cap","Restricted","Unrestr."],f:"m",z:true},
- {t:"Balance sheet: assets vs liabilities",k:["total_assets","total_liabilities"],c:["#16a34a","#dc2626"],lab:["Assets","Liab."],f:"m"},
- {t:"Construction commitments (year-end)",k:["constr_commit"],c:["#a16207"],f:"m"},
+ {t:"UAB % of max budget",k:["uab_pct"],c:["#2563eb"],f:"pct",z:true,kind:"uab",
+  so:"Iowa's #1 health measure — how much spending room is left. Must stay above 0 (negative is unlawful); higher &amp; steadier is safer."},
+ {t:"Spending authority $: UAB vs max",k:["uab_dollar","max_budget"],c:["#2563eb","#94a3b8"],lab:["UAB","Max"],f:"m",
+  so:"Blue = unused spending authority (room left to spend); grey = the legal ceiling. Watch that blue stays well clear of zero."},
+ {t:"Solvency % (audited)",k:["solvency"],c:["#0891b2"],f:"pct",z:true,kind:"solv",band:[5,15],
+  so:"Rainy-day reserves vs. one year's revenue. The shaded 5–15% band is the healthy range for Iowa."},
+ {t:"Operating margin %",k:["op_margin"],c:["#7c3aed"],f:"pct",z:true,kind:"margin",
+  so:"Did it take in more than it spent? Above the 0 line = surplus; below = dipping into savings."},
+ {t:"GF revenue vs expenditure",k:["gf_rev","gf_exp"],c:["#16a34a","#dc2626"],lab:["Rev","Exp"],f:"m",kind:"revexp",
+  so:"When the red (spending) line climbs above the green (revenue) line, the district is running a deficit."},
+ {t:"GF fund balance: unassigned vs total",k:["gf_unassigned","gf_total_fb"],c:["#2563eb","#94a3b8"],lab:["Unassigned","Total"],f:"m",z:true,
+  so:"The district's savings. Rising = building a cushion; falling = spending it down."},
+ {t:"Certified enrollment",k:["enrollment"],c:["#0d9488"],f:"n",kind:"enroll",
+  so:"Enrollment drives state funding. Rising = more revenue; falling = budget pressure and a need to trim costs."},
+ {t:"Debt outstanding: GO vs SAVE",k:["go_debt","save_debt"],c:["#b45309","#0891b2"],lab:["GO","SAVE"],f:"m",
+  so:"Money borrowed for buildings. Rising = taking on new building debt; falling = paying it down. (Not a deficit — buildings are funded separately from operations.)"},
+ {t:"Capital additions vs depreciation",k:["capital_add","depreciation"],c:["#16a34a","#94a3b8"],lab:["Additions","Deprec."],f:"m",kind:"capdep",
+  so:"Green above the grey (depreciation) line = investing faster than buildings wear out (expanding/renewing); below = assets aging."},
+ {t:"Construction in progress",k:["cip"],c:["#a16207"],f:"m",
+  so:"Active building. A rise means a major project underway; a drop means projects finished and opened."},
+ {t:"IPERS pension vs OPEB liability",k:["ipers","opeb"],c:["#7c3aed","#94a3b8"],lab:["IPERS","OPEB"],f:"m",
+  so:"Long-term retirement obligations. These swing with statewide pension math, not local decisions — context, not a local report card."},
+ {t:"Unrestricted net position",k:["unrestricted_np"],c:["#0891b2"],f:"m",z:true,kind:"unp",
+  so:"Negative is normal for Iowa schools (it reflects pension obligations). What matters is the trend toward zero."},
+ {t:"Cash &amp; investments",k:["cash"],c:["#0d9488"],f:"m",
+  so:"Cash on hand. Useful for paying bills — but cash alone is not permission to spend it (that's UAB)."},
+ {t:"Cash-reserve levy $",k:["crl"],c:["#b45309"],f:"m",
+  so:"A property tax used to build up cash. Rising means leaning more on local taxpayers for cash flow."},
+ {t:"Cash-reserve levy % of 20% cap",k:["crl_pct"],c:["#b45309"],f:"pct",kind:"crlpct",
+  so:"How hard the district is using its cash-levy limit. Near the top can signal taxing heavily just to stay liquid."},
+ {t:"Taxable valuation",k:["taxable_val"],c:["#15803d"],f:"b",
+  so:"The local property-tax base. Higher/growing = more local wealth behind each student."},
+ {t:"Total levy rate ($/$1,000)",k:["levy_rate"],c:["#7c3aed"],f:"r",
+  so:"The school property-tax rate, per $1,000 of taxable value. Higher = a heavier tax on local property owners."},
+ {t:"At-risk dollars generated",k:["atrisk"],c:["#dc2626"],f:"k",
+  so:"State funding tied to at-risk/poverty factors. Rising reflects more eligible students or need."},
+ {t:"Net position: components",k:["net_invest","restricted_np","unrestricted_np2"],c:["#2563eb","#0891b2","#dc2626"],lab:["Net inv. cap","Restricted","Unrestr."],f:"m",z:true,
+  so:"Net worth split three ways. The red 'unrestricted' slice is usually negative (pensions); the blue capital slice grows as the district builds."},
+ {t:"Balance sheet: assets vs liabilities",k:["total_assets","total_liabilities"],c:["#16a34a","#dc2626"],lab:["Assets","Liab."],f:"m",
+  so:"What the district owns (green) vs. owes (red). Assets comfortably above liabilities = positive net worth."},
+ {t:"Construction commitments (year-end)",k:["constr_commit"],c:["#a16207"],f:"m",
+  so:"Signed-but-unfinished construction contracts — money already promised to future building."},
 ];
+function lastv(a){if(!a)return null;for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return null;}
+function verdict(def,S){
+ const k=def.kind; if(!k)return null;
+ const L=lastv(S[def.k[0]]);
+ if(k=="uab"){if(L==null)return null; if(L<0)return["✕ negative — unlawful, triggers state review","r"]; if(L<5)return["⚠ very thin ("+L.toFixed(1)+"%)","w"]; return["✓ healthy cushion ("+L.toFixed(1)+"%)","g"];}
+ if(k=="solv"){if(L==null)return null; if(L<5)return["⚠ below the healthy 5–15% range ("+L.toFixed(1)+"%)","w"]; if(L>15)return["▲ above the range — well reserved ("+L.toFixed(1)+"%)","g"]; return["✓ within the healthy range ("+L.toFixed(1)+"%)","g"];}
+ if(k=="margin"){if(L==null)return null; return L<0?["⚠ spent more than it took in last year ("+L.toFixed(1)+"%)","w"]:["✓ ran a surplus last year (+"+L.toFixed(1)+"%)","g"];}
+ if(k=="revexp"){const r=lastv(S.gf_rev),e=lastv(S.gf_exp); if(r==null||e==null)return null; return e>r?["⚠ spending exceeded revenue — drawing down savings","w"]:["✓ revenue covered spending","g"];}
+ if(k=="capdep"){const a=lastv(S.capital_add),dp=lastv(S.depreciation); if(a==null||dp==null)return null; return a>dp?["▲ investing faster than buildings wear out","g"]:["● at or below the replacement pace","n"];}
+ if(k=="crlpct"){if(L==null)return null; return L>40?["▲ heavy reliance ("+L.toFixed(0)+"% of cap)","w"]:["low–moderate use ("+L.toFixed(0)+"% of cap)","n"];}
+ if(k=="unp"){const a=(S.unrestricted_np||[]).filter(x=>x!=null); if(a.length<2)return null; return [a[a.length-1]>a[0]?"↗ trending toward zero (improving)":"↘ trending more negative","n"];}
+ if(k=="enroll"){const a=(S.enrollment||[]).filter(x=>x!=null); if(a.length<2)return null; const ch=(a[a.length-1]-a[0])/a[0]*100; return [Math.abs(ch)<1?"→ roughly flat":ch>0?"↗ growing (+"+ch.toFixed(0)+"%)":"↘ declining ("+ch.toFixed(0)+"%)","n"];}
+ return null;}
 function col(v){if(v==null)return"#cbd5e1";let t=Math.max(0,Math.min(1,(v-1)/4));
  let r=Math.round(220-t*198),g=Math.round(38+t*125),b=Math.round(38+t*36);return`rgb(${r},${g},${b})`;}
 function fmt(v,f){if(v==null)return"—";
@@ -375,6 +413,7 @@ function chart(def,S){
  let pad=(hi-lo)*0.10; lo-=pad; hi+=pad; if(def.z&&lo>0)lo=0; if(def.z&&hi<0)hi=0;
  const X=i=>L+i*(W-L-R)/(years.length-1), Y=v=>H-B-(v-lo)*(H-T-B)/(hi-lo);
  let s=`<svg viewBox="0 0 ${W} ${H}" class="dchart"><text x="${L}" y="13" class="ct">${def.t}</text>`;
+ if(def.band){const b0=Math.max(lo,def.band[0]),b1=Math.min(hi,def.band[1]); if(b1>b0){s+=`<rect x="${L}" y="${Y(b1).toFixed(1)}" width="${W-L-R}" height="${(Y(b0)-Y(b1)).toFixed(1)}" fill="#16a34a" fill-opacity="0.10"/><text x="${W-R-2}" y="${(Y(b1)+9).toFixed(1)}" class="bandlbl">healthy</text>`;}}
  [lo,(lo+hi)/2,hi].forEach(t=>{s+=`<line x1="${L}" y1="${Y(t).toFixed(1)}" x2="${W-R}" y2="${Y(t).toFixed(1)}" class="gl"/><text x="${L-5}" y="${(Y(t)+3).toFixed(1)}" class="yt">${fmt(t,def.f)}</text>`;});
  if(def.z&&lo<=0&&hi>=0)s+=`<line x1="${L}" y1="${Y(0).toFixed(1)}" x2="${W-R}" y2="${Y(0).toFixed(1)}" class="zl"/>`;
  years.forEach((yr,i)=>s+=`<text x="${X(i).toFixed(1)}" y="${H-7}" class="xt">'${String(yr).slice(2)}</text>`);
@@ -398,7 +437,7 @@ function renderDeep(name){
  h+=`<div class="dflags">${d.flags.map(x=>'<span class="flag">'+x+'</span>').join("")||'<span class="ok">no auto-flags</span>'}</div>`;
  h+=`<p class="dnarr">${d.narrative}</p>`;
  h+=scoreMath(d);
- h+=`<h4 class="csec">Trends (FY2020–FY2025)</h4><div class="dcharts">${CHARTS.map(def=>'<div class="dcard">'+chart(def,d.series)+'</div>').join("")}</div>`;
+ h+=`<h4 class="csec">Trends (FY2020–FY2025) <span class="csub2">— each chart notes what to look for and how this district reads</span></h4><div class="dcharts">${CHARTS.map(def=>{const v=verdict(def,d.series);const vh=v?' <b class="vd '+v[1]+'">'+v[0]+'</b>':'';return '<div class="dcard">'+chart(def,d.series)+'<div class="cap">'+(def.so||"")+vh+'</div></div>';}).join("")}</div>`;
  document.getElementById("deep").innerHTML=h;}
 function mb(v){return typeof v=="number"?`<span class="badge" style="background:${col(v)}">${v%1?v.toFixed(1):v}</span>`:v;}
 function scoreMath(d){
