@@ -1,16 +1,37 @@
 # Iowa Large-District Financial Benchmark — FY2020–FY2025
 
-**15 of Iowa's largest school districts**, scored from their **audited ACFRs** (88 district-years)
-**plus the Iowa DOM state-data layer** (90 district-years: UAB, AEA flow-through, certified
-enrollment, cash-reserve levy, levy rates, valuation, at-risk), per
-[`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md).
-Interactive version: **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)**.
+How 15 of Iowa's largest school districts compare on **financial health**, **quality of financial
+management**, and **how they are paying for buildings**, using six years of audited financial reports
+(FY2020–FY2025) and Iowa state financial filings. An interactive version with per-district charts is in
+**[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)**.
 
-> **Health = 0.50·UAB + 0.30·Solvency + 0.20·Operating-margin trend** (UAB = Iowa's #1 indicator).
-> **Composite = 0.40·Health + 0.35·Operational Quality + 0.25·Capital-Sustainability.**
-> Strategic posture is a **label**, not folded into the score. Scores are 1–5.
+## Key terms in plain English
 
-## Ranking (UAB-anchored)
+Iowa school finance has a few quirks that drive everything below:
+
+- **Spending authority (UAB).** Iowa law caps how much a district is *allowed* to spend each year —
+  separate from how much cash it has. The unused room carried into the next year is its **Unspent
+  Authorized Budget**. It is the single most important measure of an Iowa district's financial health:
+  a district can have cash in the bank yet still be in trouble if it runs out of authority. Going
+  **negative is unlawful** and triggers a state review. *Higher and stable = healthier.*
+- **Reserves / "solvency."** The rainy-day cushion (general-fund savings) as a share of one year's
+  revenue. Roughly **5–15% is the healthy range** in Iowa.
+- **Operating margin.** Whether the district spent more or less than it took in that year. *Negative =
+  dipping into savings.*
+- **Paying for buildings.** Day-to-day money (salaries, etc.) is walled off from building money.
+  Buildings are funded by **SAVE** (a statewide penny sales tax for school facilities) and **GO bonds**
+  (voter-approved borrowing repaid by property taxes). A district can be expanding buildings while still
+  being tight on operating money — they are separate.
+- **"Building" vs. "maintaining."** A label for whether a district is expanding/renovating facilities or
+  keeping what it has. Neither is inherently good or bad.
+- **The three scores (1 = weak, 5 = strong):** **Financial Health** (living within its means, keeping a
+  cushion), **Operational Quality** (clean, on-time, well-run books), **Capital Sustainability** (can it
+  afford what it's building). The **Composite** blends them: 40% Health, 35% Quality, 25% Capital.
+
+*One thing that looks alarming but isn't: most districts show a negative "unrestricted net position." For
+Iowa schools this is normal — it reflects long-term pension obligations (IPERS), not day-to-day insolvency.*
+
+## Ranking
 
 | # | District | UAB % | Solv % | Fwd load $/pupil | Health | Quality | Cap.sust | **Composite** |
 |---|---|---|---|---|---|---|---|---|
@@ -30,70 +51,65 @@ Interactive version: **[`iowa-district-financial-benchmark.html`](iowa-district-
 | 14 | **Waterloo CSD** | 7.5% | -5.7% | $33,655 | 1.8 | 3.5 | 2.3 | **2.49** |
 | 15 | **Iowa City CSD** | 2.3% | 2.5% | $33,460 | 2.8 | 1.0 | 3.1 | **2.23** |
 
-*Forward load $/pupil = (total future debt service + construction commitments) ÷ enrollment — the basis for the new forward-capital-burden factor in Capital-sustainability.*
+*"Forward load $/pupil" = future debt payments plus signed construction contracts, divided by enrollment —
+a measure of how much building cost is already locked in.*
 
-## Executive summary
+## The big picture
 
-This edition is **anchored on Unspent Authorized Budget (UAB)** — the binding legal constraint on an
-Iowa district's spending and the state's #1 health indicator — pulled from the DOM report and weighted
-50% of Health. Because UAB is state-computed, it exists even where audits don't (Iowa City FY24/FY25).
+Across 2020–2025, the dominant story is an **operating squeeze**: federal pandemic aid expired while
+enrollment declined and costs rose, so **9 of 15 districts spent more than they took in** in recent years
+and have been drawing down savings. At the same time, **14 of 15 are building or expanding** — paid for
+with restricted building money (SAVE and bonds) that cannot be used for operations. Because a district's
+day-to-day health, the quality of its bookkeeping, and its building plans are three different things, they
+are measured separately.
 
-- **Cash ≠ spending authority — and it re-ranks the field.** **Burlington** (audited solvency 8% but
-  **UAB 28%**) and **Johnston** (solvency 8% but **UAB 21%**) drew down accumulated *cash* while keeping
-  ample *authority* — exactly what ISFIS says UAB is for. They land mid-pack, not at the bottom, where a
-  solvency-only read wrongly put them.
-- **The two genuinely distressed districts fail differently.** **Iowa City** — UAB went **negative in
-  FY2023** (unlawful, SBRC-trigger), sits at ~2% now, is levying **57% of its cash-reserve cap** to stay
-  liquid, and has **not filed FY2024/FY2025 audits** (Moody's rating withdrawn). **Waterloo** — operating
-  collapse: UAB halved to 7.5%, audited solvency **−5.6%**, negative GF balance, while issuing 7M of new
-  SAVE debt.
-- **The post-ESSER operating squeeze is broad** (9/15 in multi-year deficit) but **14/15 keep building**
-  through restricted SAVE/GO streams. Health, reporting quality, and capital posture are scored
-  separately so these don't get conflated.
-- **Healthiest:** Pleasant Valley & Waukee (growing, UAB 23%/30%, clean, GFOA). Muscatine ranks 3rd on a
-  strong UAB (20%) despite the sharpest enrollment decline, by restraining spending.
+- **Cash in the bank is not the same as permission to spend it.** **Burlington** (reserves 8% but spending
+  authority 28%) and **Johnston** (reserves 8%, authority 21%) spent down cash while keeping ample
+  authority — so they land mid-pack, not at the bottom, where a savings-only view would wrongly place them.
+- **The two truly distressed districts are in trouble for different reasons.** **Iowa City** ran its
+  spending authority **negative in 2023** (a serious, state-reviewable event), is taxing heavily just to
+  keep cash on hand, and **has not filed its 2024 or 2025 audits** — which cost it its bond rating.
+  **Waterloo** is the opposite: its savings turned **negative** and it ran a large deficit while taking on
+  $87M of new building debt.
+- **Strongest:** **Pleasant Valley** and **Waukee** — growing enrollment, healthy reserves and authority,
+  clean audits. **Muscatine** ranks high despite the steepest enrollment decline, by trimming spending to
+  match.
 
-## What changed vs. the audit-only edition
+## How districts are paying for buildings
 
-| District | Audit-only composite | UAB-anchored | Why |
-|---|---|---|---|
-| **Burlington** | 3.45 | **3.91** | UAB 28% reveals low solvency was cash drawdown, not distress |
-| **Johnston** | 2.81 | **3.53** | UAB 21% (rising) vs. solvency 7.7% |
-| **Muscatine** | 4.30 | **4.42** | Strong UAB confirms disciplined decline management |
-| **Iowa City** | 2.35 | **2.31** | Now on the real metric: negative FY2023 UAB + 57% levy reliance |
-| **Waterloo** | 2.02 | **2.52** | UAB (7.5%) less dire than negative solvency, but falling fast |
+Building money is separate from operating money, so a district can be expanding even while its day-to-day
+budget is tight. Two things matter most here:
 
-## Context layers now included
-- **Property wealth** (taxable valuation/pupil tertiles) — peer context.
-- **GO-debt headroom** vs. the 5%-of-actual-value limit — College is highest at ~59% of its limit.
-- **Cash-reserve-levy reliance** — who taxes to stay liquid: Iowa City 57%, Waukee 58% (growth), vs.
-  Burlington/Davenport/Des Moines at 0%.
+- **How much building cost is already locked in** (future debt payments + signed construction contracts).
+  Per pupil, the heaviest loads are **College/Prairie (~$60K)**, **Waukee (~$39K)**, **Waterloo (~$34K)**,
+  and **Iowa City (~$33K)**; the lightest are **Des Moines, Johnston, and Muscatine**. What matters is
+  whether the district can *afford* it: Waukee carries a big load on growing enrollment and a strengthening
+  balance sheet (sustainable); College and Waterloo carry heavy loads on shrinking reserves (a concern).
+- **Building plans not yet borrowed against.** Several districts have **voter-approved bond money they
+  haven't issued yet** — **Des Moines $265M**, **West Des Moines $135M**, and **Ankeny $130M** (all
+  approved in November 2025) — signaling major new building cycles ahead. (Dubuque's 2023 $150M request was
+  *rejected* by voters.)
 
-## Balance sheet & forward capital commitments (new)
+## How the scores work
 
-A notes-level pass added the balance sheet (net-position components, total assets/liabilities) and
-**forward capital commitments**, and a **forward-capital-burden** factor now feeds Capital-sustainability
-(0.20 weight): *(total future debt service + construction commitments) ÷ enrollment.*
+- **Financial Health** = spending authority (50%) + reserves/solvency (30%) + recent operating margin (20%).
+- **Operational Quality** = audit opinion, internal-control findings, whether problems repeat year to year,
+  whether audits are filed on time, and recognition for excellence in reporting (GFOA/ASBO).
+- **Capital Sustainability** = financial health, enrollment direction, operating margin, how heavy the
+  locked-in building cost is, and how much room remains under the legal debt limit.
+- **Composite** = 40% Health + 35% Quality + 25% Capital Sustainability. "Building vs. maintaining" is
+  reported as a label, not scored.
 
-- **Heaviest forward load (per pupil):** College/Prairie **$59.8K**, Waukee $39.1K, Waterloo $33.7K,
-  Iowa City $33.5K — but the *sustainability* differs sharply: Waukee carries it on growth + positive
-  net position; College and Waterloo carry it on eroding reserves, so their Capital-sustainability falls
-  to 2.4 / 2.3.
-- **Lightest:** Des Moines $3.4K, Johnston $4.7K, Muscatine $6.3K — ample room.
-- **Authorized-but-unissued GO (building intent not yet on the books):** Des Moines **$265M**,
-  West Des Moines **$135M**, Ankeny **$130M** (all Nov-2025 referenda) — a wave of new capital cycles the
-  backward-looking metrics couldn't see. (Dubuque's Nov-2023 $150M referendum *failed* — no authorization.)
-- **Net position:** total net position rose for every district FY2020→FY2025, but **unrestricted net
-  position is negative in 14 of 15** (IPERS/OPEB driven) — Waukee is the lone district to turn it positive
-  (+$11.7M, FY2025).
+The interactive report includes a **"How this score is built" panel for each district**, showing every
+component, its weight, and its contribution.
 
-Every district's deep-dive now includes a **"How this score is built" panel** showing each component's
-value, weight, and contribution for all three pillars and the composite.
+## Sources & a few caveats
 
-## Method, sources & limitations
-- **Pipeline:** `scripts/extract_dom.py` (state layer → `data/dom/`) → `scripts/build_analysis.py`
-  (merge + score → `data/iowa-district-scorecards.csv`) → `scripts/build_report.py` (HTML).
-- **Enrollment** uses the uniform DOM funding figure (~1–3% from audit "certified enrollment" due to the
-  one-year funding lag). **Personnel-cost ratio (A8)** remains audit-limited. Solvency numerator =
-  Unassigned + Assigned ("Committed" excluded uniformly), recomputed with the DOM AEA denominator.
-- State (DOM) figures are **unaudited**; audited figures trace to each district's ACFR.
+- Built from each district's audited annual financial reports (FY2020–FY2025) and Iowa Department of
+  Management / Department of Education filings. State figures are unaudited but available even where a
+  district's audit is missing.
+- **Iowa City** has audited data only through FY2023 (2024 and 2025 were never filed); it is shown with the
+  state spending-authority figures that do exist, and is marked down for the missing audits.
+- One common school-finance measure — **staff salaries and benefits as a share of the budget** — is not
+  broken out in these audits (districts report it only in summary, around 80%), so it is noted rather than
+  scored.

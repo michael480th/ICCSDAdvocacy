@@ -147,52 +147,79 @@ footer{{color:var(--mut);font-size:12px;margin-top:50px;border-top:1px solid var
 </style></head><body><div class="wrap">
 
 <h1>Iowa Large-District Financial Benchmark</h1>
-<p class="sub">15 of Iowa's largest school districts · audited ACFRs + Iowa DOM state data · FY2020–FY2025 · {date}</p>
+<p class="sub">How 15 of Iowa's largest school districts compare on financial health, fiscal management, and how they are paying for buildings · fiscal years 2020–2025 · {date}</p>
 
 <div class="cards-summary">
-  <div class="sumbox"><b>15</b><span>districts benchmarked</span></div>
-  <div class="sumbox"><b>88+90</b><span>audited + state district-years</span></div>
-  <div class="sumbox"><b>{building}/15</b><span>in a capital "building" posture</span></div>
-  <div class="sumbox"><b>{neg_margin}/15</b><span>multi-yr operating deficit</span></div>
-  <div class="sumbox"><b>{thin_uab}/15</b><span>thin spending authority (UAB&lt;5%)</span></div>
+  <div class="sumbox"><b>15</b><span>districts compared</span></div>
+  <div class="sumbox"><b>6 yrs</b><span>of audited results each (FY2020–FY2025)</span></div>
+  <div class="sumbox"><b>{building}/15</b><span>actively building/expanding facilities</span></div>
+  <div class="sumbox"><b>{neg_margin}/15</b><span>spent more than they took in (recent years)</span></div>
+  <div class="sumbox"><b>{thin_uab}/15</b><span>with very little spending room left</span></div>
+</div>
+
+<div class="note" style="border-left-color:#0d9488">
+<h4>Start here — key terms in plain English</h4>
+<p>Iowa school finance has a few quirks that drive everything below. If you read nothing else, read these:</p>
+<ul>
+<li><b>Spending authority (UAB).</b> Iowa law caps how much a district is <i>allowed</i> to spend each
+year — separate from how much cash it has. The unused room carried forward is its <b>Unspent Authorized
+Budget</b>. This is the single most important measure of an Iowa district's financial health: a district
+can have money in the bank but still be in trouble if it runs out of authority. Going <b>negative</b> is
+unlawful and triggers a state review. <i>(Higher and stable = healthier.)</i></li>
+<li><b>Reserves / "solvency."</b> The district's rainy-day cushion (its general-fund savings) measured
+against one year of revenue. Roughly <b>5–15% is the healthy range</b> in Iowa.</li>
+<li><b>Operating margin.</b> Did the district spend more or less than it brought in this year? <b>Negative
+means it dipped into savings.</b></li>
+<li><b>How schools pay for buildings.</b> Day-to-day money (salaries, etc.) is walled off from
+building money. Buildings are funded by <b>SAVE</b> (a statewide penny sales tax for school facilities)
+and <b>GO bonds</b> (voter-approved borrowing repaid by property taxes). A district can be expanding
+buildings and still be tight on operating money — the two are separate.</li>
+<li><b>"Building" vs. "maintaining."</b> A label describing whether a district is expanding/renovating
+facilities or just keeping what it has. Neither is good or bad on its own — it's context.</li>
+<li><b>The three scores (1 = weak, 5 = strong).</b> <b>Financial Health</b> (is it living within its
+means and keeping a cushion?), <b>Operational Quality</b> (are the books clean, on time, and well-run?),
+and <b>Capital Sustainability</b> (can it afford what it's building?). The <b>Composite</b> blends them:
+40% Health, 35% Quality, 25% Capital.</li>
+</ul>
+<p style="margin:6px 0 0;color:#64748b;font-size:13px">A note on "negative net position" you'll see in the charts: it's normal for Iowa schools and reflects long-term pension obligations (IPERS), not day-to-day insolvency.</p>
 </div>
 
 <div class="note">
-<h4>Executive summary</h4>
-<p>This edition is <b>anchored on Unspent Authorized Budget (UAB)</b> — Iowa's #1 financial-health
-indicator and the binding legal constraint on a district's spending — sourced from the Iowa DOM
-report and weighted <b>50%</b> of the Health pillar (audited solvency 30%, operating-margin trend
-20%). Because UAB is state-computed, it exists even where audits do not (Iowa City FY24/FY25).</p>
+<h4>The big picture</h4>
+<p>Across 2020–2025, the dominant story is an <b>operating squeeze</b>: federal pandemic aid expired
+while enrollment declined and costs rose, so <b>{neg_margin} of 15 districts spent more than they took in</b>
+in recent years and have been drawing down savings. At the same time, <b>{building} of 15 are building or
+expanding</b> — paid for with restricted building money (SAVE and bonds) that can't be used for operations.
+A district's day-to-day health, the quality of its bookkeeping, and its building plans are three different
+things, so they are measured separately here.</p>
 <ul>
-<li><b>Cash ≠ spending authority — and it re-ranks the field.</b> Districts that looked stressed on
-audited <i>reserves</i> are fine on <i>authority</i>: <b>Burlington</b> (solvency 8% but UAB <b>28%</b>)
-and <b>Johnston</b> (solvency 8% but UAB <b>21%</b>) drew down cash while keeping ample authority —
-exactly what ISFIS says UAB is for. They rank mid-pack, not at the bottom.</li>
-<li><b>The two genuinely distressed districts fail differently.</b> <b>Iowa City</b> — UAB went
-<b>negative in FY2023</b> (the unlawful, SBRC-trigger condition), sits at ~2% today, is levying
-<b>57% of its cash-reserve cap</b> to stay liquid, and has <b>not filed FY2024/FY2025 audits</b>
-(Moody's rating withdrawn). <b>Waterloo</b> — an operating collapse: UAB halved to 7.5%, audited
-solvency <b>−5.6%</b>, negative GF balance, while issuing $87M of new SAVE debt.</li>
-<li><b>The post-ESSER operating squeeze is broad</b> — {neg_margin} of 15 run a multi-year deficit —
-but <b>{building} of 15 keep building</b> through Iowa's restricted SAVE/GO streams. Operating health,
-reporting quality, and capital posture are scored separately so these don't get conflated.</li>
-<li><b>Healthiest:</b> Pleasant Valley and Waukee — growing enrollment, UAB above 22%/30%, clean
-audits, continuous GFOA. Muscatine ranks high on a strong UAB (20%) despite the sharpest enrollment
-decline, by restraining spending.</li>
+<li><b>Money in the bank is not the same as permission to spend it.</b> A few districts look strained on
+savings but are fine on spending authority: <b>Burlington</b> (reserves 8% but spending authority 28%) and
+<b>Johnston</b> (reserves 8%, authority 21%) spent down cash while keeping plenty of authority. They land
+in the middle of the pack, not the bottom.</li>
+<li><b>The two truly distressed districts are in trouble for different reasons.</b> <b>Iowa City</b> ran
+its spending authority <b>negative in 2023</b> (a serious, state-reviewable event), is taxing heavily just
+to keep cash on hand, and <b>has not filed its 2024 or 2025 audits</b> — which cost it its bond rating.
+<b>Waterloo</b> is the opposite kind of problem: its savings turned <b>negative</b> and it ran a large
+deficit while taking on $87M of new building debt.</li>
+<li><b>Strongest:</b> <b>Pleasant Valley</b> and <b>Waukee</b> — growing enrollment, healthy reserves and
+authority, clean audits. <b>Muscatine</b> ranks high despite the steepest enrollment decline, by carefully
+trimming spending to match.</li>
 </ul>
 </div>
 
-<h2>Health × Quality map</h2>
-<p class="sub">Horizontal = UAB-anchored financial health · vertical = operational/reporting quality · bubble = enrollment · color = composite.</p>
+<h2>The map: financial health vs. quality of management</h2>
+<p class="sub">Each bubble is a district. Left–right = financial health (savings + spending authority). Up–down = how clean and timely its books are. Bubble size = enrollment. Color = overall score (red = weaker, green = stronger).</p>
 <div class="layout"><div>{quadrant()}</div>
-<div class="note" style="border-left-color:#16a34a"><h4>Reading the map</h4>
-<p>Top-right = strong <i>and</i> trustworthy. Iowa City sits at the bottom (reporting collapse)
-regardless of its balance sheet; Waterloo sits far left (operating/authority collapse) regardless of
-its clean audit. A district can be a confident "builder" from either position — which is why building
-posture is a <b>label</b>, reported beside the scores rather than baked into them.</p></div></div>
+<div class="note" style="border-left-color:#16a34a"><h4>How to read it</h4>
+<p>The <b>top-right</b> is the goal: financially strong <i>and</i> well-run. A district low on the
+vertical axis (Iowa City) has a bookkeeping/reporting problem no matter how its balance sheet looks; one
+far to the left (Waterloo) has a money problem no matter how clean its audit is. A district can be a
+confident "builder" from either spot — which is why we label building separately rather than reward or
+penalize it.</p></div></div>
 
-<h2>Master benchmark table</h2>
-<div class="legend">Score scale (1–5): <span>weak</span><div class="scale"></div><span>strong</span> · click any header to sort · <b>UAB</b> = spending authority (Iowa's #1 metric).</div>
+<h2>Full comparison table</h2>
+<div class="legend">Scores run 1 <div class="scale"></div> 5 · click any column heading to re-sort · <b>UAB %</b> = spending authority (the higher, the more room to spend).</div>
 <table id="bt"><thead><tr>
 <th>#</th><th>District</th><th>Size</th><th>Wealth</th><th>Enr. trend</th><th>Strategic posture</th>
 <th>UAB %</th><th>Solvency %</th><th>Health</th><th>Quality</th><th>Cap. sust.</th><th>Composite</th><th>Flags</th>
@@ -201,6 +228,7 @@ posture is a <b>label</b>, reported beside the scores rather than baked into the
 </tbody></table>
 
 <h2>District scorecards</h2>
+<p class="sub">One card per district. The small charts trace each measure over the six years; the colored chips are the 1–5 scores; red tags flag issues worth a closer look.</p>
 <div class="cards">{''.join(cardhtml)}</div>
 
 __DEEPDIVE__
@@ -209,12 +237,12 @@ __DEEPDIVE__
 <div class="note">
 <h4>How the scores were built</h4>
 <ul>
-<li><b>Three data layers:</b> audited ACFRs (FY2020–FY2025, field-by-field) + the Iowa DOM state-data
-layer (UAB, AEA flow-through, certified enrollment, cash-reserve levy &amp; 20% cap, levy rates,
-valuation, at-risk) + an audit-<b>notes</b> layer (net-position components, total assets/liabilities,
-construction commitments, authorized-but-unissued debt, and the debt-service schedule). State data is
-<b>unaudited</b> but exists where audits do not — so Iowa City carries FY24/FY25 UAB and a
-stale/missing-audit Quality penalty.</li>
+<li><b>Where the numbers come from:</b> each district's <b>audited annual financial reports</b>
+(FY2020–FY2025), combined with <b>Iowa state filings</b> (spending authority, enrollment, levy rates,
+property valuations, at-risk funding) and figures drawn from the <b>notes to the audits</b> (net worth,
+construction commitments, future debt payments). The state figures are unaudited but are available even
+when a district hasn't filed its audit — which is why Iowa City still has spending-authority data for
+2024–2025 even though those audits are missing (and is marked down for that gap).</li>
 <li><b>Pillar A — Health = 0.50·UAB + 0.30·Solvency + 0.20·Operating-margin trend.</b> UAB% (of max
 authorized budget) is the primary input; <b>negative UAB</b> is a hard flag. Solvency is recomputed
 uniformly using the DOM AEA flow-through denominator (the ISFIS formula). <b>Pillar C — Quality</b>:
