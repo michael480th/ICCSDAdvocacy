@@ -51,6 +51,7 @@ district on three axes and only benchmark *within or adjacent to* a bucket:
 | **Size** | <2,500 / 2,500–7,500 / 7,500–15,000 / >15,000 certified enrollment | Fixed-cost spreading, reserve volatility, debt capacity |
 | **Enrollment trajectory** | Growing (>1%/yr) / Stable (±1%) / Declining (<−1%) | Funding direction, capital pressure, budget-guarantee reliance |
 | **Property wealth** | Taxable valuation **per pupil** (low/mid/high tertile) | Local revenue-raising ability; PPEL/debt headroom |
+| **Poverty (context)** | Free-and-reduced-lunch % (low/mid/high) | Cost pressure, at-risk/dropout-prevention authority, categorical funding — a context lens, not a grade |
 
 **Normalization (mandatory for every dollar figure).** Raw dollars are not comparable across
 districts. Convert every metric to **at least one** comparable basis:
@@ -111,17 +112,31 @@ pass/fail.
 
 | # | Metric | Formula | Source | Dir | Iowa benchmark band |
 |---|---|---|---|---|---|
-| A1 | **Solvency ratio** | (Unassigned + Assigned GF balance) ÷ (Total GF revenue − AEA flow-through) | Fund stmts | ↑ | **<5% weak · 5–15% target/good · 15–25% strong · >25% possibly over-reserved** ([ISFIS](https://www.iowaschoolfinance.com/schoolfinancebasics)) |
-| A2 | **Unspent Authorized Budget (UAB) as % of budget** | Unspent spending authority ÷ total GF certified budget | DOM UAB report / notes / MD&A | ↑ | Positive & stable. Falling 3-yr trend toward zero = warning; **negative = SBRC review / unlawful** |
+| A1 | **Solvency ratio** | (Unassigned + Assigned GF balance) ÷ (Total GF revenue − AEA flow-through) | Fund stmts | ↑ | **<5% weak · 5–15% target/good · 15–25% strong · >25% possibly over-reserved**. A negative solvency ratio can persist *for years without state sanction* — unlike UAB ([ISFIS](https://www.iowaschoolfinance.com/schoolfinancebasics)) |
+| A2 | **Unspent Authorized Budget (UAB) as % of budget** | Unspent spending authority ÷ total GF certified budget | DOM UAB report / notes / MD&A | ↑ | **ISFIS: "the most important indicator of financial health."** Positive & stable good. Falling 3-yr trend toward zero = warning; **negative = unlawful → SBRC workout, up to state takeover/dissolution** |
+| A2b | **UAB used as ongoing vs. one-time** | Is the district funding recurring costs (salaries/contracts) out of UAB drawdown? | MD&A, multi-yr UAB + expenditure trend | ↓ | ISFIS warns UAB is **one-time money**; obligating it for ongoing costs without a sustainability plan is a structural red flag |
 | A3 | **General Fund balance trend** | 3–5 yr change in unassigned GF balance (per pupil) | Fund stmts (multi-yr) | ◦ | Stable/rising healthy; sustained drawdown = structural deficit |
 | A4 | **Operating margin** | (GF revenue − GF expenditure) ÷ GF revenue, multi-year | Fund stmts | ◦ | Persistent negative = spending above means |
 | A5 | **Days cash / liquidity** | (Cash + investments) ÷ (daily operating expenditure) | Net Position / notes | ↑ | Context; pair with A2 — cash ≠ authority in Iowa |
 | A6 | **Budget-guarantee / one-time reliance** | Budget guarantee, SBRC modified allowable growth, one-time ESSER/federal $ as % of GF | MD&A, RSI, notes | ↓ | High reliance on one-time money = fragility (post-ESSER cliff) |
 | A7 | **Unrestricted net position** | Unrestricted net position (government-wide), per pupil & trend | Stmt of Net Position | ↑ | Deeply negative driven by pension/OPEB is common in IA — read in context |
+| A8 | **Personnel cost ratio** | (Salaries + benefits) ÷ total GF expenditure, with 3-yr trend | Fund stmts / functional detail | ◦ | **ISFIS target ~75–85% (≈80%).** Above the band — *especially rising while enrollment falls* — is the classic Iowa squeeze (staff not cut as enrollment declined) |
+| A9 | **Cash Reserve Levy usage** | Cash Reserve Levy as % of the 20%-of-two-prior-years statutory cap | Levy detail / DOM | ◦ | A solvency *lever*, not strength. A district near the 20% cap is propping up solvency through taxation — read alongside A1 |
 
 **Health read:** strong = positive UAB trend + solvency in target band + flat/positive operating
-margin + low one-time reliance. Distress = solvency <5% **and** UAB trending to/through zero
-**and** multi-year deficits **and** ESSER dependence.
+margin + personnel ratio in the 75–85% band + low one-time reliance. Distress = solvency <5%
+**and** UAB trending to/through zero **and** multi-year deficits **and** personnel ratio climbing
+above 85% as enrollment falls **and** ESSER dependence.
+
+> **Why UAB moved matters as much as the level.** ISFIS notes a district has few levers to *raise*
+> spending authority — the Instructional Support Levy (ISL, up to 10% of regular program cost; used
+> by 324 of 325 districts), claiming on-time funding / Modified Supplemental Amount for enrollment
+> growth, the Budget Guarantee during decline, dropout-prevention / EL / special-ed-deficit
+> authority, and miscellaneous income (grants/federal, which create dollar-for-dollar authority).
+> When a district's UAB swings, read it against these drivers: UAB propped up by a maxed ISL,
+> budget guarantee, or one-time grants is weaker than UAB built from genuine enrollment growth.
+> Note the special-ed nuance: cutting special-education spending does **not** free up UAB (it is
+> SBRC-granted authority), though it does affect the solvency ratio.
 
 ### Pillar B — Strategic Position (building/growth vs. maintain)
 
@@ -130,6 +145,7 @@ The tell is **enrollment direction × capital intensity × debt trajectory**. Re
 | # | Metric | Formula | Source | Reads as… |
 |---|---|---|---|---|
 | B1 | **Certified enrollment CAGR** | 5-yr CAGR of certified enrollment | Stat. section / DOE | Growth engine; >1%/yr = growing, <−1% = declining |
+| B1b | **Enrollment composition / leakage** | Open enrollment **in vs. out** (net); ESA/private-school flow; resident vs. open-enrolled mix | DOE enrollment data / MD&A | Net open-enrollment *out* and ESA leakage signal erosion even if headcount looks flat; net *in* is a quiet growth source |
 | B2 | **Capital outlay intensity** | (SAVE + PPEL + Capital Projects spend) ÷ enrollment, 5-yr | Fund stmts | High & rising → **building**; low/upkeep-only → **maintain** |
 | B3 | **Construction-in-progress / capital additions** | Δ capital assets; CIP balance; additions vs. depreciation | Capital-asset note | Additions ≫ depreciation → expanding plant; additions ≈ depreciation → holding steady; < depreciation → aging plant |
 | B4 | **Debt trajectory** | GO + SAVE-revenue + lease debt, per pupil & YoY; new issuance | Debt note / Debt Service | Rising new issuance → building; net amortization → deleveraging/maintain |
@@ -212,9 +228,11 @@ profile — it orders districts and flags outliers for human reading.
 4. **Composite** = weighted blend, weights stated explicitly and adjustable. Default starting
    weights: **Health 40% · Operational Quality 35% · Capital-Sustainability 25%.** (Strategic
    *label* is reported alongside, not folded into the number.)
-5. **Flag, don't just rank.** Auto-flag any: negative/declining UAB, solvency <5%, repeat audit
-   findings, late filing, **most-recent-year (FY2024/FY2025) audit missing/unfiled**, stale data
-   currency, ESSER-cliff exposure, debt near the 5% constitutional limit.
+5. **Flag, don't just rank.** Auto-flag any: negative/declining UAB, UAB funding ongoing costs,
+   solvency <5%, personnel ratio >85% (esp. while enrollment falls), net open-enrollment/ESA
+   leakage, Cash Reserve Levy near its 20% cap, repeat audit findings, late filing,
+   **most-recent-year (FY2024/FY2025) audit missing/unfiled**, stale data currency, ESSER-cliff
+   exposure, debt near the 5% constitutional limit.
 6. **Sensitivity / honesty check.** Re-run with alternate weights; if a district's standing
    swings hard, say so. Note every metric that was missing or Low-confidence for that district.
 
@@ -231,13 +249,16 @@ Mirrors the `data/` CSV convention already in this repo (every cell sourced + co
 
 ```
 district, county, fiscal_year, auditor (State/firm), report_date, opinion_type,
-certified_enrollment, enrollment_cagr_5yr, taxable_valuation, valuation_per_pupil,
+certified_enrollment, enrollment_cagr_5yr, open_enroll_in, open_enroll_out, net_open_enroll,
+frl_pct, taxable_valuation, valuation_per_pupil,
 gf_revenue, gf_expenditure, gf_unassigned_balance, gf_assigned_balance, aea_flowthrough,
-solvency_ratio, unspent_authorized_budget, uab_pct_of_budget, operating_margin,
+solvency_ratio, unspent_authorized_budget, uab_pct_of_budget, uab_funds_ongoing_flag,
+operating_margin, salaries_benefits, salary_benefit_pct_gf,
+cash_reserve_levy, cash_reserve_levy_pct_of_cap, budget_guarantee_flag,
 days_cash, unrestricted_net_position_pp, one_time_federal_pct,
 save_revenue_pp, ppel_levy_rate, capital_outlay_pp, construction_in_progress,
 capital_additions, depreciation, go_debt_outstanding, save_rev_debt, lease_sbita_obligations,
-debt_per_pupil, debt_vs_5pct_limit, voted_ppel_flag, isl_flag,
+debt_per_pupil, debt_vs_5pct_limit, voted_ppel_flag, isl_flag, isl_pct,
 ipers_net_pension_liability, opers_oepb_liability,
 audit_findings_count, material_weakness_flag, repeat_finding_flag, single_audit_findings,
 restatement_flag, gfoa_cert_flag, asbo_cert_flag, certified_budget_overrun_flag,
@@ -283,6 +304,13 @@ any per-year extraction.
 
 - **Cash ≠ spending authority.** Always read UAB (A2) alongside cash (A5). The Iowa-distinctive
   failure mode is exhausting authority while holding cash.
+- **UAB outranks solvency for severity.** Per ISFIS, a *negative solvency ratio* can persist for
+  years with no state sanction, but a *negative UAB* draws immediate SBRC review and can escalate to
+  state takeover/dissolution. When the two disagree, weight UAB.
+- **The personnel-ratio squeeze is the classic Iowa decline story.** ISFIS: districts in hardship
+  often "didn't make staff reductions as enrollment declined." Always read salary+benefit % (A8)
+  *against* the enrollment trend (B1) — a rising ratio on falling enrollment is the leading
+  indicator of a future UAB problem, well before the fund balance shows it.
 - **Restricted money is not flexible.** SAVE, PPEL, Debt Service, Management, Nutrition balances
   are walled off — never count them toward operating solvency. A fat SAVE balance does not rescue
   a thin General Fund.
@@ -322,7 +350,7 @@ any per-year extraction.
 - [Iowa DOE — School Facilities Funding & Bonds](https://educate.iowa.gov/pk-12/operation-support/school-facilities/funding)
 - [Iowa DOE — School Finance Resources](https://educate.iowa.gov/pk-12/operation-support/business-finance/financial-management/school-finance-resources)
 - [Iowa DOM — Unspent Authorized Budget report](https://dom.iowa.gov/resource/school-budget-reference-files/unspent-authorized-budget-report)
-- [ISFIS — School Finance Basics (solvency ratio, UAB)](https://www.iowaschoolfinance.com/schoolfinancebasics)
+- [ISFIS — School Finance Basics / "Key Measures of Financial Health"](https://www.iowaschoolfinance.com/schoolfinancebasics) — the primary basis for Pillar A (UAB as #1 indicator, solvency 5–15%, personnel ratio 75–85%, Cash Reserve Levy 20% cap, enrollment/open-enrollment/ESA, New Authority). Reviewed in full from the ISFIS *School Finance 101* deck.
 - [IASB — Iowa School Finance Formula: A Summary](https://www.ia-sb.org/docs/default-source/toolbox/financial-tools/school-finance-basics/iowachapter_schoolfinance_final562dd9c6-c4ec-42d6-9a1e-89577356178c.pdf)
 - [IASB — Financial Glossary of Terms (2023)](https://www.ia-sb.org/docs/default-source/toolbox/financial-tools/school-finance-basics/sept.-2023-financial-glossary-of-terms-(revised)c4452a84-d477-4d19-adbf-098d228c06bc.pdf)
 - [ITR — What is the PPEL?](https://itrreportcard.org/what-is-the-physical-plant-and-equipment-levy-ppel/)
