@@ -150,6 +150,16 @@ The tell is **enrollment direction × capital intensity × debt trajectory**. Re
 This pillar answers "can we *trust* the numbers and does the district run a tight shop?" It is
 graded largely from the auditor's product, not the dollars.
 
+> **"Is the audit clean?" has two separate answers — grade them separately.**
+> (1) **Clean *opinion*** = the auditor judged the statements *fairly stated* (an **unmodified**
+> opinion) → C1. (2) **Clean *findings*** = no material weaknesses, significant deficiencies, or
+> Single-Audit/compliance findings in the Schedule of Findings → C2–C4. A district can have a
+> **clean opinion and still carry findings** — in Iowa the near-universal example is a
+> **segregation-of-duties** finding at smaller business offices that simply lack the headcount to
+> split duties. So we never collapse "clean" into one yes/no: we record the opinion type *and* the
+> findings, and we weight a **repeat** finding (C3) more than a first-time one, because a finding
+> that keeps recurring means the district isn't remediating.
+
 | # | Signal | Strong (good) | Weak (concern) | Source |
 |---|---|---|---|---|
 | C1 | **Audit opinion** | Unmodified ("clean") | Qualified / adverse / disclaimer | Auditor's report |
