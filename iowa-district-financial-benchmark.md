@@ -1,85 +1,115 @@
 # Iowa Large-District Financial Benchmark — FY2020–FY2025
 
-**15 of Iowa's largest school districts**, scored from their **audited ACFRs** (88 district-years)
-using [`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md).
-Interactive version: **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)**
-(open in a browser — sortable table, Health×Quality map, per-district sparklines).
+How 15 of Iowa's largest school districts compare on **financial health**, **quality of financial
+management**, and **how they are paying for buildings**, using six years of audited financial reports
+(FY2020–FY2025) and Iowa state financial filings. An interactive version with per-district charts is in
+**[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)**.
 
-> **Composite = 0.40·Health + 0.35·Operational Quality + 0.25·Capital-Sustainability.**
-> Strategic posture is a **label**, reported beside the scores, not folded into them. Scores are 1–5.
+## Key terms in plain English
+
+Iowa school finance has a few quirks that drive everything below:
+
+- **Spending authority (UAB).** Iowa law caps how much a district is *allowed* to spend each year —
+  separate from how much cash it has. The unused room carried into the next year is its **Unspent
+  Authorized Budget**. It is the single most important measure of an Iowa district's financial health:
+  a district can have cash in the bank yet still be in trouble if it runs out of authority. Going
+  **negative is unlawful** and triggers a state review. *Higher and stable = healthier.*
+- **Reserves / "solvency."** The rainy-day cushion (general-fund savings) as a share of one year's
+  revenue. Roughly **5–15% is the healthy range** in Iowa.
+- **Operating margin.** Whether the district spent more or less than it took in that year. *Negative =
+  dipping into savings.*
+- **Paying for buildings.** Day-to-day money (salaries, etc.) is walled off from building money.
+  Buildings are funded by **SAVE** (a statewide penny sales tax for school facilities) and **GO bonds**
+  (voter-approved borrowing repaid by property taxes). A district can be expanding buildings while still
+  being tight on operating money — they are separate.
+- **"Building" vs. "maintaining."** A label for whether a district is expanding/renovating facilities or
+  keeping what it has. Neither is inherently good or bad.
+- **The three scores (1 = weak, 5 = strong):** **Financial Health** (living within its means, keeping a
+  cushion), **Operational Quality** (clean, on-time, well-run books), **Capital Sustainability** (can it
+  afford what it's building). The **Composite** blends them: 40% Health, 35% Quality, 25% Capital.
+
+*One thing that looks alarming but isn't: most districts show a negative "unrestricted net position." For
+Iowa schools this is normal — it reflects long-term pension obligations (IPERS), not day-to-day insolvency.*
 
 ## Ranking
 
-| # | District | Size | Enr. trend | Strategic posture | Solv. (last) | Op.margin 3yr | Health | Quality | Cap.sust. | **Composite** |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **Pleasant Valley CSD** | 5–10k | +1.4%/yr | Building — growth-driven | 22.4% | 2.2% | 5.0 | 5.0 | 5.0 | **5.00** |
-| 2 | **Waukee CSD** | 10–15k | +3.7%/yr | Building — growth-driven | 17.9% | 3.2% | 5.0 | 5.0 | 5.0 | **5.00** |
-| 3 | **Davenport CSD** | 10–15k | -1.6%/yr | Building — renewal (declining enrollment) | 24.1% | 4.6% | 5.0 | 3.8 | 4.1 | **4.36** |
-| 4 | **Muscatine CSD** | <5k | -2.1%/yr | Building — renewal (declining enrollment) | 15.2% | 0.9% | 4.2 | 5.0 | 3.5 | **4.30** |
-| 5 | **Cedar Rapids CSD** | >15k | -0.9%/yr | Building — renewal | 13.8% | -0.5% | 3.6 | 5.0 | 3.3 | **4.02** |
-| 6 | **Ankeny CSD** | 10–15k | +0.8%/yr | Building — renewal | 13.4% | 1.0% | 4.0 | 4.2 | 3.7 | **4.00** |
-| 7 | **Dubuque CSD** | 5–10k | -1.2%/yr | Building — renewal (declining enrollment) | 15.4% | -2.1% | 3.5 | 5.0 | 3.0 | **3.90** |
-| 8 | **Linn-Mar CSD** | 5–10k | -0.5%/yr | Building — renewal | 9.5% | 2.5% | 3.7 | 4.2 | 3.8 | **3.90** |
-| 9 | **West Des Moines CSD** | 5–10k | -1.1%/yr | Building — renewal (declining enrollment) | 11.4% | -2.2% | 3.1 | 5.0 | 2.8 | **3.69** |
-| 10 | **Burlington CSD** | <5k | +0.0%/yr | Building — renewal | 8.4% | -2.2% | 2.5 | 5.0 | 2.8 | **3.45** |
-| 11 | **Des Moines Independent CSD** | >15k | -1.1%/yr | Building — renewal (declining enrollment) | 25.2% | -4.1% | 2.8 | 3.2 | 2.4 | **2.84** |
-| 12 | **Johnston CSD** | 5–10k | -0.6%/yr | Maintain | 7.7% | -3.8% | 2.2 | 3.8 | 2.4 | **2.81** |
-| 13 | **College CSD (Prairie)** | 5–10k | -2.0%/yr | Building — renewal (declining enrollment) | 6.5% | -3.9% | 2.2 | 3.8 | 2.1 | **2.73** |
-| 14 | **Iowa City CSD** | 10–15k | -0.3%/yr | Building — renewal | 2.5% | 0.3% | 3.0 | 1.0 | 3.2 | **2.35** |
-| 15 | **Waterloo CSD** | 10–15k | -0.1%/yr | Building — renewal | -5.6% | -9.7% | 1.0 | 3.5 | 1.6 | **2.02** |
+| # | District | UAB % | Solv % | Fwd load $/pupil | Health | Quality | Cap.sust | **Composite** |
+|---|---|---|---|---|---|---|---|---|
+| 1 | **Pleasant Valley CSD** | 22.8% | 22.7% | $13,908 | 5.0 | 5.0 | 4.6 | **4.90** |
+| 2 | **Waukee CSD** | 29.9% | 18.1% | $39,075 | 4.6 | 5.0 | 4.0 | **4.59** |
+| 3 | **Muscatine CSD** | 20.5% | 15.4% | $6,306 | 4.3 | 5.0 | 3.8 | **4.43** |
+| 4 | **Davenport CSD** | 18.6% | 24.4% | $13,465 | 4.6 | 3.8 | 3.9 | **4.15** |
+| 5 | **Cedar Rapids CSD** | 13.0% | 14.0% | $14,966 | 3.8 | 5.0 | 3.5 | **4.14** |
+| 6 | **Dubuque CSD** | 11.1% | 15.6% | $12,143 | 3.7 | 5.0 | 3.5 | **4.11** |
+| 7 | **Ankeny CSD** | 14.0% | 13.5% | $7,407 | 3.9 | 4.2 | 4.3 | **4.09** |
+| 8 | **West Des Moines CSD** | 11.0% | 11.6% | $15,730 | 3.4 | 5.0 | 3.4 | **3.96** |
+| 9 | **Burlington CSD** | 28.5% | 8.5% | $18,612 | 3.4 | 5.0 | 3.1 | **3.89** |
+| 10 | **Linn-Mar CSD** | 10.3% | 9.6% | $21,190 | 3.8 | 4.2 | 3.6 | **3.87** |
+| 11 | **Johnston CSD** | 20.7% | 7.7% | $4,738 | 3.4 | 3.8 | 3.6 | **3.61** |
+| 12 | **Des Moines Independent CSD** | 18.1% | 25.5% | $3,369 | 3.5 | 3.2 | 3.4 | **3.35** |
+| 13 | **College CSD (Prairie)** | 14.1% | 6.6% | $59,822 | 2.9 | 3.8 | 2.4 | **3.11** |
+| 14 | **Waterloo CSD** | 7.5% | -5.7% | $33,655 | 1.8 | 3.5 | 2.3 | **2.49** |
+| 15 | **Iowa City CSD** | 2.3% | 2.5% | $33,460 | 2.8 | 1.0 | 3.1 | **2.23** |
 
-## Executive summary
+*"Forward load $/pupil" = future debt payments plus signed construction contracts, divided by enrollment —
+a measure of how much building cost is already locked in.*
 
-The dominant FY2020–FY2025 story is a **General Fund operating squeeze**: the expiration of one-time
-federal ESSER aid colliding with declining enrollment and rising personnel/plant costs. **9 of 15**
-districts now run a multi-year operating deficit, and several have drawn reserves down sharply from
-their FY2022–FY2023 ESSER-era peaks. Yet **14 of 15 are simultaneously in a capital "building"
-posture** — funded through Iowa's **restricted** SAVE (statewide-penny) and GO/PPEL streams, which are
-walled off from the General Fund. Scoring operating **health** and reporting **quality** separately
-from the **capital** posture is what keeps these from being conflated.
+## The big picture
 
-- **Healthiest — Pleasant Valley & Waukee:** genuine enrollment growth, reserves rising even through
-  heavy construction, clean audits with continuous GFOA recognition.
-- **Most distressed, two different ways:** **Waterloo** — an *operating* collapse (FY2025 solvency
-  **−5.6%**, negative GF balance) while issuing 7M of new SAVE debt; and **Iowa City** — a
-  *reporting* collapse (FY2023 audit 26 months late with two material weaknesses, FY2024/FY2025
-  unfiled, Moody's rating withdrawn). One fails on Health, the other on Operational Quality — which is
-  exactly why they are separate pillars.
-- **The reserve cliff is broad:** Burlington, Johnston, College/Prairie, West Des Moines and Des Moines
-  all show steep post-ESSER reserve drawdowns despite otherwise clean audits.
+Across 2020–2025, the dominant story is an **operating squeeze**: federal pandemic aid expired while
+enrollment declined and costs rose, so **9 of 15 districts spent more than they took in** in recent years
+and have been drawing down savings. At the same time, **14 of 15 are building or expanding** — paid for
+with restricted building money (SAVE and bonds) that cannot be used for operations. Because a district's
+day-to-day health, the quality of its bookkeeping, and its building plans are three different things, they
+are measured separately.
 
-## Per-district notes
+- **Cash in the bank is not the same as permission to spend it.** **Burlington** (reserves 8% but spending
+  authority 28%) and **Johnston** (reserves 8%, authority 21%) spent down cash while keeping ample
+  authority — so they land mid-pack, not at the bottom, where a savings-only view would wrongly place them.
+- **The two truly distressed districts are in trouble for different reasons.** **Iowa City** ran its
+  spending authority **negative in 2023** (a serious, state-reviewable event), is taxing heavily just to
+  keep cash on hand, and **has not filed its 2024 or 2025 audits** — which cost it its bond rating.
+  **Waterloo** is the opposite: its savings turned **negative** and it ran a large deficit while taking on
+  $87M of new building debt.
+- **Strongest:** **Pleasant Valley** and **Waukee** — growing enrollment, healthy reserves and authority,
+  clean audits. **Muscatine** ranks high despite the steepest enrollment decline, by trimming spending to
+  match.
 
-- **Pleasant Valley** — Solvency rose to 22.4% *while* building ($27M Series 2024 bond, jr-high addition); positive margins; GFOA every year. The cleanest profile.
-- **Waukee** — Fastest grower (+19.8% enrollment); GO debt $154M→$324M for a multi-school program absorbed without stress; GFOA since 2012.
-- **Davenport** — Strong reserves (24%) and a dramatic audit turnaround (state oversight + material weaknesses in FY2020–21 → fully clean FY2025), but FY2025 operating margin turned negative; $76M SAVE bond build underway.
-- **Muscatine** — Sharpest enrollment decline (−10.3%) yet reserves held at 15% with restrained spending; clean audits, GFOA since FY2023.
-- **Cedar Rapids** — Adequate reserves, FY2025 dip (−$10M); active SAVE-funded build (Trailside Elementary); RSM clean audits, GFOA 30+ yrs.
-- **Ankeny** — Growth district, reserves recovered to 13.4%; $130M GO bond on the Nov-2025 ballot; first significant deficiency appeared FY2025; GFOA 12+ yrs.
-- **Dubuque** — Stable mid-size, SAVE-funded build; clean (ASBO, not GFOA); recurring enrollment-data variance spiked to 17.0 in FY2025.
-- **Linn-Mar** — Solvency dipped to 6.3% then recovered to 9.5%; Performing Arts Center build; multi-year segregation-of-duties deficiency (FY20–22) since resolved; ASBO.
-- **West Des Moines** — Built aggressively ($109M placed in service FY2024), now digesting it with back-to-back deficits; reserves 19.5%→11.4%; GFOA 30+ yrs.
-- **Burlington** — Solvency collapsed 26%→8.4% on the ESSER cliff + $44M HS renovation; clean opinions throughout. (Enrollment mostly unreported in the audits.)
-- **Des Moines** — Largest district; strong reserves but FY2025 margin −10% (drew $40M); FY2025 *material weakness* (OPEB misallocated ~7 yrs); new GO bonds authorized Nov 2025.
-- **Johnston** — Reserves fell 20.6%→7.7% over three deepening-deficit years; new auditor (FY2024) immediately found three segregation-of-duties deficiencies that persisted.
-- **College / Prairie** — Four straight deficits cut reserves 65% (to 6.5%) amid a debt-financed new-building program ($112M→$149M GO); no GFOA.
-- **Iowa City** — *Reporting* distress: chronically thin reserves (2.5%), FY2023 audit 26 months late with two material weaknesses and ~$1M+ unreconciled bank accounts; **FY2024/FY2025 never filed**; Moody's rating withdrawn.
-- **Waterloo** — *Operating* distress: solvency went **negative (−5.6%)**, GF balance flipped +$35M→−$7M in two years (−13.6% FY2025 margin), while issuing $87M of new SAVE debt.
+## How districts are paying for buildings
 
-## Method, sources & limitations
+Building money is separate from operating money, so a district can be expanding even while its day-to-day
+budget is tight. Two things matter most here:
 
-- **Pipeline:** the FY2020–FY2025 ACFRs were text-extracted and parsed field-by-field (never-invent /
-  blank-and-flag), one agent per district, into [`data/district-extractions/`](data/district-extractions/),
-  merged to [`data/iowa-district-financials.csv`](data/iowa-district-financials.csv) (88 rows), then
-  scored into [`data/iowa-district-scorecards.csv`](data/iowa-district-scorecards.csv). Reproduce with
-  `scripts/build_analysis.py` then `scripts/build_report.py`.
-- **Iowa City** has only FY2020–FY2023 (FY2024/FY2025 unfiled); scored on available data with a
-  stale-data / missing-recent-year penalty per the framework.
-- **Personnel-cost ratio (metric A8) is largely unavailable** — no district breaks salaries/benefits
-  out by object in the GF statements; only Ankeny, Cedar Rapids, and (estimated) Dubuque could be
-  populated. Reliable cross-district staffing ratios need the state CAR / DOM data.
-- **Unspent Authorized Budget — Iowa's #1 health indicator — is not in the audits.** Spending authority
-  lives in the DOM UAB report and SBRC actions (e.g., Cedar Rapids' reported ~$18M at-risk reduction
-  did not appear in its ACFRs). **Solvency is used here as the audit-available proxy.**
-- Solvency numerator = Unassigned + Assigned GF balance ("Committed" excluded uniformly). IPERS net
-  pension swings are actuarial, not cash, and are read in context.
+- **How much building cost is already locked in** (future debt payments + signed construction contracts).
+  Per pupil, the heaviest loads are **College/Prairie (~$60K)**, **Waukee (~$39K)**, **Waterloo (~$34K)**,
+  and **Iowa City (~$33K)**; the lightest are **Des Moines, Johnston, and Muscatine**. What matters is
+  whether the district can *afford* it: Waukee carries a big load on growing enrollment and a strengthening
+  balance sheet (sustainable); College and Waterloo carry heavy loads on shrinking reserves (a concern).
+- **Building plans not yet borrowed against.** Several districts have **voter-approved bond money they
+  haven't issued yet** — **Des Moines $265M**, **West Des Moines $135M**, and **Ankeny $130M** (all
+  approved in November 2025) — signaling major new building cycles ahead. (Dubuque's 2023 $150M request was
+  *rejected* by voters.)
+
+## How the scores work
+
+- **Financial Health** = spending authority (50%) + reserves/solvency (30%) + recent operating margin (20%).
+- **Operational Quality** = audit opinion, internal-control findings, whether problems repeat year to year,
+  whether audits are filed on time, and recognition for excellence in reporting (GFOA/ASBO).
+- **Capital Sustainability** = financial health, enrollment direction, operating margin, how heavy the
+  locked-in building cost is, and how much room remains under the legal debt limit.
+- **Composite** = 40% Health + 35% Quality + 25% Capital Sustainability. "Building vs. maintaining" is
+  reported as a label, not scored.
+
+The interactive report includes a **"How this score is built" panel for each district**, showing every
+component, its weight, and its contribution.
+
+## Sources & a few caveats
+
+- Built from each district's audited annual financial reports (FY2020–FY2025) and Iowa Department of
+  Management / Department of Education filings. State figures are unaudited but available even where a
+  district's audit is missing.
+- **Iowa City** has audited data only through FY2023 (2024 and 2025 were never filed); it is shown with the
+  state spending-authority figures that do exist, and is marked down for the missing audits.
+- One common school-finance measure — **staff salaries and benefits as a share of the budget** — is not
+  broken out in these audits (districts report it only in summary, around 80%), so it is noted rather than
+  scored.
