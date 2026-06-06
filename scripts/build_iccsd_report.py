@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+"""
+Build a public-facing, self-contained report comparing Iowa City CSD to its strongest peers,
+one KPI per card. Reads /tmp/audit/cards.json (run build_analysis.py first).
+
+Peer groups are the highest-scoring districts among the 15 large Iowa districts in the study,
+ranked by overall composite score: "Top 10" = the 10 best, "Top 5" = the 5 best.
+"""
+import json, html, datetime, statistics as st
+
+cards = json.load(open("/tmp/audit/cards.json"))      # sorted desc by composite
+top10, top5 = cards[:10], cards[:5]
+IC = next(c for c in cards if c["district"] == "Iowa City CSD")
+
+def avg(group, fn):
+    vals = [fn(c) for c in group if fn(c) is not None]
+    return round(st.mean(vals), 1) if vals else None
+
+def last_year(c): return max(int(y) for y in c["years"])
+
+# ---- KPI definitions ----
+# each: title, what (plain), why (plain), get(card)->value, fmt, color(value)->g/a/r,
+#       scalemax, takeaway(ic,t10,t5)->str. context=True for neutral (no good/bad).
+def band_color(v, good, ok):   # higher-better thresholds
+    return "g" if v >= good else "a" if v >= ok else "r"
+def low_color(v, good, ok):    # lower-better thresholds
+    return "g" if v <= good else "a" if v <= ok else "r"
+
+KPIS = [
+ dict(id="composite", title="Overall financial score", unit="/5", scalemax=5,
+   what="A single 1–5 grade blending everything below: financial health, the quality of financial management, and whether building plans are affordable.",
+   why="It's the one-glance answer to “how is this district doing financially?” — 5 is excellent, 1 is in serious trouble.",
+   get=lambda c: c["composite"], fmt=lambda v: f"{v:.1f}", color=lambda v: band_color(v,4,3),
+   takeaway=lambda ic,t10,t5: f"Iowa City scores <b>{ic:.1f} out of 5</b> — the lowest of the 15 large districts studied — while the strongest districts average <b>{t10:.1f}</b> (top 10) and <b>{t5:.1f}</b> (top 5)."),
+
+ dict(id="uab", title="Spending authority left (the #1 measure)", unit="%", scalemax=30,
+   what="Iowa law caps how much a district may spend each year — separately from how much cash it has. This is the unused “room” left over, as a share of its budget.",
+   why="It is the single most important measure of an Iowa district's financial health. Running it to zero (or negative) is unlawful and forces a state-supervised recovery plan.",
+   get=lambda c: c["uab_last"], fmt=lambda v: f"{v:.1f}%", color=lambda v: band_color(v,10,5),
+   takeaway=lambda ic,t10,t5: f"Iowa City has just <b>{ic:.1f}%</b> of room left — roughly a tenth of the <b>{t10:.0f}%</b> the top-10 districts carry — and it actually went <b>negative in 2023</b>, the level that triggers state review."),
+
+ dict(id="solv", title="Rainy-day reserves", unit="%", scalemax=25, band=(5,15),
+   what="The district's savings cushion (its general-fund reserves) measured against one year of revenue.",
+   why="Reserves absorb surprises — a bad budget year, a late state payment, an emergency repair. In Iowa, 5–15% is considered healthy.",
+   get=lambda c: c["solv_last"], fmt=lambda v: f"{v:.1f}%", color=lambda v: band_color(v,5,2),
+   takeaway=lambda ic,t10,t5: f"Iowa City's cushion is about <b>{ic:.1f}%</b> — well below the 5–15% healthy range — versus <b>{t10:.0f}%</b> for the top 10 and <b>{t5:.0f}%</b> for the top 5."),
+
+ dict(id="margin", title="Living within its means", unit="%", scalemax=4,
+   what="Whether the district took in more than it spent, averaged over the last three years (its “operating margin”).",
+   why="Consistently spending more than you bring in drains reserves and, eventually, spending authority. Above zero means it's living within its means.",
+   get=lambda c: c["marg3"], fmt=lambda v: f"{v:+.1f}%", color=lambda v: band_color(v,1,0),
+   takeaway=lambda ic,t10,t5: f"Here Iowa City is roughly break-even (<b>{ic:+.1f}%</b>), close to the top-10 average (<b>{t10:+.1f}%</b>) — its problem is depleted reserves and authority, not runaway recent spending."),
+
+ dict(id="audit", title="Most recent completed audit", unit=" yrs behind", scalemax=2.5, lowerbetter=True,
+   what="How many years behind the current cycle the district's most recent finished audit is. (The current year is 2025.)",
+   why="Audited financial statements are how the public, lenders, and the state verify the numbers. Falling behind erodes trust — and cost Iowa City its bond rating.",
+   get=lambda c: 2025 - last_year(c), fmt=lambda v: ("current" if v<=0 else f"{v:.0f} yr"+("s" if v>=2 else "")+" behind"),
+   color=lambda v: low_color(v,0,1),
+   takeaway=lambda ic,t10,t5: f"Iowa City's newest finished audit is for <b>2023 — two years behind</b> — and its 2024 and 2025 audits still aren't filed. The top districts are current."),
+
+ dict(id="quality", title="Quality of financial management", unit="/5", scalemax=5,
+   what="A 1–5 grade for how cleanly the books are kept: audit opinions, internal-control problems, repeat findings, on-time filing, and reporting-excellence awards.",
+   why="Even with money in the bank, a district needs accurate, timely, well-controlled books to make sound decisions and keep the public's trust.",
+   get=lambda c: c["quality"], fmt=lambda v: f"{v:.1f}", color=lambda v: band_color(v,4,3),
+   takeaway=lambda ic,t10,t5: f"Iowa City scores <b>{ic:.1f} of 5</b> — the bottom of the group — against <b>{t10:.1f}</b> for the top 10, reflecting late audits, unreconciled accounts, and repeat control findings."),
+
+ dict(id="crl", title="Reliance on the cash-reserve property tax", unit="%", scalemax=60, lowerbetter=True,
+   what="How much of its allowed “cash-reserve” property tax the district is using — a levy whose only purpose is to build up cash.",
+   why="Leaning hard on this tax can mean a district is taxing residents heavily just to keep cash on hand. Lower is generally better for taxpayers.",
+   get=lambda c: c["crl_pct"], fmt=lambda v: f"{v:.0f}%", color=lambda v: low_color(v,25,40),
+   takeaway=lambda ic,t10,t5: f"Iowa City is using <b>{ic:.0f}%</b> of this tax's limit — about three times the top-10 average (<b>{t10:.0f}%</b>) — i.e. taxing heavily to stay liquid, even as its spending authority is exhausted."),
+
+ dict(id="enroll", title="Enrollment trend", unit="%/yr", scalemax=4, context=True,
+   what="The yearly change in the number of students, which drives most of a district's funding.",
+   why="Declining enrollment is a common cause of school budget trouble. This shows whether Iowa City's problems stem from shrinking — they don't.",
+   get=lambda c: c["enr_cagr"], fmt=lambda v: f"{v:+.1f}%", color=lambda v: "n",
+   takeaway=lambda ic,t10,t5: f"Iowa City's enrollment is essentially flat (<b>{ic:+.1f}%/yr</b>), in line with peers — so its financial troubles are <b>not</b> caused by losing students. They are about how the money has been managed."),
+]
+
+date = datetime.date(2026, 6, 2).strftime("%B %Y")
+
+def bar(v, scalemax, cls, lowerbetter=False):
+    pct = max(0, min(100, abs(v) / scalemax * 100)) if scalemax else 0
+    return f'<div class="bar"><div class="fill {cls}" style="width:{pct:.0f}%"></div></div>'
+
+def panel(label, v, kpi, highlight=False):
+    if v is None: return f'<div class="pnl"><div class="pl">{label}</div><div class="pv">—</div></div>'
+    cls = kpi["color"](v) if not kpi.get("context") else "n"
+    val = kpi["fmt"](v)
+    return (f'<div class="pnl{" me" if highlight else ""}"><div class="pl">{label}</div>'
+            f'<div class="pv {cls}">{val}</div>{bar(v, kpi["scalemax"], cls, kpi.get("lowerbetter"))}</div>')
+
+cards_html = []
+for kpi in KPIS:
+    icv, t10, t5 = kpi["get"](IC), avg(top10, kpi["get"]), avg(top5, kpi["get"])
+    note = "" if not kpi.get("band") else f'<span class="bnote">healthy range: {kpi["band"][0]}–{kpi["band"][1]}%</span>'
+    dirn = "lower is better" if kpi.get("lowerbetter") else ("context — not better or worse" if kpi.get("context") else "higher is better")
+    cards_html.append(f"""<div class="kpi">
+  <div class="khead"><h3>{html.escape(kpi['title'])}</h3><span class="dir">{dirn}{note}</span></div>
+  <p class="what"><b>What it is:</b> {kpi['what']}</p>
+  <p class="why"><b>Why it matters:</b> {kpi['why']}</p>
+  <div class="pnls">
+    {panel("Iowa City CSD", icv, kpi, highlight=True)}
+    {panel("Top-10 districts (avg)", t10, kpi)}
+    {panel("Top-5 districts (avg)", t5, kpi)}
+  </div>
+  <p class="take">{kpi['takeaway'](icv, t10, t5)}</p>
+</div>""")
+
+DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iowa City Schools — How They Compare</title>
+<style>
+:root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}}
+*{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
+.wrap{{max-width:920px;margin:0 auto;padding:32px 20px 70px}}
+h1{{font-size:30px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px;font-size:16px}}
+.intro{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:10px;padding:16px 20px;margin-bottom:10px}}
+.intro p{{margin:6px 0}} .intro b{{color:var(--ink)}}
+.legend{{font-size:13px;color:var(--mut);margin:14px 2px 22px}}
+.legend .sw{{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle;margin:0 4px 0 12px}}
+.kpi{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}}
+.khead{{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}}
+.khead h3{{margin:0;font-size:21px}} .dir{{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
+.bnote{{display:block;text-transform:none;letter-spacing:0;color:#16a34a;font-size:12px;margin-top:2px}}
+.what,.why{{margin:6px 0;font-size:15px;color:#334155}} .what b,.why b{{color:#0f172a}}
+.pnls{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0 12px}}
+@media(max-width:620px){{.pnls{{grid-template-columns:1fr}}}}
+.pnl{{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#f8fafc}}
+.pnl.me{{background:#eff6ff;border-color:#bfdbfe;border-width:2px}}
+.pl{{font-size:12.5px;color:var(--mut);margin-bottom:6px;font-weight:600}}
+.pnl.me .pl{{color:#1d4ed8}}
+.pv{{font-size:30px;font-weight:800;line-height:1.1}}
+.pv.g{{color:#16a34a}} .pv.a{{color:#b45309}} .pv.r{{color:#dc2626}} .pv.n{{color:#334155}}
+.bar{{height:7px;background:#e2e8f0;border-radius:4px;margin-top:9px;overflow:hidden}}
+.fill{{height:100%;border-radius:4px}} .fill.g{{background:#16a34a}} .fill.a{{background:#d97706}} .fill.r{{background:#dc2626}} .fill.n{{background:#64748b}}
+.take{{margin:6px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px;color:#1f2937}}
+.take b{{color:#0f172a}}
+footer{{color:var(--mut);font-size:12.5px;margin-top:34px;border-top:1px solid var(--line);padding-top:14px}}
+</style></head><body><div class="wrap">
+
+<h1>Iowa City Schools: How They Compare</h1>
+<p class="sub">Iowa City Community School District measured against the strongest large districts in the state — one measure at a time · {date}</p>
+
+<div class="intro">
+<p>This report takes the Iowa City Community School District (ICCSD) and, for each financial measure,
+puts it side by side with two peer groups so you can see where it stands:</p>
+<p>• <b>Top-10 districts</b> — the 10 best-performing of the 15 large Iowa districts studied.<br>
+• <b>Top-5 districts</b> — the 5 best of those, the strongest of the strong.</p>
+<p>Each card explains the measure in plain language, why it matters to your community, and what Iowa
+City's number means compared with its peers.</p>
+</div>
+
+<div class="legend">How to read the colors:
+<span class="sw" style="background:#16a34a"></span>healthy / strong
+<span class="sw" style="background:#d97706"></span>caution
+<span class="sw" style="background:#dc2626"></span>concern
+&nbsp;·&nbsp; bars are scaled within each card.
+</div>
+
+{''.join(cards_html)}
+
+<footer>
+Iowa City CSD compared with peer groups drawn from 15 of Iowa's largest districts, using audited
+financial reports (FY2020–FY2025) and Iowa state financial filings. “Top 10” and “Top 5” are the
+highest-scoring of those 15 districts by overall composite score; Iowa City is not among them.
+State spending-authority figures are available even though Iowa City's 2024 and 2025 audits are not
+yet filed. Companion: the full 15-district benchmark report.
+</footer>
+</div></body></html>"""
+
+open("iccsd-vs-peers.html", "w").write(DOC)
+print(f"Wrote iccsd-vs-peers.html ({len(DOC)//1024} KB), {len(KPIS)} KPI cards")
