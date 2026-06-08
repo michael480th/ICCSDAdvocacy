@@ -73,6 +73,13 @@ KPIS = [
    get=lambda c: c["crl_pct"], fmt=lambda v: f"{v:.0f}%", color=lambda v: low_color(v,25,40),
    takeaway=lambda ic,t10,t5: f"Iowa City is using <b>{ic:.0f}%</b> of this tax's limit — about three times the large-district average (<b>{t10:.0f}%</b>) — i.e. taxing heavily to stay liquid, even as its spending authority is exhausted."),
 
+ dict(id="totaldebt", title="Total building debt per student", unit="$", scalemax=40000, lowerbetter=True,
+   what="Everything the district has borrowed for buildings — both SAVE (sales-tax) bonds and voter-approved GO (property-tax) bonds — divided by the number of students.",
+   why="Borrowed money is repaid for years out of restricted building funds and property taxes, so more debt per student means more of tomorrow's revenue is already committed. Some debt is healthy — especially in fast-growing districts building new schools — so it's best read alongside enrollment.",
+   get=lambda c: round(c["debt_last"]*1e6/c["enrollment"]) if (c.get("debt_last") is not None and c.get("enrollment")) else None,
+   fmt=lambda v: f"${v:,.0f}", color=lambda v: low_color(v,12000,20000),
+   takeaway=lambda ic,t10,t5: f"Iowa City carries about <b>${ic:,.0f} per student</b> in building debt — roughly <b>{ic/t10:.1f}×</b> the large-district average of <b>${t10:,.0f}</b>, and the 3rd-highest of the 15. It's one of only a few districts carrying <b>both</b> SAVE and voter-approved GO debt, which is why its total load is so high despite its mid-pack size."),
+
  dict(id="save", title="Years of SAVE money already committed", unit=" yrs", scalemax=11, lowerbetter=True,
    what="SAVE is the statewide penny sales tax Iowa schools use to pay for buildings. This is how many years of that sales-tax revenue the district has already pledged to existing bond payments.",
    why="The more years committed, the less SAVE money is free for new projects. When it's fully committed, a district must lean on property-tax borrowing (PPEL or GO bonds) or wait years for room to open up.",
