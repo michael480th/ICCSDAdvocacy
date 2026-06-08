@@ -73,6 +73,12 @@ KPIS = [
    get=lambda c: c["crl_pct"], fmt=lambda v: f"{v:.0f}%", color=lambda v: low_color(v,25,40),
    takeaway=lambda ic,t10,t5: f"Iowa City is using <b>{ic:.0f}%</b> of this tax's limit — about three times the large-district average (<b>{t10:.0f}%</b>) — i.e. taxing heavily to stay liquid, even as its spending authority is exhausted."),
 
+ dict(id="save", title="Years of SAVE money already committed", unit=" yrs", scalemax=11, lowerbetter=True,
+   what="SAVE is the statewide penny sales tax Iowa schools use to pay for buildings. This is how many years of that sales-tax revenue the district has already pledged to existing bond payments.",
+   why="The more years committed, the less SAVE money is free for new projects. When it's fully committed, a district must lean on property-tax borrowing (PPEL or GO bonds) or wait years for room to open up.",
+   get=lambda c: c.get("save_years"), fmt=lambda v: f"{v:.1f} yrs", color=lambda v: low_color(v,5,7),
+   takeaway=lambda ic,t10,t5: f"Iowa City has pledged about <b>{ic:.1f} years</b> of its SAVE sales-tax revenue to existing bonds — the 2nd-most of any large district and well above the <b>{t10:.1f}-year</b> peer average — so SAVE can't fund new building until the mid-2030s, leaving PPEL and new borrowing to cover the gap."),
+
  dict(id="enroll", title="Enrollment trend", unit="%/yr", scalemax=4, context=True,
    what="The yearly change in the number of students, which drives most of a district's funding.",
    why="Declining enrollment is a common cause of school budget trouble. This shows whether Iowa City's problems stem from shrinking — they don't.",

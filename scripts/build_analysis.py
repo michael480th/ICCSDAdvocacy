@@ -223,6 +223,11 @@ for d in DISTRICTS:
     last = A[d][max(A[d])]
     if (f(last["gf_unassigned"]) or 0) < 0: flags.append("Negative GF unassigned balance")
 
+    # SAVE leverage: years of sales-tax revenue already pledged to bonds (latest non-null)
+    sd = next((f(A[d][y]["save_rev_bonds"]) for y in sorted(A[d], reverse=True) if f(A[d][y].get("save_rev_bonds"))), None)
+    sv = next((f(A[d][y]["save_revenue"]) for y in sorted(A[d], reverse=True) if f(A[d][y].get("save_revenue"))), None)
+    save_years = round(sd/sv, 1) if (sd and sv) else None
+
     math = dict(
         health=dict(weights=[0.50, 0.30, 0.20],
             parts=[("UAB", uc, f"level {uab_lvl} (UAB {uab_last}%) + trend {uab_tr} ({uab_trend:+}pp)" if uab_last is not None else "n/a"),
@@ -239,7 +244,7 @@ for d in DISTRICTS:
 
     cards.append(dict(
         auth_unissued=auth_unissued, total_future_ds=tfds, constr_commit=constr,
-        forward_load_pp=forward_load_pp, math=math,
+        forward_load_pp=forward_load_pp, save_years=save_years, math=math,
         district=d, size=("&gt;15k" if (enr_last or 0) > 15000 else "10–15k" if (enr_last or 0) > 10000
                           else "5–10k" if (enr_last or 0) > 5000 else "&lt;5k"),
         enrollment=round(enr_last) if enr_last else None, enr_cagr=cagr, wealth=tert.get(d, "?"),
