@@ -20,6 +20,7 @@ management**, and **how they are paying for buildings**.
 |---|---|
 | **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)** | **The interactive report.** Open in any web browser. Sortable comparison table, a financial-health-vs-management map, per-district scorecards, and an "analyze one district" tool with ~20 charts and a "how this score is built" breakdown. A single self-contained file — no internet or install required. |
 | **[`iccsd-vs-peers.html`](iccsd-vs-peers.html)** | **Public-facing Iowa City focus.** One measure at a time, comparing Iowa City CSD to **size-matched peers** (large districts of 5,000+ students, and the best-run of those), each with a plain-English explanation of what it is and why it matters. Self-contained. |
+| [`iccsd-fmp-board-commentary.md`](iccsd-fmp-board-commentary.md) | Brief reconciling the benchmark with an ICCSD board member's "no" vote on the Facilities Master Plan — where the data agrees, what the dissent adds, and which KPIs are still missing. Includes the full statement. |
 | [`iowa-district-financial-benchmark.md`](iowa-district-financial-benchmark.md) | The same findings in plain Markdown (readable directly on GitHub). |
 | [`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md) | The **methodology** — how districts are assessed and scored, and why (the Iowa-specific reasoning behind every metric). |
 
