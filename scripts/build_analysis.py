@@ -244,7 +244,8 @@ for d in DISTRICTS:
 
     cards.append(dict(
         auth_unissued=auth_unissued, total_future_ds=tfds, constr_commit=constr,
-        forward_load_pp=forward_load_pp, save_years=save_years, math=math,
+        forward_load_pp=forward_load_pp, save_years=save_years,
+        annual_ds=f(nl.get("debt_service_next_fy")), math=math,
         district=d, size=("&gt;15k" if (enr_last or 0) > 15000 else "10–15k" if (enr_last or 0) > 10000
                           else "5–10k" if (enr_last or 0) > 5000 else "&lt;5k"),
         enrollment=round(enr_last) if enr_last else None, enr_cagr=cagr, wealth=tert.get(d, "?"),

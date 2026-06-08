@@ -20,6 +20,10 @@ def avg(group, fn):
     return round(st.mean(vals), 1) if vals else None
 
 def last_year(c): return max(int(y) for y in c["years"])
+def lastv(a):
+    for v in reversed(a or []):
+        if v is not None: return v
+    return None
 
 # ---- KPI definitions ----
 # each: title, what (plain), why (plain), get(card)->value, fmt, color(value)->g/a/r,
@@ -73,12 +77,25 @@ KPIS = [
    get=lambda c: c["crl_pct"], fmt=lambda v: f"{v:.0f}%", color=lambda v: low_color(v,25,40),
    takeaway=lambda ic,t10,t5: f"Iowa City is using <b>{ic:.0f}%</b> of this tax's limit — about three times the large-district average (<b>{t10:.0f}%</b>) — i.e. taxing heavily to stay liquid, even as its spending authority is exhausted."),
 
+ dict(id="taxrate", title="School property-tax rate", unit=" /$1,000", scalemax=18, lowerbetter=True,
+   what="The school portion of the local property-tax rate, stated per $1,000 of taxable property value.",
+   why="This is what local property owners actually pay to fund the schools — the most direct cost to the community. A higher rate is a heavier burden, worth weighing against how well the money is managed.",
+   get=lambda c: lastv(c["deep"]["levy_rate"]), fmt=lambda v: f"${v:.2f}", color=lambda v: low_color(v,14.5,16.5),
+   takeaway=lambda ic,t10,t5: f"Iowa City's school tax rate is about <b>${ic:.2f} per $1,000</b> of value — roughly <b>{(ic/t10-1)*100:.0f}% above</b> the large-district average of <b>${t10:.2f}</b> (among the higher rates, though a few growing districts are higher). Paired with its heavy use of the cash-reserve levy, local taxpayers are paying comparatively more."),
+
  dict(id="totaldebt", title="Total building debt per student", unit="$", scalemax=40000, lowerbetter=True,
    what="Everything the district has borrowed for buildings — both SAVE (sales-tax) bonds and voter-approved GO (property-tax) bonds — divided by the number of students.",
    why="Borrowed money is repaid for years out of restricted building funds and property taxes, so more debt per student means more of tomorrow's revenue is already committed. Some debt is healthy — especially in fast-growing districts building new schools — so it's best read alongside enrollment.",
    get=lambda c: round(c["debt_last"]*1e6/c["enrollment"]) if (c.get("debt_last") is not None and c.get("enrollment")) else None,
    fmt=lambda v: f"${v:,.0f}", color=lambda v: low_color(v,12000,20000),
    takeaway=lambda ic,t10,t5: f"Iowa City carries about <b>${ic:,.0f} per student</b> in building debt — roughly <b>{ic/t10:.1f}×</b> the large-district average of <b>${t10:,.0f}</b>, and the 3rd-highest of the 15. It's one of only a few districts carrying <b>both</b> SAVE and voter-approved GO debt, which is why its total load is so high despite its mid-pack size."),
+
+ dict(id="annualds", title="Annual debt payments per student", unit="$", scalemax=3500, lowerbetter=True,
+   what="How much the district pays each year to repay its building debt, per student.",
+   why="This is money committed to past borrowing rather than to current students or new projects. It comes from restricted building funds and property taxes — not the classroom budget — but a higher figure means less room to maneuver.",
+   get=lambda c: round(c["annual_ds"]/c["enrollment"]) if (c.get("annual_ds") and c.get("enrollment")) else None,
+   fmt=lambda v: f"${v:,.0f}", color=lambda v: low_color(v,1500,2500),
+   takeaway=lambda ic,t10,t5: f"Iowa City spends about <b>${ic:,.0f} per student each year</b> on building-debt payments — above the <b>${t10:,.0f}</b> large-district average (4th-highest of 15), though several fast-growing districts pay more. A moderate burden, on top of an already-stretched operating budget."),
 
  dict(id="save", title="Years of SAVE money already committed", unit=" yrs", scalemax=11, lowerbetter=True,
    what="SAVE is the statewide penny sales tax Iowa schools use to pay for buildings. This is how many years of that sales-tax revenue the district has already pledged to existing bond payments.",
