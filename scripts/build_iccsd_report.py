@@ -52,6 +52,12 @@ KPIS = [
    get=lambda c: c["solv_last"], fmt=lambda v: f"{v:.1f}%", color=lambda v: band_color(v,5,2),
    takeaway=lambda ic,t10,t5: f"Iowa City's cushion is about <b>{ic:.1f}%</b> — well below the 5–15% healthy range — versus <b>{t10:.0f}%</b> for large districts and <b>{t5:.0f}%</b> for the best-run large districts."),
 
+ dict(id="dayscash", title="Days of operating reserves on hand", unit=" days", scalemax=90,
+   what="How many days the district could keep running on its rainy-day reserves — unassigned general-fund balance divided by average daily spending. (This excludes restricted money like bond proceeds, which is why it's lower than total 'cash on hand.')",
+   why="The standard liquidity yardstick analysts and rating agencies use for schools. GFOA recommends keeping at least ~60 days (about two months). A thin cushion means little buffer for a bad month, a late state payment, or an emergency.",
+   get=lambda c: c.get("days_reserves"), fmt=lambda v: f"{v:.0f} days", color=lambda v: band_color(v,60,30),
+   takeaway=lambda ic,t10,t5: f"Iowa City could operate only about <b>{ic:.0f} days</b> on its reserves — versus ~<b>{t10:.0f} days</b> for large districts and ~<b>{t5:.0f}</b> for the best-run (GFOA recommends ~60). It is the thinnest cushion of any large district except Waterloo, whose reserves are negative."),
+
  dict(id="margin", title="Living within its means", unit="%", scalemax=4,
    what="Whether the district took in more than it spent, averaged over the last three years (its “operating margin”).",
    why="Consistently spending more than you bring in drains reserves and, eventually, spending authority. Above zero means it's living within its means.",
