@@ -4,7 +4,7 @@ Scatterplot: a district's audit-filing timeliness vs. its financial cushion.
 
 X = average Unspent Authorized Budget (% of budget) over the last 3 complete years (FY2023-2025).
 Y = how many days EARLY (+) or LATE (-) it files its audited financials with the state,
-    averaged over the last 3 years (caller-supplied table, /tmp/filing.tsv).
+    averaged over the last 3 years (data/audit-filing-days.csv).
 
 UAB for every Iowa district is read from the DOM "Unspent Authorized Budget Report.xlsx"
 (data_UAB sheet, joined on district code). Renders a self-contained HTML with an inline-SVG
@@ -13,22 +13,15 @@ where the relationship lives.
 
 Run:  python3 scripts/build_filing_vs_uab.py   ->  iccsd-filing-vs-uab.html
 """
-import openpyxl, re, html, datetime, statistics as st, math
+import openpyxl, csv, html, datetime, statistics as st, math, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _nav import nav
 
-# ---- filing-days table (caller supplied) ----
+# ---- filing-days table (data/audit-filing-days.csv) ----
 recs = []
-for ln in open("/tmp/filing.tsv"):
-    p = ln.rstrip("\n").split("\t")
-    if len(p) < 4:
-        continue
-    name = p[0].strip()
-    code = int(p[1].strip())
-    enr = int(re.sub(r"[, ]", "", p[2]))
-    dtxt = p[-1].strip()
-    d = int(re.sub(r"[(),]", "", dtxt))
-    if dtxt.startswith("("):
-        d = -d
-    recs.append(dict(name=name, code=code, enr=enr, days=d))
+for row in csv.DictReader(open("data/audit-filing-days.csv")):
+    recs.append(dict(name=row["school_district"], code=int(row["district_code"]),
+                     enr=int(row["certified_enrollment"]), days=int(row["avg_days_early_late"])))
 
 # ---- UAB FY2023-2025 average per district ----
 wb = openpyxl.load_workbook("UAB/Unspent Authorized Budget Report.xlsx", data_only=True, read_only=True)
@@ -150,7 +143,7 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .legend{{font-size:13px;color:var(--mut);margin:8px 2px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}}
 .legend .sw{{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:5px}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body><div class="wrap">
+</style></head><body>{nav("filing")}<div class="wrap">
 
 <h1>Does a thinner financial cushion mean a later audit?</h1>
 <p class="sub">Audit-filing timeliness vs. spending-authority cushion (UAB), {len(pts)} Iowa districts · {date}</p>
@@ -185,7 +178,7 @@ the audited financials, last three years (supplied table). <b>Correlation</b> is
 the dashed blue line is the least-squares fit through the large (5,000+) districts only. Six districts in
 the table had no matching UAB record (reorganized entities) and are omitted. A handful of very-late small
 districts fall below the chart's floor and are pinned to the bottom edge; Iowa City's true value
-({IC['days']}) is plotted in place.
+({IC['days']}) is plotted in place. See also: <a href="iccsd-filing-vs-uab-large.html">the large-districts-only version</a>, where the correlation is computed without Iowa City.
 </footer>
 </div></body></html>"""
 

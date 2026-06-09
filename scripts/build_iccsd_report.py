@@ -7,7 +7,9 @@ Peer groups are size-matched (apples-to-apples), since Iowa City is one of the l
   - "Large districts"     = every district with 5,000+ students (excludes the smaller districts)
   - "Best-run large districts" = the 5 highest-scoring of those large districts
 """
-import json, html, datetime, statistics as st
+import json, html, datetime, statistics as st, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _nav import nav
 
 SIZE_MIN = 5000
 cards = json.load(open("/tmp/audit/cards.json"))      # sorted desc by composite
@@ -176,7 +178,7 @@ h1{{font-size:30px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px;font-
 .take{{margin:6px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px;color:#1f2937}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:34px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body><div class="wrap">
+</style></head><body>{nav("overview")}<div class="wrap">
 
 <h1>Iowa City Schools: How They Compare</h1>
 <p class="sub">Iowa City Community School District measured against the strongest large districts in the state — one measure at a time · {date}</p>

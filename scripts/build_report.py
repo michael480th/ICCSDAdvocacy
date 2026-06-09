@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Generate iowa-district-financial-benchmark.html from /tmp/audit/cards.json (UAB-anchored v2)."""
-import json, html, datetime
+import json, html, datetime, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _nav import nav
 
 cards = json.load(open("/tmp/audit/cards.json"))
 
@@ -144,7 +146,7 @@ td.dist{{font-weight:600;white-space:normal;min-width:140px}} td.rk{{color:var(-
 .note{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:8px;padding:14px 18px;margin:14px 0;font-size:14px}}
 .note h4{{margin:0 0 6px}} .note ul{{margin:6px 0 0 18px;padding:0}} .note li{{margin:3px 0}}
 footer{{color:var(--mut);font-size:12px;margin-top:50px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body><div class="wrap">
+</style></head><body>{nav("benchmark")}<div class="wrap">
 
 <h1>Iowa Large-District Financial Benchmark</h1>
 <p class="sub">How 15 of Iowa's largest school districts compare on financial health, fiscal management, and how they are paying for buildings · fiscal years 2020–2025 · {date}</p>

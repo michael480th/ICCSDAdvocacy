@@ -3,7 +3,7 @@
 Scatterplot (LARGE districts only, 5,000+ students): audit-filing timeliness vs. UAB cushion.
 
 X = average Unspent Authorized Budget (% of budget), FY2023-2025 (DOM UAB workbook).
-Y = average days early (+) / late (-) filing audited financials (supplied table, /tmp/filing.tsv).
+Y = average days early (+) / late (-) filing audited financials (data/audit-filing-days.csv).
 
 The Pearson correlation / regression line are computed on the large districts EXCLUDING Iowa City,
 because Iowa City is an extreme outlier (lowest cushion + latest filing in the state) that single-
@@ -11,17 +11,15 @@ handedly drives the slope. Iowa City is still plotted, marked as the excluded ou
 
 Run:  python3 scripts/build_filing_vs_uab_large.py  ->  iccsd-filing-vs-uab-large.html
 """
-import openpyxl, re, html, datetime, statistics as st, math
+import openpyxl, csv, html, datetime, statistics as st, math, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _nav import nav
 
-# ---- filing table ----
+# ---- filing table (data/audit-filing-days.csv) ----
 recs = []
-for ln in open("/tmp/filing.tsv"):
-    p = ln.rstrip("\n").split("\t")
-    if len(p) < 4:
-        continue
-    recs.append(dict(name=p[0].strip(), code=int(p[1]),
-                     enr=int(re.sub(r"[, ]", "", p[2])),
-                     days=(-1 if p[-1].strip().startswith("(") else 1) * int(re.sub(r"[(),]", "", p[-1]))))
+for row in csv.DictReader(open("data/audit-filing-days.csv")):
+    recs.append(dict(name=row["school_district"], code=int(row["district_code"]),
+                     enr=int(row["certified_enrollment"]), days=int(row["avg_days_early_late"])))
 
 # ---- UAB FY2023-2025 average ----
 ws = openpyxl.load_workbook("UAB/Unspent Authorized Budget Report.xlsx", data_only=True, read_only=True)["data_UAB"]
@@ -127,7 +125,7 @@ h1{{font-size:27px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .take{{margin:14px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #dc2626;border-radius:6px;padding:10px 14px}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body><div class="wrap">
+</style></head><body>{nav("filing")}<div class="wrap">
 
 <h1>Audit timeliness vs. financial cushion — large districts only</h1>
 <p class="sub">Iowa districts with 5,000+ students (n={len(big)}); correlation computed without Iowa City · {date}</p>
@@ -154,7 +152,7 @@ the state, by a wide margin.</p>
 FY2023–FY2025 (Iowa Dept. of Management). Vertical: average days early (+) / late (−) filing audited
 financials, last three years (supplied table). <b>r</b> and the dashed best-fit line are computed on the
 17 large districts excluding Iowa City; Iowa City ({IC['days']} days) is plotted but held out of the math
-as an extreme outlier. "Large" = 5,000+ certified students.
+as an extreme outlier. "Large" = 5,000+ certified students. See also: <a href="iccsd-filing-vs-uab.html">the same chart for all 300+ Iowa districts</a>.
 </footer>
 </div></body></html>"""
 
