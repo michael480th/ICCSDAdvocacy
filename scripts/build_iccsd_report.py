@@ -213,5 +213,8 @@ benchmark report covering all districts.
 </footer>
 </div></body></html>"""
 
-open("iccsd-vs-peers.html", "w").write(DOC)
-print(f"Wrote iccsd-vs-peers.html ({len(DOC)//1024} KB), {len(KPIS)} KPI cards")
+# Write both the named page and the GitHub Pages landing page (index.html) so they
+# never drift — index.html IS this page; no manual copy/rename step is ever needed.
+for out in ("iccsd-vs-peers.html", "index.html"):
+    open(out, "w").write(DOC)
+print(f"Wrote iccsd-vs-peers.html + index.html ({len(DOC)//1024} KB), {len(KPIS)} KPI cards")

@@ -99,7 +99,7 @@ The scoring and reports are regenerated from the committed data with:
 ```bash
 python3 scripts/build_analysis.py     # data/ -> data/iowa-district-scorecards.csv (+ cards.json)
 python3 scripts/build_report.py       # -> iowa-district-financial-benchmark.html
-python3 scripts/build_iccsd_report.py # -> iccsd-vs-peers.html
+python3 scripts/build_iccsd_report.py # -> iccsd-vs-peers.html (+ index.html, the Pages landing page)
 python3 scripts/build_workbook.py     # -> data/iowa-district-benchmark.xlsx
 ```
 
@@ -121,12 +121,13 @@ inside it, no external dependencies), so it's easy to host. Easiest options, sim
    cleaner URL.) Cloudflare Pages and Vercel offer similar drag-and-drop.
 
 ### Option 2 — GitHub Pages (free, lives with this repo)
-GitHub can serve the file directly from this repository:
-1. Make a copy named **`index.html`** at the repo root (so it becomes the landing page):
-   `cp iowa-district-financial-benchmark.html index.html` and commit it.
-2. In GitHub: **Settings → Pages → Build and deployment → Source: "Deploy from a branch."**
-3. Choose the branch to publish (e.g. `main`) and folder **`/ (root)`**, then **Save**.
-4. After ~1 minute the report is live at a `github.io` URL for this repo.
+GitHub serves the site directly from this repository. **`index.html` is already the landing
+page** — it is the public-facing Iowa-City-vs-peers report, written automatically by
+`scripts/build_iccsd_report.py` (no copy/rename step). Every published page carries a shared
+nav bar linking the others, so the whole site shares one URL.
+1. In GitHub: **Settings → Pages → Build and deployment → Source: "Deploy from a branch."**
+2. Choose the branch to publish (e.g. `main`) and folder **`/ (root)`**, then **Save**.
+3. After ~1 minute the site is live at a `github.io` URL, opening on `index.html`.
 
 ### Option 3 — Quick preview link (no setup at all)
 Paste the file's GitHub URL into the htmlpreview proxy:
