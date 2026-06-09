@@ -52,6 +52,41 @@ thing his statement underweights.
 
 ---
 
+## Current liquidity update (April 2026 board cash-flow memo)
+
+*Source: "FY26–FY28 Cash Flow Narrative," board packet item B.01.01, memo from COO Curt Pratt to the
+Board of Education, dated April 1, 2026. **These are district projections, not audited figures** — but
+they come from the district's own COO and partially fill the FY2024–FY2025 audit blind spot.*
+
+The benchmark (audited through FY2023) flagged Iowa City's thin liquidity and exhausted spending
+authority. This memo shows that picture **deteriorating in real time**:
+
+- **Days cash on hand is falling sharply: 36.6 (FY26) → 23.2 (FY27) → 16.9 (FY28).** Under ~30 days is
+  tight; ~17 is alarming.
+- **A cascade of emergency, short-term borrowing just to make payroll and bond payments:**
+  - a **$10M interfund loan from the health-insurance fund** (Aug 2025) — General Fund cash fell below
+    $6M that month;
+  - a **$3M Revenue Anticipation Warrant** (Mar 2026) to cover the March 15 payroll;
+  - a proposed **$25M Revenue Anticipation Warrant** (May 2026) — $10M to repay the health-insurance
+    fund, **~$7.32M lent to the SAVE fund to make the June 1 SAVE bond payment**, the rest to reserves;
+  - another **$10M warrant** projected for June 2027.
+- The **General Fund is borrowing in order to lend the SAVE fund enough cash to make its bond payment** —
+  i.e., SAVE's *existing* obligations are already straining district cash.
+- **Planned austerity:** a **$7.8M salary-and-benefit reduction in FY28**, on top of ~$1.5M of other
+  FY27 cuts.
+- **SAVE bond payments ≈ $14.2–14.3M/year** (FY27–FY28), consuming the large majority of annual SAVE
+  revenue — consistent with the benchmark's SAVE-leverage finding.
+
+**Why this matters for the FMP debate:** the district is *already* borrowing short-term to meet its
+*current* SAVE obligations. Committing additional SAVE revenue out to 2047 under FMP 2.3, while the
+General Fund is this stretched, is precisely the forward-flexibility risk the board member raises — and
+the memo shows it is not hypothetical.
+
+*(Note: the $25M Revenue Anticipation Warrant above is a short-term cash-flow bridge repaid within a
+year — **not** the "$18.5M to borrow / ~$25M pay-as-you-go" FMP 2.3 project figure. Similar number,
+different purpose. This memo confirms FMP 2.3 is an active, funded project but does not contain the
+2047 SAVE financing schedule itself.)*
+
 ## Does the benchmark need refining? Are we missing KPIs?
 
 **No errors to correct** — the dissent corroborates the financial findings; no re-weighting is needed.
