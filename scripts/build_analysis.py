@@ -228,6 +228,12 @@ for d in DISTRICTS:
     sv = next((f(A[d][y]["save_revenue"]) for y in sorted(A[d], reverse=True) if f(A[d][y].get("save_revenue"))), None)
     save_years = round(sd/sv, 1) if (sd and sv) else None
 
+    # Days of operating reserves = unassigned GF balance / (GF expenditure / 365) -- the reliable
+    # liquidity proxy (excludes restricted cash like bond proceeds). GFOA target ~60 days.
+    una = next((f(A[d][y]["gf_unassigned"]) for y in sorted(A[d], reverse=True) if f(A[d][y].get("gf_unassigned")) is not None), None)
+    gexp = next((f(A[d][y]["gf_expenditure"]) for y in sorted(A[d], reverse=True) if f(A[d][y].get("gf_expenditure"))), None)
+    days_reserves = round(una/(gexp/365)) if (una is not None and gexp) else None
+
     math = dict(
         health=dict(weights=[0.50, 0.30, 0.20],
             parts=[("UAB", uc, f"level {uab_lvl} (UAB {uab_last}%) + trend {uab_tr} ({uab_trend:+}pp)" if uab_last is not None else "n/a"),
@@ -244,7 +250,7 @@ for d in DISTRICTS:
 
     cards.append(dict(
         auth_unissued=auth_unissued, total_future_ds=tfds, constr_commit=constr,
-        forward_load_pp=forward_load_pp, save_years=save_years,
+        forward_load_pp=forward_load_pp, save_years=save_years, days_reserves=days_reserves,
         annual_ds=f(nl.get("debt_service_next_fy")), math=math,
         district=d, size=("&gt;15k" if (enr_last or 0) > 15000 else "10–15k" if (enr_last or 0) > 10000
                           else "5–10k" if (enr_last or 0) > 5000 else "&lt;5k"),
