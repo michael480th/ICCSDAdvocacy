@@ -21,6 +21,7 @@ management**, and **how they are paying for buildings**.
 | **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)** | **The interactive report.** Open in any web browser. Sortable comparison table, a financial-health-vs-management map, per-district scorecards, and an "analyze one district" tool with ~20 charts and a "how this score is built" breakdown. A single self-contained file — no internet or install required. |
 | **[`iccsd-vs-peers.html`](iccsd-vs-peers.html)** | **Public-facing Iowa City focus.** One measure at a time, comparing Iowa City CSD to **size-matched peers** (large districts of 5,000+ students, and the best-run of those), each with a plain-English explanation of what it is and why it matters. Self-contained. |
 | [`iccsd-fmp-board-commentary.md`](iccsd-fmp-board-commentary.md) | Brief reconciling the benchmark with an ICCSD board member's "no" vote on the Facilities Master Plan — where the data agrees, what the dissent adds, and which KPIs are still missing. Includes the full statement. |
+| **[`data/iowa-district-benchmark.xlsx`](data/iowa-district-benchmark.xlsx)** | **The benchmark as a spreadsheet.** Scorecard + year-by-year tabs (UAB, solvency, operating margin, enrollment, total debt, cash-reserve levy) + the underlying audited/state/balance-sheet data + a sources-and-definitions sheet. The "share the Excel file" deliverable. |
 | [`iowa-district-financial-benchmark.md`](iowa-district-financial-benchmark.md) | The same findings in plain Markdown (readable directly on GitHub). |
 | [`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md) | The **methodology** — how districts are assessed and scored, and why (the Iowa-specific reasoning behind every metric). |
 
@@ -51,10 +52,13 @@ Each district gets three 1–5 scores plus a blended composite:
 iowa-district-financial-benchmark.html      The interactive report (open this)
 iowa-district-financial-benchmark.md         Markdown version of the report
 iowa-district-financial-analysis-framework.md  Methodology / scoring framework
+iccsd-vs-peers.html                          Public-facing Iowa City KPI comparison
+iccsd-fmp-board-commentary.md                Benchmark vs. the FMP board dissent
 school-district-rating-withdrawals.md        Companion research: districts that lost bond
                                              ratings over late/missing audits
 
 data/
+  iowa-district-benchmark.xlsx               Shareable Excel workbook (snapshot + time series + raw)
   iowa-district-financials.csv               Master dataset from the audits (one row per district-year)
   iowa-district-notes.csv                    Balance-sheet & forward-commitment data from audit notes
   iowa-district-scorecards.csv               Final scores + flags, one row per district
@@ -68,7 +72,9 @@ data/
 scripts/
   extract_dom.py        Reads the Iowa state workbooks -> data/dom/*.csv
   build_analysis.py     Merges audited + state + notes data, scores every district -> scorecards + cards.json
-  build_report.py       Renders cards.json into the HTML report
+  build_report.py       Renders cards.json into the main HTML report
+  build_iccsd_report.py Renders the public-facing Iowa City KPI comparison
+  build_workbook.py     Renders the shareable Excel workbook
 ```
 
 Each `data/` folder has its own README describing the columns and sources.
@@ -88,16 +94,18 @@ marked down for the gap).
 
 ## Reproducing the analysis
 
-The scoring and report are regenerated from the committed data with:
+The scoring and reports are regenerated from the committed data with:
 
 ```bash
-python3 scripts/build_analysis.py   # data/ -> data/iowa-district-scorecards.csv (+ cards.json)
-python3 scripts/build_report.py     # -> iowa-district-financial-benchmark.html
+python3 scripts/build_analysis.py     # data/ -> data/iowa-district-scorecards.csv (+ cards.json)
+python3 scripts/build_report.py       # -> iowa-district-financial-benchmark.html
+python3 scripts/build_iccsd_report.py # -> iccsd-vs-peers.html
+python3 scripts/build_workbook.py     # -> data/iowa-district-benchmark.xlsx
 ```
 
 (`scripts/extract_dom.py` rebuilds `data/dom/` from the original Iowa state spreadsheets; those source
 workbooks and the audit PDFs are kept in the project's data-source folders.) Requires Python 3 with
-`openpyxl` for the spreadsheet step.
+`openpyxl` for the spreadsheet steps.
 
 ---
 
@@ -118,16 +126,11 @@ GitHub can serve the file directly from this repository:
    `cp iowa-district-financial-benchmark.html index.html` and commit it.
 2. In GitHub: **Settings → Pages → Build and deployment → Source: "Deploy from a branch."**
 3. Choose the branch to publish (e.g. `main`) and folder **`/ (root)`**, then **Save**.
-4. After ~1 minute the report is live at:
-   `https://michael480th.github.io/iccsdadvocacy/`
-   (or `…/iowa-district-financial-benchmark.html` if you skip the `index.html` copy).
-
-> Pages publishes from one branch. If the report is on a feature branch, either merge it to `main`
-> first, or point Pages at that branch in step 3.
+4. After ~1 minute the report is live at a `github.io` URL for this repo.
 
 ### Option 3 — Quick preview link (no setup at all)
 Paste the file's GitHub URL into the htmlpreview proxy:
-`https://htmlpreview.github.io/?https://github.com/michael480th/iccsdadvocacy/blob/main/iowa-district-financial-benchmark.html`
+`https://htmlpreview.github.io/?<the file's GitHub URL>`
 Good for a quick look; for anything you'll share widely, prefer Option 1 or 2.
 
 ### Option 4 — Just email it / open locally
