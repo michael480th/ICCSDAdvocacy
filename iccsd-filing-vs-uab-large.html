@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit timeliness vs. cushion — large Iowa districts</title>
+<style>
+:root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box} body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 70px}
+h1{font-size:27px;margin:0 0 6px} .sub{color:var(--mut);margin:0 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.chart{width:100%;height:auto;display:block}
+.grid{stroke:#eef2f7;stroke-width:1}
+.xtick{fill:#64748b;font-size:12px;text-anchor:middle} .ytick{fill:#94a3b8;font-size:12px;text-anchor:end}
+.zero{stroke:#0f172a;stroke-width:1;stroke-dasharray:4 3;opacity:.5} .zlab{fill:#475569;font-size:11px}
+.fit{stroke:#2563eb;stroke-width:2;stroke-dasharray:6 4;opacity:.85} .fitlab{fill:#1d4ed8;font-size:11px;text-anchor:end}
+.dot.lg{fill:#2563eb;opacity:.88} .dot.ic{fill:#dc2626;stroke:#fff;stroke-width:1.5}
+.lglab{fill:#1e3a8a;font-size:11px} .iclab{fill:#dc2626;font-size:12.5px;font-weight:700}
+.axt{fill:#334155;font-size:12.5px;text-anchor:middle}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0 14px}
+.stat{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:160px}
+.stat .n{font-size:24px;font-weight:800} .stat .l{font-size:12px;color:var(--mut)}
+.take{margin:14px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #dc2626;border-radius:6px;padding:10px 14px}
+.take b{color:#0f172a}
+footer{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body><style>.sitenav{max-width:960px;margin:0 auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:600 13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}.sitenav .brand{color:#0f172a;margin-right:4px;font-weight:800}.sitenav a,.sitenav .cur{display:inline-block;padding:6px 13px;border-radius:999px;text-decoration:none;border:1px solid #e2e8f0}.sitenav a{color:#2563eb;background:#fff}.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}</style><nav class="sitenav"><span class="brand">Iowa City CSD finances</span><a href="index.html">How ICCSD compares</a><a href="iccsd-liquidity-trend.html">Reserves over time</a><span class="cur">Audit timeliness</span><a href="iowa-district-financial-benchmark.html">Full benchmark (15 districts)</a></nav><div class="wrap">
+
+<h1>Audit timeliness vs. financial cushion — large districts only</h1>
+<p class="sub">Iowa districts with 5,000+ students (n=18); correlation computed without Iowa City · June 2026</p>
+
+<div class="card">
+<div class="stats">
+  <div class="stat"><div class="n">-0.06</div><div class="l">correlation (r), <b>17 large districts, Iowa City excluded</b></div></div>
+  <div class="stat"><div class="n">+0.40</div><div class="l">correlation (r) <b>if Iowa City is included</b> (one point drives it)</div></div>
+  <div class="stat"><div class="n">-430</div><div class="l">Iowa City days late — the extreme outlier</div></div>
+</div>
+<svg viewBox="0 0 820 560" class="chart" role="img" aria-label="large district scatter"><line x1="72.0" y1="28" x2="72.0" y2="502" class="grid"/><text x="72.0" y="522" class="xtick">0%</text><line x1="162.9" y1="28" x2="162.9" y2="502" class="grid"/><text x="162.9" y="522" class="xtick">5%</text><line x1="253.8" y1="28" x2="253.8" y2="502" class="grid"/><text x="253.8" y="522" class="xtick">10%</text><line x1="344.6" y1="28" x2="344.6" y2="502" class="grid"/><text x="344.6" y="522" class="xtick">15%</text><line x1="435.5" y1="28" x2="435.5" y2="502" class="grid"/><text x="435.5" y="522" class="xtick">20%</text><line x1="526.4" y1="28" x2="526.4" y2="502" class="grid"/><text x="526.4" y="522" class="xtick">25%</text><line x1="617.3" y1="28" x2="617.3" y2="502" class="grid"/><text x="617.3" y="522" class="xtick">30%</text><line x1="72" y1="502.0" x2="690" y2="502.0" class="grid"/><text x="64" y="506.0" class="ytick">-450</text><line x1="72" y1="442.8" x2="690" y2="442.8" class="grid"/><text x="64" y="446.8" class="ytick">-375</text><line x1="72" y1="383.5" x2="690" y2="383.5" class="grid"/><text x="64" y="387.5" class="ytick">-300</text><line x1="72" y1="324.2" x2="690" y2="324.2" class="grid"/><text x="64" y="328.2" class="ytick">-225</text><line x1="72" y1="265.0" x2="690" y2="265.0" class="grid"/><text x="64" y="269.0" class="ytick">-150</text><line x1="72" y1="205.8" x2="690" y2="205.8" class="grid"/><text x="64" y="209.8" class="ytick">-75</text><line x1="72" y1="146.5" x2="690" y2="146.5" class="grid"/><text x="64" y="150.5" class="ytick">+0</text><line x1="72" y1="87.2" x2="690" y2="87.2" class="grid"/><text x="64" y="91.2" class="ytick">+75</text><line x1="72" y1="28.0" x2="690" y2="28.0" class="grid"/><text x="64" y="32.0" class="ytick">+150</text><line x1="72" y1="146.5" x2="690" y2="146.5" class="zero"/><text x="80" y="140.5" class="zlab">on time — above = early, below = late</text><line x1="72.0" y1="93.7" x2="690.0" y2="104.1" class="fit"/><text x="686.0" y="97.1" class="fitlab">best fit (excl. Iowa City) — essentially flat</text><circle cx="309.1" cy="51.7" r="5.5" class="dot lg"/><text x="317.1" y="55.7" class="lglab">Ankeny</text><circle cx="464.4" cy="56.4" r="5.5" class="dot lg"/><text x="472.4" y="60.4" class="lglab">Pleasant Valley</text><circle cx="260.3" cy="61.2" r="5.5" class="dot lg"/><text x="268.3" y="78.2" class="lglab">West Des Moines</text><circle cx="346.8" cy="61.2" r="5.5" class="dot lg"/><text x="354.8" y="91.2" class="lglab">Davenport</text><circle cx="632.1" cy="61.2" r="5.5" class="dot lg"/><text x="640.1" y="65.2" class="lglab">Waukee</text><circle cx="252.8" cy="63.5" r="5.5" class="dot lg"/><text x="260.8" y="106.5" class="lglab">Linn-Mar</text><circle cx="254.9" cy="70.7" r="5.5" class="dot lg"/><text x="262.9" y="126.7" class="lglab">Dubuque</text><circle cx="314.0" cy="82.5" r="5.5" class="dot lg"/><text x="322.0" y="151.5" class="lglab">Waterloo</text><circle cx="303.0" cy="92.8" r="5.5" class="dot lg"/><text x="311.0" y="174.8" class="lglab">Cedar Rapids</text><circle cx="374.4" cy="103.0" r="5.5" class="dot lg"/><text x="382.4" y="107.0" class="lglab">Cedar Falls</text><circle cx="349.1" cy="115.7" r="5.5" class="dot lg"/><text x="357.1" y="197.7" class="lglab">College</text><circle cx="612.8" cy="118.1" r="5.5" class="dot lg"/><text x="620.8" y="122.1" class="lglab">Sioux City</text><circle cx="451.0" cy="119.6" r="5.5" class="dot lg"/><text x="459.0" y="123.6" class="lglab">Johnston</text><circle cx="416.7" cy="136.2" r="5.5" class="dot lg"/><text x="424.7" y="140.2" class="lglab">Des Moines</text><circle cx="599.2" cy="139.4" r="5.5" class="dot lg"/><text x="607.2" y="143.4" class="lglab">Marshalltown</text><circle cx="141.6" cy="171.0" r="5.5" class="dot lg"/><text x="149.6" y="175.0" class="lglab">Council Bluffs</text><circle cx="392.7" cy="177.3" r="5.5" class="dot lg"/><text x="400.7" y="220.3" class="lglab">Southeast Polk</text><circle cx="88.6" cy="486.2" r="7.5" class="dot ic"/><text x="99.6" y="490.2" class="iclab">Iowa City — 0.9% UAB, -430 days (excluded from r)</text><text x="381.0" y="552" class="axt">Average spending-authority cushion (UAB %, FY2023–2025) — higher = more cushion →</text><text transform="translate(16,265.0) rotate(-90)" class="axt" text-anchor="middle">Days early (+) / late (−) filing audit ↑</text></svg>
+<p class="take"><b>Among large districts, there is no real correlation (r = -0.06) once Iowa City is
+set aside.</b> The other 17 big districts are scattered — Waukee and Marshalltown both carry ~30% cushions
+yet file 108 and 9 days early respectively; Linn-Mar and Pleasant Valley sit at very different cushions but
+both file ~3–4 months early. Cushion size simply doesn't predict how fast a large district files.
+<b>The +0.40 correlation from the earlier all-large-districts chart was Iowa City alone</b> — a single
+point in the low-cushion / very-late corner that pulls a slope out of an otherwise flat cloud. Iowa City
+isn't the end of a trend; it's a category of its own: the thinnest cushion <i>and</i> the latest audit in
+the state, by a wide margin.</p>
+</div>
+
+<footer>
+<b>Axes.</b> Horizontal: average Unspent Authorized Budget as a % of the maximum authorized budget,
+FY2023–FY2025 (Iowa Dept. of Management). Vertical: average days early (+) / late (−) filing audited
+financials, last three years (supplied table). <b>r</b> and the dashed best-fit line are computed on the
+17 large districts excluding Iowa City; Iowa City (-430 days) is plotted but held out of the math
+as an extreme outlier. "Large" = 5,000+ certified students. See also: <a href="iccsd-filing-vs-uab.html">the same chart for all 300+ Iowa districts</a>.
+</footer>
+</div></body></html>
