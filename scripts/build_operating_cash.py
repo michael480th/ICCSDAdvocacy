@@ -40,12 +40,15 @@ for r in csv.DictReader(open("data/car-fund-balances.csv")):
 # operating cash -> days-cash
 days = {}   # district -> {fy: days}
 cash = {}
+IC_AUDITED = set()   # Iowa City years backed by a completed audit (solid line)
 for r in csv.DictReader(open("data/gf-operating-cash.csv")):
     d, fy, c = r["district"], int(r["fiscal_year"]), num(r["gf_cash_investments"])
     cash.setdefault(d, {})[fy] = c
     e = exp.get((d, fy))
     if c is not None and e:
         days.setdefault(d, {})[fy] = c / (e / 365.0)
+    if d == IC and r.get("source") == "audit":
+        IC_AUDITED.add(fy)
 
 # Iowa City FY2025 (unaudited internal) + FY2026 (PFM projection) — not yet audited or state-filed
 IC_PROJECTED = set()
@@ -95,27 +98,41 @@ for p in PEERS:
 avg = {y: peer_avg(y) for y in YEARS if peer_avg(y) is not None}
 apts = [(X(i), Y(avg[y])) for i, y in enumerate(YEARS) if y in avg]
 s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in apts)}" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="7 4"/>')
-# Iowa City: solid through the actuals, dashed to the projected FY2026, hollow marker for the projection
-ic_actual = sorted(y for y in days[IC] if y not in IC_PROJECTED)
-ic_proj = sorted(y for y in days[IC] if y in IC_PROJECTED)
-apts_ic = [(X(YEARS.index(y)), Y(days[IC][y])) for y in ic_actual]
-s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in apts_ic)}" fill="none" stroke="#dc2626" stroke-width="3.4"/>')
-s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.4" fill="#dc2626"/>' for x, y in apts_ic))
-if ic_proj:
-    seq = [ic_actual[-1]] + ic_proj
-    ppts = [(X(YEARS.index(y)), Y(days[IC][y])) for y in seq]
-    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in ppts)}" fill="none" stroke="#dc2626" stroke-width="3.4" stroke-dasharray="3 4" opacity="0.85"/>')
-    for y in ic_proj:
-        px, py = X(YEARS.index(y)), Y(days[IC][y])
+# Iowa City, by certainty: solid+filled = audited (≤2023); dotted+hollow = unaudited actuals
+# (FY2024 CAR, FY2025 internal); dashed+hollow = projection (FY2026). Hollow = "not yet audited".
+def xy(y): return X(YEARS.index(y)), Y(days[IC][y])
+aud = sorted(y for y in days[IC] if y in IC_AUDITED)
+unaud = sorted(y for y in days[IC] if y not in IC_AUDITED and y not in IC_PROJECTED)
+proj = sorted(y for y in days[IC] if y in IC_PROJECTED)
+# solid audited line + filled dots
+ap = [xy(y) for y in aud]
+s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in ap)}" fill="none" stroke="#dc2626" stroke-width="3.4"/>')
+s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="#dc2626"/>' for x, y in ap))
+# dotted connector through the unaudited actuals
+if unaud:
+    seq = [aud[-1]] + unaud
+    pp = [xy(y) for y in seq]
+    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="2 4" opacity="0.9"/>')
+    for y in unaud:
+        px, py = xy(y)
+        s.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.6" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
+# dashed connector to the projection
+if proj:
+    seq = [(unaud[-1] if unaud else aud[-1])] + proj
+    pp = [xy(y) for y in seq]
+    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6 4" opacity="0.8"/>')
+    for y in proj:
+        px, py = xy(y)
         s.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.6" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
         s.append(f'<text x="{px:.1f}" y="{py-13:.1f}" class="endlab2" fill="#dc2626" text-anchor="middle">FY26 projected</text>')
-# "back to the 2023 low" callout on the FY2025 point
+# callouts
+if 2024 in days[IC]:
+    x24, y24 = xy(2024)
+    s.append(f'<text x="{x24:.1f}" y="{y24-13:.1f}" class="endlab2" fill="#b45309" text-anchor="middle">2024 (CAR, unaudited)</text>')
 if 2025 in days[IC] and 2023 in days[IC]:
-    x25, y25 = X(YEARS.index(2025)), Y(days[IC][2025])
+    x25, y25 = xy(2025)
     s.append(f'<text x="{x25:.1f}" y="{y25+24:.1f}" class="endlab2" fill="#b91c1c" text-anchor="middle" style="font-weight:700">same as 2023 low</text>')
-# end labels
-lastact = X(YEARS.index(ic_actual[-1]))
-s.append(f'<text x="{lastact-6:.1f}" y="{Y(days[IC][ic_actual[-1]])-12:.1f}" class="endlab" fill="#dc2626" text-anchor="end" style="font-weight:700">Iowa City</text>')
+s.append(f'<text x="{X(YEARS.index(aud[-1]))-6:.1f}" y="{Y(days[IC][aud[-1]])-12:.1f}" class="endlab" fill="#dc2626" text-anchor="end" style="font-weight:700">Iowa City</text>')
 ay = avg[max(avg)]
 s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+4:.1f}" class="endlab" fill="#2563eb">Peer average</text>')
 s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+20:.1f}" class="endlab2" fill="#94a3b8">(large districts)</text>')
@@ -195,6 +212,7 @@ close. None of FY2024–FY2026 has been audited yet.</p>
   <span><i style="border-color:#2563eb;border-top-style:dashed"></i>Peer average</span>
   <span><i style="border-color:#cbd5e1"></i>Individual peers</span>
   <span><i style="border-color:#16a34a;border-top-style:dashed"></i>GFOA ≈ 60 days</span>
+  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>open marker = not yet audited (FY2024 CAR, FY2025 internal, FY2026 projected)</span>
 </div>
 {svg}
 <p class="take">Iowa City has run <b>below the ~60-day GFOA guideline every year</b>. Its operating cash

@@ -32,11 +32,14 @@ for r in csv.DictReader(open("data/car-fund-balances.csv")):
         exp[(IC, 2024)] = num(r["expenditures"])
 
 days = {}
+IC_AUDITED = set()
 for r in csv.DictReader(open("data/gf-operating-cash.csv")):
     d, fy, c = r["district"], int(r["fiscal_year"]), num(r["gf_cash_investments"])
     e = exp.get((d, fy))
     if c is not None and e:
         days.setdefault(d, {})[fy] = c / (e / 365.0)
+    if d == IC and r.get("source") == "audit":
+        IC_AUDITED.add(fy)
 
 IC_PROJECTED = set()
 for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
@@ -88,29 +91,33 @@ def chart(W, H, fs=1.0):
         out += "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{6 if w>4 else 4}" fill="{color}"/>' for x, y in pts)
         return out
     s.append(linef(pa, "#2563eb", 4))
-    # Iowa City: solid through actuals, dashed to the projected FY2026 (hollow marker)
-    act = sorted(y for y in ic if y not in IC_PROJECTED)
+    # Iowa City by certainty: solid+filled = audited (<=2023); dotted+hollow = unaudited
+    # actuals (FY24 CAR, FY25 internal); dashed+hollow = projection (FY26).
+    def xy(y): return X(YEARS.index(y)), Y(ic[y])
+    aud = sorted(y for y in ic if y in IC_AUDITED)
+    unaud = sorted(y for y in ic if y not in IC_AUDITED and y not in IC_PROJECTED)
     prj = sorted(y for y in ic if y in IC_PROJECTED)
-    ap = [(X(YEARS.index(y)), Y(ic[y])) for y in act]
+    ap = [xy(y) for y in aud]
     s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in ap)}" fill="none" stroke="#dc2626" stroke-width="6" stroke-linejoin="round"/>')
     s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" fill="#dc2626"/>' for x, y in ap))
+    if unaud:
+        pp = [xy(y) for y in [aud[-1]] + unaud]
+        s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="2 5" opacity="0.9"/>')
+        s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="#fff" stroke="#dc2626" stroke-width="3"/>' for x, y in [xy(y) for y in unaud]))
     if prj:
-        seq = [act[-1]] + prj
-        pp = [(X(YEARS.index(y)), Y(ic[y])) for y in seq]
-        s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="3 5" opacity="0.9"/>')
+        pp = [xy(y) for y in [(unaud[-1] if unaud else aud[-1])] + prj]
+        s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="7 5" opacity="0.85"/>')
         for y in prj:
-            px, py2 = X(YEARS.index(y)), Y(ic[y])
+            px, py2 = xy(y)
             s.append(f'<circle cx="{px:.1f}" cy="{py2:.1f}" r="7" fill="#fff" stroke="#dc2626" stroke-width="3"/>')
             s.append(f'<text x="{px:.1f}" y="{py2-16:.1f}" font-size="{z(13)}" fill="#dc2626" font-weight="700" text-anchor="middle">FY26 proj.</text>')
     py = pa[max(pa)]
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(py)+1:.1f}" font-size="{z(16)}" fill="#2563eb" font-weight="800">Similar</text>')
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(py)+19:.1f}" font-size="{z(16)}" fill="#2563eb" font-weight="800">districts</text>')
-    iy = ic[act[-1]]
-    s.append(f'<text x="{X(YEARS.index(act[-1]))-10:.1f}" y="{Y(iy)-16:.1f}" font-size="{z(16)}" fill="#dc2626" font-weight="800" text-anchor="end">Iowa City</text>')
-    # callout: 2023 and 2025 both at the ~33-day low
-    tx, ty = X(YEARS.index(2025)), Y(ic[2025])
-    s.append(f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="9" fill="none" stroke="#dc2626" stroke-width="2.5"/>')
-    s.append(f'<text x="{tx:.1f}" y="{ty+32:.1f}" font-size="{z(16)}" fill="#dc2626" font-weight="800" text-anchor="middle">still ~{ic[2025]:.0f} days</text>')
+    s.append(f'<text x="{X(YEARS.index(aud[-1]))-10:.1f}" y="{Y(ic[aud[-1]])-16:.1f}" font-size="{z(16)}" fill="#dc2626" font-weight="800" text-anchor="end">Iowa City</text>')
+    tx, ty = xy(2025)
+    s.append(f'<text x="{tx:.1f}" y="{ty+30:.1f}" font-size="{z(15)}" fill="#dc2626" font-weight="800" text-anchor="middle">still ~{ic[2025]:.0f} days</text>')
+    s.append(f'<text x="{L+pw/2:.1f}" y="{T+ph+46}" font-size="{z(13)}" fill="#94a3b8" text-anchor="middle">○ open marker = not yet audited (2024 CAR · 2025 internal · 2026 projected)</text>')
     s.append('</svg>')
     return "".join(s)
 
