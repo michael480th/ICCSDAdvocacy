@@ -1,0 +1,26 @@
+# GitHub Pages (Jekyll) configuration — keep the published site lightweight and fast.
+#
+# The site is just the self-contained HTML reports and their images (~1 MB total).
+# Everything else stays in the repo (for reproducibility and GitHub browsing) but is
+# NOT copied into the published site, so each Pages build only has to package and
+# deploy the web files instead of ~500 MB of audit PDFs and source data.
+#
+# (The HTML pages have no YAML front matter, so Jekyll copies them verbatim as static
+# files — no Liquid processing — and none of them link to the excluded folders.)
+
+exclude:
+  - auditreports/                 # ~378 MB of audit PDFs
+  - CAR/                          # ~122 MB of CAR source data
+  - AidandLevyTaxCertification/
+  - UAB/
+  - AEA/
+  - PropertyValuation/
+  - AtRiskFormula/
+  - PropertyTaxRateFiles/
+  - FinalCashReserveLevies/
+  - emails/
+  - data/                         # derived CSVs (kept in repo, not needed by the site)
+  - scripts/
+  - "*.md"                        # README and notes (viewable on GitHub, not part of the site)
+  - .gitignore
+  - LICENSE
