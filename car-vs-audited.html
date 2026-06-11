@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAR vs. audited — do districts' self-reports match their books?</title>
+<style>
+:root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box} body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}
+.wrap{max-width:960px;margin:0 auto;padding:32px 20px 70px}
+h1{font-size:28px;margin:0 0 6px} .sub{color:var(--mut);margin:0 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.intro{border-left:4px solid #2563eb} .intro p{margin:7px 0}
+.flag{background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:10px;padding:16px 20px;margin-bottom:18px}
+.flag h2{margin:0 0 8px;font-size:20px;color:#991b1b}
+.big{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 4px}
+.big .stat{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:10px 14px;min-width:150px}
+.big .n{font-size:25px;font-weight:800;color:#dc2626} .big .l{font-size:12px;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}
+thead th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.dname{text-align:left;font-weight:600} .dname.me{color:#1d4ed8}
+tr:has(.me){background:#eff6ff}
+td.na{color:#cbd5e1}
+.legend{font-size:12.5px;color:var(--mut);margin:10px 2px 0;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle;margin-right:5px}
+ul{margin:8px 0} li{margin:4px 0}
+.take{margin:12px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px}
+.take b{color:#0f172a}
+footer{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body><style>.sitenav{max-width:960px;margin:0 auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:600 13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}.sitenav .brand{color:#0f172a;margin-right:4px;font-weight:800}.sitenav a,.sitenav .cur{display:inline-block;padding:6px 13px;border-radius:999px;text-decoration:none;border:1px solid #e2e8f0}.sitenav a{color:#2563eb;background:#fff}.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}</style><nav class="sitenav"><span class="brand">Iowa City CSD finances</span><a href="index.html">How ICCSD compares</a><a href="iccsd-liquidity-trend.html">Reserves over time</a><a href="iccsd-filing-vs-uab-large.html">Audit timeliness</a><span class="cur">CAR vs. audited</span><a href="iowa-district-financial-benchmark.html">Full benchmark (15 districts)</a></nav><div class="wrap">
+
+<h1>Self-report vs. audit: do the books reconcile?</h1>
+<p class="sub">Each district's <b>Certified Annual Report</b> (CAR — the unaudited figures it files with the state) compared to its <b>audited</b> General Fund results · June 2026</p>
+
+<div class="card intro">
+<p>Every Iowa district files a <b>Certified Annual Report (CAR)</b> with the Department of Education by
+September 15 — its own, <b>unaudited</b> account of the year. Months or years later, an independent
+<b>audit</b> reports the same year. <b>The two should match.</b> When a district's self-reported numbers
+don't reconcile to what the auditors ultimately find, that's a red flag about the quality of its books.</p>
+<p>Below: the gap between CAR and audited <b>ending General Fund balance</b>, by district and year. Green
+means they tie (within rounding); warmer colors mean larger gaps; a <b style="color:#dc2626">red outline</b>
+flags a gap over 1% and $250K.</p>
+</div>
+
+<div class="flag">
+<h2>⚠️ Iowa City CSD, FY2023 — the standout</h2>
+<div class="big">
+  <div class="stat"><div class="n">+8.3%</div><div class="l">CAR ending balance vs audited (+$844K) — the largest gap in the matrix</div></div>
+  <div class="stat"><div class="n">+29%</div><div class="l">CAR <b>unassigned</b> reserves vs audited (+$1.45M) — the liquid cushion</div></div>
+  <div class="stat"><div class="n">$1.04M</div><div class="l">net change ICCSD's CAR reported — the audit found just $88K</div></div>
+</div>
+<p class="take">Iowa City's CAR said the district <b>added $1.04M</b> to its General Fund in
+FY2023; the audit found the true gain was <b>$88K</b> — an overstatement of
+<b>~$951K</b>. The CAR's ending balance came in <b>$844K
+(+8.3%) too high</b>, and its <b>unassigned</b> reserves — the liquid, spendable cushion and the
+solvency-ratio numerator — were <b>29% too high</b> ($6,410,331 reported vs $4,960,343
+audited). Even the year's <b>beginning</b> balance was off by $-106,965. This is the year the
+auditor declared a material weakness — "financial statements required significant revisions."</p>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:20px">CAR vs. audited — ending General Fund balance gap</h2>
+<table>
+<thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
+<tbody>
+<tr><th class="dname">Ankeny CSD</th><td style="color:#16a34a;font-weight:600;" title="Ankeny CSD FY2020: CAR 19,620,391 vs audited 19,620,391 (+0)">+0.0%</td><td style="color:#d97706;font-weight:600;" title="Ankeny CSD FY2021: CAR 23,532,640 vs audited 23,381,691 (+150,949)">+0.7%</td><td style="color:#16a34a;font-weight:600;" title="Ankeny CSD FY2022: CAR 24,875,397 vs audited 24,874,180 (+1,217)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Ankeny CSD FY2023: CAR 25,013,082 vs audited 25,010,019 (+3,063)">+0.0%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Ankeny CSD FY2024: CAR 25,602,290 vs audited 24,877,844 (+724,446)">+2.9%</td></tr>
+<tr><th class="dname">Burlington CSD</th><td style="color:#16a34a;font-weight:600;" title="Burlington CSD FY2020: CAR 13,373,846 vs audited 13,373,846 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Burlington CSD FY2021: CAR 14,133,884 vs audited 14,133,884 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Burlington CSD FY2022: CAR 15,243,139 vs audited 15,291,087 (-47,948)">-0.3%</td><td style="color:#16a34a;font-weight:600;" title="Burlington CSD FY2023: CAR 14,954,295 vs audited 14,955,075 (-780)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Burlington CSD FY2024: CAR 9,739,086 vs audited 9,739,831 (-745)">-0.0%</td></tr>
+<tr><th class="dname">Cedar Rapids CSD</th><td style="color:#16a34a;font-weight:600;" title="Cedar Rapids CSD FY2020: CAR 28,580,757 vs audited 28,580,741 (+16)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Cedar Rapids CSD FY2021: CAR 33,565,373 vs audited 33,565,350 (+23)">+0.0%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Cedar Rapids CSD FY2022: CAR 39,573,547 vs audited 37,865,195 (+1,708,352)">+4.5%</td><td style="color:#16a34a;font-weight:600;" title="Cedar Rapids CSD FY2023: CAR 42,865,546 vs audited 42,865,536 (+10)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Cedar Rapids CSD FY2024: CAR 45,599,733 vs audited 45,599,724 (+9)">+0.0%</td></tr>
+<tr><th class="dname">College CSD (Prairie)</th><td style="color:#16a34a;font-weight:600;" title="College CSD (Prairie) FY2020: CAR 10,926,397 vs audited 10,926,398 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="College CSD (Prairie) FY2021: CAR 13,929,172 vs audited 13,929,171 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="College CSD (Prairie) FY2022: CAR 13,912,980 vs audited 13,912,980 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="College CSD (Prairie) FY2023: CAR 12,730,460 vs audited 12,687,100 (+43,360)">+0.3%</td><td style="color:#16a34a;font-weight:600;" title="College CSD (Prairie) FY2024: CAR 9,206,350 vs audited 9,206,351 (-1)">-0.0%</td></tr>
+<tr><th class="dname">Davenport CSD</th><td style="color:#16a34a;font-weight:600;" title="Davenport CSD FY2020: CAR 25,454,379 vs audited 25,454,380 (-1)">-0.0%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Davenport CSD FY2021: CAR 29,088,197 vs audited 28,499,620 (+588,577)">+2.1%</td><td style="color:#d97706;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Davenport CSD FY2022: CAR 35,862,295 vs audited 35,293,803 (+568,492)">+1.6%</td><td style="color:#d97706;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Davenport CSD FY2023: CAR 49,889,999 vs audited 50,668,239 (-778,240)">-1.5%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Davenport CSD FY2024: CAR 57,840,586 vs audited 56,660,994 (+1,179,592)">+2.1%</td></tr>
+<tr><th class="dname">Des Moines Independent CSD</th><td style="color:#16a34a;font-weight:600;" title="Des Moines Independent CSD FY2020: CAR 125,060,024 vs audited 125,060,027 (-3)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Des Moines Independent CSD FY2021: CAR 184,265,144 vs audited 184,265,129 (+15)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Des Moines Independent CSD FY2022: CAR 179,845,920 vs audited 179,845,901 (+19)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Des Moines Independent CSD FY2023: CAR 184,326,862 vs audited 184,326,862 (+0)">-0.0%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Des Moines Independent CSD FY2024: CAR 181,511,302 vs audited 175,410,005 (+6,101,297)">+3.5%</td></tr>
+<tr><th class="dname">Dubuque CSD</th><td style="color:#16a34a;font-weight:600;" title="Dubuque CSD FY2020: CAR 18,125,154 vs audited 18,125,154 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Dubuque CSD FY2021: CAR 24,931,146 vs audited 24,931,146 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Dubuque CSD FY2022: CAR 30,277,495 vs audited 30,277,495 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Dubuque CSD FY2023: CAR 27,589,009 vs audited 27,589,009 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Dubuque CSD FY2024: CAR 23,355,130 vs audited 23,355,130 (+0)">+0.0%</td></tr>
+<tr><th class="dname me">Iowa City CSD</th><td style="color:#16a34a;font-weight:600;" title="Iowa City CSD FY2020: CAR 11,236,307 vs audited 11,240,140 (-3,833)">-0.0%</td><td style="color:#d97706;font-weight:600;" title="Iowa City CSD FY2021: CAR 15,726,539 vs audited 15,890,150 (-163,611)">-1.0%</td><td style="color:#d97706;font-weight:600;" title="Iowa City CSD FY2022: CAR 9,956,089 vs audited 10,063,054 (-106,965)">-1.1%</td><td style="color:#dc2626;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Iowa City CSD FY2023: CAR 10,994,917 vs audited 10,151,221 (+843,696)">+8.3%</td><td class="na">—</td></tr>
+<tr><th class="dname">Johnston CSD</th><td style="color:#16a34a;font-weight:600;" title="Johnston CSD FY2020: CAR 12,146,145 vs audited 12,146,145 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Johnston CSD FY2021: CAR 15,971,161 vs audited 15,971,161 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Johnston CSD FY2022: CAR 21,380,622 vs audited 21,380,621 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Johnston CSD FY2023: CAR 20,773,673 vs audited 20,773,674 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Johnston CSD FY2024: CAR 16,492,037 vs audited 16,567,398 (-75,361)">-0.5%</td></tr>
+<tr><th class="dname">Linn-Mar CSD</th><td style="color:#16a34a;font-weight:600;" title="Linn-Mar CSD FY2020: CAR 11,059,393 vs audited 11,059,342 (+51)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Linn-Mar CSD FY2021: CAR 13,955,156 vs audited 13,955,156 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Linn-Mar CSD FY2022: CAR 12,313,088 vs audited 12,313,088 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Linn-Mar CSD FY2023: CAR 7,069,549 vs audited 7,069,549 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Linn-Mar CSD FY2024: CAR 7,108,796 vs audited 7,091,954 (+16,842)">+0.2%</td></tr>
+<tr><th class="dname">Muscatine CSD</th><td style="color:#16a34a;font-weight:600;" title="Muscatine CSD FY2020: CAR 11,135,845 vs audited 11,135,845 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Muscatine CSD FY2021: CAR 10,892,432 vs audited 10,892,432 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Muscatine CSD FY2022: CAR 11,939,087 vs audited 11,939,087 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Muscatine CSD FY2023: CAR 11,406,082 vs audited 11,406,083 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Muscatine CSD FY2024: CAR 11,189,523 vs audited 11,189,523 (+0)">+0.0%</td></tr>
+<tr><th class="dname">Pleasant Valley CSD</th><td style="color:#16a34a;font-weight:600;" title="Pleasant Valley CSD FY2020: CAR 8,224,174 vs audited 8,224,174 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Pleasant Valley CSD FY2021: CAR 11,337,516 vs audited 11,337,516 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Pleasant Valley CSD FY2022: CAR 11,942,860 vs audited 11,942,859 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Pleasant Valley CSD FY2023: CAR 12,144,860 vs audited 12,144,860 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Pleasant Valley CSD FY2024: CAR 14,965,076 vs audited 14,965,075 (+1)">+0.0%</td></tr>
+<tr><th class="dname">Waterloo CSD</th><td style="color:#16a34a;font-weight:600;" title="Waterloo CSD FY2020: CAR 18,524,155 vs audited 18,524,155 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Waterloo CSD FY2021: CAR 29,206,916 vs audited 29,206,917 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Waterloo CSD FY2022: CAR 35,307,511 vs audited 35,307,511 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Waterloo CSD FY2023: CAR 35,547,900 vs audited 35,547,899 (+1)">+0.0%</td><td style="color:#ea580c;font-weight:800;box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" title="Waterloo CSD FY2024: CAR 13,777,020 vs audited 13,495,379 (+281,641)">+2.1%</td></tr>
+<tr><th class="dname">Waukee CSD</th><td style="color:#16a34a;font-weight:600;" title="Waukee CSD FY2020: CAR 17,223,150 vs audited 17,223,150 (+0)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="Waukee CSD FY2021: CAR 18,603,049 vs audited 18,603,050 (-1)">-0.0%</td><td style="color:#d97706;font-weight:600;" title="Waukee CSD FY2022: CAR 17,332,014 vs audited 17,180,128 (+151,886)">+0.9%</td><td style="color:#16a34a;font-weight:600;" title="Waukee CSD FY2023: CAR 19,331,626 vs audited 19,331,625 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="Waukee CSD FY2024: CAR 27,671,883 vs audited 27,671,884 (-1)">-0.0%</td></tr>
+<tr><th class="dname">West Des Moines CSD</th><td style="color:#16a34a;font-weight:600;" title="West Des Moines CSD FY2020: CAR 17,864,712 vs audited 17,864,713 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="West Des Moines CSD FY2021: CAR 21,127,008 vs audited 21,127,008 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="West Des Moines CSD FY2022: CAR 28,473,333 vs audited 28,473,332 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600;" title="West Des Moines CSD FY2023: CAR 32,457,076 vs audited 32,457,077 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600;" title="West Des Moines CSD FY2024: CAR 27,185,382 vs audited 27,185,382 (+0)">-0.0%</td></tr>
+</tbody>
+</table>
+<div class="legend">Gap (CAR − audited):
+<span><i style="background:#16a34a"></i>&lt;0.5% (ties)</span>
+<span><i style="background:#d97706"></i>0.5–2%</span>
+<span><i style="background:#ea580c"></i>2–5%</span>
+<span><i style="background:#dc2626"></i>&gt;5%</span>
+<span><i style="background:#fff;box-shadow:inset 0 0 0 2px #dc2626"></i>flagged (&gt;1% &amp; &gt;$250K)</span>
+</div>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 6px;font-size:20px">Flagged district-years (9)</h2>
+<ul>
+<li><b>Iowa City CSD FY2023</b>: CAR 10,994,917 vs audited 10,151,221 (<b style="color:#dc2626">+8.3%</b>, +843,696)</li>
+<li><b>Cedar Rapids CSD FY2022</b>: CAR 39,573,547 vs audited 37,865,195 (<b style="color:#ea580c">+4.5%</b>, +1,708,352)</li>
+<li><b>Des Moines Independent CSD FY2024</b>: CAR 181,511,302 vs audited 175,410,005 (<b style="color:#ea580c">+3.5%</b>, +6,101,297)</li>
+<li><b>Ankeny CSD FY2024</b>: CAR 25,602,290 vs audited 24,877,844 (<b style="color:#ea580c">+2.9%</b>, +724,446)</li>
+<li><b>Waterloo CSD FY2024</b>: CAR 13,777,020 vs audited 13,495,379 (<b style="color:#ea580c">+2.1%</b>, +281,641)</li>
+<li><b>Davenport CSD FY2024</b>: CAR 57,840,586 vs audited 56,660,994 (<b style="color:#ea580c">+2.1%</b>, +1,179,592)</li>
+<li><b>Davenport CSD FY2021</b>: CAR 29,088,197 vs audited 28,499,620 (<b style="color:#ea580c">+2.1%</b>, +588,577)</li>
+<li><b>Davenport CSD FY2022</b>: CAR 35,862,295 vs audited 35,293,803 (<b style="color:#d97706">+1.6%</b>, +568,492)</li>
+<li><b>Davenport CSD FY2023</b>: CAR 49,889,999 vs audited 50,668,239 (<b style="color:#d97706">-1.5%</b>, -778,240)</li>
+</ul>
+<p class="take"><b>Most CARs reconcile to the penny</b> — the majority of cells tie within rounding, which
+is what a clean district looks like. The exceptions cluster in a few districts. <b>Iowa City's FY2023
+gap (+8.3%) is the largest in the matrix</b> and lands in the exact year its audit was filed 26
+months late with a material weakness. <b>Davenport</b> shows a persistent ~2% gap across four straight
+years — a chronic reconciliation pattern worth watching. The FY2024 flags sit on the newest audits, which
+were only recently finalized.</p>
+</div>
+
+<footer>
+<b>Sources.</b> CAR: Iowa Department of Education Certified Annual Report — annual workbooks (FY2023,
+FY2024) and the multi-year revenue/expenditure files (FY2017–2023). Audited: each district's ACFR
+(General Fund total fund balance), as compiled in this project. Comparison is the General Fund ending
+balance; a row is flagged when CAR differs from audited by &ge;1% and &ge;$250,000. Iowa City has no
+FY2024 audit filed, so its FY2024 cell is blank. Built by <code>scripts/extract_car.py</code> +
+<code>scripts/compare_car_vs_audited.py</code> + <code>scripts/build_car_report.py</code>.
+</footer>
+</div></body></html>

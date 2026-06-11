@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 out/
 audit_pdfs/
+
+# Raw CAR source data (large; lives on the main branch, fetch on demand).
+# The small derived tables under data/ are committed instead.
+CAR/*.csv
+CAR/*.xlsx
