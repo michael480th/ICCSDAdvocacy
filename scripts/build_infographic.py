@@ -12,7 +12,7 @@ IC = "Iowa City CSD"
 PEERS = ["Ankeny CSD", "Cedar Rapids CSD", "College CSD (Prairie)", "Davenport CSD",
          "Des Moines Independent CSD", "Dubuque CSD", "Johnston CSD", "Linn-Mar CSD",
          "Pleasant Valley CSD", "Waterloo CSD", "Waukee CSD", "West Des Moines CSD"]
-YEARS = list(range(2020, 2025))
+YEARS = list(range(2020, 2027))
 
 
 def num(x):
@@ -32,11 +32,22 @@ for r in csv.DictReader(open("data/car-fund-balances.csv")):
         exp[(IC, 2024)] = num(r["expenditures"])
 
 days = {}
+IC_AUDITED = set()
 for r in csv.DictReader(open("data/gf-operating-cash.csv")):
     d, fy, c = r["district"], int(r["fiscal_year"]), num(r["gf_cash_investments"])
     e = exp.get((d, fy))
     if c is not None and e:
         days.setdefault(d, {})[fy] = c / (e / 365.0)
+    if d == IC and r.get("source") == "audit":
+        IC_AUDITED.add(fy)
+
+IC_PROJECTED = set()
+for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
+    fy, c, e = int(r["fiscal_year"]), num(r["gf_cash_investments"]), num(r["gf_expenditures"])
+    if c and e:
+        days.setdefault(IC, {})[fy] = c / (e / 365.0)
+    if r["status"] == "projected":
+        IC_PROJECTED.add(fy)
 
 
 def pavg(y):
@@ -47,6 +58,7 @@ def pavg(y):
 ic = {y: days[IC][y] for y in YEARS if y in days[IC]}
 pa = {y: pavg(y) for y in YEARS if pavg(y) is not None}
 ic20, ic23 = ic[2020], ic[2023]
+ic24, ic25, ic26 = ic.get(2024), ic.get(2025), ic.get(2026)
 pa23 = pa[2023]
 date = datetime.date(2026, 6, 11).strftime("%B %Y")
 
@@ -79,15 +91,33 @@ def chart(W, H, fs=1.0):
         out += "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{6 if w>4 else 4}" fill="{color}"/>' for x, y in pts)
         return out
     s.append(linef(pa, "#2563eb", 4))
-    s.append(linef(ic, "#dc2626", 6))
+    # Iowa City by certainty: solid+filled = audited (<=2023); dotted+hollow = unaudited
+    # actuals (FY24 CAR, FY25 internal); dashed+hollow = projection (FY26).
+    def xy(y): return X(YEARS.index(y)), Y(ic[y])
+    aud = sorted(y for y in ic if y in IC_AUDITED)
+    unaud = sorted(y for y in ic if y not in IC_AUDITED and y not in IC_PROJECTED)
+    prj = sorted(y for y in ic if y in IC_PROJECTED)
+    ap = [xy(y) for y in aud]
+    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in ap)}" fill="none" stroke="#dc2626" stroke-width="6" stroke-linejoin="round"/>')
+    s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" fill="#dc2626"/>' for x, y in ap))
+    if unaud:
+        pp = [xy(y) for y in [aud[-1]] + unaud]
+        s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="2 5" opacity="0.9"/>')
+        s.append("".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="#fff" stroke="#dc2626" stroke-width="3"/>' for x, y in [xy(y) for y in unaud]))
+    if prj:
+        pp = [xy(y) for y in [(unaud[-1] if unaud else aud[-1])] + prj]
+        s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="7 5" opacity="0.85"/>')
+        for y in prj:
+            px, py2 = xy(y)
+            s.append(f'<circle cx="{px:.1f}" cy="{py2:.1f}" r="7" fill="#fff" stroke="#dc2626" stroke-width="3"/>')
+            s.append(f'<text x="{px:.1f}" y="{py2-16:.1f}" font-size="{z(13)}" fill="#dc2626" font-weight="700" text-anchor="middle">FY26 proj.</text>')
     py = pa[max(pa)]
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(py)+1:.1f}" font-size="{z(16)}" fill="#2563eb" font-weight="800">Similar</text>')
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(py)+19:.1f}" font-size="{z(16)}" fill="#2563eb" font-weight="800">districts</text>')
-    iy = ic[max(ic)]
-    s.append(f'<text x="{L+pw+8:.1f}" y="{Y(iy)+5:.1f}" font-size="{z(16)}" fill="#dc2626" font-weight="800">Iowa City</text>')
-    tx, ty = X(YEARS.index(2023)), Y(ic[2023])
-    s.append(f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="9" fill="none" stroke="#dc2626" stroke-width="2.5"/>')
-    s.append(f'<text x="{tx:.1f}" y="{ty+34:.1f}" font-size="{z(17)}" fill="#dc2626" font-weight="800" text-anchor="middle">just {ic[2023]:.0f} days</text>')
+    s.append(f'<text x="{X(YEARS.index(aud[-1]))-10:.1f}" y="{Y(ic[aud[-1]])-16:.1f}" font-size="{z(16)}" fill="#dc2626" font-weight="800" text-anchor="end">Iowa City</text>')
+    tx, ty = xy(2025)
+    s.append(f'<text x="{tx:.1f}" y="{ty+30:.1f}" font-size="{z(15)}" fill="#dc2626" font-weight="800" text-anchor="middle">still ~{ic[2025]:.0f} days</text>')
+    s.append(f'<text x="{L+pw/2:.1f}" y="{T+ph+46}" font-size="{z(13)}" fill="#94a3b8" text-anchor="middle">○ open marker = not yet audited (2024 CAR · 2025 internal · 2026 projected)</text>')
     s.append('</svg>')
     return "".join(s)
 
@@ -127,13 +157,13 @@ def portrait():
     <h1>Our schools have about<br>one month of cash in the bank</h1>
     <p class="sub">"Days of cash" is how long a district could keep paying its bills — payroll, heat, buses — if the money stopped coming in. It's the school version of a family's emergency savings.</p></div>
   <div class="stats">
-    <div class="stat s-red"><div class="n">~{ic23:.0f} days</div><div class="l">Iowa City CSD (2023) — the thinnest of any large Iowa district</div></div>
+    <div class="stat s-red"><div class="n">~{ic25:.0f} days</div><div class="l">Iowa City in 2025 — right back at its 2023 low</div></div>
     <div class="stat s-blue"><div class="n">~{pa23:.0f} days</div><div class="l">Similar-size districts, on average</div></div>
     <div class="stat s-green"><div class="n">60+ days</div><div class="l">Recommended safety level (about 2 months)</div></div></div>
-  <div class="chartwrap"><h2>Days of cash on hand — Iowa City vs. peers, 2020–2024</h2>{chart(1000,470)}</div>
+  <div class="chartwrap"><h2>Days of cash on hand — Iowa City vs. peers, 2020–2026</h2>{chart(1000,470)}</div>
   <div class="explain"><h3>What's happening</h3>
-    <p>Iowa City's cash cushion <b>shrank from about {ic20:.0f} days in 2020 to just {ic23:.0f} days in 2023</b> — while comparable districts kept roughly <b>{pa23:.0f} days</b> and the recommended level is <b>60+</b>. A cushion this thin means a single bad month, a late state payment, or a surprise repair can become a real cash crunch.</p></div>
-  <div class="foot"><div>Source: audited district financial reports (General Fund cash &divide; daily spending),<br>FY2020–FY2024. 2024 from the state-filed report; Iowa City's 2024 audit isn't finished.</div>
+    <p>Iowa City's cash cushion <b>fell from about {ic20:.0f} days in 2020 to ~{ic23:.0f} in 2023</b>. The state-filed 2024 number looked like a rebound — but <b>it didn't stick: 2025 is back to ~{ic25:.0f} days</b>, the same low, with 2026 projected around <b>{ic26:.0f}</b>. The district has sat near a month of cash for three straight years, while peers held ~<b>{pa23:.0f}</b>. A cushion this thin means a bad month or a late state payment can become a real cash crunch.</p></div>
+  <div class="foot"><div>Source: audited reports (General Fund cash &divide; daily spending), FY2020–FY2023. Iowa City 2024 state-filed,<br>2025 unaudited (COO, Apr 2026), 2026 projected (PFM, Apr 2026); those audits aren't finished.</div>
     <div style="text-align:right"><b>Unofficial community analysis</b><br>Not official district data · {date}</div></div>
 </div>"""
     return css, body
@@ -157,12 +187,12 @@ def square():
     <h1>About one month of cash in the bank</h1>
     <p class="sub">"Days of cash" = how long the district could keep paying its bills if the money stopped — its emergency savings.</p></div>
   <div class="stats">
-    <div class="stat s-red"><div class="n">~{ic23:.0f} days</div><div class="l">Iowa City (2023) — thinnest of any large district</div></div>
+    <div class="stat s-red"><div class="n">~{ic25:.0f} days</div><div class="l">Iowa City (2025) — back at its 2023 low</div></div>
     <div class="stat s-blue"><div class="n">~{pa23:.0f} days</div><div class="l">Similar districts, on average</div></div>
     <div class="stat s-green"><div class="n">60+ days</div><div class="l">Recommended (about 2 months)</div></div></div>
-  <div class="chartwrap"><h2>Days of cash on hand — Iowa City vs. peers, 2020–2024</h2>{chart(1000,400)}</div>
-  <div class="explain"><p>Iowa City's cash cushion <b>fell from ~{ic20:.0f} days (2020) to ~{ic23:.0f} days (2023)</b> — while peers kept ~<b>{pa23:.0f}</b> and the recommended level is <b>60+</b>. A cushion this thin means a bad month or a late state payment can become a real cash crunch.</p></div>
-  <div class="foot"><div>Source: audited financial reports (General Fund cash &divide; daily spending), FY2020–FY2024.</div>
+  <div class="chartwrap"><h2>Days of cash on hand — Iowa City vs. peers, 2020–2026</h2>{chart(1000,400)}</div>
+  <div class="explain"><p>Iowa City's cash cushion <b>fell from ~{ic20:.0f} days (2020) to ~{ic23:.0f} (2023)</b>. The 2024 rebound <b>didn't stick — 2025 is back to ~{ic25:.0f} days</b> (2026 projected ~{ic26:.0f}), while peers kept ~<b>{pa23:.0f}</b>. A cushion this thin means a bad month or a late state payment can become a real cash crunch.</p></div>
+  <div class="foot"><div>Source: audited reports, FY2020–23 (GF cash &divide; daily spend). IC 2024 state-filed,<br>2025 unaudited, 2026 projected (PFM) — audits not yet final.</div>
     <div style="text-align:right"><b>Unofficial community analysis</b><br>{date}</div></div>
 </div>"""
     return css, body

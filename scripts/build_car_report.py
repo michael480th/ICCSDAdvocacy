@@ -40,6 +40,24 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
 un_diff = ic_car_un - ic_aud_un
 un_pct = un_diff / ic_aud_un * 100
 
+# ---- second analysis: "available" (spendable) fund balance = unassigned + assigned ----
+CODE = {"261": "Ankeny CSD", "882": "Burlington CSD", "1053": "Cedar Rapids CSD",
+        "1337": "College CSD (Prairie)", "1611": "Davenport CSD", "1737": "Des Moines Independent CSD",
+        "1863": "Dubuque CSD", "3141": "Iowa City CSD", "3231": "Johnston CSD", "3715": "Linn-Mar CSD",
+        "4581": "Muscatine CSD", "5250": "Pleasant Valley CSD", "6795": "Waterloo CSD",
+        "6822": "Waukee CSD", "6957": "West Des Moines CSD"}
+AVAIL_YEARS = [2023, 2024]   # the only years the CAR workbooks carry the unassigned/assigned split
+car_av, aud_av = {}, {}
+for r in csv.DictReader(open("data/car-fund-balances.csv")):
+    if r["fund"] == "General" and r["district_code"] in CODE and int(r["fiscal_year"]) in AVAIL_YEARS:
+        u = f(r["gf_unassigned"])
+        if u is not None:
+            car_av[(CODE[r["district_code"]], int(r["fiscal_year"]))] = u + (f(r["gf_assigned"]) or 0)
+for r in csv.DictReader(open("data/iowa-district-financials.csv")):
+    u = f(r["gf_unassigned"])
+    if u is not None:
+        aud_av[(r["district"], int(r["fiscal_year"]))] = u + (f(r["gf_assigned"]) or 0)
+
 
 def color(pct):
     a = abs(pct)
@@ -66,6 +84,24 @@ def matrix_rows():
             style = f"color:{c};font-weight:{'800' if flag else '600'}"
             ring = "box-shadow:inset 0 0 0 2px #dc2626;border-radius:6px" if flag else ""
             tds.append(f'<td style="{style};{ring}" title="{html.escape(title)}">{pct:+.1f}%</td>')
+        out.append(f"<tr>{''.join(tds)}</tr>")
+    return "\n".join(out)
+
+
+def avail_matrix_rows():
+    out = []
+    for d in DISTS:
+        me = d == "Iowa City CSD"
+        tds = [f'<th class="dname{" me" if me else ""}">{html.escape(d)}</th>']
+        for y in AVAIL_YEARS:
+            cv, av = car_av.get((d, y)), aud_av.get((d, y))
+            if cv is None or not av:
+                tds.append('<td class="na">—</td>')
+                continue
+            pct = (cv - av) / av * 100
+            title = f"{d} FY{y}: CAR available {cv:,.0f} vs audited {av:,.0f} ({cv-av:+,.0f})"
+            tds.append(f'<td style="color:{color(pct)};font-weight:{800 if abs(pct) >= 5 else 600}" '
+                       f'title="{html.escape(title)}">{pct:+.1f}%</td>')
         out.append(f"<tr>{''.join(tds)}</tr>")
     return "\n".join(out)
 
@@ -153,6 +189,33 @@ auditor declared a material weakness — "financial statements required signific
 <span><i style="background:#dc2626"></i>&gt;5%</span>
 <span><i style="background:#fff;box-shadow:inset 0 0 0 2px #dc2626"></i>flagged (&gt;1% &amp; &gt;$250K)</span>
 </div>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:20px">CAR vs. audited — "available" (spendable) fund balance gap</h2>
+<p style="font-size:14px;color:#475569;margin:2px 0 6px">A second view: instead of the <i>total</i> ending balance, this is the <b>spendable</b> portion —
+<b>unassigned + assigned</b> — which excludes money that is nonspendable, restricted, or committed. It's the cushion a
+district can actually use and the numerator of the solvency ratio. (The annual CAR workbooks only carry this split for
+FY2023–FY2024.)</p>
+<table>
+<thead><tr><th class="dname">District</th>{''.join(f'<th>FY{y}</th>' for y in AVAIL_YEARS)}</tr></thead>
+<tbody>
+{avail_matrix_rows()}
+</tbody>
+</table>
+<div class="legend">Gap (CAR − audited):
+<span><i style="background:#16a34a"></i>&lt;0.5%</span>
+<span><i style="background:#d97706"></i>0.5–2%</span>
+<span><i style="background:#ea580c"></i>2–5%</span>
+<span><i style="background:#dc2626"></i>&gt;5%</span>
+</div>
+<p class="take"><b>Read this one carefully.</b> Where a district's <i>total</i> balance ties (table above) but its
+<i>available</i> figure differs — e.g. <b>Waterloo</b> and <b>Waukee</b> — the dollars were just sorted into different
+buckets (spendable vs. committed/restricted); the bottom line still reconciles, so it's a classification difference, not
+a missing-money problem. The case that matters is where the total is <b>also</b> off: <b>Iowa City overstated its
+spendable reserves by +{un_pct:.0f}%</b> in FY2023 (${ic_car_un:,.0f} reported vs ${ic_aud_un:,.0f} audited) <i>on top
+of</i> an overstated total — i.e. the CAR made the usable cushion look far healthier than the audit found. Iowa City has
+no FY2024 audit yet, so its FY2024 cell is blank.</p>
 </div>
 
 <div class="card">
