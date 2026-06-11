@@ -132,11 +132,19 @@ for d in DISTS:
         # CAR beginning vs PRIOR-year audited ending
         if c and aprev and c["beg"] is not None and aprev["end"] is not None:
             emit(d, y, "C7_begin_vs_audit", "CAR begin vs prior audited end", c["beg"], aprev["end"])
-        # net change: CAR vs audited (uses audited net_change directly when available)
+        # net change: CAR vs audited (uses audited net_change directly when available).
+        # Measured against the FUND BALANCE it moves (a stable base) -- NOT against the audited
+        # net change, which is often near zero and would produce absurd percentages.
         if c and a and c["beg"] is not None:
             an = a["net"] if a.get("net") is not None else (a["end"] - aprev["end"] if (aprev and aprev["end"] is not None) else None)
-            if an is not None:
-                emit(d, y, "C8_net_change", "Net change in fund balance", c["end"] - c["beg"], an)
+            if an is not None and a.get("end"):
+                carnet = c["end"] - c["beg"]
+                gap = carnet - an
+                pctfb = gap / a["end"] * 100
+                ROWS.append(dict(district=d, fiscal_year=y, check="C8_net_change",
+                                 name="Net change in fund balance", car=round(carnet, 2),
+                                 audited=round(an, 2), gap=round(gap, 2), gap_pct=round(pctfb, 2),
+                                 flag=("Y" if (abs(gap) >= ABS and abs(pctfb) >= PCTT) else "")))
 
 # ---- audited-only meta checks ----
 for (d, y), a in aud.items():

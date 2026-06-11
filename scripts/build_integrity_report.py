@@ -117,6 +117,16 @@ def matrix(check, kind="$"):
             if cv is None or av is None:
                 tds.append('<td class="na">&mdash;</td>')
                 continue
+            if kind == "dollar":
+                gap = cv - av
+                gp = f(r["gap_pct"])
+                c = color(gp)
+                a = abs(gap); sgn = "+" if gap >= 0 else "-"
+                lbl = f"{sgn}${a/1e6:.1f}M" if a >= 1e6 else (f"{sgn}${a/1e3:.0f}K" if a >= 1e3 else f"{gap:+.0f}")
+                title = f"{d} FY{y}: CAR net {cv:+,.0f} vs audited net {av:+,.0f} (gap {gap:+,.0f}; {gp:+.1f}% of fund balance)"
+                tds.append(f'<td style="color:{c};font-weight:{"800" if flag else "600"};{ring}" '
+                           f'title="{html.escape(title)}">{lbl}</td>')
+                continue
             if kind == "pts":
                 gap = cv - av
                 c = "#16a34a" if abs(gap) < 1 else ("#d97706" if abs(gap) < 3 else "#dc2626")
@@ -249,8 +259,8 @@ Iowa City's is depth.</p>
 </div>
 
 {matrix_card("Net change in fund balance &mdash; CAR vs audited",
-  "The single most telling check: did the change the CAR reported actually happen? This is where Iowa City's FY2023 stands out &mdash; the CAR reported a gain ten times larger than the audit found.",
-  "C8_net_change", "$", "gap")}
+  "The single most telling check: did the change the CAR reported actually happen? Cells show the <b>dollar gap</b> (CAR minus audited net change); color is its size relative to the fund balance. Iowa City's FY2023 stands out &mdash; the CAR reported a +$1.04M gain, the audit found +$88K (a ~$951K overstatement). (We size this against the fund balance, not against the audited net change, because that base is often near zero.)",
+  "C8_net_change", "dollar", "gap")}
 
 {matrix_card("Ending General Fund balance &mdash; CAR vs audited",
   "The bottom line: does the year-end balance the CAR reports match the audited books? A red outline flags a gap over 1% and $250K.",
