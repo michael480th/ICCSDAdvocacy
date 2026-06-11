@@ -22,7 +22,6 @@ _ITEMS = [
     ("overview",  "index.html",                            "How ICCSD compares"),
     ("trend",     "iccsd-liquidity-trend.html",            "Reserves over time"),
     ("filing",    "iccsd-filing-vs-uab-large.html",        "Audit timeliness"),
-    ("car",       "car-vs-audited.html",                   "CAR vs. audited"),
     ("benchmark", "iowa-district-financial-benchmark.html", "Full benchmark (15 districts)"),
 ]
 
