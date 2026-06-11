@@ -196,7 +196,7 @@ footer{{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid v
 </style></head><body>{nav("integrity")}<div class="wrap">
 
 <h1>Reporting-integrity screen: do the CARs reconcile to the audits?</h1>
-<p class="sub">A reconciliation screen comparing each district's <b>Certified Annual Report</b> (its unaudited self-report) against its <b>independently audited</b> General Fund results, FY2018&ndash;FY2023 &middot; {date}</p>
+<p class="sub">A reconciliation screen comparing each district's <b>Certified Annual Report</b> (its unaudited self-report) against its <b>independently audited</b> General Fund results, FY2017&ndash;FY2023 &middot; {date}</p>
 
 <div class="card intro">
 <p>Every Iowa district files a <b>Certified Annual Report (CAR)</b> with the state by September 15 &mdash;
@@ -280,16 +280,21 @@ dramatic, but the books rarely tie out, which is its own kind of reporting-quali
 </div>
 
 <footer>
-<b>Method.</b> This screen runs <b>13 of 23 designed checks</b> on the data layers that are reliable today:
-the clean CAR General Fund series (FY2017&ndash;FY2023) and the curated audited ACFR figures
-(FY2020&ndash;FY2023). Dollar checks are flagged when the CAR differs from audited by &ge;1% and &ge;$250,000;
-ratio/point checks (margin, solvency, days cash) when they differ by &ge;3; audit timeliness when filing runs
-more than 15 months past fiscal year-end. The flag-rate scorecard <b>excludes</b> the timeliness check.
-The remaining checks &mdash; <b>per-fund</b> reconciliation, <b>all-funds</b> totals, <b>transfers</b>, the full
-revenue/expenditure <b>classification mix</b>, <b>restatement</b> notes, and the earlier <b>FY2015&ndash;FY2019</b>
-window &mdash; are <b>pending the audited backfill</b> (the older audit PDFs are in the repo but not yet reliably
-machine-extractable). <b>Sources.</b> CAR: Iowa Department of Education Certified Annual Report workbooks.
-Audited: each district's ACFR. Built by <code>scripts/build_integrity_checks.py</code> +
+<b>Method.</b> The audited General Fund figures are now machine-extracted from every district's ACFR for
+<b>FY2015&ndash;FY2023</b> (column- and region-aware, self-validated against accounting identities, and 100%
+matched to the curated FY2020&ndash;FY2023 data). The CAR-vs-audited comparison therefore runs across the full
+CAR window, <b>FY2017&ndash;FY2023</b>; audited-only checks (restatement, audit lag) reach back to FY2015.
+Dollar checks are flagged when the CAR differs from audited by &ge;1% and &ge;$250,000; ratio/point checks
+(solvency, days cash) when they differ by &ge;3 points; audit timeliness when filing runs more than 15 months
+past fiscal year-end. <b>Expenditure, transfers, operating margin and fund-balance-%-of-expenditure are shown
+for context but NOT flagged</b> &mdash; they differ systematically because the CAR folds "other financing
+uses"/transfers into General Fund expenditures while the audit separates them, so the scorecard reflects only
+the bottom-line figures that must reconcile regardless of presentation. Still pending: <b>per-fund</b> and
+<b>all-funds</b> reconciliation, and the full fund-balance <b>classification mix</b> for years before FY2023
+(the CAR carries the unassigned/assigned split only in its FY2023&ndash;FY2024 workbooks).
+<b>Sources.</b> CAR: Iowa Department of Education Certified Annual Report workbooks + multi-year files.
+Audited: each district's ACFR (<code>scripts/extract_audit_financials.py</code> &rarr;
+<code>data/audit-financials.csv</code>). Built by <code>scripts/build_integrity_checks.py</code> +
 <code>scripts/build_integrity_report.py</code>.
 </footer>
 </div></body></html>"""
