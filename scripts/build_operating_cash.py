@@ -180,6 +180,8 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .legend i{{display:inline-block;width:22px;height:0;border-top-width:3px;border-top-style:solid;vertical-align:middle;margin-right:6px}}
 .take{{margin:14px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #dc2626;border-radius:6px;padding:10px 14px}}
 .take b{{color:#0f172a}}
+.caution{{margin:12px 0 0;font-size:14.5px;line-height:1.5;background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #d97706;border-radius:8px;padding:12px 16px;color:#3f3f46}}
+.caution b{{color:#92400e}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
 </style></head><body>{nav("cash")}<div class="wrap">
 
@@ -223,6 +225,15 @@ and FY2026 is projected at just ~{ic26:.0f}. By any honest read, the district ha
 most of the last three years</b>, with one bounce that may be partly an artifact of the very allocation issues
 the late audits are now untangling. Peers, meanwhile, held ~<b>{pa25:.0f} days</b>. This is the cash behind the
 district's tax-anticipation-warrant and interfund-loan discussions.</p>
+<p class="caution"><b>⚠ Read the FY2024 bounce with caution — it isn't audited.</b> The FY2024 figure is the
+district's <i>own unaudited</i> report, filed while the same inter-fund reconciliation problems that forced major
+revisions to the FY2023 audit were still unresolved. So the apparent recovery is <b>provisional</b>: if the FY2024
+audit reassigns cash that's currently parked in the General Fund to the funds it actually belongs to, the days-cash
+falls back toward the trough — for scale, moving <b>$5M</b> out of the General Fund would drop FY2024 from ~{ic24:.0f}
+to ~{(cash[IC][2024]-5_000_000)/(exp[(IC,2024)]/365):.0f} days. (Direction isn't guaranteed — when FY2023 was audited,
+General-Fund <i>cash</i> actually came in ~10% <i>higher</i> than the CAR, even as the fund <i>balance</i> was revised
+down 8% and spendable reserves ~29%.) Until FY2024–FY2026 are audited (committed by May 2027), treat the open markers
+as estimates, not actuals.</p>
 </div>
 
 <footer>
