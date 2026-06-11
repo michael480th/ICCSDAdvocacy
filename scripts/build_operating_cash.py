@@ -111,6 +111,10 @@ DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .card{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}}
 .intro{{border-left:4px solid #2563eb}} .intro p{{margin:7px 0}}
+.hero{{margin:0 0 18px}}
+.hero img{{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}}
+.hero figcaption{{font-size:13px;color:var(--mut);margin-top:8px;text-align:center}}
+.hero a{{color:#2563eb;font-weight:600}}
 .chart{{width:100%;height:auto;display:block}}
 .grid{{stroke:#eef2f7;stroke-width:1}} .ytick{{fill:#94a3b8;font-size:12px;text-anchor:end}} .xtick{{fill:#64748b;font-size:13px;text-anchor:middle}}
 .ref{{stroke:#16a34a;stroke-width:1.4;stroke-dasharray:5 4;opacity:.8}} .reflab{{fill:#16a34a;font-size:11px;text-anchor:end}}
@@ -121,6 +125,11 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
 </style></head><body>{nav("cash")}<div class="wrap">
+
+<figure class="hero">
+  <img src="iccsd-operating-cash-infographic.png" alt="Infographic: Iowa City schools have about one month of cash on hand (~33 days in 2023) versus ~98 days at similar districts and a 60-day recommended level.">
+  <figcaption>Share this summary &nbsp;·&nbsp; <a href="iccsd-operating-cash-infographic.png" download>download the image</a></figcaption>
+</figure>
 
 <h1>Iowa City Schools: Operating Cash on Hand</h1>
 <p class="sub">General Fund <b>days-cash-on-hand</b> — how many days the district could run on its operating cash — vs. size-matched peers, FY2020–FY2025 · {date}</p>
