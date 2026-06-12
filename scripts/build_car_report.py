@@ -124,7 +124,7 @@ DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 *{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
 .wrap{{max-width:960px;margin:0 auto;padding:32px 20px 70px}}
 h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
-.card{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}}
+.card{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);overflow-x:auto}}
 .intro{{border-left:4px solid #2563eb}} .intro p{{margin:7px 0}}
 .flag{{background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:10px;padding:16px 20px;margin-bottom:18px}}
 .flag h2{{margin:0 0 8px;font-size:20px;color:#991b1b}}
@@ -132,7 +132,7 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .big .stat{{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:10px 14px;min-width:150px}}
 .big .n{{font-size:25px;font-weight:800;color:#dc2626}} .big .l{{font-size:12px;color:var(--mut)}}
 table{{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}}
-th,td{{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}}
+th,td{{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}}
 thead th{{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}}
 .dname{{text-align:left;font-weight:600}} .dname.me{{color:#1d4ed8}}
 tr:has(.me){{background:#eff6ff}}
