@@ -23,6 +23,7 @@ _ITEMS = [
     ("trend",     "iccsd-liquidity-trend.html",            "Reserves over time"),
     ("cash",      "iccsd-operating-cash.html",             "Operating cash"),
     ("car",       "car-vs-audited.html",                   "CAR vs. audited"),
+    ("activity",  "activity-fund.html",                    "Activities fund"),
     ("integrity", "integrity-checks.html",                 "Integrity checks"),
     ("benchmark", "iowa-district-financial-benchmark.html", "Full benchmark (15 districts)"),
 ]

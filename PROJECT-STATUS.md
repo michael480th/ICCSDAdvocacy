@@ -13,6 +13,7 @@ filing.
 |---|---|
 | `iowa-district-financial-benchmark.html` | Full interactive report (table, map, per-district deep-dive, "how the score is built") |
 | `iccsd-vs-peers.html` | Public Iowa City report — 13 KPI cards vs. size-matched peers (5,000+ students) |
+| `activity-fund.html` | Student Activity Fund: year-end balance per CAR, per audit, and per student — ICCSD vs. 14 peers FY2020–FY2024 (ICCSD thinnest of 15) |
 | `iccsd-filing-vs-control.html` | Scatterplot: audit filing speed vs. financial-control metrics |
 | `iccsd-fmp-board-commentary.md` | Benchmark vs. the FMP board dissent + the April-2026 cash-flow memo |
 | `iowa-district-financial-analysis-framework.md` | Methodology / scoring framework |
@@ -26,10 +27,14 @@ python3 scripts/build_report.py         # -> iowa-district-financial-benchmark.h
 python3 scripts/build_iccsd_report.py   # -> iccsd-vs-peers.html
 python3 scripts/build_scatter.py        # -> iccsd-filing-vs-control.html
 python3 scripts/build_workbook.py       # -> data/iowa-district-benchmark.xlsx
+python3 scripts/build_activity_fund_report.py  # -> activity-fund.html
 # scripts/extract_dom.py rebuilds data/dom/* from the state spreadsheets in the source-doc folders
+# scripts/extract_car.py + extract_activity_fund.py rebuild the CAR & audited activity-fund tables
+#   (extract_activity_fund.py needs PyMuPDF: pip install pymupdf)
 ```
-Requires Python 3 + `openpyxl`. (The build_* scripts read `/tmp/audit/cards.json`, written by
-`build_analysis.py`, so run that first.)
+Requires Python 3 + `openpyxl` (+ `pymupdf` for the ACFR extractors, and `mkdir -p /tmp/audit`
+before build_analysis.py). The build_* scripts read `/tmp/audit/cards.json`, written by
+`build_analysis.py`, so run that first.
 
 ## Data layers
 - **Audited ACFRs** (FY2020–FY2025) → `data/iowa-district-financials.csv`, `data/district-extractions/`

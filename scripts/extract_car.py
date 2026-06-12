@@ -104,6 +104,25 @@ for fy, path in XLS.items():
         if prior and prior["end"] is not None:
             rec[k]["beg"] = prior["end"]
 
+    # ---- Activity (student activities) fund: FY2024 only (long CSVs end at FY2023) ----
+    # The workbook carries every fund's balance; we add the Activity special-revenue fund so the
+    # CAR series reaches FY2024. Ending = acttotalfundequity; rev/exp from the Activity sheets;
+    # beginning = prior-year Activity ending (FY2023, from the long CSVs above).
+    if fy == 2024:
+        ax = wb["ActExpData1"]
+        ai, A = hidx(ax), by_code(ax)
+        for c in B:
+            if c not in R:
+                continue
+            k = (c, fy, "Activity")
+            rec[k]["end"] = B[c][bi["acttotalfundequity"]]
+            rec[k]["rev"] = R[c][ri["acttotalrevandother"]] or 0
+            if c in A:
+                rec[k]["exp"] = sum((A[c][ai[o]] or 0) for o in EXPOBJ)
+            prior = rec.get((c, fy - 1, "Activity"))
+            if prior and prior["end"] is not None:
+                rec[k]["beg"] = prior["end"]
+
 rows = []
 for (c, fy, fund) in sorted(rec):
     d = rec[(c, fy, fund)]
