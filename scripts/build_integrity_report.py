@@ -68,6 +68,105 @@ ic_cash = idx.get(("Iowa City CSD", 2023, "C14_cash"))
 ic_lag = idx.get(("Iowa City CSD", 2023, "C22_timeliness"))
 
 
+# ---- AUDIT CURRENCY: the latest audited year each district actually has, and its lag ----
+import datetime as _dt
+CURRENT_FY = 2025  # the most recent fiscal year peers have audited (FY ended June 30, 2025)
+audit_curr = {}    # district -> dict(fy, report, lag_months)
+for r in csv.DictReader(open("data/iowa-district-financials.csv")):
+    if r["district"] in DISTS and r["gf_total_fund_balance"] and r["report_date"]:
+        fy = int(r["fiscal_year"])
+        if r["district"] not in audit_curr or fy > audit_curr[r["district"]]["fy"]:
+            rd = r["report_date"].strip()
+            lag = None
+            for fmt in ("%Y-%m-%d", "%B %d, %Y", "%m/%d/%Y"):
+                try:
+                    lag = (_dt.datetime.strptime(rd, fmt).date() - _dt.date(fy, 6, 30)).days / 30.44
+                    break
+                except ValueError:
+                    pass
+            audit_curr[r["district"]] = dict(fy=fy, report=rd, lag=lag)
+
+
+def currency_rows():
+    out = []
+    for d in sorted(DISTS, key=lambda d: (audit_curr.get(d, {}).get("fy", 0), -(audit_curr.get(d, {}).get("lag") or 0))):
+        a = audit_curr.get(d)
+        if not a:
+            continue
+        me = d == "Iowa City CSD"
+        behind = CURRENT_FY - a["fy"]
+        lag = a["lag"]
+        late = lag is not None and lag > 15
+        c = "#dc2626" if (behind >= 1 or late) else "#16a34a"
+        badge = (f'<span style="color:#dc2626;font-weight:800">{behind} yr behind</span>' if behind >= 1
+                 else '<span style="color:#16a34a;font-weight:700">current</span>')
+        lagtxt = (f'{lag:.0f} mo' if lag is not None else '—')
+        out.append(f'<tr><th class="dname{" me" if me else ""}">{html.escape(d)}</th>'
+                   f'<td style="color:{c};font-weight:{"800" if behind>=1 else "600"}">FY{a["fy"]}</td>'
+                   f'<td style="color:{"#dc2626" if late else "#334155"};font-weight:{"800" if late else "600"}">{lagtxt}</td>'
+                   f'<td>{badge}</td></tr>')
+    return "\n".join(out)
+
+
+# ---- ALL CHECKS at a glance: one row per check, with Iowa City's FY2023 result ----
+GROUPS = [
+    ("Bottom-line reconciliation (these should tie regardless of presentation)", [
+        ("C1_ending", "Ending fund balance"), ("C2_available", "Available (spendable) reserves"),
+        ("C3_unassigned", "Unassigned balance"), ("C8_net_change", "Net change in fund balance"),
+        ("C10_revenue", "Revenue"), ("C14_cash", "Operating cash"), ("C15_days_cash", "Days cash on hand"),
+        ("C17_solvency", "Solvency ratio"), ("C6_rollforward", "CAR internal roll-forward"),
+        ("C7_begin_vs_audit", "Beginning vs prior audited end")]),
+    ("Classification-sensitive (shown for context, not flagged)", [
+        ("C11_expenditure", "Expenditure"), ("C12_transfers", "Transfers / other financing"),
+        ("C13_margin", "Operating margin"), ("C18_fb_pct_exp", "Fund balance % of expenditure")]),
+    ("Audit quality (meta)", [
+        ("C9_restatement", "Beginning-balance restatement"), ("C22_timeliness", "Audit timeliness")]),
+]
+
+
+def ic_cell(check):
+    """Iowa City's most-recent comparable result for a check (FY2023, the last audited year)."""
+    r = idx.get(("Iowa City CSD", 2023, check))
+    if not r:
+        return '<span style="color:#cbd5e1">no data</span>'
+    flag = r["flag"] == "Y"
+    style = 'color:#dc2626;font-weight:800' if flag else 'color:#334155'
+    if check == "C22_timeliness":
+        return f'<span style="{style}">{f(r["audited"]):.0f} mo late</span>'
+    if check == "C9_restatement":
+        return f'<span style="{style}">{"restated" if r["audited"]=="Y" else "no"}</span>'
+    gp = f(r["gap_pct"])
+    if check in ("C8_net_change", "C14_cash", "C1_ending", "C2_available", "C3_unassigned", "C10_revenue", "C12_transfers"):
+        g = f(r["gap"]); dollar = (f'{("+" if g>=0 else "-")}${abs(g)/1e6:.1f}M' if abs(g) >= 1e6 else f'{("+" if g>=0 else "-")}${abs(g)/1e3:.0f}K')
+        # show the % only when it's meaningful (not transfers, whose base is near zero)
+        extra = f' ({gp:+.0f}%)' if (gp is not None and abs(gp) < 500 and check != "C12_transfers") else ''
+        return f'<span style="{style}">{dollar}{extra}</span>'
+    if gp is not None:
+        return f'<span style="{style}">{gp:+.1f}%</span>'
+    cv, av = f(r["car"]), f(r["audited"])   # point checks (days cash, solvency, margin, fb%exp)
+    if cv is not None and av is not None:
+        return f'<span style="{style}">{cv-av:+.1f} pts</span>'
+    return '<span style="color:#cbd5e1">&mdash;</span>'
+
+
+def allchecks_rows():
+    out = []
+    for gtitle, items in GROUPS:
+        out.append(f'<tr><td colspan="4" style="background:#f8fafc;font-weight:700;color:#475569;'
+                   f'font-size:12.5px;padding:8px 10px">{gtitle}</td></tr>')
+        for cid, label in items:
+            cr = [r for r in rows if r["check"] == cid]
+            nflag = sum(1 for r in cr if r["flag"] == "Y")
+            nrun = len(cr)
+            fcol = "#dc2626" if nflag else "#16a34a"
+            out.append(f'<tr><th class="dname">{label}</th>'
+                       f'<td style="text-align:left;color:#64748b;font-size:12.5px">{html.escape(cr[0]["name"]) if cr else ""}</td>'
+                       f'<td style="color:{fcol};font-weight:{"800" if nflag else "600"}">{nflag} / {nrun}</td>'
+                       f'<td style="text-align:right">{ic_cell(cid)}</td></tr>')
+    return "\n".join(out)
+
+
+
 def scorecard_rows():
     out = []
     for d in scorecard:
@@ -215,10 +314,27 @@ same year. <b>The two should match.</b> This screen runs the reconciliation chec
 use &mdash; ending balance, available reserves, net change, revenue, expenditure, operating cash, beginning
 balance versus the prior year's audit, and audit timeliness &mdash; and scores how reliably each district's
 self-reported numbers tie out to what the auditors ultimately found.</p>
-<p>When a district's CAR reconciles to the penny, that is what a clean set of books looks like. When it
-doesn't &mdash; especially on the headline balances and the net change &mdash; that is a red flag about the
-quality of the district's financial reporting. Across {len(DISTS)} districts and {len(YEARS)} years,
-<b>{total_flags} of {total_checks}</b> reconciliation checks are flagged.</p>
+<p>Two things make a district's self-reporting trustworthy: an audit has to <b>exist</b> for the year (so the
+numbers can be checked at all), and when it does, the CAR has to <b>match</b> it. Across {len(DISTS)} districts
+and {len(YEARS)} years, <b>{total_flags} of {total_checks}</b> reconciliation checks are flagged &mdash; but the
+first test is the one that most cleanly separates the pack, and it is where Iowa City stands alone.</p>
+</div>
+
+<div class="card" style="border-left:4px solid #dc2626">
+<h2 style="margin:0 0 4px;font-size:20px">First question: can the numbers even be checked yet?</h2>
+<p style="font-size:14.5px;color:#334155;margin:2px 0 10px">The most basic integrity test isn't whether the CAR
+matches the audit &mdash; it's whether an <b>audit exists yet at all</b>. As of {date}, every peer district has a
+completed audit through <b>FY2025</b>. <b>Iowa City's most recent audit is FY2023</b> &mdash; the only district
+two years behind &mdash; and that one arrived <b>26 months late</b> with a declared material weakness. Its FY2024
+and FY2025 self-reported numbers <b>cannot be verified by anyone.</b></p>
+<table>
+<thead><tr><th class="dname">District</th><th>Audited through</th><th>Filing lag</th><th>Status</th></tr></thead>
+<tbody>
+{currency_rows()}
+</tbody>
+</table>
+<div class="legend">Filing lag = months from the June&nbsp;30 fiscal year-end to the audit's report date.
+<span style="color:#dc2626;font-weight:700">Red</span> = behind the FY2025 cycle, or filed more than 15 months late.</div>
 </div>
 
 <div class="flag">
@@ -243,6 +359,12 @@ filed <b>{f(ic_lag['audited']):.0f} months late</b> and the auditor declared a m
 <h2 style="margin:0 0 4px;font-size:19px">District scorecard &mdash; reconciliation flag rate</h2>
 <p style="font-size:14px;color:#475569;margin:2px 0 6px">Share of each district's dollar/ratio checks that fail to reconcile, ranked worst first.
 <b>Audit timeliness is excluded here</b> (it is a meta check, not a CAR-vs-audited number). A clean district shows 0%.</p>
+<p style="font-size:13.5px;color:#64748b;margin:2px 0 6px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px">
+<b>Read this with the audit-currency table above.</b> A low rate can mean genuinely clean books (Pleasant Valley, Linn-Mar) &mdash;
+or, as with <b>Iowa City</b>, that the CAR reconciled fine for years (zero flags FY2017&ndash;2022) and then <b>broke
+catastrophically in one recent year (FY2023)</b> before going dark. Flag <i>rate</i> averages that single failure across the
+clean years, so Davenport's <i>chronic</i> ~2% drift ranks higher than Iowa City's <i>acute</i> breakdown. Reconciliation
+alone does not capture Iowa City's real problem &mdash; that there is no recent audit to reconcile against.</p>
 <table>
 <thead><tr><th class="dname">District</th><th>Checks run</th><th>Flagged</th><th>Flag rate</th></tr></thead>
 <tbody>
@@ -287,6 +409,20 @@ Iowa City's is depth.</p>
 <p style="font-size:14px;color:#475569;margin:2px 0 6px">Where Iowa City's flags are a single severe year, Davenport's are a steady drumbeat &mdash; small CAR-vs-audited
 gaps that recur across revenue, expenditure, ending balance and net change, year after year. No single year is
 dramatic, but the books rarely tie out, which is its own kind of reporting-quality signal.</p>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:19px">All 16 checks &mdash; at a glance</h2>
+<p style="font-size:14px;color:#475569;margin:2px 0 6px">Every check the screen runs, how many district-years it flags,
+and Iowa City's most recent comparable result (FY2023, its last audited year). The <b>bottom-line</b> checks must reconcile
+regardless of accounting presentation; the <b>classification-sensitive</b> ones differ systematically (the CAR folds
+transfers into expenditures) and are shown but not flagged; the <b>meta</b> checks are about audit quality, not the CAR.</p>
+<table>
+<thead><tr><th class="dname">Check</th><th style="text-align:left">Compares</th><th>Flagged</th><th>Iowa City FY2023</th></tr></thead>
+<tbody>
+{allchecks_rows()}
+</tbody>
+</table>
 </div>
 
 <footer>
