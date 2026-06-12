@@ -184,6 +184,66 @@ rev_ps_2024 = sorted(((rev[(n, 2024)] / enr[(n, 2024)], n) for n in DISTS
                       if (n, 2024) in rev and enr.get((n, 2024))), reverse=True)
 ic_rev_rank = [i for i, (_, n) in enumerate(rev_ps_2024, 1) if n == ME][0]
 
+# Interfund "Transfers In" (General Fund -> Activity), which the CAR counts as revenue. So the
+# reported net change overstates how well activities cover their own costs; "true" net =
+# (reported revenue - transfers in) - expenditure. ICCSD's figures match its own June 9 2026 Board
+# "Student Activity Fund Review" to the dollar (FY20-24: $300K/$750K/$400K/$900K/$842K).
+xfer = {}
+for r in csv.DictReader(open("data/activity-transfers.csv")):
+    if r["district_code"] in CODE and r["transfers_in"]:
+        xfer[(CODE[r["district_code"]], int(r["fiscal_year"]))] = f(r["transfers_in"])
+XFER = {y: xfer.get((ME, y), 0.0) for y in YEARS}
+ic_true_net = {y: (rev[(ME, y)] - XFER[y] - exp[(ME, y)])
+               for y in YEARS if (ME, y) in rev and (ME, y) in exp}
+ic_true_cum = sum(ic_true_net.values())
+ic_xfer_cum = sum(XFER[y] for y in YEARS)
+
+
+def true_net(name, fy):
+    if (name, fy) in rev and (name, fy) in exp:
+        return rev[(name, fy)] - xfer.get((name, fy), 0.0) - exp[(name, fy)]
+    return None
+
+
+def transfer_rows():
+    """per-district transfers in + cumulative reported-vs-true net (FY2020-2024), $K."""
+    out = []
+    ranked = sorted(DISTS, key=lambda d: -sum(xfer.get((d, y), 0.0) for y in YEARS))
+    for d in ranked:
+        me = d == ME
+        tx = sum(xfer.get((d, y), 0.0) for y in YEARS)
+        rep = sum(rev[(d, y)] - exp[(d, y)] for y in YEARS if (d, y) in rev and (d, y) in exp)
+        tru = rep - tx
+        revsum = sum(rev[(d, y)] for y in YEARS if (d, y) in rev)
+        share = tx / revsum * 100 if revsum else 0
+        nc = lambda v: f'<td style="color:{"#16a34a" if v >= 0 else "#dc2626"};font-weight:{800 if me else 600}">{v/1e3:+,.0f}K</td>'
+        out.append(
+            f'<tr><th class="dname{" me" if me else ""}">{html.escape(d)}</th>'
+            f'<td style="font-weight:{800 if me else 500}">${tx/1e3:,.0f}K</td>'
+            f'<td>{share:.0f}%</td>{nc(rep)}{nc(tru)}</tr>')
+    return "\n".join(out)
+
+
+n_transfer = sum(1 for d in DISTS if sum(xfer.get((d, y), 0.0) for y in YEARS) > 50_000)
+ic_xfer_rank = sorted(DISTS, key=lambda d: -sum(xfer.get((d, y), 0.0) for y in YEARS)).index(ME) + 1
+
+
+def truenet_rows():
+    out = []
+    for y in YEARS:
+        if (ME, y) not in rev or y not in XFER:
+            continue
+        rv, xf, ex = rev[(ME, y)], XFER[y], exp[(ME, y)]
+        truer = rv - xf
+        rep, tru = rv - ex, truer - ex
+        nc = lambda v: f'<td style="color:{"#16a34a" if v >= 0 else "#dc2626"};font-weight:600">{v/1e3:+,.0f}K</td>'
+        out.append(
+            f'<tr><th class="dname">FY{y}</th>'
+            f'<td>${rv/1e3:,.0f}K</td><td style="color:#b45309">−${xf/1e3:,.0f}K</td>'
+            f'<td>${truer/1e3:,.0f}K</td><td>${ex/1e3:,.0f}K</td>'
+            f'{nc(rep)}{nc(tru)}<td>${car.get((ME,y),0)/1e3:,.0f}K</td></tr>')
+    return "\n".join(out)
+
 
 def recon_matrix():
     out = []
@@ -338,11 +398,59 @@ negative net draws it down). All figures in $ thousands.</p>
 <p class="take"><b>Iowa City moves the most money through its activity fund of any peer, yet keeps the
 least.</b> In FY2024 it ran <b>${rev[(ME,2024)]/1e6:.1f}M of revenue</b> through the fund —
 <b>${ic_rev_ps[2024]:.0f} per student, the highest of all 15</b> (rank {ic_rev_rank} of {len(rev_ps_2024)})
-— but its year-end balance is still the 2nd-thinnest. The net-change column tells the story of the
-drawdown: ICCSD ran <b>deficits in FY2022 (${net[(ME,2022)]/1e3:+,.0f}K) and FY2023
-(${net[(ME,2023)]/1e3:+,.0f}K)</b> that emptied the cushion, then a <b>${net[(ME,2024)]/1e3:+,.0f}K</b>
-surplus in FY2024 rebuilt part of it. So the thin balance is a function of how little is carried over,
-not of low activity.</p>
+— but its year-end balance is still the 2nd-thinnest. <b>The reported net change above flatters the
+fund, though:</b> ICCSD's reported revenue includes <b>$0.3M–$0.9M a year transferred in from the
+General Fund</b>. Back those out (next panel) and the fund has run an operating loss <i>every year</i> —
+including FY2024, whose apparent <b>${net[(ME,2024)]/1e3:+,.0f}K "surplus" was really an
+${XFER[2024]/1e3:,.0f}K General-Fund transfer</b> masking a ${ic_true_net[2024]/1e3:+,.0f}K activities
+loss. The thin balance reflects activities that don't cover their own costs.</p>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:20px">Iowa City: are activities actually self-funding?</h2>
+<p style="font-size:14px;color:#475569;margin:2px 0 6px">Iowa's CAR requires every student-activity
+account to be non-negative at year-end, so ICCSD transfers money in from the <b>General Fund</b> to clear
+deficits before certifying (per the district's June 9, 2026 Board review). Those transfers count as
+revenue in the CAR — so the <b>"true" net</b>, with transfers removed, shows whether the activities pay
+for themselves. <b>They don't.</b></p>
+<div class="tscroll"><table>
+<thead><tr><th class="dname">Iowa City CSD</th><th>Reported<br>revenue</th><th>GF transfer<br>in</th>
+<th>True<br>revenue</th><th>Expenditure</th><th>Reported<br>net</th><th>True net<br>(activities)</th>
+<th>Year-end<br>balance</th></tr></thead>
+<tbody>
+{truenet_rows()}
+</tbody>
+</table></div>
+<p class="take"><b>Stripped of General-Fund transfers, Iowa City's activities lost money in all five
+years</b> — from ${abs(min(ic_true_net.values()))/1e3:,.0f}K in the worst year (FY2023) down to
+${abs(ic_true_net[2024])/1e3:,.0f}K in FY2024 — a cumulative
+<b>${ic_true_cum/1e6:.1f}M operating loss across FY2020–FY2024</b>, backfilled by
+<b>${ic_xfer_cum/1e6:.1f}M</b> of transfers from the operating fund. That is what the CFO meant in
+reporting the fund "loses money": the activities don't cover their own costs, and the gap is absorbed by
+the same General Fund that runs the district's ~9-days-cash reserve. (Transfer figures: ICCSD Student
+Activity Fund Review, Board of Directors, June 9, 2026.)</p>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:20px">Do peers do this too? Transfers in, and net before vs. after</h2>
+<p style="font-size:14px;color:#475569;margin:2px 0 6px">Cumulative FY2020–FY2024. <b>Transfers in</b> =
+General-Fund money the CAR books as activity revenue. <b>% of rev</b> = how much of reported activity
+revenue is that transfer. <b>Reported net</b> includes the transfers; <b>true net</b> strips them out
+(activities only). Sorted by transfers received.</p>
+<div class="tscroll"><table>
+<thead><tr><th class="dname">District</th><th>Transfers in<br>(5-yr)</th><th>% of<br>revenue</th>
+<th>Reported net<br>(5-yr)</th><th>True net<br>(5-yr, ex-transfer)</th></tr></thead>
+<tbody>
+{transfer_rows()}
+</tbody>
+</table></div>
+<p class="take"><b>Most peers transfer in little or nothing — Iowa City is the outlier by a wide margin.</b>
+Its <b>${ic_xfer_cum/1e6:.1f}M</b> of General-Fund transfers over five years is the most of any district
+(rank {ic_xfer_rank} of 15) and nearly 4× the next-highest, and it is the share that most changes the
+story: a reported near-breakeven becomes a <b>${ic_true_cum/1e6:.1f}M</b> activities loss once the
+subsidy is removed. A few others (West Des Moines, Waukee, Dubuque, College) also lean on transfers, but
+modestly; six districts use essentially none. Note Des Moines runs a real activities loss too — but it
+shows up <i>as</i> a reported loss because it doesn't paper over it with transfers.</p>
 </div>
 
 <div class="card">
