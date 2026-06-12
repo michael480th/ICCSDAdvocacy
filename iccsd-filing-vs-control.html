@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit filing speed vs. financial control — Iowa districts</title>
+<style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#0f172a;margin:0;background:#f1f5f9}
+.wrap{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:25px;margin:0 0 4px} .sub{color:#64748b;margin:0 0 16px;font-size:15px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.toggle{margin:4px 0 10px;font-size:14px} .toggle label{margin-right:14px;cursor:pointer}
+svg{width:100%;height:auto;display:block} .ax{font-size:11px;fill:#475569} .tick{font-size:10px;fill:#94a3b8}
+.gl{stroke:#eef2f7} .ref{stroke:#f59e0b;stroke-dasharray:4 3;stroke-width:1.2} .reflbl{font-size:10px;fill:#d97706}
+.lbl{font-size:10px;fill:#334155} .note{font-size:13.5px;color:#475569;line-height:1.5}
+.qlbl{font-size:11px;fill:#cbd5e1;font-style:italic}
+.legend{font-size:12px;color:#64748b;margin-top:6px}
+b{color:#0f172a}
+</style></head><body><div class="wrap">
+<h1>Do districts that manage their books tightly also stay financially strong?</h1>
+<p class="sub">Each dot is one of Iowa's large school districts. Horizontal: how long, on average, it takes to file its audited financials (faster = tighter operations). Vertical: a measure of financial control. June 2026</p>
+<div class="card">
+ <div class="toggle"><b>Vertical axis:</b>
+   <label><input type="radio" name="y" value="uab" checked> Spending authority (UAB %)</label>
+   <label><input type="radio" name="y" value="reserves"> Days of operating reserves</label>
+   <label><input type="radio" name="y" value="solv"> Reserves / solvency %</label>
+ </div>
+ <svg id="plot" viewBox="0 0 640 440"></svg>
+ <div class="legend">&#9679; district &nbsp;&middot;&nbsp; <span style="color:#dc2626">&#9679;</span> Iowa City &nbsp;&middot;&nbsp; <span style="color:#d97706">&#8888;</span> GFOA timely-filing guideline (180 days)</div>
+</div>
+<div class="card note" id="readout"></div>
+<script>
+const PTS = [{"d": "Ankeny CSD", "short": "Ankeny", "avg_lag": 150, "latest_lag": 147, "uab": 14.01, "solv": 13.54, "reserves": 48, "composite": 4.09, "ic": false}, {"d": "Burlington CSD", "short": "Burlington", "avg_lag": 259, "latest_lag": 241, "uab": 28.51, "solv": 8.5, "reserves": 26, "composite": 3.89, "ic": false}, {"d": "Cedar Rapids CSD", "short": "Cedar Rapids", "avg_lag": 192, "latest_lag": 172, "uab": 12.96, "solv": 13.96, "reserves": 47, "composite": 4.14, "ic": false}, {"d": "College CSD (Prairie)", "short": "College", "avg_lag": 207, "latest_lag": 231, "uab": 14.14, "solv": 6.6, "reserves": 21, "composite": 3.11, "ic": false}, {"d": "Davenport CSD", "short": "Davenport", "avg_lag": 167, "latest_lag": 147, "uab": 18.59, "solv": 24.39, "reserves": 83, "composite": 4.15, "ic": false}, {"d": "Des Moines Independent CSD", "short": "Des Moines", "avg_lag": 205, "latest_lag": 247, "uab": 18.14, "solv": 25.48, "reserves": 80, "composite": 3.35, "ic": false}, {"d": "Dubuque CSD", "short": "Dubuque", "avg_lag": 170, "latest_lag": 196, "uab": 11.08, "solv": 15.55, "reserves": 54, "composite": 4.11, "ic": false}, {"d": "Iowa City CSD", "short": "Iowa City", "avg_lag": 341, "latest_lag": 789, "uab": 2.31, "solv": 2.46, "reserves": 9, "composite": 2.23, "ic": true}, {"d": "Johnston CSD", "short": "Johnston", "avg_lag": 203, "latest_lag": 256, "uab": 20.66, "solv": 7.74, "reserves": 26, "composite": 3.61, "ic": false}, {"d": "Linn-Mar CSD", "short": "Linn-Mar", "avg_lag": 152, "latest_lag": 134, "uab": 10.27, "solv": 9.62, "reserves": 33, "composite": 3.87, "ic": false}, {"d": "Muscatine CSD", "short": "Muscatine", "avg_lag": 167, "latest_lag": 109, "uab": 20.49, "solv": 15.4, "reserves": 52, "composite": 4.43, "ic": false}, {"d": "Pleasant Valley CSD", "short": "Pleasant Valley", "avg_lag": 137, "latest_lag": 95, "uab": 22.83, "solv": 22.72, "reserves": 62, "composite": 4.9, "ic": false}, {"d": "Waterloo CSD", "short": "Waterloo", "avg_lag": 134, "latest_lag": 137, "uab": 7.54, "solv": -5.69, "reserves": -17, "composite": 2.49, "ic": false}, {"d": "Waukee CSD", "short": "Waukee", "avg_lag": 144, "latest_lag": 140, "uab": 29.87, "solv": 18.06, "reserves": 57, "composite": 4.59, "ic": false}, {"d": "West Des Moines CSD", "short": "West Des Moines", "avg_lag": 147, "latest_lag": 142, "uab": 11.0, "solv": 11.55, "reserves": 39, "composite": 3.96, "ic": false}];
+const YDEF = {uab:{lab:"Spending authority (UAB %)",fmt:v=>v.toFixed(1)+"%",good:"high"},
+              reserves:{lab:"Days of operating reserves",fmt:v=>v.toFixed(0)+" d",good:"high"},
+              solv:{lab:"Reserves / solvency %",fmt:v=>v.toFixed(1)+"%",good:"high"}};
+function corr(xs,ys){const n=xs.length,mx=xs.reduce((a,b)=>a+b)/n,my=ys.reduce((a,b)=>a+b)/n;
+ let c=0,sx=0,sy=0;for(let i=0;i<n;i++){c+=(xs[i]-mx)*(ys[i]-my);sx+=(xs[i]-mx)**2;sy+=(ys[i]-my)**2;}
+ return c/Math.sqrt(sx*sy);}
+function draw(ykey){
+ const W=640,H=440,L=56,R=20,T=20,B=46;
+ const pts=PTS.filter(p=>p[ykey]!=null);
+ const xs=pts.map(p=>p.avg_lag), ys=pts.map(p=>p[ykey]);
+ const xmax=Math.max(...xs)*1.08, xmin=0;
+ let ymin=Math.min(...ys,0), ymax=Math.max(...ys); const pad=(ymax-ymin)*0.12; ymin-=pad; ymax+=pad;
+ const X=v=>L+(v-xmin)/(xmax-xmin)*(W-L-R), Y=v=>H-B-(v-ymin)/(ymax-ymin)*(H-T-B);
+ let s=`<rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="#fafbfc"/>`;
+ for(let i=0;i<=4;i++){const yv=ymin+(ymax-ymin)*i/4;s+=`<line class="gl" x1="${L}" y1="${Y(yv).toFixed(1)}" x2="${W-R}" y2="${Y(yv).toFixed(1)}"/><text class="tick" x="${L-6}" y="${(Y(yv)+3).toFixed(1)}" text-anchor="end">${YDEF[ykey].fmt(yv)}</text>`;}
+ for(let i=0;i<=4;i++){const xv=xmin+(xmax-xmin)*i/4;s+=`<text class="tick" x="${X(xv).toFixed(1)}" y="${H-B+15}" text-anchor="middle">${Math.round(xv)}</text>`;}
+ if(180<xmax){s+=`<line class="ref" x1="${X(180).toFixed(1)}" y1="${T}" x2="${X(180).toFixed(1)}" y2="${H-B}"/><text class="reflbl" x="${X(180)+3}" y="${T+11}">180-day guideline</text>`;}
+ if(ymin<0&&ymax>0){s+=`<line x1="${L}" y1="${Y(0).toFixed(1)}" x2="${W-R}" y2="${Y(0).toFixed(1)}" stroke="#e2e8f0"/>`;}
+ s+=`<text class="ax" x="${(L+W-R)/2}" y="${H-8}" text-anchor="middle">Average days to file audited financials  (faster &rarr;, slower &rarr;)</text>`;
+ s+=`<text class="ax" x="16" y="${(T+H-B)/2}" text-anchor="middle" transform="rotate(-90 16 ${(T+H-B)/2})">${YDEF[ykey].lab}</text>`;
+ s+=`<text class="qlbl" x="${L+8}" y="${T+14}">tight + strong</text><text class="qlbl" x="${W-R-6}" y="${H-B-6}" text-anchor="end">slow + weak</text>`;
+ for(const p of pts){const cx=X(p.avg_lag),cy=Y(p[ykey]),r=p.ic?7:5,fill=p.ic?"#dc2626":"#2563eb";
+   s+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${fill}" fill-opacity="${p.ic?0.9:0.65}" stroke="${fill}" stroke-width="1"><title>${p.d}: ${p.avg_lag} days, ${YDEF[ykey].fmt(p[ykey])}</title></circle>`;
+   s+=`<text class="lbl" x="${(cx+ (p.ic?9:7)).toFixed(1)}" y="${(cy+3).toFixed(1)}"${p.ic?' style="fill:#dc2626;font-weight:600"':''}>${p.short}</text>`;}
+ document.getElementById("plot").innerHTML=s;
+ const r=corr(xs,ys);
+ const ic=PTS.find(p=>p.ic);
+ document.getElementById("readout").innerHTML=
+   `<b>What this shows.</b> Across these ${pts.length} large districts the relationship between filing speed and ${YDEF[ykey].lab.toLowerCase()} is <b>${Math.abs(r)<0.3?"weak":Math.abs(r)<0.5?"modest":"moderate"}</b> (correlation r = ${r.toFixed(2)}). `+
+   `The clearest signal is the <b>bottom-right corner</b>: <b>Iowa City</b> is the slowest to file (~${ic.avg_lag} days on average &mdash; its most recent audit was ~${ic.latest_lag} days, over two years late) <b>and</b> near the bottom on ${YDEF[ykey].lab.toLowerCase()} (${YDEF[ykey].fmt(ic[ykey])}). `+
+   `So the chart is better read as "Iowa City stands apart in the slow-and-weak corner" than as a tight statistical law &mdash; a fair, defensible framing.`;
+}
+document.querySelectorAll('input[name=y]').forEach(el=>el.addEventListener('change',e=>draw(e.target.value)));
+draw('uab');
+</script></div></body></html>

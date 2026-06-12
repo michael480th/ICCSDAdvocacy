@@ -20,6 +20,7 @@ management**, and **how they are paying for buildings**.
 |---|---|
 | **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)** | **The interactive report.** Open in any web browser. Sortable comparison table, a financial-health-vs-management map, per-district scorecards, and an "analyze one district" tool with ~20 charts and a "how this score is built" breakdown. A single self-contained file — no internet or install required. |
 | **[`iccsd-vs-peers.html`](iccsd-vs-peers.html)** | **Public-facing Iowa City focus.** One measure at a time, comparing Iowa City CSD to **size-matched peers** (large districts of 5,000+ students, and the best-run of those), each with a plain-English explanation of what it is and why it matters. Self-contained. |
+| **[`activity-fund.html`](activity-fund.html)** | **Student Activity Fund comparison.** Year-end balance of each district's student-activity fund — self-reported (CAR), audited (ACFR), and **per student** — Iowa City vs. 14 peers, FY2020–FY2024. Shows ICCSD carrying the thinnest cushion of the 15 (~$2/student at the FY2023 trough vs. a ~$100 peer average). Self-contained. |
 | [`iccsd-fmp-board-commentary.md`](iccsd-fmp-board-commentary.md) | Brief reconciling the benchmark with an ICCSD board member's "no" vote on the Facilities Master Plan — where the data agrees, what the dissent adds, and which KPIs are still missing. Includes the full statement. |
 | **[`data/iowa-district-benchmark.xlsx`](data/iowa-district-benchmark.xlsx)** | **The benchmark as a spreadsheet.** Scorecard + year-by-year tabs (UAB, solvency, operating margin, enrollment, total debt, cash-reserve levy) + the underlying audited/state/balance-sheet data + a sources-and-definitions sheet. The "share the Excel file" deliverable. |
 | [`iowa-district-financial-benchmark.md`](iowa-district-financial-benchmark.md) | The same findings in plain Markdown (readable directly on GitHub). |
@@ -53,6 +54,7 @@ iowa-district-financial-benchmark.html      The interactive report (open this)
 iowa-district-financial-benchmark.md         Markdown version of the report
 iowa-district-financial-analysis-framework.md  Methodology / scoring framework
 iccsd-vs-peers.html                          Public-facing Iowa City KPI comparison
+activity-fund.html                           Student Activity Fund: CAR vs. audited vs. per student
 iccsd-fmp-board-commentary.md                Benchmark vs. the FMP board dissent
 school-district-rating-withdrawals.md        Companion research: districts that lost bond
                                              ratings over late/missing audits
@@ -62,6 +64,8 @@ data/
   iowa-district-financials.csv               Master dataset from the audits (one row per district-year)
   iowa-district-notes.csv                    Balance-sheet & forward-commitment data from audit notes
   iowa-district-scorecards.csv               Final scores + flags, one row per district
+  car-fund-balances.csv                      Per-fund CAR balances incl. the Activity fund (FY2017-2024)
+  activity-fund-audited.csv                  Audited Student Activity fund balance from the ACFRs (FY2020-2024)
   district-extractions/                      Raw per-district extractions from the audits (provenance)
   notes-extractions/                         Raw per-district extractions from the notes (provenance)
   dom/                                        Iowa Dept. of Management/Education state data
@@ -75,6 +79,9 @@ scripts/
   build_report.py       Renders cards.json into the main HTML report
   build_iccsd_report.py Renders the public-facing Iowa City KPI comparison
   build_workbook.py     Renders the shareable Excel workbook
+  extract_car.py        Reads the Iowa DE CAR workbooks/CSVs -> data/car-fund-balances.csv
+  extract_activity_fund.py        Reads each ACFR -> data/activity-fund-audited.csv (audited activity balance)
+  build_activity_fund_report.py   Renders the Student Activity Fund comparison -> activity-fund.html
 ```
 
 Each `data/` folder has its own README describing the columns and sources.

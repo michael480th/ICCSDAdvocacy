@@ -31,8 +31,9 @@ XLS = {2023: glob.glob("CAR/2022_2023 CAR data*.xlsx")[0],
        2024: glob.glob("CAR/2023_2024 CAR data*.xlsx")[0]}
 
 names = {}
-# rec[(code, fy, fund)] = dict(beg, rev, exp, end, unass, ass)
-rec = defaultdict(lambda: dict(beg=None, rev=0.0, exp=0.0, end=None, unass=None, ass=None))
+# rec[(code, fy, fund)] = dict(beg, rev, exp, end, unass, ass, xfer)
+# xfer = interfund "Transfers In" (General Fund -> the fund), which the CAR counts as revenue.
+rec = defaultdict(lambda: dict(beg=None, rev=0.0, exp=0.0, end=None, unass=None, ass=None, xfer=0.0))
 
 
 def code_of(s):
@@ -55,6 +56,8 @@ with open(REV, newline="") as fh:
             rec[k]["beg"] = amt
         else:
             rec[k]["rev"] += amt
+            if "Transfers In" in r["source"]:
+                rec[k]["xfer"] += amt
 
 with open(EXP, newline="") as fh:
     for r in csv.DictReader(fh):
@@ -104,6 +107,26 @@ for fy, path in XLS.items():
         if prior and prior["end"] is not None:
             rec[k]["beg"] = prior["end"]
 
+    # ---- Activity (student activities) fund: FY2024 only (long CSVs end at FY2023) ----
+    # The workbook carries every fund's balance; we add the Activity special-revenue fund so the
+    # CAR series reaches FY2024. Ending = acttotalfundequity; rev/exp from the Activity sheets;
+    # beginning = prior-year Activity ending (FY2023, from the long CSVs above).
+    if fy == 2024:
+        ax = wb["ActExpData1"]
+        ai, A = hidx(ax), by_code(ax)
+        for c in B:
+            if c not in R:
+                continue
+            k = (c, fy, "Activity")
+            rec[k]["end"] = B[c][bi["acttotalfundequity"]]
+            rec[k]["rev"] = R[c][ri["acttotalrevandother"]] or 0
+            rec[k]["xfer"] = R[c][ri["acttotalotherfinansource"]] or 0  # transfers in (other financing sources)
+            if c in A:
+                rec[k]["exp"] = sum((A[c][ai[o]] or 0) for o in EXPOBJ)
+            prior = rec.get((c, fy - 1, "Activity"))
+            if prior and prior["end"] is not None:
+                rec[k]["beg"] = prior["end"]
+
 rows = []
 for (c, fy, fund) in sorted(rec):
     d = rec[(c, fy, fund)]
@@ -120,3 +143,14 @@ with open(OUT, "w", newline="") as fh:
     w.writerows(rows)
 print(f"wrote {OUT}: {len(rows)} rows, FY{min(r[2] for r in rows)}-{max(r[2] for r in rows)}, "
       f"{len({r[0] for r in rows})} districts")
+
+# Companion table: the Activity fund's interfund "Transfers In" (General Fund -> Activity), which the
+# CAR records as revenue. Lets a report show activity results before vs. after the transfer subsidy.
+XOUT = "data/activity-transfers.csv"
+with open(XOUT, "w", newline="") as fh:
+    w = csv.writer(fh)
+    w.writerow(["district_code", "district_name", "fiscal_year", "transfers_in"])
+    for (c, fy, fund) in sorted(rec):
+        if fund == "Activity":
+            w.writerow([c, names.get(c, ""), fy, round(rec[(c, fy, fund)]["xfer"], 2)])
+print(f"wrote {XOUT}")
