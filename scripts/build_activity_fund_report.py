@@ -146,33 +146,42 @@ def bal_matrix():
 
 
 def flow_matrix(src, signed=False):
-    """district x year matrix of a $ flow (revenue / expenditure / net), in $thousands.
-    signed=True colors negatives red / positives green and shows a +/- sign (for net change)."""
+    """district x year matrix of a $ flow (revenue / expenditure / net). Each cell carries BOTH a
+    total ($thousands) and a per-student value (data-total / data-ps) so a Total$/Per-student
+    toggle can switch them client-side. signed=True colors negatives red / positives green."""
+    def fmt(v, perstu):
+        if perstu:
+            return (f"+${v:,.0f}" if v >= 0 else f"−${abs(v):,.0f}") if signed else f"${v:,.0f}"
+        return f"{v/1e3:+,.0f}K" if signed else f"${v/1e3:,.0f}K"
+
     out = []
     for d in DISTS:
         me = d == ME
         tds = [f'<th class="dname{" me" if me else ""}">{html.escape(d)}</th>']
         for y in YEARS:
             v = src.get((d, y))
+            e = enr.get((d, y))
             if v is None:
                 tds.append('<td class="na">—</td>'); continue
-            if signed:
-                style = f"color:{'#16a34a' if v >= 0 else '#dc2626'};font-weight:{800 if me else 600}"
-                txt = f"{v/1e3:+,.0f}K"
-            else:
-                style = f"font-weight:{700 if me else 500}"
-                txt = f"${v/1e3:,.0f}K"
-            tds.append(f'<td style="{style}" title="{html.escape(f"{d} FY{y}: ${v:,.0f}")}">{txt}</td>')
+            color = (f"color:{'#16a34a' if v >= 0 else '#dc2626'};" if signed else "")
+            style = f"{color}font-weight:{(800 if signed else 700) if me else (600 if signed else 500)}"
+            t_tot = fmt(v, False)
+            t_ps = fmt(v / e, True) if e else "—"
+            title = f"{d} FY{y}: ${v:,.0f}" + (f" · ${v/e:,.0f}/student" if e else "")
+            tds.append(f'<td class="fcell" style="{style}" data-total="{t_tot}" data-ps="{t_ps}" '
+                       f'title="{html.escape(title)}">{t_tot}</td>')
         out.append(f"<tr>{''.join(tds)}</tr>")
-    # peer-average row
+    # peer-average row (average of per-district values for total; average of per-student for PS)
     avg_tds = ['<th class="dname avg">Peer average (excl. ICCSD)</th>']
     for y in YEARS:
         vals = [src[(n, y)] for n in DISTS if n != ME and (n, y) in src]
+        ps_vals = [src[(n, y)] / enr[(n, y)] for n in DISTS
+                   if n != ME and (n, y) in src and enr.get((n, y))]
         if not vals:
             avg_tds.append('<td class="na">—</td>'); continue
-        a = sum(vals) / len(vals)
-        txt = f"{a/1e3:+,.0f}K" if signed else f"${a/1e3:,.0f}K"
-        avg_tds.append(f'<td class="avg">{txt}</td>')
+        a_tot = fmt(sum(vals) / len(vals), False)
+        a_ps = fmt(sum(ps_vals) / len(ps_vals), True) if ps_vals else "—"
+        avg_tds.append(f'<td class="fcell avg" data-total="{a_tot}" data-ps="{a_ps}">{a_tot}</td>')
     out.append(f'<tr class="avgrow">{"".join(avg_tds)}</tr>')
     return "\n".join(out)
 
@@ -295,6 +304,11 @@ thead th{{color:var(--mut);font-weight:600;font-size:12px;text-transform:upperca
 tr:has(.me){{background:#eff6ff}}
 .avgrow{{border-top:2px solid #cbd5e1}} .avg{{font-weight:700;color:#334155;font-style:italic}}
 td.na{{color:#cbd5e1}}
+.toggle{{display:flex;align-items:center;gap:6px;margin:4px 0 8px}}
+.toggle .tglab{{font-size:13px;color:var(--mut);margin-right:2px}}
+.tg{{font:600 13px/1 inherit;color:#2563eb;background:#fff;border:1px solid #cbd5e1;padding:6px 13px;border-radius:999px;cursor:pointer}}
+.tg:hover{{background:#eff6ff;border-color:#bfdbfe}}
+.tg.active{{background:#2563eb;color:#fff;border-color:#2563eb}}
 .legend{{font-size:12.5px;color:var(--mut);margin:10px 2px 0;display:flex;gap:16px;flex-wrap:wrap;align-items:center}}
 .legend i{{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle;margin-right:5px}}
 ul{{margin:8px 0}} li{{margin:4px 0}}
@@ -361,12 +375,17 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 </table>
 </div>
 
-<div class="card">
+<div class="card" id="flowcard">
 <h2 style="margin:0 0 4px;font-size:20px">Revenue, expenditure, and net change — broken out</h2>
 <p style="font-size:14px;color:#475569;margin:2px 0 10px">The money that flows <i>through</i> the
 student activity fund each year (CAR), and the resulting <b>net change</b> in the year-end balance.
 <b>Net = revenue − expenditure = the change in fund balance</b> (a positive net adds to the cushion; a
-negative net draws it down). All figures in $ thousands.</p>
+negative net draws it down).</p>
+<div class="toggle" role="group" aria-label="Show values as">
+  <span class="tglab">Show as:</span>
+  <button type="button" class="tg active" data-mode="total" onclick="setFlow('total')">Total $</button>
+  <button type="button" class="tg" data-mode="ps" onclick="setFlow('ps')">Per student</button>
+</div>
 
 <h3 style="margin:14px 0 2px;font-size:15px;color:#334155">Revenue</h3>
 <table>
@@ -484,7 +503,18 @@ ACFR (Student Activity fund balance / "restricted for student activities"), extr
 Activity fund balance ÷ certified enrollment. Built by <code>scripts/extract_car.py</code> +
 <code>scripts/extract_activity_fund.py</code> + <code>scripts/build_activity_fund_report.py</code>.
 </footer>
-</div></body></html>"""
+</div>
+<script>
+function setFlow(mode){{
+  document.querySelectorAll('#flowcard .fcell').forEach(function(c){{
+    c.textContent = (mode === 'ps') ? c.dataset.ps : c.dataset.total;
+  }});
+  document.querySelectorAll('#flowcard .tg').forEach(function(b){{
+    b.classList.toggle('active', b.dataset.mode === mode);
+  }});
+}}
+</script>
+</body></html>"""
 
 # Wrap every table in a horizontal-scroll container so a wide table never spills past the
 # white card on narrow (mobile) screens — the card background stays behind the visible cells.
