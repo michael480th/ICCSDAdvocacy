@@ -226,7 +226,9 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .big{{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 4px}}
 .big .stat{{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:10px 14px;min-width:150px}}
 .big .n{{font-size:25px;font-weight:800;color:#dc2626}} .big .l{{font-size:12px;color:var(--mut)}}
+.tscroll{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
 table{{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}}
+.tscroll table{{min-width:520px}}
 th,td{{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}}
 thead th{{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}}
 .dname{{text-align:left;font-weight:600}} .dname.me{{color:#1d4ed8}}
@@ -375,6 +377,10 @@ Activity fund balance ÷ certified enrollment. Built by <code>scripts/extract_ca
 <code>scripts/extract_activity_fund.py</code> + <code>scripts/build_activity_fund_report.py</code>.
 </footer>
 </div></body></html>"""
+
+# Wrap every table in a horizontal-scroll container so a wide table never spills past the
+# white card on narrow (mobile) screens — the card background stays behind the visible cells.
+DOC = DOC.replace("<table>", '<div class="tscroll"><table>').replace("</table>", "</table></div>")
 
 open("activity-fund.html", "w").write(DOC)
 print(f"Wrote activity-fund.html ({len(DOC)//1024} KB); {both} district-years with both CAR & audited, {ties} tie")

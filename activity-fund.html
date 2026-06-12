@@ -13,7 +13,9 @@ h1{font-size:28px;margin:0 0 6px} .sub{color:var(--mut);margin:0 0 18px}
 .big{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 4px}
 .big .stat{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:10px 14px;min-width:150px}
 .big .n{font-size:25px;font-weight:800;color:#dc2626} .big .l{font-size:12px;color:var(--mut)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}
+.tscroll table{min-width:520px}
 th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line)}
 thead th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
 .dname{text-align:left;font-weight:600} .dname.me{color:#1d4ed8}
@@ -61,7 +63,7 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 <div class="card">
 <h2 style="margin:0 0 4px;font-size:20px">Student activity fund — balance <b>per student</b></h2>
 <p style="font-size:14px;color:#475569;margin:2px 0 6px">Year-end Student Activity fund balance ÷ certified enrollment. Color marks the size of the cushion.</p>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2020: $1,180,460 ÷ 11,977 students = $99/student">$99</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2021: $1,452,175 ÷ 12,256 students = $118/student">$118</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2022: $1,702,641 ÷ 12,147 students = $140/student">$140</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2023: $2,010,669 ÷ 12,512 students = $161/student">$161</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2024: $2,121,416 ÷ 12,671 students = $167/student">$167</td></tr>
@@ -81,7 +83,7 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 <tr><th class="dname">West Des Moines CSD</th><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2020: $923,969 ÷ 8,940 students = $103/student">$103</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2021: $1,052,106 ÷ 8,989 students = $117/student">$117</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2022: $1,161,866 ÷ 8,820 students = $132/student">$132</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2023: $925,017 ÷ 8,774 students = $105/student">$105</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2024: $959,983 ÷ 8,679 students = $111/student">$111</td></tr>
 <tr class="avgrow"><th class="dname avg">Peer average (excl. ICCSD)</th><td class="avg">$91</td><td class="avg">$92</td><td class="avg">$100</td><td class="avg">$100</td><td class="avg">$102</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="legend">$ per student:
 <span><i style="background:#dc2626"></i>&lt;$25</span>
 <span><i style="background:#ea580c"></i>$25–50</span>
@@ -93,7 +95,7 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 <div class="card">
 <h2 style="margin:0 0 4px;font-size:20px">Student activity fund — ending balance ($ thousands)</h2>
 <p style="font-size:14px;color:#475569;margin:2px 0 6px">CAR ending balance per district-year (hover a cell for the audited figure). Iowa City has no FY2024 audit on file, so its FY2024 audited figure is blank — but its CAR balance is shown.</p>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="font-weight:500" title="Ankeny CSD FY2020: CAR $1,180,460 · audited $1,180,460">$1,180K</td><td style="font-weight:500" title="Ankeny CSD FY2021: CAR $1,452,175 · audited $1,449,887">$1,452K</td><td style="font-weight:500" title="Ankeny CSD FY2022: CAR $1,702,641 · audited $1,702,642">$1,703K</td><td style="font-weight:500" title="Ankeny CSD FY2023: CAR $2,010,669 · audited $2,019,267">$2,011K</td><td style="font-weight:500" title="Ankeny CSD FY2024: CAR $2,121,416 · audited $2,046,083">$2,121K</td></tr>
@@ -112,7 +114,7 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 <tr><th class="dname">Waukee CSD</th><td style="font-weight:500" title="Waukee CSD FY2020: CAR $868,206 · audited $868,207">$868K</td><td style="font-weight:500" title="Waukee CSD FY2021: CAR $871,913 · audited $871,913">$872K</td><td style="font-weight:500" title="Waukee CSD FY2022: CAR $890,143 · audited $890,143">$890K</td><td style="font-weight:500" title="Waukee CSD FY2023: CAR $1,147,846 · audited $1,147,845">$1,148K</td><td style="font-weight:500" title="Waukee CSD FY2024: CAR $1,203,689 · audited $1,203,689">$1,204K</td></tr>
 <tr><th class="dname">West Des Moines CSD</th><td style="font-weight:500" title="West Des Moines CSD FY2020: CAR $923,969 · audited $923,969">$924K</td><td style="font-weight:500" title="West Des Moines CSD FY2021: CAR $1,052,106 · audited $1,052,106">$1,052K</td><td style="font-weight:500" title="West Des Moines CSD FY2022: CAR $1,161,866 · audited $1,161,866">$1,162K</td><td style="font-weight:500" title="West Des Moines CSD FY2023: CAR $925,017 · audited $925,017">$925K</td><td style="font-weight:500" title="West Des Moines CSD FY2024: CAR $959,983 · audited $959,983">$960K</td></tr>
 </tbody>
-</table>
+</table></div>
 </div>
 
 <div class="card">
@@ -123,7 +125,7 @@ student activity fund each year (CAR), and the resulting <b>net change</b> in th
 negative net draws it down). All figures in $ thousands.</p>
 
 <h3 style="margin:14px 0 2px;font-size:15px;color:#334155">Revenue</h3>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="font-weight:500" title="Ankeny CSD FY2020: $1,613,290">$1,613K</td><td style="font-weight:500" title="Ankeny CSD FY2021: $1,179,814">$1,180K</td><td style="font-weight:500" title="Ankeny CSD FY2022: $1,981,394">$1,981K</td><td style="font-weight:500" title="Ankeny CSD FY2023: $2,467,697">$2,468K</td><td style="font-weight:500" title="Ankeny CSD FY2024: $2,898,674">$2,899K</td></tr>
@@ -143,10 +145,10 @@ negative net draws it down). All figures in $ thousands.</p>
 <tr><th class="dname">West Des Moines CSD</th><td style="font-weight:500" title="West Des Moines CSD FY2020: $1,594,997">$1,595K</td><td style="font-weight:500" title="West Des Moines CSD FY2021: $1,239,753">$1,240K</td><td style="font-weight:500" title="West Des Moines CSD FY2022: $1,684,046">$1,684K</td><td style="font-weight:500" title="West Des Moines CSD FY2023: $1,705,916">$1,706K</td><td style="font-weight:500" title="West Des Moines CSD FY2024: $1,809,580">$1,810K</td></tr>
 <tr class="avgrow"><th class="dname avg">Peer average (excl. ICCSD)</th><td class="avg">$1,140K</td><td class="avg">$779K</td><td class="avg">$1,308K</td><td class="avg">$1,420K</td><td class="avg">$1,527K</td></tr>
 </tbody>
-</table>
+</table></div>
 
 <h3 style="margin:18px 0 2px;font-size:15px;color:#334155">Expenditure</h3>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="font-weight:500" title="Ankeny CSD FY2020: $1,721,369">$1,721K</td><td style="font-weight:500" title="Ankeny CSD FY2021: $908,099">$908K</td><td style="font-weight:500" title="Ankeny CSD FY2022: $1,730,928">$1,731K</td><td style="font-weight:500" title="Ankeny CSD FY2023: $2,159,668">$2,160K</td><td style="font-weight:500" title="Ankeny CSD FY2024: $2,787,928">$2,788K</td></tr>
@@ -166,10 +168,10 @@ negative net draws it down). All figures in $ thousands.</p>
 <tr><th class="dname">West Des Moines CSD</th><td style="font-weight:500" title="West Des Moines CSD FY2020: $1,576,057">$1,576K</td><td style="font-weight:500" title="West Des Moines CSD FY2021: $1,111,616">$1,112K</td><td style="font-weight:500" title="West Des Moines CSD FY2022: $1,574,286">$1,574K</td><td style="font-weight:500" title="West Des Moines CSD FY2023: $1,942,765">$1,943K</td><td style="font-weight:500" title="West Des Moines CSD FY2024: $1,774,614">$1,775K</td></tr>
 <tr class="avgrow"><th class="dname avg">Peer average (excl. ICCSD)</th><td class="avg">$1,146K</td><td class="avg">$759K</td><td class="avg">$1,229K</td><td class="avg">$1,423K</td><td class="avg">$1,495K</td></tr>
 </tbody>
-</table>
+</table></div>
 
 <h3 style="margin:18px 0 2px;font-size:15px;color:#334155">Net change (revenue − expenditure)</h3>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="color:#dc2626;font-weight:600" title="Ankeny CSD FY2020: $-108,079">-108K</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2021: $271,715">+272K</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2022: $250,466">+250K</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2023: $308,028">+308K</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2024: $110,746">+111K</td></tr>
@@ -189,7 +191,7 @@ negative net draws it down). All figures in $ thousands.</p>
 <tr><th class="dname">West Des Moines CSD</th><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2020: $18,941">+19K</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2021: $128,137">+128K</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2022: $109,759">+110K</td><td style="color:#dc2626;font-weight:600" title="West Des Moines CSD FY2023: $-236,848">-237K</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2024: $34,966">+35K</td></tr>
 <tr class="avgrow"><th class="dname avg">Peer average (excl. ICCSD)</th><td class="avg">-6K</td><td class="avg">+20K</td><td class="avg">+79K</td><td class="avg">-3K</td><td class="avg">+32K</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="legend">Net change:
 <span><i style="background:#16a34a"></i>added to the fund (surplus)</span>
 <span><i style="background:#dc2626"></i>drew the fund down (deficit)</span>
@@ -207,7 +209,7 @@ not of low activity.</p>
 <div class="card">
 <h2 style="margin:0 0 4px;font-size:20px">CAR vs. audited — do the activity-fund books reconcile?</h2>
 <p style="font-size:14px;color:#475569;margin:2px 0 6px">Gap between the CAR (self-reported) and audited Student Activity balance. Green means they tie within rounding.</p>
-<table>
+<div class="tscroll"><table>
 <thead><tr><th class="dname">District</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
 <tbody>
 <tr><th class="dname">Ankeny CSD</th><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2020: CAR $1,180,460 vs audited $1,180,460 (-0)">-0.0%</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2021: CAR $1,452,175 vs audited $1,449,887 (+2,288)">+0.2%</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2022: CAR $1,702,641 vs audited $1,702,642 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600" title="Ankeny CSD FY2023: CAR $2,010,669 vs audited $2,019,267 (-8,598)">-0.4%</td><td style="color:#ea580c;font-weight:600" title="Ankeny CSD FY2024: CAR $2,121,416 vs audited $2,046,083 (+75,333)">+3.7%</td></tr>
@@ -226,7 +228,7 @@ not of low activity.</p>
 <tr><th class="dname">Waukee CSD</th><td style="color:#16a34a;font-weight:600" title="Waukee CSD FY2020: CAR $868,206 vs audited $868,207 (-1)">-0.0%</td><td style="color:#16a34a;font-weight:600" title="Waukee CSD FY2021: CAR $871,913 vs audited $871,913 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600" title="Waukee CSD FY2022: CAR $890,143 vs audited $890,143 (-0)">-0.0%</td><td style="color:#16a34a;font-weight:600" title="Waukee CSD FY2023: CAR $1,147,846 vs audited $1,147,845 (+1)">+0.0%</td><td style="color:#16a34a;font-weight:600" title="Waukee CSD FY2024: CAR $1,203,689 vs audited $1,203,689 (-0)">-0.0%</td></tr>
 <tr><th class="dname">West Des Moines CSD</th><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2020: CAR $923,969 vs audited $923,969 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2021: CAR $1,052,106 vs audited $1,052,106 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2022: CAR $1,161,866 vs audited $1,161,866 (-0)">-0.0%</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2023: CAR $925,017 vs audited $925,017 (+0)">+0.0%</td><td style="color:#16a34a;font-weight:600" title="West Des Moines CSD FY2024: CAR $959,983 vs audited $959,983 (+0)">+0.0%</td></tr>
 </tbody>
-</table>
+</table></div>
 <div class="legend">Gap (CAR − audited):
 <span><i style="background:#16a34a"></i>&lt;0.5% (ties)</span>
 <span><i style="background:#d97706"></i>0.5–2%</span>
