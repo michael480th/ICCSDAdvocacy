@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What FOC reporting could look like — illustrative examples</title>
+<style>
+  :root {
+    --ink: #0f172a;
+    --ink-soft: #334155;
+    --ink-mute: #64748b;
+    --bg: #f7f9fc;
+    --hero: #0b1426;
+    --accent: #2c5fa1;
+    --red: #b03a2e;
+    --red-soft: #fdecec;
+    --red-line: #f5b7b1;
+    --green: #1e7a3a;
+    --green-soft: #e7f5ec;
+    --green-line: #a6dab8;
+    --gold: #b58220;
+    --gold-soft: #fdf3df;
+    --gold-line: #ecd49a;
+    --grid: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; font-size: 16px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero { background: var(--hero); color: #fff; padding: 3rem 0 2.5rem; margin-bottom: 2.5rem; }
+  .hero .eyebrow { color: #6ea8fe; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; }
+  .hero h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 1rem; font-weight: 800; letter-spacing: -0.01em; }
+  .hero .sub { color: #c8d4e8; font-size: 1.05rem; max-width: 720px; margin: 0; }
+
+  h2 { font-size: 1.5rem; font-weight: 700; margin: 3.5rem 0 0.5rem; color: var(--ink); line-height: 1.2; padding-top: 1rem; border-top: 1px solid var(--grid); }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h2 .num { display: inline-block; width: 1.8rem; height: 1.8rem; line-height: 1.8rem; text-align: center; background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.95rem; margin-right: 0.5rem; vertical-align: 3px; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: var(--ink); }
+  p { margin: 0 0 1rem; color: var(--ink-soft); }
+  p strong { color: var(--ink); font-weight: 700; }
+  small { font-size: 0.85rem; color: var(--ink-mute); }
+
+  .illustrative-note { background: #fffbeb; border: 1px solid var(--gold-line); border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.88rem; color: var(--ink); margin: 0 0 2.5rem; }
+  .illustrative-note strong { font-weight: 700; }
+
+  /* ============================================================
+     Report card style — looks like a real financial document.
+     ============================================================ */
+  .report { background: #fff; border: 1px solid var(--grid); border-radius: 8px; margin: 1.5rem 0 0; padding: 0; overflow: hidden; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04); }
+  .report-header { background: var(--hero); color: #fff; padding: 1rem 1.5rem 0.85rem; }
+  .report-header .org { font-size: 0.7rem; letter-spacing: 0.16em; color: #6ea8fe; font-weight: 700; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .report-header .title { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.25rem; }
+  .report-header .meta { font-size: 0.85rem; color: #c8d4e8; }
+  .report-body { padding: 1.5rem; }
+  .report .illustrative-stamp { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; background: rgba(181, 130, 32, 0.15); color: var(--gold); padding: 0.15rem 0.5rem; border-radius: 3px; vertical-align: 3px; margin-left: 0.4rem; }
+
+  /* ============================================================
+     Dashboard grid — six tiles
+     ============================================================ */
+  .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+  .tile { border: 1px solid var(--grid); border-radius: 6px; padding: 0.85rem 1rem 1rem; background: #fff; }
+  .tile .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 0.25rem; }
+  .tile .value { font-size: 1.55rem; font-weight: 800; line-height: 1.05; color: var(--ink); }
+  .tile .value .unit { font-size: 0.85rem; color: var(--ink-mute); font-weight: 600; margin-left: 0.15rem; }
+  .tile .zone-bar { display: flex; height: 8px; margin: 0.6rem 0 0.5rem; border-radius: 4px; overflow: hidden; }
+  .tile .zone-bar > div { flex: 1; }
+  .tile .zone-bar .zone-red { background: var(--red); opacity: 0.6; }
+  .tile .zone-bar .zone-yellow { background: #fbbf24; opacity: 0.7; }
+  .tile .zone-bar .zone-green { background: var(--green); }
+  .tile .zone-status { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
+  .tile .zone-status .badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.15rem 0.45rem; border-radius: 3px; text-transform: uppercase; }
+  .badge.green { background: var(--green-soft); color: var(--green); }
+  .badge.yellow { background: var(--gold-soft); color: var(--gold); }
+  .badge.red { background: var(--red-soft); color: var(--red); }
+
+  .phase-strip { background: linear-gradient(90deg, #fbf3da 0%, #fff 100%); border: 1px solid var(--gold-line); padding: 0.85rem 1rem; border-radius: 6px; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .phase-strip .phase-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+  .phase-strip .phase-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 0; }
+  .phase-strip .phase-progress { margin-left: auto; font-size: 0.85rem; color: var(--ink-soft); }
+  .phase-strip .phase-progress strong { color: var(--ink); }
+
+  /* ============================================================
+     Tables
+     ============================================================ */
+  table.report-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  table.report-table th, table.report-table td { padding: 0.5rem 0.65rem; text-align: left; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  table.report-table th { background: #f8fafc; font-weight: 700; color: var(--ink); font-size: 0.8rem; letter-spacing: 0.04em; }
+  table.report-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.report-table tr.flag-row td { background: #fdf6e3; }
+  table.report-table tr.flag-row td:first-child { border-left: 3px solid var(--gold); }
+  table.report-table tr.subtotal td { background: #f1f5f9; font-weight: 700; }
+  table.report-table td .pill { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.1rem 0.4rem; border-radius: 3px; text-transform: uppercase; }
+  .pill.gold { background: var(--gold-soft); color: var(--gold); }
+  .pill.red { background: var(--red-soft); color: var(--red); }
+  .pill.blue { background: #e0e7ff; color: #4338ca; }
+  .pill.green { background: var(--green-soft); color: var(--green); }
+  .pill.gray { background: var(--grid); color: var(--ink-mute); }
+
+  .report-footer { border-top: 1px solid var(--grid); padding: 0.85rem 1.5rem; background: #f8fafc; font-size: 0.85rem; color: var(--ink-soft); }
+  .report-footer strong { color: var(--ink); }
+
+  .commentary { background: #f8fafc; border-left: 3px solid var(--accent); padding: 0.75rem 1rem; margin: 1rem 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+  .commentary strong { color: var(--ink); }
+
+  .memo-style { font-family: Georgia, 'Times New Roman', serif; }
+  .memo-style .memo-header { display: grid; grid-template-columns: 80px 1fr; gap: 0.3rem 1rem; font-size: 0.95rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--grid); }
+  .memo-style .memo-header .label { font-weight: 700; color: var(--ink); }
+  .memo-style p { font-size: 0.95rem; line-height: 1.6; color: var(--ink); }
+  .memo-style p strong { font-weight: 700; }
+  .memo-style ul { font-size: 0.95rem; color: var(--ink); }
+  .memo-style .signature { margin-top: 2rem; }
+  .memo-style .signature .signed { border-top: 1px solid var(--ink-mute); display: inline-block; padding-top: 0.3rem; min-width: 260px; font-size: 0.9rem; }
+
+  ul li { color: var(--ink-soft); margin-bottom: 0.3rem; }
+  ul li strong { color: var(--ink); }
+
+  .footer { text-align: center; padding: 2.5rem 0 3rem; color: var(--ink-mute); font-size: 0.85rem; border-top: 1px solid var(--grid); margin-top: 4rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">ICCSD &middot; FOC Reporting &mdash; Illustrative Examples</div>
+    <h1>What the committee's regular reporting could look like</h1>
+    <p class="sub">Companion to the Financial Oversight Committee operating note. Each example below is an illustrative mockup of the artifacts the operating plan describes &mdash; the one-page dashboard, the exception-based claims review, the corrective-action tracker, the 13-week cash forecast, and the phase-change certification. All numbers, names, and dates are placeholders. The goal is to make the proposal concrete by showing what the reports would actually look like on a page.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="illustrative-note">
+    <strong>About these examples.</strong> Every number, vendor name, account, and date on this page is illustrative. The mockups exist to show form and substance, not to report any actual district result. Wherever a real report would carry a value, this page carries a plausible placeholder, marked &ldquo;<span style="background: rgba(181, 130, 32, 0.15); color: var(--gold); padding: 0.1rem 0.4rem; border-radius: 3px; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em;">ILLUSTRATIVE</span>&rdquo; on each report so no one mistakes it for actual data.
+  </div>
+
+  <h2><span class="num">1</span>The one-page dashboard</h2>
+
+  <p>The central artifact. One page the board, the public, and (eventually) rating agencies can all read. Updated monthly during Phase 1, quarterly in steady state. Each metric is shown against its operating zone, with the current phase and the progress toward the next phase visible at the top.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Monthly Financial Health Dashboard <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">For the month ended September 30, 2026 &middot; Published October 15, 2026</div>
+    </div>
+    <div class="report-body">
+
+      <div class="phase-strip">
+        <span class="phase-label">Current phase</span>
+        <p class="phase-title">Phase 1 &mdash; Recovery</p>
+        <div class="phase-progress">Progress toward Phase 2: <strong>3 of 5 conditions met</strong></div>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="tile">
+          <div class="label">Days cash on hand</div>
+          <div class="value">47<span class="unit">days</span></div>
+          <div class="zone-bar">
+            <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+          </div>
+          <div class="zone-status">
+            <span>Target 50&ndash;75</span>
+            <span class="badge yellow">Yellow</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="label">Unspent budget authority (UAB)</div>
+          <div class="value">+1.8<span class="unit">%</span></div>
+          <div class="zone-bar">
+            <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-green"></div><div class="zone-green"></div>
+          </div>
+          <div class="zone-status">
+            <span>Red below 0%</span>
+            <span class="badge green">Green</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="label">Solvency ratio</div>
+          <div class="value">5.2<span class="unit">%</span></div>
+          <div class="zone-bar">
+            <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+          </div>
+          <div class="zone-status">
+            <span>Target 8&ndash;15%</span>
+            <span class="badge yellow">Yellow</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="label">FTE variance to budget</div>
+          <div class="value">+12<span class="unit">FTEs</span></div>
+          <div class="zone-bar">
+            <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+          </div>
+          <div class="zone-status">
+            <span>Target &plusmn;5</span>
+            <span class="badge yellow">Yellow</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="label">YTD spending vs. budget</div>
+          <div class="value">24.8<span class="unit">% YTD</span></div>
+          <div class="zone-bar">
+            <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+          </div>
+          <div class="zone-status">
+            <span>Pacing 25.0%</span>
+            <span class="badge green">Green</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="label">Open corrective actions</div>
+          <div class="value">8<span class="unit">of 23 open</span></div>
+          <div class="zone-bar">
+            <div class="zone-green"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div><div class="zone-red"></div>
+          </div>
+          <div class="zone-status">
+            <span>2 items past due</span>
+            <span class="badge yellow">Yellow</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="commentary" style="margin-top: 1.5rem;">
+        <strong>Committee commentary, September 2026.</strong> Days cash held steady at 47, supported by the October 1 state aid payment received on time. The FTE variance reflects unfilled vacancies running below replacement; the operations director will present a rebalanced staffing plan at the November committee meeting. Two corrective actions tied to the FY24 audit findings are past due; both are flagged below in the corrective-action tracker. No red-zone breaches this month; no automatic actions triggered.
+      </div>
+
+    </div>
+    <div class="report-footer">
+      <strong>Phase 2 conditions:</strong> Interfund Health Insurance loan repaid &check; &middot; Three consecutive on-time monthly closes &check; &middot; FY24 audit findings on tracked plan &check; &middot; All metrics out of red for 2 consecutive quarters &mdash; pending &middot; Continuing disclosure filings current &mdash; pending. <strong>Source data:</strong> District general ledger as of 9/30/26. <strong>Verified by:</strong> FOC chair, reconciled against bank statements 10/10/26.
+    </div>
+  </div>
+
+  <h2><span class="num">2</span>Bi-weekly claims review &mdash; by exception</h2>
+
+  <p>The plan's operating principle: don't read every line. Apply defined flags to the standard check register the business office already produces, and direct attention to the items that meet the flag rules. The rotating reviewer signs off on the cycle; the full committee ratifies at formal meetings.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Bi-Weekly Claims Review &mdash; Exception Report <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">Pay cycle: September 16&ndash;30, 2026 &middot; Reviewed by FOC member designate: J. Smith &middot; Date: October 3, 2026</div>
+    </div>
+    <div class="report-body">
+
+      <p style="margin-bottom: 1rem;"><strong>Cycle summary.</strong> 1,247 claims totaling $4,886,201 reviewed against the check register from the district's general ledger. <strong>11 claims flagged</strong> for committee review under the standing exception rules. All other 1,236 claims pass on the standard register.</p>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Check #</th>
+            <th>Payee</th>
+            <th>Fund / Account</th>
+            <th class="num">Amount</th>
+            <th>Flag reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="flag-row">
+            <td>104822</td>
+            <td>Stanley Consultants Inc.</td>
+            <td>SAVE &middot; City HS Auditorium</td>
+            <td class="num">$184,500.00</td>
+            <td><span class="pill gold">Above $100K threshold</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>104836</td>
+            <td>Touch Point Solutions LLC</td>
+            <td>GF &middot; Technology</td>
+            <td class="num">$71,200.00</td>
+            <td><span class="pill blue">New vendor (first payment)</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>MAN-2026-094</td>
+            <td>Internal Revenue Service</td>
+            <td>GF &middot; Payroll</td>
+            <td class="num">$48,317.42</td>
+            <td><span class="pill gold">Off-cycle manual check</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>104851</td>
+            <td>Hillyard Inc.</td>
+            <td>GF &middot; Operations</td>
+            <td class="num">$94,820.13</td>
+            <td><span class="pill blue">Vendor name change since last cycle</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>104867</td>
+            <td>Larson Construction Co.</td>
+            <td>SAVE &middot; FMP 2.0</td>
+            <td class="num">$2,140,308.55</td>
+            <td><span class="pill gold">Above $100K threshold</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>IF-2026-006</td>
+            <td>Internal &mdash; Debt Service Fund</td>
+            <td>GF &middot; Interfund transfer</td>
+            <td class="num">$340,000.00</td>
+            <td><span class="pill red">Interfund activity</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>104879</td>
+            <td>Ahlers &amp; Cooney P.C.</td>
+            <td>GF &middot; Legal</td>
+            <td class="num">$28,440.00</td>
+            <td><span class="pill gold">Account over budget YTD</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td>104891</td>
+            <td>RSM US LLP</td>
+            <td>GF &middot; Auditor services</td>
+            <td class="num">$32,500.00</td>
+            <td><span class="pill gray">Recurring &mdash; auditor relationship</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.85rem;">Showing 8 of 11 flagged items. Three additional items were flagged for the &ldquo;changed mailing address&rdquo; rule and are routine; see attached detail.</p>
+
+      <div class="commentary">
+        <strong>Reviewer note.</strong> Larson Construction payment of $2.14M is the FMP 2.0 third progress draw, consistent with the project schedule and within the approved contract value. The interfund transfer of $340,000 from the Debt Service Fund to the General Fund is recorded as a temporary loan and was board-approved at the September 22 meeting. The legal-services account is over its annual budget YTD primarily due to bond counsel work tied to the audit catch-up plan. Recommend committee ratification of the cycle with these items noted.
+      </div>
+
+      <p style="margin-top: 1.25rem;"><strong>Reviewer sign-off:</strong> J. Smith, FOC member designate &middot; <strong>Date:</strong> October 3, 2026 &middot; <strong>Next reviewer:</strong> M. Garcia (rotating)</p>
+
+    </div>
+    <div class="report-footer">
+      Exception rules in effect: payments &ge; $100,000 &middot; new or first-time vendors &middot; off-cycle or manual checks &middot; vendor name or address changes &middot; interfund activity &middot; accounts over budget YTD. Rules approved by full committee 8/12/26.
+    </div>
+  </div>
+
+  <h2><span class="num">3</span>13-week rolling cash forecast (Phase 1)</h2>
+
+  <p>The plan calls for a 13-week rolling cash forecast during Phase 1 &mdash; a standard tool in turnaround finance for keeping early-warning visibility on cash. The forecast is rebuilt each week from the prior week's actual close, so projected vs. actual variance is visible by line.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">General Fund 13-Week Rolling Cash Forecast <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">Forecast horizon: weeks of October 5, 2026 through January 4, 2027 &middot; Built from week-ending October 2 actuals</div>
+    </div>
+    <div class="report-body">
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Week ending</th>
+            <th class="num">Beginning cash</th>
+            <th class="num">State aid</th>
+            <th class="num">Prop tax / other in</th>
+            <th class="num">Payroll out</th>
+            <th class="num">Other out</th>
+            <th class="num">Ending cash</th>
+            <th class="num">Days cash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oct 9, 2026 <small>(forecast)</small></td>
+            <td class="num">$25.6M</td>
+            <td class="num">&mdash;</td>
+            <td class="num">$0.8M</td>
+            <td class="num">($9.6M)</td>
+            <td class="num">($4.1M)</td>
+            <td class="num">$12.7M</td>
+            <td class="num">22</td>
+          </tr>
+          <tr>
+            <td>Oct 16, 2026 <small>(forecast)</small></td>
+            <td class="num">$12.7M</td>
+            <td class="num">$18.5M</td>
+            <td class="num">$0.6M</td>
+            <td class="num">($0.4M)</td>
+            <td class="num">($3.2M)</td>
+            <td class="num">$28.2M</td>
+            <td class="num">49</td>
+          </tr>
+          <tr>
+            <td>Oct 23, 2026 <small>(forecast)</small></td>
+            <td class="num">$28.2M</td>
+            <td class="num">&mdash;</td>
+            <td class="num">$0.7M</td>
+            <td class="num">($9.7M)</td>
+            <td class="num">($3.8M)</td>
+            <td class="num">$15.4M</td>
+            <td class="num">27</td>
+          </tr>
+          <tr>
+            <td>Oct 30, 2026 <small>(forecast)</small></td>
+            <td class="num">$15.4M</td>
+            <td class="num">&mdash;</td>
+            <td class="num">$0.5M</td>
+            <td class="num">($0.4M)</td>
+            <td class="num">($4.6M)</td>
+            <td class="num">$10.9M</td>
+            <td class="num">19</td>
+          </tr>
+          <tr>
+            <td>Nov 6, 2026 <small>(forecast)</small></td>
+            <td class="num">$10.9M</td>
+            <td class="num">&mdash;</td>
+            <td class="num">$6.2M</td>
+            <td class="num">($9.7M)</td>
+            <td class="num">($3.4M)</td>
+            <td class="num">$4.0M</td>
+            <td class="num">7</td>
+          </tr>
+          <tr class="flag-row">
+            <td>Nov 13, 2026 <small>(forecast)</small></td>
+            <td class="num">$4.0M</td>
+            <td class="num">$18.5M</td>
+            <td class="num">$0.6M</td>
+            <td class="num">($0.4M)</td>
+            <td class="num">($3.1M)</td>
+            <td class="num">$19.6M</td>
+            <td class="num">34</td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="7">&hellip; Six additional weeks projected through Jan 4, 2027 (showing alternating payroll cycles + Dec property tax disbursement).</td>
+            <td class="num">&hellip;</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="commentary">
+        <strong>Committee note.</strong> The forecast shows projected cash dipping to $4.0M (7 days) for the week of November 6 &mdash; the trough between the October state aid receipt and the December property tax disbursement. This is the third year showing this pattern; the dip is forecasted in advance and recovers automatically on November 10 with the next state aid payment. <strong>Action:</strong> the operations director has prepared a contingency drawdown notice with MidwestOne against the standing Revenue Anticipation Warrant capacity, to be issued only if state aid is delayed.
+      </div>
+
+      <p style="margin-top: 1rem;"><strong>Forecast accuracy, prior 4 weeks:</strong> Week 1 +1.3% &middot; Week 2 &minus;0.4% &middot; Week 3 +2.1% &middot; Week 4 &minus;0.8%. Trailing average within &plusmn;1.5% &mdash; within tolerance.</p>
+
+    </div>
+    <div class="report-footer">
+      Forecast built each Monday from prior week-ending GL actuals. Rolls forward 13 weeks. <strong>Phase 2 step-down:</strong> when the trailing-quarter trough no longer breaches the yellow zone, the forecast moves to a bi-weekly cadence.
+    </div>
+  </div>
+
+  <h2><span class="num">4</span>Corrective-action tracker</h2>
+
+  <p>Audit findings, internal control items, and recovery plan commitments &mdash; with owners, target dates, and status. Reviewed at every committee meeting until cleared. The point isn't to relitigate the items; it's to make sure completed work gets credited and stalled work gets surfaced before it becomes a problem.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Corrective Action Tracker <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">As of October 31, 2026 &middot; 23 items tracked &middot; 15 closed &middot; 6 in progress &middot; 2 past due</div>
+    </div>
+    <div class="report-body">
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Source</th>
+            <th>Owner</th>
+            <th>Target</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="flag-row">
+            <td><strong>Bank account segregation</strong> &mdash; separate accounts for Debt Service Fund, Schoolhouse Fund</td>
+            <td>FY23 audit material weakness</td>
+            <td>CFO</td>
+            <td>9/30/26</td>
+            <td><span class="pill red">Past due (1 month)</span></td>
+          </tr>
+          <tr class="flag-row">
+            <td><strong>Health Insurance Fund loan repayment</strong> &mdash; $10M plus interest</td>
+            <td>Board direction 6/2/26</td>
+            <td>CFO</td>
+            <td>10/1/26</td>
+            <td><span class="pill red">Past due (1 month)</span></td>
+          </tr>
+          <tr>
+            <td>FY24 audit findings response letter to auditor</td>
+            <td>FY24 audit</td>
+            <td>CFO</td>
+            <td>12/15/26</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr>
+            <td>Monthly close calendar published and tracked</td>
+            <td>Internal controls plan</td>
+            <td>Controller</td>
+            <td>11/30/26</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr>
+            <td>SBRC corrective action plan quarterly update</td>
+            <td>State oversight</td>
+            <td>CFO + Board</td>
+            <td>12/31/26</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr>
+            <td>Restated FY23 financial statements filed with continuing disclosure</td>
+            <td>FY24 audit / bond covenant</td>
+            <td>CFO + Bond counsel</td>
+            <td>1/15/27</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr>
+            <td>Continuing disclosure annual filing for FY24</td>
+            <td>Bond covenant</td>
+            <td>CFO</td>
+            <td>3/31/27</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr>
+            <td>SAVE Fund deficit corrective plan</td>
+            <td>FY24 audit (pending finding)</td>
+            <td>CFO + Bond counsel</td>
+            <td>TBD on audit issuance</td>
+            <td><span class="pill gray">Awaiting audit</span></td>
+          </tr>
+          <tr>
+            <td>Open meeting and open records training, all new committee members</td>
+            <td>Iowa Code Ch. 21 / Ch. 22</td>
+            <td>FOC chair</td>
+            <td>8/15/26</td>
+            <td><span class="pill green">Closed 8/12/26</span></td>
+          </tr>
+          <tr>
+            <td>Reserves policy adopted by board</td>
+            <td>Recovery plan</td>
+            <td>FOC + Board</td>
+            <td>9/30/26</td>
+            <td><span class="pill green">Closed 9/22/26</span></td>
+          </tr>
+          <tr>
+            <td>Debt policy adopted by board</td>
+            <td>Recovery plan</td>
+            <td>FOC + Board</td>
+            <td>11/30/26</td>
+            <td><span class="pill blue">In progress</span></td>
+          </tr>
+          <tr class="subtotal">
+            <td colspan="5">&hellip; 12 additional items, 11 closed prior to 9/1/26.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="commentary">
+        <strong>Past-due commentary.</strong> Both past-due items are tied to the August 2025 interfund transfer story and are linked: bank account segregation is the precondition for clean Health Insurance Fund repayment. The CFO has committed to a revised target of November 15, 2026 for both. <strong>Recommended committee action:</strong> accept the revised target with the condition that any further slip triggers an immediate ad-hoc committee meeting.
+      </div>
+
+    </div>
+    <div class="report-footer">
+      Reviewed at each FOC meeting. Item ownership cannot be changed without notice to the committee. The tracker is published on the district website and updated within 5 business days of each FOC meeting.
+    </div>
+  </div>
+
+  <h2><span class="num">5</span>Quarterly metric scorecard</h2>
+
+  <p>One step deeper than the monthly dashboard. Each metric shown against its zone with a trailing 4-quarter trend, plus brief commentary on any metric in yellow or red. Goes to the board with the FOC's quarterly report.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Quarterly Metric Scorecard &mdash; Q1 FY27 <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">Quarter ended September 30, 2026 &middot; Submitted to board November 17, 2026</div>
+    </div>
+    <div class="report-body">
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Q4 FY26</th>
+            <th class="num">Q1 FY27</th>
+            <th>Zone</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Days cash on hand</td>
+            <td class="num">35</td>
+            <td class="num">47</td>
+            <td><span class="pill gold">Yellow</span></td>
+            <td>Improving (+12)</td>
+          </tr>
+          <tr>
+            <td>Unspent budget authority (UAB %)</td>
+            <td class="num">+0.9%</td>
+            <td class="num">+1.8%</td>
+            <td><span class="pill green">Green</span></td>
+            <td>Improving (+0.9pp)</td>
+          </tr>
+          <tr>
+            <td>Solvency ratio</td>
+            <td class="num">3.8%</td>
+            <td class="num">5.2%</td>
+            <td><span class="pill gold">Yellow</span></td>
+            <td>Improving (+1.4pp)</td>
+          </tr>
+          <tr>
+            <td>FTE variance to budget</td>
+            <td class="num">+18</td>
+            <td class="num">+12</td>
+            <td><span class="pill gold">Yellow</span></td>
+            <td>Improving (&minus;6 FTE)</td>
+          </tr>
+          <tr>
+            <td>YTD spending vs. budget pace</td>
+            <td class="num">98.3%</td>
+            <td class="num">99.2%</td>
+            <td><span class="pill green">Green</span></td>
+            <td>Stable</td>
+          </tr>
+          <tr>
+            <td>Open audit findings</td>
+            <td class="num">12</td>
+            <td class="num">8</td>
+            <td><span class="pill gold">Yellow</span></td>
+            <td>Improving (&minus;4)</td>
+          </tr>
+          <tr>
+            <td>Months to audit acceptance</td>
+            <td class="num">&gt;24</td>
+            <td class="num">17</td>
+            <td><span class="pill red">Red</span></td>
+            <td>Improving (&minus;7 mo.)</td>
+          </tr>
+          <tr>
+            <td>Continuing disclosure on-time rate</td>
+            <td class="num">0%</td>
+            <td class="num">50%</td>
+            <td><span class="pill red">Red</span></td>
+            <td>Improving (+50pp)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="commentary">
+        <strong>Yellow and red commentary.</strong> Audit acceptance timing is the binding constraint on the rating recovery timeline; the district is on pace per the public catch-up plan but cannot yet be reported in green. Continuing disclosure remains red because the FY24 filing is contingent on FY24 audit acceptance &mdash; sequencing, not effort. <strong>No red-zone breaches triggered automatic actions this quarter.</strong> The trajectory across all eight metrics is improving.
+      </div>
+
+    </div>
+    <div class="report-footer">
+      Metric definitions and zone boundaries set by board policy (200.3G5, draft). Reviewed annually alongside budget development. Quarterly scorecard goes to the board with the FOC quarterly report.
+    </div>
+  </div>
+
+  <h2><span class="num">6</span>Phase-change certification memo</h2>
+
+  <p>When the conditions for moving between phases are met, the committee certifies the change and the board approves it in open session. This is the artifact that makes the recovery's progress markers visible &mdash; the kind of independently certified milestone that rebuilds external confidence.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Memo: Recommended Phase Change &mdash; Phase 1 to Phase 2 <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">For board consideration &middot; FOC certified March 16, 2027</div>
+    </div>
+    <div class="report-body memo-style">
+
+      <div class="memo-header">
+        <div class="label">TO:</div>
+        <div>Iowa City Community School District Board of Directors</div>
+        <div class="label">FROM:</div>
+        <div>Financial Oversight Committee &mdash; Chair on behalf of the Committee</div>
+        <div class="label">RE:</div>
+        <div>Certification that all conditions for Phase 1 to Phase 2 transition have been met</div>
+        <div class="label">DATE:</div>
+        <div>March 16, 2027</div>
+      </div>
+
+      <p>The Financial Oversight Committee has reviewed the five conditions required under the board's <em>Phased Operating Framework</em> (Policy 200.3G5) for the district to step down from Phase 1 (Recovery) to Phase 2 (Stabilization). The Committee finds that each condition has been satisfied and certifies the change to the Board for approval in open session.</p>
+
+      <p><strong>Conditions and current state:</strong></p>
+
+      <ul>
+        <li><strong>Condition 1 &mdash; Interfund Health Insurance Fund loan repaid in full with interest.</strong> <em>Met.</em> Repayment of $10,612,500 completed November 15, 2026. Independent confirmation against Health Insurance Fund bank statement reconciled by the Committee on November 22, 2026.</li>
+        <li><strong>Condition 2 &mdash; Three consecutive on-time monthly closes.</strong> <em>Met.</em> December 2026, January 2027, and February 2027 closes completed within the published target window (15 business days after period end), confirmed by the Controller.</li>
+        <li><strong>Condition 3 &mdash; FY24 audit accepted by the Board with corrective action plan adopted.</strong> <em>Met.</em> Audit accepted July 22, 2026; corrective action plan adopted August 11, 2026 covering all findings.</li>
+        <li><strong>Condition 4 &mdash; All operating metrics out of the red zone for two consecutive quarters.</strong> <em>Met.</em> Q3 FY27 and Q4 FY27 scorecards (attached) show no red-zone breach on the six operating metrics. Two audit-cycle metrics remain in red and are excluded from this condition per Policy 200.3G5.</li>
+        <li><strong>Condition 5 &mdash; Continuing disclosure annual filing for FY24 submitted on time.</strong> <em>Met.</em> Filing submitted March 31, 2027.</li>
+      </ul>
+
+      <p><strong>What changes at the phase transition:</strong> the Committee meets every other month rather than monthly; the rolling cash forecast moves from weekly to bi-weekly; the exception thresholds for claims review widen modestly under Schedule B. The full Phase 2 operating standards are set out in Policy 200.3G5.</p>
+
+      <p>The Committee recommends the Board approve the phase change at the next regular meeting. The Committee further recommends that, consistent with prior practice, the Board issue a public statement noting that this is an independently certified milestone in the district's financial recovery.</p>
+
+      <div class="signature">
+        <div class="signed">FOC Chair &mdash; on behalf of the Committee</div>
+      </div>
+
+    </div>
+    <div class="report-footer">
+      Attached: Q3 FY27 and Q4 FY27 quarterly scorecards &middot; November 22, 2026 Health Insurance Fund reconciliation &middot; FY24 audit acceptance resolution &middot; FY24 continuing disclosure filing confirmation.
+    </div>
+  </div>
+
+  <h2><span class="num">7</span>Annual auditor independence confirmation</h2>
+
+  <p>Standard practice in audit-committee governance. The independent auditor sends a written confirmation each year that no relationships exist that would compromise independence. The Committee acknowledges receipt and notes any matters discussed. Three paragraphs.</p>
+
+  <div class="report">
+    <div class="report-header">
+      <div class="org">Iowa City Community School District &middot; Financial Oversight Committee</div>
+      <div class="title">Annual Auditor Independence Confirmation <span class="illustrative-stamp">Illustrative</span></div>
+      <div class="meta">For fiscal year 2027 audit engagement &middot; Received July 12, 2027</div>
+    </div>
+    <div class="report-body memo-style">
+
+      <p style="font-style: italic; color: var(--ink-mute); margin-bottom: 1.25rem;">Letter from independent auditor to the Financial Oversight Committee:</p>
+
+      <p>To the Financial Oversight Committee of the Iowa City Community School District:</p>
+
+      <p>In accordance with our professional standards and the engagement letter for our audit of the District's financial statements for the fiscal year ending June 30, 2027, we confirm that we are independent of the Iowa City Community School District and have complied with the relevant ethical requirements regarding independence. We have considered all relationships between our firm and the District that, in our professional judgment, may reasonably be thought to bear on independence, and have concluded that none exist that would impair our independence in fact or appearance.</p>
+
+      <p>We further confirm that, during the year, no disagreements arose between our firm and District management on matters of accounting principles or disclosure that would require communication to the Committee. Two items were discussed at the appropriate level of management and are summarized in the management letter attached separately.</p>
+
+      <p>We welcome the opportunity to discuss any aspect of this confirmation with the Committee at the regular open-meeting auditor session scheduled for September 8, 2027.</p>
+
+      <div class="signature" style="margin-top: 1.5rem;">
+        <div class="signed">[Lead audit partner], on behalf of [Audit firm]</div>
+      </div>
+
+      <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--grid);"><strong>FOC acknowledgment.</strong> The Committee acknowledges receipt of the auditor's independence confirmation and the accompanying management letter. The Committee reviewed both documents at the meeting of August 19, 2027, met with the lead audit partner without management present, and finds no matters requiring additional Board attention beyond those already in the corrective-action tracker. The Committee will hear the auditor's full report at the September 8, 2027 open meeting.</p>
+
+      <div class="signature">
+        <div class="signed">FOC Chair &mdash; on behalf of the Committee, August 19, 2027</div>
+      </div>
+
+    </div>
+    <div class="report-footer">
+      Routine practice. Letter received annually before each audit cycle. Open-session auditor meeting calendared in advance regardless of findings.
+    </div>
+  </div>
+
+  <h2>How these examples connect to the operating plan</h2>
+
+  <p>Each artifact above is paired to a specific section of the operating note:</p>
+
+  <ul>
+    <li><strong>Dashboard, exception report, cash forecast, corrective-action tracker</strong> &mdash; the "use what already exists" principle (section 1 of the note). Each is built from data the business office already produces.</li>
+    <li><strong>Dashboard zones, quarterly scorecard</strong> &mdash; the operating-zone framework (section 2). Yellow and red zones drive defined responses, not crisis-of-confidence reactions.</li>
+    <li><strong>Phase-change certification, cash forecast (Phase 1 only)</strong> &mdash; the phased step-down path (section 3). Heightened scrutiny has a defined end, and management controls the pace by hitting milestones.</li>
+    <li><strong>Auditor independence confirmation, corrective-action tracker</strong> &mdash; the independence and verification provisions (section 4). Routine, scheduled, non-confrontational.</li>
+    <li><strong>Dashboard, quarterly scorecard, phase-change memo</strong> &mdash; the "help tell the recovery story" objective (section 5). Each is publishable and gives the district an independently-vouched-for record of progress.</li>
+  </ul>
+
+  <p>The reports as drawn require modest setup work in the business office &mdash; mostly data extracts and report templates &mdash; and very little ongoing additional effort beyond the standard month-end and pay-cycle work the district already does. The Committee adds the reviewer cadence, the exception filters, the independent reconciliation, and the public certification. None of that requires the business office to produce new financial information.</p>
+
+  <div class="footer">
+    Illustrative examples prepared June 2026 as a companion to the Financial Oversight Committee operating note.<br>
+    Offered constructively. All numbers, names, and dates on this page are placeholders.
+  </div>
+
+</main>
+
+</body>
+</html>

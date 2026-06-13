@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Corrective Action Tracker — As of October 31, 2026</title>
+<style>
+  @page { size: letter; margin: 0.75in 0.85in; }
+  * { box-sizing: border-box; }
+  html, body { background: #fff; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #0f172a; line-height: 1.4; font-size: 9.5pt; padding: 0.75in 0.85in; }
+
+  .doc { max-width: 6.8in; margin: 0 auto; padding: 0; }
+
+  .header { border-bottom: 2px solid #0b1426; padding-bottom: 7pt; margin-bottom: 10pt; }
+  .header .agency { font-size: 8.5pt; font-weight: 700; letter-spacing: 1.5pt; text-transform: uppercase; color: #475569; margin-bottom: 2pt; }
+  .header .district { font-size: 13pt; font-weight: 700; color: #0f172a; margin: 0; }
+  .header h1 { font-size: 16pt; font-weight: 800; margin: 5pt 0 3pt; line-height: 1.15; letter-spacing: -0.3pt; }
+  .header .meta { font-size: 9pt; color: #475569; }
+
+  .summary-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7pt; margin-bottom: 10pt; }
+  .summary-tile { border: 1px solid #cbd5e1; border-radius: 3pt; padding: 7pt 9pt; }
+  .summary-tile .label { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.4pt; text-transform: uppercase; color: #64748b; }
+  .summary-tile .value { font-size: 18pt; font-weight: 800; color: #0f172a; line-height: 1; margin-top: 2pt; }
+  .summary-tile.past .value { color: #b03a2e; }
+  .summary-tile.open .value { color: #b58220; }
+  .summary-tile.closed .value { color: #1e7a3a; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-bottom: 10pt; }
+  th, td { padding: 4pt 6pt; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+  th { background: #f8fafc; font-weight: 700; color: #0f172a; font-size: 7.5pt; letter-spacing: 0.3pt; border-bottom: 1.5pt solid #cbd5e1; text-transform: uppercase; }
+  td.target { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.past td { background: #fdecec; }
+  tr.past td:first-child { border-left: 3pt solid #b03a2e; }
+  .pill { display: inline-block; font-size: 7pt; font-weight: 700; letter-spacing: 0.3pt; padding: 1pt 4pt; border-radius: 2pt; text-transform: uppercase; white-space: nowrap; }
+  .pill.gold { background: #fdf3df; color: #b58220; }
+  .pill.red { background: #fdecec; color: #b03a2e; }
+  .pill.blue { background: #e0e7ff; color: #4338ca; }
+  .pill.green { background: #e7f5ec; color: #1e7a3a; }
+  .pill.gray { background: #e2e8f0; color: #64748b; }
+
+  .commentary { background: #fdecec; border: 1px solid #f5b7b1; padding: 7pt 11pt; margin-bottom: 10pt; font-size: 9.5pt; color: #334155; border-radius: 3pt; }
+  .commentary .title { font-weight: 700; color: #0f172a; margin-bottom: 3pt; display: block; }
+
+  .footer { border-top: 1px solid #cbd5e1; padding-top: 6pt; font-size: 8pt; color: #64748b; line-height: 1.5; }
+  .footer strong { color: #334155; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="header">
+    <div class="agency">Financial Oversight Committee</div>
+    <div class="district">Iowa City Community School District</div>
+    <h1>Corrective Action Tracker</h1>
+    <div class="meta">As of October 31, 2026 &nbsp;&middot;&nbsp; Reviewed at FOC meeting of November 4, 2026 &nbsp;&middot;&nbsp; Report ID: FOC-CAT-2026-10</div>
+  </div>
+
+  <div class="summary-row">
+    <div class="summary-tile">
+      <div class="label">Total tracked</div>
+      <div class="value">23</div>
+    </div>
+    <div class="summary-tile closed">
+      <div class="label">Closed</div>
+      <div class="value">15</div>
+    </div>
+    <div class="summary-tile open">
+      <div class="label">In progress</div>
+      <div class="value">6</div>
+    </div>
+    <div class="summary-tile past">
+      <div class="label">Past due</div>
+      <div class="value">2</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 40%;">Item</th>
+        <th style="width: 19%;">Source</th>
+        <th style="width: 14%;">Owner</th>
+        <th style="width: 10%;">Target</th>
+        <th style="width: 17%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="past">
+        <td><strong>Bank account segregation</strong> &mdash; separate accounts established for Debt Service Fund and Schoolhouse Fund per Ahlers &amp; Cooney guidance</td>
+        <td>FY23 audit material weakness</td>
+        <td>CFO</td>
+        <td class="target">9/30/26</td>
+        <td><span class="pill red">Past due (1 month)</span></td>
+      </tr>
+      <tr class="past">
+        <td><strong>Health Insurance Fund interfund loan repayment</strong> &mdash; $10M principal + accrued interest</td>
+        <td>Board direction 6/2/26</td>
+        <td>CFO</td>
+        <td class="target">10/1/26</td>
+        <td><span class="pill red">Past due (1 month)</span></td>
+      </tr>
+      <tr>
+        <td>FY24 audit findings response letter to independent auditor</td>
+        <td>FY24 audit</td>
+        <td>CFO</td>
+        <td class="target">12/15/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>Monthly close calendar published and tracked; close target 15 business days after period end</td>
+        <td>Internal controls plan</td>
+        <td>Controller</td>
+        <td class="target">11/30/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>School Budget Review Committee corrective action plan quarterly update</td>
+        <td>State oversight (SBRC)</td>
+        <td>CFO + Board</td>
+        <td class="target">12/31/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>Restated FY23 financial statements filed via continuing disclosure with EMMA</td>
+        <td>FY24 audit / bond covenant</td>
+        <td>CFO + Bond counsel</td>
+        <td class="target">1/15/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>FY24 continuing disclosure annual filing submitted to EMMA</td>
+        <td>Bond covenant</td>
+        <td>CFO</td>
+        <td class="target">3/31/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>SAVE Fund deficit corrective plan presented to Board</td>
+        <td>FY24 audit (pending finding)</td>
+        <td>CFO + Bond counsel</td>
+        <td class="target">TBD</td>
+        <td><span class="pill gray">Awaiting audit</span></td>
+      </tr>
+      <tr>
+        <td>Open meeting and open records training, all new FOC members</td>
+        <td>Iowa Code Ch. 21 / Ch. 22</td>
+        <td>FOC Chair</td>
+        <td class="target">8/15/26</td>
+        <td><span class="pill green">Closed 8/12/26</span></td>
+      </tr>
+      <tr>
+        <td>Reserves policy adopted by Board (Policy 401.5 draft)</td>
+        <td>Recovery plan</td>
+        <td>FOC + Board</td>
+        <td class="target">9/30/26</td>
+        <td><span class="pill green">Closed 9/22/26</span></td>
+      </tr>
+      <tr>
+        <td>Debt management policy adopted by Board</td>
+        <td>Recovery plan</td>
+        <td>FOC + Board</td>
+        <td class="target">11/30/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td>Property tax disbursement segregation protocol established with Johnson County Auditor</td>
+        <td>K.02.01 memo finding</td>
+        <td>CFO + County</td>
+        <td class="target">2/28/26</td>
+        <td><span class="pill green">Closed 2/14/26</span></td>
+      </tr>
+      <tr>
+        <td>ISJIT investment account opened for proper segregation of restricted funds</td>
+        <td>K.02.01 memo finding</td>
+        <td>CFO</td>
+        <td class="target">3/31/26</td>
+        <td><span class="pill green">Closed 3/18/26</span></td>
+      </tr>
+      <tr>
+        <td>FY24 Revenue Anticipation Warrant retired</td>
+        <td>FY26 cash flow plan</td>
+        <td>CFO</td>
+        <td class="target">5/15/27</td>
+        <td><span class="pill blue">On track</span></td>
+      </tr>
+      <tr>
+        <td>... 9 additional items, all closed prior to September 1, 2026 (closure dates on file)</td>
+        <td>Various</td>
+        <td>&mdash;</td>
+        <td class="target">&mdash;</td>
+        <td><span class="pill green">Closed</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="commentary">
+    <span class="title">Past-due commentary &mdash; committee action required</span>
+    Both past-due items are tied to the August 2025 interfund transfer story and are sequentially linked: <strong>bank account segregation is the precondition for clean Health Insurance Fund repayment.</strong> The Chief Financial Officer has committed to a revised target of <strong>November 15, 2026</strong> for both items, contingent on the completion of the bank account opening process with the district's primary depository. <strong>Recommended committee action:</strong> accept the revised target with the condition that any further slip beyond November 15 triggers an immediate ad-hoc committee meeting and written notice to the full Board.
+  </div>
+
+  <div class="footer">
+    <strong>Update process:</strong> Item ownership cannot be changed without notice to the committee. Status changes require documentation. <strong>Publication:</strong> tracker is published on iccsd.org/foc and updated within 5 business days of each FOC meeting. <strong>Sources rolled into the tracker:</strong> FY23 audit findings, FY24 audit (preliminary), recovery plan items, K.02.01 memo follow-ups, SBRC corrective action plan, bond continuing disclosure obligations.
+  </div>
+
+</div>
+</body>
+</html>

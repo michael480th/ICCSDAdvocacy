@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monthly Financial Health Dashboard — September 2026</title>
+<style>
+  @page { size: letter; margin: 0.75in 0.85in; }
+  * { box-sizing: border-box; }
+  html, body { background: #fff; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #0f172a; line-height: 1.4; font-size: 10.5pt; padding: 0.75in 0.85in; }
+
+  .doc { max-width: 6.8in; margin: 0 auto; padding: 0; }
+
+  .header { border-bottom: 2px solid #0b1426; padding-bottom: 8pt; margin-bottom: 14pt; }
+  .header .agency { font-size: 9pt; font-weight: 700; letter-spacing: 1.5pt; text-transform: uppercase; color: #475569; margin-bottom: 2pt; }
+  .header .district { font-size: 14pt; font-weight: 700; color: #0f172a; margin: 0; }
+  .header h1 { font-size: 17pt; font-weight: 800; margin: 6pt 0 4pt; line-height: 1.15; letter-spacing: -0.3pt; }
+  .header .meta { font-size: 9.5pt; color: #475569; }
+
+  .phase-strip { background: #fbf3da; border: 1px solid #ecd49a; padding: 8pt 10pt; border-radius: 4pt; display: flex; align-items: center; gap: 12pt; margin-bottom: 14pt; }
+  .phase-strip .phase-label { font-size: 8pt; font-weight: 700; letter-spacing: 1pt; color: #b58220; text-transform: uppercase; }
+  .phase-strip .phase-title { font-size: 11pt; font-weight: 700; color: #0f172a; margin: 0; }
+  .phase-strip .phase-progress { margin-left: auto; font-size: 9pt; color: #334155; }
+  .phase-strip .phase-progress strong { color: #0f172a; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7pt; margin-bottom: 12pt; }
+  .tile { border: 1px solid #cbd5e1; border-radius: 4pt; padding: 8pt 10pt 10pt; background: #fff; }
+  .tile .label { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.5pt; text-transform: uppercase; color: #64748b; margin-bottom: 2pt; }
+  .tile .value { font-size: 19pt; font-weight: 800; line-height: 1.05; color: #0f172a; }
+  .tile .value .unit { font-size: 9pt; color: #64748b; font-weight: 600; margin-left: 2pt; }
+
+  .zone-track { position: relative; margin: 18pt 0 4pt; padding-top: 0; }
+  .zone-bar { display: flex; height: 7pt; border-radius: 3.5pt; overflow: hidden; position: relative; }
+  .zone-bar > div { flex: 1; }
+  .zone-bar .zone-red { background: #d77a6e; }
+  .zone-bar .zone-yellow { background: #f4cf6a; }
+  .zone-bar .zone-green { background: #4ea76b; }
+
+  .zone-marker { position: absolute; top: -13pt; transform: translateX(-50%); pointer-events: none; text-align: center; }
+  .zone-marker .triangle { width: 0; height: 0; border-left: 5pt solid transparent; border-right: 5pt solid transparent; border-top: 6pt solid #0f172a; margin: 0 auto; }
+  .zone-marker .stem { width: 1.5pt; height: 14pt; background: #0f172a; margin: 0 auto; }
+
+  .zone-scale { display: flex; justify-content: space-between; font-size: 6.5pt; color: #94a3b8; margin-top: 3pt; font-variant-numeric: tabular-nums; letter-spacing: 0.2pt; }
+
+  .tile .zone-status { display: flex; justify-content: space-between; align-items: center; font-size: 8pt; color: #475569; margin-top: 6pt; }
+  .badge { font-size: 7pt; font-weight: 700; letter-spacing: 0.5pt; padding: 1.5pt 5pt; border-radius: 2pt; text-transform: uppercase; }
+  .badge.green { background: #e7f5ec; color: #1e7a3a; }
+  .badge.yellow { background: #fdf3df; color: #b58220; }
+  .badge.red { background: #fdecec; color: #b03a2e; }
+
+  .commentary { background: #f1f5f9; border-left: 3pt solid #2c5fa1; padding: 8pt 10pt; margin: 0 0 12pt; font-size: 9.5pt; color: #334155; }
+  .commentary strong { color: #0f172a; }
+  .commentary .title { font-weight: 700; color: #0f172a; margin-bottom: 3pt; display: block; }
+
+  .conditions { border: 1px solid #cbd5e1; border-radius: 4pt; padding: 9pt 11pt; margin-bottom: 12pt; font-size: 9.5pt; }
+  .conditions .conditions-title { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.5pt; text-transform: uppercase; color: #64748b; margin-bottom: 5pt; }
+  .conditions ul { margin: 0; padding-left: 0; list-style: none; }
+  .conditions li { padding: 1.5pt 0; color: #334155; }
+  .conditions .check { color: #1e7a3a; font-weight: 700; }
+  .conditions .pending { color: #b58220; font-weight: 700; }
+
+  .footer { border-top: 1px solid #cbd5e1; padding-top: 6pt; font-size: 8.5pt; color: #64748b; line-height: 1.5; }
+  .footer strong { color: #334155; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="header">
+    <div class="agency">Financial Oversight Committee</div>
+    <div class="district">Iowa City Community School District</div>
+    <h1>Monthly Financial Health Dashboard</h1>
+    <div class="meta">For the month ended September 30, 2026 &nbsp;&middot;&nbsp; Published October 15, 2026 &nbsp;&middot;&nbsp; Report ID: FOC-DASH-2026-09</div>
+  </div>
+
+  <div class="phase-strip">
+    <span class="phase-label">Current phase</span>
+    <p class="phase-title">Phase 1 &mdash; Recovery</p>
+    <div class="phase-progress">Progress toward Phase 2 (Stabilization): <strong>3 of 5 conditions met</strong></div>
+  </div>
+
+  <div class="grid">
+
+    <div class="tile">
+      <div class="label">Days cash on hand</div>
+      <div class="value">47<span class="unit">days</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 38%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>0</span><span>20</span><span>50</span><span>75</span><span>100</span><span>120+</span></div>
+      </div>
+      <div class="zone-status">
+        <span>Target zone 50&ndash;75</span>
+        <span class="badge yellow">Yellow</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="label">Unspent budget authority</div>
+      <div class="value">+1.8<span class="unit">%</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 47.5%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>&minus;2</span><span>0</span><span>+1</span><span>+3</span><span>+5</span><span>+8</span></div>
+      </div>
+      <div class="zone-status">
+        <span>Target zone +1 to +3%</span>
+        <span class="badge green">Green</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="label">Solvency ratio</div>
+      <div class="value">5.2<span class="unit">%</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 30.4%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>0</span><span>2</span><span>8</span><span>15</span><span>20</span><span>25+</span></div>
+      </div>
+      <div class="zone-status">
+        <span>Target zone 8&ndash;15%</span>
+        <span class="badge yellow">Yellow</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="label">FTE variance to budget</div>
+      <div class="value">+12<span class="unit">FTEs</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 74%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>&minus;15</span><span>&minus;5</span><span>0</span><span>+5</span><span>+15</span><span>+25</span></div>
+      </div>
+      <div class="zone-status">
+        <span>Target zone &plusmn;5 FTE</span>
+        <span class="badge yellow">Yellow</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="label">YTD spending vs. budget</div>
+      <div class="value">24.8<span class="unit">% YTD</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 49%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-red"></div><div class="zone-yellow"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>0</span><span>15</span><span>23</span><span>27</span><span>35</span><span>50+</span></div>
+      </div>
+      <div class="zone-status">
+        <span>Pacing 25.0% (Q1)</span>
+        <span class="badge green">Green</span>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="label">Open corrective actions</div>
+      <div class="value">8<span class="unit">of 23 open</span></div>
+      <div class="zone-track">
+        <div class="zone-marker" style="left: 53%;">
+          <div class="triangle"></div>
+          <div class="stem"></div>
+        </div>
+        <div class="zone-bar">
+          <div class="zone-green"></div><div class="zone-green"></div><div class="zone-yellow"></div><div class="zone-red"></div><div class="zone-red"></div>
+        </div>
+        <div class="zone-scale"><span>0</span><span>3</span><span>6</span><span>10</span><span>16</span><span>23</span></div>
+      </div>
+      <div class="zone-status">
+        <span>2 items past due</span>
+        <span class="badge yellow">Yellow</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="commentary">
+    <span class="title">Committee commentary &mdash; September 2026</span>
+    Days cash held steady at 47, supported by the October 1 state aid payment received on time. The FTE variance reflects unfilled vacancies running below replacement; the Operations Director will present a rebalanced staffing plan at the November committee meeting. Two corrective actions tied to the FY24 audit findings are past due; both are flagged in the corrective-action tracker exhibit. <strong>No red-zone breaches this month; no automatic actions triggered.</strong>
+  </div>
+
+  <div class="conditions">
+    <div class="conditions-title">Phase 2 transition conditions</div>
+    <ul>
+      <li><span class="check">&check;</span> &nbsp;Interfund Health Insurance Fund loan repaid in full with interest</li>
+      <li><span class="check">&check;</span> &nbsp;Three consecutive on-time monthly closes</li>
+      <li><span class="check">&check;</span> &nbsp;FY24 audit accepted by the Board with corrective action plan adopted</li>
+      <li><span class="pending">&hellip;</span> &nbsp;All operating metrics out of red zone for two consecutive quarters &mdash; pending</li>
+      <li><span class="pending">&hellip;</span> &nbsp;Continuing disclosure annual filing for FY24 submitted &mdash; pending</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <strong>Source data:</strong> District general ledger as of September 30, 2026. &nbsp;<strong>Verified by:</strong> FOC Chair, reconciled against bank and investment statements October 10, 2026. &nbsp;<strong>Distribution:</strong> Board of Directors, Superintendent, Chief Financial Officer, public posting iccsd.org/foc.
+  </div>
+
+</div>
+</body>
+</html>
