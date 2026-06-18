@@ -1,159 +1,107 @@
-# ICCSD Advocacy — Iowa School District Financial Analysis
+# Iowa City Schools — Follow the Money
 
-Tools and analysis for understanding the financial health of Iowa's public school districts,
-built from **audited financial reports** and **Iowa state financial filings**.
+A plain-English look at the financial health of the **Iowa City Community School District (ICCSD)**,
+measured against other large Iowa school districts. Every number here comes from official sources — the
+districts' own audited financial reports and the State of Iowa's public filings. Nothing is guessed or
+made up.
 
-The centerpiece is a benchmark comparing **15 of Iowa's largest districts** across six years
-(FY2020–FY2025) on three things: day-to-day **financial health**, the **quality of financial
-management**, and **how they are paying for buildings**.
-
-> New to Iowa school finance? The report opens with a plain-English "Key terms" box. The one idea
-> to know up front: Iowa caps how much a district may *spend* each year (its **spending authority**),
-> separately from how much *cash* it has — so a district can have money in the bank and still be in
-> trouble. That distinction drives much of the analysis.
+The goal is simple: make it easy for any resident — parent, taxpayer, board member, reporter — to see
+how Iowa City's schools are doing with money, in context, without needing an accounting background.
 
 ---
 
-## 📊 The report
+## 👉 See it online
 
-| File | What it is |
+**[View the website →](https://michael480th.github.io/ICCSD_Financial_Benchmarking/)**
+
+That link opens an easy-to-read site. A row of buttons across the top lets you jump between the
+different views. You don't need to download anything — it works on a phone or a computer.
+
+---
+
+## What you'll find
+
+Each page below answers one question in plain language, with a short explanation of why it matters.
+
+| Page | The question it answers |
 |---|---|
-| **[`iowa-district-financial-benchmark.html`](iowa-district-financial-benchmark.html)** | **The interactive report.** Open in any web browser. Sortable comparison table, a financial-health-vs-management map, per-district scorecards, and an "analyze one district" tool with ~20 charts and a "how this score is built" breakdown. A single self-contained file — no internet or install required. |
-| **[`iccsd-vs-peers.html`](iccsd-vs-peers.html)** | **Public-facing Iowa City focus.** One measure at a time, comparing Iowa City CSD to **size-matched peers** (large districts of 5,000+ students, and the best-run of those), each with a plain-English explanation of what it is and why it matters. Self-contained. |
-| **[`activity-fund.html`](activity-fund.html)** | **Student Activity Fund comparison.** Year-end balance of each district's student-activity fund — self-reported (CAR), audited (ACFR), and **per student** — Iowa City vs. 14 peers, FY2020–FY2024. Shows ICCSD carrying the thinnest cushion of the 15 (~$2/student at the FY2023 trough vs. a ~$100 peer average). Self-contained. |
-| **[`FY24-UAB-cushion.html`](FY24-UAB-cushion.html)** | **FY24 unspent-budget-authority watch.** Why ICCSD's FY24 UAB cushion is roughly $3.3 million wide and what it means for the district's spending authority. Self-contained. |
-| **[`FY24-audit-watchlist.html`](FY24-audit-watchlist.html)** | **FY24 audit watchlist.** A plain-English guide to what to check first when ICCSD's overdue FY24 audit is finally released. Self-contained. |
-| **[`making-the-foc-work.html`](making-the-foc-work.html)** | **Making the Financial Oversight Committee work** (district-leadership perspective). How to stand up the FOC — light-touch oversight, board-adopted financial limits with red/yellow/green zones, a phased path out of crisis, and independence provisions — plus a linked index of all seven illustrative example reports (the monthly dashboard, claims-exception review, 13-week cash forecast, corrective-action tracker, quarterly scorecard, phase-change certification, and auditor-independence confirmation). |
-| [`iccsd-fmp-board-commentary.md`](iccsd-fmp-board-commentary.md) | Brief reconciling the benchmark with an ICCSD board member's "no" vote on the Facilities Master Plan — where the data agrees, what the dissent adds, and which KPIs are still missing. Includes the full statement. |
-| **[`data/iowa-district-benchmark.xlsx`](data/iowa-district-benchmark.xlsx)** | **The benchmark as a spreadsheet.** Scorecard + year-by-year tabs (UAB, solvency, operating margin, enrollment, total debt, cash-reserve levy) + the underlying audited/state/balance-sheet data + a sources-and-definitions sheet. The "share the Excel file" deliverable. |
-| [`iowa-district-financial-benchmark.md`](iowa-district-financial-benchmark.md) | The same findings in plain Markdown (readable directly on GitHub). |
-| [`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md) | The **methodology** — how districts are assessed and scored, and why (the Iowa-specific reasoning behind every metric). |
+| **[How ICCSD compares](https://michael480th.github.io/ICCSD_Financial_Benchmarking/)** | The starting point. How does Iowa City stack up against similar-sized Iowa districts, one measure at a time? |
+| **[Reserves over time](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-liquidity-trend.html)** | Has Iowa City been drawing down its savings? How does that trend compare to its peers? |
+| **[Operating cash](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-operating-cash.html)** | How many days could the district keep the lights on with cash on hand — and how does that compare to the recommended cushion? |
+| **[Self-reported vs. audited](https://michael480th.github.io/ICCSD_Financial_Benchmarking/car-vs-audited.html)** | When a district reports its own numbers to the state, do those match what the independent auditors later confirm? |
+| **[Activities fund](https://michael480th.github.io/ICCSD_Financial_Benchmarking/activity-fund.html)** | How big a cushion does the student-activities fund carry, per student, compared to other districts? |
+| **[Integrity checks](https://michael480th.github.io/ICCSD_Financial_Benchmarking/integrity-checks.html)** | A credit-agency-style screen: are the books current, consistent, and free of red flags? |
+| **[Full benchmark (15 districts)](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iowa-district-financial-benchmark.html)** | The complete picture: all 15 of Iowa's largest districts, scored side by side, with a deep-dive tool for any one district. |
 
-👉 **To view the report:** download `iowa-district-financial-benchmark.html` and open it in a browser,
-or publish it online using the steps in **[Putting the report online](#-putting-the-report-online)** below.
+There's also a section on **[making a Financial Oversight Committee work](https://michael480th.github.io/ICCSD_Financial_Benchmarking/making-the-foc-work.html)** —
+practical templates for the kind of regular financial reporting that keeps a district on track.
 
 ---
 
-## How the scores work
+## A note on one important idea
 
-Each district gets three 1–5 scores plus a blended composite:
-
-- **Financial Health** — is it living within its means and keeping a cushion?
-  *(spending authority 50% + reserves/solvency 30% + recent operating margin 20%)*
-- **Operational Quality** — are the books clean, on time, and well-run?
-  *(audit opinions, internal-control findings, repeat problems, timeliness, GFOA/ASBO recognition)*
-- **Capital Sustainability** — can it afford what it's building?
-  *(health + enrollment trend + margin + how heavy its locked-in building cost is + debt-limit room)*
-- **Composite** = 40% Health + 35% Quality + 25% Capital Sustainability.
-
-"Building vs. maintaining" is reported as a neutral **label**, not scored.
-
----
-
-## Repository contents
-
-```
-iowa-district-financial-benchmark.html      The interactive report (open this)
-iowa-district-financial-benchmark.md         Markdown version of the report
-iowa-district-financial-analysis-framework.md  Methodology / scoring framework
-iccsd-vs-peers.html                          Public-facing Iowa City KPI comparison
-activity-fund.html                           Student Activity Fund: CAR vs. audited vs. per student
-iccsd-fmp-board-commentary.md                Benchmark vs. the FMP board dissent
-school-district-rating-withdrawals.md        Companion research: districts that lost bond
-                                             ratings over late/missing audits
-
-data/
-  iowa-district-benchmark.xlsx               Shareable Excel workbook (snapshot + time series + raw)
-  iowa-district-financials.csv               Master dataset from the audits (one row per district-year)
-  iowa-district-notes.csv                    Balance-sheet & forward-commitment data from audit notes
-  iowa-district-scorecards.csv               Final scores + flags, one row per district
-  car-fund-balances.csv                      Per-fund CAR balances incl. the Activity fund (FY2017-2024)
-  activity-fund-audited.csv                  Audited Student Activity fund balance from the ACFRs (FY2020-2024)
-  district-extractions/                      Raw per-district extractions from the audits (provenance)
-  notes-extractions/                         Raw per-district extractions from the notes (provenance)
-  dom/                                        Iowa Dept. of Management/Education state data
-    unspent-authorized-budget.csv              Spending authority (the #1 health metric)
-    cash-reserve-levy.csv, levy-rates-and-valuation.csv, certified-enrollment.csv,
-    aea-flowthrough.csv, at-risk.csv, assessed-valuation-latest.csv, aid-levy-summary.csv
-
-scripts/
-  extract_dom.py        Reads the Iowa state workbooks -> data/dom/*.csv
-  build_analysis.py     Merges audited + state + notes data, scores every district -> scorecards + cards.json
-  build_report.py       Renders cards.json into the main HTML report
-  build_iccsd_report.py Renders the public-facing Iowa City KPI comparison
-  build_workbook.py     Renders the shareable Excel workbook
-  extract_car.py        Reads the Iowa DE CAR workbooks/CSVs -> data/car-fund-balances.csv
-  extract_activity_fund.py        Reads each ACFR -> data/activity-fund-audited.csv (audited activity balance)
-  build_activity_fund_report.py   Renders the Student Activity Fund comparison -> activity-fund.html
-```
-
-Each `data/` folder has its own README describing the columns and sources.
+Iowa is unusual: the state caps how much a district is *allowed to spend* each year, separately from how
+much *cash* it actually has. That means a district can have money in the bank and still be in trouble —
+or look fine on cash while quietly running out of room to spend. Much of this analysis comes back to that
+distinction, and the pages explain it as they go.
 
 ---
 
 ## Where the numbers come from
 
-- **Audited Annual Comprehensive Financial Reports (ACFRs)** for each district, FY2020–FY2025.
-- **Iowa Department of Management / Department of Education** filings: the Unspent Authorized Budget
-  report, cash-reserve levies, tax rates, property valuations, certified enrollment, and at-risk funding.
-- **Notes to the audited statements** for net worth, construction commitments, and future debt payments.
+Two kinds of official records, and the site is always clear about which one a number comes from:
 
-State figures are *unaudited* but exist even when a district hasn't filed its audit (which is why
-Iowa City still has spending-authority data for 2024–2025 even though those audits are missing — and is
-marked down for the gap).
+- **Audited financial reports.** Each district hires independent auditors who verify its books and publish
+  a yearly report. These are the gold standard — but a district only has one once it finishes and files
+  its audit (and Iowa City is currently running behind on that).
+- **State filings.** The State of Iowa collects and publishes its own figures for every district every
+  year — spending limits, enrollment, tax and levy data, and more. These aren't independently audited, but
+  they exist even when a district's audit is late, which is how Iowa City still shows up in recent years.
 
-## Reproducing the analysis
+Every figure can be traced back to one of these official records. Where something couldn't be confirmed,
+it's flagged or left blank rather than filled in with a guess.
 
-The scoring and reports are regenerated from the committed data with:
+A couple of things worth knowing when you read the charts:
+
+- A negative "unrestricted net position" looks alarming but is **normal** for Iowa schools — it reflects
+  long-term pension obligations, not a district about to run out of money.
+- One figure people often ask about — staff salaries and benefits as a share of the budget — isn't broken
+  out the same way in these audited reports, so it's noted rather than scored.
+
+---
+
+## Want the numbers in a spreadsheet?
+
+Download **[`data/iowa-district-benchmark.xlsx`](data/iowa-district-benchmark.xlsx)** — the whole benchmark
+as an Excel file, with the scores, the year-by-year history, the underlying source data, and a sheet that
+defines every term. Good for anyone who wants to check the math or slice it their own way.
+
+---
+
+## For the technically curious
+
+This repository holds both the public website and the code that builds it. Everything is generated from
+the data files under `data/`, so the analysis can be reproduced and checked end to end.
 
 ```bash
-python3 scripts/build_analysis.py     # data/ -> data/iowa-district-scorecards.csv (+ cards.json)
-python3 scripts/build_report.py       # -> iowa-district-financial-benchmark.html
-python3 scripts/build_iccsd_report.py # -> iccsd-vs-peers.html (+ index.html, the Pages landing page)
-python3 scripts/build_workbook.py     # -> data/iowa-district-benchmark.xlsx
+python3 scripts/build_analysis.py     # combine the source data and score every district
+python3 scripts/build_report.py       # build the full 15-district report
+python3 scripts/build_iccsd_report.py # build the Iowa-City-vs-peers landing page (index.html)
+python3 scripts/build_workbook.py     # build the Excel spreadsheet
 ```
 
-(`scripts/extract_dom.py` rebuilds `data/dom/` from the original Iowa state spreadsheets; those source
-workbooks and the audit PDFs are kept in the project's data-source folders.) Requires Python 3 with
-`openpyxl` for the spreadsheet steps.
+The site is published with **GitHub Pages** straight from this repository — the landing page is
+`index.html`, and the page files (`*.html`) are self-contained, so each one also works if you simply
+download it and open it in a browser, or email it to someone.
 
----
+How the analysis is built up:
 
-## 🌐 Putting the report online
+- **source folders → `scripts/extract_*.py` → `data/*.csv`** — the original state spreadsheets and audit
+  reports are read in and turned into clean, tidy data tables. (Folders like `UAB/` and `PropertyValuation/`
+  hold the original state files; each has a `source.txt` noting where it was downloaded from.)
+- **`data/*.csv` → `scripts/build_*.py` → the web pages and spreadsheet** — those clean tables are scored
+  and rendered into everything you see.
 
-`iowa-district-financial-benchmark.html` is a **single self-contained file** (all charts and styling are
-inside it, no external dependencies), so it's easy to host. Easiest options, simplest first:
-
-### Option 1 — Netlify Drop (fastest, no account setup)
-1. Go to **[app.netlify.com/drop](https://app.netlify.com/drop)**.
-2. Drag `iowa-district-financial-benchmark.html` onto the page.
-3. You instantly get a public link you can share. (Rename the file to `index.html` first if you want a
-   cleaner URL.) Cloudflare Pages and Vercel offer similar drag-and-drop.
-
-### Option 2 — GitHub Pages (free, lives with this repo)
-GitHub serves the site directly from this repository. **`index.html` is already the landing
-page** — it is the public-facing Iowa-City-vs-peers report, written automatically by
-`scripts/build_iccsd_report.py` (no copy/rename step). Every published page carries a shared
-nav bar linking the others, so the whole site shares one URL.
-1. In GitHub: **Settings → Pages → Build and deployment → Source: "Deploy from a branch."**
-2. Choose the branch to publish (e.g. `main`) and folder **`/ (root)`**, then **Save**.
-3. After ~1 minute the site is live at a `github.io` URL, opening on `index.html`.
-
-### Option 3 — Quick preview link (no setup at all)
-Paste the file's GitHub URL into the htmlpreview proxy:
-`https://htmlpreview.github.io/?<the file's GitHub URL>`
-Good for a quick look; for anything you'll share widely, prefer Option 1 or 2.
-
-### Option 4 — Just email it / open locally
-Because it's one self-contained file, you can email it or open it by double-clicking — it works offline.
-
----
-
-## Notes & caveats
-
-- All figures trace to a district's audited report or an official Iowa state filing; nothing is estimated
-  to fill gaps. Anything that couldn't be confirmed is flagged or left blank.
-- A negative "unrestricted net position" in the charts is **normal** for Iowa schools — it reflects
-  long-term pension obligations (IPERS), not day-to-day insolvency.
-- One common measure — staff salaries/benefits as a share of the budget — isn't broken out in these
-  audits, so it's noted rather than scored.
+Each folder under `data/` has its own short README explaining its columns and where they came from. The
+methodology — how each district is scored and the Iowa-specific reasoning behind every measure — is in
+[`iowa-district-financial-analysis-framework.md`](iowa-district-financial-analysis-framework.md).
