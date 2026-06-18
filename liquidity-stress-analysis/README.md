@@ -51,6 +51,8 @@ governmental fund balance are **carried for context only** and never used as ope
 - `liquidity_benchmark_workbook.xlsx` — Deliverable 3 (raw, derived, comparison, ICCSD, Cedar
   Rapids, risk scoring, charts tabs)
 - `executive_summary.md`, `iccsd_one_pager.md`, `cedar_rapids_comparison.md` — Deliverable 4
+- `liquidity-stress-report.html` — a single self-contained, general-audience report (plain
+  language + real terminology; charts embedded). **Standalone — not linked into the public site.**
 - `tables/table1..4_*.csv` + `statewide_bottom_quartile_FY2024.csv`
 - `charts/1..5_*.png` — scatter, peer bar, trend, ICCSD numerator waterfall, heatmap
 

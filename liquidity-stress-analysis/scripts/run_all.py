@@ -11,6 +11,7 @@ STEPS = [
     "04_build_charts.py",
     "05_build_workbook.py",
     "06_build_narratives.py",
+    "07_build_report.py",
 ]
 for step in STEPS:
     print(f"\n=== {step} ===")
