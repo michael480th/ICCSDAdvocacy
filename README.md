@@ -21,20 +21,20 @@ different views. You don't need to download anything — it works on a phone or 
 
 ## What you'll find
 
-Each page below answers one question in plain language, with a short explanation of why it matters.
+The site is organized as four pages — the questions a resident asks, in order. Each answers one question
+in plain language, with a short explanation of why it matters.
 
 | Page | The question it answers |
 |---|---|
-| **[How ICCSD compares](https://michael480th.github.io/ICCSD_Financial_Benchmarking/)** | The starting point. How does Iowa City stack up against similar-sized Iowa districts, one measure at a time? |
-| **[Reserves over time](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-liquidity-trend.html)** | Has Iowa City been drawing down its savings? How does that trend compare to its peers? |
-| **[Operating cash](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-operating-cash.html)** | How many days could the district keep the lights on with cash on hand — and how does that compare to the recommended cushion? |
-| **[Self-reported vs. audited](https://michael480th.github.io/ICCSD_Financial_Benchmarking/car-vs-audited.html)** | When a district reports its own numbers to the state, do those match what the independent auditors later confirm? |
-| **[Activities fund](https://michael480th.github.io/ICCSD_Financial_Benchmarking/activity-fund.html)** | How big a cushion does the student-activities fund carry, per student, compared to other districts? |
-| **[Integrity checks](https://michael480th.github.io/ICCSD_Financial_Benchmarking/integrity-checks.html)** | A credit-agency-style screen: are the books current, consistent, and free of red flags? |
-| **[Full benchmark (15 districts)](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iowa-district-financial-benchmark.html)** | The complete picture: all 15 of Iowa's largest districts, scored side by side, with a deep-dive tool for any one district. |
+| **1. [How ICCSD compares](https://michael480th.github.io/ICCSD_Financial_Benchmarking/)** | The starting point. How does Iowa City stack up against similar-sized Iowa districts, one measure at a time? |
+| **2. [Does it have a cushion?](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-cushion.html)** | Does the district keep a financial safety margin — and is it shrinking? Three ways to measure it (spending room, reserves, and days of cash), all in one place. |
+| **3. [Can we trust the numbers?](https://michael480th.github.io/ICCSD_Financial_Benchmarking/integrity-checks.html)** | Are the books current and reliable? Iowa City is two years behind on its audits, and when its self-reported figures *are* checked against the audit, do they match? |
+| **4. [Dig into the data](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iowa-district-financial-benchmark.html)** | The complete picture: all 15 of Iowa's largest districts, scored side by side, with a deep-dive tool for any one district. |
 
-There's also a section on **[making a Financial Oversight Committee work](https://michael480th.github.io/ICCSD_Financial_Benchmarking/making-the-foc-work.html)** —
-practical templates for the kind of regular financial reporting that keeps a district on track.
+Two more, kept off to the side:
+
+- **[Other analyses](https://michael480th.github.io/ICCSD_Financial_Benchmarking/other-analyses.html)** — the narrower and older pieces (the student-activities fund, point-in-time FY24 snapshots, filing-timeliness, a neighboring district), plus the detailed single-topic versions behind the main pages.
+- **[Oversight committee](https://michael480th.github.io/ICCSD_Financial_Benchmarking/making-the-foc-work.html)** — practical templates for the kind of regular financial reporting that keeps a district on track.
 
 ---
 
@@ -84,10 +84,13 @@ This repository holds both the public website and the code that builds it. Every
 the data files under `data/`, so the analysis can be reproduced and checked end to end.
 
 ```bash
-python3 scripts/build_analysis.py     # combine the source data and score every district
-python3 scripts/build_report.py       # build the full 15-district report
-python3 scripts/build_iccsd_report.py # build the Iowa-City-vs-peers landing page (index.html)
-python3 scripts/build_workbook.py     # build the Excel spreadsheet
+python3 scripts/build_analysis.py        # combine the source data and score every district
+python3 scripts/build_report.py          # "Dig into the data" — full 15-district report
+python3 scripts/build_iccsd_report.py    # "How ICCSD compares" landing page (index.html)
+python3 scripts/build_cushion.py         # "Does it have a cushion?" (reserves + cash)
+python3 scripts/build_integrity_report.py # "Can we trust the numbers?" reporting screen
+python3 scripts/build_other_analyses.py  # the "Other analyses" index
+python3 scripts/build_workbook.py        # build the Excel spreadsheet
 ```
 
 The site is published with **GitHub Pages** straight from this repository — the landing page is

@@ -143,7 +143,7 @@ ul{{margin:8px 0}} li{{margin:4px 0}}
 .take{{margin:12px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body>{nav("car")}<div class="wrap">
+</style></head><body>{nav("more")}<div class="wrap">
 
 <h1>Self-report vs. audit: do the books reconcile?</h1>
 <p class="sub">Each district's <b>Certified Annual Report</b> (CAR — the unaudited figures it files with the state) compared to its <b>audited</b> General Fund results · {date}</p>
