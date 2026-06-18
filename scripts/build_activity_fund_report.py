@@ -326,7 +326,7 @@ footer{{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid v
 </style></head><body>
 <input type="radio" class="flowradio" name="flowmode" id="fm-total" checked>
 <input type="radio" class="flowradio" name="flowmode" id="fm-ps">
-{nav("activity")}<div class="wrap">
+{nav("more")}<div class="wrap">
 
 <h1>The student activities fund: how much do districts keep?</h1>
 <p class="sub">Year-end balance of the <b>Student Activity Fund</b> — self-reported (CAR), audited (ACFR), and per student — Iowa City CSD vs. 14 size-matched peers · FY2020–FY2024 · {date}</p>

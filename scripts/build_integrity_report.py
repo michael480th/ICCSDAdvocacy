@@ -302,10 +302,10 @@ ul{{margin:8px 0}} li{{margin:4px 0}}
 .take{{margin:12px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body>{nav("integrity")}<div class="wrap">
+</style></head><body>{nav("trust")}<div class="wrap">
 
-<h1>Reporting-integrity screen: do the CARs reconcile to the audits?</h1>
-<p class="sub">A reconciliation screen comparing each district's <b>Certified Annual Report</b> (its unaudited self-report) against its <b>independently audited</b> General Fund results, FY2017&ndash;FY2023 &middot; {date}</p>
+<h1>Can We Trust the Numbers?</h1>
+<p class="sub">A reporting-integrity screen comparing each district's <b>Certified Annual Report</b> (its unaudited self-report) against its <b>independently audited</b> General Fund results, FY2017&ndash;FY2023 &middot; {date}</p>
 
 <div class="card intro">
 <p>Every Iowa district files a <b>Certified Annual Report (CAR)</b> with the state by September 15 &mdash;
@@ -318,6 +318,8 @@ self-reported numbers tie out to what the auditors ultimately found.</p>
 numbers can be checked at all), and when it does, the CAR has to <b>match</b> it. Across {len(DISTS)} districts
 and {len(YEARS)} years, <b>{total_flags} of {total_checks}</b> reconciliation checks are flagged &mdash; but the
 first test is the one that most cleanly separates the pack, and it is where Iowa City stands alone.</p>
+<p style="margin:6px 0 0;font-size:13.5px;color:#64748b">Want the year-by-year detail behind the
+self-report-vs-audit check? See the full <a href="car-vs-audited.html" style="color:#2563eb;font-weight:600;text-decoration:none">CAR-vs-audited matrix</a> under Other analyses.</p>
 </div>
 
 <div class="card" style="border-left:4px solid #dc2626">

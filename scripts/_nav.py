@@ -2,6 +2,11 @@
 
 Keeps the public pages linked together so the GitHub Pages site can be shared as a
 single entry point. Import and drop nav("<active-key>") immediately after <body>.
+
+The site is organized as four "doors" — the questions a member of the public asks, in
+order — plus two muted links (a catch-all for the narrower/older analyses, and the
+oversight-committee materials). Secondary pages pass active="more" so the "Other
+analyses" link highlights.
 """
 
 _CSS = (
@@ -15,23 +20,34 @@ _CSS = (
     '.sitenav a{color:#2563eb;background:#fff}'
     '.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}'
     '.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}'
+    '.sitenav .sep{flex-basis:100%;height:0;margin:0}'
+    '.sitenav .more{color:#64748b;border-color:#eef2f7;background:#fff;font-weight:600}'
+    '.sitenav .more:hover{background:#f8fafc;border-color:#e2e8f0}'
+    '.sitenav .more.cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}'
     "</style>"
 )
 
-_ITEMS = [
-    ("overview",  "index.html",                            "How ICCSD compares"),
-    ("trend",     "iccsd-liquidity-trend.html",            "Reserves over time"),
-    ("cash",      "iccsd-operating-cash.html",             "Operating cash"),
-    ("car",       "car-vs-audited.html",                   "CAR vs. audited"),
-    ("activity",  "activity-fund.html",                    "Activities fund"),
-    ("integrity", "integrity-checks.html",                 "Integrity checks"),
-    ("benchmark", "iowa-district-financial-benchmark.html", "Full benchmark (15 districts)"),
+# Primary "doors" — the four questions, in the order a resident asks them.
+_PRIMARY = [
+    ("overview",  "index.html",                             "How ICCSD compares"),
+    ("cushion",   "iccsd-cushion.html",                     "Does it have a cushion?"),
+    ("trust",     "integrity-checks.html",                  "Can we trust the numbers?"),
+    ("data",      "iowa-district-financial-benchmark.html", "Dig into the data"),
+]
+# Secondary links — narrower/older analyses, and the oversight-committee materials.
+_SECONDARY = [
+    ("more",      "other-analyses.html",                    "Other analyses"),
+    ("foc",       "making-the-foc-work.html",               "Oversight committee"),
 ]
 
 
 def nav(active):
     parts = ['<span class="brand">Iowa City CSD finances</span>']
-    for key, href, label in _ITEMS:
+    for key, href, label in _PRIMARY:
         parts.append(f'<span class="cur">{label}</span>' if key == active
                      else f'<a href="{href}">{label}</a>')
+    parts.append('<span class="sep"></span>')
+    for key, href, label in _SECONDARY:
+        cur = " cur" if key == active else ""
+        parts.append(f'<a class="more{cur}" href="{href}">{label}</a>')
     return _CSS + '<nav class="sitenav">' + "".join(parts) + "</nav>"

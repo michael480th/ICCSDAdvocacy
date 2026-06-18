@@ -183,7 +183,7 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .caution{{margin:12px 0 0;font-size:14.5px;line-height:1.5;background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #d97706;border-radius:8px;padding:12px 16px;color:#3f3f46}}
 .caution b{{color:#92400e}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body>{nav("cash")}<div class="wrap">
+</style></head><body>{nav("more")}<div class="wrap">
 
 <figure class="hero">
   <img src="iccsd-operating-cash-infographic.png" alt="Infographic: Iowa City schools have about one month of cash on hand (~33 days in 2023) versus ~98 days at similar districts and a 60-day recommended level.">

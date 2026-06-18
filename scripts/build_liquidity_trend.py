@@ -167,7 +167,7 @@ figcaption{{font-size:13px;color:var(--mut);margin-bottom:4px}} figcaption b{{co
 .legend i{{display:inline-block;width:22px;height:0;border-top-width:3px;border-top-style:solid;vertical-align:middle;margin-right:6px}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}}
 footer a{{color:#2563eb}}
-</style></head><body>{nav("trend")}<div class="wrap">
+</style></head><body>{nav("more")}<div class="wrap">
 
 <h1>Iowa City Schools: Drawing Down Its Reserves</h1>
 <p class="sub">How Iowa City Community School District's financial cushion has fallen over time, against size-matched peer districts · {date}</p>
