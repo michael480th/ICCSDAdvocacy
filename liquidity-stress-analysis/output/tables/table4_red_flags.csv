@@ -1,0 +1,17 @@
+District,Reserve thinness,Operating deficit,Enrollment decline,UAB weakness,Cash reserve reliance,Short-term borrowing,Overall concern
+Ankeny CSD,False,False,False,True,True,False,Moderate risk
+Burlington CSD,False,True,True,False,True,False,Moderate risk
+Cedar Rapids CSD,False,False,True,True,False,False,Low risk
+College Community CSD (Prairie),False,True,False,True,True,False,High risk
+Davenport CSD,False,False,True,True,False,False,Low risk
+Des Moines Independent CSD,False,True,True,False,False,False,Low risk
+Dubuque CSD,False,True,True,True,True,False,Moderate risk
+Iowa City CSD,False,False,False,True,True,False,Moderate risk
+Johnston CSD,False,True,False,False,True,False,High risk
+Linn-Mar CSD,False,False,False,True,True,False,Moderate risk
+Muscatine CSD,False,True,True,False,False,False,Low risk
+Pleasant Valley CSD,False,False,False,False,False,False,Low risk
+Sioux City,False,False,False,False,False,False,Low risk
+Waterloo CSD,False,True,False,True,True,False,Moderate risk
+Waukee CSD,False,False,False,False,True,False,Moderate risk
+West Des Moines CSD,False,True,True,True,True,False,Moderate risk
