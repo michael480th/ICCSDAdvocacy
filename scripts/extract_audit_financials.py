@@ -31,8 +31,9 @@ STEM = {"Ankeny CSD": "Ankeny CSD", "Cedar Rapids CSD": "Cedar Rapids CSD",
         "Des Moines Independent CSD": "Des Moines Independent CSD", "Dubuque CSD": "Dubuque CSD",
         "Iowa City CSD": "Iowa City CSD", "Johnston CSD": "Johnston CSD", "Linn-Mar CSD": "Linn-Mar CSD",
         "Pleasant Valley CSD": "Pleasant Valley CSD", "Waterloo CSD": "Waterloo CSD",
-        "Waukee CSD": "Waukee CSD", "West Des Moines CSD": "West Des Moines CSD"}
-YEARS = range(2015, 2024)
+        "Waukee CSD": "Waukee CSD", "West Des Moines CSD": "West Des Moines CSD",
+        "Muscatine CSD": "Muscatine CSD", "Burlington CSD": "Burlington CSD"}
+YEARS = range(2015, 2026)
 
 NUM = re.compile(r'^\(?\$?(\d{1,3}(?:,\d{3})+|\d{4,})\)?$')
 # words that mark a non-basic statement. "nonmajor"/"combining" are NOT here: they appear as

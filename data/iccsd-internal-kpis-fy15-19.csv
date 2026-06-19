@@ -1,0 +1,6 @@
+district,fiscal_year,creditor_equity_pct,current_ratio_pct,days_net_cash,employee_cost_pct,foundation_aid_pct,solvency_pct,investment_income_pct,receivables_inventory_pct,transportation_pct,ubr_total_pct,ubr_unrestricted_pct,gf_per_pupil,enrollment_oct,source
+Iowa City CSD,2015,0.0,120.5,67,83,38.2,9.34,0.05,12.39,3.06,4.44,2.16,10404,13328.0,"ICCSD Annual Financial Health Report FY2019 (Leslie Finger, Nov 2019) -- district's published 10-point test, values as printed"
+Iowa City CSD,2016,0.0,124.5,84,84,36.0,11.45,0.03,8.27,2.24,6.36,3.86,10614,13671.2,"ICCSD Annual Financial Health Report FY2019"
+Iowa City CSD,2017,0.0,127.4,88,84,36.2,12.26,0.07,9.88,2.18,6.64,4.20,10999,13981.6,"ICCSD Annual Financial Health Report FY2019"
+Iowa City CSD,2018,0.0,123.6,79,84,35.5,10.96,0.21,9.63,2.16,5.44,3.95,11689,14197.6,"ICCSD Annual Financial Health Report FY2019"
+Iowa City CSD,2019,0.0,116.1,63,85,35.1,7.03,0.36,9.66,2.20,1.92,0.62,12086,14285.1,"ICCSD Annual Financial Health Report FY2019"

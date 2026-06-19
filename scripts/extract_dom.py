@@ -12,7 +12,7 @@ import openpyxl, csv, glob, os
 SRC = "/tmp/dom2"            # staged repo folders
 OUT = "data/dom"
 os.makedirs(OUT, exist_ok=True)
-YEARS = (2020, 2021, 2022, 2023, 2024, 2025)
+YEARS = tuple(range(2015, 2026))  # widened to FY2015 for full history where the DOM sources carry it
 
 CODE = {"0261":"Ankeny CSD","0882":"Burlington CSD","1053":"Cedar Rapids CSD",
 "1337":"College CSD (Prairie)","1611":"Davenport CSD","1737":"Des Moines Independent CSD",

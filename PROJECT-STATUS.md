@@ -19,6 +19,9 @@ filing.
 | `iowa-district-financial-analysis-framework.md` | Methodology / scoring framework |
 | `data/iowa-district-benchmark.xlsx` | Shareable Excel (scorecard + time series + raw data) |
 | `iowa-district-financial-benchmark.md` | Markdown version of the report |
+| `kpi-three-methodologies.html` | **Three-methodology KPI benchmark** — every KPI under ICCSD-internal, Moody's & S&P definitions, grouped into 7 areas, ICCSD + 14 peers FY15–25, with per-KPI district×year heatmaps |
+| `iccsd-three-methodology-kpis.md` | Methodology doc for the above (the 3 frameworks, formulas, data sources, caveats) |
+| `data/kpi-three-methodologies.csv` | One row per district-year, every computable KPI across the 3 methodologies, data-basis flagged |
 
 ## Regenerate everything (from committed data)
 ```bash
@@ -28,6 +31,9 @@ python3 scripts/build_iccsd_report.py   # -> iccsd-vs-peers.html
 python3 scripts/build_scatter.py        # -> iccsd-filing-vs-control.html
 python3 scripts/build_workbook.py       # -> data/iowa-district-benchmark.xlsx
 python3 scripts/build_activity_fund_report.py  # -> activity-fund.html
+python3 scripts/build_kpi_dataset.py    # consolidate all sources -> data/kpi-three-methodologies.csv
+python3 scripts/build_kpi_report.py     # -> kpi-three-methodologies.html (reads kpi_catalog.py)
+# FY15-19 detailed audit extraction lives in data/fy15-19-extractions/ + data/fy15-19-notes/ (per data/fy15-19-extractions/SPEC.md)
 # scripts/extract_dom.py rebuilds data/dom/* from the state spreadsheets in the source-doc folders
 # scripts/extract_car.py + extract_activity_fund.py rebuild the CAR & audited activity-fund tables
 #   (extract_activity_fund.py needs PyMuPDF: pip install pymupdf)
