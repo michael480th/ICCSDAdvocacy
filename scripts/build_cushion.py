@@ -359,13 +359,14 @@ interfund-loan discussions — the most concrete sign of how tight things are.</
 <p class="take">Iowa City has run <b>below the ~60-day guideline every year</b>, falling from ~<b>{icd20:.0f}
 days in 2020</b> to ~<b>{icd23:.0f} in 2023</b> — the thinnest of any large district, vs. a peer average near
 <b>{pad23:.0f}</b>. FY2024's unaudited actual ticked up to ~{icd24:.0f}, but it didn't hold: <b>FY2025 is back
-to ~{icd25:.0f} days — the same as the 2023 low</b>, while peers held ~<b>{pad25:.0f}</b>. The district projects
-~{icd26:.0f} for FY2026 — but read that one with care.</p>
-<p class="caution"><b>⚠ The FY2026 uptick is borrowed.</b> The dashed FY2026 point (~{icd26:.0f} days) is the
-district's <i>own projection</i>, and it exists only because of a planned <b>$25M revenue-anticipation warrant</b>
-plus a <b>$10M interfund loan</b>. PFM's projected June 30, 2026 balance <i>before</i> the warrant is just
-<b>$4.4M ≈ 7 days</b> — which PFM states is "not sufficient to cover July 2026 payroll." FY2024–FY2026 are all
-unaudited (open markers); treat them as the district's own estimates, not audited actuals.</p>
+to ~{icd25:.0f} days — the same as the 2023 low</b>, while peers held ~<b>{pad25:.0f}</b>. And FY2026 projects to
+fall off a cliff — to ~<b>{icd26:.0f} days</b> of operating cash.</p>
+<p class="caution"><b>⚠ FY2026 ≈ {icd26:.0f} days — and the district's headline number hides it.</b> This metric counts
+days the district can run <i>without a cash infusion</i>. The district's headline projection looks healthier (~37 days),
+but only because it counts a planned <b>$25M revenue-anticipation warrant</b> plus a <b>$10M interfund loan</b> as cash on
+hand. Strip out that borrowing — as the metric's own definition requires — and PFM's projected June 30, 2026 operating
+balance is just <b>$4.4M ≈ 7 days</b>, which PFM states is "not sufficient to cover July 2026 payroll." FY2024–FY2026 are
+all unaudited (open markers).</p>
 <p class="deep">Want the credit-rating view? See <a href="liquidity-lenses.html">Three liquidity lenses</a>
 (reserves, net cash, and days side by side — how the rating agencies score it), and the district's own intuitive
 <a href="iccsd-net-cash-ratio.html">Day's Net Cash Ratio</a> (its internal KPI, computed across all peers
@@ -381,9 +382,9 @@ back to 2015 against a 90–120 day target), plus the deep-dive
 ratio = assigned + unassigned general-fund balance ÷ general-fund revenue. <b>Cash:</b> General Fund "cash
 &amp; investments" from each district's audited Balance Sheet — Governmental Funds (FY2020–FY2025). Iowa
 City FY2024–FY2026 are the district's own stated General Fund figures (no audit filed): FY2024 (~$25.9M) and
-FY2025 (~$19.4M) from PFM's Exhibit 1 (unaudited actual), FY2026 (projected $29.4M / ~37 days) from the COO's
-April 1 2026 cash-flow narrative — a figure that depends on $35M of short-term borrowing (see caution).
-Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2024–FY2026 audits are all still
+FY2025 (~$19.4M) from PFM's Exhibit 1 (unaudited actual), and FY2026 the projected operating cushion <i>before</i>
+borrowing (~$4.4M / ~7 days per PFM; the district's headline $29.4M / 36.6-day projection counts a $25M warrant
++ $10M interfund loan — see caution). Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2024–FY2026 audits are all still
 outstanding (committed complete by May 2027). <b>Peers</b> are the 12 districts with 5,000+ students. Figures trace to official
 filings; nothing is estimated to fill gaps. Built by <code>scripts/build_cushion.py</code>.
 </footer>
