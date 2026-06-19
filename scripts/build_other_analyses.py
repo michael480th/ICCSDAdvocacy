@@ -11,6 +11,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _nav import nav
 
 # (href, title, blurb)
+BENCH = [
+    ("kpi-three-methodologies.html", "KPIs three ways — internal, Moody's & S&P",
+     "The full picture: ICCSD's financial KPIs calculated under its own internal Ten-Point test, "
+     "Moody's K-12 scorecard, and S&P's US-government methodology — grouped into seven financial areas "
+     "(cash, reserves, spending authority, operating, leverage, economy, reporting quality), for ICCSD "
+     "and 14 peer districts across FY2015–2025, with a district-by-year heatmap for every measure."),
+]
 DEEP = [
     ("liquidity-lenses.html", "Three liquidity lenses — reserves, cash, days",
      "The same liquidity in three units side by side (FY2025) — Moody's reserve and net-cash ratios "
@@ -24,8 +31,13 @@ DEEP = [
      "The full reserves story: spending-authority cushion (2017–2025) and audited cash reserves "
      "(2020–2025), charted on their own. Summarized on the “Does it have a cushion?” page."),
     ("iccsd-operating-cash.html", "Operating cash — detailed",
-     "Days-cash-on-hand through FY2026, with the shareable infographic and the full caution note on "
-     "the unaudited recent years. Summarized on the “Does it have a cushion?” page."),
+     "Days-cash-on-hand through FY2026, with the full caution note on the unaudited recent years. "
+     "Summarized on the “Does it have a cushion?” page."),
+    ("integrity-checks.html", "Can we trust the numbers? — reporting integrity",
+     "The reporting-integrity screen: does each district's self-reported (CAR) General Fund tie out to "
+     "its independently audited books, and does an audit even exist yet? Iowa City's FY2024 audit landed "
+     "in June 2026 — about two years late, with five material weaknesses — and its FY2025 audit is still "
+     "unfiled, leaving it the furthest behind of the large districts."),
     ("car-vs-audited.html", "Self-reported vs. audited — full matrix",
      "The district-by-year grid comparing each district's self-reported (CAR) General Fund balance to "
      "its audited books, headlined on Iowa City's FY2023 gap. The detail behind the trust screen."),
@@ -81,6 +93,12 @@ h2{{font-size:18px;margin:26px 0 4px}} .gnote{{color:var(--mut);font-size:14px;m
 <p class="sub">The narrower and older pieces, kept here so the four main pages stay focused. The
 detailed versions behind those main pages live here too · {date}</p>
 
+<h2>Comprehensive benchmark</h2>
+<p class="gnote">Every KPI, three methodologies, all 15 districts, FY2015–2025 — in one place.</p>
+<div class="grid">
+{cards(BENCH)}
+</div>
+
 <h2>Detailed versions</h2>
 <p class="gnote">The full, single-topic pages that the main doors summarize.</p>
 <div class="grid">
@@ -97,4 +115,4 @@ detailed versions behind those main pages live here too · {date}</p>
 </div></body></html>"""
 
 open("other-analyses.html", "w").write(DOC)
-print(f"Wrote other-analyses.html ({len(DOC)//1024} KB), {len(DEEP)+len(NARROW)} links")
+print(f"Wrote other-analyses.html ({len(DOC)//1024} KB), {len(BENCH)+len(DEEP)+len(NARROW)} links")
