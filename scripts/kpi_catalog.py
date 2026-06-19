@@ -49,8 +49,9 @@ KPIS = [
       source="Internal", unit="ratio_pct", good="up", target="≥100%",
       formula="GF current assets / (GF current liabilities + deferred inflows)"),
  dict(key="receivables_inventory_ratio", label="Receivables & Inventory Ratio", group="cash_liquidity",
-      source="Internal", unit="ratio_pct", good="down", target="as low as possible",
-      formula="(GF receivables + inventory) / GF current assets"),
+      source="Internal", unit="ratio_pct", good="context", target="context (Iowa property-tax timing dominates)",
+      formula="(GF total receivables + inventory) / GF current assets",
+      note="In Iowa this is dominated by the succeeding-year property-tax receivable (offset by a matching deferred inflow), so it runs high (~70–80%) and is shown as context. The district's own published ratio (~10%) uses a narrower receivables figure that excludes that item."),
  dict(key="creditor_equity_ratio", label="Creditor's Equity Ratio", group="cash_liquidity",
       source="Internal", unit="ratio_pct", good="down", target="0% (no short-term borrowing)",
       formula="ISCAP (cash-mgmt-program) restricted assets / GF current assets"),
@@ -152,6 +153,10 @@ KPIS = [
  dict(key="report_lag_months", label="Audit Filing Lag", group="quality",
       source="Shared", unit="months", good="down", target="filed within statutory window (~3–6 mo)",
       formula="Months from fiscal year-end (June 30) to audit report date"),
+ dict(key="gfoa_award", label="GFOA / ASBO Recognition", group="quality",
+      source="Shared", unit="yn", good="up", target="Y = earns GFOA Certificate of Achievement (or ASBO)",
+      formula="District submits for and earns the GFOA Certificate of Achievement for Excellence in Financial Reporting (some hold ASBO instead)",
+      note="Tracks the GFOA certificate flag; a 'N' may still hold the ASBO Certificate of Excellence (e.g. Dubuque, Linn-Mar) — recognition, not a deficiency."),
  dict(key="data_basis", label="Data Basis", group="quality",
       source="Context", unit="text", good="context", target="audited > management/unaudited",
       formula="audited ACFR vs management/unaudited actual vs projected"),
@@ -172,3 +177,62 @@ QUALITATIVE = [
  dict(methodology="S&P", factor="Institutional Framework", weight="anchor",
       reason="S&P assigns an IF by state/government type; same for all Iowa school districts."),
 ]
+
+
+# ---------------------------------------------------------------------------------------------
+# Rating BANDS for the line-chart background shading, the legend, and the heatmap cell colors.
+# Each band: (label, color, lo, hi) in the metric's own units; lo/hi None = open-ended.
+# Colors run green (strong) -> red (weak). "good" direction is encoded in the KPI itself; the
+# bands are written in absolute metric space so the chart can shade them regardless of direction.
+RATING = {  # Moody's alpha categories
+ "Aaa":"#15803d","Aa":"#22c55e","A":"#86efac","Baa":"#fde047","Ba":"#fb923c","B":"#f87171","Caa":"#dc2626"}
+SP = {"1":"#15803d","2":"#22c55e","3":"#fde047","4":"#fb923c","5":"#f87171","6":"#dc2626"}
+TG = {"good":"#22c55e","ok":"#fde047","watch":"#fb923c","bad":"#f87171","neut":"#cbd5e1"}
+
+def _m(lo, hi, order):  # build Moody's 7-band list given ascending value cut points (worst->best by 'order')
+    pass
+
+BANDS = {
+ # ---- cash & liquidity ----
+ "days_net_cash": [("watch","#fb923c",None,60),("ok","#fde047",60,90),("good","#22c55e",90,None)],
+ "moodys_net_cash_ratio": [("Caa",RATING["Caa"],None,-10),("B",RATING["B"],-10,-5),("Ba",RATING["Ba"],-5,0),
+     ("Baa",RATING["Baa"],0,5),("A",RATING["A"],5,10),("Aa",RATING["Aa"],10,17.5),("Aaa",RATING["Aaa"],17.5,None)],
+ "current_ratio": [("bad","#f87171",None,90),("ok","#fde047",90,100),("good","#22c55e",100,None)],
+ "creditor_equity_ratio": [("good","#22c55e",None,0.01),("bad","#f87171",0.01,None)],
+ # ---- reserves ----
+ "solvency_ratio": [("bad","#f87171",None,0),("watch","#fb923c",0,5),("ok","#fde047",5,10),("good","#22c55e",10,None)],
+ "moodys_avail_fb_ratio": [("Caa",RATING["Caa"],None,-10),("B",RATING["B"],-10,-5),("Ba",RATING["Ba"],-5,0),
+     ("Baa",RATING["Baa"],0,5),("A",RATING["A"],5,10),("Aa",RATING["Aa"],10,17.5),("Aaa",RATING["Aaa"],17.5,None)],
+ "sp_available_reserves_pct": [("5",SP["5"],None,1),("4",SP["4"],1,4),("3",SP["3"],4,8),("2",SP["2"],8,15),("1",SP["1"],15,None)],
+ # ---- authority ----
+ "uab_pct_of_max": [("bad","#f87171",None,0),("watch","#fb923c",0,5),("ok","#fde047",5,10),("good","#22c55e",10,None)],
+ "ubr_unrestricted_pct": [("bad","#f87171",None,0),("ok","#fde047",0,5),("good","#22c55e",5,None)],
+ # ---- operating ----
+ "operating_margin": [("bad","#f87171",None,-3),("watch","#fb923c",-3,0),("good","#22c55e",0,None)],
+ "sp_oper_result_3yr": [("4",SP["4"],None,-3),("3",SP["3"],-3,0),("2",SP["2"],0,3),("1",SP["1"],3,None)],
+ "employee_cost_ratio": [("good","#22c55e",None,80),("ok","#fde047",80,85),("bad","#f87171",85,None)],
+ # ---- leverage ----
+ "moodys_ltl_ratio": [("Aaa",RATING["Aaa"],None,250),("Aa",RATING["Aa"],250,400),("A",RATING["A"],400,550),
+     ("Baa",RATING["Baa"],550,700),("Ba",RATING["Ba"],700,850),("B",RATING["B"],850,1000),("Caa",RATING["Caa"],1000,None)],
+ "moodys_fixed_costs_ratio": [("Aaa",RATING["Aaa"],None,20),("Aa",RATING["Aa"],20,25),("A",RATING["A"],25,30),
+     ("Baa",RATING["Baa"],30,35),("Ba",RATING["Ba"],35,45),("B",RATING["B"],45,55),("Caa",RATING["Caa"],55,None)],
+ "sp_current_cost_pct": [("1",SP["1"],None,8),("2",SP["2"],8,14),("3",SP["3"],14,20),("4",SP["4"],20,25),
+     ("5",SP["5"],25,30),("6",SP["6"],30,None)],
+ # ---- economy ----
+ "enrollment_cagr_3yr": [("bad","#f87171",None,-2),("watch","#fb923c",-2,0),("good","#22c55e",0,None)],
+ # ---- quality (categorical handled separately in the report) ----
+}
+
+# KPIs that are per-pupil proxies for a per-capita agency band, or otherwise context-only: no band shading.
+CONTEXT_KEYS = {"unrestricted_np_pp","receivables_inventory_ratio","foundation_aid_ratio","transportation_ratio","investment_income_ratio",
+ "gf_per_pupil","local_share_pct","net_direct_debt_pp","npl_pp","debt_per_pupil",
+ "valuation_per_pupil","grand_total_levy_rate"}
+
+def band_label_for(key, value):
+    """Return (label, color) for a numeric value, or None."""
+    bands = BANDS.get(key)
+    if bands is None or value is None: return None
+    for label, color, lo, hi in bands:
+        if (lo is None or value >= lo) and (hi is None or value < hi):
+            return (label, color)
+    return None

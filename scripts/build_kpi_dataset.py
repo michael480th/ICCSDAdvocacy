@@ -141,6 +141,18 @@ for path in glob.glob(p("data/fy15-19-notes/*.csv")) + glob.glob(p("data/notes-e
             accumulated_depreciation=r.get("accumulated_depreciation"),
             debt_service_next_fy=r.get("debt_service_next_fy")), overwrite=False)
 
+# FY20-25 GF balance-sheet detail (pipe) -> current ratio / receivables / creditor-equity / interest
+for path in glob.glob(p("data/fy20-25-bsheet/*.csv")):
+    for r in rows(path, "|"):
+        d = r.get("district"); fy = r.get("fiscal_year")
+        if not d or not fy or d not in DISTRICTS: continue
+        setrow(d, fy, dict(
+            gf_current_assets=r.get("gf_current_assets"), gf_receivables=r.get("gf_receivables"),
+            gf_inventory=r.get("gf_inventory"), gf_prepaid=r.get("gf_prepaid"),
+            gf_current_liabilities=r.get("gf_current_liabilities"), gf_deferred_inflows=r.get("gf_deferred_inflows"),
+            iscap_restricted=r.get("iscap_restricted_assets"), interest_income=r.get("interest_income")),
+            overwrite=False)
+
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
 for r in rows(p("data/dom/unspent-authorized-budget.csv")):
     if r["district"] in DISTRICTS:
@@ -251,7 +263,7 @@ OUT_FIELDS = ["district","fiscal_year","data_basis","peer_group",
   # economy & base
   "enrollment_cagr_3yr","valuation_per_pupil","grand_total_levy_rate","certified_enrollment",
   # quality
-  "opinion_type","findings_count","repeat_finding","report_lag_months",
+  "opinion_type","findings_count","repeat_finding","report_lag_months","gfoa_award",
   # provenance
   "confidence","sources"]
 
@@ -285,7 +297,6 @@ def compute():
             if vb:  # ICCSD published values win for FY15-19
                 row["days_net_cash"] = vb["days_net_cash"]
                 row["current_ratio"] = vb["current_ratio_pct"]
-                row["receivables_inventory_ratio"] = vb["receivables_inventory_pct"]
                 row["creditor_equity_ratio"] = vb["creditor_equity_pct"]
             else:
                 if cash is not None and gf_exp:
@@ -294,12 +305,15 @@ def compute():
                 cl = f(rec.get("gf_current_liabilities")); di = f(rec.get("gf_deferred_inflows")) or 0
                 if ca is not None and cl is not None and (cl+di) > 0:
                     row["current_ratio"] = round(100*ca/(cl+di), 1)
-                rcv = f(rec.get("gf_receivables")); inv = f(rec.get("gf_inventory")) or 0
-                if rcv is not None and ca:
-                    row["receivables_inventory_ratio"] = round(100*(rcv+inv)/ca, 2)
                 isc = f(rec.get("iscap_restricted"))
                 if isc is not None and ca:
                     row["creditor_equity_ratio"] = round(100*isc/ca, 2)
+            # Receivables & Inventory: ALWAYS computed from total GF receivables for a single
+            # consistent definition across years/districts (the district's published ratio uses a
+            # narrower receivables figure that excludes the succeeding-year property-tax receivable).
+            ca2 = f(rec.get("gf_current_assets")); rcv = f(rec.get("gf_receivables")); inv = f(rec.get("gf_inventory")) or 0
+            if rcv is not None and ca2:
+                row["receivables_inventory_ratio"] = round(100*(rcv+inv)/ca2, 2)
             # Moody's net cash ratio (cash / operating revenue) -- always computable from backbone
             if cash is not None and gf_rev:
                 row["moodys_net_cash_ratio"] = round(100*cash/gf_rev, 1)
@@ -326,6 +340,8 @@ def compute():
             # ---------- 3. Spending Authority ----------
             if rec.get("uab_pct_of_max") not in (None, ""):
                 row["uab_pct_of_max"] = round(f(rec["uab_pct_of_max"]), 2)
+            elif vb:  # FY15-19: ICCSD's published Total Unspent Balance Ratio (same concept as DOM UAB %)
+                row["uab_pct_of_max"] = vb["ubr_total_pct"]
             if vb:
                 row["ubr_unrestricted_pct"] = vb["ubr_unrestricted_pct"]
 
@@ -397,6 +413,7 @@ def compute():
             row["opinion_type"] = rec.get("opinion_type", "")
             row["findings_count"] = rec.get("findings_count", "")
             row["repeat_finding"] = rec.get("repeat_finding", "")
+            row["gfoa_award"] = rec.get("gfoa_cert", "")
             rd = rec.get("report_date")
             if rd and len(str(rd)) >= 7:
                 try:
