@@ -172,39 +172,43 @@ def exec_summary(series, peer_avg):
         if ic is None: return None
         better = sum(1 for v in vals.values() if (v>ic if good=="up" else v<ic))
         med = sorted(vals.values())[len(vals)//2]
-        return dict(v=ic, rank=better+1, n=len(vals), med=med)
-    def ord_(r,n): return {1:"lowest",2:"2nd-lowest",3:"3rd-lowest"}.get(n-r+1, f"{r}th of {n}")
+        return dict(v=ic, rank=better+1, n=len(vals), med=round(med))
+    def fy(key, year): return series[key][SHORT[ICCSD]].get(year)
     Y = 2023
     bl = []
     uab = stat("uab_pct_of_max", Y, "up")
     if uab: bl.append(f"<b>Spending authority is exhausted.</b> Iowa City's Unspent Authorized Budget fell to "
-        f"<b>{uab['v']:g}%</b> in FY2023 — {'the only district below zero, ' if uab['v']<0 else ''}the "
-        f"{ord_(uab['rank'],uab['n'])} of {uab['n']} (peer median {uab['med']:g}%). A negative UAB is the "
-        f"unlawful, state-review (SBRC) level — Iowa's single most important health measure.")
-    sol = stat("solvency_ratio", Y, "up"); fb = stat("moodys_avail_fb_ratio", Y, "up")
-    if sol and fb: bl.append(f"<b>The reserve cushion is the thinnest in the group.</b> Solvency of "
-        f"<b>{sol['v']:g}%</b> and an available fund balance of <b>{fb['v']:g}%</b> of revenue (Moody's Baa/Ba) "
-        f"both rank {ord_(sol['rank'],sol['n'])} (peer medians {sol['med']:g}% and {fb['med']:g}%).")
-    dc = stat("days_net_cash", Y, "up")
-    dc25 = series["days_net_cash"][SHORT[ICCSD]].get(2025)
-    if dc: bl.append(f"<b>Operating cash keeps falling.</b> Day's-cash dropped from 88 (FY2017) to "
-        f"<b>{dc['v']:g}</b> in FY2023" + (f" and ~{dc25:g} in FY2025 (management)" if dc25 else "") +
-        f" — {ord_(dc['rank'],dc['n'])} of {dc['n']}, far under the 90-day internal target.")
+        f"<b>{uab['v']:g}%</b> in FY2023 — the only district below zero and the lowest of {uab['n']} (peer median "
+        f"{uab['med']:g}%). A negative UAB is the unlawful, state-review (SBRC) level, on Iowa's single most important "
+        f"health measure.")
+    sol = stat("solvency_ratio", Y, "up"); fb = stat("moodys_avail_fb_ratio", Y, "up"); dc = stat("days_net_cash", Y, "up")
+    sol25 = fy("solvency_ratio", 2025)
+    if sol and fb and dc:
+        rebuild = (f" Self-reported FY2024–25 figures show a partial rebuild — solvency back to ≈{sol25:g}% via the "
+                   f"cash-reserve levy — but still below the peer norm, and unaudited.") if sol25 else ""
+        bl.append(f"<b>Reserves and cash are the thinnest in the group.</b> In FY2023 its solvency (<b>{sol['v']:g}%</b>), "
+            f"available fund balance (<b>{fb['v']:g}%</b> of revenue) and day's-cash (<b>{dc['v']:g} days</b>) all ranked "
+            f"at or near the bottom of the {dc['n']} (peer medians ≈{sol['med']:g}%, {fb['med']:g}% and {dc['med']:g} days; "
+            f"the internal cash target is 90 days)." + rebuild)
+    emp = stat("employee_cost_ratio", Y, "down")
+    if emp: bl.append(f"<b>Staffing costs are the highest of {emp['n']}.</b> Salaries and benefits were <b>{emp['v']:g}%</b> "
+        f"of the General Fund in FY2023 (peer median {emp['med']:g}%) — the classic Iowa squeeze of personnel costs climbing "
+        f"as enrollment flattens, the leading indicator behind the spending-authority decline.")
     ltl = stat("moodys_ltl_ratio", Y, "down")
-    if ltl: bl.append(f"<b>Leverage is above the peer norm.</b> Long-term liabilities (debt + pension + OPEB) run "
-        f"<b>{ltl['v']:g}%</b> of GF revenue in FY2023 (peer median {ltl['med']:g}%); the district carries both GO and "
+    if ltl: bl.append(f"<b>Leverage runs above the peer norm.</b> Long-term liabilities (debt + pension + OPEB) were "
+        f"<b>{ltl['v']:g}%</b> of GF revenue in FY2023 vs a {ltl['med']:g}% peer median; the district carries both GO and "
         f"SAVE sales-tax debt from its Facilities Master Plan.")
     bl.append("<b>The books are late.</b> ICCSD is the only district here that has <b>not filed its FY2024 or FY2025 "
         "audit</b>; its FY2023 audit arrived ~26 months late with a material weakness — the pattern that precedes a "
-        "rating withdrawal. (FY24–25 figures here are management/unaudited.)")
+        "rating withdrawal.")
     items = "".join(f"<li>{b}</li>" for b in bl)
     return ('<div class="exec"><h2>Executive summary</h2>'
-      '<p>Across all three rating lenses, <b>Iowa City sits at or near the bottom of its 15-district peer group on the '
-      'measures that matter most</b> — spending authority, reserves, and liquidity — while its reporting has slipped. '
-      'The detail, measure by measure, is below.</p>'
+      '<p>Across all three rating lenses, <b>Iowa City sits at or near the bottom of its 15-district peer group</b> on the '
+      'measures that matter most — spending authority, reserves, liquidity, and staffing costs. Self-reported FY2024–25 data '
+      'shows some improvement, but the district\'s audits for those years remain unfiled.</p>'
       f'<ul>{items}</ul>'
       '<p class="exfoot">All figures trace to audited ACFRs or Iowa state filings; ranks are among the 15 districts in '
-      'FY2023 (ICCSD\'s most recent audited year).</p></div>')
+      'FY2023 (ICCSD\'s most recent audited year). FY2024–25 figures are management/unaudited.</p></div>')
 
 def build():
     data = load()
