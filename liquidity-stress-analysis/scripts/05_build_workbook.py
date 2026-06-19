@@ -49,8 +49,9 @@ def sheet_from_df(wb, name, df, *, title=None, freeze="A2", risk_col=None, pct_c
                     ws.cell(i, j).fill = PatternFill("solid", fgColor=fill)
     # widths
     for j, col in enumerate(df.columns, 1):
-        w = max(11, min(34, max(len(str(col)) + 2,
-                int(df[col].astype(str).str.len().clip(upper=34).max() or 10) + 1)))
+        lens = df[col].astype(str).str.len().clip(upper=34)
+        maxlen = int(lens.max()) if lens.notna().any() else 10
+        w = max(11, min(34, max(len(str(col)) + 2, maxlen + 1)))
         ws.column_dimensions[get_column_letter(j)].width = w
     if freeze:
         ws.freeze_panes = ws[f"A{start+1}"]
@@ -66,6 +67,7 @@ def main():
     t3 = pd.read_csv(C.TABLES_DIR / "table3_numerator_sensitivity.csv")
     t4 = pd.read_csv(C.TABLES_DIR / "table4_red_flags.csv")
     bq = pd.read_csv(C.TABLES_DIR / "statewide_bottom_quartile_FY2024.csv")
+    t5 = pd.read_csv(C.TABLES_DIR / "table5_fy2025_audited_peers.csv")
 
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
@@ -108,6 +110,9 @@ def main():
                   title="Table 3 — ICCSD & Cedar Rapids numerator sensitivity (FY2023)")
     sheet_from_df(wb, "Red flag summary", t4, title="Table 4 — red flag summary (FY2024)",
                   risk_col="Overall concern")
+    sheet_from_df(wb, "FY2025 audited peers", t5,
+                  title="FY2025 audited large-peer view (no statewide data for FY2025; "
+                        "Iowa City audit not filed)", risk_col="Risk class")
 
     # Risk scoring tab (focus, key cols)
     riskcols = ["district", "fiscal_year", "practical_days_cushion", "conservative_reserve_ratio",
@@ -139,7 +144,7 @@ def main():
     row = 3
     for img in ["1_scatter_cushion_vs_uab.png", "2_bar_practical_days.png",
                 "3_trend_practical_days.png", "4_waterfall_iccsd_numerators.png",
-                "5_heatmap_metrics.png"]:
+                "5_heatmap_metrics.png", "6_bar_fy2025_practical_days.png"]:
         p = C.CHARTS_DIR / img
         if p.exists():
             pic = XLImage(str(p))

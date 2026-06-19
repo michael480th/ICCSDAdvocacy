@@ -54,7 +54,18 @@ governmental fund balance are **carried for context only** and never used as ope
 - `liquidity-stress-report.html` — a single self-contained, general-audience report (plain
   language + real terminology; charts embedded). **Standalone — not linked into the public site.**
 - `tables/table1..4_*.csv` + `statewide_bottom_quartile_FY2024.csv`
-- `charts/1..5_*.png` — scatter, peer bar, trend, ICCSD numerator waterfall, heatmap
+- `tables/table5_fy2025_audited_peers.csv` + `iccsd_recent_cash.csv` — the **FY2025** audited
+  large-peer view (no statewide data exists for FY2025) and Iowa City's own FY25/FY26 board cash
+- `charts/1..6_*.png` — scatter, peer bar, trend, ICCSD numerator waterfall, heatmap, FY2025 bar
+
+### A note on FY2025 / FY2026
+The statewide files (CAR, SBRC cash-reserve-levy) only run through **FY2024**, so FY2025 cannot be a
+statewide screen. The 15 large districts' **audited** FY2025 reports are in, so FY2025 is presented as
+an audited large-peer view. **Iowa City's FY2024 and FY2025 audits are not filed**, so it has no FY2025
+reserve cushion — but the state's audit-independent **UAB** (FY2025 ≈ 2.4%, still lowest of the 15) and
+the district's own board **cash** figures (~33 days at the start of FY2026, ~35 projected) are carried
+separately and clearly labeled as unaudited. New FY2025 signal: **Waterloo's** unassigned balance went
+**negative** (−17 days).
 
 ## Regenerate
 

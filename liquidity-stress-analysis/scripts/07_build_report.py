@@ -57,6 +57,8 @@ def main():
     f = pd.read_csv(C.FOCUS_CSV)
     t1 = pd.read_csv(C.TABLES_DIR / "table1_recent_screen.csv")
     t3 = pd.read_csv(C.TABLES_DIR / "table3_numerator_sensitivity.csv")
+    t5 = pd.read_csv(C.TABLES_DIR / "table5_fy2025_audited_peers.csv")
+    iccash = pd.read_csv(C.OUTPUT_DIR / "iccsd_recent_cash.csv")
     supp = pd.read_csv(C.ICCSD_CASH_SUPP_CSV)
 
     ic24 = m[(m.district_code == 3141) & (m.fiscal_year == RECENT)].iloc[0]
@@ -107,6 +109,24 @@ def main():
     supp_txt = "; ".join(
         f"FY{int(r.fiscal_year)} ≈ {money(r.gf_cash_investments)} ({html.escape(str(r.status))})"
         for _, r in supp.iterrows())
+
+    # FY2025 audited-peer view
+    t5s = t5.sort_values("Practical days cushion").reset_index(drop=True)
+    fy25_rows = ""
+    for _, r in t5s.iterrows():
+        neg = r["Practical days cushion"] < 0
+        style = ' style="color:#b91c1c;font-weight:700"' if neg else ""
+        fy25_rows += (
+            f"<tr><td>{html.escape(short(r['District']))}</td>"
+            f"<td>{pct(r['GF unassigned / GF exp.'])}</td>"
+            f"<td{style}><b>{days(r['Practical days cushion'])}</b></td>"
+            f"<td>{days(r['GF cash days'])}</td>"
+            f"<td>{pct(r['Operating result'])}</td>"
+            f"<td>{pct(r['UAB / GF exp.'])}</td>"
+            f"<td>{risk_badge(r['Risk class'])}</td></tr>")
+    wtr = t5s.iloc[0]
+    ic25 = iccash[iccash.fiscal_year == 2025].iloc[0]
+    ic26 = iccash[iccash.fiscal_year == 2026].iloc[0]
 
     css = """
 :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--blue:#2563eb;--red:#dc2626}
@@ -183,6 +203,9 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       f'<div class="l">Iowa City’s leftover spending authority (UAB) — lowest of any large peer</div></div>')
     A(f'<div class="kpi"><div class="n">{days(ic23.practical_days_cushion)} days</div>'
       f'<div class="l">Cushion in FY2023, its tightest recent year (spending authority went negative)</div></div>')
+    A(f'<div class="kpi"><div class="n">≈{ic25.gf_cash_days:.0f} days</div>'
+      f'<div class="l">Cash on hand at the <i>start</i> of FY2026, by the district’s own board figures '
+      "(the seasonal low point)</div></div>")
     A("</div>")
 
     # Glossary
@@ -272,8 +295,45 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       "near its cap, leaving little room to rebuild reserves through taxes.</div>")
     A("</div>")
 
+    # FY2025 audited-peer view + ICCSD board cash
+    A('<div class="card"><h2>5. The newest year on the books (FY2025) — audited peers</h2>')
+    A('<p class="plain"><b>Why this is a separate table:</b> the statewide state files (CAR and the '
+      "cash-reserve-levy data) only run through FY2024, so FY2025 can’t be a statewide screen yet. "
+      "But the large districts’ <b>audited</b> FY2025 reports are in — so here is the latest "
+      "apples-to-apples picture for the big districts. <b>Iowa City is absent because its FY2024 and "
+      "FY2025 audits still aren’t filed.</b></p>")
+    A("<table><thead><tr><th>District</th><th>Unassigned / spending</th>"
+      "<th>Practical days cushion</th><th>Cash days</th><th>Operating result</th>"
+      "<th>Spending room (UAB)</th><th>Screen result</th>"
+      f"</tr></thead><tbody>{fy25_rows}</tbody></table>")
+    A('<p style="font-size:13px;color:#64748b">Iowa City’s cushion and operating-result cells are '
+      "blank because its FY2025 audit isn’t filed; its UAB is the state’s audit-independent figure "
+      "and its cash-days is a <b>start-of-year</b> number (≈ the seasonal low), <i>not</i> directly "
+      "comparable to the other districts’ June-30 year-end cash days. Cash days here are year-end and "
+      "look generous for everyone — the cushion and UAB columns are the more telling ones.</p>")
+    A(f'<div class="take"><b>New this year:</b> <b>{html.escape(short(wtr["District"]))}</b> ran its '
+      "flexible reserves <b>negative</b> in FY2025 "
+      f"({days(wtr['Practical days cushion'])} days — it spent more than it took in and drew the "
+      "unassigned balance below zero), the clearest single-district deterioration in the set. "
+      "Several others (College Community, Johnston, Burlington) tightened into the 20–30 day range. "
+      "Cedar Rapids held around 47 days.</div>")
+    A('<div class="caution"><b>What Iowa City’s own numbers add.</b> Even without a filed audit, the '
+      "district’s board materials give cash and spending. Those imply about "
+      f"<b>{ic25.gf_cash_days:.0f} days of cash at the start of FY2026</b> "
+      f"({money(ic25.gf_cash_investments)} on ~{money(ic25.gf_expenditures)} of spending) and about "
+      f"<b>{ic26.gf_cash_days:.0f} days</b> projected for FY2026 "
+      f"({money(ic26.gf_cash_investments)} on ~{money(ic26.gf_expenditures)}). Crucially, a "
+      "start-of-year figure lands near the <i>seasonal low point</i> of cash — so unlike a tidy "
+      "June-30 audit number, ~33–35 days is close to the tightest the district gets. That "
+      "<b>corroborates</b> the thin-cushion screen with the kind of intra-year evidence the annual "
+      "data alone can’t provide. And the state’s own (audit-independent) FY2025 figure puts Iowa "
+      f"City’s leftover spending authority at about <b>{pct(ic25.uab_cushion)}</b> — again the "
+      "lowest of the 15. <i>(Board cash figures are unaudited/projected; a filed FY25 audit would "
+      "still be needed to compute its FY25 reserve cushion here.)</i></div>")
+    A("</div>")
+
     # Numerator sensitivity vs Cedar Rapids
-    A('<div class="card"><h2>5. “Is it just one strict measure?” — No.</h2>')
+    A('<div class="card"><h2>6. “Is it just one strict measure?” — No.</h2>')
     A('<p class="plain">A fair question: maybe Iowa City only looks thin under the strictest '
       "definition of savings. So we recalculated the cushion under five progressively broader "
       "definitions, for Iowa City and Cedar Rapids (its most natural large peer), in the same year "
@@ -290,7 +350,7 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
     A("</div>")
 
     # Statewide context + heatmap
-    A('<div class="card"><h2>6. Statewide context</h2>')
+    A('<div class="card"><h2>7. Statewide context (FY2024)</h2>')
     A(f'<p class="plain">We scored about {n_state} Iowa districts for FY{RECENT} on the same '
       "practical-cushion measure. The bottom quarter of districts had a cushion of roughly "
       f"<b>{q25:.0f} days or less</b>. Iowa City sits just inside that bottom group; many of the "
@@ -303,7 +363,7 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
     A("</div>")
 
     # What it does/doesn't prove
-    A('<div class="card"><h2>7. What this proves — and what it doesn’t</h2>')
+    A('<div class="card"><h2>8. What this proves — and what it doesn’t</h2>')
     A('<div class="caution"><b>This is a screen, not a diagnosis.</b> Year-end balances cannot show '
       "the lowest point of cash <i>during</i> the year, which is when a squeeze would actually "
       "happen. So the honest conclusions are:</div>")
