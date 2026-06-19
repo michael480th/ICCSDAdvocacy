@@ -177,6 +177,15 @@ for r in rows(p("data/iccsd-fy25-car.csv")):
         gf_assigned=r["gf_assigned"], fb_committed=r["gf_committed"],
         gf_total_fund_balance=r["gf_total_fund_balance"]), overwrite=False)
 
+# ICCSD FY2025 CAR detail (revenue/expenditure/object + LT-liability pages) -> fills FY25 operating &
+# leverage ratios. salaries_benefits is a Medium-confidence GF-function estimate (see source note).
+for r in rows(p("data/iccsd-fy25-car-detail.csv")):
+    setrow(r["district"], r["fiscal_year"], dict(
+        state_aid_direct=r["state_aid_direct"], interest_income=r["interest_income"],
+        salaries_benefits=r["salaries_benefits"], transportation_exp=r["transportation_exp"],
+        local_share_direct=r["local_share_direct"], go_debt=r["go_debt"], ipers_npl=r["ipers_npl"]),
+        overwrite=False)
+
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
 for r in rows(p("data/car-salaries.csv")):
     if r["district"] in DISTRICTS:   # GF salaries+benefits (object detail) from the CAR workbooks, FY23-24
@@ -389,7 +398,7 @@ def compute():
                 sa = f(rec.get("state_aid_direct")) or car_stateaid(d, fy)
                 if sa is not None and gf_rev:
                     row["foundation_aid_ratio"] = round(100*sa/gf_rev, 1)
-                tr = car_transp(d, fy)
+                tr = car_transp(d, fy) or f(rec.get("transportation_exp"))
                 if tr is not None and gf_exp:
                     row["transportation_ratio"] = round(100*tr/gf_exp, 2)
                 # interest income: extraction, else CAR genint (FY17-23)
@@ -401,6 +410,8 @@ def compute():
                     row["gf_per_pupil"] = round(gf_exp/enr)
             # local revenue share from CAR (FY17-23)
             ls = car_local_share(d, fy)
+            if ls is None and rec.get("local_share_direct"):
+                ls = f(rec["local_share_direct"]) / 100
             if ls is not None:
                 row["local_share_pct"] = round(100*ls, 1)
 
