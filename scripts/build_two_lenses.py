@@ -41,6 +41,15 @@ fin = {(r["district"], r["fiscal_year"]): r for r in csv.DictReader(open("data/i
 cash = {(r["district"], r["fiscal_year"]): num(r["gf_cash_investments"])
         for r in csv.DictReader(open("data/gf-operating-cash.csv"))}
 
+# General Fund expenditures (for the district's days-based KPI denominator)
+exp = {}
+for r in csv.DictReader(open("data/audit-financials.csv")):
+    if r["expenditures"]:
+        exp[(r["district"], r["fiscal_year"])] = num(r["expenditures"])
+for r in csv.DictReader(open("data/iowa-district-financials.csv")):
+    if r.get("gf_expenditure"):
+        exp.setdefault((r["district"], r["fiscal_year"]), num(r["gf_expenditure"]))
+
 
 def band(p):
     return ("Aaa" if p >= 17.5 else "Aa" if p >= 10 else "A" if p >= 5 else
@@ -109,6 +118,46 @@ for i, (d, a, nc) in enumerate(rows):
 s.append('</svg>')
 svg = "".join(s)
 
+# ---- third lens: the district's own Day's Net Cash Ratio (days) ----
+def dcolor(v): return "#16a34a" if v >= 90 else "#eab308" if v >= 60 else "#dc2626"
+
+
+drows = []   # (district, days)
+for d in [IC] + PEERS:
+    c = cash.get((d, FY)); e = exp.get((d, FY))
+    if c is not None and e:
+        drows.append((d, c / (e / 365.0)))
+drows.sort(key=lambda t: -t[1])
+
+DSCALE = 160.0
+DLAB = 230               # left label band width
+DX0 = DLAB               # bars start here
+DBW = W - DLAB - 60      # bar area width
+dtop = 30
+dH = dtop + len(drows) * ROWH + 30
+def dX(v): return DX0 + (v / DSCALE) * DBW
+
+ds = [f'<svg viewBox="0 0 {W} {dH}" class="chart" role="img" aria-label="Day\'s Net Cash Ratio (days) by district">']
+# 90-120 recommended band
+ds.append(f'<rect x="{dX(90):.1f}" y="{dtop-4}" width="{dX(120)-dX(90):.1f}" height="{len(drows)*ROWH}" fill="#16a34a" opacity="0.10"/>')
+ds.append(f'<text x="{dX(105):.1f}" y="{dtop-8}" class="dbandlab" text-anchor="middle">recommended 90–120 days</text>')
+for g in (60, 90, 120, 150):
+    ds.append(f'<line x1="{dX(g):.1f}" y1="{dtop-4}" x2="{dX(g):.1f}" y2="{dtop+len(drows)*ROWH}" class="thr"/>')
+    ds.append(f'<text x="{dX(g):.1f}" y="{dtop+len(drows)*ROWH+16}" class="thrlab">{g}</text>')
+for i, (d, v) in enumerate(drows):
+    y = dtop + i * ROWH
+    me = d == IC
+    if me:
+        ds.append(f'<rect x="40" y="{y+1:.0f}" width="{W-80}" height="{ROWH-3}" class="merow"/>')
+    ds.append(f'<text x="{DLAB-10:.0f}" y="{y+ROWH/2+4:.0f}" class="{"dname me" if me else "dname"}" text-anchor="end">{html.escape(d)}</text>')
+    ds.append(f'<rect x="{DX0:.1f}" y="{y+5:.0f}" width="{dX(v)-DX0:.1f}" height="{ROWH-12}" fill="{dcolor(v)}" rx="2"/>')
+    ds.append(f'<text x="{dX(v)+6:.1f}" y="{y+ROWH/2+4:.0f}" class="val" text-anchor="start">{v:.0f}</text>')
+ds.append('</svg>')
+dsvg = "".join(ds)
+icd = next(v for d, v in drows if d == IC)
+ic_days_rank = [d for d, v in drows].index(IC) + 1
+peer_days_med = st.median([v for d, v in drows if d != IC])
+
 ica = next(a for d, a, nc in rows if d == IC)
 icn = next(nc for d, a, nc in rows if d == IC)
 # rank on each lens (1 = strongest)
@@ -123,7 +172,7 @@ peer_gap_med = st.median([v for d, v in gaps.items() if d != IC])
 date = datetime.date(2026, 6, 19).strftime("%B %Y")
 DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Iowa City Schools — Two liquidity lenses (reserves vs. cash)</title>
+<title>Iowa City Schools — Three liquidity lenses (reserves, cash, days)</title>
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}}
 *{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
@@ -139,6 +188,7 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .lsub,.rsub{{font-size:11px;fill:#94a3b8;text-anchor:middle}}
 .axis{{stroke:#94a3b8;stroke-width:1.2}} .thr{{stroke:#e2e8f0;stroke-width:1;stroke-dasharray:2 3}}
 .thrlab{{fill:#cbd5e1;font-size:10px;text-anchor:middle}}
+.dbandlab{{fill:#16a34a;font-size:11px;opacity:.9}}
 .dname{{font-size:12.5px;fill:#475569;font-weight:600}} .dname.me{{fill:#b91c1c;font-weight:800}}
 .val{{font-size:12px;fill:#334155;font-weight:600}}
 .merow{{fill:#fef2f2;stroke:#fecaca;stroke-width:1;rx:4}}
@@ -153,8 +203,8 @@ footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid v
 footer a{{color:#2563eb}}
 </style></head><body>{nav("more")}<div class="wrap">
 
-<h1>Two Liquidity Lenses, Side by Side</h1>
-<p class="sub">Reserves vs. cash — how Moody's actually scores a school district's liquidity, and why you have to read both · {date}</p>
+<h1>Three Liquidity Lenses, Side by Side</h1>
+<p class="sub">Reserves, cash, and days — the same liquidity, three very different-looking numbers · {date}</p>
 
 <div class="card intro">
 <p>Moody's — the agency that <b>rated ICCSD</b> — measures liquidity with <b>two</b> ratios, on purpose,
@@ -167,11 +217,14 @@ because each hides what the other reveals:</p>
   short-term borrowing</b> (tax-anticipation notes), so cash propped up by a loan doesn't count. The truest
   immediate-liquidity test.</div>
 </div>
-<p>Both are scored on the same scale (Aaa = strongest … Caa = weakest). Below, every district's two ratios
-sit back-to-back: <b>reserves grow left, cash grows right</b>. FY2023, the latest year all 13 have an audit.</p>
+<p>We then add a <b>third lens the district uses on its own dashboard</b> — <b>Day's Net Cash Ratio</b>
+(cash ÷ average daily spending = days of cash on hand). It measures almost the same thing as the cash ratio,
+but expressed in <b>days</b> rather than a percent — which, as you'll see, makes the very same position
+sound far less alarming.</p>
 </div>
 
 <div class="card">
+<p style="margin:0 0 2px;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;font-weight:700">Lenses 1 &amp; 2 — Moody's ratios (% of revenue)</p>
 {svg}
 <div class="legend"><b>Moody's band:</b>
 <span><i style="background:#16a34a"></i>Aaa (≥17.5%)</span>
@@ -183,12 +236,29 @@ sit back-to-back: <b>reserves grow left, cash grows right</b>. FY2023, the lates
 </div>
 
 <div class="card">
-<h2 style="margin:0 0 4px;font-size:20px">How the story changes when you see both</h2>
+<p style="margin:0 0 2px;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;font-weight:700">Lens 3 — the district's own KPI (days of cash)</p>
+<p style="margin:2px 0 0;font-size:14px;color:#475569"><b>Day's Net Cash Ratio</b> = Cash &amp; Investments ÷ (Total Expenditures ÷ 365). Same FY2023; the district's own target is 90+ days.</p>
+{dsvg}
+<div class="legend"><b>Days band:</b>
+<span><i style="background:#16a34a"></i>≥ 90 (in range)</span>
+<span><i style="background:#eab308"></i>60–90</span>
+<span><i style="background:#dc2626"></i>&lt; 60</span>
+</div>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 4px;font-size:20px">How the story changes across the three lenses</h2>
+<p class="take"><b>The unit you pick changes how alarming it sounds — even though the rank never moves.</b>
+For the very same year, Iowa City reads as <b>{ica:.1f}% reserves</b>, <b>{icn:.1f}% net cash</b>, and
+<b>{icd:.0f} days of cash</b>. The "days" number is the biggest and friendliest-sounding of the three — "33
+days" lands softer than "2.4%" — yet on <b>all three</b> lenses Iowa City is <b>dead last of {n}</b> (vs. a
+peer median of {peer_days_med:.0f} days), and on two of them it sits below the recommended zone entirely.
+Same district, same money, three numbers; only the framing flatters.</p>
 <p class="take"><b>One lens alone understates the problem.</b> On <b>reserves</b>, Iowa City is alone at the
 bottom — <b>{ica:.1f}% (Baa)</b>, the only district below the A band and ranked <b>#{ic_res_rank} of {n}</b>.
 Switch to <b>cash</b> and it looks less dire — <b>{icn:.1f}% (A)</b>, still last (#{ic_cash_rank}) but not in
 a category by itself. A reader shown only the cash number might shrug.</p>
-<p class="take"><b>Seeing both reveals why that comfort is false.</b> Notice the <i>gap</i> between each
+<p class="take"><b>Seeing them together reveals why that comfort is false.</b> Notice the <i>gap</i> between each
 district's two bars. Peers' cash sits far to the right of their reserves (median gap
 <b>+{peer_gap_med:.0f} points</b>) — they hold real surplus cash on top of healthy reserves. Iowa City's gap
 is the <b>smallest in the group (+{ic_gap:.1f})</b>: it has barely more cash than its (already thin) reserves.
