@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>When the FY24 audit drops, here's what to check first — ICCSD</title>
+<title>The FY24 Financial and Compliance Report, in plain terms — ICCSD</title>
 <style>
   :root {
     --ink: #0f172a;
@@ -63,12 +63,6 @@
   .stat.good .value { color: var(--green); }
   .stat.flag .value { color: var(--gold); }
 
-  .chart-wrap { background: #fff; padding: 1.5rem 1.25rem 1rem; border-radius: 8px; border: 1px solid #e2e8f0; margin: 1.5rem 0; }
-  .chart-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--ink); }
-  .chart-sub { font-size: 0.9rem; color: var(--ink-mute); margin: 0 0 1rem; }
-  .legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.75rem; align-items: center; }
-  .legend .dot { width: 12px; height: 12px; display: inline-block; margin-right: 0.4rem; border-radius: 50%; vertical-align: middle; }
-
   .flow-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
   .flow-card h3 { margin-top: 0; }
 
@@ -87,6 +81,11 @@
   tr.highlight { background: #fdecec; }
   tr.highlight td { color: var(--red); font-weight: 700; }
   tr.subtotal td { background: #f8fafc; font-weight: 700; }
+
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; white-space: nowrap; }
+  .tag.mw { background: var(--red-soft); color: var(--red); border: 1px solid var(--red-line); }
+  .tag.nc { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold-line); }
+  .tag.sd { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-line); }
 
   .related-link { background: #0b1426; color: #fff; border-radius: 8px; padding: 1.5rem 1.75rem; margin: 2rem 0 0; display: block; text-decoration: none; }
   .related-link:hover { background: #15233f; }
@@ -114,9 +113,9 @@
 
 <header class="hero">
   <div class="container">
-    <div class="eyebrow">ICCSD &middot; FY24 Audit Watchlist</div>
-    <h1>When the FY24 audit comes out, here's what to check first</h1>
-    <p class="sub">The Iowa City Community School District's FY24 audit is expected in July 2026. It will be the first independent look at the district's books since the financial crisis came to light. The version of FY24 that the district has already filed with the state has several numbers that don't fit the pattern of the four years before it &mdash; or the year that followed. This page walks through what to look for when the audit comes out, and why each piece matters.</p>
+    <div class="eyebrow">ICCSD &middot; FY24 Audit Summary</div>
+    <h1>The FY24 audit, in plain terms</h1>
+    <p class="sub">The Iowa City Community School District's independent audit for the year ended June 30, 2024 &mdash; the "Financial and Compliance Report" &mdash; was released with an auditor's report dated June 10, 2026. It is 124 pages. This page summarizes what it says: the opinions, the financial picture, the findings, and how the audited numbers compare to the unaudited report the district filed with the state in 2024. It is the first independent audit of the district's books in two years.</p>
   </div>
 </header>
 
@@ -124,342 +123,201 @@
 
   <h2>The two-minute version</h2>
 
-  <p>Every Iowa school district files an annual financial report with the state called the <strong>CAR</strong> (Certified Annual Report). The CAR is filed roughly three months after the fiscal year ends, using the district's own numbers before any independent check. A separate <strong>independent audit</strong> looks at the same year later, verifies the numbers, and can correct them.</p>
+  <p>The auditor issued an <strong>unmodified ("clean") opinion on the financial statements</strong> &mdash; the most important single result, and a positive one. It means the statements present the district's financial position fairly, in all material respects, under generally accepted accounting principles. The auditor expressed no doubt about the district's ability to continue operating.</p>
 
-  <p>The FY24 CAR was filed in September 2024. The FY24 audit will land in summer 2026. Comparing the FY24 CAR against the four prior audited years and the year that followed reveals <strong>several numbers that do not fit</strong> &mdash; some of which paint a coherent picture of receipts being classified to the wrong fund. The audit will either confirm those numbers or correct them.</p>
+  <p>That clean opinion sits alongside an unusually heavy set of findings: <strong>fourteen numbered findings, including five material weaknesses in financial reporting</strong>, two <strong>qualified opinions on federal programs</strong>, a <strong>prior-period restatement</strong>, and several violations of Iowa statutory requirements &mdash; among them <strong>exceeding the certified budget</strong> and <strong>moving money between funds without the board authorization the law requires</strong>. The district was <strong>not</strong> classified as a low-risk auditee.</p>
 
-  <div class="callout red">
-    <div class="lead">The headline number to watch</div>
-    <p>General Fund cash on hand at June 30, 2024. The FY24 CAR reports <strong>$25.91 million</strong>. The four-year audited trend points to roughly $19&ndash;20 million. The next year's internal management number is $19.3 million. The number in the FY24 CAR sits about <strong>$6 million above the trend line</strong>, with no operational story that explains the jump up or the snap back down.</p>
-  </div>
-
-  <p>That cash number is the easiest anomaly to see, but it's probably not the most serious one. <strong>The single largest issue on the FY24 state-filed report is a $19 million shortfall in the SAVE Fund &mdash; the capital projects fund that is also the largest single piece of the district's overall financial position.</strong> The General Fund cash spike, the interfund balance explosion, and the Management Fund growth are all part of the same picture, but the SAVE shortfall is the one with the biggest dollar magnitude and the most direct consequences for the district's existing bondholders. The K.02.01 memo from the district's own COO has already explained much of the mechanism behind these findings.</p>
-
-  <h2>What "General Fund cash on hand" actually means</h2>
-
-  <p>The General Fund is the district's main checking account &mdash; the bucket that pays teachers, runs buildings, buys textbooks, and keeps the lights on. <strong>"Cash on hand" is what's actually in the bank at the end of the fiscal year.</strong> It is the most basic measure of whether a district has the money to pay its bills.</p>
-
-  <p>Schools usually express this as <strong>"days of cash"</strong> &mdash; how many days the district could keep operating if no new money came in. <strong>Rating agencies and Iowa school finance experts generally consider 60 days a healthy cushion.</strong> Iowa City has been below that for years, but the trend was steady, predictable, and visible. The FY24 CAR breaks that pattern.</p>
-
-  <h2>The four-year audited baseline</h2>
-
-  <p>These numbers come from the audited Annual Comprehensive Financial Reports for fiscal years 2020 through 2023 &mdash; each one signed by an independent auditing firm and approved by the board. They are the most reliable historical record available.</p>
-
-  <table>
-    <thead>
-      <tr><th>Fiscal Year</th><th class="num">General Fund cash</th><th class="num">Days of cash</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>FY 2020</td><td class="num">$24,963,852</td><td class="num">52.6</td></tr>
-      <tr><td>FY 2021</td><td class="num">$21,761,592</td><td class="num">42.9</td></tr>
-      <tr><td>FY 2022</td><td class="num">$21,475,952</td><td class="num">38.8</td></tr>
-      <tr><td>FY 2023</td><td class="num">$19,012,680</td><td class="num">33.4</td></tr>
-    </tbody>
-  </table>
-
-  <p>The trend is steady: days of cash declined by roughly six days per year, every year. A straight-line projection from this track would put FY24 at <strong>27 to 30 days</strong>. A "trend slowing" scenario at <strong>32 to 35 days</strong>.</p>
-
-  <h2>What the FY24 CAR claims</h2>
-
-  <p>The FY24 CAR puts FY24 ending General Fund cash at <strong>$25,913,933</strong>. With FY24 General Fund expenditures of $198 million in the same report, that works out to <strong>47.7 days of cash</strong>.</p>
+  <p>Several of the figures that looked alarming in the unaudited report the district filed in 2024 were <strong>corrected or reclassified</strong> by the audit rather than confirmed &mdash; most notably an apparent $18.9&nbsp;million deficit in the capital-projects (SAVE) fund, which the audit shows as a positive balance. The substance of the audit's concerns is in the district's <strong>internal controls, federal-grant compliance, budget compliance, and the timeliness and accuracy of its reporting</strong>, not in a single missing pile of cash.</p>
 
   <div class="stat-row">
     <div class="stat good">
-      <div class="label">FY23 audited</div>
-      <div class="value">33.4 days</div>
-      <div class="note">$19.0M cash, on trend</div>
+      <div class="label">Financial statements</div>
+      <div class="value">Unmodified</div>
+      <div class="note">Clean opinion; no going-concern doubt</div>
     </div>
     <div class="stat bad">
-      <div class="label">FY24 CAR claim</div>
-      <div class="value">47.7 days</div>
-      <div class="note">$25.9M cash, off trend</div>
+      <div class="label">Financial-reporting findings</div>
+      <div class="value">5 material weaknesses</div>
+      <div class="note">The most serious internal-control category</div>
     </div>
-    <div class="stat good">
-      <div class="label">FY25 management</div>
-      <div class="value">33.1 days</div>
-      <div class="note">$19.3M cash, back on trend</div>
-    </div>
-  </div>
-
-  <h2>The shape of the anomaly</h2>
-
-  <p>Four years of audited decline. One year of state-filed jump. Then a snap back down to where the trend left off.</p>
-
-  <div class="chart-wrap">
-    <p class="chart-title">General Fund days of cash &mdash; ICCSD, FY20 to FY26</p>
-    <p class="chart-sub">Four audited years of decline (green), one state-filed spike (red), then a return to trend in management reporting.</p>
-
-    <svg viewBox="0 0 780 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:inherit;">
-      <style>
-        .grid { stroke: #e5e9f0; stroke-width: 1; }
-        .axis { stroke: #94a3b8; stroke-width: 1.5; }
-        .axis-label { font-size: 11px; fill: #64748b; }
-        .axis-title { font-size: 11px; fill: #64748b; font-weight: 600; }
-        .trend-line { fill: none; stroke: #1e7a3a; stroke-width: 3; }
-        .trend-line-proj { fill: none; stroke: #1e7a3a; stroke-width: 2; stroke-dasharray: 4 4; opacity: 0.55; }
-        .spike { fill: none; stroke: #b03a2e; stroke-width: 3; stroke-dasharray: 6 4; }
-        .dot-trend { fill: #1e7a3a; }
-        .dot-spike { fill: #b03a2e; stroke: #fff; stroke-width: 2; }
-        .dot-mgmt { fill: #1a4f9b; stroke: #fff; stroke-width: 2; }
-        .point-label { font-size: 11px; fill: #1f2937; font-weight: 700; }
-        .point-label.red { fill: #b03a2e; }
-        .point-label.green { fill: #1e7a3a; }
-        .point-label.blue { fill: #1a4f9b; }
-        .zone-rec { fill: rgba(30, 122, 58, 0.06); }
-        .target-line { stroke: #1e7a3a; stroke-width: 1.5; stroke-dasharray: 6 4; }
-        .target-text { font-size: 10.5px; fill: #1e7a3a; font-weight: 700; }
-      </style>
-
-      <rect x="70" y="80" width="700" height="60" class="zone-rec"/>
-      <line x1="70" y1="80" x2="770" y2="80" class="grid"/>
-      <line x1="70" y1="200" x2="770" y2="200" class="grid"/>
-      <line x1="70" y1="260" x2="770" y2="260" class="grid"/>
-      <line x1="70" y1="140" x2="770" y2="140" class="target-line"/>
-      <text x="765" y="135" class="target-text" text-anchor="end">60 days &mdash; recommended cushion</text>
-      <line x1="70" y1="80" x2="70" y2="320" class="axis"/>
-      <line x1="70" y1="320" x2="770" y2="320" class="axis"/>
-
-      <text x="62" y="84" class="axis-label" text-anchor="end">80</text>
-      <text x="62" y="144" class="axis-label" text-anchor="end">60</text>
-      <text x="62" y="204" class="axis-label" text-anchor="end">40</text>
-      <text x="62" y="264" class="axis-label" text-anchor="end">20</text>
-      <text x="62" y="324" class="axis-label" text-anchor="end">0</text>
-      <text x="28" y="200" class="axis-title" transform="rotate(-90 28 200)" text-anchor="middle">Days of cash</text>
-
-      <text x="120" y="342" class="axis-label" text-anchor="middle">FY20</text>
-      <text x="220" y="342" class="axis-label" text-anchor="middle">FY21</text>
-      <text x="320" y="342" class="axis-label" text-anchor="middle">FY22</text>
-      <text x="420" y="342" class="axis-label" text-anchor="middle">FY23</text>
-      <text x="520" y="342" class="axis-label" text-anchor="middle">FY24</text>
-      <text x="620" y="342" class="axis-label" text-anchor="middle">FY25</text>
-      <text x="720" y="342" class="axis-label" text-anchor="middle">FY26</text>
-
-      <text x="120" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">audited</text>
-      <text x="220" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">audited</text>
-      <text x="320" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">audited</text>
-      <text x="420" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">audited</text>
-      <text x="520" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px;fill:#b03a2e;font-weight:700">CAR (not audited)</text>
-      <text x="620" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">internal</text>
-      <text x="720" y="358" class="axis-label" text-anchor="middle" style="font-size:9.5px">projected</text>
-
-      <polyline points="120,162.2 220,191.3 320,203.6 420,219.8" class="trend-line"/>
-      <polyline points="420,219.8 520,176.9 620,220.7" class="spike"/>
-      <polyline points="620,220.7 720,215" class="trend-line-proj"/>
-
-      <circle cx="120" cy="162.2" r="6" class="dot-trend"/>
-      <circle cx="220" cy="191.3" r="6" class="dot-trend"/>
-      <circle cx="320" cy="203.6" r="6" class="dot-trend"/>
-      <circle cx="420" cy="219.8" r="6" class="dot-trend"/>
-      <circle cx="520" cy="176.9" r="8" class="dot-spike"/>
-      <circle cx="620" cy="220.7" r="7" class="dot-mgmt"/>
-      <circle cx="720" cy="215" r="6" class="dot-mgmt" style="fill:#fff;stroke:#1a4f9b"/>
-
-      <text x="120" y="152" class="point-label green" text-anchor="middle">52.6</text>
-      <text x="220" y="181" class="point-label green" text-anchor="middle">42.9</text>
-      <text x="320" y="193" class="point-label green" text-anchor="middle">38.8</text>
-      <text x="420" y="237" class="point-label green" text-anchor="middle">33.4</text>
-      <text x="520" y="166" class="point-label red" text-anchor="middle">47.7</text>
-      <text x="620" y="238" class="point-label blue" text-anchor="middle">33.1</text>
-      <text x="720" y="205" class="point-label blue" text-anchor="middle">~35</text>
-    </svg>
-
-    <div class="legend">
-      <span><span class="dot" style="background:#1e7a3a"></span>Audited (FY20&ndash;FY23)</span>
-      <span><span class="dot" style="background:#b03a2e"></span>State-filed CAR, not yet audited (FY24)</span>
-      <span><span class="dot" style="background:#1a4f9b"></span>District management reporting (FY25&ndash;FY26)</span>
+    <div class="stat flag">
+      <div class="label">Federal programs</div>
+      <div class="value">2 qualified</div>
+      <div class="note">Special Education and COVID/ESF funds</div>
     </div>
   </div>
 
-  <p>The four green dots are the audited record &mdash; a steady decline. The red dot is the only year that goes up. Then the blue dot for FY25 lands almost exactly where the trend line would have been if the FY24 spike had never happened. <strong>If you cover the red dot with your thumb, the line from FY20 to FY25 is essentially straight.</strong></p>
+  <h2>What this document is</h2>
 
-  <h2>Underneath the cash spike: the SAVE Fund shortfall</h2>
+  <p>Every Iowa school district files an annual financial report with the state &mdash; the <strong>Certified Annual Report (CAR)</strong> &mdash; using its own numbers, roughly three months after the fiscal year ends. A separate <strong>independent audit</strong> examines the same year later, tests the numbers, and can correct them. This page summarizes the <strong>audit</strong>. Iowa City filed its FY24 CAR in September 2024; the FY24 audit's report is dated June 10, 2026, and was filed with the state in June 2026.</p>
 
-  <p>The General Fund cash number is the easiest anomaly to see, but the FY24 CAR has three other findings that matter more. The biggest of them is in the SAVE Fund &mdash; the bucket that pays for the district's capital projects. The interfund balance explosion and the Management Fund property tax shift are part of the same picture, but the SAVE shortfall is where the largest dollar amount lives and where the most serious downstream consequences sit.</p>
+  <p>Two timing facts matter for reading it. First, this is <strong>FY24</strong> &mdash; the year ended June 30, 2024. Events from later years (the August 2025 interfund loan from the health-insurance fund, the 2026 cash-flow borrowing) belong to FY25 and FY26 and are not part of these statements. Second, the audit was completed late: the audit itself reports that the district <strong>did not file its FY23 or FY24 single audits within the nine-month federal deadline.</strong></p>
 
-  <p>Before each finding, the plain-language version. The technical detail follows for anyone who wants it.</p>
+  <h2>The opinions</h2>
 
-  <h3>Finding 1 &mdash; The SAVE Fund spent $19 million more than it was allowed to</h3>
-
-  <p>The SAVE Fund is the bucket that pays for capital projects like building expansions and renovations. It's funded by a statewide one-cent sales tax and by sales-tax revenue bonds. By law, it can only spend what it has on hand from those two sources.</p>
-
-  <div class="callout red">
-    <div class="lead">Plain-language version</div>
-    <p>In FY24, capital project spending out of SAVE ran <strong>$19 million past</strong> what the bond and sales tax revenue could legitimately cover. Picture a household savings account dedicated to home renovations. By household rule, you can only spend what's in that account on the renovation. In FY24, the renovation spending ran $19,000 past what the renovation savings could cover &mdash; and the books show the shortfall.</p>
-  </div>
-
-  <p>This appears on the FY24 CAR balance sheet as a <strong>negative $18,944,278 in SAVE's unassigned fund balance</strong>. A negative number in that column is unusual; the fund went from $0 a year earlier to -$18.9M.</p>
-
-  <p><strong>What caused the deficit isn't directly documented in public board materials.</strong> The K.02.01 Capital Outlay Borrowing Need Memo and the companion K.02.02 strategy document, both presented at the March 24, 2026 board meeting, describe a misallocation pattern occurring in October 2025 (FY26) and use the phrase "past practice" to refer to routing Debt Service property tax receipts into the Schoolhouse Fund instead of into Debt Service. The "past practice" language suggests the pattern existed across multiple prior fiscal years and may have been active in FY24 too &mdash; but that's an inference, not direct evidence. The memos document October 2025, not FY24.</p>
-
-  <p>And the simple misallocation mechanism the memos describe doesn't, by itself, produce a SAVE deficit. If Debt Service property tax receipts were being deposited into the Schoolhouse Fund (which includes SAVE), that would have *increased* SAVE's revenue side, not produced a $19 million shortfall. For SAVE to show a deficit, something else has to be happening &mdash; possibly overspending on FMP 2.0 capital projects running ahead of available bond proceeds, possibly revenue or receivable recognition timing, possibly a compliance issue around how restricted bond proceeds were used. <strong>The FY24 audit will have to surface the actual mechanism. The public memos don't.</strong></p>
-
-  <div class="callout gold">
-    <div class="lead">Why this is the most serious of the four findings</div>
-    <p>The SAVE Fund isn't an obscure capital fund. <strong>ICCSD has roughly $123 million in outstanding SAVE revenue bonds</strong> &mdash; the 2022A and 2023 series &mdash; and those bonds are repaid from future SAVE receipts. The bond agreements include <strong>coverage ratio covenants</strong> requiring SAVE revenues to be a defined multiple of the annual debt service payments. <strong>A SAVE fund running a $19 million deficit raises a direct question about whether those covenants are being met.</strong></p>
-    <p style="margin-top: 0.75rem;">That question doesn't go away with a CAR-to-audit reclassification. Even if the audit moves revenue or expenditure between funds to reduce the deficit on paper, the bondholders, the rating agencies, and the district's outside counsel will all be looking at this number specifically. It's the kind of finding that triggers required notices to bondholders under the district's continuing disclosure agreements, and it's the kind of number a rating agency notices when ICCSD eventually engages on rating recovery.</p>
-  </div>
-
-  <h3>Finding 2 &mdash; The district's funds were lending each other unusual amounts of money</h3>
-
-  <p>Iowa law requires school districts to keep money in separate buckets by purpose. <strong>Think of them as separate checking accounts in a single household,</strong> each with rules about what it can pay for:</p>
+  <p>An audit is built around formal opinions. This report contains three layers:</p>
 
   <ul>
-    <li><strong>General Fund</strong> &mdash; operations, payroll, supplies. The big one.</li>
-    <li><strong>Management Fund</strong> &mdash; liability insurance, workers' comp, unemployment, early retirement.</li>
-    <li><strong>Debt Service Fund</strong> &mdash; bond principal and interest payments.</li>
-    <li><strong>SAVE Fund</strong> &mdash; capital projects (funded by sales tax + bonds).</li>
-    <li><strong>PPEL Fund</strong> &mdash; facility maintenance and small construction.</li>
+    <li><strong>Financial statements &mdash; Unmodified (clean).</strong> The statements present fairly, in all material respects, the district's financial position and results for the year.</li>
+    <li><strong>Federal programs &mdash; mixed.</strong> The Child Nutrition Cluster received an unmodified opinion. The <strong>Special Education Cluster</strong> and the <strong>Education Stabilization Fund</strong> (the COVID-relief / ESSER programs) each received a <strong>qualified</strong> opinion &mdash; meaning the auditor found a specific compliance problem significant enough to except from an otherwise clean conclusion.</li>
+    <li><strong>Auditee risk status &mdash; not low-risk.</strong> Because of the findings, the district does not qualify as a low-risk auditee, which generally means more extensive federal audit testing going forward.</li>
   </ul>
 
-  <p>When one bucket pays for something that belongs to another bucket, the district records an <strong>IOU between them</strong>. These IOUs are normally tiny and get settled quickly. In FY24, they exploded.</p>
+  <p>The report also carries an <strong>Emphasis-of-Matter</strong> paragraph drawing attention to a prior-period restatement (below). An emphasis-of-matter paragraph does not change the opinion; it flags something the reader should notice.</p>
+
+  <h2>The financial picture</h2>
+
+  <p>The audited governmental-fund figures at June 30, 2024:</p>
 
   <table>
     <thead>
-      <tr><th>Bucket</th><th class="num">FY23 CAR</th><th class="num">FY24 CAR</th></tr>
+      <tr><th>Measure (audited)</th><th class="num">Amount</th></tr>
     </thead>
     <tbody>
-      <tr><td>General Fund &mdash; "other buckets owe me"</td><td class="num">$153,057</td><td class="num"><strong>$14,077,679</strong></td></tr>
-      <tr><td>Management Fund &mdash; "I owe other buckets"</td><td class="num">$845</td><td class="num"><strong>$11,308,962</strong></td></tr>
+      <tr><td>General Fund cash &amp; investments</td><td class="num">$22,536,992</td></tr>
+      <tr><td>General Fund total fund balance</td><td class="num">$19,053,053</td></tr>
+      <tr><td>General Fund expenditures</td><td class="num">$199,886,456</td></tr>
+      <tr><td>Capital Projects Fund balance (incl. SAVE)</td><td class="num">$28,949,793</td></tr>
+      <tr><td>&nbsp;&nbsp;of which the SAVE / sales-tax account</td><td class="num">$14,727,933</td></tr>
+      <tr><td>Management Levy Fund cash</td><td class="num">$13,077,609</td></tr>
+      <tr><td>Outstanding sales-tax (SAVE) revenue bonds</td><td class="num">$155,890,000</td></tr>
     </tbody>
   </table>
 
-  <div class="callout red">
-    <div class="lead">Plain-language version</div>
-    <p>About <strong>$11 million of the Management Fund's cash sitting in the bank effectively belongs to the General Fund</strong>. The General Fund's reported cash position depends on whether those IOUs get treated as good as cash. The audit will test that.</p>
-  </div>
+  <p>On an expenditures basis, the General Fund's $22.5&nbsp;million of cash is roughly <strong>41 days of operating cash</strong> ($22.5M divided by daily expenditures). That is below the 60-day cushion rating agencies generally consider healthy, consistent with the district's multi-year trend, and lower than the $25.9&nbsp;million the district had reported in its unaudited CAR.</p>
 
-  <p>This reframes the original cash anomaly. The FY24 CAR is not just saying "the General Fund had more cash than the trend would predict." It is saying "the General Fund's reported cash position depends on a $14 million IOU from other buckets &mdash; mostly from the Management Fund &mdash; that didn't exist at this scale a year earlier." Whether the audit accepts those IOUs decides whether the reported cash is real.</p>
+  <p>On the SAVE revenue bonds, the audit reports incremental sales-tax revenue of <strong>$19.02&nbsp;million</strong> against principal and interest paid of <strong>$14.15&nbsp;million</strong> for the year &mdash; coverage of about <strong>1.34&times;</strong>. The report discloses no covenant violation. This is the FY24 position; the strain on SAVE cash flow that surfaced in later years is a FY26 matter outside this report.</p>
 
-  <h3>Finding 3 &mdash; Most of the property tax increase went to one bucket</h3>
+  <h3>The prior-period restatement (Note 15)</h3>
 
-  <p>Property tax growth normally gets spread across several buckets &mdash; the General Fund (operations), the Debt Service Fund (bond payments), the PPEL Fund (facilities), and the Management Fund (insurance and retirement). The split depends on the levy rates the board sets at budget time.</p>
+  <p>The audit restated the district's beginning net position to correct errors in previously reported years. For governmental activities, beginning net position was <strong>increased by $6,150,861</strong>, made up of three corrections:</p>
 
-  <div class="callout gold">
-    <div class="lead">Plain-language version</div>
-    <p>In FY24, the district's property tax revenue grew by $10.2 million. <strong>$8.3 million of that &mdash; about 82% &mdash; went to the Management Fund alone.</strong> Only $1.7 million went to the General Fund. That kind of one-bucket concentration is unusual.</p>
-  </div>
+  <table>
+    <thead>
+      <tr><th>Correction</th><th class="num">Effect on beginning net position</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Income surtax revenue recognized in the wrong period</td><td class="num">+$7,976,285</td></tr>
+      <tr><td>Bond premium over-amortized in prior years</td><td class="num">&minus;$955,100</td></tr>
+      <tr><td>Early-retirement liability under-accrued</td><td class="num">&minus;$870,324</td></tr>
+      <tr class="subtotal"><td>Net restatement</td><td class="num">+$6,150,861</td></tr>
+    </tbody>
+  </table>
 
-  <p>Management Fund property tax revenue went from $5.2 million in FY23 to $13.5 million in FY24 (+161%). Management Fund cash followed it: $1.14 million to $13.09 million (+1,049%).</p>
+  <p>A separate $105,809 restatement added three private-purpose trust funds that had been omitted from the FY23 report. The audit also reclassified how several funds are presented: the SAVE, PPEL, and other capital accounts were combined into one Capital Projects Fund; Debt Service moved from a major to a nonmajor fund; and the Management Levy Fund moved from nonmajor to major.</p>
 
-  <p>The board can decide to raise the Management Levy, and that would be legal. The audit's Required Supplementary Information will show the certified Management Levy rate. <strong>If the rate supports that much revenue, this was a deliberate board decision to build up the Management Fund.</strong> If not, the audit reclassifies the receipts back to the buckets they belong in. Either way, this is a question with a definite answer once the audit is published.</p>
+  <h2>The findings</h2>
 
-  <h2>A quick note: cash vs. IOU</h2>
+  <p>The audit lists fourteen numbered findings plus a set of statutory-reporting items. They fall into four groups. The severity tags follow the audit's own categories: a <span class="tag mw">material weakness</span> is the most serious internal-control category; a <span class="tag sd">significant deficiency</span> is less severe but still merits governance attention; <span class="tag nc">noncompliance</span> means a legal or grant requirement was not met.</p>
 
-  <p>Before the summary, one piece of plumbing that matters. A school district's balance sheet records two different things that both contribute to a fund's reported strength:</p>
+  <h3>Financial-reporting internal controls</h3>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2024-001</td><td>Insufficient segregation of duties &mdash; payroll cycle</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-002</td><td>Insufficient segregation of duties &mdash; cash disbursement</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-003</td><td>Insufficient segregation of duties &mdash; building receipt process</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-004</td><td>Insufficient reconciling &amp; monitoring of cash accounts and CDs</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-005</td><td>Improper identification and adjustment of funds; year-end entries not made for trial balances to conform to accounting standards</td><td><span class="tag mw">material weakness</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Compliance with the financial statements</h3>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2024-006</td><td>FY23 and FY24 single audits not filed within the required nine months of year-end</td><td><span class="tag nc">noncompliance</span></td></tr>
+      <tr><td>2024-007</td><td>Student Activity Fund deficit fund balance of $983,381</td><td><span class="tag nc">noncompliance</span></td></tr>
+      <tr><td>2024-008</td><td>Interfund payables/receivables not authorized by board resolution before they occurred, not repaid by October 1 of the following year, and no interest paid on borrowed funds</td><td><span class="tag nc">noncompliance</span></td></tr>
+    </tbody>
+  </table>
+
+  <p>On 2024-008: the audit's interfund note shows <strong>$38.2&nbsp;million</strong> of balances owed between funds at year-end (the General Fund alone is owed $29.1&nbsp;million and owes $20.1&nbsp;million). Iowa law requires the board to approve interfund loans in advance, set repayment by October 1 of the following year, and charge interest. The audit states those requirements were not met.</p>
+
+  <h3>Federal programs</h3>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2024-009</td><td>Lacked adequate processes to approve and document disbursements charged to federal programs</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-010</td><td>Lacked a process to identify federal capital assets (two vehicle purchases over the $5K threshold; no prior state approval)</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-011</td><td>Lacked a process to document special-education high-cost claims submitted for reimbursement</td><td><span class="tag mw">material weakness</span></td></tr>
+      <tr><td>2024-012</td><td>Lacked a process for independent preparation and review of reports</td><td><span class="tag sd">significant deficiency</span></td></tr>
+      <tr><td>2024-013</td><td>Unallowable expenditures charged to the Education Stabilization Fund (COVID) programs</td><td><span class="tag nc">material noncompliance</span></td></tr>
+      <tr><td>2024-014</td><td>Unable to provide program documentation</td><td><span class="tag nc">material noncompliance</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Statutory reporting</h3>
 
   <ul>
-    <li><strong>Cash &amp; investments</strong> &mdash; actual money sitting in the bank, attributed to that bucket.</li>
-    <li><strong>Interfund receivable</strong> (the IOU) &mdash; a recorded claim that another bucket owes this bucket money.</li>
+    <li><strong>IV-A-24 &mdash; Certified budget exceeded.</strong> Expenditures exceeded the certified budget in the <em>support</em> function (before the May 2024 amendment) and in the <em>other</em> function (after amendment). On the audit's budget schedule, the "other" function ran about <strong>$19.5&nbsp;million over its amended budget</strong>, and total expenditures of $341.9&nbsp;million exceeded the amended budget of $329.5&nbsp;million.</li>
+    <li><strong>IV-H-24 / IV-I-24 &mdash;</strong> variances in certified enrollment and supplementary weighting reported to the state in October 2023.</li>
+    <li><strong>IV-J-24 &mdash;</strong> the district lacked a formal depository resolution.</li>
+    <li><strong>IV-N-24 &mdash;</strong> the 509A certificate of compliance was not filed timely.</li>
   </ul>
 
-  <p>Both appear as assets on the balance sheet. But they are not the same thing. <strong>Cash is cash.</strong> An IOU is a claim &mdash; useful only if the other bucket can actually pay. When you hear about the General Fund's $25.9M cash, that is the bank balance. When you hear about the $14M interfund receivable, that is a separate line on the balance sheet for IOUs other buckets owe to the General Fund. The audit's job is to decide whether the IOUs are legitimate.</p>
+  <h3>Repeat findings</h3>
 
-  <h2>A possible explanation &mdash; not yet confirmed</h2>
+  <p>The audit's summary of prior-year findings shows that several FY23 issues were marked <strong>"not corrected,"</strong> with the district attributing the recurrence to significant turnover in the business office. The FY23 material weakness on significantly delayed and revised financials, the bank-reconciliation deficiency, and the late single-audit filing each carried forward into FY24.</p>
 
-  <p>One reasonable hypothesis ties the four findings together. During FY24, some property tax money may have been routed into the wrong buckets, capital project work continued at the planned pace, and at year-end the books were balanced using IOUs between the buckets. The General Fund's reported strength would then come from <em>both</em> $25.9 million of actual bank cash <em>and</em> a $14 million IOU from other buckets &mdash; both counted as assets on the balance sheet.</p>
+  <h2>How the audit compares to what the district filed</h2>
 
-  <p>The district has acknowledged a similar misallocation pattern in October 2025 (FY26) and described it as "past practice." That language suggests the pattern existed across multiple prior years and may have been active in FY24 too. <strong>But this is a hypothesis, not a confirmed explanation.</strong> The K.02.01 and K.02.02 memos document October 2025, not FY24. Whether the same mechanism caused the FY24 numbers is something only the FY24 audit can establish.</p>
+  <p>The audit changed several figures from the unaudited CAR the district filed in September 2024. The largest changes:</p>
 
-  <div class="flow-card">
-    <h3>What might have happened in FY24, step by step</h3>
-    <p style="margin: 0 0 0.75rem;"><em>This is a hypothesis. Each step is labeled by whether the FY24 state-filed report directly shows it, or whether it's an inference from the district's later disclosures.</em></p>
-    <ol>
-      <li><strong>Property tax money may have been routed into the wrong buckets.</strong> <em>Inference, not observed in FY24 records.</em> The district's later "past practice" language suggests this. The FY24 state-filed report does show Management Fund property tax growing 161% while General Fund tax grew only 2%, which is consistent with the pattern but not proof of it.</li>
-      <li><strong>Capital project work on FMP 2.0 continued at the planned pace.</strong> <em>Documented.</em> FMP 2.3 wasn't approved until spring 2025, so it was not yet a factor in FY24. SAVE Fund spending in FY24 was about FMP 2.0 &mdash; building expansions and renovations financed by the 2022A and 2023 SAVE revenue bonds.</li>
-      <li><strong>At year-end, the books show large IOUs between the buckets.</strong> <em>Observed directly.</em> The General Fund records itself as owed $14 million from other buckets. The Management Fund records itself as owing $11.3 million back. What caused the IOUs to exist at this scale &mdash; whether it's the misallocation pattern or something else &mdash; is a separate question the audit will answer.</li>
-      <li><strong>The General Fund's reported strength sits above the four-year trend.</strong> <em>Observed directly.</em> $25.9 million in actual bank cash, plus a $14 million IOU as a separate asset line, vs roughly $19 million on trend. Whether the audit accepts those numbers as legitimate determines whether the General Fund's reported position holds up.</li>
-      <li><strong>The SAVE Fund ended FY24 with a $19 million shortfall.</strong> <em>Observed directly. Mechanism not yet known.</em> The simple misallocation theory doesn't actually explain a deficit (it would inflate SAVE revenue, not produce a shortfall). The audit will have to identify what specifically caused capital spending to outpace available SAVE resources.</li>
-    </ol>
-    <p style="margin: 1rem 0 0;"><strong>The audit's job is to test each of these.</strong> If the audit's restatement note and internal controls findings confirm the misallocation hypothesis, the story holds. If they show a different mechanism &mdash; or nothing at all &mdash; the story shifts to whatever the audit actually surfaces. The point of this page isn't to predict the answer. It's to know which cells to compare.</p>
+  <table>
+    <thead>
+      <tr><th>Item</th><th class="num">CAR (unaudited)</th><th class="num">Audit (final)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight"><td>SAVE / sales-tax fund balance</td><td class="num">&minus;$18,944,278</td><td class="num">+$14,727,933</td></tr>
+      <tr><td>General Fund cash</td><td class="num">$25,913,933</td><td class="num">$22,536,992</td></tr>
+      <tr><td>Beginning net position (restatement)</td><td class="num">&mdash;</td><td class="num">+$6,150,861</td></tr>
+      <tr><td>Certified budget</td><td class="num">within authority</td><td class="num">exceeded (2 functions)</td></tr>
+    </tbody>
+  </table>
+
+  <p>The headline change is the SAVE fund: the CAR reported an apparent $18.9&nbsp;million deficit, and the audit shows a positive $14.7&nbsp;million balance, indicating the CAR figure was a reporting/classification error rather than a real shortfall. General Fund cash came down by about $3.4&nbsp;million. The Management Levy Fund's reported cash and property-tax revenue were left essentially as filed. Reading the two documents together, the audit's corrections were in the district's favor on the most alarming number and against it on budget compliance.</p>
+
+  <h2>What the audit does and does not establish</h2>
+
+  <p><strong>It establishes:</strong> a clean opinion on the financial statements; no going-concern doubt; correction of the apparent SAVE deficit; positive (if modest) SAVE bond coverage for the year; and a defined, finite list of control and compliance problems with a management response attached to each.</p>
+
+  <p><strong>It also establishes:</strong> five material weaknesses in financial reporting, two qualified federal-program opinions including unallowable COVID-grant costs, a $6.15&nbsp;million prior-period restatement, interfund borrowing conducted without the required board authorization, a certified budget exceeded in two functions, late single-audit filings, and several uncorrected repeat findings &mdash; together with non-low-risk auditee status.</p>
+
+  <p><strong>It does not establish</strong> intent or wrongdoing; the auditor does not make that judgment. It does not cover FY25 or FY26 events. And a clean opinion on the statements is not a statement that the district's systems are healthy &mdash; the separate findings report is where that question is answered, and there the answer is that the control environment had material weaknesses during FY24.</p>
+
+  <div class="callout blue">
+    <div class="lead">The bottom line</div>
+    <p>The numbers, once audited, are less dramatic than the unaudited filing suggested &mdash; the SAVE "deficit" was an error, and there is no missing cash. The audit's substance is that the district's <strong>internal controls, federal-grant compliance, budget compliance, and reporting timeliness</strong> fell materially short in FY24, with several problems repeating from the prior year. The district has issued a corrective action plan responding to every finding.</p>
   </div>
-
-  <h2>What this is not about</h2>
-
-  <p>One thing worth setting aside: <strong>the $10 million interfund transfer from the Health Insurance Fund to the General Fund happened in August 2025</strong>. That transfer is part of the FY26 fiscal year story and will be addressed in the FY26 audit when that lands in March 2027. <strong>It has no effect on the FY24 numbers or the FY24 audit.</strong></p>
-
-  <p>This page also does not allege wrongdoing. The FY24 CAR was filed by district staff in September 2024 using the district's own accounting records as they existed at that time. The FY24 audit's job is to verify those records independently. The most common explanation for a CAR-to-audit gap is a fund-classification adjustment caught during audit fieldwork &mdash; that is exactly what audits exist to do.</p>
-
-  <h2>The watchlist</h2>
-
-  <p>The audit is expected in July 2026. When it comes out, these are the things to compare against the version the district already filed with the state. The first three are where the answer would tell the public the most. The other five fill in the picture for anyone who wants to follow more closely.</p>
-
-  <h3 style="color: var(--accent); margin-top: 1.5rem;">If you only read three</h3>
-
-  <ol class="watchlist">
-    <li>
-      <span class="item-title">Whether the IOUs between buckets are real</span>
-      The biggest single question the audit will answer.
-      <div class="item-pred">The version the district already filed says the General Fund is owed <strong>$14.08 million</strong> from other buckets, and the Management Fund owes <strong>$11.31 million</strong> back. <br>If the audit confirms those numbers, the original classification was accepted as legitimate.<br>If the audit reduces them, both the General Fund's reported strength and the Management Fund's cash buildup shrink at the same time.</div>
-    </li>
-    <li>
-      <span class="item-title">The $19 million SAVE Fund shortfall</span>
-      The most serious single anomaly in the report the district filed.
-      <div class="item-pred">The state-filed report says SAVE spent <strong>$18.9 million</strong> more on capital projects than the bond and sales tax revenue could legitimately cover. A shortfall this size on a major capital fund is unusual.<br><br><strong>Why this matters most:</strong> ICCSD has roughly $123 million in outstanding SAVE revenue bonds, and those bonds are repaid from future SAVE receipts under specific coverage ratio covenants. A negative SAVE fund balance raises a direct question about whether those covenants are being met. The audit will either confirm the deficit (triggering required disclosure to bondholders and rating agency questions), reclassify revenue into SAVE (a clear fund-classification finding), or restate prior years (a multi-year reporting integrity finding). All three outcomes are problematic for the district's bond rating recovery plan.</div>
-    </li>
-    <li>
-      <span class="item-title">Whether the district stayed inside its legal budget</span>
-      The most consequential number for state oversight.
-      <div class="item-pred">The state-filed report has the district inside its legal spending limit by <strong>+1.67%</strong>, a cushion of about <strong>$3.3 million</strong>. <br>If the audit catches bills that were owed but not yet recorded &mdash; federal payroll tax penalties, special education shortfall, construction commitments, retirement obligations &mdash; that cushion can disappear easily.<br><strong>If it flips negative, ICCSD exceeded its legal spending limit two years in a row.</strong> The dedicated page below walks through what that would mean.</div>
-    </li>
-  </ol>
-
-  <h3 style="color: var(--ink-mute); margin-top: 2rem;">More for the detail-oriented reader</h3>
-
-  <ol class="watchlist" start="4">
-    <li>
-      <span class="item-title">The General Fund's actual bank cash</span>
-      The number that most directly affects the days-of-cash story above.
-      <div class="item-pred">The state-filed report claims <strong>$25.9 million</strong> in the General Fund bank account at June 30, 2024. <br>If the audit shows $19&ndash;21 million, the "money in the wrong buckets" theory is confirmed.<br>If the audit shows $24 million or more, the year-after cash drop to $19.3 million needs its own explanation, which the district hasn't yet provided publicly.</div>
-    </li>
-    <li>
-      <span class="item-title">Whether the audit has to redo prior-year numbers</span>
-      Audits add a note when previously reported numbers were wrong.
-      <div class="item-pred">A note in the FY24 audit that says the prior year's General Fund, Management Fund, Debt Service Fund, or SAVE Fund balances were restated is direct confirmation that money had been put in the wrong bucket.</div>
-    </li>
-    <li>
-      <span class="item-title">The Management Fund's $13 million cash buildup</span>
-      Tests whether the 82% property tax shift was a board decision or a classification error.
-      <div class="item-pred">The state-filed report shows Management Fund cash at <strong>$13.09 million</strong> and property tax revenue at <strong>$13.48 million</strong>. <br>The audit will show the Management Levy rate the board certified. If the rate supports that much revenue, it was a deliberate board decision. If not, the audit moves the receipts back to the buckets they belong in.</div>
-    </li>
-    <li>
-      <span class="item-title">Whether the Debt Service Fund's tax money was actually there</span>
-      The mirror image of the SAVE shortfall.
-      <div class="item-pred">The state-filed report shows Debt Service Fund cash at <strong>$2.16 million</strong> and property tax revenue at <strong>$12.95 million</strong>. <br>If the audit moves $5&ndash;10 million of property tax receipts from the Management Fund or General Fund into Debt Service, both the SAVE shortfall and the General Fund cash overstatement get untangled at the same time.</div>
-    </li>
-    <li>
-      <span class="item-title">Whether the auditors flag the district's accounting controls</span>
-      The auditors' separate report on whether the district's accounting systems are catching errors.
-      <div class="item-pred">The FY23 audit flagged two "significant deficiencies" and one "material weakness." If the FY24 audit adds a finding about <strong>keeping money in the right buckets</strong>, that is the institutional-level confirmation that the problem isn't a one-time mistake.</div>
-    </li>
-  </ol>
 
   <a class="related-link" href="FY24-UAB-cushion.html">
     <div class="label">Companion analysis</div>
-    <div class="title">The FY24 UAB cushion is $3.3 million wide. Here's what could close it.</div>
-    <div class="desc">A separate page on what it would mean if the FY24 audit shows ICCSD exceeded its legal spending authority for the second year in a row. With a graphic you can share on Facebook.</div>
+    <div class="title">The FY24 spending-authority (UAB) cushion</div>
+    <div class="desc">A closer look at the certified-budget question &mdash; what it means that the district exceeded its certified budget, and how the spending-authority cushion works.</div>
   </a>
-
-  <h2>Why this matters now</h2>
-
-  <p>The district is rebuilding its forecast, working through an audit backlog, and trying to restore the credibility that supports a future bond rating. <strong>The FY24 audit is the first independent look at the district's books in two years.</strong> A clean audit that closely matches the CAR would be a real positive signal that the underlying systems were healthier than the post-crisis reporting suggests. An audit that materially restates FY24 would confirm what the board's own internal reporting has been pointing at since the K.02.01 memo in March 2026.</p>
-
-  <p>Either outcome is informative. The point of this page is to make sure the right comparisons get done in plain view when the audit lands &mdash; not after months of explanation by people with reason to soften it.</p>
 
   <div class="sources">
     <h3>Where the numbers come from</h3>
     <ul>
-      <li><strong>The four-year audited baseline.</strong> ICCSD's audited financial statements for fiscal years 2020, 2021, 2022, and 2023 &mdash; the four most recent independent audits available. All four are posted at <a href="https://b00mhauer.github.io/iowa-city-schools-board-archive/audited-financials/">the public ICCSD board archive</a>.</li>
-      <li><strong>The FY23 and FY24 state-filed reports (CARs).</strong> Filed by the district with the Iowa Department of Education in September of each year. ICCSD's district code is 3141. The raw spreadsheets these pages compare line-by-line are public records.</li>
-      <li><strong>The FY25 closing cash number ($19.3 million).</strong> Stated by then-COO Curt Pratt at the board's April 1, 2026 work session and captured on the recording at <a href="https://youtu.be/zb1Nm9gbz2I?t=2601">YouTube minute 43:21</a>: "in the left-hand corner that says you have 19.3 million starting July 1st of 25."</li>
-      <li><strong>The FY26 projected cash number ($21.4 million).</strong> From the district's financial advisor PFM, presented at the April 28, 2026 board meeting and summarized in the May 12, 2026 board packet.</li>
-      <li><strong>The "money in the wrong buckets" mechanism.</strong> A memo from then-COO Curt Pratt to the board dated March 24, 2026 (board agenda item K.02.01), in which the district itself states that property tax money meant for the Debt Service Fund had been going to a different fund instead.</li>
-      <li><strong>The August 2025 $10 million transfer.</strong> Described in a follow-up memo to the board dated April 1, 2026 (agenda item B.01.01). This event is mentioned only to keep it separate from the FY24 story &mdash; it belongs to FY26.</li>
+      <li><strong>The FY24 audit.</strong> Iowa City Community School District, Financial and Compliance Report, Year Ended June 30, 2024; independent auditor's report dated June 10, 2026 (East Moline, Illinois). Opinions, Note 15 (restatement), Note 3 (interfund balances), Note 5 (long-term debt), the governmental-funds balance sheet, the budgetary comparison schedule, and the Schedule of Findings and Questioned Costs.</li>
+      <li><strong>The corrective action plan.</strong> "Action plan in response to Findings Related to Financial &amp; Compliance Report June 30, 2024," from the district CFO to the Board of Directors, listing the district's response to findings 2024-001 through 2024-014 and the statutory items.</li>
+      <li><strong>The FY24 CAR.</strong> The unaudited Certified Annual Report the district filed with the Iowa Department of Education in September 2024 (district code 3141), used here only for the audit-vs-filed comparison.</li>
     </ul>
   </div>
 
   <div class="footer">
-    Unofficial community analysis. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.<br>
-    Prepared June 11, 2026. Numbers will be revised as the FY24 audit drops and underlying figures firm up.
+    Unofficial community summary of a public document. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.<br>
+    Figures are drawn directly from the FY24 Financial and Compliance Report. Prepared June 2026.
   </div>
 
 </main>
