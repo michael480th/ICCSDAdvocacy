@@ -50,13 +50,13 @@ KPIS = [
 
  dict(id="solv", title="Rainy-day reserves", unit="%", scalemax=25, band=(5,15),
    what="The district's savings cushion (its general-fund reserves) measured against one year of revenue.",
-   why="Reserves absorb surprises — a bad budget year, a late state payment, an emergency repair. In Iowa, 5–15% is considered healthy.",
+   why="Reserves absorb surprises — a bad budget year, a late state payment, an emergency repair. In Iowa, 5–15% is considered healthy. This reserves-as-a-percent-of-revenue measure is the one the credit-rating agencies (Moody's, S&P) actually use to score a district.",
    get=lambda c: c["solv_last"], fmt=lambda v: f"{v:.1f}%", color=lambda v: band_color(v,5,2),
    takeaway=lambda ic,t10,t5: f"Iowa City's cushion is about <b>{ic:.1f}%</b> — well below the 5–15% healthy range — versus <b>{t10:.0f}%</b> for large districts and <b>{t5:.0f}%</b> for the best-run large districts."),
 
  dict(id="dayscash", title="Days of operating reserves on hand", unit=" days", scalemax=90,
    what="How many days the district could keep running on its rainy-day reserves — unassigned general-fund balance divided by average daily spending. (This excludes restricted money like bond proceeds, which is why it's lower than total 'cash on hand.')",
-   why="The standard liquidity yardstick analysts and rating agencies use for schools. GFOA recommends keeping at least ~60 days (about two months). A thin cushion means little buffer for a bad month, a late state payment, or an emergency.",
+   why="A plain-English liquidity gauge: the GFOA guideline is to keep at least ~60 days (about two months) of cash. A thin cushion means little buffer for a bad month, a late state payment, or an emergency. (Days-of-cash is a GFOA/analyst convention; the rating agencies score reserves as a percent of revenue — the 'Rainy-day reserves' measure above.)",
    get=lambda c: c.get("days_reserves"), fmt=lambda v: f"{v:.0f} days", color=lambda v: band_color(v,60,30),
    takeaway=lambda ic,t10,t5: f"Iowa City could operate only about <b>{ic:.0f} days</b> on its reserves — versus ~<b>{t10:.0f} days</b> for large districts and ~<b>{t5:.0f}</b> for the best-run (GFOA recommends ~60). It is the thinnest cushion of any large district except Waterloo, whose reserves are negative."),
 
