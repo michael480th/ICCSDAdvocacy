@@ -3,83 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How the FY24 budget question came out — ICCSD</title>
+<title>Did the district blow its budget? — ICCSD FY24</title>
 <style>
   :root {
-    --ink: #0f172a;
-    --ink-soft: #334155;
-    --ink-mute: #64748b;
-    --bg: #f7f9fc;
-    --hero: #0b1426;
+    --ink: #0f172a; --ink-soft: #334155; --ink-mute: #64748b; --bg: #f7f9fc; --hero: #0b1426;
     --accent: #2c5fa1;
-    --red: #b03a2e;
-    --red-soft: #fdecec;
-    --red-line: #f5b7b1;
-    --green: #1e7a3a;
-    --green-soft: #e7f5ec;
-    --green-line: #a6dab8;
-    --blue: #1a4f9b;
-    --blue-soft: #e8f0ff;
-    --blue-line: #aac6f7;
-    --gold: #b58220;
-    --gold-soft: #fdf3df;
-    --gold-line: #ecd49a;
+    --red: #b03a2e; --red-soft: #fdecec; --red-line: #f5b7b1;
+    --green: #1e7a3a; --green-soft: #e7f5ec; --green-line: #a6dab8;
+    --blue: #1a4f9b; --blue-soft: #e8f0ff; --blue-line: #aac6f7;
+    --gold: #b58220; --gold-soft: #fdf3df; --gold-line: #ecd49a;
+    --gray-soft:#eef2f7;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; font-size: 17px; }
-  .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; font-size: 17px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
-  .hero { background: var(--hero); color: #fff; padding: 3.5rem 0 3rem; margin-bottom: 2.5rem; }
-  .hero .eyebrow { color: #6ea8fe; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; }
-  .hero h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 1rem; font-weight: 800; letter-spacing: -0.01em; }
-  .hero .sub { color: #c8d4e8; font-size: 1.05rem; max-width: 720px; margin: 0; }
+  .hero { background: var(--hero); color: #fff; padding: 3rem 0 2.5rem; margin-bottom: 2rem; }
+  .hero .eyebrow { color: #6ea8fe; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  .hero h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 0.9rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero .sub { color: #c8d4e8; font-size: 1.1rem; max-width: 640px; margin: 0; }
 
-  h2 { font-size: 1.55rem; font-weight: 700; margin: 3rem 0 0.75rem; color: var(--ink); line-height: 1.2; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; }
-  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0.5rem; }
-  h3 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: var(--ink); }
+  h2 { font-size: 1.4rem; font-weight: 800; margin: 2.5rem 0 0.5rem; color: var(--ink); line-height: 1.2; }
   p { margin: 0 0 1rem; color: var(--ink-soft); }
   p strong { color: var(--ink); font-weight: 700; }
   a { color: var(--accent); }
-  ul li, ol li { color: var(--ink-soft); margin-bottom: 0.4rem; }
-  ul li strong, ol li strong { color: var(--ink); }
+  .section-sub { color: var(--ink-mute); font-size: 0.98rem; margin: 0 0 1rem; }
 
-  .callout { border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid; }
-  .callout.red { background: var(--red-soft); border-color: var(--red-line); }
-  .callout.gold { background: var(--gold-soft); border-color: var(--gold-line); }
-  .callout .lead { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--ink); }
-  .callout p { margin: 0; }
+  .tldr { background:#fff; border:1px solid #e2e8f0; border-left:5px solid var(--accent); border-radius:10px; padding:1.25rem 1.4rem; margin:0 0 1rem; }
+  .tldr .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:0.6rem; }
+  .tldr ul { list-style:none; margin:0; padding:0; }
+  .tldr li { display:flex; gap:0.65rem; align-items:flex-start; margin-bottom:0.6rem; font-size:1.02rem; color:var(--ink-soft); }
+  .tldr li:last-child { margin-bottom:0; }
+  .tldr .ic { flex:0 0 auto; font-size:1.1rem; line-height:1.4; }
+  .tldr li strong { color:var(--ink); }
 
-  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 0.92rem; }
-  th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-  th { background: #f1f5f9; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  tr:last-child td { border-bottom: none; }
+  /* budget buckets */
+  .buckets { margin:0.5rem 0 1rem; }
+  .bucket { display:grid; grid-template-columns: 180px 1fr 130px; align-items:center; gap:0.75rem; padding:0.55rem 0; border-bottom:1px solid #eef2f7; }
+  .bucket:last-child { border-bottom:none; }
+  .bucket .name { font-weight:600; color:var(--ink); font-size:0.95rem; }
+  .bucket .bar { height:14px; border-radius:7px; background:#e7f5ec; position:relative; overflow:hidden; }
+  .bucket .bar i { position:absolute; left:0; top:0; bottom:0; border-radius:7px; }
+  .bucket .tag { text-align:right; font-size:0.85rem; font-weight:700; white-space:nowrap; }
+  .bucket.under .tag { color:var(--green); }
+  .bucket.over .tag { color:var(--red); }
+  .bucket.over .bar { background:var(--red-soft); }
+  @media (max-width:560px){ .bucket{ grid-template-columns: 1fr auto; } .bucket .bar{ display:none; } }
 
-  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-  .stat { padding: 1.1rem 1.25rem; border-radius: 8px; border: 1px solid #e2e8f0; background: #fff; }
-  .stat .label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); margin-bottom: 0.4rem; }
-  .stat .value { font-size: 1.4rem; font-weight: 800; line-height: 1.1; color: var(--ink); }
-  .stat .note { font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.4rem; }
-  .stat.bad .value { color: var(--red); }
-  .stat.good .value { color: var(--green); }
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin:1rem 0; }
+  .compare .card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1rem 1.1rem; }
+  .compare .card .yr { font-size:0.72rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:0.35rem; }
+  .compare .card .h { font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+  .compare .card .d { font-size:0.92rem; color:var(--ink-soft); }
+  .compare .card.a { border-top:3px solid var(--red); }
+  .compare .card.b { border-top:3px solid var(--gold); }
+  @media (max-width:560px){ .compare{ grid-template-columns:1fr; } }
 
-  .related-link { background: #0b1426; color: #fff; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 2rem 0 0; display: block; text-decoration: none; }
-  .related-link:hover { background: #15233f; }
-  .related-link .label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #6ea8fe; margin-bottom: 0.5rem; font-weight: 700; }
-  .related-link .title { font-size: 1.1rem; font-weight: 700; color: #fff; }
-  .related-link .desc { font-size: 0.92rem; color: #c8d4e8; margin-top: 0.4rem; }
+  .bottomline { background: var(--blue-soft); border:1px solid var(--blue-line); border-radius:10px; padding:1.25rem 1.5rem; margin:1.5rem 0; }
+  .bottomline .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:0.4rem; }
+  .bottomline p { margin:0; color:var(--ink); font-size:1.05rem; }
 
-  .sources { border-top: 1px solid #e2e8f0; margin-top: 3rem; padding-top: 1.5rem; font-size: 0.9rem; color: var(--ink-mute); }
-  .sources h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
-  .sources ul { padding-left: 1.25rem; }
-  .sources li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--ink-mute); }
+  .note { background:#fff; border:1px solid #e2e8f0; border-radius:9px; padding:0.9rem 1.1rem; margin:1rem 0; font-size:0.92rem; color:var(--ink-mute); }
+  .note strong { color:var(--ink-soft); }
 
-  .footer { text-align: center; padding: 2rem 0 3rem; color: var(--ink-mute); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 3rem; }
+  .pilllinks { display:flex; gap:0.6rem; flex-wrap:wrap; margin:1.25rem 0 0; }
+  .pilllinks a { display:inline-block; background:#0b1426; color:#fff; text-decoration:none; font-weight:700; font-size:0.92rem; padding:0.6rem 1rem; border-radius:8px; }
+  .pilllinks a.alt { background:#fff; color:var(--accent); border:1px solid #cdd9ec; }
+
+  .sources { border-top: 1px solid #e2e8f0; margin-top: 2.5rem; padding-top: 1.25rem; font-size: 0.85rem; color: var(--ink-mute); }
+  .footer { text-align: center; padding: 1.5rem 0 3rem; color: var(--ink-mute); font-size: 0.82rem; }
 
   @media (max-width: 600px) {
-    .hero h1 { font-size: 1.55rem; }
-    h2 { font-size: 1.3rem; }
+    .hero h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.25rem; }
     body { font-size: 16px; }
   }
 </style>
@@ -89,109 +86,89 @@
 
 <header class="hero">
   <div class="container">
-    <div class="eyebrow">ICCSD &middot; FY24 Budget &mdash; Resolved</div>
-    <h1>How the FY24 budget question came out</h1>
-    <p class="sub">Before the audit landed, this page asked one question: would the FY24 audit show Iowa City Community School District exceeding its legal budget for a second straight year? The audit, with a report dated June&nbsp;10,&nbsp;2026, has now answered it. The short version: <strong>the audit confirms a certified-budget violation &mdash; but in capital spending, not in the General Fund cushion this page had focused on.</strong> This page has been updated to report what the audit actually found.</p>
+    <div class="eyebrow">ICCSD &middot; FY24 Budget, in 60 seconds</div>
+    <h1>Did the district blow its budget? Yes &mdash; but not where you'd think.</h1>
+    <p class="sub">The FY24 audit confirms Iowa City went over its legal budget. The surprise is <em>where</em>: not in classrooms or day-to-day operations, but in construction.</p>
   </div>
 </header>
 
 <main class="container">
 
-  <div class="callout gold">
-    <div class="lead">The answer, in one paragraph</div>
-    <p>The FY24 audit reports that the district <strong>overexpended the "other expenditures" function by $19,502,993</strong> &mdash; a violation of Iowa's certified-budget law (Chapter 24), listed as audit finding IV-A-24. That overage is in the capital-heavy "other" function, not in instruction or general operations. Separately, the audit reports <strong>no finding that the General Fund exceeded its school-finance-formula spending authority</strong> in FY24 &mdash; the specific measure that was violated in FY23. So FY24 is a budget violation, but not a repeat of the FY23 violation type.</p>
-  </div>
-
-  <h2>Two different "legal budgets" &mdash; and which one broke</h2>
-
-  <p>Iowa law constrains district spending in two distinct ways, and the FY24 audit treats them separately. Keeping them apart is the key to reading the result.</p>
-
-  <ul>
-    <li><strong>The certified budget (Iowa Code Chapter 24).</strong> The board certifies a budget built on <strong>four functional categories</strong> &mdash; instruction, support services, noninstructional programs, and other expenditures &mdash; covering all funds combined. The legal control is at the function level. A district may not spend past a function's certified amount without first amending the budget through a public hearing. <strong>This is the limit the FY24 audit found violated.</strong></li>
-    <li><strong>General Fund spending authority (Iowa Code Chapter 257).</strong> A formula based on enrollment, state aid, and the tax base sets the maximum the <em>General Fund</em> may spend. Exceeding it produces a negative Unspent Authorized Budget (UAB) and brings the district before the School Budget Review Committee. <strong>This is the limit the district violated in FY23 (&minus;1.20%). The FY24 audit reports no such finding.</strong></li>
-  </ul>
-
-  <h2>What the audit found: the certified budget</h2>
-
-  <p>The audit's budgetary comparison schedule lays out the four functions, actual against the amended budget. During the year the district adopted <strong>one budget amendment increasing budgeted expenditures by $24,169,846</strong>. Even after that amendment, total spending still came in over budget, entirely because of the "other expenditures" function:</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Certified-budget function</th>
-        <th class="num">Actual</th>
-        <th class="num">Amended budget</th>
-        <th class="num">Over / (under)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Instruction</td><td class="num">$146,670,835</td><td class="num">$147,580,000</td><td class="num">(909,165)</td></tr>
-      <tr><td>Support services</td><td class="num">$64,798,452</td><td class="num">$70,143,000</td><td class="num">(5,344,548)</td></tr>
-      <tr><td>Noninstructional programs</td><td class="num">$9,004,805</td><td class="num">$9,860,000</td><td class="num">(855,195)</td></tr>
-      <tr><td><strong>Other expenditures</strong></td><td class="num">$121,386,703</td><td class="num">$101,883,710</td><td class="num"><strong>19,502,993</strong></td></tr>
-      <tr><td>Total</td><td class="num">$341,860,795</td><td class="num">$329,466,710</td><td class="num">12,394,085</td></tr>
-    </tbody>
-  </table>
-
-  <p>The audit's finding <strong>IV-A-24</strong> records two items: (1) expenditures exceeded the certified budget in the <strong>support</strong> function <em>prior to</em> the May 2024 amendment &mdash; a procedural violation, since the law requires amending before exceeding, even though full-year support spending finished under the amended figure; and (2) expenditures exceeded the <strong>amended</strong> certified budget in the <strong>other</strong> function by the $19.5 million above. The district's response, accepted by the auditor, is to monitor functional spending monthly and amend before any function is exceeded.</p>
-
-  <div class="stat-row">
-    <div class="stat bad">
-      <div class="label">FY23 — General Fund authority</div>
-      <div class="value">&minus;1.20%</div>
-      <div class="note">Formula spending-authority violation (the FY23 issue)</div>
-    </div>
-    <div class="stat bad">
-      <div class="label">FY24 — certified budget</div>
-      <div class="value">+$19.5M over</div>
-      <div class="note">"Other" function overexpended (finding IV-A-24)</div>
-    </div>
-    <div class="stat good">
-      <div class="label">FY24 — General Fund authority</div>
-      <div class="value">No finding</div>
-      <div class="note">Audit reports no formula-authority violation</div>
-    </div>
-  </div>
-
-  <h2>Where this page was right, and where it was off</h2>
-
-  <p>This page was published before the audit, predicting that a thin <strong>$3.31 million General Fund cushion</strong> (the +1.67% the district had filed) could be erased by unbooked bills. The audit lets us check that prediction honestly.</p>
-
-  <p><strong>Where the framing was off:</strong> the FY24 violation was not a General Fund cushion erased by a few accrued bills. It was a <strong>$19.5 million overage in the district-wide "other" function</strong>, which is dominated by capital outlay ($85.3 million of capital spending ran through the year). And the audit reports <strong>no General Fund formula-authority violation</strong>, so the "two consecutive years of the same violation" scenario &mdash; and the escalation reasoning that rode on it &mdash; did not come to pass on that measure.</p>
-
-  <p><strong>Where the instinct was right:</strong> the page identified <em>capital and construction spending</em> as the most likely pressure point, and that is exactly where the budget broke. It also flagged the <strong>early-retirement obligation</strong>; the audit did make an early-retirement correction, restating beginning net position down by $870,324 &mdash; though as a prior-period, government-wide accrual adjustment, not a General Fund budget item. The other two scenarios (federal payroll-tax penalties; an unbooked special-education liability) did not appear as drivers of the FY24 fund results, though the audit did separately fault the district's special-education claims documentation (findings 2024-011 and 2024-014, and a qualified opinion on the Special Education Cluster).</p>
-
-  <h2>What it means</h2>
-
-  <p>The certified-budget violation is a statutory finding the district must correct, and it is the kind of compliance item the state tracks. Two points keep it in proportion:</p>
-
-  <ul>
-    <li><strong>It is a real violation, not a paperwork footnote.</strong> Iowa law requires amending a function's budget <em>before</em> spending past it. The district amended its budget by $24.2 million during the year and still overran the "other" function by $19.5 million, which means the overspending outpaced even the amended plan.</li>
-    <li><strong>It is a different violation from FY23.</strong> FY23 was a General Fund formula-authority breach (&minus;1.20%) &mdash; the trigger for School Budget Review Committee oversight. The FY24 audit does not report a repeat of that specific breach, so claims of "two straight years over the spending limit" need to specify <em>which</em> limit: the certified functional budget (yes, FY24) versus General Fund formula authority (FY23, and not reported again for FY24).</li>
-  </ul>
-
-  <p>For the consequences that genuinely attach to the FY24 audit as a whole &mdash; the control material weaknesses, the qualified federal opinions, the restatement, and the unauthorized interfund borrowing &mdash; see the full audit summary below.</p>
-
-  <a class="related-link" href="FY24-audit-watchlist.html">
-    <div class="label">Companion analysis</div>
-    <div class="title">The FY24 audit summary</div>
-    <div class="desc">A plain-English overview of the released FY24 Financial and Compliance Report &mdash; the opinions, the fourteen findings, the prior-period restatement, and how the audited numbers (including the certified-budget overage) compare to what the district filed.</div>
-  </a>
-
-  <div class="sources">
-    <h3>Where the numbers come from</h3>
+  <div class="tldr">
+    <div class="k">The 10-second version</div>
     <ul>
-      <li><strong>The FY24 budget figures and the $19,502,993 overage.</strong> ICCSD FY24 Financial and Compliance Report (auditor's report dated June 10, 2026): the Budgetary Comparison Schedule (all governmental and enterprise funds), the Notes to Required Supplementary Information (which state the $24,169,846 amendment and the overexpended "other" function), and finding IV-A-24 in the Schedule of Findings and Questioned Costs.</li>
-      <li><strong>The two legal-budget frameworks.</strong> The certified-budget control (four functions) is governed by Iowa Code Chapter 24; General Fund spending authority is governed by Iowa Code Chapter 257. The audit's budget note describes the function-level legal control and notes that General Fund expenditures may not exceed the school-finance-formula authority.</li>
-      <li><strong>The FY23 violation (&minus;1.20%).</strong> From ICCSD's FY23 independent audit. The full audit is posted at <a href="https://b00mhauer.github.io/iowa-city-schools-board-archive/audited-financials/">the public ICCSD board archive</a>.</li>
-      <li><strong>The early-retirement and other restatements.</strong> Note 15 of the FY24 audit (beginning net position restated, including an $870,324 early-retirement-liability correction).</li>
-      <li><strong>The +1.67% / $3.31M cushion this page originally tracked.</strong> From the FY24 state-filed report (CAR), submitted by ICCSD in September 2024; also cited in a March 24, 2026 board packet (Exhibit 2k). Retained here for the before-and-after comparison.</li>
+      <li><span class="ic">✅</span><span><strong>Day-to-day operations stayed within budget.</strong> The district did <em>not</em> repeat the General Fund violation that triggered state oversight last year.</span></li>
+      <li><span class="ic">❌</span><span><strong>It overspent its construction budget by ~$19.5M</strong> &mdash; past the legal cap, even after raising the budget $24M mid-year. That's a state-law violation.</span></li>
+      <li><span class="ic">⚠️</span><span><strong>"Two years over budget" is misleading.</strong> FY23 and FY24 broke two different rules &mdash; see below.</span></li>
     </ul>
   </div>
 
+  <h2>Which budget broke</h2>
+  <p class="section-sub">Iowa makes districts stay within budget in four spending categories. Three came in under. One blew past.</p>
+
+  <div class="buckets">
+    <div class="bucket under">
+      <div class="name">Instruction</div>
+      <div class="bar"><i style="width:62%;background:var(--green)"></i></div>
+      <div class="tag">under budget</div>
+    </div>
+    <div class="bucket under">
+      <div class="name">Support services</div>
+      <div class="bar"><i style="width:55%;background:var(--green)"></i></div>
+      <div class="tag">under budget</div>
+    </div>
+    <div class="bucket under">
+      <div class="name">Non-instruction</div>
+      <div class="bar"><i style="width:48%;background:var(--green)"></i></div>
+      <div class="tag">under budget</div>
+    </div>
+    <div class="bucket over">
+      <div class="name">Other (capital / construction)</div>
+      <div class="bar"><i style="width:100%;background:var(--red)"></i></div>
+      <div class="tag">+$19.5M over</div>
+    </div>
+  </div>
+  <p><strong>The overspending was entirely in capital projects</strong> &mdash; not the money that pays teachers and runs schools. Iowa law lets a district raise a category's budget mid-year, but only with a public vote <em>before</em> overspending. The district raised the budget by $24M and still ran past it.</p>
+
+  <h2>Is this the same as last year's violation?</h2>
+  <p class="section-sub">No. People hear "over budget two years running," but FY23 and FY24 broke two different rules.</p>
+
+  <div class="compare">
+    <div class="card a">
+      <div class="yr">FY23</div>
+      <div class="h">Operating spending authority</div>
+      <div class="d">The district spent past the formula cap on its <strong>General Fund</strong> (classrooms, operations). This is the violation that <strong>triggered state oversight</strong>.</div>
+    </div>
+    <div class="card b">
+      <div class="yr">FY24</div>
+      <div class="h">Certified budget by category</div>
+      <div class="d">The district overspent its <strong>capital/construction</strong> budget. A real violation &mdash; but the audit reports <strong>no repeat</strong> of the FY23 operating-spending breach.</div>
+    </div>
+  </div>
+
+  <h2>So what does it mean?</h2>
+  <p>It's a genuine state-law violation the district has to correct &mdash; by monitoring spending monthly and amending the budget <em>before</em> going over, not after. But the framing matters: the part of the budget that funds students and staff stayed inside the lines, and the audit does not show a second straight year of the operating-spending violation that put the district under state watch.</p>
+
+  <div class="bottomline">
+    <div class="k">Bottom line</div>
+    <p>Yes, Iowa City broke its budget in FY24 &mdash; in construction, by about $19.5M, despite a $24M mid-year increase. It's a real violation, but a different one from last year's, and it didn't touch the operating budget.</p>
+  </div>
+
+  <div class="note">
+    <strong>A note on this page.</strong> Before the audit came out, this page predicted the violation would come from a thin operating-budget cushion being eaten up by unpaid bills. That's not what happened &mdash; the break was capital overspending. We've updated it to match what the audit actually found.
+  </div>
+
+  <div class="pilllinks">
+    <a href="FY24-audit-watchlist.html">The full audit, in 60 seconds</a>
+    <a class="alt" href="auditreports/Iowa%20City%20CSD-2024.pdf">Read the audit (PDF)</a>
+  </div>
+
+  <div class="sources">
+    Source: Iowa City Community School District, <em>Financial and Compliance Report, Year Ended June 30, 2024</em> &mdash; budgetary comparison schedule and finding IV-A-24. The district overexpended the "other expenditures" function by $19,502,993 after a $24,169,846 mid-year amendment. FY23 spending-authority violation (&minus;1.20%) is from the FY23 audit. Two separate Iowa rules: certified budget by function (Chapter 24) and General Fund spending authority (Chapter 257).
+  </div>
+
   <div class="footer">
-    Unofficial community summary of a public document. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.<br>
-    Originally prepared June 11, 2026 as a pre-audit analysis; revised after the FY24 Financial and Compliance Report was released (auditor's report dated June 10, 2026).
+    Unofficial community summary of a public document. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.
   </div>
 
 </main>

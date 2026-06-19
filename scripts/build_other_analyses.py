@@ -51,8 +51,8 @@ NARROW = [
      "\"other\" function ($19.5M over), and no General Fund spending-authority finding — with an honest "
      "look at what this page got right and wrong before the audit."),
     ("FY24-audit-watchlist.html", "FY24 audit summary",
-     "A plain-English overview of the released FY24 Financial and Compliance Report — the opinions, the "
-     "findings, and how the audited numbers compare to what the district filed with the state."),
+     "A plain-English overview of the FY24 Financial and Compliance Report — the opinions, the findings, "
+     "and how the audited numbers compare to what the district first reported."),
     ("iccsd-filing-vs-control.html", "Filing timeliness vs. spending control",
      "An exploratory scatterplot: does how promptly a district files its audited financials relate to "
      "how much spending-authority cushion it keeps?"),
