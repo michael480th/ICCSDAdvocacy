@@ -241,8 +241,6 @@ chart3 = days_chart()
 date = datetime.date(2026, 6, 18).strftime("%B %Y")
 SITE = "https://michael480th.github.io/ICCSD_Financial_Benchmarking"
 PAGE_URL = f"{SITE}/iccsd-cushion.html"
-IMG_URL = f"{SITE}/iccsd-operating-cash-infographic.png"
-SHARE = f"https://www.facebook.com/sharer/sharer.php?u={PAGE_URL}"
 
 DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -250,9 +248,7 @@ DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Iowa City Schools: does the district have a financial cushion?">
 <meta property="og:description" content="Three ways to measure it — spending room, reserves, and days of cash — all point the same way: Iowa City keeps the thinnest cushion of any large Iowa district, and it has been shrinking.">
-<meta property="og:image" content="{IMG_URL}">
 <meta property="og:url" content="{PAGE_URL}">
-<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}}
 *{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
@@ -271,9 +267,6 @@ h1{{font-size:30px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px;font-
 .hs.blue{{background:#eff6ff;border-color:#bfdbfe}} .hs.blue .hn{{color:#2563eb}}
 .hs.green{{background:#f0fdf4;border-color:#bbf7d0}} .hs.green .hn{{color:#16a34a}}
 .hero figure{{margin:6px 24px 8px}}
-.herofoot{{padding:6px 24px 18px;font-size:13.5px}} .herofoot a{{color:#2563eb;font-weight:600;text-decoration:none}}
-.fb{{display:inline-flex;align-items:center;gap:7px;background:#1877f2;color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;font-size:14px}}
-.fb:hover{{background:#0f63d6}} .fb svg{{width:16px;height:16px;fill:#fff}}
 .intro{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:10px;padding:16px 20px;margin-bottom:18px}}
 .intro p{{margin:6px 0}} .intro b{{color:var(--ink)}}
 .card{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);overflow-x:auto}}
@@ -313,7 +306,6 @@ footer a{{color:#2563eb}}
     <div class="hs green"><div class="hn">60+ days</div><div class="hl">Recommended safety level (about 2 months)</div></div>
   </div>
   {chart3}
-  <div class="herofoot"><a class="fb" href="{SHARE}" target="_blank" rel="noopener">↗ Share on Facebook</a></div>
 </section>
 
 <h1>Does Iowa City Have a Financial Cushion?</h1>

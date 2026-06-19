@@ -148,17 +148,13 @@ pa25 = peer_avg(2025)
 date = datetime.date(2026, 6, 11).strftime("%B %Y")
 SITE = "https://michael480th.github.io/ICCSD_Financial_Benchmarking"
 PAGE_URL = f"{SITE}/iccsd-operating-cash.html"
-IMG_URL = f"{SITE}/iccsd-operating-cash-infographic.png"
-SHARE = f"https://www.facebook.com/sharer/sharer.php?u={PAGE_URL}"
 DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Iowa City Schools — Operating cash trend vs. peers</title>
 <meta property="og:type" content="article">
 <meta property="og:title" content="Iowa City Schools: about one month of cash on hand">
 <meta property="og:description" content="General Fund days-cash-on-hand fell to ~33 days in 2023 — the thinnest of any large Iowa district, vs. ~98 for peers and a 60-day recommended level.">
-<meta property="og:image" content="{IMG_URL}">
 <meta property="og:url" content="{PAGE_URL}">
-<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}}
 *{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
@@ -170,8 +166,6 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .hero img{{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}}
 .hero figcaption{{font-size:13.5px;color:var(--mut);margin-top:10px;text-align:center;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}}
 .hero a{{color:#2563eb;font-weight:600;text-decoration:none}}
-.fb{{display:inline-flex;align-items:center;gap:7px;background:#1877f2;color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;font-size:14px}}
-.fb:hover{{background:#0f63d6}} .fb svg{{width:16px;height:16px;fill:#fff}}
 .chart{{width:100%;height:auto;display:block}}
 .grid{{stroke:#eef2f7;stroke-width:1}} .ytick{{fill:#94a3b8;font-size:12px;text-anchor:end}} .xtick{{fill:#64748b;font-size:13px;text-anchor:middle}}
 .ref{{stroke:#16a34a;stroke-width:1.4;stroke-dasharray:5 4;opacity:.8}} .reflab{{fill:#16a34a;font-size:11px;text-anchor:end}}
@@ -185,13 +179,6 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}}
 </style></head><body>{nav("more")}<div class="wrap">
 
-<figure class="hero">
-  <img src="iccsd-operating-cash-infographic.png" alt="Infographic: Iowa City schools have about one month of cash on hand (~33 days in 2023) versus ~98 days at similar districts and a 60-day recommended level.">
-  <figcaption>
-    <a class="fb" href="{SHARE}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>Share on Facebook</a>
-    <a href="iccsd-operating-cash-infographic.png" download>⬇ Download image</a>
-  </figcaption>
-</figure>
 
 <h1>Iowa City Schools: Operating Cash on Hand</h1>
 <p class="sub">General Fund <b>days-cash-on-hand</b> — how many days the district could run on its operating cash — vs. size-matched peers, FY2020–FY2026 · {date}</p>
