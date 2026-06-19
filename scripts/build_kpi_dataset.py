@@ -162,6 +162,21 @@ for path in glob.glob(p("data/fy20-25-flows/*.csv")):
             pension_contribution=r.get("pension_contribution"), opeb_contribution=r.get("opeb_contribution"),
             annual_debt_service=r.get("annual_debt_service")), overwrite=False)
 
+# DOM AEA flow-through (FY15-25) -> solvency denominator (filled only where not already set)
+for r in rows(p("data/dom/aea-flowthrough.csv")):
+    if r["district"] in DISTRICTS:
+        setrow(r["district"], r["fiscal_year"], dict(aea_flowthrough=r["aea_flowthrough"]), overwrite=False)
+
+# ICCSD FY2025 CAR balance sheet (self-reported; fills FY25 balance-sheet ratios). PFM cash/rev/exp
+# already loaded from iccsd-cash-supplemental stay (overwrite=False) — see source note re: cash gap.
+for r in rows(p("data/iccsd-fy25-car.csv")):
+    setrow(r["district"], r["fiscal_year"], dict(
+        gf_current_assets=r["gf_current_assets"], gf_receivables=r["gf_receivables"],
+        gf_inventory=r["gf_inventory"], gf_current_liabilities=r["gf_current_liabilities"],
+        gf_deferred_inflows=r["gf_deferred_inflows"], gf_unassigned=r["gf_unassigned"],
+        gf_assigned=r["gf_assigned"], fb_committed=r["gf_committed"],
+        gf_total_fund_balance=r["gf_total_fund_balance"]), overwrite=False)
+
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
 for r in rows(p("data/car-salaries.csv")):
     if r["district"] in DISTRICTS:   # GF salaries+benefits (object detail) from the CAR workbooks, FY23-24
