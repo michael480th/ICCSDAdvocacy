@@ -64,9 +64,8 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
     e = num(r["gf_expenditure"])
     if e:
         exp[(r["district"], int(r["fiscal_year"]))] = e
-for r in csv.DictReader(open("data/car-fund-balances.csv")):
-    if r["district_code"] == "3141" and r["fiscal_year"] == "2024" and r["fund"] == "General":
-        exp[(IC, 2024)] = num(r["expenditures"])
+# Iowa City FY2024 expenditure now comes from the audited FY2024 ACFR (loaded above from
+# iowa-district-financials.csv); no longer overridden with the unaudited CAR figure.
 
 days, cash, IC_AUDITED = {}, {}, set()
 for r in csv.DictReader(open("data/gf-operating-cash.csv")):
@@ -207,7 +206,7 @@ def days_chart():
             s.append(f'<text x="{px:.1f}" y="{py-13:.1f}" class="endlab2" fill="#dc2626" text-anchor="middle">FY26 projected</text>')
     if 2024 in days[IC]:
         x24, y24 = xy(2024)
-        s.append(f'<text x="{x24:.1f}" y="{y24-13:.1f}" class="endlab2" fill="#b45309" text-anchor="middle">2024 (CAR, unaudited)</text>')
+        s.append(f'<text x="{x24:.1f}" y="{y24-13:.1f}" class="endlab2" fill="#15803d" text-anchor="middle">2024 (audited)</text>')
     if 2025 in days[IC] and 2023 in days[IC]:
         x25, y25 = xy(2025)
         s.append(f'<text x="{x25:.1f}" y="{y25+24:.1f}" class="endlab2" fill="#b91c1c" text-anchor="middle" style="font-weight:700">same as 2023 low</text>')
@@ -223,7 +222,9 @@ def days_chart():
 ic17, ic_uab25 = uab[IC][2017], uab[IC][2025]
 pa17, pa_uab25 = peer_avg(uab, 2017), peer_avg(uab, 2025)
 ic_solv20, ic_solv23 = solv[IC][2020], solv[IC][2023]
+ic_solv24 = solv[IC].get(2024)
 pa_solv23 = peer_avg(solv, 2023)
+pa_solv24 = peer_avg(solv, 2024)
 icd20, icd23 = days[IC][2020], days[IC][2023]
 icd24, icd25 = days[IC].get(2024), days[IC].get(2025)
 pad23, pad25 = peer_avg(days, 2023), peer_avg(days, 2025)
@@ -348,15 +349,15 @@ was roughly a <b>seventh</b> of the peer average.</p>
 <p class="what"><b>What it is:</b> the actual rainy-day cushion — the district's general-fund reserves
 measured against one year of revenue (the "solvency ratio"), straight from the audited financial reports.
 In Iowa, <b>5–15% is considered healthy</b>. It only exists for years a district has finished its audit —
-which is why Iowa City's line stops at 2023.</p>
+which is why Iowa City's line stops at 2024 (its FY2025 audit isn't filed yet).</p>
 <p class="why"><b>Why it matters:</b> reserves are what absorb a bad budget year, a late state payment, or
 an emergency repair. A thin cushion means little margin for error.</p>
 {chart2}
-<p class="take">Same story: Iowa City sat at <b>{ic_solv20:.1f}% in 2020</b> and slipped to
-<b>{ic_solv23:.1f}% by 2023</b> — the thinnest of any large district that has filed, below both the 5–15%
-healthy range and the peer average (~<b>{pa_solv23:.0f}%</b> in 2023). The line stops there for a reason:
-<b>Iowa City's 2024 and 2025 audits still aren't filed</b>, so the most recent verified reserve position is
-three years old.</p>
+<p class="take">Same story: Iowa City sat at <b>{ic_solv20:.1f}% in 2020</b> and slipped to a low of
+<b>{ic_solv23:.1f}% in 2023</b>, the thinnest of any large district. Its newly filed <b>FY2024 audit shows a
+partial rebound to {ic_solv24:.1f}%</b> (the cash-reserve levy at work), but that is still below the 5–15%
+healthy range and well under the peer average (~<b>{pa_solv24:.0f}%</b> in 2024). The line stops at 2024 because
+<b>Iowa City's FY2025 audit still isn't filed</b> — it remains the furthest behind of the large districts.</p>
 </div>
 
 <div class="card">
@@ -369,9 +370,10 @@ interfund-loan discussions — the most concrete sign of how tight things are. <
 the top of this page.)</i></p>
 <p class="take">Iowa City has run <b>below the ~60-day guideline every year</b>, falling from ~<b>{icd20:.0f}
 days in 2020</b> to ~<b>{icd23:.0f} in 2023</b> — the thinnest of any large district, vs. a peer average near
-<b>{pad23:.0f}</b>. FY2024's unaudited actual ticked up to ~{icd24:.0f}, but it didn't hold: <b>FY2025 is back
-to ~{icd25:.0f} days — the same as the 2023 low</b>, while peers held ~<b>{pad25:.0f}</b>. FY2024 and FY2025 are
-the district's own unaudited figures (open markers).</p>
+<b>{pad23:.0f}</b>. The audited <b>FY2024 figure ticked up to ~{icd24:.0f} days</b>, but it didn't hold: the
+district's own unaudited <b>FY2025 number is back to ~{icd25:.0f} days — the same as the 2023 low</b>, while
+peers held ~<b>{pad25:.0f}</b>. (FY2024 is audited; the FY2025 point is the district's own unaudited figure —
+the open marker.)</p>
 <p class="caution">Looking ahead, the district's <b>FY2026</b> cash position is still uncertain and depends on planned
 short-term borrowing (a revenue-anticipation warrant and an interfund loan), so it isn't charted here. The district's
 own projections for it range widely — roughly 7 days of operating cash before that borrowing, versus ~37 days counting
@@ -390,10 +392,10 @@ back to 2015 against a 90–120 day target), plus the deep-dive
 (state-computed, FY2017–FY2025). <b>Reserves:</b> each district's audited ACFR (FY2020–FY2025); solvency
 ratio = assigned + unassigned general-fund balance ÷ general-fund revenue. <b>Cash:</b> General Fund "cash
 &amp; investments" from each district's audited Balance Sheet — Governmental Funds (FY2020–FY2025). Iowa
-City FY2024 and FY2025 are the district's own stated General Fund figures (no audit filed): FY2024 (~$25.9M) and
-FY2025 (~$19.4M) from PFM's Exhibit 1 (unaudited actual). FY2026 is omitted as too uncertain (it depends on planned
-short-term borrowing — see the note above). Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2024
-and FY2025 audits are both still outstanding. <b>Peers</b> are the 12 districts with 5,000+ students. Figures trace to official
+City's <b>FY2024 is now audited</b> (General Fund cash $22.5M, filed June 2026). FY2025 (~$19.4M) is the district's
+own stated figure from PFM's Exhibit 1 (unaudited actual). FY2026 is omitted as too uncertain (it depends on planned
+short-term borrowing — see the note above). Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2025
+audit is still outstanding. <b>Peers</b> are the 12 districts with 5,000+ students. Figures trace to official
 filings; nothing is estimated to fill gaps. Built by <code>scripts/build_cushion.py</code>.
 </footer>
 </div></body></html>"""

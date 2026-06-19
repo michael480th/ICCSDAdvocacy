@@ -94,7 +94,7 @@ function draw(ykey){
  const ic=PTS.find(p=>p.ic);
  document.getElementById("readout").innerHTML=
    `<b>What this shows.</b> Across these ${pts.length} large districts the relationship between filing speed and ${YDEF[ykey].lab.toLowerCase()} is <b>${Math.abs(r)<0.3?"weak":Math.abs(r)<0.5?"modest":"moderate"}</b> (correlation r = ${r.toFixed(2)}). `+
-   `The clearest signal is the <b>bottom-right corner</b>: <b>Iowa City</b> is the slowest to file (~${ic.avg_lag} days on average &mdash; its most recent audit was ~${ic.latest_lag} days, over two years late) <b>and</b> near the bottom on ${YDEF[ykey].lab.toLowerCase()} (${YDEF[ykey].fmt(ic[ykey])}). `+
+   `The clearest signal is the <b>bottom-right corner</b>: <b>Iowa City</b> is the slowest to file (~${ic.avg_lag} days on average &mdash; its most recent audit was ~${ic.latest_lag} days, about two years late) <b>and</b> near the bottom on ${YDEF[ykey].lab.toLowerCase()} (${YDEF[ykey].fmt(ic[ykey])}). `+
    `So the chart is better read as "Iowa City stands apart in the slow-and-weak corner" than as a tight statistical law &mdash; a fair, defensible framing.`;
 }
 document.querySelectorAll('input[name=y]').forEach(el=>el.addEventListener('change',e=>draw(e.target.value)));

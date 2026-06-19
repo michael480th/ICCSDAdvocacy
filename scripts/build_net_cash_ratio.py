@@ -47,10 +47,8 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
     e = num(r["gf_expenditure"])
     if e:
         exp.setdefault((r["district"], int(r["fiscal_year"])), e)
-# Iowa City FY2024 expenditures from CAR (no audit filed)
-for r in csv.DictReader(open("data/car-fund-balances.csv")):
-    if r["district_code"] == "3141" and r["fiscal_year"] == "2024" and r["fund"] == "General":
-        exp[(IC, 2024)] = num(r["expenditures"])
+# Iowa City FY2024 expenditures now come from the audited FY2024 ACFR (loaded above from
+# iowa-district-financials.csv; the FY2024 audit was filed June 2026).
 
 # Cash & investments -> Day's Net Cash Ratio (FY2015-2023 audited from the balance sheets)
 days = {}
@@ -63,9 +61,9 @@ for r in csv.DictReader(open("data/gf-operating-cash.csv")):
     if d == IC and r.get("source") == "audit":
         IC_AUDITED.add(fy)
 
-# Iowa City FY2024-FY2026: the district's own stated General Fund figures (PFM Exhibit 1, the
-# COO's FY26-FY28 cash-flow narrative), overriding the CAR-based FY2024. days_cash is the
-# district/advisor's published days-cash-on-hand; otherwise compute from cash and expenditures.
+# Iowa City FY2025-FY2026: the district's own stated General Fund figures (PFM Exhibit 1, the
+# COO's FY26-FY28 cash-flow narrative). days_cash is the district/advisor's published
+# days-cash-on-hand; otherwise compute from cash and expenditures. (FY2024 is now audited.)
 for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
     fy = int(r["fiscal_year"])
     dc = num(r.get("days_cash"))
@@ -281,9 +279,9 @@ the district's own dashboard formula (CAR refs BalSheet C1L1 / ExpGF C8L42). Cas
 from the first General-Fund column of each district's audited <i>Balance Sheet — Governmental Funds</i>
 (<code>auditreports/</code>, FY2015–FY2023; peers later years where filed). Expenditures from the audited
 statements (<code>data/audit-financials.csv</code>) and the master file
-(<code>data/iowa-district-financials.csv</code>). <b>Iowa City FY2024–FY2026</b> are the district's own stated
-General Fund figures (no audit filed): FY2024 and FY2025 from <i>PFM Financial Advisors' Exhibit 1</i>
-(unaudited actual, "Days of Operating Cash on Hand" 47.1 and 32.9), and FY2026 is PFM's projected operating
+(<code>data/iowa-district-financials.csv</code>). <b>Iowa City FY2024</b> is now <b>audited</b> (FY2024 ACFR
+filed June 2026; ~41 days). <b>FY2025–FY2026</b> are the district's own stated figures: FY2025 from <i>PFM
+Financial Advisors' Exhibit 1</i> (unaudited actual, ~33 days), and FY2026 is PFM's projected operating
 cushion <i>before</i> borrowing (~7 days; the district's headline projection of 36.6 days counts a planned
 $25M warrant + $10M interfund loan — see the note above; <code>data/iccsd-cash-supplemental.csv</code>). "Peers" are the 12 districts with 5,000+ students; a few
 district-years are blank where an older balance-sheet layout couldn't be read cleanly. Built by

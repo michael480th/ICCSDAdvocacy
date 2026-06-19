@@ -164,7 +164,7 @@ def cat_color(key, val):
     return ""
 
 def exec_summary(series, peer_avg):
-    """Data-driven headline: ICCSD's standing vs the 14 peers in its last audited year (FY2023)."""
+    """Data-driven headline: ICCSD's standing vs the 14 peers in its last audited year (FY2024)."""
     def stat(key, year, good):
         vals = {d: series[key][SHORT[d]].get(year) for d in ORDER}
         vals = {d:v for d,v in vals.items() if isinstance(v,(int,float))}
@@ -174,41 +174,43 @@ def exec_summary(series, peer_avg):
         med = sorted(vals.values())[len(vals)//2]
         return dict(v=ic, rank=better+1, n=len(vals), med=round(med))
     def fy(key, year): return series[key][SHORT[ICCSD]].get(year)
-    Y = 2023
+    Y = 2024
     bl = []
     uab = stat("uab_pct_of_max", Y, "up")
-    if uab: bl.append(f"<b>Spending authority is exhausted.</b> Iowa City's Unspent Authorized Budget fell to "
-        f"<b>{uab['v']:g}%</b> in FY2023 — the only district below zero and the lowest of {uab['n']} (peer median "
-        f"{uab['med']:g}%). A negative UAB is the unlawful, state-review (SBRC) level, on Iowa's single most important "
-        f"health measure.")
+    if uab: bl.append(f"<b>Spending authority is the thinnest in the group.</b> Iowa City's Unspent Authorized Budget — "
+        f"Iowa's single most important health measure — clawed back to just <b>{uab['v']:g}%</b> of its limit in FY2024 "
+        f"after dipping <b>below zero in FY2023</b> (the unlawful, state-review SBRC level). Even rebuilt, it is still the "
+        f"lowest of {uab['n']} districts (peer median {uab['med']:g}%).")
     sol = stat("solvency_ratio", Y, "up"); fb = stat("moodys_avail_fb_ratio", Y, "up"); dc = stat("days_net_cash", Y, "up")
-    sol25 = fy("solvency_ratio", 2025)
+    sol25 = fy("solvency_ratio", 2025); dc25 = fy("days_net_cash", 2025)
     if sol and fb and dc:
-        rebuild = (f" Self-reported FY2024–25 figures show a partial rebuild — solvency back to ≈{sol25:g}% via the "
-                   f"cash-reserve levy — but still below the peer norm, and unaudited.") if sol25 else ""
-        bl.append(f"<b>Reserves and cash are the thinnest in the group.</b> In FY2023 its solvency (<b>{sol['v']:g}%</b>), "
-            f"available fund balance (<b>{fb['v']:g}%</b> of revenue) and day's-cash (<b>{dc['v']:g} days</b>) all ranked "
-            f"at or near the bottom of the {dc['n']} (peer medians ≈{sol['med']:g}%, {fb['med']:g}% and {dc['med']:g} days; "
-            f"the internal cash target is 90 days)." + rebuild)
+        soft = (f" The cash-reserve levy drove the rebuild off the FY2023 trough (solvency 2.4%), but self-reported "
+                f"FY2025 figures already slip back toward it (solvency ≈{sol25:g}%, ≈{dc25:g} days of cash).") if sol25 else ""
+        bl.append(f"<b>Reserves and cash sit near the bottom of the group.</b> In FY2024 its solvency (<b>{sol['v']:g}%</b>, "
+            f"rank {sol['rank']} of {sol['n']}), available fund balance (<b>{fb['v']:g}%</b> of revenue) and day's-cash "
+            f"(<b>{dc['v']:g} days</b>) all rank in the bottom group (peer medians ≈{sol['med']:g}%, {fb['med']:g}% and "
+            f"{dc['med']:g} days; the internal cash target is 90)." + soft)
     emp = stat("employee_cost_ratio", Y, "down")
-    if emp: bl.append(f"<b>Staffing costs are the highest of {emp['n']}.</b> Salaries and benefits were <b>{emp['v']:g}%</b> "
-        f"of the General Fund in FY2023 (peer median {emp['med']:g}%) — the classic Iowa squeeze of personnel costs climbing "
-        f"as enrollment flattens, the leading indicator behind the spending-authority decline.")
+    if emp: bl.append(f"<b>Staffing costs are near the highest of {emp['n']}.</b> Salaries and benefits were <b>{emp['v']:g}%</b> "
+        f"of the General Fund in FY2024 (rank {emp['rank']} of {emp['n']}; peer median {emp['med']:g}%) — the classic Iowa "
+        f"squeeze of personnel costs climbing as enrollment flattens, the leading pressure behind the spending-authority decline.")
     ltl = stat("moodys_ltl_ratio", Y, "down")
     if ltl: bl.append(f"<b>Leverage runs above the peer norm.</b> Long-term liabilities (debt + pension + OPEB) were "
-        f"<b>{ltl['v']:g}%</b> of GF revenue in FY2023 vs a {ltl['med']:g}% peer median; the district carries both GO and "
+        f"<b>{ltl['v']:g}%</b> of GF revenue in FY2024 vs a {ltl['med']:g}% peer median; the district carries both GO and "
         f"SAVE sales-tax debt from its Facilities Master Plan.")
-    bl.append("<b>The books are late.</b> ICCSD is the only district here that has <b>not filed its FY2024 or FY2025 "
-        "audit</b>; its FY2023 audit arrived ~26 months late with a material weakness — the pattern that precedes a "
-        "rating withdrawal.")
+    bl.append("<b>The books are finally moving, but still late and flagged.</b> ICCSD filed its long-overdue FY2024 audit "
+        "in <b>June 2026 — about two years after year-end</b> — and it carries <b>five financial-statement material "
+        "weaknesses</b> plus qualified opinions on two federal programs. Its FY2025 audit is still unfiled, so the district "
+        "remains the furthest behind of the 15.")
     items = "".join(f"<li>{b}</li>" for b in bl)
     return ('<div class="exec"><h2>Executive summary</h2>'
       '<p>Across all three rating lenses, <b>Iowa City sits at or near the bottom of its 15-district peer group</b> on the '
-      'measures that matter most — spending authority, reserves, liquidity, and staffing costs. Self-reported FY2024–25 data '
-      'shows some improvement, but the district\'s audits for those years remain unfiled.</p>'
+      'measures that matter most — spending authority, reserves, liquidity, and staffing costs. The newly filed FY2024 audit '
+      'confirms a partial rebuild in reserves off the FY2023 low, but the district stays in the bottom group on every core '
+      'measure, and its FY2025 audit is still unfiled.</p>'
       f'<ul>{items}</ul>'
       '<p class="exfoot">All figures trace to audited ACFRs or Iowa state filings; ranks are among the 15 districts in '
-      'FY2023 (ICCSD\'s most recent audited year). FY2024–25 figures are management/unaudited.</p></div>')
+      'FY2024 (ICCSD\'s most recent audited year). FY2025 figures are management/unaudited.</p></div>')
 
 def build():
     data = load()
@@ -339,7 +341,7 @@ footer{{color:var(--mut);font-size:12.5px;margin-top:30px;border-top:1px solid v
 
 <h1>ICCSD Financial KPIs — Three Methodologies, FY2015–FY2025</h1>
 <p class="sub">Iowa City CSD and 14 benchmarked peer districts, under the district's own internal ratios,
-Moody's, and S&amp;P — grouped by financial area · audited ACFRs + official Iowa filings (ICCSD FY24–25 from management reporting)</p>
+Moody's, and S&amp;P — grouped by financial area · audited ACFRs + official Iowa filings (ICCSD FY2025 from management reporting; its FY2024 audit was filed June 2026)</p>
 
 <div class="intro">
 <p>Each KPI is charted three ways' worth of context at once. The <b style="color:#2563eb">blue line is Iowa City</b>;
@@ -352,7 +354,7 @@ internal target (green = strong, amber = caution, red = concern) — so you can 
 {meth}
 <div class="toc"><b>Jump to:</b> """ + " ".join(f'<a href="#grp-{gk}">{gl}</a>' for gk,gl,_ in K.GROUPS) + """
 <a href="#qual">Qualitative factors</a> <a href="#appx">Notes</a></div>
-<p class="hint">ICCSD's two most recent years (FY24–25) are <i>dashed with hollow dots</i> — management/unaudited (its audits aren't filed).</p>
+<p class="hint">ICCSD's FY2025 (its most recent year) is <i>dashed with a hollow dot</i> — management/unaudited (that audit isn't filed yet; the FY2024 audit was filed June 2026).</p>
 """ + "".join(sections) + f"""
 <section id="qual"><div class="qual">
 <h2 style="font-size:20px;margin:0 0 4px">Qualitative / external factors — named, not scored</h2>
@@ -367,7 +369,7 @@ framework</b> (the foundation formula caps spending authority; local voters add 
 <ul>
 <li><b>Sources.</b> Audited ACFRs (FY15–23 ICCSD; FY15–25 peers), Iowa DOM (UAB, enrollment, valuations, levies),
 the Certified Annual Report (function detail FY17–23), and ICCSD's Annual Financial Health Report (FY15–19 internal
-ratios, verbatim). ICCSD's FY24–25 audits are <b>not filed</b>; those years use management/unaudited actuals (PFM).</li>
+ratios, verbatim). ICCSD's FY2025 audit is <b>not filed</b>; that year uses management/unaudited actuals (PFM). Its FY2024 audit was filed June 2026 and is included as audited.</li>
 <li><b>GF cash</b> uses General-Fund cash (not all-funds), so day's-cash ties to the district's published series.</li>
 <li><b>Operating revenue</b> for Moody's/S&amp;P ratios is proxied by General Fund revenue. Long-term-liabilities uses
 <b>reported</b> GASB pension/OPEB, not Moody's discount-rate-adjusted figures.</li>

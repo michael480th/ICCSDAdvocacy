@@ -24,7 +24,7 @@ BARS = [
 ]
 FACTS = [
  ("Last of 15", f"Iowa City ranks <b>{rank}th of the 15 large Iowa districts</b> studied on overall financial health & management — and it isn't close."),
- ("Audits not filed", "The <b>only large district in Iowa</b> that hasn't filed its <b>2024 and 2025 audits</b>; its most recent was filed <b>~790 days</b> (over two years) late."),
+ ("Audits chronically late", "Iowa City filed its <b>FY2024 audit about two years late</b> (June 2026, with <b>five material weaknesses</b>) and its <b>FY2025 audit is still unfiled</b> — the furthest behind of the 15 large districts."),
  ("Spent past the limit", "Its <b>spending authority went negative in 2023</b> — the only district in the group, and the level that by law triggers a <b>state-supervised recovery</b>."),
  ("Lost its rating", "<b>Lost its bond rating in 2024</b> and remains unrated — rare for a district this size, where most regain it within months."),
  ("~9 days of cushion", f"About <b>{IC['days_reserves']} days</b> of operating reserves on hand. The recommended cushion is <b>~60</b>."),
@@ -82,7 +82,7 @@ slides.append(("Iowa City Schools","The financial picture, in the data","A bench
 slides.append((f"#{rank} of 15","Iowa City ranks last of the 15 large Iowa districts on overall financial health &amp; management.",f"Composite {IC['composite']:.1f} of 5 — vs. ~{avg(lambda c:c['composite']):.1f} for comparable districts."))
 slides.append((f"{IC['uab_last']:.1f}%","Spending authority left — the #1 measure of an Iowa district's health.",f"Peers carry ~{avg(lambda c:c['uab_last']):.0f}%. Iowa City's went <b>negative in 2023</b> — the level that by law triggers a state review."))
 slides.append((f"{IC['days_reserves']} days","of operating reserves on hand.","A healthy cushion is ~60 days (GFOA). Peers average ~"+f"{avg(lambda c:c.get('days_reserves')):.0f}."))
-slides.append(("Only one","Iowa City is the only large district in Iowa that hasn't filed its 2024 &amp; 2025 audits.","Its most recent audit was filed ~790 days — over two years — late. Every other large district filed on time."))
+slides.append(("Furthest behind","Iowa City filed its FY2024 audit about two years late (June 2026) and still hasn't filed FY2025.","Its FY2024 audit was filed ~710 days after year-end, with five material weaknesses. Every other large district is current."))
 slides.append(("Unrated","Lost its bond rating in 2024 — and is still unrated.","Most districts that lose a rating regain it within months. Staying unrated into a 2nd–3rd year is rare for a district this size."))
 slides.append((f"{IC.get('save_years'):.1f} yrs","of SAVE sales-tax revenue already pledged to bonds — 2nd-most of any large district.",f"Peers ~{avg(lambda c:c.get('save_years')):.1f} yrs. SAVE can't fund new building until the mid-2030s under current debt."))
 slides.append((f"${debt_pp(IC)/1000:.0f}K","in building debt per student (GO + SAVE) — ~1.8× the peer average.","One of the few districts carrying both sales-tax and voter-approved property-tax debt."))

@@ -201,7 +201,8 @@ savings but are fine on spending authority: <b>Burlington</b> (reserves 8% but s
 in the middle of the pack, not the bottom.</li>
 <li><b>The two truly distressed districts are in trouble for different reasons.</b> <b>Iowa City</b> ran
 its spending authority <b>negative in 2023</b> (a serious, state-reviewable event), is taxing heavily just
-to keep cash on hand, and <b>has not filed its 2024 or 2025 audits</b> — which cost it its bond rating.
+to keep cash on hand, and filed its <b>FY2024 audit about two years late (June 2026, with five material
+weaknesses)</b> while its <b>FY2025 audit is still unfiled</b> — the lateness that cost it its bond rating.
 <b>Waterloo</b> is the opposite kind of problem: its savings turned <b>negative</b> and it ran a large
 deficit while taking on $87M of new building debt.</li>
 <li><b>Strongest:</b> <b>Pleasant Valley</b> and <b>Waukee</b> — growing enrollment, healthy reserves and

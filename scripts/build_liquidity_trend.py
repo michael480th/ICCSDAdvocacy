@@ -127,7 +127,9 @@ def chart(series, years, ymin, ymax, refs, title, ylab, healthy=None):
 ic17, ic25 = uab[IC][2017], uab[IC][2025]
 pa17, pa25 = peer_avg(uab, 2017), peer_avg(uab, 2025)
 ic_solv20, ic_solv23 = solv[IC][2020], solv[IC][2023]
+ic_solv24 = solv[IC].get(2024)
 pa_solv23 = peer_avg(solv, 2023)
+pa_solv24 = peer_avg(solv, 2024)
 
 chart1 = chart(uab, UAB_YEARS, -8, 35,
                [(0, "0% — negative triggers a state-supervised recovery plan", "danger")],
@@ -210,15 +212,16 @@ recovered. By 2025 its cushion (<b>{ic25:.1f}%</b>) was roughly a <b>seventh</b>
 <p class="what"><b>What it is:</b> the actual rainy-day cash cushion — the district's general-fund reserves
 measured against one year of revenue (the "solvency ratio"), straight from the audited financial reports.
 In Iowa, <b>5–15% is considered healthy</b>. This is the truest <i>liquidity</i> measure, but it only exists
-for years a district has finished its audit — which is why Iowa City's line stops at 2023.</p>
+for years a district has finished its audit — which is why Iowa City's line stops at 2024 (its FY2025 audit isn't filed yet).</p>
 <p class="why"><b>Why it matters:</b> reserves are what absorb a bad budget year, a late state payment, or an
 emergency repair. A thin cushion means little margin for error.</p>
 {chart2}
 <p class="take">The audited cash reserves tell the same story as the spending-authority cushion: Iowa City
-sat at <b>{ic_solv20:.1f}% in 2020</b> and slipped to <b>{ic_solv23:.1f}% by 2023</b> — the thinnest of any
-large district that has filed, and far below both the 5–15% healthy range and the peer average
-(~<b>{pa_solv23:.0f}%</b> in 2023). And the line stops there for a reason: <b>Iowa City's 2024 and 2025
-audits still are not filed</b>, so the most recent verified cash position is three years old.</p>
+sat at <b>{ic_solv20:.1f}% in 2020</b> and slipped to a low of <b>{ic_solv23:.1f}% in 2023</b> — the thinnest of
+any large district. Its newly filed <b>FY2024 audit shows a partial rebound to {ic_solv24:.1f}%</b> (the
+cash-reserve levy at work), still below the 5–15% healthy range and the peer average (~<b>{pa_solv24:.0f}%</b> in
+2024). The line stops at 2024 because <b>Iowa City's FY2025 audit still isn't filed</b> — it remains the
+furthest behind of the large districts.</p>
 </div>
 
 <footer>
