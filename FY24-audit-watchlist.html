@@ -3,108 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The FY24 Financial and Compliance Report, in plain terms — ICCSD</title>
+<title>The FY24 audit, in 60 seconds — ICCSD</title>
 <style>
   :root {
-    --ink: #0f172a;
-    --ink-soft: #334155;
-    --ink-mute: #64748b;
-    --bg: #f7f9fc;
-    --hero: #0b1426;
+    --ink: #0f172a; --ink-soft: #334155; --ink-mute: #64748b; --bg: #f7f9fc; --hero: #0b1426;
     --accent: #2c5fa1;
-    --red: #b03a2e;
-    --red-soft: #fdecec;
-    --red-line: #f5b7b1;
-    --green: #1e7a3a;
-    --green-soft: #e7f5ec;
-    --green-line: #a6dab8;
-    --blue: #1a4f9b;
-    --blue-soft: #e8f0ff;
-    --blue-line: #aac6f7;
-    --gold: #b58220;
-    --gold-soft: #fdf3df;
-    --gold-line: #ecd49a;
+    --red: #b03a2e; --red-soft: #fdecec; --red-line: #f5b7b1;
+    --green: #1e7a3a; --green-soft: #e7f5ec; --green-line: #a6dab8;
+    --blue: #1a4f9b; --blue-soft: #e8f0ff; --blue-line: #aac6f7;
+    --gold: #b58220; --gold-soft: #fdf3df; --gold-line: #ecd49a;
+    --gray-soft:#eef2f7;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; font-size: 17px; }
-  .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; font-size: 17px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
-  .hero { background: var(--hero); color: #fff; padding: 3.5rem 0 3rem; margin-bottom: 2.5rem; }
-  .hero .eyebrow { color: #6ea8fe; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; }
-  .hero h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 1rem; font-weight: 800; letter-spacing: -0.01em; }
-  .hero .sub { color: #c8d4e8; font-size: 1.1rem; max-width: 720px; margin: 0; }
+  .hero { background: var(--hero); color: #fff; padding: 3rem 0 2.5rem; margin-bottom: 2rem; }
+  .hero .eyebrow { color: #6ea8fe; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  .hero h1 { font-size: 2.5rem; line-height: 1.08; margin: 0 0 0.9rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero .sub { color: #c8d4e8; font-size: 1.1rem; max-width: 640px; margin: 0; }
 
-  h2 { font-size: 1.65rem; font-weight: 700; margin: 3.25rem 0 0.75rem; color: var(--ink); line-height: 1.2; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; }
-  h2:first-of-type { border-top: none; padding-top: 0; }
-  h3 { font-size: 1.2rem; font-weight: 700; margin: 1.75rem 0 0.5rem; color: var(--ink); }
+  h2 { font-size: 1.4rem; font-weight: 800; margin: 2.5rem 0 0.5rem; color: var(--ink); line-height: 1.2; }
+  h2 .lbl { font-size: 0.95rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 6px; vertical-align: middle; margin-left: 0.1rem; }
   p { margin: 0 0 1rem; color: var(--ink-soft); }
   p strong { color: var(--ink); font-weight: 700; }
   a { color: var(--accent); }
-  ul li, ol li { color: var(--ink-soft); margin-bottom: 0.4rem; }
-  ul li strong, ol li strong { color: var(--ink); }
-  small { font-size: 0.85rem; color: var(--ink-mute); }
+  .section-sub { color: var(--ink-mute); font-size: 0.98rem; margin: 0 0 1rem; }
 
-  .callout { border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid; }
-  .callout.red { background: var(--red-soft); border-color: var(--red-line); }
-  .callout.green { background: var(--green-soft); border-color: var(--green-line); }
-  .callout.blue { background: var(--blue-soft); border-color: var(--blue-line); }
-  .callout.gold { background: var(--gold-soft); border-color: var(--gold-line); }
-  .callout .lead { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--ink); }
-  .callout p { margin: 0 0 0.5rem; }
-  .callout p:last-child { margin: 0; }
+  /* 10-second box */
+  .tldr { background:#fff; border:1px solid #e2e8f0; border-left:5px solid var(--accent); border-radius:10px; padding:1.25rem 1.4rem; margin:0 0 1rem; }
+  .tldr .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:0.6rem; }
+  .tldr ul { list-style:none; margin:0; padding:0; }
+  .tldr li { display:flex; gap:0.65rem; align-items:flex-start; margin-bottom:0.6rem; font-size:1.02rem; color:var(--ink-soft); }
+  .tldr li:last-child { margin-bottom:0; }
+  .tldr .ic { flex:0 0 auto; font-size:1.1rem; line-height:1.4; }
+  .tldr li strong { color:var(--ink); }
 
-  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-  .stat { padding: 1.25rem; border-radius: 8px; border: 1px solid #e2e8f0; background: #fff; }
-  .stat .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); margin-bottom: 0.4rem; }
-  .stat .value { font-size: 1.5rem; font-weight: 800; line-height: 1.1; color: var(--ink); }
-  .stat .note { font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.4rem; }
-  .stat.bad .value { color: var(--red); }
-  .stat.good .value { color: var(--green); }
-  .stat.flag .value { color: var(--gold); }
+  /* severity rows */
+  .sevrow { display:flex; gap:0.9rem; align-items:flex-start; background:#fff; border:1px solid #e2e8f0; border-radius:9px; padding:0.95rem 1.1rem; margin-bottom:0.7rem; }
+  .sev { flex:0 0 auto; font-size:0.66rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; padding:0.25rem 0.55rem; border-radius:999px; white-space:nowrap; margin-top:0.15rem; }
+  .sev.big { background:var(--red-soft); color:var(--red); border:1px solid var(--red-line); }
+  .sev.med { background:var(--gold-soft); color:var(--gold); border:1px solid var(--gold-line); }
+  .sev.small { background:var(--gray-soft); color:var(--ink-mute); border:1px solid #e2e8f0; }
+  .sev.good { background:var(--green-soft); color:var(--green); border:1px solid var(--green-line); }
+  .sevrow .h { font-weight:700; color:var(--ink); margin-bottom:0.15rem; line-height:1.3; }
+  .sevrow .sw { font-size:0.93rem; color:var(--ink-soft); }
+  .sevrow .sw a { font-weight:600; }
 
-  .flow-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
-  .flow-card h3 { margin-top: 0; }
+  .factcheck { background:#fff; border:1px solid #e2e8f0; border-radius:9px; overflow:hidden; margin:0 0 1rem; }
+  .factcheck .fc { display:grid; grid-template-columns: 1fr 1fr; gap:0; border-bottom:1px solid #eef2f7; }
+  .factcheck .fc:last-child { border-bottom:none; }
+  .factcheck .claim { padding:0.85rem 1rem; background:#fafbfd; color:var(--ink-mute); font-size:0.95rem; }
+  .factcheck .claim b { color:var(--ink); }
+  .factcheck .real { padding:0.85rem 1rem; font-size:0.95rem; color:var(--ink-soft); }
+  .factcheck .real b { color:var(--green); }
+  @media (max-width:560px){ .factcheck .fc{ grid-template-columns:1fr; } .factcheck .claim{ border-bottom:1px solid #eef2f7; } }
 
-  .watchlist { counter-reset: wl; list-style: none; padding: 0; margin: 1.5rem 0 1rem; }
-  .watchlist > li { counter-increment: wl; background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid var(--accent); padding: 1.1rem 1.25rem 1.1rem 3.5rem; margin-bottom: 0.85rem; border-radius: 6px; position: relative; color: var(--ink-soft); }
-  .watchlist > li::before { content: counter(wl); position: absolute; top: 1.1rem; left: 1rem; width: 2rem; height: 2rem; background: var(--accent); color: #fff; border-radius: 50%; font-weight: 800; text-align: center; line-height: 2rem; font-size: 0.95rem; }
-  .watchlist .item-title { font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.25rem; }
-  .watchlist .item-pred { font-size: 0.92rem; color: var(--ink-mute); margin-top: 0.4rem; }
-  .watchlist .item-pred strong { color: var(--ink); }
+  .bottomline { background: var(--blue-soft); border:1px solid var(--blue-line); border-radius:10px; padding:1.25rem 1.5rem; margin:1.5rem 0; }
+  .bottomline .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:0.4rem; }
+  .bottomline p { margin:0; color:var(--ink); font-size:1.05rem; }
 
-  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 0.92rem; }
-  th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-  th { background: #f1f5f9; font-weight: 700; color: var(--ink); font-size: 0.85rem; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  tr:last-child td { border-bottom: none; }
-  tr.highlight { background: #fdecec; }
-  tr.highlight td { color: var(--red); font-weight: 700; }
-  tr.subtotal td { background: #f8fafc; font-weight: 700; }
+  .pilllinks { display:flex; gap:0.6rem; flex-wrap:wrap; margin:1.25rem 0 0; }
+  .pilllinks a { display:inline-block; background:#0b1426; color:#fff; text-decoration:none; font-weight:700; font-size:0.92rem; padding:0.6rem 1rem; border-radius:8px; }
+  .pilllinks a.alt { background:#fff; color:var(--accent); border:1px solid #cdd9ec; }
 
-  .tag { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; white-space: nowrap; }
-  .tag.mw { background: var(--red-soft); color: var(--red); border: 1px solid var(--red-line); }
-  .tag.nc { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold-line); }
-  .tag.sd { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-line); }
-
-  .related-link { background: #0b1426; color: #fff; border-radius: 8px; padding: 1.5rem 1.75rem; margin: 2rem 0 0; display: block; text-decoration: none; }
-  .related-link:hover { background: #15233f; }
-  .related-link .label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #6ea8fe; margin-bottom: 0.5rem; font-weight: 700; }
-  .related-link .title { font-size: 1.2rem; font-weight: 700; color: #fff; }
-  .related-link .desc { font-size: 0.95rem; color: #c8d4e8; margin-top: 0.4rem; }
-
-  .sources { border-top: 1px solid #e2e8f0; margin-top: 3rem; padding-top: 1.5rem; font-size: 0.9rem; color: var(--ink-mute); }
-  .sources h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
-  .sources ul { padding-left: 1.25rem; }
-  .sources li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--ink-mute); }
-
-  .footer { text-align: center; padding: 2rem 0 3rem; color: var(--ink-mute); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 3rem; }
+  .sources { border-top: 1px solid #e2e8f0; margin-top: 2.5rem; padding-top: 1.25rem; font-size: 0.85rem; color: var(--ink-mute); }
+  .footer { text-align: center; padding: 1.5rem 0 3rem; color: var(--ink-mute); font-size: 0.82rem; }
 
   @media (max-width: 600px) {
-    .hero h1 { font-size: 1.7rem; }
-    h2 { font-size: 1.35rem; }
+    .hero h1 { font-size: 1.9rem; }
+    h2 { font-size: 1.25rem; }
     body { font-size: 16px; }
-    .stat .value { font-size: 1.25rem; }
   }
 </style>
 </head>
@@ -113,211 +83,150 @@
 
 <header class="hero">
   <div class="container">
-    <div class="eyebrow">ICCSD &middot; FY24 Audit Summary</div>
-    <h1>The FY24 audit, in plain terms</h1>
-    <p class="sub">The Iowa City Community School District's independent audit for the year ended June 30, 2024 &mdash; the "Financial and Compliance Report" &mdash; was released with an auditor's report dated June 10, 2026. It is 124 pages. This page summarizes what it says: the opinions, the financial picture, the findings, and how the audited numbers compare to the unaudited report the district filed with the state in 2024. It is the first independent audit of the district's books in two years.</p>
+    <div class="eyebrow">ICCSD &middot; FY24 Audit, in 60 seconds</div>
+    <h1>Clean books, broken controls.</h1>
+    <p class="sub">An independent auditor signed off on Iowa City's FY24 numbers &mdash; and at the same time flagged a stack of serious problems in how the district handled its money. Here's what's a big deal, what isn't, and what it actually means.</p>
   </div>
 </header>
 
 <main class="container">
 
-  <h2>The two-minute version</h2>
-
-  <p>The auditor issued an <strong>unmodified ("clean") opinion on the financial statements</strong> &mdash; the most important single result, and a positive one. It means the statements present the district's financial position fairly, in all material respects, under generally accepted accounting principles. The auditor expressed no doubt about the district's ability to continue operating.</p>
-
-  <p>That clean opinion sits alongside an unusually heavy set of findings: <strong>fourteen numbered findings, including five material weaknesses in financial reporting</strong>, two <strong>qualified opinions on federal programs</strong>, a <strong>prior-period restatement</strong>, and several violations of Iowa statutory requirements &mdash; among them <strong>exceeding the certified budget</strong> and <strong>moving money between funds without the board authorization the law requires</strong>. The district was <strong>not</strong> classified as a low-risk auditee.</p>
-
-  <p>Several of the figures that looked alarming in the unaudited report the district filed in 2024 were <strong>corrected or reclassified</strong> by the audit rather than confirmed &mdash; most notably an apparent $18.9&nbsp;million deficit in the capital-projects (SAVE) fund, which the audit shows as a positive balance. The substance of the audit's concerns is in the district's <strong>internal controls, federal-grant compliance, budget compliance, and the timeliness and accuracy of its reporting</strong>, not in a single missing pile of cash.</p>
-
-  <div class="stat-row">
-    <div class="stat good">
-      <div class="label">Financial statements</div>
-      <div class="value">Unmodified</div>
-      <div class="note">Clean opinion; no going-concern doubt</div>
-    </div>
-    <div class="stat bad">
-      <div class="label">Financial-reporting findings</div>
-      <div class="value">5 material weaknesses</div>
-      <div class="note">The most serious internal-control category</div>
-    </div>
-    <div class="stat flag">
-      <div class="label">Federal programs</div>
-      <div class="value">2 qualified</div>
-      <div class="note">Special Education and COVID/ESF funds</div>
-    </div>
-  </div>
-
-  <h2>What this document is</h2>
-
-  <p>Every Iowa school district files an annual financial report with the state &mdash; the <strong>Certified Annual Report (CAR)</strong> &mdash; using its own numbers, roughly three months after the fiscal year ends. A separate <strong>independent audit</strong> examines the same year later, tests the numbers, and can correct them. This page summarizes the <strong>audit</strong>. Iowa City filed its FY24 CAR in September 2024; the FY24 audit's report is dated June 10, 2026, and was filed with the state in June 2026.</p>
-
-  <p>Two timing facts matter for reading it. First, this is <strong>FY24</strong> &mdash; the year ended June 30, 2024. Events from later years (the August 2025 interfund loan from the health-insurance fund, the 2026 cash-flow borrowing) belong to FY25 and FY26 and are not part of these statements. Second, the audit was completed late: the audit itself reports that the district <strong>did not file its FY23 or FY24 single audits within the nine-month federal deadline.</strong></p>
-
-  <h2>The opinions</h2>
-
-  <p>An audit is built around formal opinions. This report contains three layers:</p>
-
-  <ul>
-    <li><strong>Financial statements &mdash; Unmodified (clean).</strong> The statements present fairly, in all material respects, the district's financial position and results for the year.</li>
-    <li><strong>Federal programs &mdash; mixed.</strong> The Child Nutrition Cluster received an unmodified opinion. The <strong>Special Education Cluster</strong> and the <strong>Education Stabilization Fund</strong> (the COVID-relief / ESSER programs) each received a <strong>qualified</strong> opinion &mdash; meaning the auditor found a specific compliance problem significant enough to except from an otherwise clean conclusion.</li>
-    <li><strong>Auditee risk status &mdash; not low-risk.</strong> Because of the findings, the district does not qualify as a low-risk auditee, which generally means more extensive federal audit testing going forward.</li>
-  </ul>
-
-  <p>The report also carries an <strong>Emphasis-of-Matter</strong> paragraph drawing attention to a prior-period restatement (below). An emphasis-of-matter paragraph does not change the opinion; it flags something the reader should notice.</p>
-
-  <h2>The financial picture</h2>
-
-  <p>The audited governmental-fund figures at June 30, 2024:</p>
-
-  <table>
-    <thead>
-      <tr><th>Measure (audited)</th><th class="num">Amount</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>General Fund cash &amp; investments</td><td class="num">$22,536,992</td></tr>
-      <tr><td>General Fund total fund balance</td><td class="num">$19,053,053</td></tr>
-      <tr><td>General Fund expenditures</td><td class="num">$199,886,456</td></tr>
-      <tr><td>Capital Projects Fund balance (incl. SAVE)</td><td class="num">$28,949,793</td></tr>
-      <tr><td>&nbsp;&nbsp;of which the SAVE / sales-tax account</td><td class="num">$14,727,933</td></tr>
-      <tr><td>Management Levy Fund cash</td><td class="num">$13,077,609</td></tr>
-      <tr><td>Outstanding sales-tax (SAVE) revenue bonds</td><td class="num">$155,890,000</td></tr>
-    </tbody>
-  </table>
-
-  <p>On an expenditures basis, the General Fund's $22.5&nbsp;million of cash is roughly <strong>41 days of operating cash</strong> ($22.5M divided by daily expenditures). That is below the 60-day cushion rating agencies generally consider healthy, consistent with the district's multi-year trend, and lower than the $25.9&nbsp;million the district had reported in its unaudited CAR.</p>
-
-  <p>On the SAVE revenue bonds, the audit reports incremental sales-tax revenue of <strong>$19.02&nbsp;million</strong> against principal and interest paid of <strong>$14.15&nbsp;million</strong> for the year &mdash; coverage of about <strong>1.34&times;</strong>. The report discloses no covenant violation. This is the FY24 position; the strain on SAVE cash flow that surfaced in later years is a FY26 matter outside this report.</p>
-
-  <h3>The prior-period restatement (Note 15)</h3>
-
-  <p>The audit restated the district's beginning net position to correct errors in previously reported years. For governmental activities, beginning net position was <strong>increased by $6,150,861</strong>, made up of three corrections:</p>
-
-  <table>
-    <thead>
-      <tr><th>Correction</th><th class="num">Effect on beginning net position</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Income surtax revenue recognized in the wrong period</td><td class="num">+$7,976,285</td></tr>
-      <tr><td>Bond premium over-amortized in prior years</td><td class="num">&minus;$955,100</td></tr>
-      <tr><td>Early-retirement liability under-accrued</td><td class="num">&minus;$870,324</td></tr>
-      <tr class="subtotal"><td>Net restatement</td><td class="num">+$6,150,861</td></tr>
-    </tbody>
-  </table>
-
-  <p>A separate $105,809 restatement added three private-purpose trust funds that had been omitted from the FY23 report. The audit also reclassified how several funds are presented: the SAVE, PPEL, and other capital accounts were combined into one Capital Projects Fund; Debt Service moved from a major to a nonmajor fund; and the Management Levy Fund moved from nonmajor to major.</p>
-
-  <h2>The findings</h2>
-
-  <p>The audit lists fourteen numbered findings plus a set of statutory-reporting items. They fall into four groups. The severity tags follow the audit's own categories: a <span class="tag mw">material weakness</span> is the most serious internal-control category; a <span class="tag sd">significant deficiency</span> is less severe but still merits governance attention; <span class="tag nc">noncompliance</span> means a legal or grant requirement was not met.</p>
-
-  <h3>Financial-reporting internal controls</h3>
-
-  <table>
-    <thead>
-      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>2024-001</td><td>Insufficient segregation of duties &mdash; payroll cycle</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-002</td><td>Insufficient segregation of duties &mdash; cash disbursement</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-003</td><td>Insufficient segregation of duties &mdash; building receipt process</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-004</td><td>Insufficient reconciling &amp; monitoring of cash accounts and CDs</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-005</td><td>Improper identification and adjustment of funds; year-end entries not made for trial balances to conform to accounting standards</td><td><span class="tag mw">material weakness</span></td></tr>
-    </tbody>
-  </table>
-
-  <h3>Compliance with the financial statements</h3>
-
-  <table>
-    <thead>
-      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>2024-006</td><td>FY23 and FY24 single audits not filed within the required nine months of year-end</td><td><span class="tag nc">noncompliance</span></td></tr>
-      <tr><td>2024-007</td><td>Student Activity Fund deficit fund balance of $983,381</td><td><span class="tag nc">noncompliance</span></td></tr>
-      <tr><td>2024-008</td><td>Interfund payables/receivables not authorized by board resolution before they occurred, not repaid by October 1 of the following year, and no interest paid on borrowed funds</td><td><span class="tag nc">noncompliance</span></td></tr>
-    </tbody>
-  </table>
-
-  <p>On 2024-008: the audit's interfund note shows <strong>$38.2&nbsp;million</strong> of balances owed between funds at year-end (the General Fund alone is owed $29.1&nbsp;million and owes $20.1&nbsp;million). Iowa law requires the board to approve interfund loans in advance, set repayment by October 1 of the following year, and charge interest. The audit states those requirements were not met.</p>
-
-  <h3>Federal programs</h3>
-
-  <table>
-    <thead>
-      <tr><th>#</th><th>Finding</th><th>Severity</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>2024-009</td><td>Lacked adequate processes to approve and document disbursements charged to federal programs</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-010</td><td>Lacked a process to identify federal capital assets (two vehicle purchases over the $5K threshold; no prior state approval)</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-011</td><td>Lacked a process to document special-education high-cost claims submitted for reimbursement</td><td><span class="tag mw">material weakness</span></td></tr>
-      <tr><td>2024-012</td><td>Lacked a process for independent preparation and review of reports</td><td><span class="tag sd">significant deficiency</span></td></tr>
-      <tr><td>2024-013</td><td>Unallowable expenditures charged to the Education Stabilization Fund (COVID) programs</td><td><span class="tag nc">material noncompliance</span></td></tr>
-      <tr><td>2024-014</td><td>Unable to provide program documentation</td><td><span class="tag nc">material noncompliance</span></td></tr>
-    </tbody>
-  </table>
-
-  <h3>Statutory reporting</h3>
-
-  <ul>
-    <li><strong>IV-A-24 &mdash; Certified budget exceeded.</strong> Expenditures exceeded the certified budget in the <em>support</em> function (before the May 2024 amendment) and in the <em>other</em> function (after amendment). On the audit's budget schedule, the "other" function ran about <strong>$19.5&nbsp;million over its amended budget</strong>, and total expenditures of $341.9&nbsp;million exceeded the amended budget of $329.5&nbsp;million.</li>
-    <li><strong>IV-H-24 / IV-I-24 &mdash;</strong> variances in certified enrollment and supplementary weighting reported to the state in October 2023.</li>
-    <li><strong>IV-J-24 &mdash;</strong> the district lacked a formal depository resolution.</li>
-    <li><strong>IV-N-24 &mdash;</strong> the 509A certificate of compliance was not filed timely.</li>
-  </ul>
-
-  <h3>Repeat findings</h3>
-
-  <p>The audit's summary of prior-year findings shows that several FY23 issues were marked <strong>"not corrected,"</strong> with the district attributing the recurrence to significant turnover in the business office. The FY23 material weakness on significantly delayed and revised financials, the bank-reconciliation deficiency, and the late single-audit filing each carried forward into FY24.</p>
-
-  <h2>How the audit compares to what the district filed</h2>
-
-  <p>The audit changed several figures from the unaudited CAR the district filed in September 2024. The largest changes:</p>
-
-  <table>
-    <thead>
-      <tr><th>Item</th><th class="num">CAR (unaudited)</th><th class="num">Audit (final)</th></tr>
-    </thead>
-    <tbody>
-      <tr class="highlight"><td>SAVE / sales-tax fund balance</td><td class="num">&minus;$18,944,278</td><td class="num">+$14,727,933</td></tr>
-      <tr><td>General Fund cash</td><td class="num">$25,913,933</td><td class="num">$22,536,992</td></tr>
-      <tr><td>Beginning net position (restatement)</td><td class="num">&mdash;</td><td class="num">+$6,150,861</td></tr>
-      <tr><td>Certified budget</td><td class="num">within authority</td><td class="num">exceeded (2 functions)</td></tr>
-    </tbody>
-  </table>
-
-  <p>The headline change is the SAVE fund: the CAR reported an apparent $18.9&nbsp;million deficit, and the audit shows a positive $14.7&nbsp;million balance, indicating the CAR figure was a reporting/classification error rather than a real shortfall. General Fund cash came down by about $3.4&nbsp;million. The Management Levy Fund's reported cash and property-tax revenue were left essentially as filed. Reading the two documents together, the audit's corrections were in the district's favor on the most alarming number and against it on budget compliance.</p>
-
-  <h2>What the audit does and does not establish</h2>
-
-  <p><strong>It establishes:</strong> a clean opinion on the financial statements; no going-concern doubt; correction of the apparent SAVE deficit; positive (if modest) SAVE bond coverage for the year; and a defined, finite list of control and compliance problems with a management response attached to each.</p>
-
-  <p><strong>It also establishes:</strong> five material weaknesses in financial reporting, two qualified federal-program opinions including unallowable COVID-grant costs, a $6.15&nbsp;million prior-period restatement, interfund borrowing conducted without the required board authorization, a certified budget exceeded in two functions, late single-audit filings, and several uncorrected repeat findings &mdash; together with non-low-risk auditee status.</p>
-
-  <p><strong>It does not establish</strong> intent or wrongdoing; the auditor does not make that judgment. It does not cover FY25 or FY26 events. And a clean opinion on the statements is not a statement that the district's systems are healthy &mdash; the separate findings report is where that question is answered, and there the answer is that the control environment had material weaknesses during FY24.</p>
-
-  <div class="callout blue">
-    <div class="lead">The bottom line</div>
-    <p>The numbers, once audited, are less dramatic than the unaudited filing suggested &mdash; the SAVE "deficit" was an error, and there is no missing cash. The audit's substance is that the district's <strong>internal controls, federal-grant compliance, budget compliance, and reporting timeliness</strong> fell materially short in FY24, with several problems repeating from the prior year. The district has issued a corrective action plan responding to every finding.</p>
-  </div>
-
-  <a class="related-link" href="FY24-UAB-cushion.html">
-    <div class="label">Companion analysis</div>
-    <div class="title">The FY24 spending-authority (UAB) cushion</div>
-    <div class="desc">A closer look at the certified-budget question &mdash; what it means that the district exceeded its certified budget, and how the spending-authority cushion works.</div>
-  </a>
-
-  <div class="sources">
-    <h3>Where the numbers come from</h3>
+  <div class="tldr">
+    <div class="k">The 10-second version</div>
     <ul>
-      <li><strong>The FY24 audit.</strong> Iowa City Community School District, Financial and Compliance Report, Year Ended June 30, 2024; independent auditor's report dated June 10, 2026 (East Moline, Illinois). Opinions, Note 15 (restatement), Note 3 (interfund balances), Note 5 (long-term debt), the governmental-funds balance sheet, the budgetary comparison schedule, and the Schedule of Findings and Questioned Costs.</li>
-      <li><strong>The corrective action plan.</strong> "Action plan in response to Findings Related to Financial &amp; Compliance Report June 30, 2024," from the district CFO to the Board of Directors, listing the district's response to findings 2024-001 through 2024-014 and the statutory items.</li>
-      <li><strong>The FY24 CAR.</strong> The unaudited Certified Annual Report the district filed with the Iowa Department of Education in September 2024 (district code 3141), used here only for the audit-vs-filed comparison.</li>
+      <li><span class="ic">✅</span><span><strong>No missing money.</strong> The auditor gave the financial statements a clean bill of health, and the scariest figures the district had filed earlier turned out to be bookkeeping errors &mdash; corrected in the district's favor.</span></li>
+      <li><span class="ic">❌</span><span><strong>But the district broke basic money rules.</strong> Five "material weaknesses" in financial controls, $38M shuffled between accounts without required board approval, an overspent budget, and misspent federal grant money.</span></li>
+      <li><span class="ic">⚠️</span><span><strong>Fixable, but real &mdash; and recurring.</strong> Several of these problems are now in their second straight year.</span></li>
     </ul>
   </div>
 
+  <h2>The scary numbers, fact-checked</h2>
+  <p class="section-sub">Before the audit, the district's own filing showed some alarming figures. The audit checked them. Both moved toward <em>less</em> alarm.</p>
+
+  <div class="factcheck">
+    <div class="fc">
+      <div class="claim">The filing showed a <b>$19 million hole</b> in the construction (SAVE) fund.</div>
+      <div class="real"><b>Wrong &mdash; it was a bookkeeping error.</b> The fund actually ended the year <b>$14.7M in the black</b>.</div>
+    </div>
+    <div class="fc">
+      <div class="claim">The filing showed <b>$25.9M</b> of cash in the General Fund.</div>
+      <div class="real"><b>Overstated by ~$3.4M.</b> The real number is <b>$22.5M</b>. Less than reported &mdash; but no money is missing.</div>
+    </div>
+  </div>
+  <p>So the doomsday version didn't survive the audit. The real problems are about <strong>how the district ran its finances</strong>, not a vanished pile of cash.</p>
+
+  <h2>The real problems <span class="lbl" style="background:var(--red-soft);color:var(--red)">big deal</span></h2>
+
+  <div class="sevrow">
+    <span class="sev big">big deal</span>
+    <div>
+      <div class="h">The district's money controls failed in five places</div>
+      <div class="sw">Payroll, paying bills, collecting cash, bank reconciliations, and year-end accounting all lacked basic checks. "Material weakness" is the most serious flag an auditor gives short of a wrong number. <strong>So what:</strong> the systems meant to catch honest mistakes &mdash; or theft &mdash; weren't reliable.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev big">big deal</span>
+    <div>
+      <div class="h">$38 million moved between accounts without the required board approval</div>
+      <div class="sw">Iowa law says the school board must approve loans between funds in advance, set a payback date, and charge interest. None of that happened. <strong>So what:</strong> large sums moved between restricted pots of money with no public sign-off.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev big">big deal</span>
+    <div>
+      <div class="h">The district overspent its legal budget</div>
+      <div class="sw">It spent about <strong>$19.5M past the cap</strong> in its capital/construction category &mdash; a violation of state budget law, even after raising the budget mid-year. <strong>So what:</strong> <a href="FY24-UAB-cushion.html">how that happened, and why it's not the same as last year &rarr;</a></div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev big">big deal</span>
+    <div>
+      <div class="h">Federal grant money was misspent</div>
+      <div class="sw">The auditor gave "qualified" (flawed) opinions on two federal programs: the district charged some COVID-relief money to things the grant didn't allow, and couldn't document other federal spending. <strong>So what:</strong> possible repayment, and stricter federal audits ahead.</div>
+    </div>
+  </div>
+
+  <h2>Worth knowing <span class="lbl" style="background:var(--gold-soft);color:var(--gold)">medium</span></h2>
+
+  <div class="sevrow">
+    <span class="sev med">medium</span>
+    <div>
+      <div class="h">The student activities fund is in the red (&minus;$983K)</div>
+      <div class="sw">The fund that runs clubs and athletics spent more than it took in. <strong>So what:</strong> a real shortfall the district has to dig out of.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev med">medium</span>
+    <div>
+      <div class="h">Several problems are repeats from last year</div>
+      <div class="sw">The district says staff turnover is why FY23 findings weren't fixed. <strong>So what:</strong> these aren't all one-time slip-ups; some are becoming the norm.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev med">medium</span>
+    <div>
+      <div class="h">"Not a low-risk auditee"</div>
+      <div class="sw">Because of the findings, the district loses its good-standing status with federal auditors. <strong>So what:</strong> future audits will be bigger, slower, and more expensive.</div>
+    </div>
+  </div>
+
+  <h2>Smaller / housekeeping <span class="lbl" style="background:var(--gray-soft);color:var(--ink-mute)">small</span></h2>
+
+  <div class="sevrow">
+    <span class="sev small">small</span>
+    <div>
+      <div class="h">Audits were filed about two years late</div>
+      <div class="sw">This is the first audit in two years; the district is now catching up. <strong>So what:</strong> a real failure, but one that's being worked off.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev small">small</span>
+    <div>
+      <div class="h">Routine compliance paperwork was missed</div>
+      <div class="sw">No formal bank-depository resolution, enrollment-count variances, a late compliance certificate. <strong>So what:</strong> fixable housekeeping, not money problems.</div>
+    </div>
+  </div>
+
+  <h2>The good news <span class="lbl" style="background:var(--green-soft);color:var(--green)">reassuring</span></h2>
+
+  <div class="sevrow">
+    <span class="sev good">good</span>
+    <div>
+      <div class="h">A clean opinion on the financial statements</div>
+      <div class="sw">An outside auditor says the numbers, as presented, are fair and accurate. <strong>So what:</strong> the books themselves can be trusted.</div>
+    </div>
+  </div>
+
+  <div class="sevrow">
+    <span class="sev good">good</span>
+    <div>
+      <div class="h">No "going concern" warning</div>
+      <div class="sw">Auditors must warn if they doubt an organization can keep operating. They didn't. <strong>So what:</strong> this is a control failure, not a solvency crisis.</div>
+    </div>
+  </div>
+
+  <div class="bottomline">
+    <div class="k">Bottom line</div>
+    <p>FY24 isn't the catastrophe the early numbers suggested &mdash; there's no missing money and the books earned a clean opinion. But the audit documents a district whose financial controls broke down: rules ignored, budget exceeded, federal money misspent, and several problems now repeating. Real, but fixable.</p>
+  </div>
+
+  <div class="pilllinks">
+    <a href="auditreports/Iowa%20City%20CSD-2024.pdf">Read the full audit (PDF)</a>
+    <a class="alt" href="FY24-UAB-cushion.html">The budget question, explained</a>
+  </div>
+
+  <div class="sources">
+    Source: Iowa City Community School District, <em>Financial and Compliance Report, Year Ended June 30, 2024</em> (independent auditor's report dated June 10, 2026) and the district's corrective action plan. Figures: General Fund cash $22.5M; construction (SAVE) fund +$14.7M; interfund balances $38.2M; capital budget overage $19.5M; student activity deficit $983K. "Filing" refers to the unaudited Certified Annual Report the district submitted in September 2024.
+  </div>
+
   <div class="footer">
-    Unofficial community summary of a public document. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.<br>
-    Figures are drawn directly from the FY24 Financial and Compliance Report. Prepared June 2026.
+    Unofficial community summary of a public document. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency.
   </div>
 
 </main>
