@@ -163,6 +163,9 @@ for path in glob.glob(p("data/fy20-25-flows/*.csv")):
             annual_debt_service=r.get("annual_debt_service")), overwrite=False)
 
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
+for r in rows(p("data/car-salaries.csv")):
+    if r["district"] in DISTRICTS:   # GF salaries+benefits (object detail) from the CAR workbooks, FY23-24
+        setrow(r["district"], r["fiscal_year"], dict(salaries_benefits=r["salaries_benefits"]), overwrite=False)
 for r in rows(p("data/dom/unspent-authorized-budget.csv")):
     if r["district"] in DISTRICTS:
         setrow(r["district"], r["fiscal_year"], dict(

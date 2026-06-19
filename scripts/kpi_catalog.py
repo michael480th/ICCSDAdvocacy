@@ -82,7 +82,7 @@ KPIS = [
  dict(key="employee_cost_ratio", label="Employee Cost Ratio", group="operating",
       source="Internal", unit="ratio_pct", good="context", target="75–85% (internal target <80%)",
       formula="(GF salaries + benefits) / total GF expenditures",
-      note="Iowa General Funds report expenditures by FUNCTION, not object, so salaries+benefits aren't separable from the audited GF for most districts. Shown where available: ICCSD FY15–19 (its own report) and peers FY20–25 (district-supplied object detail). Other cells are blank by data availability, not oversight."),
+      note="Iowa General Funds report expenditures by FUNCTION, not object, so salaries+benefits aren't separable from most audited GF statements. Filled from: ICCSD FY15–19 (its own report), the Iowa DE Certified Annual Report object detail for FY23–24 (all districts, incl. ICCSD — the CAR is filed even when the audit is late), and a few districts whose audits publish object detail. FY20–22 gaps reflect data availability, not oversight."),
  dict(key="foundation_aid_ratio", label="Foundation Aid Ratio", group="operating",
       source="Internal", unit="ratio_pct", good="context", target="no fixed target (falls as property wealth grows)",
       formula="Direct state foundation aid / total GF revenue"),
