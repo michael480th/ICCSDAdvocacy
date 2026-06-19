@@ -34,12 +34,13 @@ NARROW = [
     ("activity-fund.html", "Student Activities fund",
      "Year-end balance of each district's student-activity fund — self-reported, audited, and per "
      "student. Iowa City carries the thinnest cushion of the 15."),
-    ("FY24-UAB-cushion.html", "FY24 spending-authority cushion",
-     "A point-in-time look at why Iowa City's FY24 unspent-budget-authority cushion is roughly $3.3M "
-     "wide and what it means for spending authority."),
-    ("FY24-audit-watchlist.html", "FY24 audit watchlist",
-     "A plain-English guide to what to check first in Iowa City's long-overdue FY24 audit — now filed "
-     "(June 2026), about two years late and with five material weaknesses."),
+    ("FY24-UAB-cushion.html", "FY24 budget question, answered",
+     "How the FY24 audit resolved the budget question: a certified-budget violation in the capital-heavy "
+     "\"other\" function ($19.5M over), and no General Fund spending-authority finding — with an honest "
+     "look at what this page got right and wrong before the audit."),
+    ("FY24-audit-watchlist.html", "FY24 audit summary",
+     "A plain-English overview of the released FY24 Financial and Compliance Report — the opinions, the "
+     "findings, and how the audited numbers compare to what the district filed with the state."),
     ("iccsd-filing-vs-control.html", "Filing timeliness vs. spending control",
      "An exploratory scatterplot: does how promptly a district files its audited financials relate to "
      "how much spending-authority cushion it keeps?"),
