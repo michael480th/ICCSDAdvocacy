@@ -42,7 +42,7 @@ KPIS = [
  dict(key="days_net_cash", label="Day's Net Cash Ratio", group="cash_liquidity",
       source="Internal", unit="days", good="up", target="90–120 days (internal target 90)",
       formula="(GF cash + investments) / (total GF expenditures / 365)",
-      note="ICCSD FY24–25 use management figures. Its FY2025 Certified Annual Report reports GF cash of $43.7M (≈75 days) and a GF fund balance of $18.3M (unassigned $12.3M) — both audited-style and internally consistent. PFM's lower $19.4M figure (≈33 days, shown here) reconciles to the FY24 year-end balance ($19,366,903), i.e. a prior-year/usable-cash measure, not FY25 ending cash. Either way the usable fund-balance cushion is thin (~$12–18M)."),
+      note="ICCSD FY2024 is audited (ACFR filed June 2026; GF cash $22.5M, ≈41 days). FY2025 uses management figures: its FY2025 Certified Annual Report reports GF cash of $43.7M (≈75 days) and a GF fund balance of $18.3M (unassigned $12.3M) — both audited-style and internally consistent. PFM's lower $19.4M figure (≈33 days, shown here) reconciles to the FY24 year-end balance ($19,366,903), i.e. a prior-year/usable-cash measure, not FY25 ending cash. Either way the usable fund-balance cushion is thin (~$12–18M)."),
  dict(key="moodys_net_cash_ratio", label="Net Cash Ratio", group="cash_liquidity",
       source="Moody's", unit="ratio_pct", good="up", target="Aaa ≥17.5% · A 5–10% · Ba 0–5% (Aaa endpoint 50%)",
       formula="GF net cash (cash+investments − short-term operating debt) / operating revenue"),

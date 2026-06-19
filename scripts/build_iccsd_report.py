@@ -71,7 +71,7 @@ KPIS = [
    why="Audited financial statements are how the public, lenders, and the state verify the numbers. Falling behind erodes trust — and cost Iowa City its bond rating.",
    get=lambda c: 2025 - last_year(c), fmt=lambda v: ("current" if v<=0 else f"{v:.0f} yr"+("s" if v>=2 else "")+" behind"),
    color=lambda v: low_color(v,0,1),
-   takeaway=lambda ic,t10,t5: f"Iowa City's newest finished audit is for <b>2023 — two years behind</b> — and its 2024 and 2025 audits still aren't filed. The top districts are current."),
+   takeaway=lambda ic,t10,t5: f"Iowa City's newest finished audit is for <b>2024 — one year behind</b>, and it filed about two years late (June 2026) with five material weaknesses; its 2025 audit still isn't filed. The top districts are current."),
 
  dict(id="quality", title="Quality of financial management", unit="/5", scalemax=5,
    what="A 1–5 grade for how cleanly the books are kept: audit opinions, internal-control problems, repeat findings, on-time filing, and reporting-excellence awards.",
@@ -196,9 +196,10 @@ City's number means next to its peers.</p>
 </div>
 
 <div class="update">
-<b>⚠ Latest cash position (unaudited).</b> The verified figures in the cards below run through <b>FY2023</b> —
-Iowa City's FY2024 and FY2025 audits still aren't filed. The district's own internal reports show its General
-Fund held about <b>33 days of cash</b> at the FY2025 close, and PFM projects the operating cushion falls to
+<b>⚠ Latest cash position.</b> The verified figures in the cards below now run through <b>FY2024</b> — Iowa City's
+FY2024 audit was filed in June 2026 (about two years late, with five material weaknesses), and its FY2025 audit
+still isn't filed. The audited FY2024 General Fund held about <b>41 days of cash</b>; the district's own internal
+reports show roughly <b>33 days</b> at the FY2025 close, and PFM projects the operating cushion falls to
 roughly <b>7 days by mid-2026</b> <i>before</i> a planned $25M short-term loan needed to make payroll. See
 <a href="iccsd-cushion.html">Does it have a cushion?</a> for the full, sourced picture.
 </div>
@@ -218,7 +219,7 @@ Iowa state financial filings. To keep the comparison fair for a district of Iowa
 “Large districts” includes only the 12 districts in this study with 5,000+ students; “Best-run large
 districts” are the 5 highest-scoring of those by overall composite score. (Districts smaller than
 5,000 students are excluded from the comparison entirely.) State spending-authority figures are
-available even though Iowa City's 2024 and 2025 audits are not yet filed. Companion: the full
+available even though Iowa City's FY2025 audit is not yet filed (its FY2024 audit was filed June 2026). Companion: the full
 benchmark report covering all districts.
 </footer>
 </div></body></html>"""

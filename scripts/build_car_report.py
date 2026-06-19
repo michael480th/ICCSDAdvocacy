@@ -214,8 +214,10 @@ FY2023–FY2024.)</p>
 buckets (spendable vs. committed/restricted); the bottom line still reconciles, so it's a classification difference, not
 a missing-money problem. The case that matters is where the total is <b>also</b> off: <b>Iowa City overstated its
 spendable reserves by +{un_pct:.0f}%</b> in FY2023 (${ic_car_un:,.0f} reported vs ${ic_aud_un:,.0f} audited) <i>on top
-of</i> an overstated total — i.e. the CAR made the usable cushion look far healthier than the audit found. Iowa City has
-no FY2024 audit yet, so its FY2024 cell is blank.</p>
+of</i> an overstated total — i.e. the CAR made the usable cushion look far healthier than the audit found. Iowa City's
+newly filed <b>FY2024 audit again didn't match its CAR</b>: the CAR overstated the total ending balance by ~$314K, while
+its unassigned figure came in ~$1.4M <i>below</i> the audit (CAR ~$14.9M vs audited ~$16.3M) — reclassifications and
+revisions of the kind the year's five material weaknesses would predict.</p>
 </div>
 
 <div class="card">
@@ -235,8 +237,8 @@ were only recently finalized.</p>
 <b>Sources.</b> CAR: Iowa Department of Education Certified Annual Report — annual workbooks (FY2023,
 FY2024) and the multi-year revenue/expenditure files (FY2017–2023). Audited: each district's ACFR
 (General Fund total fund balance), as compiled in this project. Comparison is the General Fund ending
-balance; a row is flagged when CAR differs from audited by &ge;1% and &ge;$250,000. Iowa City has no
-FY2024 audit filed, so its FY2024 cell is blank. Built by <code>scripts/extract_car.py</code> +
+balance; a row is flagged when CAR differs from audited by &ge;1% and &ge;$250,000. Iowa City's FY2024 audit
+was filed June 2026, so its FY2024 cell is now populated (and flagged). Built by <code>scripts/extract_car.py</code> +
 <code>scripts/compare_car_vs_audited.py</code> + <code>scripts/build_car_report.py</code>.
 </footer>
 </div></body></html>"""

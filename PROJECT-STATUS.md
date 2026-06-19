@@ -55,7 +55,7 @@ before build_analysis.py). The build_* scripts read `/tmp/audit/cards.json`, wri
 - **Composite** = 0.40·Health + 0.35·Quality + 0.25·Capital Sustainability. "Building vs. maintaining" is a label, not scored.
 
 ## Headline findings
-- **Iowa City ranks last of the 15** (composite 2.2) and is the **only large district missing its FY2024/FY2025 audits**.
+- **Iowa City ranks last of the 15** (composite 2.2). Its **FY2024 audit was filed ~2 years late (June 2026, with five material weaknesses)** and its **FY2025 audit is still unfiled** — the furthest behind of the large districts.
 - Its **spending authority (UAB) went negative in 2023** (−1.2%) — the unlawful, state-review-triggering level.
 - **~9 days of operating reserves** vs. ~44 (large-district avg) / ~60 (GFOA guideline).
 - **2nd-most SAVE-leveraged** large district (~8.4 yrs pledged); carries **both** GO and SAVE debt (~$322M outstanding, FY2023).

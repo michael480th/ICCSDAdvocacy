@@ -38,8 +38,8 @@ NARROW = [
      "A point-in-time look at why Iowa City's FY24 unspent-budget-authority cushion is roughly $3.3M "
      "wide and what it means for spending authority."),
     ("FY24-audit-watchlist.html", "FY24 audit watchlist",
-     "A plain-English guide to what to check first when Iowa City's overdue FY24 audit is finally "
-     "released."),
+     "A plain-English guide to what to check first in Iowa City's long-overdue FY24 audit — now filed "
+     "(June 2026), about two years late and with five material weaknesses."),
     ("iccsd-filing-vs-control.html", "Filing timeliness vs. spending control",
      "An exploratory scatterplot: does how promptly a district files its audited financials relate to "
      "how much spending-authority cushion it keeps?"),

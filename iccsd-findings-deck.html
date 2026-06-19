@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iowa City Schools — findings deck</title><style>
+*{box-sizing:border-box} html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#0f172a;color:#fff}
+.slide{display:none;height:100vh;width:100%;padding:7vh 9vw;flex-direction:column;justify-content:center}
+.slide.on{display:flex} .s-in{max-width:900px;margin:auto;width:100%}
+.big{font-size:min(13vw,120px);font-weight:800;line-height:1;color:#60a5fa;margin-bottom:18px}
+.head{font-size:min(5vw,34px);font-weight:700;line-height:1.2;margin-bottom:14px}
+.sub{font-size:min(3.4vw,20px);color:#cbd5e1;line-height:1.45} .sub b,.head b{color:#fff}
+.snum{position:fixed;bottom:18px;right:24px;color:#475569;font-size:14px}
+.nav{position:fixed;bottom:14px;left:0;right:0;text-align:center}
+.nav button{background:#1e293b;color:#cbd5e1;border:1px solid #334155;border-radius:8px;padding:7px 14px;font-size:15px;cursor:pointer;margin:0 4px}
+.hint{position:fixed;top:16px;right:20px;color:#475569;font-size:12px}
+@media print{.slide{display:flex;height:auto;page-break-after:always;color:#0f172a}body{background:#fff;color:#0f172a}.big{color:#1d4ed8}.sub{color:#334155}.nav,.hint{display:none}}
+</style></head><body>
+<div class="hint">&larr; &rarr; to navigate</div>
+<section class="slide" data-i="0"><div class="s-in">
+      <div class="big">Iowa City Schools</div><div class="head">The financial picture, in the data</div><div class="sub">A benchmark of Iowa's 15 largest districts · audited financials + state filings · FY2020–FY2025</div>
+      <div class="snum">1 / 10</div></div></section><section class="slide" data-i="1"><div class="s-in">
+      <div class="big">#15 of 15</div><div class="head">Iowa City ranks last of the 15 large Iowa districts on overall financial health &amp; management.</div><div class="sub">Composite 2.4 of 5 — vs. ~3.9 for comparable districts.</div>
+      <div class="snum">2 / 10</div></div></section><section class="slide" data-i="2"><div class="s-in">
+      <div class="big">2.3%</div><div class="head">Spending authority left — the #1 measure of an Iowa district's health.</div><div class="sub">Peers carry ~16%. Iowa City's went <b>negative in 2023</b> — the level that by law triggers a state review.</div>
+      <div class="snum">3 / 10</div></div></section><section class="slide" data-i="3"><div class="s-in">
+      <div class="big">30 days</div><div class="head">of operating reserves on hand.</div><div class="sub">A healthy cushion is ~60 days (GFOA). Peers average ~44.</div>
+      <div class="snum">4 / 10</div></div></section><section class="slide" data-i="4"><div class="s-in">
+      <div class="big">Furthest behind</div><div class="head">Iowa City filed its FY2024 audit about two years late (June 2026) and still hasn't filed FY2025.</div><div class="sub">Its FY2024 audit was filed ~710 days after year-end, with five material weaknesses. Every other large district is current.</div>
+      <div class="snum">5 / 10</div></div></section><section class="slide" data-i="5"><div class="s-in">
+      <div class="big">Unrated</div><div class="head">Lost its bond rating in 2024 — and is still unrated.</div><div class="sub">Most districts that lose a rating regain it within months. Staying unrated into a 2nd–3rd year is rare for a district this size.</div>
+      <div class="snum">6 / 10</div></div></section><section class="slide" data-i="6"><div class="s-in">
+      <div class="big">8.2 yrs</div><div class="head">of SAVE sales-tax revenue already pledged to bonds — 2nd-most of any large district.</div><div class="sub">Peers ~5.4 yrs. SAVE can't fund new building until the mid-2030s under current debt.</div>
+      <div class="snum">7 / 10</div></div></section><section class="slide" data-i="7"><div class="s-in">
+      <div class="big">$21K</div><div class="head">in building debt per student (GO + SAVE) — ~1.8× the peer average.</div><div class="sub">One of the few districts carrying both sales-tax and voter-approved property-tax debt.</div>
+      <div class="snum">8 / 10</div></div></section><section class="slide" data-i="8"><div class="s-in">
+      <div class="big">Not enrollment</div><div class="head">Enrollment is essentially flat (+0.1%/yr) — in line with peers.</div><div class="sub">So this is <b>not</b> a shrinking-district problem. It's about how the money was managed.</div>
+      <div class="snum">9 / 10</div></div></section><section class="slide" data-i="9"><div class="s-in">
+      <div class="big">The basics</div><div class="head">A monthly close. Reconciled accounts. Audited financials on time. A rating in good standing.</div><div class="sub">Districts running far less money than Iowa City manage all of it, every year. Sources: the project repository.</div>
+      <div class="snum">10 / 10</div></div></section>
+<div class="nav"><button onclick="go(-1)">&lsaquo; Prev</button><button onclick="go(1)">Next &rsaquo;</button></div>
+<script>
+let i=0;const S=[...document.querySelectorAll('.slide')];
+function show(){S.forEach((s,k)=>s.classList.toggle('on',k===i))}
+function go(d){i=Math.max(0,Math.min(S.length-1,i+d));show()}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(1);if(e.key==='ArrowLeft')go(-1)});
+show();
+</script></body></html>

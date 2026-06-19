@@ -326,9 +326,11 @@ self-report-vs-audit check? See the full <a href="car-vs-audited.html" style="co
 <h2 style="margin:0 0 4px;font-size:20px">First question: can the numbers even be checked yet?</h2>
 <p style="font-size:14.5px;color:#334155;margin:2px 0 10px">The most basic integrity test isn't whether the CAR
 matches the audit &mdash; it's whether an <b>audit exists yet at all</b>. As of {date}, every peer district has a
-completed audit through <b>FY2025</b>. <b>Iowa City's most recent audit is FY2023</b> &mdash; the only district
-two years behind &mdash; and that one arrived <b>26 months late</b> with a declared material weakness. Its FY2024
-and FY2025 self-reported numbers <b>cannot be verified by anyone.</b></p>
+completed audit through <b>FY2025</b>. <b>Iowa City's most recent audit is FY2024</b> &mdash; still the
+furthest behind &mdash; and it landed in <b>June 2026, about two years after year-end</b>, carrying <b>five
+financial-statement material weaknesses</b> plus qualified opinions on two federal programs. The pattern from
+FY2023 repeated: the books arrived very late and needed major correction. Its <b>FY2025</b> self-reported
+numbers still <b>cannot be verified by anyone.</b></p>
 <table>
 <thead><tr><th class="dname">District</th><th>Audited through</th><th>Filing lag</th><th>Status</th></tr></thead>
 <tbody>

@@ -2,8 +2,8 @@
 """
 Build a self-contained operating-cash trend: General Fund days-cash-on-hand for Iowa City CSD
 vs. its size-matched peers (5,000+ students), FY2020-FY2025. Operating cash = audited General
-Fund cash & investments (data/gf-operating-cash.csv, from the ACFRs; Iowa City FY2024 from the
-CAR since no FY2024 audit is filed). Days-cash = cash / (General Fund expenditures / 365), the
+Fund cash & investments (data/gf-operating-cash.csv, from the ACFRs; Iowa City FY2024 is now
+audited, filed June 2026). Days-cash = cash / (General Fund expenditures / 365), the
 standard size-neutral liquidity yardstick; GFOA recommends >= ~60 days.
 
 Run:  python3 scripts/build_operating_cash.py  ->  iccsd-operating-cash.html
@@ -32,10 +32,8 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
     e = num(r["gf_expenditure"])
     if e:
         exp[(r["district"], int(r["fiscal_year"]))] = e
-# Iowa City FY2024 expenditures from CAR (no audit)
-for r in csv.DictReader(open("data/car-fund-balances.csv")):
-    if r["district_code"] == "3141" and r["fiscal_year"] == "2024" and r["fund"] == "General":
-        exp[(IC, 2024)] = num(r["expenditures"])
+# Iowa City FY2024 expenditures now come from the audited FY2024 ACFR (loaded above from
+# iowa-district-financials.csv); the FY2024 audit was filed June 2026.
 
 # operating cash -> days-cash
 days = {}   # district -> {fy: days}
@@ -98,8 +96,8 @@ for p in PEERS:
 avg = {y: peer_avg(y) for y in YEARS if peer_avg(y) is not None}
 apts = [(X(i), Y(avg[y])) for i, y in enumerate(YEARS) if y in avg]
 s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in apts)}" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="7 4"/>')
-# Iowa City, by certainty: solid+filled = audited (≤2023); dotted+hollow = unaudited actuals
-# (FY2024 CAR, FY2025 internal); dashed+hollow = projection (FY2026). Hollow = "not yet audited".
+# Iowa City, by certainty: solid+filled = audited (≤2024); dotted+hollow = unaudited actual
+# (FY2025 internal); dashed+hollow = projection (FY2026). Hollow = "not yet audited".
 def xy(y): return X(YEARS.index(y)), Y(days[IC][y])
 aud = sorted(y for y in days[IC] if y in IC_AUDITED)
 unaud = sorted(y for y in days[IC] if y not in IC_AUDITED and y not in IC_PROJECTED)
@@ -128,7 +126,7 @@ if proj:
 # callouts
 if 2024 in days[IC]:
     x24, y24 = xy(2024)
-    s.append(f'<text x="{x24:.1f}" y="{y24-13:.1f}" class="endlab2" fill="#b45309" text-anchor="middle">2024 (CAR, unaudited)</text>')
+    s.append(f'<text x="{x24:.1f}" y="{y24-13:.1f}" class="endlab2" fill="#15803d" text-anchor="middle">2024 (audited)</text>')
 if 2025 in days[IC] and 2023 in days[IC]:
     x25, y25 = xy(2025)
     s.append(f'<text x="{x25:.1f}" y="{y25+24:.1f}" class="endlab2" fill="#b91c1c" text-anchor="middle" style="font-weight:700">same as 2023 low</text>')
@@ -189,10 +187,10 @@ investments divided by its average daily spending. It answers "if the money stop
 days could the lights stay on?" Unlike reserves or spending authority, this is <b>actual cash</b>.</p>
 <p><b>Why days, not dollars:</b> a big district needs more cash than a small one, so raw dollars aren't
 comparable — days-cash normalizes for size. <b>GFOA recommends keeping at least ~60 days.</b></p>
-<p><b>About the last three points:</b> FY2024 is the district's <i>unaudited</i> state-filed figure; FY2025
-(~{ic25:.0f} days) is an <i>unaudited internal</i> number the COO gave the board in April 2026; and FY2026
-(~{ic26:.0f} days, the hollow marker) is a <i>forward projection</i> from PFM's April 28, 2026 update — not a
-close. None of FY2024–FY2026 has been audited yet.</p>
+<p><b>About the last three points:</b> FY2024 is now the district's <i>audited</i> figure (its FY2024 ACFR was
+filed June 2026); FY2025 (~{ic25:.0f} days) is an <i>unaudited internal</i> number the COO gave the board in
+April 2026; and FY2026 (~{ic26:.0f} days, the hollow marker) is a <i>forward projection</i> from PFM's April 28,
+2026 update — not a close. FY2025 and FY2026 have not been audited yet.</p>
 </div>
 
 <div class="card">
@@ -201,35 +199,32 @@ close. None of FY2024–FY2026 has been audited yet.</p>
   <span><i style="border-color:#2563eb;border-top-style:dashed"></i>Peer average</span>
   <span><i style="border-color:#cbd5e1"></i>Individual peers</span>
   <span><i style="border-color:#16a34a;border-top-style:dashed"></i>GFOA ≈ 60 days</span>
-  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>open marker = not yet audited (FY2024 CAR, FY2025 internal, FY2026 projected)</span>
+  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>open marker = not yet audited (FY2025 internal, FY2026 projected)</span>
 </div>
 {svg}
 <p class="take">Iowa City has run <b>below the ~60-day GFOA guideline every year</b>. Its operating cash
 fell from ~<b>{ic20:.0f} days in 2020</b> to ~<b>{ic23:.0f} in 2023</b> — the thinnest of any large district,
-vs. a peer average near <b>{pa23:.0f}</b>. The state-filed FY2024 figure looked like a rebound (~{ic24:.0f}),
-but <b>it didn't stick: the unaudited FY2025 number is back to ~{ic25:.0f} days — the same as the 2023 low</b>,
-and FY2026 is projected at just ~{ic26:.0f}. By any honest read, the district has sat <b>near 33 days of cash for
-most of the last three years</b>, with one bounce that may be partly an artifact of the very allocation issues
-the late audits are now untangling. Peers, meanwhile, held ~<b>{pa25:.0f} days</b>. This is the cash behind the
-district's tax-anticipation-warrant and interfund-loan discussions.</p>
-<p class="caution"><b>⚠ Read the FY2024 bounce with caution — it isn't audited.</b> The FY2024 figure is the
-district's <i>own unaudited</i> report, filed while the same inter-fund reconciliation problems that forced major
-revisions to the FY2023 audit were still unresolved. So the apparent recovery is <b>provisional</b>: if the FY2024
-audit reassigns cash that's currently parked in the General Fund to the funds it actually belongs to, the days-cash
-falls back toward the trough — for scale, moving <b>$5M</b> out of the General Fund would drop FY2024 from ~{ic24:.0f}
-to ~{(cash[IC][2024]-5_000_000)/(exp[(IC,2024)]/365):.0f} days. (Direction isn't guaranteed — when FY2023 was audited,
-General-Fund <i>cash</i> actually came in ~10% <i>higher</i> than the CAR, even as the fund <i>balance</i> was revised
-down 8% and spendable reserves ~29%.) Until FY2024–FY2026 are audited (committed by May 2027), treat the open markers
-as estimates, not actuals.</p>
+vs. a peer average near <b>{pa23:.0f}</b>. The audited <b>FY2024 figure shows a modest rebound to ~{ic24:.0f} days</b>
+(notably, that came in <i>below</i> the ~47 days the district's own unaudited report had claimed), but <b>it didn't
+stick: the unaudited FY2025 number is back to ~{ic25:.0f} days — the same as the 2023 low</b>, and FY2026 is
+projected at just ~{ic26:.0f}. By any honest read, the district has sat <b>near 33–41 days of cash for most of the
+last several years</b>, well short of the guideline. Peers, meanwhile, held ~<b>{pa25:.0f} days</b>. This is the cash
+behind the district's tax-anticipation-warrant and interfund-loan discussions.</p>
+<p class="caution"><b>⚠ FY2024 is now audited; FY2025–FY2026 are not.</b> The audited FY2024 cash position actually
+came in <i>lower</i> than the district's own earlier unaudited estimate — a useful reminder that self-reported
+figures filed before the audit can overstate the cushion. FY2025 (~{ic25:.0f} days) is still the district's
+<i>own internal</i> number, and FY2026 (~{ic26:.0f} days) is a projection that hinges on planned short-term
+borrowing. Until those years are audited (committed by May 2027), treat the open markers as estimates, not
+actuals.</p>
 </div>
 
 <footer>
 <b>Sources.</b> Operating cash = General Fund "cash &amp; investments" from the first fund column of each
 district's audited <i>Balance Sheet — Governmental Funds</i> (ACFRs in <code>auditreports/</code>,
-FY2020–FY2025). <b>Iowa City</b>: FY2024 from the Certified Annual Report (state-filed, unaudited); <b>FY2025</b>
-(~$19.3M / {ic25:.0f} days) from the COO's April 1, 2026 board work-session figure; <b>FY2026</b>
+FY2020–FY2025). <b>Iowa City</b>: FY2024 from its <b>audited</b> FY2024 ACFR (filed June 2026; GF cash $22.5M);
+<b>FY2025</b> (~$19.3M / {ic25:.0f} days) from the COO's April 1, 2026 board work-session figure; <b>FY2026</b>
 (~$21.4M / {ic26:.0f} days, hollow marker) a projection from PFM's April 28, 2026 update (Option 1). Iowa City's
-FY2024–FY2026 audits are all still outstanding (committed complete by May 2027). Days-cash = cash &divide;
+FY2025 and FY2026 audits are still outstanding (committed complete by May 2027). Days-cash = cash &divide;
 (General Fund expenditures / 365). College (Prairie)'s FY2020 balance sheet used an older layout and is omitted.
 "Peers" are the 12 districts with 5,000+ students. Built by <code>scripts/extract_audit_cash.py</code> +
 <code>scripts/build_operating_cash.py</code> (Iowa City FY2025–26 from <code>data/iccsd-cash-supplemental.csv</code>).

@@ -377,7 +377,7 @@ FY2024 — so the thin balance is a choice about how little to carry over, not a
 
 <div class="card">
 <h2 style="margin:0 0 4px;font-size:20px">Student activity fund — ending balance ($ thousands)</h2>
-<p style="font-size:14px;color:#475569;margin:2px 0 6px">CAR ending balance per district-year (hover a cell for the audited figure). Iowa City has no FY2024 audit on file, so its FY2024 audited figure is blank — but its CAR balance is shown.</p>
+<p style="font-size:14px;color:#475569;margin:2px 0 6px">CAR ending balance per district-year (hover a cell for the audited figure). Iowa City's FY2024 audit is now filed (June 2026), and it tells a sharply different story than the CAR — see the reconciliation below.</p>
 <table>
 <thead><tr><th class="dname">District</th>{''.join(f'<th>FY{y}</th>' for y in YEARS)}</tr></thead>
 <tbody>
@@ -502,8 +502,10 @@ shows up <i>as</i> a reported loss because it doesn't paper over it with transfe
 with both figures tie to the dollar, confirming the per-student picture above is not an artifact of one
 source. The handful of small gaps (Pleasant Valley ~0.5%, Ankeny FY2024 ~3.6%) are genuine CAR-vs-audit
 differences, not data errors — the audited figure is simply lower than the district's self-report in
-those years. Iowa City's FY2024 cell is blank because, alone among the 15, it has <b>not filed a FY2024
-audit</b>; its FY2020–FY2023 activity balances tie to the audit exactly.</p>
+those years. Iowa City's FY2020–FY2023 activity balances tie to the audit exactly — but its newly filed
+<b>FY2024 audit breaks that pattern</b>: the CAR self-reported a +$384K activity balance, while the audited
+ACFR found the fund <b>$983K in deficit</b> — a ~$1.4M overstatement, in the same year its audit carried
+five material weaknesses.</p>
 </div>
 
 <footer>
