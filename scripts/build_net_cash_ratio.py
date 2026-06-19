@@ -253,13 +253,14 @@ district's dashboard to within about $2 (rounding), and the day counts match exa
 ~<b>{ic_peak:.0f} days in {ic_peak_y}</b>), then fell steadily out of it. Its most recent <i>actual</i> year,
 <b>FY{ic_last_y}, sits at ~{ic_last:.0f} days</b> — about a third of the recommended minimum, and below even
 the 60-day GFOA floor — while large-district peers have generally stayed at or above the band (peer average
-~<b>{pa_last:.0f} days</b>). The dashed point is the district's own <b>FY{ic_proj_y} projection (~{ic_proj_v:.0f}
-days)</b>; read it with care.*</p>
+~<b>{pa_last:.0f} days</b>). The dashed FY{ic_proj_y} point is the projected <b>operating</b> cushion —
+~<b>{ic_proj_v:.0f} days</b>, a cliff.*</p>
 <p style="font-size:13px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #d97706;border-radius:8px;padding:10px 14px;margin:10px 0 0">
-<b>*The FY{ic_proj_y} bump is borrowed.</b> The district's projected ~{ic_proj_v:.0f} days exists only because of a planned
-<b>$25M revenue-anticipation warrant</b> plus a <b>$10M interfund loan</b>. PFM's projected June 30, {ic_proj_y} balance
-<i>before</i> the warrant is <b>$4.4M ≈ 7 days</b> — which PFM states is "not sufficient to cover July {ic_proj_y} payroll."
-So the line ticking up is the borrowing, not a recovery.</p>
+<b>*Why FY{ic_proj_y} drops to ~{ic_proj_v:.0f} days.</b> This metric measures days the district can carry expenditures
+<i>without a cash infusion</i>. The district's headline projection looks healthier (~37 days), but only because it counts a
+planned <b>$25M revenue-anticipation warrant</b> plus a <b>$10M interfund loan</b> as cash on hand. Excluding that
+borrowing — as the metric's own definition requires — PFM's projected June 30, {ic_proj_y} operating balance is
+<b>$4.4M ≈ 7 days</b>, which PFM states is "not sufficient to cover July {ic_proj_y} payroll."</p>
 </div>
 
 <div class="card">
@@ -282,9 +283,9 @@ from the first General-Fund column of each district's audited <i>Balance Sheet �
 statements (<code>data/audit-financials.csv</code>) and the master file
 (<code>data/iowa-district-financials.csv</code>). <b>Iowa City FY2024–FY2026</b> are the district's own stated
 General Fund figures (no audit filed): FY2024 and FY2025 from <i>PFM Financial Advisors' Exhibit 1</i>
-(unaudited actual, "Days of Operating Cash on Hand" 47.1 and 32.9), and FY2026 from the COO's
-<i>FY26–FY28 Cash Flow Narrative</i> (projected 36.6 days) — see the borrowing note above
-(<code>data/iccsd-cash-supplemental.csv</code>). "Peers" are the 12 districts with 5,000+ students; a few
+(unaudited actual, "Days of Operating Cash on Hand" 47.1 and 32.9), and FY2026 is PFM's projected operating
+cushion <i>before</i> borrowing (~7 days; the district's headline projection of 36.6 days counts a planned
+$25M warrant + $10M interfund loan — see the note above; <code>data/iccsd-cash-supplemental.csv</code>). "Peers" are the 12 districts with 5,000+ students; a few
 district-years are blank where an older balance-sheet layout couldn't be read cleanly. Built by
 <code>scripts/extract_audit_cash.py</code> + <code>scripts/build_net_cash_ratio.py</code>.
 </footer>
