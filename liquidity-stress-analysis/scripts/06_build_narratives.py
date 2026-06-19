@@ -13,6 +13,10 @@ def f0(x):
     return "n/a" if pd.isna(x) else f"{x:,.0f}"
 
 
+def money(x):
+    return "n/a" if pd.isna(x) else f"${x:,.0f}"
+
+
 def pct(x, d=1):
     return "n/a" if pd.isna(x) else f"{x*100:.{d}f}%"
 
@@ -32,6 +36,17 @@ def main():
     t1 = pd.read_csv(C.TABLES_DIR / "table1_recent_screen.csv")
     t3 = pd.read_csv(C.TABLES_DIR / "table3_numerator_sensitivity.csv")
     supp = pd.read_csv(C.ICCSD_CASH_SUPP_CSV)
+    q4 = pd.read_csv(C.INPUTS_DIR / "iccsd_fy25_q4_report.csv")
+    q = {r.metric: r.value for _, r in q4.iterrows()}
+
+    def qn(k):
+        try:
+            return float(q[k])
+        except (KeyError, ValueError, TypeError):
+            return float("nan")
+    q25_exp = qn("gf_expenditures")
+    q25_days = qn("gf_ending_balance") / (q25_exp / 365.0)
+    q25_op = (qn("gf_revenues") - q25_exp) / qn("gf_revenues")
 
     ic_aud = f[f.district_code == 3141].sort_values("fiscal_year")
     ic_car24 = m[(m.district_code == 3141) & (m.fiscal_year == RECENT)].iloc[0]
@@ -194,6 +209,13 @@ Of ~{n_state} Iowa districts scored: see `district_year_master.csv` for the full
            "## 8. Audit findings / internal control",
            "- **FY2024 and FY2025 audits not filed** as of this analysis — a transparency/ timeliness "
            "concern in its own right; audited components for ICCSD stop at FY2023.",
+           "- **FY2025 actuals (district Q4 report, cash basis, unaudited):** GF revenues "
+           f"{money(qn('gf_revenues'))} vs spending {money(q25_exp)} (≈ break-even, {pct(q25_op)}); "
+           f"cash-basis year-end balance {money(qn('gf_ending_balance'))} ≈ {q25_days:.0f} days; "
+           f"gross GF cash {money(qn('gf_cash_investments_gross'))} incl. ~$10M borrowed from the "
+           "health-insurance fund. No GAAP unassigned/assigned split until the audit is filed. "
+           f"Special-ed deficit support rose to {money(qn('special_ed_deficit_msa'))} (from ~$11.0M "
+           "in FY2024). FY2025 UAB ≈ $4.1M / 1.9% (district) to $5.0M / 2.3% (state) — still thinnest of peers.",
            "",
            "## 9. Overall liquidity risk conclusion", "",
            "- **Annual operating-reserve weakness:** YES — thin, volatile practical cushion.",

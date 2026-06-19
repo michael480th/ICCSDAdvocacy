@@ -1,0 +1,16 @@
+metric,value,basis,note
+gf_beginning_balance,19366904,cash,GF balance as of 7/1/2024 (matches CAR FY2024 ending GF balance)
+gf_revenues,208583924,cash,FY2025 receipts to date
+gf_expenditures,208850928,cash,FY2025 disbursements to date
+gf_expenditures_authority_basis,208525073,spending-authority,Row 33 of the UAB build-up (differs from cash disbursements)
+gf_ending_balance,19099900,cash,GF cash-basis ending balance 6/30/2025
+gf_cash_investments_gross,28730692,cash,GF (funds 10+84) cash in bank + CDs + ISJIT investments at 6/30/2025
+gf_cash_net_of_interfund_loan,19099900,cash,"gross cash less ~$10M owed to the health-insurance fund ≈ cash-basis balance"
+uab_district_estimate,4112087,spending-authority,FY2025 Unspent Authorized Budget per district/ISFIS build-up (1.93% of max authorized)
+uab_state_dom,5031593,spending-authority,FY2025 UAB per Iowa DOM file (2.31% of max) — used in the peer table
+special_ed_deficit_msa,14094631,spending-authority,FY2025 Special Ed Deficit Modified Supplemental Amount (up from 10984784 in FY2024)
+management_fund_ending,6791969,cash,Management Fund cash-basis ending 6/30/2025
+ppel_fund_ending,12375819,cash,PPEL cash-basis ending 6/30/2025
+save_fund_ending,7221745,cash,Capital Projects-SAVE cash-basis ending 6/30/2025
+gf_cash_low_q4,6922199,cash,Lowest GF cash-in-bank within FY2025 (Q4)
+source,K_02_01 FY25 Q4 Financial Report (ICCSD Business Services; presented 9/9/2025; cash basis; UNAUDITED),,

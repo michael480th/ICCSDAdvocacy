@@ -45,6 +45,7 @@
 
 ## 8. Audit findings / internal control
 - **FY2024 and FY2025 audits not filed** as of this analysis — a transparency/ timeliness concern in its own right; audited components for ICCSD stop at FY2023.
+- **FY2025 actuals (district Q4 report, cash basis, unaudited):** GF revenues $208,583,924 vs spending $208,850,928 (≈ break-even, -0.1%); cash-basis year-end balance $19,099,900 ≈ 33 days; gross GF cash $28,730,692 incl. ~$10M borrowed from the health-insurance fund. No GAAP unassigned/assigned split until the audit is filed. Special-ed deficit support rose to $14,094,631 (from ~$11.0M in FY2024). FY2025 UAB ≈ $4.1M / 1.9% (district) to $5.0M / 2.3% (state) — still thinnest of peers.
 
 ## 9. Overall liquidity risk conclusion
 

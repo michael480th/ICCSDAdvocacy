@@ -145,6 +145,22 @@ def main():
     mcash_txt = " → ".join(f"{r.days_cash_on_hand:.1f} (FY{int(r.fiscal_year)})"
                            for _, r in mcash.iterrows())
 
+    # ICCSD FY2025 Q4 financial report (cash basis, unaudited)
+    q4 = pd.read_csv(C.INPUTS_DIR / "iccsd_fy25_q4_report.csv")
+    q = {r.metric: r.value for _, r in q4.iterrows()}
+
+    def qn(k):
+        try:
+            return float(q[k])
+        except (KeyError, ValueError, TypeError):
+            return float("nan")
+    q4_exp = qn("gf_expenditures")
+    q4_rev = qn("gf_revenues")
+    q4_bal = qn("gf_ending_balance")
+    q4_cashbasis_days = q4_bal / (q4_exp / 365.0)
+    q4_op = (q4_rev - q4_exp) / q4_rev
+    q4_sped = qn("special_ed_deficit_msa")
+
     css = """
 :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--blue:#2563eb;--red:#dc2626}
 *{box-sizing:border-box}
@@ -349,6 +365,22 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       f"City’s leftover spending authority at about <b>{pct(ic25.uab_cushion)}</b> — again the "
       "lowest of the 15. <i>(Board cash figures are unaudited/projected; a filed FY25 audit would "
       "still be needed to compute its FY25 reserve cushion here.)</i></div>")
+    A('<div class="plain" style="border-left:4px solid #2563eb">'
+      "<b>Update — Iowa City’s own FY2025 year-end report.</b> The district’s "
+      "<b>Fourth-Quarter Financial Report (cash basis, unaudited, presented Sept 9 2025)</b> is now "
+      "available. It is not an audit and does not classify reserves into unassigned/assigned, but it "
+      "pins down the FY2025 General Fund:"
+      "<ul style='margin:8px 0 0'>"
+      f"<li>Revenues <b>{money(q4_rev)}</b> vs. spending <b>{money(q4_exp)}</b> — essentially "
+      f"<b>break-even</b> ({pct(q4_op)}).</li>"
+      f"<li>Cash-basis year-end balance <b>{money(q4_bal)}</b> ≈ <b>{q4_cashbasis_days:.0f} days</b> "
+      "of spending (a cash-basis cushion, not the GAAP assigned+unassigned figure).</li>"
+      f"<li>Gross GF cash &amp; investments were <b>{money(qn('gf_cash_investments_gross'))}</b>, but "
+      "about <b>$10M of that is the borrowed health-insurance money</b> (Section 6) — netting back to "
+      "the ~$19.1M above. The headline cash figure flatters the real position.</li>"
+      f"<li>Special-education deficit support climbed to <b>{money(q4_sped)}</b> "
+      f"(from ~$11.0M in FY2024) — a growing structural pressure.</li>"
+      "</ul></div>")
     A("</div>")
 
     # ICCSD management disclosures -- the one place we move past "apparent"
