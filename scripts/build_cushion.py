@@ -258,10 +258,20 @@ DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 *{{box-sizing:border-box}} body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}}
 .wrap{{max-width:960px;margin:0 auto;padding:32px 20px 70px}}
 h1{{font-size:30px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px;font-size:16px}}
-.hero{{margin:0 0 18px}}
-.hero img{{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}}
-.hero figcaption{{font-size:13.5px;color:var(--mut);margin-top:10px;text-align:center;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}}
-.hero a{{color:#2563eb;font-weight:600;text-decoration:none}}
+.hero{{margin:0 0 20px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}}
+.herobar{{background:#0f172a;color:#fff;padding:20px 24px}}
+.herobar .kick{{color:#93c5fd;font-weight:700;font-size:12px;letter-spacing:.08em;margin-bottom:6px}}
+.herobar h2{{margin:0 0 8px;font-size:25px;line-height:1.15}}
+.herobar p{{margin:0;color:#cbd5e1;font-size:14.5px}}
+.herostats{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:16px 24px 4px}}
+@media(max-width:640px){{.herostats{{grid-template-columns:1fr}}}}
+.hs{{border-radius:10px;padding:12px 14px;border:1px solid}}
+.hs .hn{{font-size:25px;font-weight:800;line-height:1.1}} .hs .hl{{font-size:12.5px;color:#475569;margin-top:4px}}
+.hs.red{{background:#fef2f2;border-color:#fecaca}} .hs.red .hn{{color:#dc2626}}
+.hs.blue{{background:#eff6ff;border-color:#bfdbfe}} .hs.blue .hn{{color:#2563eb}}
+.hs.green{{background:#f0fdf4;border-color:#bbf7d0}} .hs.green .hn{{color:#16a34a}}
+.hero figure{{margin:6px 24px 8px}}
+.herofoot{{padding:6px 24px 18px;font-size:13.5px}} .herofoot a{{color:#2563eb;font-weight:600;text-decoration:none}}
 .fb{{display:inline-flex;align-items:center;gap:7px;background:#1877f2;color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;font-size:14px}}
 .fb:hover{{background:#0f63d6}} .fb svg{{width:16px;height:16px;fill:#fff}}
 .intro{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:10px;padding:16px 20px;margin-bottom:18px}}
@@ -290,13 +300,21 @@ footer{{color:var(--mut);font-size:12.5px;margin-top:30px;border-top:1px solid v
 footer a{{color:#2563eb}}
 </style></head><body>{nav("cushion")}<div class="wrap">
 
-<figure class="hero">
-  <img src="iccsd-operating-cash-infographic.png" alt="Infographic: Iowa City schools have about one month of cash on hand (~33 days in 2023) versus ~98 days at similar districts and a 60-day recommended level.">
-  <figcaption>
-    <a class="fb" href="{SHARE}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>Share on Facebook</a>
-    <a href="iccsd-operating-cash-infographic.png" download>⬇ Download image</a>
-  </figcaption>
-</figure>
+<section class="hero">
+  <div class="herobar">
+    <div class="kick">IOWA CITY SCHOOLS · CASH WATCH</div>
+    <h2>Our schools have about one month of cash in the bank</h2>
+    <p>"Days of cash" is how long a district could keep paying its bills — payroll, heat, buses — if the
+    money stopped coming in. It's the school version of a family's emergency savings.</p>
+  </div>
+  <div class="herostats">
+    <div class="hs red"><div class="hn">~{icd25:.0f} days</div><div class="hl">Iowa City in 2025 — back at its 2023 low</div></div>
+    <div class="hs blue"><div class="hn">~{pad25:.0f} days</div><div class="hl">Similar-size districts, recent average</div></div>
+    <div class="hs green"><div class="hn">60+ days</div><div class="hl">Recommended safety level (about 2 months)</div></div>
+  </div>
+  {chart3}
+  <div class="herofoot"><a class="fb" href="{SHARE}" target="_blank" rel="noopener">↗ Share on Facebook</a></div>
+</section>
 
 <h1>Does Iowa City Have a Financial Cushion?</h1>
 <p class="sub">Three ways to measure the district's safety margin — spending room, reserves, and days of cash — vs. size-matched peers · {date}</p>
@@ -350,13 +368,13 @@ three years old.</p>
 </div>
 
 <div class="card">
-<h3>3. Cash on hand — the most direct test (2020–2026)</h3>
+<h3>3. Cash on hand — the most direct test (2020–2025)</h3>
 <p class="what"><b>What it is:</b> the district's General Fund cash &amp; investments divided by its average
 daily spending — "if the money stopped coming in, how many days could the lights stay on?" Unlike the first
 two, this is <b>actual cash</b>. <b>GFOA recommends keeping at least ~60 days.</b></p>
 <p class="why"><b>Why it matters:</b> it's the cash behind the district's tax-anticipation-warrant and
-interfund-loan discussions — the most concrete sign of how tight things are.</p>
-{chart3}
+interfund-loan discussions — the most concrete sign of how tight things are. <i>(The days-cash chart is at
+the top of this page.)</i></p>
 <p class="take">Iowa City has run <b>below the ~60-day guideline every year</b>, falling from ~<b>{icd20:.0f}
 days in 2020</b> to ~<b>{icd23:.0f} in 2023</b> — the thinnest of any large district, vs. a peer average near
 <b>{pad23:.0f}</b>. FY2024's unaudited actual ticked up to ~{icd24:.0f}, but it didn't hold: <b>FY2025 is back
