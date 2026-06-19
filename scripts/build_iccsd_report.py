@@ -50,13 +50,13 @@ KPIS = [
 
  dict(id="solv", title="Rainy-day reserves", unit="%", scalemax=25, band=(5,15),
    what="The district's savings cushion (its general-fund reserves) measured against one year of revenue.",
-   why="Reserves absorb surprises — a bad budget year, a late state payment, an emergency repair. In Iowa, 5–15% is considered healthy.",
+   why="Reserves absorb surprises — a bad budget year, a late state payment, an emergency repair. In Iowa, 5–15% is considered healthy. This reserves-as-a-percent-of-revenue measure is the one the credit-rating agencies (Moody's, S&P) actually use to score a district.",
    get=lambda c: c["solv_last"], fmt=lambda v: f"{v:.1f}%", color=lambda v: band_color(v,5,2),
    takeaway=lambda ic,t10,t5: f"Iowa City's cushion is about <b>{ic:.1f}%</b> — well below the 5–15% healthy range — versus <b>{t10:.0f}%</b> for large districts and <b>{t5:.0f}%</b> for the best-run large districts."),
 
  dict(id="dayscash", title="Days of operating reserves on hand", unit=" days", scalemax=90,
-   what="How many days the district could keep running on its rainy-day reserves — unassigned general-fund balance divided by average daily spending. (This excludes restricted money like bond proceeds, which is why it's lower than total 'cash on hand.')",
-   why="The standard liquidity yardstick analysts and rating agencies use for schools. GFOA recommends keeping at least ~60 days (about two months). A thin cushion means little buffer for a bad month, a late state payment, or an emergency.",
+   what="How many days the district could keep running on its rainy-day reserves — unassigned general-fund balance divided by average daily spending. (This is the strict, spendable-reserves view; it excludes restricted money, so it's lower than total <a href='iccsd-cushion.html' style='color:#2563eb'>cash on hand</a> — which ran ~33 days at FY2025 close.)",
+   why="A plain-English liquidity gauge: the GFOA guideline is to keep at least ~60 days (about two months) of cash. A thin cushion means little buffer for a bad month, a late state payment, or an emergency. (Days-of-cash is a GFOA/analyst convention; the rating agencies score reserves as a percent of revenue — the 'Rainy-day reserves' measure above.)",
    get=lambda c: c.get("days_reserves"), fmt=lambda v: f"{v:.0f} days", color=lambda v: band_color(v,60,30),
    takeaway=lambda ic,t10,t5: f"Iowa City could operate only about <b>{ic:.0f} days</b> on its reserves — versus ~<b>{t10:.0f} days</b> for large districts and ~<b>{t5:.0f}</b> for the best-run (GFOA recommends ~60). It is the thinnest cushion of any large district except Waterloo, whose reserves are negative."),
 
@@ -158,6 +158,8 @@ DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 h1{{font-size:30px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px;font-size:16px}}
 .intro{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:10px;padding:16px 20px;margin-bottom:10px}}
 .intro p{{margin:6px 0}} .intro b{{color:var(--ink)}}
+.update{{background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #d97706;border-radius:10px;padding:14px 18px;margin:0 0 22px;font-size:14.5px;line-height:1.55;color:#3f3f46}}
+.update b{{color:#92400e}} .update a{{color:#2563eb;font-weight:600;text-decoration:none}}
 .legend{{font-size:13px;color:var(--mut);margin:14px 2px 22px}}
 .legend .sw{{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle;margin:0 4px 0 12px}}
 .kpi{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}}
@@ -191,6 +193,14 @@ districts</b>, not small ones. For each financial measure it sits beside two siz
 • <b>Best-run large districts</b> — the 5 highest-scoring of those large districts.</p>
 <p>Each card explains the measure in plain language, why it matters to your community, and what Iowa
 City's number means next to its peers.</p>
+</div>
+
+<div class="update">
+<b>⚠ Latest cash position (unaudited).</b> The verified figures in the cards below run through <b>FY2023</b> —
+Iowa City's FY2024 and FY2025 audits still aren't filed. The district's own internal reports show its General
+Fund held about <b>33 days of cash</b> at the FY2025 close, and PFM projects the operating cushion falls to
+roughly <b>7 days by mid-2026</b> <i>before</i> a planned $25M short-term loan needed to make payroll. See
+<a href="iccsd-cushion.html">Does it have a cushion?</a> for the full, sourced picture.
 </div>
 
 <div class="legend">How to read the colors:
