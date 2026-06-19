@@ -57,8 +57,8 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
         solv.setdefault(d, {})[fy] = float(v)
 SOLV_YEARS = list(range(2020, 2026))
 
-# ---------- 3. Operating cash -> days-cash, FY2020-2026 ----------
-DAYS_YEARS = list(range(2020, 2027))
+# ---------- 3. Operating cash -> days-cash, FY2020-2025 ----------
+DAYS_YEARS = list(range(2020, 2026))   # end at FY2025 (last actual); FY2026 projection omitted — too uncertain
 exp = {}
 for r in csv.DictReader(open("data/iowa-district-financials.csv")):
     e = num(r["gf_expenditure"])
@@ -84,6 +84,7 @@ for r in csv.DictReader(open("data/gf-operating-cash.csv")):
 IC_PROJECTED = set()
 for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
     fy = int(r["fiscal_year"])
+    if fy > 2025: continue   # FY2026 projection omitted (too uncertain; see note in prose)
     dc = num(r.get("days_cash"))
     if dc is None:
         c, e = num(r["gf_cash_investments"]), num(r["gf_expenditures"])
@@ -215,7 +216,7 @@ def days_chart():
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+4:.1f}" class="endlab" fill="#2563eb">Peer average</text>')
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+20:.1f}" class="endlab2" fill="#94a3b8">(large districts)</text>')
     s.append('</svg>')
-    return f'<figure><figcaption><b>Operating cash — days-cash-on-hand, FY2020–FY2026</b><span>General Fund cash ÷ average daily spending — higher is more cushion</span></figcaption>{"".join(s)}</figure>'
+    return f'<figure><figcaption><b>Operating cash — days-cash-on-hand, FY2020–FY2025</b><span>General Fund cash ÷ average daily spending — higher is more cushion</span></figcaption>{"".join(s)}</figure>'
 
 
 # ---- numbers for prose ----
@@ -224,7 +225,7 @@ pa17, pa_uab25 = peer_avg(uab, 2017), peer_avg(uab, 2025)
 ic_solv20, ic_solv23 = solv[IC][2020], solv[IC][2023]
 pa_solv23 = peer_avg(solv, 2023)
 icd20, icd23 = days[IC][2020], days[IC][2023]
-icd24, icd25, icd26 = days[IC].get(2024), days[IC].get(2025), days[IC].get(2026)
+icd24, icd25 = days[IC].get(2024), days[IC].get(2025)
 pad23, pad25 = peer_avg(days, 2023), peer_avg(days, 2025)
 
 chart1 = chart(uab, UAB_YEARS, -8, 35,
@@ -359,14 +360,12 @@ interfund-loan discussions — the most concrete sign of how tight things are.</
 <p class="take">Iowa City has run <b>below the ~60-day guideline every year</b>, falling from ~<b>{icd20:.0f}
 days in 2020</b> to ~<b>{icd23:.0f} in 2023</b> — the thinnest of any large district, vs. a peer average near
 <b>{pad23:.0f}</b>. FY2024's unaudited actual ticked up to ~{icd24:.0f}, but it didn't hold: <b>FY2025 is back
-to ~{icd25:.0f} days — the same as the 2023 low</b>, while peers held ~<b>{pad25:.0f}</b>. And FY2026 projects to
-fall off a cliff — to ~<b>{icd26:.0f} days</b> of operating cash.</p>
-<p class="caution"><b>⚠ FY2026 ≈ {icd26:.0f} days — and the district's headline number hides it.</b> This metric counts
-days the district can run <i>without a cash infusion</i>. The district's headline projection looks healthier (~37 days),
-but only because it counts a planned <b>$25M revenue-anticipation warrant</b> plus a <b>$10M interfund loan</b> as cash on
-hand. Strip out that borrowing — as the metric's own definition requires — and PFM's projected June 30, 2026 operating
-balance is just <b>$4.4M ≈ 7 days</b>, which PFM states is "not sufficient to cover July 2026 payroll." FY2024–FY2026 are
-all unaudited (open markers).</p>
+to ~{icd25:.0f} days — the same as the 2023 low</b>, while peers held ~<b>{pad25:.0f}</b>. FY2024 and FY2025 are
+the district's own unaudited figures (open markers).</p>
+<p class="caution">Looking ahead, the district's <b>FY2026</b> cash position is still uncertain and depends on planned
+short-term borrowing (a revenue-anticipation warrant and an interfund loan), so it isn't charted here. The district's
+own projections for it range widely — roughly 7 days of operating cash before that borrowing, versus ~37 days counting
+it — which is why we show actuals only, through FY2025.</p>
 <p class="deep">Want the credit-rating view? See <a href="liquidity-lenses.html">Three liquidity lenses</a>
 (reserves, net cash, and days side by side — how the rating agencies score it), and the district's own intuitive
 <a href="iccsd-net-cash-ratio.html">Day's Net Cash Ratio</a> (its internal KPI, computed across all peers
@@ -381,11 +380,10 @@ back to 2015 against a 90–120 day target), plus the deep-dive
 (state-computed, FY2017–FY2025). <b>Reserves:</b> each district's audited ACFR (FY2020–FY2025); solvency
 ratio = assigned + unassigned general-fund balance ÷ general-fund revenue. <b>Cash:</b> General Fund "cash
 &amp; investments" from each district's audited Balance Sheet — Governmental Funds (FY2020–FY2025). Iowa
-City FY2024–FY2026 are the district's own stated General Fund figures (no audit filed): FY2024 (~$25.9M) and
-FY2025 (~$19.4M) from PFM's Exhibit 1 (unaudited actual), and FY2026 the projected operating cushion <i>before</i>
-borrowing (~$4.4M / ~7 days per PFM; the district's headline $29.4M / 36.6-day projection counts a $25M warrant
-+ $10M interfund loan — see caution). Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2024–FY2026 audits are all still
-outstanding (committed complete by May 2027). <b>Peers</b> are the 12 districts with 5,000+ students. Figures trace to official
+City FY2024 and FY2025 are the district's own stated General Fund figures (no audit filed): FY2024 (~$25.9M) and
+FY2025 (~$19.4M) from PFM's Exhibit 1 (unaudited actual). FY2026 is omitted as too uncertain (it depends on planned
+short-term borrowing — see the note above). Days-cash = cash ÷ (general-fund expenditures / 365). Iowa City's FY2024
+and FY2025 audits are both still outstanding. <b>Peers</b> are the 12 districts with 5,000+ students. Figures trace to official
 filings; nothing is estimated to fill gaps. Built by <code>scripts/build_cushion.py</code>.
 </footer>
 </div></body></html>"""
@@ -394,4 +392,4 @@ open("iccsd-cushion.html", "w").write(DOC)
 print(f"Wrote iccsd-cushion.html ({len(DOC)//1024} KB)")
 print(f"UAB: ICCSD {ic17:.1f}->{ic_uab25:.1f}; peer {pa17:.1f}->{pa_uab25:.1f}")
 print(f"Solv: ICCSD {ic_solv20:.1f}->{ic_solv23:.1f}; peer23 {pa_solv23:.1f}")
-print(f"Days: ICCSD {icd20:.0f}->{icd23:.0f} (24={icd24:.0f},25={icd25:.0f},26={icd26:.0f}); peer23 {pad23:.0f}")
+print(f"Days: ICCSD {icd20:.0f}->{icd23:.0f} (24={icd24:.0f},25={icd25:.0f}); peer23 {pad23:.0f}")

@@ -302,7 +302,7 @@ ul{{margin:8px 0}} li{{margin:4px 0}}
 .take{{margin:12px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #94a3b8;border-radius:6px;padding:10px 14px}}
 .take b{{color:#0f172a}}
 footer{{color:var(--mut);font-size:12.5px;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}}
-</style></head><body>{nav("trust")}<div class="wrap">
+</style></head><body>{nav("more")}<div class="wrap">
 
 <h1>Can We Trust the Numbers?</h1>
 <p class="sub">A reporting-integrity screen comparing each district's <b>Certified Annual Report</b> (its unaudited self-report) against its <b>independently audited</b> General Fund results, FY2017&ndash;FY2023 &middot; {date}</p>

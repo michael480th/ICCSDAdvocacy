@@ -31,9 +31,11 @@ _CSS = (
 _PRIMARY = [
     ("overview",  "index.html",                             "How ICCSD compares"),
     ("cushion",   "iccsd-cushion.html",                     "Does it have a cushion?"),
-    ("trust",     "integrity-checks.html",                  "Can we trust the numbers?"),
     ("data",      "iowa-district-financial-benchmark.html", "Dig into the data"),
 ]
+# "Can we trust the numbers?" (integrity-checks.html) was moved out of the primary doors into
+# "Other analyses" — it's a 3rd/4th-level detail page, not a landing-page question. The integrity
+# page now navigates with active="more". Old pages get re-synced by scripts/resync_nav.py.
 # Secondary links — narrower/older analyses, and the oversight-committee materials.
 _SECONDARY = [
     ("more",      "other-analyses.html",                    "Other analyses"),

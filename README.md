@@ -28,12 +28,11 @@ in plain language, with a short explanation of why it matters.
 |---|---|
 | **1. [How ICCSD compares](https://michael480th.github.io/ICCSD_Financial_Benchmarking/)** | The starting point. How does Iowa City stack up against similar-sized Iowa districts, one measure at a time? |
 | **2. [Does it have a cushion?](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iccsd-cushion.html)** | Does the district keep a financial safety margin — and is it shrinking? Three ways to measure it (spending room, reserves, and days of cash), all in one place. |
-| **3. [Can we trust the numbers?](https://michael480th.github.io/ICCSD_Financial_Benchmarking/integrity-checks.html)** | Are the books current and reliable? Iowa City is two years behind on its audits, and when its self-reported figures *are* checked against the audit, do they match? |
-| **4. [Dig into the data](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iowa-district-financial-benchmark.html)** | The complete picture: all 15 of Iowa's largest districts, scored side by side, with a deep-dive tool for any one district. |
+| **3. [Dig into the data](https://michael480th.github.io/ICCSD_Financial_Benchmarking/iowa-district-financial-benchmark.html)** | The complete picture: all 15 of Iowa's largest districts, scored side by side, with a deep-dive tool for any one district. |
 
 Two more, kept off to the side:
 
-- **[Other analyses](https://michael480th.github.io/ICCSD_Financial_Benchmarking/other-analyses.html)** — the narrower and older pieces (the student-activities fund, point-in-time FY24 snapshots, filing-timeliness, a neighboring district), plus the detailed single-topic versions behind the main pages.
+- **[Other analyses](https://michael480th.github.io/ICCSD_Financial_Benchmarking/other-analyses.html)** — the narrower and older pieces, including **"Can we trust the numbers?"** (the reporting-integrity / CAR-vs-audited screen), the student-activities fund, point-in-time FY24 snapshots, filing-timeliness, and a neighboring district, plus the detailed single-topic versions behind the main pages.
 - **[Oversight committee](https://michael480th.github.io/ICCSD_Financial_Benchmarking/making-the-foc-work.html)** — practical templates for the kind of regular financial reporting that keeps a district on track.
 
 ---
