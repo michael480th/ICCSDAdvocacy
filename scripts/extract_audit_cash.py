@@ -56,7 +56,7 @@ def gf_cash(path):
 
 rows = []
 for name, stem in DISTRICTS.items():
-    for fy in range(2020, 2026):
+    for fy in range(2015, 2026):
         p = f"auditreports/{stem}-{fy}.pdf"
         if not os.path.exists(p):
             continue
@@ -78,7 +78,7 @@ with open("data/gf-operating-cash.csv", "w", newline="") as fh:
     w = csv.writer(fh)
     w.writerow(["district", "fiscal_year", "gf_cash_investments", "source"])
     w.writerows(rows)
-miss = [(n, fy) for n in DISTRICTS for fy in range(2020, 2026)
+miss = [(n, fy) for n in DISTRICTS for fy in range(2015, 2026)
         if os.path.exists(f"auditreports/{DISTRICTS[n]}-{fy}.pdf")
         and not any(r[0] == n and r[1] == fy for r in rows)]
 print(f"wrote data/gf-operating-cash.csv: {len(rows)} rows")

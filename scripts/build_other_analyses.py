@@ -12,6 +12,10 @@ from _nav import nav
 
 # (href, title, blurb)
 DEEP = [
+    ("iccsd-net-cash-ratio.html", "Day's Net Cash Ratio (the district's own KPI)",
+     "Iowa City's own liquidity metric — days of cash on hand — computed across all peer districts "
+     "FY2015–2025, with the 90–120 recommended range. Our figures match the district's published "
+     "dashboard exactly (67 days in 2015 … down to 33 by 2023)."),
     ("iccsd-liquidity-trend.html", "Reserves over time — detailed",
      "The full reserves story: spending-authority cushion (2017–2025) and audited cash reserves "
      "(2020–2025), charted on their own. Summarized on the “Does it have a cushion?” page."),
