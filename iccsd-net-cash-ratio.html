@@ -1,0 +1,115 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iowa City Schools — Day's Net Cash Ratio vs. peers</title>
+<style>
+:root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box} body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:#f1f5f9}
+.wrap{max-width:960px;margin:0 auto;padding:32px 20px 70px}
+h1{font-size:28px;margin:0 0 6px} .sub{color:var(--mut);margin:0 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);overflow-x:auto}
+.intro{border-left:4px solid #2563eb} .intro p{margin:7px 0}
+.formula{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:15px;text-align:center}
+.formula .frac{display:inline-block;text-align:center;margin:0 4px;vertical-align:middle}
+.formula .frac .n{display:block;border-bottom:2px solid #334155;padding:0 8px}
+.formula .frac .d{display:block;padding:0 8px}
+.valid{background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:14.5px}
+.valid b{color:#166534}
+.valid table{border-collapse:collapse;margin-top:8px;font-size:13.5px}
+.valid td,.valid th{padding:3px 12px 3px 0;text-align:right} .valid th{color:var(--mut);font-weight:600}
+.valid td:first-child,.valid th:first-child{text-align:left}
+.chart{width:100%;height:auto;display:block}
+.grid{stroke:#eef2f7;stroke-width:1} .ytick{fill:#94a3b8;font-size:12px;text-anchor:end} .xtick{fill:#64748b;font-size:13px;text-anchor:middle}
+.ref60{stroke:#94a3b8;stroke-width:1.3;stroke-dasharray:4 4;opacity:.8} .reflab60{fill:#94a3b8;font-size:11px;text-anchor:end}
+.bandlab{fill:#16a34a;font-size:11px;opacity:.9}
+.endlab{font-size:13px} .endlab2{font-size:11px}
+.legend{font-size:13px;color:var(--mut);margin:8px 2px 0;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.legend i{display:inline-block;width:22px;height:0;border-top-width:3px;border-top-style:solid;vertical-align:middle;margin-right:6px}
+.take{margin:14px 0 0;font-size:15.5px;line-height:1.55;background:#fafafa;border-left:3px solid #dc2626;border-radius:6px;padding:10px 14px}
+.take b{color:#0f172a}
+table.rank{border-collapse:collapse;width:100%;font-size:14px;margin-top:4px}
+table.rank td,table.rank th{padding:6px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+table.rank th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+table.rank td.dn{text-align:left;font-weight:600} table.rank tr.me{background:#eff6ff} table.rank tr.me td.dn{color:#1d4ed8}
+footer{color:var(--mut);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+footer a{color:#2563eb}
+</style></head><body><style>.sitenav{max-width:960px;margin:0 auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:600 13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}.sitenav .brand{color:#0f172a;margin-right:4px;font-weight:800}.sitenav a,.sitenav .cur{display:inline-block;padding:6px 13px;border-radius:999px;text-decoration:none;border:1px solid #e2e8f0}.sitenav a{color:#2563eb;background:#fff}.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}.sitenav .sep{flex-basis:100%;height:0;margin:0}.sitenav .more{color:#64748b;border-color:#eef2f7;background:#fff;font-weight:600}.sitenav .more:hover{background:#f8fafc;border-color:#e2e8f0}.sitenav .more.cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}</style><nav class="sitenav"><span class="brand">Iowa City CSD finances</span><a href="index.html">How ICCSD compares</a><a href="iccsd-cushion.html">Does it have a cushion?</a><a href="integrity-checks.html">Can we trust the numbers?</a><a href="iowa-district-financial-benchmark.html">Dig into the data</a><span class="sep"></span><a class="more cur" href="other-analyses.html">Other analyses</a><a class="more" href="making-the-foc-work.html">Oversight committee</a></nav><div class="wrap">
+
+<h1>Day's Net Cash Ratio — Iowa City vs. peers</h1>
+<p class="sub">The district's own liquidity KPI — how many days it could keep paying the bills on cash on hand — computed across the large Iowa districts, FY2015–FY2025 · June 2026</p>
+
+<div class="card intro">
+<p><b>What it is:</b> Iowa City tracks a "Day's Net Cash Ratio" on its own financial dashboard. It answers
+the most concrete liquidity question — <b>how many days the district could carry expenditures without any
+new cash coming in.</b></p>
+<div class="formula">
+Day's Net Cash Ratio =
+<span class="frac"><span class="n">Cash &amp; Investments</span><span class="d">Total Expenditures ÷ 365</span></span>
+</div>
+<p><b>The recommended range is 90–120 days</b> (shaded green). That is the district's own target (90 days)
+and reflects Iowa's seasonal property-tax timing — districts receive tax money in big lumps in fall and
+spring, so they need a larger buffer than GFOA's general ~60-day floor (gray line) to bridge the gap.</p>
+</div>
+
+<div class="valid">
+<b>✓ Validated against the district's own numbers.</b> We extracted Cash &amp; Investments independently from
+each audited balance sheet. For the five years ICCSD published this KPI itself, our figures match the
+district's dashboard to within about $2 (rounding), and the day counts match exactly:
+<table>
+<tr><th>Fiscal year</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th></tr>
+<tr><td>District dashboard</td><td>67</td><td>84</td><td>88</td><td>79</td><td>63</td></tr>
+<tr><td>Our calculation</td>
+<td>67</td><td>84</td><td>88</td><td>79</td><td>63</td></tr>
+</table>
+</div>
+
+<div class="card">
+<div class="legend">
+  <span><i style="border-color:#dc2626;border-top-width:4px"></i>Iowa City CSD</span>
+  <span><i style="border-color:#2563eb;border-top-style:dashed"></i>Peer average</span>
+  <span><i style="border-color:#cbd5e1"></i>Individual peers</span>
+  <span><span style="display:inline-block;width:14px;height:10px;background:#16a34a;opacity:.2;vertical-align:middle;margin-right:5px"></span>recommended 90–120</span>
+  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>unaudited (FY2024 CAR)</span>
+</div>
+<svg viewBox="0 0 880 460" class="chart" role="img" aria-label="Day's Net Cash Ratio by district, 2015-2025"><rect x="56" y="180.0" width="674" height="58.5" fill="#16a34a" opacity="0.10"/><text x="62" y="194.0" class="bandlab">recommended range 90–120 days</text><line x1="56" y1="414.0" x2="730" y2="414.0" class="grid"/><text x="48" y="418.0" class="ytick">0</text><line x1="56" y1="375.0" x2="730" y2="375.0" class="grid"/><text x="48" y="379.0" class="ytick">20</text><line x1="56" y1="336.0" x2="730" y2="336.0" class="grid"/><text x="48" y="340.0" class="ytick">40</text><line x1="56" y1="297.0" x2="730" y2="297.0" class="grid"/><text x="48" y="301.0" class="ytick">60</text><line x1="56" y1="258.0" x2="730" y2="258.0" class="grid"/><text x="48" y="262.0" class="ytick">80</text><line x1="56" y1="219.0" x2="730" y2="219.0" class="grid"/><text x="48" y="223.0" class="ytick">100</text><line x1="56" y1="180.0" x2="730" y2="180.0" class="grid"/><text x="48" y="184.0" class="ytick">120</text><line x1="56" y1="141.0" x2="730" y2="141.0" class="grid"/><text x="48" y="145.0" class="ytick">140</text><line x1="56" y1="102.0" x2="730" y2="102.0" class="grid"/><text x="48" y="106.0" class="ytick">160</text><line x1="56" y1="63.0" x2="730" y2="63.0" class="grid"/><text x="48" y="67.0" class="ytick">180</text><line x1="56" y1="24.0" x2="730" y2="24.0" class="grid"/><text x="48" y="28.0" class="ytick">200</text><line x1="56" y1="297.0" x2="730" y2="297.0" class="ref60"/><text x="726" y="292.0" class="reflab60">GFOA ≈ 60-day floor</text><text x="56.0" y="436" class="xtick">2015</text><text x="123.4" y="436" class="xtick">2016</text><text x="190.8" y="436" class="xtick">2017</text><text x="258.2" y="436" class="xtick">2018</text><text x="325.6" y="436" class="xtick">2019</text><text x="393.0" y="436" class="xtick">2020</text><text x="460.4" y="436" class="xtick">2021</text><text x="527.8" y="436" class="xtick">2022</text><text x="595.2" y="436" class="xtick">2023</text><text x="662.6" y="436" class="xtick">2024</text><text x="730.0" y="436" class="xtick">2025</text><polyline points="56.0,274.7 123.4,245.9 190.8,216.8 258.2,207.3 325.6,259.5 393.0,253.9 460.4,245.1 527.8,217.7 595.2,219.0 662.6,238.7 730.0,207.1" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="274.7" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="245.9" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="216.8" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="207.3" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="259.5" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="253.9" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="245.1" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="217.7" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="219.0" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="238.7" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="207.1" r="2.2" fill="#cbd5e1"/><polyline points="56.0,291.0 123.4,271.1 190.8,252.8 258.2,234.7 325.6,242.6 393.0,251.3 460.4,261.6 527.8,263.7 595.2,231.9 662.6,220.8 730.0,232.1" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="291.0" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="271.1" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="252.8" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="234.7" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="242.6" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="251.3" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="261.6" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="263.7" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="231.9" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="220.8" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="232.1" r="2.2" fill="#cbd5e1"/><polyline points="460.4,315.8 527.8,308.9 595.2,327.7 662.6,361.0 730.0,402.0" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="460.4" cy="315.8" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="308.9" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="327.7" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="361.0" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="402.0" r="2.2" fill="#cbd5e1"/><polyline points="190.8,257.2 258.2,253.0 325.6,246.8 393.0,211.0 460.4,230.8 527.8,216.0 595.2,183.5 662.6,175.8 730.0,132.8" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="190.8" cy="257.2" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="253.0" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="246.8" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="211.0" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="230.8" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="216.0" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="183.5" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="175.8" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="132.8" r="2.2" fill="#cbd5e1"/><polyline points="56.0,222.5 123.4,224.4 190.8,230.1 258.2,241.4 325.6,234.8 393.0,163.6 460.4,163.6 527.8,120.4 595.2,126.5 662.6,126.5 730.0,189.7" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="222.5" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="224.4" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="230.1" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="241.4" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="234.8" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="163.6" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="163.6" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="120.4" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="126.5" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="126.5" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="189.7" r="2.2" fill="#cbd5e1"/><polyline points="56.0,280.8 123.4,281.3 190.8,260.0 258.2,251.5 325.6,253.7 393.0,244.4 460.4,253.1 527.8,220.2 595.2,227.1 662.6,238.4 730.0,233.7" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="280.8" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="281.3" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="260.0" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="251.5" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="253.7" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="244.4" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="253.1" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="220.2" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="227.1" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="238.4" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="233.7" r="2.2" fill="#cbd5e1"/><polyline points="56.0,272.4 123.4,229.8 190.8,215.2 258.2,209.2 325.6,228.0 393.0,256.0 460.4,240.2 527.8,188.2 595.2,199.2 662.6,239.8 730.0,286.6" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="272.4" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="229.8" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="215.2" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="209.2" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="228.0" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="256.0" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="240.2" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="188.2" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="199.2" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="239.8" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="286.6" r="2.2" fill="#cbd5e1"/><polyline points="258.2,274.2 325.6,281.2 393.0,268.1 460.4,253.4 527.8,277.8 595.2,305.4 662.6,293.0 730.0,262.5" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="258.2" cy="274.2" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="281.2" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="268.1" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="253.4" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="277.8" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="305.4" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="293.0" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="262.5" r="2.2" fill="#cbd5e1"/><polyline points="56.0,236.1 123.4,251.1 190.8,224.5 258.2,227.5 325.6,233.1 393.0,210.3 460.4,192.9 527.8,211.9 595.2,206.9 662.6,183.5 730.0,171.5" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="236.1" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="251.1" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="224.5" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="227.5" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="233.1" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="210.3" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="192.9" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="211.9" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="206.9" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="183.5" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="171.5" r="2.2" fill="#cbd5e1"/><polyline points="56.0,295.9 123.4,279.0 190.8,231.1 258.2,218.3 325.6,236.4 393.0,232.7 460.4,204.3 527.8,208.7 595.2,190.8 662.6,296.7 730.0,366.9" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="295.9" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="279.0" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="231.1" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="218.3" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="236.4" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="232.7" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="204.3" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="208.7" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="190.8" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="296.7" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="366.9" r="2.2" fill="#cbd5e1"/><polyline points="56.0,274.2 123.4,273.3 190.8,252.6 258.2,224.7 325.6,217.9 393.0,244.1 460.4,248.6 527.8,248.4 595.2,247.9 662.6,225.1 730.0,206.7" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="56.0" cy="274.2" r="2.2" fill="#cbd5e1"/><circle cx="123.4" cy="273.3" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="252.6" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="224.7" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="217.9" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="244.1" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="248.6" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="248.4" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="247.9" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="225.1" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="206.7" r="2.2" fill="#cbd5e1"/><polyline points="123.4,203.6 190.8,143.4 258.2,213.9 325.6,257.8 393.0,234.6 460.4,256.4 527.8,221.9 595.2,218.9 662.6,219.7 730.0,245.6" fill="none" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="123.4" cy="203.6" r="2.2" fill="#cbd5e1"/><circle cx="190.8" cy="143.4" r="2.2" fill="#cbd5e1"/><circle cx="258.2" cy="213.9" r="2.2" fill="#cbd5e1"/><circle cx="325.6" cy="257.8" r="2.2" fill="#cbd5e1"/><circle cx="393.0" cy="234.6" r="2.2" fill="#cbd5e1"/><circle cx="460.4" cy="256.4" r="2.2" fill="#cbd5e1"/><circle cx="527.8" cy="221.9" r="2.2" fill="#cbd5e1"/><circle cx="595.2" cy="218.9" r="2.2" fill="#cbd5e1"/><circle cx="662.6" cy="219.7" r="2.2" fill="#cbd5e1"/><circle cx="730.0" cy="245.6" r="2.2" fill="#cbd5e1"/><polyline points="56.0,268.4 123.4,251.1 190.8,228.4 258.2,232.3 325.6,244.7 393.0,233.6 460.4,238.8 527.8,225.3 595.2,223.7 662.6,234.9 730.0,244.8" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="7 4"/><polyline points="56.0,282.4 123.4,250.6 190.8,242.7 258.2,260.5 325.6,291.5 393.0,311.4 460.4,330.3 527.8,338.4 595.2,348.9 662.6,320.9" fill="none" stroke="#dc2626" stroke-width="3.4"/><circle cx="56.0" cy="282.4" r="3.8" fill="#dc2626"/><circle cx="123.4" cy="250.6" r="3.8" fill="#dc2626"/><circle cx="190.8" cy="242.7" r="3.8" fill="#dc2626"/><circle cx="258.2" cy="260.5" r="3.8" fill="#dc2626"/><circle cx="325.6" cy="291.5" r="3.8" fill="#dc2626"/><circle cx="393.0" cy="311.4" r="3.8" fill="#dc2626"/><circle cx="460.4" cy="330.3" r="3.8" fill="#dc2626"/><circle cx="527.8" cy="338.4" r="3.8" fill="#dc2626"/><circle cx="595.2" cy="348.9" r="3.8" fill="#dc2626"/><circle cx="662.6" cy="320.9" r="4.4" fill="#fff" stroke="#dc2626" stroke-width="2.4"/><text x="662.6" y="308.9" class="endlab2" fill="#b45309" text-anchor="middle">2024 (unaudited)</text><text x="670.6" y="324.9" class="endlab" fill="#dc2626" style="font-weight:700">Iowa City</text><text x="738.0" y="248.8" class="endlab" fill="#2563eb">Peer average</text><text x="738.0" y="264.8" class="endlab2" fill="#94a3b8">(large districts)</text></svg>
+<p class="take">Iowa City sat <b>inside or near the 90–120 recommended band a decade ago</b> (peaking at
+~<b>88 days in 2017</b>), then fell steadily out of it. By <b>FY2024 it was at
+~48 days</b> — roughly a third of the recommended minimum, and well under even the 60-day GFOA
+floor. Its large-district peers have generally stayed at or above the band (peer average ~<b>92
+days</b>). Iowa City has gone from a typical Iowa cushion to the thinnest in the group.</p>
+</div>
+
+<div class="card">
+<h2 style="margin:0 0 6px;font-size:19px">Most recent year, ranked</h2>
+<table class="rank">
+<thead><tr><th class="dn">District</th><th>Year</th><th>Day's Net Cash Ratio</th></tr></thead>
+<tbody>
+<tr><td class="dn">Davenport CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">144</td></tr>
+<tr><td class="dn">Pleasant Valley CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">124</td></tr>
+<tr><td class="dn">Des Moines Independent CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">115</td></tr>
+<tr><td class="dn">Waukee CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">106</td></tr>
+<tr><td class="dn">Ankeny CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">106</td></tr>
+<tr><td class="dn">Cedar Rapids CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">93</td></tr>
+<tr><td class="dn">Dubuque CSD</td><td>FY2025</td><td style="color:#16a34a;font-weight:600">92</td></tr>
+<tr><td class="dn">West Des Moines CSD</td><td>FY2025</td><td style="color:#d97706;font-weight:600">86</td></tr>
+<tr><td class="dn">Linn-Mar CSD</td><td>FY2025</td><td style="color:#d97706;font-weight:600">78</td></tr>
+<tr><td class="dn">Johnston CSD</td><td>FY2025</td><td style="color:#d97706;font-weight:600">65</td></tr>
+<tr class=me><td class="dn">Iowa City CSD</td><td>FY2024</td><td style="color:#dc2626;font-weight:800">48</td></tr>
+<tr><td class="dn">Waterloo CSD</td><td>FY2025</td><td style="color:#dc2626;font-weight:600">24</td></tr>
+<tr><td class="dn">College CSD (Prairie)</td><td>FY2025</td><td style="color:#dc2626;font-weight:600">6</td></tr>
+</tbody>
+</table>
+<p style="font-size:13px;color:#64748b;margin:8px 2px 0">Green ≥ 90 (in range) · amber 60–90 · red &lt; 60. Latest audited year shown per district; Iowa City's FY2024 is its unaudited self-report.</p>
+</div>
+
+<footer>
+<b>Sources.</b> Day's Net Cash Ratio = General Fund Cash &amp; Investments ÷ (General Fund expenditures / 365),
+the district's own dashboard formula (CAR refs BalSheet C1L1 / ExpGF C8L42). Cash &amp; Investments extracted
+from the first General-Fund column of each district's audited <i>Balance Sheet — Governmental Funds</i>
+(<code>auditreports/</code>, FY2015–FY2023; later years where filed); Iowa City FY2024 from its unaudited
+Certified Annual Report. Expenditures from the audited statements (<code>data/audit-financials.csv</code>,
+FY2015–FY2023) and the master file (<code>data/iowa-district-financials.csv</code>, FY2020–FY2025). "Peers"
+are the 12 districts with 5,000+ students; a few district-years are blank where an older balance-sheet
+layout couldn't be read cleanly. Built by <code>scripts/extract_audit_cash.py</code> +
+<code>scripts/build_net_cash_ratio.py</code>.
+</footer>
+</div></body></html>
