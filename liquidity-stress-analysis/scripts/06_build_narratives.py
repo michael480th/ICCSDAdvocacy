@@ -117,24 +117,28 @@ structurally stronger across the board.
   drawn down across multiple years before the FY2024 rebound. ESSER wind-down pressured most
   Iowa districts, but ICCSD entered that period with less cushion than peers.
 
-## 5. What further data would confirm actual intra-year cash stress?
+## 5. Is the intra-year stress confirmed? For Iowa City, partly — yes.
 
-This screen is built on year-end annual data and **cannot** establish an intra-year cash low.
-To confirm (per the workplan's follow-up criteria, which ICCSD meets on ≥2 conditions —
-thin cushion, low/negative UAB, multi-year drawdown), collect monthly:
-GF cash & investment balances by fund; GF revenue by source; GF expenditures by object;
-payroll & benefits; accounts payable; interfund-borrowing activity; grant-receivable aging;
-and any cash-flow projections. *(ICCSD board materials already hint at this:
-COO indicated ~$19.3M GF cash entering FY26 ≈ ~33 days; PFM projected ~$21.4M / ~35 days for
-FY26 — internal/unaudited, suitable only for targeted follow-up, not statewide benchmarking.)*
+This annual screen **cannot** establish an intra-year cash low on its own. For most districts that
+remains unconfirmed. **Iowa City is the exception:** its own administration has disclosed to the
+board (COO FY26–FY28 Cash Flow Narrative, board packet B.01.01, Apr 1 2026 — district projections,
+unaudited) a cascade of short-term borrowing that is direct evidence of an intra-year squeeze:
+a **$10M interfund loan** from the health-insurance fund (Aug 2025, when GF cash fell **below $6M /
+~10 days**); a **$3M revenue anticipation warrant** to make the **March 15, 2026 payroll**; a
+proposed **$25M warrant** (May 2026, partly to lend the SAVE fund cash for its June 1 bond payment);
+and management's own days-cash projection falling **36.6 → 23.2 → 16.9** (FY26→FY28). Per the
+workplan's Final Interpretation Standard (short-term borrowing **or** direct management disclosure),
+this clears the bar to say Iowa City has **actual** intra-year liquidity stress — on unaudited,
+district-reported figures, used only as targeted ICCSD follow-up, not statewide benchmarking.
 
 ## Precise-language conclusion
 
 > **Iowa City CSD screens as liquidity-constrained and has thin operating reserves**, with the
-> sharpest signal being **spending-authority (UAB) weakness** rather than year-end cash.
-> It **may be exposed to intra-year cash-flow stress**, but **monthly cash-flow data would be
-> required to confirm actual liquidity pressure.** Cedar Rapids does not screen as constrained
-> under any reserve definition.
+> sharpest signal being **spending-authority (UAB) weakness** rather than year-end cash. Unlike its
+> peers, **Iowa City has documented intra-year cash-flow stress** — its management has disclosed
+> short-term borrowing (interfund loan and revenue anticipation warrants) to make payroll and bond
+> payments — though these are **unaudited district figures** pending its overdue FY24/FY25 audits.
+> Cedar Rapids does not screen as constrained under any reserve definition.
 
 ---
 ### Statewide screen — how the focus districts sit (FY{RECENT})
@@ -193,8 +197,11 @@ Of ~{n_state} Iowa districts scored: see `district_year_master.csv` for the full
            "",
            "## 9. Overall liquidity risk conclusion", "",
            "- **Annual operating-reserve weakness:** YES — thin, volatile practical cushion.",
-           "- **Actual intra-year liquidity stress:** UNCONFIRMED — needs monthly cash-flow data.",
-           "- **Spending-authority risk:** ELEVATED — lowest UAB of peers; negative in FY2023.",
+           "- **Actual intra-year liquidity stress:** DOCUMENTED (unaudited) — management has "
+           "disclosed short-term borrowing (a $10M interfund loan with GF cash <$6M/~10 days in "
+           "Aug 2025, and revenue anticipation warrants to make payroll/bond payments).",
+           "- **Spending-authority risk:** ELEVATED — lowest UAB of peers; negative in FY2023; "
+           "still ~2.4% (state figure) in FY2025.",
            "- **Longer-term structural budget risk:** MODERATE — multi-year drawdown before FY2024 rebound; "
            "limited levy headroom to rebuild.",
            "",

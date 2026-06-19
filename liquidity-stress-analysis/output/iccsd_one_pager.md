@@ -49,8 +49,8 @@
 ## 9. Overall liquidity risk conclusion
 
 - **Annual operating-reserve weakness:** YES — thin, volatile practical cushion.
-- **Actual intra-year liquidity stress:** UNCONFIRMED — needs monthly cash-flow data.
-- **Spending-authority risk:** ELEVATED — lowest UAB of peers; negative in FY2023.
+- **Actual intra-year liquidity stress:** DOCUMENTED (unaudited) — management has disclosed short-term borrowing (a $10M interfund loan with GF cash <$6M/~10 days in Aug 2025, and revenue anticipation warrants to make payroll/bond payments).
+- **Spending-authority risk:** ELEVATED — lowest UAB of peers; negative in FY2023; still ~2.4% (state figure) in FY2025.
 - **Longer-term structural budget risk:** MODERATE — multi-year drawdown before FY2024 rebound; limited levy headroom to rebuild.
 
 _Internal/unaudited follow-up signals (board materials, targeted use only):_ FY2025 GF cash ≈ $19,300,000 (unaudited-internal); FY2026 GF cash ≈ $21,400,000 (projected)

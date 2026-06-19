@@ -1,0 +1,5 @@
+period,instrument,status,amount_usd,purpose,gf_cash_context,source
+2025-08,Interfund loan from health-insurance fund,executed,10000000,Cover General Fund cash shortfall,"GF cash fell below $6M that month (~10 days of cash)","COO memo, ICCSD board packet B.01.01, Apr 1 2026"
+2026-03,Revenue Anticipation Warrant (RAW/RAN),executed,3000000,Cover the March 15 payroll,,"COO memo, ICCSD board packet B.01.01, Apr 1 2026"
+2026-05,Revenue Anticipation Warrant (RAW/RAN),proposed,25000000,"$10M to repay the health-insurance fund; ~$7.32M lent to the SAVE fund to make the June 1 SAVE bond payment; remainder to reserves",,"COO memo, ICCSD board packet B.01.01, Apr 1 2026"
+2027-06,Revenue Anticipation Warrant (RAW/RAN),projected,10000000,Cash-flow bridge,,"COO memo, ICCSD board packet B.01.01, Apr 1 2026"

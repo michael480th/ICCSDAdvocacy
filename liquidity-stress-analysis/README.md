@@ -58,6 +58,17 @@ governmental fund balance are **carried for context only** and never used as ope
   large-peer view (no statewide data exists for FY2025) and Iowa City's own FY25/FY26 board cash
 - `charts/1..6_*.png` — scatter, peer bar, trend, ICCSD numerator waterfall, heatmap, FY2025 bar
 
+### Iowa City management disclosures (the one place we move past "apparent")
+`inputs/iccsd_short_term_borrowing.csv` and `inputs/iccsd_management_cash_projection.csv` capture the
+COO's FY26–FY28 Cash Flow Narrative (board packet B.01.01, Apr 1 2026, **unaudited district
+projections**), as summarized in `../iccsd-fmp-board-commentary.md`: a $10M interfund loan (Aug 2025,
+GF cash < $6M / ~10 days), a $3M revenue anticipation warrant for the Mar 15 2026 payroll, a proposed
+$25M warrant (May 2026), and a days-cash projection of 36.6 → 23.2 → 16.9 (FY26→FY28). Per the
+workplan's Final Interpretation Standard (short-term borrowing **or** management disclosure), this is
+enough to call Iowa City's intra-year stress **documented** — for Iowa City only, on unaudited figures,
+used strictly as targeted follow-up. It does not change any other district's classification or the
+statewide screen.
+
 ### A note on FY2025 / FY2026
 The statewide files (CAR, SBRC cash-reserve-levy) only run through **FY2024**, so FY2025 cannot be a
 statewide screen. The 15 large districts' **audited** FY2025 reports are in, so FY2025 is presented as

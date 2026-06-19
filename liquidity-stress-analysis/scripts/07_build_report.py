@@ -128,6 +128,23 @@ def main():
     ic25 = iccash[iccash.fiscal_year == 2025].iloc[0]
     ic26 = iccash[iccash.fiscal_year == 2026].iloc[0]
 
+    # ICCSD management/board disclosures (unaudited)
+    borrow = pd.read_csv(C.INPUTS_DIR / "iccsd_short_term_borrowing.csv")
+    mcash = pd.read_csv(C.INPUTS_DIR / "iccsd_management_cash_projection.csv")
+    STATUS_BG = {"executed": "#f4cccc", "proposed": "#fce5cd", "projected": "#fff2cc"}
+    borrow_rows = ""
+    for _, r in borrow.iterrows():
+        ctx = f" — {html.escape(str(r.gf_cash_context))}" if pd.notna(r.gf_cash_context) else ""
+        bg = STATUS_BG.get(r.status, "#eee")
+        borrow_rows += (
+            f"<tr><td>{html.escape(str(r.period))}</td>"
+            f"<td>{html.escape(str(r.instrument))}</td>"
+            f'<td><span class="badge" style="background:{bg}">{html.escape(str(r.status))}</span></td>'
+            f"<td>{money(r.amount_usd)}</td>"
+            f"<td style='text-align:left'>{html.escape(str(r.purpose))}{ctx}</td></tr>")
+    mcash_txt = " → ".join(f"{r.days_cash_on_hand:.1f} (FY{int(r.fiscal_year)})"
+                           for _, r in mcash.iterrows())
+
     css = """
 :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--blue:#2563eb;--red:#dc2626}
 *{box-sizing:border-box}
@@ -190,8 +207,10 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       "least <i>spending room</i> under Iowa’s budget-authority rules of any of its big peers.</p>")
     A('<p style="font-size:14px;color:#64748b;margin-bottom:0"><b>Important:</b> this is an '
       "<i>early-warning screen</i> built from year-end numbers. It shows which districts look "
-      "stretched on paper. It does <b>not</b> prove a district actually ran short of cash during "
-      "the year — confirming that needs month-by-month cash records (explained at the end).</p>")
+      "stretched on paper. For most districts it does <b>not</b> prove they actually ran short of "
+      "cash during the year — confirming that needs month-by-month records. <b>Iowa City is the one "
+      "case where that confirming evidence now exists</b>, from the district’s own management "
+      "(section 6).</p>")
     A("</div>")
 
     # KPI strip
@@ -332,8 +351,37 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       "still be needed to compute its FY25 reserve cushion here.)</i></div>")
     A("</div>")
 
+    # ICCSD management disclosures -- the one place we move past "apparent"
+    A('<div class="card"><h2>6. The strongest evidence: Iowa City’s own management</h2>')
+    A('<p class="plain">Everything above is a <i>screen</i> built from year-end numbers. For Iowa '
+      "City there is something more direct: its own administration has told the school board, in "
+      "writing, that the district is borrowing short-term to make payroll and bond payments. This is "
+      "the kind of evidence — short-term borrowing plus direct management disclosure — that lets us "
+      "say liquidity stress is <b>actually happening</b>, not just <i>apparent</i> on paper.</p>")
+    A(fig("7_iccsd_management_cash_projection.png",
+          "Management’s own projection of days of cash on hand, from the COO’s FY26–FY28 Cash Flow "
+          "Narrative (board packet B.01.01, April 2026). A district projection, not an audited figure."))
+    A(f'<p class="plain"><b>Management’s projected cash trajectory:</b> {mcash_txt} days. '
+      "Under ~30 days is tight; ~17 days (FY28) is alarming for a district this size.</p>")
+    A("<table><thead><tr><th>When</th><th>Borrowing</th><th>Status</th><th>Amount</th>"
+      f"<th>Purpose</th></tr></thead><tbody>{borrow_rows}</tbody></table>")
+    A('<div class="take"><b>Takeaway:</b> Iowa City took a <b>$10M interfund loan</b> from its '
+      "health-insurance fund in August 2025 — the month its General Fund cash fell <b>below $6M "
+      "(~10 days)</b> — and a <b>$3M revenue anticipation warrant</b> to make the March 15, 2026 "
+      "payroll, with a much larger warrant proposed for May 2026 (partly to lend the SAVE construction "
+      "fund enough cash to make its own bond payment). For a district to borrow short-term to cover "
+      "payroll and to prop up another fund’s bond payment is direct evidence of an intra-year cash "
+      "squeeze.</div>")
+    A('<div class="caution"><b>Sourcing &amp; status.</b> These figures come from the COO’s memo to '
+      "the Board of Education (board packet item B.01.01, April 1, 2026) — <b>district projections and "
+      "disclosures, not audited figures</b>. “Executed” items had already occurred when the memo was "
+      "written; “proposed”/“projected” items had not. We rely on monthly/board data here only for "
+      "Iowa City follow-up — exactly the targeted use the statewide screen reserves it for; it does "
+      "not change any other district’s classification.</div>")
+    A("</div>")
+
     # Numerator sensitivity vs Cedar Rapids
-    A('<div class="card"><h2>6. “Is it just one strict measure?” — No.</h2>')
+    A('<div class="card"><h2>7. “Is it just one strict measure?” — No.</h2>')
     A('<p class="plain">A fair question: maybe Iowa City only looks thin under the strictest '
       "definition of savings. So we recalculated the cushion under five progressively broader "
       "definitions, for Iowa City and Cedar Rapids (its most natural large peer), in the same year "
@@ -350,7 +398,7 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
     A("</div>")
 
     # Statewide context + heatmap
-    A('<div class="card"><h2>7. Statewide context (FY2024)</h2>')
+    A('<div class="card"><h2>8. Statewide context (FY2024)</h2>')
     A(f'<p class="plain">We scored about {n_state} Iowa districts for FY{RECENT} on the same '
       "practical-cushion measure. The bottom quarter of districts had a cushion of roughly "
       f"<b>{q25:.0f} days or less</b>. Iowa City sits just inside that bottom group; many of the "
@@ -363,7 +411,7 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
     A("</div>")
 
     # What it does/doesn't prove
-    A('<div class="card"><h2>8. What this proves — and what it doesn’t</h2>')
+    A('<div class="card"><h2>9. What this proves — and what it doesn’t</h2>')
     A('<div class="caution"><b>This is a screen, not a diagnosis.</b> Year-end balances cannot show '
       "the lowest point of cash <i>during</i> the year, which is when a squeeze would actually "
       "happen. So the honest conclusions are:</div>")
@@ -372,8 +420,11 @@ footer{color:var(--mut);font-size:13px;margin-top:34px;border-top:1px solid var(
       "That part is well-supported by the data.</li>")
     A("<li><b>Its sharpest signal is spending authority (UAB), not year-end cash.</b> It has the "
       "least legal spending room of any large peer, and that room went negative in FY2023.</li>")
-    A("<li><b>It may be exposed to intra-year cash-flow stress</b> — but proving real stress "
-      "would require monthly cash records, short-term borrowing evidence, or direct disclosure.</li>")
+    A("<li><b>For most districts, intra-year cash stress stays unproven</b> by this annual data — "
+      "confirming it needs monthly records or borrowing evidence. <b>Iowa City is the exception:</b> "
+      "its own management has disclosed short-term borrowing to make payroll and bond payments "
+      "(section 6), so for Iowa City the intra-year stress is <b>documented, not just apparent</b> "
+      "(on unaudited, district-reported figures).</li>")
     A("<li><b>Cedar Rapids does not screen as constrained</b> under any definition we tested.</li>")
     A("</ul>")
     A('<p class="plain">To confirm actual intra-year stress for a flagged district, the next step is '

@@ -10,6 +10,7 @@ STEPS = [
     "03_dictionary_and_tables.py",
     "04_build_charts.py",
     "06b_fy2025_peer_view.py",   # FY2025 audited-peer table + chart (needed by 05 & 07)
+    "06c_iccsd_management.py",    # ICCSD management/board disclosure chart (needed by 07)
     "05_build_workbook.py",
     "06_build_narratives.py",
     "07_build_report.py",

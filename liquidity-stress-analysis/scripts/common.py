@@ -27,6 +27,7 @@ SBRC_DIR = REPO_ROOT / "FinalCashReserveLevies"
 UAB_XLSX = REPO_ROOT / "UAB" / "Unspent Authorized Budget Report.xlsx"
 
 OUTPUT_DIR = ANALYSIS_DIR / "output"
+INPUTS_DIR = ANALYSIS_DIR / "inputs"        # curated analysis inputs (e.g. board disclosures)
 CHARTS_DIR = OUTPUT_DIR / "charts"
 TABLES_DIR = OUTPUT_DIR / "tables"
 for _d in (OUTPUT_DIR, CHARTS_DIR, TABLES_DIR):

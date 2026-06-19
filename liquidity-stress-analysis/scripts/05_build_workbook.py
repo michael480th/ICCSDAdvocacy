@@ -144,7 +144,8 @@ def main():
     row = 3
     for img in ["1_scatter_cushion_vs_uab.png", "2_bar_practical_days.png",
                 "3_trend_practical_days.png", "4_waterfall_iccsd_numerators.png",
-                "5_heatmap_metrics.png", "6_bar_fy2025_practical_days.png"]:
+                "5_heatmap_metrics.png", "6_bar_fy2025_practical_days.png",
+                "7_iccsd_management_cash_projection.png"]:
         p = C.CHARTS_DIR / img
         if p.exists():
             pic = XLImage(str(p))
