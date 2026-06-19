@@ -183,8 +183,9 @@ for r in rows(p("data/iccsd-fy25-car-detail.csv")):
     setrow(r["district"], r["fiscal_year"], dict(
         state_aid_direct=r["state_aid_direct"], interest_income=r["interest_income"],
         salaries_benefits=r["salaries_benefits"], transportation_exp=r["transportation_exp"],
-        local_share_direct=r["local_share_direct"], go_debt=r["go_debt"], ipers_npl=r["ipers_npl"]),
-        overwrite=False)
+        local_share_direct=r["local_share_direct"], go_debt=r["go_debt"], ipers_npl=r["ipers_npl"],
+        annual_debt_service=r.get("annual_debt_service"), pension_contribution=r.get("pension_contribution"),
+        opeb_contribution=r.get("opeb_contribution")), overwrite=False)
 
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
 for r in rows(p("data/car-salaries.csv")):
