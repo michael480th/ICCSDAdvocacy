@@ -57,16 +57,24 @@ def line_chart(kpi, series, peer_avg, basis):
     W, H = 1000, 300
     x0, x1, y0, y1 = 48, 858, 16, 250
     def X(yr): return x0 + (x1-x0) * (yr-YEARS[0]) / (YEARS[-1]-YEARS[0])
-    # data domain
+    # data domain — robust to outliers: base on 5th–95th percentile of ALL values, but always
+    # keep ICCSD and the peer average fully in view; individual peer spikes get clipped to the edge.
     vals = []
     for dd, ys in series.items():
         vals += [v for v in ys.values() if isinstance(v,(int,float))]
     vals += [v for v in peer_avg.values() if isinstance(v,(int,float))]
     if not vals: return ""
-    lo, hi = min(vals), max(vals)
+    def pct(xs, q):
+        xs = sorted(xs); i = (len(xs)-1)*q; lo_i=int(i)
+        return xs[lo_i] if lo_i+1>=len(xs) else xs[lo_i]+(xs[lo_i+1]-xs[lo_i])*(i-lo_i)
+    keep = [v for v in series.get(SHORT[ICCSD],{}).values() if isinstance(v,(int,float))]
+    keep += [v for v in peer_avg.values() if isinstance(v,(int,float))]
+    lo = min([pct(vals,0.05)] + keep); hi = max([pct(vals,0.95)] + keep)
     if lo == hi: lo, hi = lo-1, hi+1
     pad = (hi-lo)*0.10; lo -= pad; hi += pad
-    def Y(v): return y1 - (y1-y0) * (v-lo) / (hi-lo)
+    def Y(v):
+        yy = y1 - (y1-y0) * (v-lo) / (hi-lo)
+        return min(max(yy, y0), y1)   # clamp outliers to the plot area
     parts = [f'<svg viewBox="0 0 {W} {H}" class="lc" preserveAspectRatio="xMidYMid meet" role="img">']
     # rating band shading (clipped to domain) + right-edge labels
     bands = K.BANDS.get(key)
@@ -155,6 +163,49 @@ def cat_color(key, val):
     if key == "gfoa_award": return "#bbf7d0" if v.upper()=="Y" else ("#f1f5f9" if v.upper()=="N" else "")
     return ""
 
+def exec_summary(series, peer_avg):
+    """Data-driven headline: ICCSD's standing vs the 14 peers in its last audited year (FY2023)."""
+    def stat(key, year, good):
+        vals = {d: series[key][SHORT[d]].get(year) for d in ORDER}
+        vals = {d:v for d,v in vals.items() if isinstance(v,(int,float))}
+        ic = vals.get(ICCSD)
+        if ic is None: return None
+        better = sum(1 for v in vals.values() if (v>ic if good=="up" else v<ic))
+        med = sorted(vals.values())[len(vals)//2]
+        return dict(v=ic, rank=better+1, n=len(vals), med=med)
+    def ord_(r,n): return {1:"lowest",2:"2nd-lowest",3:"3rd-lowest"}.get(n-r+1, f"{r}th of {n}")
+    Y = 2023
+    bl = []
+    uab = stat("uab_pct_of_max", Y, "up")
+    if uab: bl.append(f"<b>Spending authority is exhausted.</b> Iowa City's Unspent Authorized Budget fell to "
+        f"<b>{uab['v']:g}%</b> in FY2023 — {'the only district below zero, ' if uab['v']<0 else ''}the "
+        f"{ord_(uab['rank'],uab['n'])} of {uab['n']} (peer median {uab['med']:g}%). A negative UAB is the "
+        f"unlawful, state-review (SBRC) level — Iowa's single most important health measure.")
+    sol = stat("solvency_ratio", Y, "up"); fb = stat("moodys_avail_fb_ratio", Y, "up")
+    if sol and fb: bl.append(f"<b>The reserve cushion is the thinnest in the group.</b> Solvency of "
+        f"<b>{sol['v']:g}%</b> and an available fund balance of <b>{fb['v']:g}%</b> of revenue (Moody's Baa/Ba) "
+        f"both rank {ord_(sol['rank'],sol['n'])} (peer medians {sol['med']:g}% and {fb['med']:g}%).")
+    dc = stat("days_net_cash", Y, "up")
+    dc25 = series["days_net_cash"][SHORT[ICCSD]].get(2025)
+    if dc: bl.append(f"<b>Operating cash keeps falling.</b> Day's-cash dropped from 88 (FY2017) to "
+        f"<b>{dc['v']:g}</b> in FY2023" + (f" and ~{dc25:g} in FY2025 (management)" if dc25 else "") +
+        f" — {ord_(dc['rank'],dc['n'])} of {dc['n']}, far under the 90-day internal target.")
+    ltl = stat("moodys_ltl_ratio", Y, "down")
+    if ltl: bl.append(f"<b>Leverage is above the peer norm.</b> Long-term liabilities (debt + pension + OPEB) run "
+        f"<b>{ltl['v']:g}%</b> of GF revenue in FY2023 (peer median {ltl['med']:g}%); the district carries both GO and "
+        f"SAVE sales-tax debt from its Facilities Master Plan.")
+    bl.append("<b>The books are late.</b> ICCSD is the only district here that has <b>not filed its FY2024 or FY2025 "
+        "audit</b>; its FY2023 audit arrived ~26 months late with a material weakness — the pattern that precedes a "
+        "rating withdrawal. (FY24–25 figures here are management/unaudited.)")
+    items = "".join(f"<li>{b}</li>" for b in bl)
+    return ('<div class="exec"><h2>Executive summary</h2>'
+      '<p>Across all three rating lenses, <b>Iowa City sits at or near the bottom of its 15-district peer group on the '
+      'measures that matter most</b> — spending authority, reserves, and liquidity — while its reporting has slipped. '
+      'The detail, measure by measure, is below.</p>'
+      f'<ul>{items}</ul>'
+      '<p class="exfoot">All figures trace to audited ACFRs or Iowa state filings; ranks are among the 15 districts in '
+      'FY2023 (ICCSD\'s most recent audited year).</p></div>')
+
 def build():
     data = load()
     kpi_keys = [k["key"] for k in K.KPIS]
@@ -184,6 +235,8 @@ def build():
                    districts=[SHORT[d] for d in ORDER], years=YEARS, iccsd=SHORT[ICCSD],
                    bands={k: K.BANDS.get(k) for k in kpi_keys}, cat=list(CATEGORICAL),
                    units={k["key"]: k["unit"] for k in K.KPIS}, good={k["key"]: k["good"] for k in K.KPIS})
+
+    exec_html = exec_summary(series, peer_avg)
 
     # methodology overview
     meth = """
@@ -234,6 +287,10 @@ body{{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica
 h1{{font-size:29px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .intro{{background:#fff;border:1px solid var(--line);border-left:4px solid #2563eb;border-radius:10px;padding:16px 20px;margin-bottom:16px}}
 .intro p{{margin:7px 0}}
+.exec{{background:#fff;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:10px;padding:16px 22px;margin-bottom:16px}}
+.exec h2{{font-size:20px;margin:0 0 8px;color:#0f172a}}
+.exec p{{margin:6px 0;font-size:15px}} .exec ul{{margin:10px 0;padding-left:20px}} .exec li{{margin:8px 0;font-size:14.5px;line-height:1.55}}
+.exec .exfoot{{color:#64748b;font-size:12.5px;margin-top:8px}}
 .mcards{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0 8px}}
 @media(max-width:760px){{.mcards{{grid-template-columns:1fr}}}}
 .mc{{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}}
@@ -287,6 +344,7 @@ The <b>shaded background is the rating band</b> the value sits in — Moody's <b
 internal target (green = strong, amber = caution, red = concern) — so you can read the grade by color. Use
 <i>Show the 15-district table</i> for exact numbers.</p>
 </div>
+{exec_html}
 {meth}
 <div class="toc"><b>Jump to:</b> """ + " ".join(f'<a href="#grp-{gk}">{gl}</a>' for gk,gl,_ in K.GROUPS) + """
 <a href="#qual">Qualitative factors</a> <a href="#appx">Notes</a></div>

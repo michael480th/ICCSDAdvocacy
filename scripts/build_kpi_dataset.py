@@ -153,6 +153,15 @@ for path in glob.glob(p("data/fy20-25-bsheet/*.csv")):
             iscap_restricted=r.get("iscap_restricted_assets"), interest_income=r.get("interest_income")),
             overwrite=False)
 
+# FY20-25 fixed-cost inputs (pension/OPEB contributions + annual debt service) -> fixed-cost & current-cost ratios
+for path in glob.glob(p("data/fy20-25-flows/*.csv")):
+    for r in rows(path, "|"):
+        d = r.get("district"); fy = r.get("fiscal_year")
+        if not d or not fy or d not in DISTRICTS: continue
+        setrow(d, fy, dict(
+            pension_contribution=r.get("pension_contribution"), opeb_contribution=r.get("opeb_contribution"),
+            annual_debt_service=r.get("annual_debt_service")), overwrite=False)
+
 # DOM: UAB, enrollment, valuation/levies (FY20-25)
 for r in rows(p("data/dom/unspent-authorized-budget.csv")):
     if r["district"] in DISTRICTS:

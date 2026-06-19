@@ -52,9 +52,6 @@ KPIS = [
       source="Internal", unit="ratio_pct", good="context", target="context (Iowa property-tax timing dominates)",
       formula="(GF total receivables + inventory) / GF current assets",
       note="In Iowa this is dominated by the succeeding-year property-tax receivable (offset by a matching deferred inflow), so it runs high (~70–80%) and is shown as context. The district's own published ratio (~10%) uses a narrower receivables figure that excludes that item."),
- dict(key="creditor_equity_ratio", label="Creditor's Equity Ratio", group="cash_liquidity",
-      source="Internal", unit="ratio_pct", good="down", target="0% (no short-term borrowing)",
-      formula="ISCAP (cash-mgmt-program) restricted assets / GF current assets"),
 
  # ---- 2. Reserves & Fund Balance ----
  dict(key="solvency_ratio", label="Financial Solvency Ratio", group="reserves",
@@ -74,9 +71,6 @@ KPIS = [
  dict(key="uab_pct_of_max", label="Unspent Authorized Budget % of Max", group="authority",
       source="Internal", unit="ratio_pct", good="up", target="10–15% total · negative = unlawful → SBRC",
       formula="Unspent authorized budget / maximum authorized budget (Iowa DOM)"),
- dict(key="ubr_unrestricted_pct", label="Unrestricted Unspent Balance Ratio", group="authority",
-      source="Internal", unit="ratio_pct", good="up", target=">5% (ISFIS)",
-      formula="Unrestricted unspent spending authority / maximum budget authority (ICCSD report / DOM)"),
 
  # ---- 4. Operating Performance ----
  dict(key="operating_margin", label="Operating Margin (1-yr)", group="operating",
@@ -87,7 +81,8 @@ KPIS = [
       formula="3-year average of (GF revenue − GF expenditure, net transfers) / GF revenue"),
  dict(key="employee_cost_ratio", label="Employee Cost Ratio", group="operating",
       source="Internal", unit="ratio_pct", good="context", target="75–85% (internal target <80%)",
-      formula="(GF salaries + benefits) / total GF expenditures"),
+      formula="(GF salaries + benefits) / total GF expenditures",
+      note="Iowa General Funds report expenditures by FUNCTION, not object, so salaries+benefits aren't separable from the audited GF for most districts. Shown where available: ICCSD FY15–19 (its own report) and peers FY20–25 (district-supplied object detail). Other cells are blank by data availability, not oversight."),
  dict(key="foundation_aid_ratio", label="Foundation Aid Ratio", group="operating",
       source="Internal", unit="ratio_pct", good="context", target="no fixed target (falls as property wealth grows)",
       formula="Direct state foundation aid / total GF revenue"),
@@ -198,7 +193,6 @@ BANDS = {
  "moodys_net_cash_ratio": [("Caa",RATING["Caa"],None,-10),("B",RATING["B"],-10,-5),("Ba",RATING["Ba"],-5,0),
      ("Baa",RATING["Baa"],0,5),("A",RATING["A"],5,10),("Aa",RATING["Aa"],10,17.5),("Aaa",RATING["Aaa"],17.5,None)],
  "current_ratio": [("bad","#f87171",None,90),("ok","#fde047",90,100),("good","#22c55e",100,None)],
- "creditor_equity_ratio": [("good","#22c55e",None,0.01),("bad","#f87171",0.01,None)],
  # ---- reserves ----
  "solvency_ratio": [("bad","#f87171",None,0),("watch","#fb923c",0,5),("ok","#fde047",5,10),("good","#22c55e",10,None)],
  "moodys_avail_fb_ratio": [("Caa",RATING["Caa"],None,-10),("B",RATING["B"],-10,-5),("Ba",RATING["Ba"],-5,0),
@@ -206,7 +200,6 @@ BANDS = {
  "sp_available_reserves_pct": [("5",SP["5"],None,1),("4",SP["4"],1,4),("3",SP["3"],4,8),("2",SP["2"],8,15),("1",SP["1"],15,None)],
  # ---- authority ----
  "uab_pct_of_max": [("bad","#f87171",None,0),("watch","#fb923c",0,5),("ok","#fde047",5,10),("good","#22c55e",10,None)],
- "ubr_unrestricted_pct": [("bad","#f87171",None,0),("ok","#fde047",0,5),("good","#22c55e",5,None)],
  # ---- operating ----
  "operating_margin": [("bad","#f87171",None,-3),("watch","#fb923c",-3,0),("good","#22c55e",0,None)],
  "sp_oper_result_3yr": [("4",SP["4"],None,-3),("3",SP["3"],-3,0),("2",SP["2"],0,3),("1",SP["1"],3,None)],
