@@ -27,7 +27,7 @@ IC = "Iowa City CSD"
 PEERS = ["Ankeny CSD", "Cedar Rapids CSD", "College CSD (Prairie)", "Davenport CSD",
          "Des Moines Independent CSD", "Dubuque CSD", "Johnston CSD", "Linn-Mar CSD",
          "Pleasant Valley CSD", "Waterloo CSD", "Waukee CSD", "West Des Moines CSD"]
-FY = "2023"
+FY = "2025"
 
 
 def num(x):
@@ -61,15 +61,24 @@ def bcolor(p):
             "#f97316" if p >= 0 else "#dc2626")
 
 
-rows = []   # (district, avail_ratio, netcash_ratio)
-for d in [IC] + PEERS:
+# Iowa City has no FY2025 audit, so no audited available fund balance (the reserves lens). Use
+# the district's own internal General Fund figures (PFM Exhibit 1) for the cash and days lenses.
+IC_CASH = IC_REV = IC_DAYS = None
+for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
+    if r["fiscal_year"] == FY:
+        IC_CASH, IC_REV, IC_DAYS = num(r["gf_cash_investments"]), num(r.get("gf_revenue")), num(r.get("days_cash"))
+
+rows = []   # (district, avail_ratio_or_None, netcash_ratio); None reserves = no audit
+for d in PEERS:
     r = fin.get((d, FY)); c = cash.get((d, FY))
     if not r or not r.get("gf_revenue") or c is None:
         continue
     rev = num(r["gf_revenue"])
     avail = num(r["gf_unassigned"]) + (num(r.get("gf_assigned")) or 0)
     rows.append((d, 100 * avail / rev, 100 * c / rev))
-rows.sort(key=lambda t: -t[1])   # by reserve ratio, strongest at top
+if IC_CASH and IC_REV:
+    rows.append((IC, None, 100 * IC_CASH / IC_REV))   # reserves unavailable (no FY25 audit)
+rows.sort(key=lambda t: -(t[1] if t[1] is not None else -1e9))   # ICCSD (None) sorts to the bottom
 
 # ---- diverging "tornado" SVG: reserves grow left, cash grows right ----
 SCALE = 42.0
@@ -106,12 +115,16 @@ for i, (d, a, nc) in enumerate(rows):
     me = d == IC
     if me:
         s.append(f'<rect x="40" y="{y+1:.0f}" width="{W-80}" height="{ROWH-3}" class="merow"/>')
-    # left (reserves) bar
-    s.append(f'<rect x="{xL(a):.1f}" y="{y+5:.0f}" width="{CL-xL(a):.1f}" height="{ROWH-12}" fill="{bcolor(a)}" rx="2"/>')
-    s.append(f'<text x="{xL(a)-6:.1f}" y="{y+ROWH/2+4:.0f}" class="val" text-anchor="end">{a:.1f}</text>')
-    # right (cash) bar
-    s.append(f'<rect x="{CR:.1f}" y="{y+5:.0f}" width="{xR(nc)-CR:.1f}" height="{ROWH-12}" fill="{bcolor(nc)}" rx="2"/>')
-    s.append(f'<text x="{xR(nc)+6:.1f}" y="{y+ROWH/2+4:.0f}" class="val" text-anchor="start">{nc:.1f}</text>')
+    # left (reserves) bar — or a "no audit" gap marker (Iowa City FY2025)
+    if a is None:
+        s.append(f'<text x="{CL-8:.1f}" y="{y+ROWH/2+4:.0f}" class="nodata" text-anchor="end">no FY25 audit — reserves can\'t be measured</text>')
+    else:
+        s.append(f'<rect x="{xL(a):.1f}" y="{y+5:.0f}" width="{CL-xL(a):.1f}" height="{ROWH-12}" fill="{bcolor(a)}" rx="2"/>')
+        s.append(f'<text x="{xL(a)-6:.1f}" y="{y+ROWH/2+4:.0f}" class="val" text-anchor="end">{a:.1f}</text>')
+    # right (cash) bar (Iowa City unaudited: dashed outline + asterisk)
+    flag = ' stroke="#b91c1c" stroke-width="1.4" stroke-dasharray="4 2" opacity="0.85"' if me else ''
+    s.append(f'<rect x="{CR:.1f}" y="{y+5:.0f}" width="{xR(nc)-CR:.1f}" height="{ROWH-12}" fill="{bcolor(nc)}" rx="2"{flag}/>')
+    s.append(f'<text x="{xR(nc)+6:.1f}" y="{y+ROWH/2+4:.0f}" class="val" text-anchor="start">{nc:.1f}{"*" if me else ""}</text>')
     # center district label
     cls = "dname me" if me else "dname"
     s.append(f'<text x="{(CL+CR)/2:.0f}" y="{y+ROWH/2+4:.0f}" class="{cls}" text-anchor="middle">{html.escape(d)}</text>')
@@ -123,10 +136,12 @@ def dcolor(v): return "#16a34a" if v >= 90 else "#eab308" if v >= 60 else "#dc26
 
 
 drows = []   # (district, days)
-for d in [IC] + PEERS:
+for d in PEERS:
     c = cash.get((d, FY)); e = exp.get((d, FY))
     if c is not None and e:
         drows.append((d, c / (e / 365.0)))
+if IC_DAYS:
+    drows.append((IC, IC_DAYS))   # Iowa City: district's own stated FY2025 days
 drows.sort(key=lambda t: -t[1])
 
 DSCALE = 160.0
@@ -158,16 +173,16 @@ icd = next(v for d, v in drows if d == IC)
 ic_days_rank = [d for d, v in drows].index(IC) + 1
 peer_days_med = st.median([v for d, v in drows if d != IC])
 
-ica = next(a for d, a, nc in rows if d == IC)
+ica = None   # Iowa City has no FY2025 audited reserves figure (audit not filed)
 icn = next(nc for d, a, nc in rows if d == IC)
-# rank on each lens (1 = strongest)
-res_rank = sorted(rows, key=lambda t: -t[1])
+n = len(rows)
 cash_rank = sorted(rows, key=lambda t: -t[2])
-ic_res_rank = [d for d, a, nc in res_rank].index(IC) + 1
 ic_cash_rank = [d for d, a, nc in cash_rank].index(IC) + 1
-gaps = {d: nc - a for d, a, nc in rows}
-ic_gap = gaps[IC]
-peer_gap_med = st.median([v for d, v in gaps.items() if d != IC])
+# reserves/gap stats over peers only (ICCSD has no reserves figure)
+peer_res_med = st.median([a for d, a, nc in rows if a is not None])
+peer_cash_med = st.median([nc for d, a, nc in rows if d != IC])
+gaps = {d: nc - a for d, a, nc in rows if a is not None}
+peer_gap_med = st.median(list(gaps.values()))
 
 date = datetime.date(2026, 6, 19).strftime("%B %Y")
 DOC = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -190,6 +205,7 @@ h1{{font-size:28px;margin:0 0 6px}} .sub{{color:var(--mut);margin:0 0 18px}}
 .thrlab{{fill:#cbd5e1;font-size:10px;text-anchor:middle}}
 .dbandlab{{fill:#16a34a;font-size:11px;opacity:.9}}
 .dname{{font-size:12.5px;fill:#475569;font-weight:600}} .dname.me{{fill:#b91c1c;font-weight:800}}
+.nodata{{fill:#b91c1c;font-size:10px;font-style:italic;font-weight:600}}
 .val{{font-size:12px;fill:#334155;font-weight:600}}
 .merow{{fill:#fef2f2;stroke:#fecaca;stroke-width:1;rx:4}}
 .legend{{font-size:12.5px;color:var(--mut);margin:12px 2px 0;display:flex;gap:14px;flex-wrap:wrap;align-items:center}}
@@ -204,7 +220,7 @@ footer a{{color:#2563eb}}
 </style></head><body>{nav("more")}<div class="wrap">
 
 <h1>Three Liquidity Lenses, Side by Side</h1>
-<p class="sub">Reserves, cash, and days — the same liquidity, three very different-looking numbers · {date}</p>
+<p class="sub">Reserves, cash, and days — the same liquidity, three very different-looking numbers · FY2025 (peers audited; Iowa City internal) · {date}</p>
 
 <div class="card intro">
 <p>Moody's — the agency that <b>rated ICCSD</b> — measures liquidity with <b>two</b> ratios, on purpose,
@@ -237,7 +253,7 @@ sound far less alarming.</p>
 
 <div class="card">
 <p style="margin:0 0 2px;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;font-weight:700">Lens 3 — the district's own KPI (days of cash)</p>
-<p style="margin:2px 0 0;font-size:14px;color:#475569"><b>Day's Net Cash Ratio</b> = Cash &amp; Investments ÷ (Total Expenditures ÷ 365). Same FY2023; the district's own target is 90+ days.</p>
+<p style="margin:2px 0 0;font-size:14px;color:#475569"><b>Day's Net Cash Ratio</b> = Cash &amp; Investments ÷ (Total Expenditures ÷ 365). FY2025; the district's own target is 90+ days. Iowa City's FY2025 is its own internal figure (unaudited).</p>
 {dsvg}
 <div class="legend"><b>Days band:</b>
 <span><i style="background:#16a34a"></i>≥ 90 (in range)</span>
@@ -248,29 +264,26 @@ sound far less alarming.</p>
 
 <div class="card">
 <h2 style="margin:0 0 4px;font-size:20px">How the story changes across the three lenses</h2>
-<p class="take"><b>The unit you pick changes how alarming it sounds — even though the rank never moves.</b>
-For the very same year, Iowa City reads as <b>{ica:.1f}% reserves</b>, <b>{icn:.1f}% net cash</b>, and
-<b>{icd:.0f} days of cash</b>. The "days" number is the biggest and friendliest-sounding of the three — "33
-days" lands softer than "2.4%" — yet on <b>all three</b> lenses Iowa City is <b>dead last of {n}</b> (vs. a
-peer median of {peer_days_med:.0f} days), and on two of them it sits below the recommended zone entirely.
-Same district, same money, three numbers; only the framing flatters.</p>
-<p class="take"><b>One lens alone understates the problem.</b> On <b>reserves</b>, Iowa City is alone at the
-bottom — <b>{ica:.1f}% (Baa)</b>, the only district below the A band and ranked <b>#{ic_res_rank} of {n}</b>.
-Switch to <b>cash</b> and it looks less dire — <b>{icn:.1f}% (A)</b>, still last (#{ic_cash_rank}) but not in
-a category by itself. A reader shown only the cash number might shrug.</p>
-<p class="take"><b>Seeing them together reveals why that comfort is false.</b> Notice the <i>gap</i> between each
-district's two bars. Peers' cash sits far to the right of their reserves (median gap
-<b>+{peer_gap_med:.0f} points</b>) — they hold real surplus cash on top of healthy reserves. Iowa City's gap
-is the <b>smallest in the group (+{ic_gap:.1f})</b>: it has barely more cash than its (already thin) reserves.
-And this cash figure is <b>before</b> Moody's subtracts tax-anticipation borrowing. Because Iowa City is the
-district leaning on that borrowing, the subtraction hits it hardest — pulling its cash lens back down toward,
-or below, its weak reserve lens. <b>Either way it finishes last; together, the two lenses show the cash
-"cushion" is thin and partly borrowed.</b></p>
-<p class="caution"><b>⚠ The Net Cash figures are pre-TAN.</b> We don't yet have each district's short-term
-operating debt outstanding at June 30, so the right-hand bars use cash only. Subtracting tax-anticipation /
-cash-flow notes — as Moody's does — would shorten the cash bars, most for districts that rely on that
-borrowing. For Iowa City, an outstanding TAN on the order of its operating gap would erase the cash bar
-entirely. We'll wire in the exact figures once we have the year-end note balances.</p>
+<p class="take"><b>The most important lens is the one Iowa City can't show.</b> For FY2025 every peer posts an
+audited <b>reserves</b> ratio (peer median ~<b>{peer_res_med:.0f}%</b>) — the single number a rating analyst
+reaches for first. Iowa City has <b>no bar at all</b>: its FY2025 audit isn't filed, so the figure simply
+doesn't exist. A blank where every peer has a measurable green bar is, by itself, the story.</p>
+<p class="take"><b>On the measures it can report, it sits in the bottom group — and the unit flatters it.</b>
+From its own internal books Iowa City reads as <b>{icn:.1f}% net cash</b> and <b>{icd:.0f} days of cash</b> —
+"days" being the friendlier-sounding number ("33 days" lands softer than "9%"). Both land it <b>#{ic_cash_rank}
+of {n}</b>, well below the peer medians (~<b>{peer_cash_med:.0f}% net cash</b>, ~<b>{peer_days_med:.0f} days</b>).
+Two peers with their own troubles (College/Prairie, Waterloo) sit even lower — but Iowa City is firmly in the
+weakest group <i>and</i>, unlike them, has no reserves figure to fall back on.</p>
+<p class="take"><b>And even that cash figure is generous.</b> The net-cash bar is shown <i>before</i> Moody's
+subtracts short-term borrowing. Iowa City is precisely the district leaning on it — a planned <b>$25M
+tax-anticipation warrant</b> plus a <b>$10M interfund loan</b> in FY2026. Net that out, as Moody's does, and
+the one lens Iowa City still has collapses further. Peers' cash mostly sits well above their reserves (median
+gap <b>+{peer_gap_med:.0f} points</b>) because it's <i>real surplus</i>; Iowa City's is thin and partly borrowed.</p>
+<p class="caution"><b>⚠ Iowa City's FY2025 bars are unaudited (dashed outline), and pre-TAN.</b> Peers use
+audited FY2025 figures; Iowa City has no FY2025 audit, so its cash &amp; revenue come from the district's own
+internal report (PFM Exhibit 1) and its reserves can't be computed at all. The net-cash bars (all districts)
+are also gross of short-term borrowing — we don't yet have year-end tax-anticipation balances; subtracting
+them would shorten the cash bars, most for the borrowers (chiefly Iowa City).</p>
 <p class="deep">Companion views: the district's own intuitive
 <a href="iccsd-net-cash-ratio.html">Day's Net Cash Ratio</a> (days of cash, validated against ICCSD's
 dashboard) and the three-part <a href="iccsd-cushion.html">“Does it have a cushion?”</a> story. More under
@@ -283,13 +296,16 @@ Financial Performance factor. <b>Available Fund Balance Ratio</b> = (assigned + 
 balance) ÷ General Fund revenue. <b>Net Cash Ratio</b> = General Fund cash &amp; investments ÷ General Fund
 revenue (Moody's also subtracts short-term operating debt; omitted here for lack of data — see caution).
 Moody's uses "operating revenue" (general + debt-service funds); we approximate with General Fund revenue.
-Fund balance and revenue from the audited statements (<code>data/iowa-district-financials.csv</code>); cash
-from each audited Balance Sheet — Governmental Funds (<code>data/gf-operating-cash.csv</code>). FY2023, the
-most recent year all 13 districts have a filed audit. Bands per Moody's Exhibit 2. Built by
+Peer fund balance, revenue and cash from their <b>audited FY2025</b> statements
+(<code>data/iowa-district-financials.csv</code>, <code>data/gf-operating-cash.csv</code>). <b>Iowa City has no
+FY2025 audit</b>, so its reserves ratio can't be computed; its cash ($19.4M) and revenue ($211.8M) for the
+net-cash and days lenses come from the district's own internal report (PFM Exhibit 1,
+<code>data/iccsd-cash-supplemental.csv</code>) and are unaudited. Bands per Moody's Exhibit 2. Built by
 <code>scripts/build_two_lenses.py</code>.
 </footer>
 </div></body></html>"""
 
 open("liquidity-lenses.html", "w").write(DOC)
 print(f"Wrote liquidity-lenses.html ({len(DOC)//1024} KB)")
-print(f"ICCSD reserves {ica:.1f}% (#{ic_res_rank}), cash {icn:.1f}% (#{ic_cash_rank}); gap {ic_gap:.1f} vs peer median {peer_gap_med:.0f}")
+print(f"FY{FY}: ICCSD reserves=N/A (no audit), cash {icn:.1f}% (#{ic_cash_rank} of {n}), days {icd:.0f}; "
+      f"peer medians res {peer_res_med:.0f}% / cash {peer_cash_med:.0f}% / days {peer_days_med:.0f}")

@@ -13,9 +13,9 @@ from _nav import nav
 # (href, title, blurb)
 DEEP = [
     ("liquidity-lenses.html", "Three liquidity lenses — reserves, cash, days",
-     "The same liquidity in three units side by side — Moody's reserve and net-cash ratios (% of revenue) "
-     "plus the district's own Day's Net Cash (days). ICCSD is dead last on all three, but the 'days' framing "
-     "makes the very same position sound far less alarming."),
+     "The same liquidity in three units side by side (FY2025) — Moody's reserve and net-cash ratios "
+     "(% of revenue) plus the district's own Day's Net Cash (days). ICCSD has no reserves figure at all "
+     "(its FY2025 audit isn't filed) and sits in the weakest group on cash and days."),
     ("iccsd-net-cash-ratio.html", "Day's Net Cash Ratio (the district's own KPI)",
      "Iowa City's own liquidity metric — days of cash on hand — computed across all peer districts "
      "FY2015–2025, with the 90–120 recommended range. Our figures match the district's published "

@@ -26,7 +26,7 @@ IC = "Iowa City CSD"
 PEERS = ["Ankeny CSD", "Cedar Rapids CSD", "College CSD (Prairie)", "Davenport CSD",
          "Des Moines Independent CSD", "Dubuque CSD", "Johnston CSD", "Linn-Mar CSD",
          "Pleasant Valley CSD", "Waterloo CSD", "Waukee CSD", "West Des Moines CSD"]
-YEARS = list(range(2015, 2026))
+YEARS = list(range(2015, 2027))
 
 
 def num(x):
@@ -52,16 +52,29 @@ for r in csv.DictReader(open("data/car-fund-balances.csv")):
     if r["district_code"] == "3141" and r["fiscal_year"] == "2024" and r["fund"] == "General":
         exp[(IC, 2024)] = num(r["expenditures"])
 
-# Cash & investments -> Day's Net Cash Ratio
+# Cash & investments -> Day's Net Cash Ratio (FY2015-2023 audited from the balance sheets)
 days = {}
-IC_UNAUDITED = set()
+IC_AUDITED, IC_UNAUDITED, IC_PROJECTED = set(), set(), set()
 for r in csv.DictReader(open("data/gf-operating-cash.csv")):
     d, fy, c = r["district"], int(r["fiscal_year"]), num(r["gf_cash_investments"])
     e = exp.get((d, fy))
     if c is not None and e:
         days.setdefault(d, {})[fy] = c / (e / 365.0)
-    if d == IC and r.get("source") != "audit":
-        IC_UNAUDITED.add(fy)
+    if d == IC and r.get("source") == "audit":
+        IC_AUDITED.add(fy)
+
+# Iowa City FY2024-FY2026: the district's own stated General Fund figures (PFM Exhibit 1, the
+# COO's FY26-FY28 cash-flow narrative), overriding the CAR-based FY2024. days_cash is the
+# district/advisor's published days-cash-on-hand; otherwise compute from cash and expenditures.
+for r in csv.DictReader(open("data/iccsd-cash-supplemental.csv")):
+    fy = int(r["fiscal_year"])
+    dc = num(r.get("days_cash"))
+    if dc is None:
+        c, e = num(r["gf_cash_investments"]), num(r["gf_expenditures"])
+        dc = c / (e / 365.0) if (c and e) else None
+    if dc is not None:
+        days.setdefault(IC, {})[fy] = dc
+    (IC_PROJECTED if r["status"] == "projected" else IC_UNAUDITED).add(fy)
 
 
 def peer_avg(y):
@@ -77,7 +90,7 @@ YMIN, YMAX = 0, 200
 def X(i): return L + pw * i / (len(YEARS) - 1)
 def Y(v): return T + ph * (YMAX - v) / (YMAX - YMIN)
 
-s = [f'<svg viewBox="0 0 {W} {H}" class="chart" role="img" aria-label="Day\'s Net Cash Ratio by district, 2015-2025">']
+s = [f'<svg viewBox="0 0 {W} {H}" class="chart" role="img" aria-label="Day\'s Net Cash Ratio by district, 2015-2026">']
 # recommended band 90-120
 s.append(f'<rect x="{L}" y="{Y(120):.1f}" width="{pw}" height="{Y(90)-Y(120):.1f}" fill="#16a34a" opacity="0.10"/>')
 s.append(f'<text x="{L+6}" y="{Y(120)+14:.1f}" class="bandlab">recommended range 90–120 days</text>')
@@ -105,37 +118,51 @@ for p in PEERS:
 avg = {y: peer_avg(y) for y in YEARS if peer_avg(y) is not None}
 apts = [(X(i), Y(avg[y])) for i, y in enumerate(YEARS) if y in avg]
 s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in apts)}" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="7 4"/>')
-# Iowa City (bold red); hollow markers for unaudited years (FY2024 CAR)
-icpts = [(i, y) for i, y in enumerate(YEARS) if y in days.get(IC, {})]
-s.append(f'<polyline points="{" ".join(f"{X(i):.1f},{Y(days[IC][y]):.1f}" for i, y in icpts)}" fill="none" stroke="#dc2626" stroke-width="3.4"/>')
-for i, y in icpts:
-    if y in IC_UNAUDITED:
-        s.append(f'<circle cx="{X(i):.1f}" cy="{Y(days[IC][y]):.1f}" r="4.4" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
-        s.append(f'<text x="{X(i):.1f}" y="{Y(days[IC][y])-12:.1f}" class="endlab2" fill="#b45309" text-anchor="middle">{y} (unaudited)</text>')
+# Iowa City: solid through actuals (audited + unaudited), dashed to the projection
+def icxy(y): return X(YEARS.index(y)), Y(days[IC][y])
+ic_actual = sorted(y for y in days[IC] if y not in IC_PROJECTED)
+ic_proj = sorted(y for y in days[IC] if y in IC_PROJECTED)
+apts = [icxy(y) for y in ic_actual]
+s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in apts)}" fill="none" stroke="#dc2626" stroke-width="3.4"/>')
+for y in ic_actual:
+    px, py = icxy(y)
+    if y in IC_AUDITED:
+        s.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="#dc2626"/>')
     else:
-        s.append(f'<circle cx="{X(i):.1f}" cy="{Y(days[IC][y]):.1f}" r="3.8" fill="#dc2626"/>')
-# end labels
-li, ly = icpts[-1]
-s.append(f'<text x="{X(li)+8:.1f}" y="{Y(days[IC][ly])+4:.1f}" class="endlab" fill="#dc2626" style="font-weight:700">Iowa City</text>')
+        s.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.4" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
+# dashed connector to the projection + hollow projected marker
+if ic_proj:
+    pp = [icxy(y) for y in [ic_actual[-1]] + ic_proj]
+    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pp)}" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6 4" opacity="0.85"/>')
+    for y in ic_proj:
+        px, py = icxy(y)
+        s.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.6" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
+        s.append(f'<text x="{px:.1f}" y="{py-12:.1f}" class="endlab2" fill="#b45309" text-anchor="middle">FY{str(y)[2:]} projected*</text>')
+# Iowa City label at the last actual point
+lx, lyy = icxy(ic_actual[-1])
+s.append(f'<text x="{lx:.1f}" y="{lyy+20:.1f}" class="endlab" fill="#dc2626" text-anchor="middle" style="font-weight:700">Iowa City</text>')
 ay = avg[max(avg)]
 s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+4:.1f}" class="endlab" fill="#2563eb">Peer average</text>')
 s.append(f'<text x="{L+pw+8:.1f}" y="{Y(ay)+20:.1f}" class="endlab2" fill="#94a3b8">(large districts)</text>')
 s.append('</svg>')
 svg = "".join(s)
 
-# prose numbers
+# prose numbers (narrative anchors on the latest ACTUAL year, not the projection)
+ic_actual_years = sorted(y for y in days[IC] if y not in IC_PROJECTED)
 ic_first = days[IC][min(days[IC])]
-ic_peak = max(days[IC].values())
-ic_peak_y = max(days[IC], key=days[IC].get)
-ic_last_y = max(days[IC])
+ic_peak = max(days[IC][y] for y in ic_actual_years)
+ic_peak_y = max(ic_actual_years, key=lambda y: days[IC][y])
+ic_last_y = ic_actual_years[-1]
 ic_last = days[IC][ic_last_y]
+ic_proj_y = max(IC_PROJECTED) if IC_PROJECTED else None
+ic_proj_v = days[IC][ic_proj_y] if ic_proj_y else None
 pa_last = peer_avg(ic_last_y) or peer_avg(max(avg))
-n_in_band = sum(1 for p in PEERS if max(days[p]) in days[p] and 90 <= days[p][max(days[p])] <= 120)
 
-# per-district latest table
+# per-district latest table (ICCSD shown at its latest ACTUAL year, not the projection)
 def latest(d):
-    if d not in days: return (None, None)
-    y = max(days[d]); return (y, days[d][y])
+    yrs = [y for y in days.get(d, {}) if not (d == IC and y in IC_PROJECTED)]
+    if not yrs: return (None, None)
+    y = max(yrs); return (y, days[d][y])
 tbl = []
 for d in [IC] + PEERS:
     y, v = latest(d)
@@ -186,7 +213,7 @@ footer a{{color:#2563eb}}
 </style></head><body>{nav("more")}<div class="wrap">
 
 <h1>Day's Net Cash Ratio — Iowa City vs. peers</h1>
-<p class="sub">The district's own liquidity KPI — how many days it could keep paying the bills on cash on hand — computed across the large Iowa districts, FY2015–FY2025 · {date}</p>
+<p class="sub">The district's own liquidity KPI — how many days it could keep paying the bills on cash on hand — computed across the large Iowa districts, FY2015–FY2026 · {date}</p>
 
 <div class="card intro">
 <p><b>What it is:</b> Iowa City tracks a "Day's Net Cash Ratio" on its own financial dashboard. It answers
@@ -219,14 +246,20 @@ district's dashboard to within about $2 (rounding), and the day counts match exa
   <span><i style="border-color:#2563eb;border-top-style:dashed"></i>Peer average</span>
   <span><i style="border-color:#cbd5e1"></i>Individual peers</span>
   <span><span style="display:inline-block;width:14px;height:10px;background:#16a34a;opacity:.2;vertical-align:middle;margin-right:5px"></span>recommended 90–120</span>
-  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>unaudited (FY2024 CAR)</span>
+  <span><span style="display:inline-block;width:11px;height:11px;border:2px solid #dc2626;border-radius:50%;background:#fff;vertical-align:middle;margin-right:5px"></span>open marker = unaudited actual / projected</span>
 </div>
 {svg}
 <p class="take">Iowa City sat <b>inside or near the 90–120 recommended band a decade ago</b> (peaking at
-~<b>{ic_peak:.0f} days in {ic_peak_y}</b>), then fell steadily out of it. By <b>FY{ic_last_y} it was at
-~{ic_last:.0f} days</b> — roughly a third of the recommended minimum, and well under even the 60-day GFOA
-floor. Its large-district peers have generally stayed at or above the band (peer average ~<b>{pa_last:.0f}
-days</b>). Iowa City has gone from a typical Iowa cushion to the thinnest in the group.</p>
+~<b>{ic_peak:.0f} days in {ic_peak_y}</b>), then fell steadily out of it. Its most recent <i>actual</i> year,
+<b>FY{ic_last_y}, sits at ~{ic_last:.0f} days</b> — about a third of the recommended minimum, and below even
+the 60-day GFOA floor — while large-district peers have generally stayed at or above the band (peer average
+~<b>{pa_last:.0f} days</b>). The dashed point is the district's own <b>FY{ic_proj_y} projection (~{ic_proj_v:.0f}
+days)</b>; read it with care.*</p>
+<p style="font-size:13px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #d97706;border-radius:8px;padding:10px 14px;margin:10px 0 0">
+<b>*The FY{ic_proj_y} bump is borrowed.</b> The district's projected ~{ic_proj_v:.0f} days exists only because of a planned
+<b>$25M revenue-anticipation warrant</b> plus a <b>$10M interfund loan</b>. PFM's projected June 30, {ic_proj_y} balance
+<i>before</i> the warrant is <b>$4.4M ≈ 7 days</b> — which PFM states is "not sufficient to cover July {ic_proj_y} payroll."
+So the line ticking up is the borrowing, not a recovery.</p>
 </div>
 
 <div class="card">
@@ -237,7 +270,7 @@ days</b>). Iowa City has gone from a typical Iowa cushion to the thinnest in the
 {trows}
 </tbody>
 </table>
-<p style="font-size:13px;color:#64748b;margin:8px 2px 0">Green ≥ 90 (in range) · amber 60–90 · red &lt; 60. Latest audited year shown per district; Iowa City's FY2024 is its unaudited self-report.</p>
+<p style="font-size:13px;color:#64748b;margin:8px 2px 0">Green ≥ 90 (in range) · amber 60–90 · red &lt; 60. Latest year shown per district (peers audited FY2025); Iowa City shown at its latest <b>actual</b> year (FY2025, unaudited), not its FY2026 projection.</p>
 <p style="font-size:13.5px;color:#64748b;margin:12px 2px 0">This is the intuitive "days" view. To see it next to how the <b>credit-rating agencies</b> score the same liquidity — reserves and net cash as a percent of revenue — see <a href="liquidity-lenses.html" style="color:#2563eb;font-weight:600;text-decoration:none">Three liquidity lenses</a>.</p>
 </div>
 
@@ -245,12 +278,15 @@ days</b>). Iowa City has gone from a typical Iowa cushion to the thinnest in the
 <b>Sources.</b> Day's Net Cash Ratio = General Fund Cash &amp; Investments ÷ (General Fund expenditures / 365),
 the district's own dashboard formula (CAR refs BalSheet C1L1 / ExpGF C8L42). Cash &amp; Investments extracted
 from the first General-Fund column of each district's audited <i>Balance Sheet — Governmental Funds</i>
-(<code>auditreports/</code>, FY2015–FY2023; later years where filed); Iowa City FY2024 from its unaudited
-Certified Annual Report. Expenditures from the audited statements (<code>data/audit-financials.csv</code>,
-FY2015–FY2023) and the master file (<code>data/iowa-district-financials.csv</code>, FY2020–FY2025). "Peers"
-are the 12 districts with 5,000+ students; a few district-years are blank where an older balance-sheet
-layout couldn't be read cleanly. Built by <code>scripts/extract_audit_cash.py</code> +
-<code>scripts/build_net_cash_ratio.py</code>.
+(<code>auditreports/</code>, FY2015–FY2023; peers later years where filed). Expenditures from the audited
+statements (<code>data/audit-financials.csv</code>) and the master file
+(<code>data/iowa-district-financials.csv</code>). <b>Iowa City FY2024–FY2026</b> are the district's own stated
+General Fund figures (no audit filed): FY2024 and FY2025 from <i>PFM Financial Advisors' Exhibit 1</i>
+(unaudited actual, "Days of Operating Cash on Hand" 47.1 and 32.9), and FY2026 from the COO's
+<i>FY26–FY28 Cash Flow Narrative</i> (projected 36.6 days) — see the borrowing note above
+(<code>data/iccsd-cash-supplemental.csv</code>). "Peers" are the 12 districts with 5,000+ students; a few
+district-years are blank where an older balance-sheet layout couldn't be read cleanly. Built by
+<code>scripts/extract_audit_cash.py</code> + <code>scripts/build_net_cash_ratio.py</code>.
 </footer>
 </div></body></html>"""
 
