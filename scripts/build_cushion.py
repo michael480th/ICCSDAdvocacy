@@ -359,7 +359,8 @@ projected at just ~{icd26:.0f}. Peers, meanwhile, held ~<b>{pad25:.0f} days</b>.
 forced major revisions to the FY2023 audit were still unresolved. If the FY2024 audit reassigns cash now
 parked in the General Fund to the funds it belongs to, days-cash falls back toward the trough. Treat the open
 markers (FY2024 self-reported, FY2025 internal, FY2026 projected) as estimates, not audited actuals.</p>
-<p class="deep">Want more on the cash measure? See the district's own
+<p class="deep">Want the credit-rating view? See <a href="liquidity-lenses.html">Two liquidity lenses</a>
+(how Moody's scores reserves vs. cash side by side), and the district's own intuitive
 <a href="iccsd-net-cash-ratio.html">Day's Net Cash Ratio</a> (its internal KPI, computed across all peers
 back to 2015 against a 90–120 day target), plus the deep-dive
 <a href="iccsd-liquidity-trend.html">reserves trend</a> and

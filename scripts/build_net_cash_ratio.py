@@ -238,6 +238,7 @@ days</b>). Iowa City has gone from a typical Iowa cushion to the thinnest in the
 </tbody>
 </table>
 <p style="font-size:13px;color:#64748b;margin:8px 2px 0">Green ≥ 90 (in range) · amber 60–90 · red &lt; 60. Latest audited year shown per district; Iowa City's FY2024 is its unaudited self-report.</p>
+<p style="font-size:13.5px;color:#64748b;margin:12px 2px 0">This is the intuitive "days" view. For how the <b>credit-rating agencies</b> score the same liquidity — reserves vs. net cash, as a percent of revenue — see <a href="liquidity-lenses.html" style="color:#2563eb;font-weight:600;text-decoration:none">Two liquidity lenses</a>.</p>
 </div>
 
 <footer>
