@@ -1,0 +1,44 @@
+Line,Budget Resource Categories,General Fund,Student Activity Fund,Management Levy Fund,PERL Fund,Entreprenurial/Equalization Levy Support Trust Library Levy Fund,Emergency Levy/Disaster Recovery Fund,Sales Tax Fund,PPEL Fund,Other Capital Project Funds,Debt Service Fund,Nutrition Fund,Other Enterprise Funds,Total
+1,Taxes Levied on Property,82197331.74,,12636872.62,,,,,12764797.49,,13117700.96,,,120716702.81
+2,Utility Replacement Excise Tax,549152.70,,86693.01,,,,,80346.57,,82567.42,,,798759.70
+3,Income Surtaxes,6775731.49,,,,,,,,,,,,6775731.49
+4,Tuition/Transportation Received,3103805.15,,,,,,,,,,,,3103805.15
+5,Earnings on Investments,1154691.54,62.00,,,,,130251.05,52839.20,,,217411.88,,1555255.67
+6,Nutrition Program Sales,,,,,,,,,,,3858293.25,,3858293.25
+7,Student Activities and Sales,552103.53,1930593.49,,,,,,,,,,,2482697.02
+8,Other Revenues from Local Sources,3576761.91,1171421.90,20058.43,,,,,179952.77,,19121.67,,,4967316.68
+9,Revenue from Intermediary Sources,9000.00,,,,,,,,,,,,9000.00
+10,"State Foundation Aid, AEA Flowthrough, State Aid Categoricals",102064103.00,,,,,,,,,,,,102064103.00
+11,Instructional Support State Aid,,,,,,,,,,,,,
+12,Other State Sources,1030128.40,,,,,,19018587.19,,,,80734.30,,20129449.89
+13,Two Tier,931060.00,,144248.00,,,,,133688.00,,137383.00,,,1346379.00
+,Assessment Limitation Replacement,,,,,,,,,,,,,
+14,Title I Grants,2642842.20,,,,,,,,,,,,2642842.20
+15,IDEA and Other Federal Sources,6592012.27,,,,,,,,,,6011152.05,,12603164.32
+16,Total Revenues (Rows 1-15),211178723.93,3102077.39,12887872.06,,,,19148838.24,13211624.03,,13356773.05,10167591.48,,283053500.18
+17,General Long-Term Debt Proceeds,,,,,,,,,,,,,
+18,Interfund Transfers In,508955.07,341425.99,,,,,,,,13301262.50,10543.08,,14162186.64
+19,Proceeds of Fixed Asset Dispositions,26282.42,,,,,,,,,,,,26282.42
+20,Special Items/Upward Adjustments,60189.92,19881.82,,,,,,,,,,,80071.74
+21,Total Revenues & Other Sources (Sum of rows 16 through 20),211774151.34,3463385.20,12887872.06,,,,19148838.24,13211624.03,,26658035.55,10178134.56,,297322040.98
+22,Beginning Fund Balance,19366903.52,384374.40,1869430.26,,,,45808694.72,15296522.08,916094.72,2226592.90,6522750.84,,92391363.44
+23,Total Resources (Sum of rows 21 and 22),231141054.86,3847759.60,14757302.32,,,,64957532.96,28508146.11,916094.72,28884628.45,16700885.40,,389713404.42
+,Budget Requirement Categories,,,,,,,,,,,,,
+24,Instruction,143357352.14,3663788.32,1467887.48,,,,,,,,,,148489027.94
+25,Student Support Services,7857286.34,,,,,,,,,,,,7857286.34
+26,Instructional Staff Support Services,9505334.62,,,,,,,,,,,,9505334.62
+27,General Administration,3084696.84,,,,,,,,,,,,3084696.84
+28,School Administration,11535234.37,,,,,,,,,,,,11535234.37
+29,Business and Central Administration,5549055.39,,1972700.20,,,,,,,,,,7521755.59
+30,Plant Operation and Maintenance,19327969.58,65668.29,4586932.15,,,,,363331.03,,,58095.77,,24401996.82
+31,Student Transportation,5875839.51,108362.08,,,,,,,,,,,5984201.59
+32,Noninstructional Programs,21028.26,,,,,,1020345.66,,,,9036785.67,,10078159.59
+33,Facilities Acquisition and Construction,,,,,,,53760728.56,7456443.38,916094.72,,,,62133266.66
+34,"Debt Service (Principal, interest, fiscal charges)",,,,,,,,,,28669193.76,,,28669193.76
+35,AEA Support - Direct to AEA,5868388.00,,,,,,,,,,,,5868388.00
+36,Total Expenditures (Sum of rows 24 through 35),211982185.05,3837818.69,8027519.83,,,,54781074.22,7819774.41,916094.72,28669193.76,9094881.44,,325128542.12
+37,Interfund Transfers Out,351969.07,,,,,,966262.50,12335000.00,,,508955.07,,14162186.64
+38,Other Uses,513225.93,9940.91,1111050.00,,,,,,,,,,1634216.84
+39,"Total Expenditures, Transfers Out & Other Uses (Sum of rows 36 through 38)",212847380.05,3847759.60,9138569.83,,,,55747336.72,20154774.41,916094.72,28669193.76,9603836.51,,340924945.60
+40,Ending Fund Balance,18293674.81,,5618732.49,,,,9210196.24,8353371.70,,215434.69,7097048.89,,48788458.82
+41,Total Requirements (Sum of rows 39 and 40),231141054.86,3847759.60,14757302.32,,,,64957532.96,28508146.11,916094.72,28884628.45,16700885.40,,389713404.42

@@ -1,0 +1,48 @@
+Line,Description,General Fund,Non-Fiduciary Scholarship Funds,Student Activity Fund,Management Levy Fund,Entreprenurial Education Fund,PERL Fund,AEA Sp Ed Inst Fund,AEA JH Inst Fund,Support Trust Fund,Disaster Recovery Fund,Library Levy Fund,SAVE Statewide Sales and Services Tax Fund,PPEL Fund,Other Capital Project Funds,Debt Service Fund,Permanent Funds,Enterprise Funds,Internal Service Funds,Trust Funds,Custodial Funds,Total
+,CURRENT ASSETS,,,,,,,,,,,,,,,,,,,,,
+1,Cash & Investments,43685677.01,,1009917.30,5560131.40,,,,,,,,9247528.68,9749455.32,391322.94,150040.26,,6634724.40,15432280.78,128731.32,,91989809.41
+2,Taxes Receivable,84051991.07,,,13000752.17,,,,,,,,,13107010.38,,13469292.63,,,,,,123629046.25
+3,Interfund Receivables,974445.71,,408.62,,,,,,,,,,,,,,,,,,974854.33
+4,Intergovernmental Receivables,9638776.98,,,,,,,,,,,1994425.43,,,,,776618.35,,,,12409820.76
+5,Other Receivables,487319.26,,40.00,,,,,,,,,,,,,,,,,,487359.26
+6,Inventories,53228.90,,,,,,,,,,,,,,,,185193.53,,,,238422.43
+7,Prepaid Expenses,1223490.90,,,,,,,,,,,5626.87,55252.93,,,,31098.16,,,,1315468.86
+8,Other Current Assets,,,,,,,,,,,,,,,,,,,,,
+9,TOTAL CURRENT ASSETS,140114929.83,,1010365.92,18560883.57,,,,,,,,11247580.98,22911718.63,391322.94,13619332.89,,7627634.44,15432280.78,128731.32,,231044781.30
+10,Long-Term Assets,,,,,,,,,,,,,,,,,990427.96,,,,990427.96
+11,Total Assets,140114929.83,,1010365.92,18560883.57,,,,,,,,11247580.98,22911718.63,391322.94,13619332.89,,8618062.40,15432280.78,128731.32,,232035209.26
+,DEFERRED OUTFLOWS OF RESOURCES,,,,,,,,,,,,,,,,,,,,,
+12,Deferred Outflows of Resources,26464.14,,,,,,,,,,,,,,,,,,,,26464.14
+13,Deferred Outflows of Resources related to Pensions and OPEB,,,,,,,,,,,,,,,,,400175.00,,,,400175.00
+14,Total Deferred Outflows of Resources,26464.14,,,,,,,,,,,,,,,,400175.00,,,,426639.14
+15,TOTAL ASSETS AND DEFERRED OUTFLOWS OF RESOURCES,140141393.97,,1010365.92,18560883.57,,,,,,,,11247580.98,22911718.63,391322.94,13619332.89,,9018237.40,15432280.78,128731.32,,232461848.40
+,CURRENT LIABILITIES,,,,,,,,,,,,,,,,,,,,,
+16,Interfund Payables,,,974854.33,,,,,,,,,,,,,,,,,,974854.33
+17,Intergovernmental Payables,82776.27,,,,,,,,,,,,,,,,,,,,82776.27
+18,Other Payables,3038488.31,,35511.59,,,,,,,,,957974.47,1389410.33,217583.55,,,49024.88,,1629.36,,5689622.49
+19,Contracts Payable,,,,,,,,,,,,1009828.90,125561.73,173739.39,,,,,,,1309130.02
+20,Bonds Payable,,,,,,,,,,,,,,,,,,,,,
+21,Loans Payable,,,,,,,,,,,,,,,,,,,,,
+22,Accrued Expenses,13281045.19,,,,,,,,,,,27996.71,,,,,,1515321.47,,,14824363.37
+23,Payroll Deductions & Withholdings Payable,13514422.50,,,,,,,,,,,41584.66,,,,,185981.78,,535327.30,11167.50,14288483.74
+24,Advances of Federal Grants/Unearned Revenues,,,,,,,,,,,,,,,,,56869.44,,,,56869.44
+25,Other Current Liabilities,,,,,,,,,,,,,,,,,,,,,
+26,TOTAL CURRENT LIABILITIES,29916732.27,,1010365.92,,,,,,,,,2037384.74,1514972.06,391322.94,,,291876.10,2050648.77,12796.86,,37226099.66
+27,Net Pension Liabilities,,,,,,,,,,,,,,,,,1249537.00,,,,1249537.00
+28,Long-Term Liabilities,,,,,,,,,,,,,,,,,315707.41,,,,315707.41
+29,Total Liabilities,29916732.27,,1010365.92,,,,,,,,,2037384.74,1514972.06,391322.94,,,1857120.51,2050648.77,12796.86,,38791344.07
+,DEFERRED INFLOWS OF RESOURCES,,,,,,,,,,,,,,,,,,,,,
+30,Deferred Inflows for Succeeding Year Property Taxes Receivable,83672536.81,,,12942151.08,,,,,,,,,13043374.87,,13403898.20,,,,,,123061960.96
+31,Deferred Inflows for Income Surtax Receivable,7070437.00,,,,,,,,,,,,,,,,,,,,7070437.00
+32,Deferred Inflows for Miscellaneous Receivables not Received Within 60 Days,1188013.08,,,,,,,,,,,,,,,,,,,,1188013.08
+33,Deferred Inflows of Resources related to Pensions and OPEB,,,,,,,,,,,,,,,,,64068.00,,,,64068.00
+34,Deferred Inflows of Resources,91930986.89,,,12942151.08,,,,,,,,,13043374.87,,13403898.20,,64068.00,,,,131384479.04
+,EQUITY,,,,,,,,,,,,,,,,,,,,,
+35,Net Investment in Capital Assets,,,,,,,,,,,,,,,,,990427.96,13381632.01,,,14372059.97
+36,Nonspendable Fund Balance,1276719.80,,,,,,,,,,,5626.87,55252.93,,,,,,,,1337599.60
+37,Restricted Fund Balance / Restricted Net Position,4745545.28,,,5618732.49,,,,,,,,9204569.37,8353371.70,916094.72,215434.69,,,,86710.83,,29140459.08
+38,Committed Fund Balance,,,,,,,,,,,,,,,,,,,,,
+39,Assigned Fund Balance,,,,,,,,,,,,,,,,,,,,,
+40,Unassigned Fund Balance / Unrestricted Net Position,12271409.73,,,,,,,,,,,,-55252.93,-916094.72,,,6106620.93,,29223.63,,17435906.64
+41,TOTAL FUND,18293674.81,,,5618732.49,,,,,,,,9210196.24,8353371.70,,215434.69,,7097048.89,13381632.01,115934.46,,62286025.29
+42,"TOTAL LIABILITIES, DEFERRED INFLOWS OF RESOURCES AND FUND EQUITY",140141393.97,,1010365.92,18560883.57,,,,,,,,11247580.98,22911718.63,391322.94,13619332.89,,9018237.40,15432280.78,128731.32,,232461848.40

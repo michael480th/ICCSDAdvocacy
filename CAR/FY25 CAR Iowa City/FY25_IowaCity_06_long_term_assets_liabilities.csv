@@ -1,0 +1,22 @@
+Line,Account,Long-Term Assets,Long-Term Liabilities
+,LONG-TERM ASSETS & OTHER DEBITS,,
+1,Land & Land Improvements,16096976.07,
+2,Site Improvements,50080634.60,
+3,Building & Building Improvements,562669464.84,
+4,Machinery & Equipment,33895089.01,
+5,Works of Art & Historical Treasures,,
+6,Infrastructure,,
+7,Construction in Progress,57168511.20,
+8,Intangible Assets,,
+9,Amount available for retirement of governmental Long-term Debt,,318925199.45
+10,Amount to be provided for retirement of governmental Long-term Debt,,61280066.00
+11,TOTAL LONG-TERM ASSETS & OTHER DEBITS (Sum rows 1 to 10),720650858.05,380205265.45
+,LONG-TERM LIABILITIES & OTHER CREDITS,,
+12,Bonds Payable,,317995000.00
+13,Loans Payable,,
+14,"Capital Lease, Operating Lease & Construction Contract Obligations",,
+15,Compensated Absences & Special Termination Benefits,,930199.45
+16,Arbitrage Rebate Liability,,
+17,"Other Long-Term Liability (OPEB, IPERS, etc.)",,61280066.00
+18,Investment in Governmental Fixed Assets (before depreciation),720650858.05,
+19,TOTAL LONG-TERM LIABILITIES & OTHER CREDITS (sum rows 12 to 18),720650858.05,380205265.45
