@@ -26,6 +26,7 @@ SOURCES = {
     "gz-contract": "The Gazette, 'Iowa City schools Superintendent Matt Degner gets new 3-year contract,' July 2025.",
     "gz-rating": "Moody's withdrawal of the district's bond rating, October 2024, as reported by The Gazette (2026).",
     "gz-emails": "The Gazette, 'Emails: Fundamental errors in Iowa City schools accounting flagged in 2024,' June 15 2026.",
+    "gz-finger": "The Gazette, 'Former Iowa City school CFO questioned district's finances' (CFO Leslie Finger emails; $525,110 in federal late-filing penalties Sept 2023 to June 2025; federal tax lien filed and lifted Feb 2025), 2026.",
     "gz-cap":   "The Gazette, June 2026: corrective action plan submitted to a state financial oversight board, November 2023.",
     "gz-cline": "The Gazette, 'Iowa Board of Education questions Iowa City schools finances,' June 18 2026 (testimony of Kassandra Cline).",
     "gz-sped":  "The Gazette, 'Here's why Iowa City schools special education costs are rising,' May 28 2026.",
@@ -43,9 +44,7 @@ SOURCES = {
     "car25":    "Iowa City CSD FY2025 Certified Annual Report, Treasurer's Report by Fund (self-reported, unaudited).",
     "foc-videos": "Iowa City CSD Financial Oversight Committee meeting recordings, 2023-2024 (public video).",
     "foc-jan26": "Iowa City CSD Financial Oversight Committee meeting, January 2026 (public video); opening remarks by director Mitch Lingo.",
-    "email-a":  "Community correspondence to the ICCSD Board of Directors, June 10 2025 (sender redacted; project files).",
-    "email-b":  "Community correspondence to the ICCSD Board of Directors, June 14 2022 (sender redacted; project files).",
-    "email-c":  "Community correspondence to the ICCSD Board of Directors, October 21 2024 (sender redacted; project files).",
+    "emails":   "Community correspondence addressed to the ICCSD Board of Directors during the crisis period (project files; authors withheld).",
 }
 CITES = []          # keys in first-cited order
 def cite(key):
@@ -212,6 +211,67 @@ def chart_interfund():
             'to $29M. District-wide, the FY2024 audit flagged $38.2M of these interfund loans as unauthorized.'
             '</figcaption>' + "".join(s) + '</figure>')
 
+# FY2024 spending authority (Unspent Authorized Budget, % of max) for all 15 large districts. From the
+# project KPI dataset (data/kpi-three-methodologies.csv). Iowa City is the lowest of the 15.
+PEER_UAB = {"Iowa City CSD": 1.6, "West Des Moines CSD": 9.4, "Dubuque CSD": 9.6, "Linn-Mar CSD": 9.6,
+            "Ankeny CSD": 11.8, "Waterloo CSD": 12.7, "Cedar Rapids CSD": 13.5, "Davenport CSD": 14.9,
+            "College CSD (Prairie)": 15.4, "Muscatine CSD": 20.7, "Des Moines Independent CSD": 21.0,
+            "Johnston CSD": 21.6, "Pleasant Valley CSD": 21.9, "Burlington CSD": 29.3, "Waukee CSD": 31.0}
+
+def chart_debt_cash():
+    """Combo: debt outstanding (light bars, left axis) with days of operating cash (red line, right axis)."""
+    W, H = 920, 380; L, R, T, B = 56, 56, 40, 38; iw, ih = W-L-R, H-T-B
+    yrs = sorted(GO_DEBT); dmax, cmax = 340, 100; bw = iw/len(yrs)*0.6
+    def X(i): return L+iw*(i+0.5)/len(yrs)
+    def YD(v): return T+ih*(dmax-v)/dmax
+    def YC(v): return T+ih*(cmax-v)/cmax
+    s = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="debt and days of cash 2015 to 2024">']
+    for g in (0, 100, 200, 300):
+        s.append(f'<line x1="{L}" y1="{YD(g):.1f}" x2="{L+iw}" y2="{YD(g):.1f}" stroke="#eef2f7"/>')
+        s.append(_t(L-8, YD(g)+4, f"${g}M", "tick", "end"))
+    for g in (0, 50, 100):
+        s.append(_t(L+iw+8, YC(g)+4, f"{g}", "tick", "start"))
+    s.append(_t(L-8, T-16, "debt", "lbl", "end"))
+    s.append(_t(L+iw+8, T-16, "days of cash", "lbl", "start", fill="#b91c1c"))
+    for i, y in enumerate(yrs):
+        go, sv = GO_DEBT[y], SAVE_DEBT[y]; x = X(i)-bw/2
+        s.append(f'<rect x="{x:.1f}" y="{YD(go):.1f}" width="{bw:.1f}" height="{YD(0)-YD(go):.1f}" fill="#c7d8f5"/>')
+        s.append(f'<rect x="{x:.1f}" y="{YD(go+sv):.1f}" width="{bw:.1f}" height="{YD(0)-YD(sv):.1f}" fill="#e2ebfb"/>')
+        s.append(_t(X(i), T+ih+18, str(y), "tick"))
+    pts = [(X(i), YC(DAYS[y])) for i, y in enumerate(yrs)]
+    s.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x,y in pts)}" fill="none" stroke="#b91c1c" stroke-width="3.2"/>')
+    for x, yv in pts:
+        s.append(f'<circle cx="{x:.1f}" cy="{yv:.1f}" r="3.4" fill="#fff" stroke="#b91c1c" stroke-width="1.8"/>')
+    s.append(_t(X(2), YC(DAYS[2017])-10, "88 days of cash", "val", "middle", fill="#b91c1c"))
+    s.append(_t(X(8)+6, YC(DAYS[2023])+16, "33 days", "val", "middle", fill="#b91c1c"))
+    s.append('</svg>')
+    return ('<figure class="figwrap"><figcaption><b>Debt up, cash down, on one clock.</b> Light bars are debt '
+            'outstanding, GO plus SAVE (left axis). The red line is days of operating cash (right axis), which '
+            'counts actual cash, not money owed between funds. By law these are separate pots. How they ended up '
+            'moving together is the rest of this story.</figcaption>' + "".join(s) + '</figure>')
+
+def chart_peer_strip():
+    """All 15 large districts on FY2024 spending authority; Iowa City highlighted as the low outlier."""
+    W, H = 920, 168; L, R, T = 32, 32, 54; iw = W-L-R; xmax = 34; band = 8
+    def X(v): return L+iw*v/xmax
+    yline = T+26
+    s = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="spending authority across 15 districts">']
+    s.append(f'<rect x="{X(band):.1f}" y="{T}" width="{X(xmax)-X(band):.1f}" height="60" fill="#16a34a" opacity="0.08"/>')
+    for g in (0, 10, 20, 30):
+        s.append(f'<line x1="{X(g):.1f}" y1="{T}" x2="{X(g):.1f}" y2="{T+60}" stroke="#eef2f7"/>')
+        s.append(_t(X(g), T+60+16, f"{g}%", "tick"))
+    for name, v in PEER_UAB.items():
+        me = name == "Iowa City CSD"
+        s.append(f'<circle cx="{X(v):.1f}" cy="{yline:.1f}" r="{6 if me else 4.5}" '
+                 f'fill="{"#b91c1c" if me else "#94a3b8"}" opacity="{1 if me else 0.7}"/>')
+    s.append(_t(X(PEER_UAB["Iowa City CSD"]), yline-13, "Iowa City  1.6%", "val", "middle", fill="#b91c1c"))
+    s.append(_t(X(20), yline-13, "the other 14 large districts", "lbl", "middle", fill="#64748b"))
+    s.append('</svg>')
+    return ('<figure class="figwrap"><figcaption><b>Same state, same rules, very different results.</b> Each dot '
+            'is one of the 15 largest Iowa districts on spending authority (unspent budget as a share of the '
+            'limit), FY2024, the state\'s central health measure. Fourteen sit between 9% and 31%. Iowa City sits '
+            'alone at 1.6%.</figcaption>' + "".join(s) + '</figure>')
+
 # ----------------------------------------------------------------- sections
 def sec_0():
     return f'''
@@ -282,7 +342,7 @@ revenue bonds, including a $66M issue in 2022 and a $71M issue in 2023. Total de
 2023.{cite("fy24")} That left Iowa City with one of the largest sales-tax debt loads of any large district in
 the state, most of its penny-sales-tax revenue pledged to bond payments for years out.</p>
 
-{chart_debt()}
+{chart_debt_cash()}
 
 <p><b>It also spent capital cash closer to home.</b> In 2022 the district paid $8.7M for ACT's Tyler Building,
 using its physical-plant levy, and moved its central offices there.{cite("gz-act")} The price came in well
@@ -310,6 +370,14 @@ fund teaching, and teaching cannot raid the building money.</p>
 pools its cash and tracks each fund's claim on the pool as a bookkeeping entry.{cite("fy24")} So a fund can
 spend more cash than it holds and quietly borrow from the others in the pool. Hold onto that. It is how two
 unrelated problems ended up in the same hole.</p>
+
+<div class="callout"><p><b>The obvious objection, and why it does not hold.</b> The district's answer to all of
+this is that the funds are separate and cannot be mixed. That is the rule, and on paper it is true. It is also
+beside the point, for two reasons. First, separate funds still share one bank account, so spending in one fund
+draws down the cash available to all of them, ledgers or no ledgers. Second, the district did mix them. The
+FY2024 audit found $38M of loans moving between funds without the board votes Iowa law requires, and the next
+year the district moved $10M from its insurance fund to make payroll the same way.{cite("fy24")} A district
+that mixed its funds against the rules does not get to hide behind the rule that says it should not have.</p></div>
 </section>'''
 
 def sec_4():
@@ -404,9 +472,9 @@ One finance officer could set up vendors, approve invoices, record the entries, 
 second set of eyes.{cite("fy24")} A staffer who joined in 2024 warned leadership of fundamental errors that
 October. The emails show no real response.{cite("gz-emails")}</p>
 
-<p><b>The board, for its part, had built in no way to hold its one employee accountable.</b> Residents had
-warned in 2022 that the superintendent's contract carried no performance measures and was not tied to the
-district's goals.{cite("email-b")} The board renewed it anyway in July 2025, weeks before the crisis
+<p><b>The board, for its part, had built in no way to hold its one employee accountable.</b> Community members
+had warned the board that the superintendent's contract carried no performance measures and was not tied to the
+district's goals.{cite("emails")} The board renewed it anyway in July 2025, weeks before the crisis
 surfaced.{cite("gz-contract")} When the failures came to light, the board kept the superintendent on in a $180K
 role rather than removing him.{cite("gz-forensic")}</p>
 </section>'''
@@ -416,21 +484,20 @@ def sec_9():
 <section class="sec reveal" id="s9">
 <h2>They were told</h2>
 
-<p><b>The board cannot claim it was blindsided.</b> Residents wrote to it, in detail, for years, naming the
-exact failures that later detonated.</p>
+<p><b>The board did not lack for warning.</b> Through every stage of this, community members, including people
+with real financial and professional expertise, wrote to the board at the moments that mattered, raising the
+exact issues that later came apart.{cite("emails")} They were thanked for their service and, on the substance,
+ignored.</p>
 
-<p><b>In June 2022, a resident asked the board not to overpay for the ACT building and not to sign a
-superintendent contract with no accountability.</b>{cite("email-b")} It did both.</p>
+<p><b>The questions they put in writing were specific, and they were early.</b> Why pay $8.7M for the ACT
+building when it was assessed at $5.4M. Where is the long-term plan for the sales-tax money before committing it
+to new projects. Where is the FY2023 audit, and why does it keep getting pulled from the board agenda without
+explanation, right before votes to authorize tens of millions in new spending.</p>
 
-<p><b>In October 2024, another asked for a public sales-tax budget out to 2050 and warned that spending capital
-on wants now could force the district to close schools later.</b> The same letter noted the FY2023 audit still
-had not come back.{cite("email-c")}</p>
-
-<p><b>In June 2025, a resident asked the question that says it all, where is the FY2023 audit, pulled from the
-agenda again.</b> The letter invoked the board's fiduciary duty by name, asked members to read the audit before
-voting tens of millions on field houses, and flagged a $377,628.90 federal tax lien against the
-district.{cite("email-a")} A year later, the State Board of Education would use the same word, fiduciary, to
-describe what had been missing.</p>
+<p><b>They named the standard directly.</b> They asked the board to meet its fiduciary duty by reading the audit
+before it voted.{cite("emails")} A year later, the State Board of Education would describe the same failure in
+the same word. By then the district had already drawn a federal tax lien, filed and later lifted, the kind of
+thing a functioning finance office does not let happen.{cite("gz-finger")}</p>
 </section>'''
 
 def sec_10():
@@ -464,15 +531,25 @@ They were never the same problem, but they ran through one bank account, and the
 slack left, the funds cannibalized each other, and then the district reached into its insurance fund to make
 payroll.</p>
 
-<p><b>Some of this is bigger than Iowa City.</b> In 2024, 298 of Iowa's 325 districts ran special-education
-deficits, and the state's voucher program has pulled enrollment and revenue from urban districts.{cite("gz-sped")}{cite("npr")}
-The operating squeeze is real and widespread.</p>
+<p><b>The costly part was self-inflicted, and almost all of it was avoidable.</b> The district paid about
+$525,000 in federal penalties for filing its payroll and excise taxes late, and a federal tax lien was filed
+against it and then lifted along the way.{cite("gz-finger")} The state found the late filings kept happening
+because no one in the business office was monitoring them. It lost its bond rating and its access to bank
+credit, which forced it into emergency borrowing that carries interest. It owed interest on $38M of loans
+between its own funds and, by the auditors' finding, never paid it.{cite("fy24")} In a single year its payroll
+ran about $13.5M over budget.{cite("kcrg-feb")} Those are controllable numbers, and they are large and fast.</p>
 
-<p><b>The squeeze did not require any of the rest.</b> Plenty of Iowa districts face the same pressures without
-losing their rating, missing three years of audits, or borrowing against their insurance fund without a vote.
-What set Iowa City apart was the collapse of the people, the controls, and the committee that should have caught
-it. <b>Whether any of it crossed from negligence into something worse is still open.</b> The board has
-commissioned a forensic audit to find out.{cite("gz-forensic")}</p>
+<p><b>The clearest proof is the other fourteen districts.</b> This project benchmarks Iowa City against the
+fourteen other large districts in the state. They live under the same funding formula, the same enrollment
+trends, and the same school-choice rules. On the state's central health measure, almost all of them sit in
+comfortable territory. Iowa City sits alone at the bottom.</p>
+
+{chart_peer_strip()}
+
+<p><b>Shared conditions cannot explain an outcome only one district reached.</b> A district can do well in Iowa
+today, and most of them do. What set Iowa City apart was the handling of the things it controlled, the people,
+the controls, and the committee that should have caught the slide. <b>Whether any of it crossed from negligence
+into something worse is still open</b>, and the board has commissioned a forensic audit to find out.{cite("gz-forensic")}</p>
 </section>'''
 
 def sec_12():
@@ -533,6 +610,8 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Ar
 .fnn{font-weight:700;color:#b91c1c}
 .fnback{color:#b91c1c;text-decoration:none;margin-left:4px}
 .note{max-width:720px;margin:24px auto;padding:14px 18px;background:#fff;border:1px solid #ececec;border-left:4px solid #94a3b8;border-radius:8px;font:400 14.5px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#444}
+.callout{margin:24px 0;padding:4px 20px;background:#fff7f6;border:1px solid #f3d4cf;border-left:4px solid #b91c1c;border-radius:8px}
+.callout p{font-size:18px;margin:16px 0}
 """
 
 JS = """
