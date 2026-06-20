@@ -68,8 +68,13 @@ DAYS_LAST_AUDITED = 2024
 UAB = {2017: 6.6, 2018: 5.4, 2019: 2.2, 2020: 1.2, 2021: 1.7, 2022: 0.1, 2023: -1.2, 2024: 1.6, 2025: 2.3}
 SOLV = {2015: 9.3, 2016: 11.5, 2017: 12.3, 2018: 11.0, 2019: 7.0, 2020: 4.2, 2021: 6.3,
         2022: 2.8, 2023: 2.5, 2024: 8.1}
-GO_DEBT = {2020: 176.9, 2021: 170.6, 2022: 164.0, 2023: 156.8, 2024: 149.4}
-SAVE_DEBT = {2020: 82.5, 2021: 74.4, 2022: 66.2, 2023: 164.7, 2024: 155.9}
+# Debt outstanding by year ($M). GO bonds and sales-tax (SAVE) revenue bonds.
+# FY2015-2019 from data/fy15-19-extractions/Iowa_City_CSD.csv (audited). FY2020-2024 from the FY2024 audit.
+# Same basis throughout (GO bonds proper + SAVE revenue bonds; small GO capital loan notes excluded).
+GO_DEBT = {2015: 9.3, 2016: 6.3, 2017: 3.2, 2018: 59.0, 2019: 115.1,
+           2020: 176.9, 2021: 170.6, 2022: 164.0, 2023: 156.8, 2024: 149.4}
+SAVE_DEBT = {2015: 0.0, 2016: 56.1, 2017: 74.0, 2018: 97.8, 2019: 90.3,
+             2020: 82.5, 2021: 74.4, 2022: 66.2, 2023: 164.7, 2024: 155.9}
 IFUND = {2020: 0.28, 2021: 0.15, 2022: 0.18, 2023: 0.16, 2024: 29.09}   # GF due-from-other-funds, $M
 # FY2025 fund cash, begin -> end ($M), from the FY2025 CAR Treasurer's Report by Fund (unaudited)
 FUNDS = [("SAVE sales-tax capital", 45.81, 9.21), ("General Fund", 19.37, 18.29),
@@ -158,8 +163,9 @@ def chart_debt():
     s.append(_t(L+4, T+26, "SAVE sales-tax bonds", "lbl", "start", fill="#60a5fa"))
     s.append('</svg>')
     return ('<figure class="figwrap"><figcaption><b>The debt kept climbing, then jumped.</b> General obligation '
-            'bonds plus sales-tax (SAVE) revenue bonds. The 2023 jump is a new $71M SAVE issue. Source: FY2024 '
-            'audit.</figcaption>' + "".join(s) + '</figure>')
+            'bonds plus sales-tax (SAVE) revenue bonds outstanding, 2015 to 2024. Modest before the 2017 '
+            'referendum, then the bond issues of 2018 to 2020 and a new $71M SAVE issue in 2023 pushed it to a '
+            '$322M peak. Source: FY2015 to FY2024 audits.</figcaption>' + "".join(s) + '</figure>')
 
 def chart_dumbbell():
     W = 920; rowh = 27; H = 40 + rowh*len(FUNDS) + 30; L, R, T = 190, 80, 32; iw = W-L-R; xmax = 48
