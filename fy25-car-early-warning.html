@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FY25 CAR — early-warning read | ICCSD</title>
+<style>
+  :root {
+    --ink: #0f172a; --ink-soft: #334155; --ink-mute: #64748b; --bg: #f7f9fc; --hero: #0b1426;
+    --accent: #2c5fa1;
+    --red: #b03a2e; --red-soft: #fdecec; --red-line: #f5b7b1;
+    --green: #1e7a3a; --green-soft: #e7f5ec; --green-line: #a6dab8;
+    --blue: #1a4f9b; --blue-soft: #e8f0ff; --blue-line: #aac6f7;
+    --gold: #b58220; --gold-soft: #fdf3df; --gold-line: #ecd49a;
+    --gray-soft:#eef2f7;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; font-size: 17px; }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero { background: var(--hero); color: #fff; padding: 3rem 0 2.5rem; margin-bottom: 2rem; }
+  .hero .eyebrow { color: #6ea8fe; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  .hero h1 { font-size: 2.4rem; line-height: 1.08; margin: 0 0 0.9rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero .sub { color: #c8d4e8; font-size: 1.1rem; max-width: 660px; margin: 0; }
+
+  h2 { font-size: 1.4rem; font-weight: 800; margin: 2.5rem 0 0.5rem; color: var(--ink); line-height: 1.2; }
+  h2 .lbl { font-size: 0.95rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 6px; vertical-align: middle; margin-left: 0.1rem; }
+  h3 { font-size: 1.05rem; font-weight: 800; margin: 1.4rem 0 0.3rem; color: var(--ink); }
+  p { margin: 0 0 1rem; color: var(--ink-soft); }
+  p strong { color: var(--ink); font-weight: 700; }
+  a { color: var(--accent); }
+  .section-sub { color: var(--ink-mute); font-size: 0.98rem; margin: 0 0 1rem; }
+
+  /* explainer / TL;DR boxes */
+  .tldr { background:#fff; border:1px solid #e2e8f0; border-left:5px solid var(--accent); border-radius:10px; padding:1.25rem 1.4rem; margin:0 0 1rem; }
+  .tldr .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:0.6rem; }
+  .tldr ul { list-style:none; margin:0; padding:0; }
+  .tldr li { display:flex; gap:0.65rem; align-items:flex-start; margin-bottom:0.6rem; font-size:1.02rem; color:var(--ink-soft); }
+  .tldr li:last-child { margin-bottom:0; }
+  .tldr .ic { flex:0 0 auto; font-size:1.1rem; line-height:1.4; }
+  .tldr li strong { color:var(--ink); }
+  .tldr.gold { border-left-color: var(--gold); }
+  .tldr.gold .k { color: var(--gold); }
+  .tldr.green { border-left-color: var(--green); }
+  .tldr.green .k { color: var(--green); }
+  .tldr.green .ic { color: var(--green); font-weight: 800; }
+
+  /* "what is a CAR" note */
+  .note { background: var(--blue-soft); border:1px solid var(--blue-line); border-radius:10px; padding:1rem 1.25rem; margin:0 0 1.25rem; font-size:0.97rem; color:var(--ink-soft); }
+  .note b { color: var(--blue); }
+
+  /* clue cards */
+  .clue { background:#fff; border:1px solid #e2e8f0; border-radius:11px; padding:1.1rem 1.3rem 1.2rem; margin-bottom:1rem; border-left:5px solid var(--red-line); }
+  .clue .top { display:flex; gap:0.7rem; align-items:flex-start; }
+  .clue .num { flex:0 0 auto; width:1.7rem; height:1.7rem; border-radius:50%; background:var(--red-soft); color:var(--red); font-weight:800; font-size:0.95rem; display:flex; align-items:center; justify-content:center; margin-top:0.1rem; }
+  .clue .hd { font-weight:800; font-size:1.12rem; color:var(--ink); line-height:1.25; }
+  .clue .sev { font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; padding:0.2rem 0.5rem; border-radius:999px; white-space:nowrap; margin-left:auto; align-self:flex-start; margin-top:0.15rem; }
+  .clue .sev.big { background:var(--red-soft); color:var(--red); border:1px solid var(--red-line); }
+  .clue .sev.med { background:var(--gold-soft); color:var(--gold); border:1px solid var(--gold-line); }
+  .clue .body { margin-top:0.6rem; }
+  .clue .body p { margin:0 0 0.7rem; }
+  .clue .body p:last-child { margin-bottom:0; }
+  .clue .why { background:var(--gray-soft); border-radius:8px; padding:0.6rem 0.85rem; font-size:0.95rem; color:var(--ink-soft); margin-top:0.4rem; }
+  .clue .why b { color:var(--ink); }
+  .clue.med { border-left-color: var(--gold-line); }
+  .clue.med .num { background:var(--gold-soft); color:var(--gold); }
+
+  /* mini ledger table inside a clue */
+  .ledger { width:100%; border-collapse:collapse; font-size:0.95rem; margin:0.3rem 0 0.6rem; }
+  .ledger td { padding:0.3rem 0.2rem; border-bottom:1px solid #eef2f7; color:var(--ink-soft); }
+  .ledger td.n { text-align:right; font-variant-numeric: tabular-nums; white-space:nowrap; font-weight:600; color:var(--ink); }
+  .ledger tr.tot td { border-top:2px solid #cbd5e1; border-bottom:none; font-weight:800; color:var(--ink); }
+  .ledger tr.tot td.n { color:var(--red); }
+  .zero { color:var(--red); font-weight:800; }
+
+  /* mapping table */
+  .map { width:100%; border-collapse:collapse; font-size:0.95rem; background:#fff; border:1px solid #e2e8f0; border-radius:11px; overflow:hidden; margin:0.5rem 0 1rem; }
+  .map th { background:#f1f5f9; text-align:left; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-mute); padding:0.6rem 0.8rem; }
+  .map td { padding:0.7rem 0.8rem; border-top:1px solid #eef2f7; color:var(--ink-soft); vertical-align:top; }
+  .map td.f24 { width:42%; color:var(--ink); font-weight:600; }
+  @media (max-width:560px){ .map, .map thead, .map tbody, .map tr, .map td, .map th{ display:block; } .map th{display:none} .map td{border-top:none;padding:0.2rem 0.9rem} .map tr{border-top:1px solid #e2e8f0;padding:0.6rem 0} .map td.f24{font-size:1rem} }
+
+  .bottomline { background: var(--blue-soft); border:1px solid var(--blue-line); border-radius:10px; padding:1.25rem 1.5rem; margin:1.5rem 0; }
+  .bottomline .k { font-size:0.72rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:0.4rem; }
+  .bottomline p { margin:0 0 0.7rem; color:var(--ink); font-size:1.05rem; }
+  .bottomline p:last-child { margin-bottom:0; }
+
+  .sources { border-top: 1px solid #e2e8f0; margin-top: 2.5rem; padding-top: 1.25rem; font-size: 0.85rem; color: var(--ink-mute); }
+  .footer { text-align: center; padding: 1.5rem 0 3rem; color: var(--ink-mute); font-size: 0.82rem; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.85rem; }
+    h2 { font-size: 1.25rem; }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<style>.sitenav{max-width:960px;margin:0 auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:600 13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}.sitenav .brand{color:#0f172a;margin-right:4px;font-weight:800}.sitenav a,.sitenav .cur{display:inline-block;padding:6px 13px;border-radius:999px;text-decoration:none;border:1px solid #e2e8f0}.sitenav a{color:#2563eb;background:#fff}.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}.sitenav .sep{flex-basis:100%;height:0;margin:0}.sitenav .more{color:#64748b;border-color:#eef2f7;background:#fff;font-weight:600}.sitenav .more:hover{background:#f8fafc;border-color:#e2e8f0}.sitenav .more.cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}</style><nav class="sitenav"><span class="brand">Iowa City CSD finances</span><a href="index.html">How ICCSD compares</a><a href="iccsd-cushion.html">Does it have a cushion?</a><a href="iowa-district-financial-benchmark.html">Dig into the data</a><span class="sep"></span><a class="more cur" href="other-analyses.html">Other analyses</a><a class="more" href="making-the-foc-work.html">Oversight committee</a></nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">ICCSD &middot; Reading the FY25 filing before the audit lands</div>
+    <h1>The FY25 self-report has FY24's fingerprints on it.</h1>
+    <p class="sub">The FY25 audit isn't done yet. But the district's own FY25 filing is already public &mdash; and read against the FY24 audit findings, four things in it look like the same broken controls still at work. Here's what to watch for, in plain English.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="tldr">
+    <div class="k">The 60-second version</div>
+    <ul>
+      <li><span class="ic">📄</span><span><strong>This is the self-report, not the audit.</strong> The FY25 numbers below are the district's own unaudited filing. The independent FY25 audit is still pending, so nothing here is a confirmed finding &mdash; these are early-warning signs.</span></li>
+      <li><span class="ic">⚠️</span><span><strong>Four things look off,</strong> and each one lines up with a problem the FY24 audit already flagged: a fund forced to exactly zero, a wave of prior-year corrections, an unaudited starting point, and the same heavy capital spending that broke the budget last year.</span></li>
+      <li><span class="ic">🧩</span><span><strong>Why it matters now.</strong> Controls weren't fixed until partway through FY26, so FY25's whole year ran under the same practices &mdash; including, by the district's own account, <strong>no monthly reconciliations.</strong> The signs below are what that looks like on paper.</span></li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <b>What's a "CAR"?</b> Every Iowa district files a <b>Certified Annual Report</b> with the state each fall &mdash; its own, <b>unaudited</b> account of the year that just ended. An independent audit checks the same year later. <b>The two are supposed to match.</b> When the self-report shows odd patterns, it's an early read on the quality of the books the auditors will eventually open. For FY24, the audit ultimately revised the district's self-reported figures &mdash; so the FY25 self-report is worth reading the same way.
+  </div>
+
+  <h2>The four things worth watching</h2>
+
+  <!-- CLUE 1 -->
+  <div class="clue">
+    <div class="top">
+      <span class="num">1</span>
+      <span class="hd">A whole fund was balanced to exactly $0.00</span>
+      <span class="sev big">strongest sign</span>
+    </div>
+    <div class="body">
+      <p>The <strong>Student Activity Fund</strong> &mdash; the money behind clubs, athletics, and dozens of individual student accounts &mdash; reports spending that equals every dollar available <strong>to the penny</strong>, landing on a perfectly round zero:</p>
+      <table class="ledger">
+        <tr><td>Starting balance</td><td class="n">$384,374.40</td></tr>
+        <tr><td>+ Money in (incl. a $341,425.99 transfer&nbsp;in)</td><td class="n">$3,463,385.20</td></tr>
+        <tr><td>= Total available</td><td class="n">$3,847,759.60</td></tr>
+        <tr><td>&minus; Money out</td><td class="n">$3,847,759.60</td></tr>
+        <tr class="tot"><td>= Ending balance</td><td class="n zero">$0.00</td></tr>
+      </table>
+      <p>A fund made of hundreds of separate club balances essentially never nets to zero on its own. And the balance sheet is stranger still: the fund holds <strong>$1,010,365.92 of assets</strong> (almost all cash) that are <strong>exactly offset by $1,010,365.92 of liabilities</strong> &mdash; mostly a <strong>$974,854.33 IOU back to the General Fund</strong> &mdash; leaving zero equity. The district even moved $341K <em>into</em> the fund during the year, and it <em>still</em> lands on zero.</p>
+      <div class="why"><b>Why it matters:</b> This is the signature of a <b>forced ("plugged") balance</b>, not a reconciled one &mdash; and the General Fund is quietly floating it. It's the same fund the FY24 audit singled out: the audit found it <b>$983K in the red</b>, while the self-report had shown it comfortably positive. Two years running, this fund's self-reported number hasn't reflected reality. <em>(A second, smaller fund &mdash; "Other Capital Projects" &mdash; was zeroed out the same way: $916,094.72 in, $916,094.72 out, $0.00 left.)</em></div>
+    </div>
+  </div>
+
+  <!-- CLUE 2 -->
+  <div class="clue">
+    <div class="top">
+      <span class="num">2</span>
+      <span class="hd">~$2.8M of prior-year corrections, in both directions</span>
+      <span class="sev big">big deal</span>
+    </div>
+    <div class="body">
+      <p>Last year's filing recorded <strong>$0</strong> in adjustments to its starting balances. This year's filing is full of them:</p>
+      <table class="ledger">
+        <tr><td><strong>Upward</strong> corrections to opening balances</td><td class="n">+$1,191,121.74</td></tr>
+        <tr><td style="padding-left:1.2rem">&mdash; incl. a round $1,111,050.00 in the self&#8209;insurance fund</td><td class="n" style="font-weight:400;color:#64748b">&nbsp;</td></tr>
+        <tr><td><strong>Downward</strong> corrections to opening balances</td><td class="n">&minus;$1,634,216.84</td></tr>
+        <tr class="tot"><td>Gross corrections pushed through FY25</td><td class="n" style="color:var(--ink)">~$2.8M</td></tr>
+      </table>
+      <p>Money was being added back to some funds and taken out of others to fix what the books said at the <em>start</em> of the year. The single largest piece is a suspiciously <strong>round $1,111,050.00</strong> &mdash; the kind of number that comes from an estimate, not a reconciliation.</p>
+      <div class="why"><b>Why it matters:</b> Large corrections flowing both ways are the classic look of <b>books that were wrong going in and are being patched piece by piece</b> &mdash; exactly what "no monthly reconciliations" produces. It maps straight to the FY24 material weaknesses in year-end closing and reconciliations.</div>
+    </div>
+  </div>
+
+  <!-- CLUE 3 -->
+  <div class="clue">
+    <div class="top">
+      <span class="num">3</span>
+      <span class="hd">The whole report stands on an unaudited starting point</span>
+      <span class="sev big">big deal</span>
+    </div>
+    <div class="body">
+      <p>The FY25 filing was prepared <strong>Nov 20, 2025</strong> &mdash; roughly <strong>seven months before the FY24 audit was even finished</strong> (auditor's report dated June 10, 2026). So every opening balance is a self-reported carry-forward that no auditor had checked. The General Fund opens at the <strong>unaudited</strong> figure:</p>
+      <table class="ledger">
+        <tr><td>FY25 opening balance used (self-reported)</td><td class="n">$19,366,903.52</td></tr>
+        <tr><td>What the FY24 audit later found was correct</td><td class="n">$19,053,053</td></tr>
+        <tr class="tot"><td>Overstated starting point</td><td class="n">~$314,000</td></tr>
+      </table>
+      <p>None of the $2.8M in corrections above moved the General Fund toward that audited number.</p>
+      <div class="why"><b>Why it matters:</b> FY25 is built on a starting line the FY24 audit had <b>already proven was too high</b>. When the FY24 audit story repeats &mdash; self-reported figures revised down once the auditors arrive &mdash; FY25 is set up to follow the same path.</div>
+    </div>
+  </div>
+
+  <!-- CLUE 4 -->
+  <div class="clue med">
+    <div class="top">
+      <span class="num">4</span>
+      <span class="hd">The same heavy capital spending that broke the FY24 budget</span>
+      <span class="sev med">worth checking</span>
+    </div>
+    <div class="body">
+      <p>FY24's headline violation was spending about <strong>$19.5M over the legal budget</strong> in the construction/capital category. FY25 shows the same spend-down intensity:</p>
+      <table class="ledger">
+        <tr><td><strong>SAVE</strong> (penny-sales-tax construction fund)</td><td class="n">$45.8M &rarr; $9.2M</td></tr>
+        <tr><td style="padding-left:1.2rem">&mdash; spent $55.7M on $19.1M of revenue</td><td class="n" style="color:var(--red)">&minus;$36.6M</td></tr>
+        <tr><td><strong>PPEL</strong> (physical plant &amp; equipment)</td><td class="n">$15.3M &rarr; $8.4M</td></tr>
+        <tr><td style="padding-left:1.2rem">&mdash; spent $20.2M on $13.2M of revenue</td><td class="n" style="color:var(--red)">&minus;$6.9M</td></tr>
+      </table>
+      <div class="why"><b>Why it matters:</b> The self-report doesn't contain the budget-vs.-actual schedule, so this isn't a confirmed overage &mdash; but the same capital-spending pace plus the same weak controls is the recipe that produced FY24's budget-law breach. <b>The FY25 budget-authority schedule is the first document to pull</b> to see whether it happened again.</div>
+    </div>
+  </div>
+
+  <h2>FY24 finding &rarr; FY25 clue, side by side</h2>
+  <p class="section-sub">How each early-warning sign lines up with something the FY24 audit already documented.</p>
+  <table class="map">
+    <thead><tr><th>What the FY24 audit found</th><th>What the FY25 self-report shows</th></tr></thead>
+    <tbody>
+      <tr><td class="f24">Student activity fund was $983K in the red, and mis-stated</td><td>Activity fund forced to exactly $0.00; its $1.0M of cash is fully offset by an IOU to the General Fund</td></tr>
+      <tr><td class="f24">Material weaknesses in year-end closing &amp; bank reconciliations (no monthly recs)</td><td>~$2.8M of prior-year corrections flowing both ways, including a round $1.11M plug</td></tr>
+      <tr><td class="f24">Self-reported figures revised by the audit (General Fund overstated ~$314K)</td><td>FY25 opens on that same unaudited, overstated figure &mdash; filed 7 months before the FY24 audit was done</td></tr>
+      <tr><td class="f24">~$19.5M spent over the legal budget in the capital category</td><td>SAVE and PPEL drawn down ~$43M combined &mdash; same capital-spending intensity (budget schedule still to be checked)</td></tr>
+      <tr><td class="f24">$38M moved between funds without the required board approval</td><td><strong>Improved:</strong> interfund transfers now balance ($14.16M in = $14.16M out); see below</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What actually looks better in FY25 <span class="lbl" style="background:var(--green-soft);color:var(--green)">credit where due</span></h2>
+  <div class="tldr green">
+    <div class="k">The interfund mechanics tie out this year</div>
+    <ul>
+      <li><span class="ic">✓</span><span>Transfers <strong>between</strong> funds balance to the penny: <strong>$14,162,186.64 in = $14,162,186.64 out</strong>. That's a real contrast with FY24's $38M of unapproved interfund loans.</span></li>
+      <li><span class="ic">✓</span><span>The amounts funds owe each other also tie: <strong>$974,854.33 receivable = $974,854.33 payable.</strong></span></li>
+    </ul>
+    <p class="foot" style="font-size:0.88rem;color:var(--ink-mute);margin:0.7rem 0 0;">The catch: that same $974,854.33 is the IOU the General Fund holds against the Student Activity Fund &mdash; i.e., the mechanism that zeroed the activity fund in clue&nbsp;#1. The plumbing balances; <em>how</em> it was made to balance is the question.</p>
+  </div>
+
+  <div class="bottomline">
+    <div class="k">Bottom line for the board</div>
+    <p>On its face, the FY25 self-report is clean and adds up &mdash; there's no missing money visible, and the General Fund still shows a healthy ~$18.3M balance. But it carries the same DNA as the problems the FY24 audit documented: a fund forced to zero instead of reconciled, a pile of prior-year corrections, an unaudited starting point, and the same capital-spending pace that broke the budget once already.</p>
+    <p>Because the district didn't correct its controls until the back half of FY26, all of FY25 ran under those same practices. The realistic expectation is that the still-pending FY25 audit surfaces much of what FY24 did &mdash; repeat material weaknesses in closing and reconciliations, another look at the activity fund, and a real chance of a budget-authority or capital-fund correction. <strong>Worth asking management now:</strong> the FY25 budget-vs.-actual schedule, why the activity fund nets to zero, and what the $1.11M round-number adjustment represents.</p>
+  </div>
+
+  <div class="sources">
+    Sources: Iowa City Community School District <em>Certified Annual Report, FY2025</em> (filed Nov 20, 2025) and <em>FY2024</em> &mdash; Treasurer's Report by Fund, Balance Sheet by Fund, and Revenue/Expenditure detail; the district's <em>Financial and Compliance Report, Year Ended June 30, 2024</em> (independent auditor's report dated June 10, 2026) and corrective action plan. FY24 audited General Fund ending balance ($19,053,053) and the CAR-vs.-audited comparison are drawn from this project's <a href="car-vs-audited.html">self-report-vs-audited matrix</a>. All FY25 figures are the district's own <strong>unaudited</strong> filing; the independent FY25 audit was not yet issued as of this writing.
+  </div>
+
+  <div class="footer">
+    Unofficial community analysis of public documents. Not produced by ICCSD, the Financial Oversight Committee, or any rating agency. Early-warning read only &mdash; not an audit finding.
+  </div>
+
+</main>
+
+</body>
+</html>
