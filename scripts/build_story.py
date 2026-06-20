@@ -273,8 +273,8 @@ run its operations into the ground, because the two run on separate tracks.</p>
 
 <p><b>The district did not stop at the bond.</b> It kept stacking capital debt, mostly through sales-tax (SAVE)
 revenue bonds, including a $66M issue in 2022 and a $71M issue in 2023. Total debt peaked near $321M in
-2023.{cite("fy24")} That made Iowa City the second most SAVE-leveraged large district in the state, with most
-of its penny-sales-tax revenue pledged to debt for years out.</p>
+2023.{cite("fy24")} That left Iowa City with one of the largest sales-tax debt loads of any large district in
+the state, most of its penny-sales-tax revenue pledged to bond payments for years out.</p>
 
 {chart_debt()}
 
