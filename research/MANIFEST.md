@@ -17,6 +17,7 @@ Index of everything in `research/`, plus the narrative output and the external l
 | `story-judgment-calls.md` | Every editorial/sourcing judgment call, for review. |
 | `board-financial-oversight.md` | Board financial fluency + Financial Oversight Committee (FOC) timeline. |
 | `subplots-act-contract-warnings.md` | ACT building, superintendent contract, community warnings. |
+| `save-bond-sec-disclosure.md` | INTERNAL only. SAVE-bond continuing-disclosure exposure + Crosby ISD precedent. Not used in the public narrative, per owner direction. |
 
 ## C. Research-job briefs (`jobs/`) — for handoff to a researcher with full access
 | File | Job |

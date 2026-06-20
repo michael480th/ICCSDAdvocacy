@@ -3,6 +3,30 @@
 A record of every meaningful decision I made building the narrative, plus places I would tighten with you.
 Read this first when we review. Compiled overnight, June 2026.
 
+## 0. Follow-up revisions (your live feedback)
+- **Removed the voucher / "statewide squeeze" framing from section 11.** You were right that it hands the
+  district an excuse the math does not support. The research backs it: Iowa's ESA is enrollment-driven and the
+  district actually keeps about $1,205 per resident private-school student it no longer educates, so the net
+  voucher cost is small. Against that, the self-inflicted costs are documented and larger ($525K in late-filing
+  penalties, unpaid interest on $38M of interfund loans, a $13.5M payroll overrun). Section 11 now makes the
+  controllable-cost case and rests it on our own 15-district peer benchmark.
+- **Added the "killer" combo chart** (section 2): debt bars with days-of-cash overlaid. Per your IOU point, the
+  liquidity line is days of cash, which uses the actual cash line, not the interfund receivables that pad fund
+  balance. So it cannot be inflated by the district borrowing from itself.
+- **Added a peer chart** (section 11): all 15 large districts on FY2024 spending authority, Iowa City the lone
+  low outlier at 1.6% while 14 sit between 9% and 31%. This is the empirical answer to "blame the state."
+- **Preempted the "funds are separate" defense** with a callout in section 3: the funds are separate by law, and
+  the district mixed them $38M worth without the votes the law requires, so it cannot hide behind the rule it
+  broke.
+- **Generalized the community-correspondence section (9) to protect the writers.** No dated letters tied to a
+  person; it now says qualified community members raised the exact issues at the key moments and were ignored.
+  The tax lien is sourced to public reporting, not a private letter.
+- **SEC / bond-disclosure exposure: kept INTERNAL, not in the narrative.** Per your direction (it could read as
+  a threat), the analysis lives only in `save-bond-sec-disclosure.md`. If it is ever used, it must lean on the
+  district's own SEC Rule 15c2-12 filings (e.g., its own written "within 90 days" promise) and cite carefully.
+  The narrative states only the plain fact that the audits were late, with no securities-law framing.
+- **Extended the debt chart back to 2015** using the audited FY2015-2019 debt already in the project.
+
 ## 1. Privacy and exclusion decisions (please confirm)
 - **Held the voice profile OUT of the repo.** You said put all the files you gave me in the repo. I did not
   commit `mike_voice_profile_long.md`, because this repo is likely public (it serves a live GitHub Pages site)
