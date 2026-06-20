@@ -288,7 +288,7 @@ district was in good shape.</p>
 <p><b>The gap between those two facts is the story.</b> Two separate failures arrived at the same time, and they
 drained the same bank account. One was a decade of building. The other was an operating budget that slowly
 stopped balancing. Neither caused the other. They met in the district's checkbook, at the worst possible
-moment, with no one watching closely enough to stop it.</p>
+moment.</p>
 
 {chart_days()}
 
@@ -417,8 +417,8 @@ finances.{cite("gz-cap")}{cite("foc-videos")} It met into early 2024.</p>
 
 <p><b>Then it stopped.</b> The committee went dark for about two years. When it finally reconvened in January
 2026, as the crisis broke, a director opened the meeting by noting the obvious, that the group had not met in a
-couple of years.{cite("foc-jan26")} The body built to catch the problem was switched off during the exact
-window the problem grew.</p>
+couple of years.{cite("foc-jan26")} The two years it did not meet were the two years the rest of this story
+happened.</p>
 
 <p><b>The audits stopped landing, too.</b> The FY2023 audit, due in early 2024, did not arrive until August
 2025, twenty-six months late, with a declared material weakness.{cite("fy24")} In October 2024, Moody's
@@ -467,41 +467,37 @@ def sec_8():
 <section class="sec reveal" id="s8">
 <h2>Who was watching</h2>
 
-<p><b>By the time it mattered, no one with both the skill and the job was watching.</b> The CFO who wrote the
-2019 health report retired in June 2023.{cite("fhr")} His successor, the state later testified, lacked the
-school-business-official credential and was not really the district's financial leader.{cite("gz-cline")}</p>
+<p><b>The CFO who wrote the district's 2019 financial health report retired in June 2023.</b>{cite("fhr")} His
+successor, the state later testified, lacked the school-business-official credential and was not really the
+district's financial leader.{cite("gz-cline")}</p>
 
-<p><b>The basic controls failed in plain sight.</b> Bank reconciliations were not done for about three years.
-One finance officer could set up vendors, approve invoices, record the entries, and release the cash, with no
-second set of eyes.{cite("fy24")} A staffer who joined in 2024 warned leadership of fundamental errors that
-October. The emails show no real response.{cite("gz-emails")}</p>
+<p><b>Bank reconciliations were not done for about three years.</b> One finance officer could set up vendors,
+approve invoices, record the entries, and release the cash, with no second set of eyes.{cite("fy24")} A staffer
+who joined in 2024 warned leadership of fundamental errors that October. The recorded reply was a two-word
+thank-you.{cite("gz-emails")}</p>
 
-<p><b>The board, for its part, had built in no way to hold its one employee accountable.</b> Community members
-had warned the board that the superintendent's contract carried no performance measures and was not tied to the
-district's goals.{cite("emails")} The board renewed it anyway in July 2025, weeks before the crisis
-surfaced.{cite("gz-contract")} When the failures came to light, the board kept the superintendent on in a $180K
-role rather than removing him.{cite("gz-forensic")}</p>
+<p><b>The superintendent's contract carried no performance measures and was not tied to the district's
+goals.</b> The board renewed it in July 2025, weeks before the crisis surfaced.{cite("gz-contract")} When the
+failures came to light, the board moved the superintendent to a $180K role rather than removing
+him.{cite("gz-forensic")}</p>
 </section>'''
 
 def sec_9():
     return f'''
 <section class="sec reveal" id="s9">
-<h2>They were told</h2>
+<h2>Iowa City was watching</h2>
 
-<p><b>The board did not lack for warning.</b> Through every stage of this, community members, including people
-with real financial and professional expertise, wrote to the board at the moments that mattered, raising the
-exact issues that later came apart.{cite("emails")} They were thanked for their service, and the course did not
-change.</p>
+<p><b>Iowa City is not a place that misses this kind of thing.</b> It is a university town, thick with
+accountants, lawyers, auditors, and finance professionals, and the school board hears from that community
+constantly. On the money, people were paying close attention the whole way down.</p>
 
-<p><b>The questions they put in writing were specific, and they were early.</b> Why pay $8.7M for the ACT
-building when it was assessed at $5.4M. Where is the long-term plan for the sales-tax money before committing it
-to new projects. Where is the FY2023 audit, and why does it keep getting pulled from the board agenda without
-explanation, right before votes to authorize tens of millions in new spending.</p>
+<p><b>They were watching when the district paid $8.7M for the ACT building, well above its $5.4M assessed
+value.{cite("gz-act")} They were watching when the audits stopped arriving on time, and when items left the
+board agenda without explanation right before votes to authorize tens of millions in new spending.</b> The
+questions residents raised, in public and in writing, named the board's fiduciary duty directly.{cite("emails")}</p>
 
-<p><b>They named the standard directly.</b> They asked the board to meet its fiduciary duty by reading the audit
-before it voted.{cite("emails")} A year later, the State Board of Education would use the same word, fiduciary,
-to describe what had been missing. By then the district had already drawn a federal tax lien, filed and later
-lifted.{cite("gz-finger")}</p>
+<p><b>A year later, the State Board of Education would use the same word, fiduciary, to describe what had been
+missing.</b>{cite("gz-statebd")} The community had said it first.</p>
 </section>'''
 
 def sec_10():
@@ -535,13 +531,11 @@ They were never the same problem, but they ran through one bank account, and the
 slack left, the funds cannibalized each other, and then the district reached into its insurance fund to make
 payroll.</p>
 
-<p><b>The costly part was self-inflicted, and almost all of it was avoidable.</b> The district paid about
-$525,000 in federal penalties for filing its payroll and excise taxes late, and a federal tax lien was filed
-against it and then lifted along the way.{cite("gz-finger")} The state found the late filings kept happening
-because no one in the business office was monitoring them. It lost its bond rating and its access to bank
-credit, which forced it into emergency borrowing that carries interest. It owed interest on $38M of loans
-between its own funds and, by the auditors' finding, never paid it.{cite("fy24")} In a single year its payroll
-ran about $13.5M over budget.{cite("kcrg-feb")} Those are controllable numbers, and they are large and fast.</p>
+<p><b>The district paid about $525,000 in federal penalties for filing its payroll and excise taxes late.</b> A
+federal tax lien was filed against it and then lifted; the state found the late filings kept recurring because
+no one was monitoring them.{cite("gz-finger")} The district lost its bond rating and its bank credit, which left
+only costlier emergency borrowing. It owed interest on $38M of loans between its own funds and, by the auditors'
+finding, never paid it.{cite("fy24")} In a single year its payroll ran about $13.5M over budget.{cite("kcrg-feb")}</p>
 
 <p><b>The clearest proof is the other fourteen districts.</b> This project benchmarks Iowa City against the
 fourteen other large districts in the state. They live under the same funding formula, the same enrollment
@@ -550,10 +544,10 @@ comfortable territory. Iowa City sits alone at the bottom.</p>
 
 {chart_peer_strip()}
 
-<p><b>Shared conditions cannot explain an outcome only one district reached.</b> A district can do well in Iowa
-today, and most of them do. What set Iowa City apart was the handling of the things it controlled, the people,
-the controls, and the committee that should have caught the slide. <b>Whether any of it crossed from negligence
-into something worse is still open</b>, and the board has commissioned a forensic audit to find out.{cite("gz-forensic")}</p>
+<p><b>Fourteen districts lived under the same conditions and did not end up here.</b> A district can do well in
+Iowa today, and most do. The difference was not the funding formula or the state's rules. It was everything that
+sat inside the district's own control. <b>Whether that was error or something more is the question the board's
+own forensic audit is meant to answer.</b>{cite("gz-forensic")}</p>
 </section>'''
 
 def sec_12():
