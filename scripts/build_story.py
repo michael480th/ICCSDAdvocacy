@@ -342,7 +342,7 @@ revenue bonds, including a $66M issue in 2022 and a $71M issue in 2023. Total de
 2023.{cite("fy24")} That left Iowa City with one of the largest sales-tax debt loads of any large district in
 the state, most of its penny-sales-tax revenue pledged to bond payments for years out.</p>
 
-{chart_debt_cash()}
+{chart_debt()}
 
 <p><b>It also spent capital cash closer to home.</b> In 2022 the district paid $8.7M for ACT's Tyler Building,
 using its physical-plant levy, and moved its central offices there.{cite("gz-act")} The price came in well
@@ -371,13 +371,13 @@ pools its cash and tracks each fund's claim on the pool as a bookkeeping entry.{
 spend more cash than it holds and quietly borrow from the others in the pool. Hold onto that. It is how two
 unrelated problems ended up in the same hole.</p>
 
-<div class="callout"><p><b>The obvious objection, and why it does not hold.</b> The district's answer to all of
-this is that the funds are separate and cannot be mixed. That is the rule, and on paper it is true. It is also
-beside the point, for two reasons. First, separate funds still share one bank account, so spending in one fund
-draws down the cash available to all of them, ledgers or no ledgers. Second, the district did mix them. The
-FY2024 audit found $38M of loans moving between funds without the board votes Iowa law requires, and the next
-year the district moved $10M from its insurance fund to make payroll the same way.{cite("fy24")} A district
-that mixed its funds against the rules does not get to hide behind the rule that says it should not have.</p></div>
+<div class="callout"><p><b>A fair question: aren't the funds separate?</b> They are, by law, and that separation
+is real. It does not mean the building money and the operating money never met. Two things connect them. First,
+the separate funds share one bank account, so spending in one draws down the cash available to all of them,
+ledgers or no ledgers. Second, the funds were in fact mixed: the FY2024 audit found $38M of loans moving between
+funds without the board votes Iowa law requires, and the following year $10M moved from the insurance fund to
+cover payroll the same way.{cite("fy24")} The rule keeps the funds apart on paper. The cash sat in one
+account.</p></div>
 </section>'''
 
 def sec_4():
@@ -389,9 +389,13 @@ def sec_4():
 and benefits ran about 85% of the General Fund, year after year, while enrollment flattened and state aid stayed
 thin.{cite("acfr")} Costs rose faster than the money allowed to cover them.</p>
 
-<p><b>Every operating cushion drained on the same schedule.</b> Spending authority fell from 6.6% of the limit
-in 2017 to 0.1% by 2022. Solvency fell from 12% to under 3%. Days of cash fell from 88 to 39.{cite("dom")} None
-of this had anything to do with construction. It was the operating model not adding up.</p>
+<p><b>Every operating cushion drained on the same schedule, and each fell below the line the district had drawn
+for itself.</b> The district's own 2019 financial health report set the target for days of cash at 90, and
+treated solvency under 10% as a warning, the level it noted that bond rating agencies watch.{cite("fhr")} By
+2022, spending authority had fallen from 6.6% of the limit to 0.1%, solvency from 12% to under 3%, and days of
+cash from 88 to 39.{cite("dom")} Each number was not just lower year over year. It was below the floor the
+district's own finance office had named. None of this had anything to do with construction. It was the
+operating model not adding up.</p>
 
 <p><b>This is the half of the story that gets missed.</b> The building program was loud and visible. The
 operating decline was quiet and on a different page. Because the two run on separate tracks, almost no one
@@ -486,8 +490,8 @@ def sec_9():
 
 <p><b>The board did not lack for warning.</b> Through every stage of this, community members, including people
 with real financial and professional expertise, wrote to the board at the moments that mattered, raising the
-exact issues that later came apart.{cite("emails")} They were thanked for their service and, on the substance,
-ignored.</p>
+exact issues that later came apart.{cite("emails")} They were thanked for their service, and the course did not
+change.</p>
 
 <p><b>The questions they put in writing were specific, and they were early.</b> Why pay $8.7M for the ACT
 building when it was assessed at $5.4M. Where is the long-term plan for the sales-tax money before committing it
@@ -495,9 +499,9 @@ to new projects. Where is the FY2023 audit, and why does it keep getting pulled 
 explanation, right before votes to authorize tens of millions in new spending.</p>
 
 <p><b>They named the standard directly.</b> They asked the board to meet its fiduciary duty by reading the audit
-before it voted.{cite("emails")} A year later, the State Board of Education would describe the same failure in
-the same word. By then the district had already drawn a federal tax lien, filed and later lifted, the kind of
-thing a functioning finance office does not let happen.{cite("gz-finger")}</p>
+before it voted.{cite("emails")} A year later, the State Board of Education would use the same word, fiduciary,
+to describe what had been missing. By then the district had already drawn a federal tax lien, filed and later
+lifted.{cite("gz-finger")}</p>
 </section>'''
 
 def sec_10():
