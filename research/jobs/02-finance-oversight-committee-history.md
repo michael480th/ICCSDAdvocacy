@@ -1,29 +1,36 @@
-# Research job 2 — Did ICCSD have a finance/audit oversight committee before 2026?
+# Research job 2 — Pin the FOC meeting record (dates, chairs, dormancy)
 
-**Objective.** Confirm there was no standing district finance or audit oversight committee before the
-2026 crisis, and pin down the specifics of the committee created in 2026.
+**Objective.** Establish the public, citable record of the district's Financial Oversight Committee (FOC):
+when it met, who chaired, when it went dormant, and when it reconvened. We already know it existed; we need
+dates we can cite without relying on an off-the-record account.
 
-**Why it matters.** A central claim is that no independent body monitored district finances until the
-failure forced one into being. We need this confirmed, not assumed, before it goes in print.
+**Why it matters.** The strongest fiduciary-failure beat in the piece is that the district **created the
+FOC in November 2023 because the warning lights were already on, then let it go dark for about two years**,
+reconvening only after the crisis broke in January 2026. We have this from meeting videos and an off-record
+board-member account. The public piece needs hard dates from the public record.
+
+## What we already have (do not re-litigate)
+- FOC **formed ~Nov 2023**, in response to the SBRC appearances and the negative FY2023 spending authority.
+- A current board member chaired it at formation; **Charlie Eastham took over Jan 2024, ran a few meetings,
+  then cancelled the rest** (off-record; needs public confirmation).
+- **Dormant ~2 years**, reconvened **Jan 2026**, where **Mitch Lingo says on camera "we haven't had one of
+  these in a couple years."**
+- Video links (project owner): youtube.com/watch?v=8UaftH-nBK8 · v4RBdpMP9Ts · nZ9jO4dUXoU · 02iQKhlMIFQ ·
+  (Jan 2026) KIpUd7i_5Xk
 
 ## Questions to answer
-1. Before 2026, did the board have any standing **finance committee, audit committee, or budget review
-   committee** with a charter and regular meetings? If yes: name, years active, meeting cadence, and the
-   date of its last meeting. If it lapsed, when and why.
-2. For the **2026 financial oversight committee**: exact board-approval date, the charter/resolution
-   text, the member names and their backgrounds, the first meeting date, and its stated authority
-   (budget review, meeting auditors, etc.).
-3. Was the 2026 committee a district creation, or pushed by outside advocates/the state (SBRC)? Who
-   proposed it.
+1. The **exact date of each FOC meeting** in 2023, 2024, and 2026 (from the video titles/descriptions and
+   BoardDocs). Who **chaired** each.
+2. The **last FOC meeting before the dormancy** and any board record of it being **cancelled/suspended**.
+3. The **board action that formed the FOC** (date, motion, stated purpose) and the **spring-2026 action**
+   that formalized/expanded it (date, members, charter).
+4. Confirm or correct the **Lingo "couple years" quote** with a timestamp in the Jan 2026 video.
 
 ## Where to look
-- ICCSD BoardDocs (go.boarddocs.com/ia/iccsd) — committee listings, agendas, minutes, and the 200-series
-  governance policies.
-- The Gazette, "New committee to advise Iowa City school board on finances" (paywalled to automation):
-  https://www.thegazette.com/news/education/crisis-spurs-oversight-of-iowa-city-school-finances/article_c6d41c0a-f5fc-4247-8ff9-9d01fde0f561.html
-- Board meeting minutes from spring 2026 where the committee was approved.
+- The FOC meeting videos above (titles/descriptions usually carry the meeting date).
+- ICCSD BoardDocs (go.boarddocs.com/ia/iccsd) — committee agendas/minutes, 200-series governance policies.
+- Board meeting minutes Nov 2023, Jan 2024, and spring 2026.
 
 ## Output format
-Two short sections. **(A) Prior committee:** one paragraph stating whether one existed, with dates and a
-source. **(B) 2026 committee:** a table `Field | Value | Source` covering approval date, members,
-backgrounds, first meeting, authority, and who proposed it.
+A table `Meeting date | Chair | Topics | Source (video/minutes URL)`, plus three dated lines: FOC formed,
+FOC last met before dormancy, FOC reconvened. Flag anything that contradicts the timeline above.

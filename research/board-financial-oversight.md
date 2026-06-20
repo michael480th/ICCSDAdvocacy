@@ -23,13 +23,22 @@ The initial framing had two parts; the evidence **corrects both** and points to 
    corporate-finance background.** Backgrounds cluster in education, healthcare, law, and university
    administration. The board's lack of independent financial expertise looks **long-standing, not a
    recent decline.**
-2. **"The finance oversight committee stopped meeting."** → *Not supported as stated.* There is **no
-   evidence of a standing district finance/audit oversight committee before 2026.** A community
-   **financial oversight committee was *created* in 2026 — *after* and *because of* the crisis.** So it
-   didn't lapse; it didn't exist until the failure forced it into being.
+2. **"The finance oversight committee stopped meeting."** → **Supported. This corrects an earlier draft
+   of this file, which wrongly said no committee existed before 2026.** A district **Financial Oversight
+   Committee (FOC) was formed in November 2023**, in response to the district's SBRC appearances and its
+   negative FY2023 spending authority. It met in late 2023 and early 2024, then **went dormant for about
+   two years** before being reconvened in **January 2026** as the crisis broke. The committee's record
+   lives in meeting videos (links in Section 3), not in the news or Ballotpedia, which is why the first
+   web pass missed it. The district then formalized/expanded the committee in spring 2026 with outside
+   finance/business/law members.
+
+   This is the sharper, well-sourced version of the original hypothesis: the district **built the
+   oversight body precisely because the warning lights were already on, then let it go dark for two
+   years** during the exact window the worst of the breakdown happened.
 
 **What *is* strongly supported** is a decline in the **professional staff** finance function, plus the
-**absence of any independent check** at the board/committee layer:
+**collapse of the independent check** at the committee layer (the FOC) and the **absence of independent
+financial expertise** at the board layer:
 
 - The district once produced a rigorous **Annual Financial Health Report** (FY2019, 22 pp.,
   prepared by CFO **Leslie Finger**) using the full 10-ratio framework with rating-agency framing —
@@ -78,19 +87,47 @@ financial-expertise check** to compensate when the staff function failed.
 No documented accounting/finance/CPA/banking professional in any of these cohorts either. (Pre-2013 not
 yet researched — see open questions.)
 
-## 3. Finance oversight committee — created *after* the crisis (2026)
+## 3. Financial Oversight Committee (FOC) — formed Nov 2023, went dark, reconvened Jan 2026
 
-- A **community financial oversight committee** (members with finance, business, and law expertise) was
-  **established in 2026** to advise the board — described in coverage as "the latest step in addressing a
-  crisis that exposed years of inaccurate spending and revenue tracking."
-- Stated purpose: assist the board with its **fiduciary responsibilities under Iowa law**; provide
-  independent, informed oversight of the district's financial condition; review the proposed budget before
-  board approval; monitor performance vs. budget; review multi-year projections. Authority to request
-  information from staff and **meet with auditors / management / legal counsel.** Meets **≥6×/year.**
-- Board director **Mitch Lingo** discussed bringing in outside finance/accounting/business experts and
-  increasing meeting frequency.
-- **No evidence found of a prior standing finance/audit committee** (2013–2025). Coverage uniformly frames
-  the 2026 body as *new*. → The "stopped meeting" premise should be **dropped or re-sourced** before use.
+**This replaces an earlier, wrong version of this section that said no committee existed before 2026.**
+The district had an FOC before the crisis. Its record lives in meeting videos, which is why the first
+news/Ballotpedia pass missed it.
+
+Corrected timeline:
+
+- **FY2023:** spending authority (UAB) goes **negative** (the unlawful, SBRC-review level). [project data]
+- **November 2023:** the district submits a **corrective action plan to the state** (a state financial
+  oversight board / SBRC), flagging among other things bank reconciliations not done for ~3 years; the
+  board **forms the Financial Oversight Committee** in the same window, in response to the SBRC appearances
+  and the negative UAB. [corrective action plan: Gazette, June 2026, News_2026; FOC formation: meeting-video
+  record + an off-the-record current-board-member account, see note]
+- **Late 2023 / early 2024:** the FOC meets (videos below). A current board member chaired it at formation;
+  **Charlie Eastham took it over in January 2024, ran a few meetings, then cancelled the rest.**
+- **2024–2025: dormant (~2 years).** Same window in which **then-CFO Adam Kurth told the board in April 2025
+  the district was "past the worst,"** with UAB projected to recover to ~$7M positive by June 30 2025.
+  [News_2025] The oversight body was dark exactly while the recovery story was being told and the
+  reconciliations were failing.
+- **August 2025:** the $10M health-fund loan for payroll. [News_2026]
+- **January 2026:** the FOC **reconvenes** as the crisis breaks. Director **Mitch Lingo opens by noting "we
+  haven't had one of these in a couple years,"** which dates the dormancy. [FOC meeting video, Jan 2026]
+- **Spring 2026:** the board **formalizes/expands** the committee with outside finance/business/law members;
+  charter covers budget review, multi-year projections, and authority to meet auditors; meets ≥6×/year.
+  [Gazette]
+
+> **Off-record handling.** The chairing detail (who chaired at formation; Eastham taking over and cancelling
+> the rest) came from a current board member off the record. **Do not attribute to a named board member in
+> the public piece.** The citable spine is the public video record plus Lingo's on-camera "couple years"
+> line. Research job 2 should pin the exact meeting dates from the videos/minutes.
+
+**Meeting-video sources (provided by project owner):**
+- FOC meetings, 2023–2024: youtube.com/watch?v=8UaftH-nBK8 · youtube.com/watch?v=v4RBdpMP9Ts ·
+  youtube.com/watch?v=nZ9jO4dUXoU · youtube.com/watch?v=02iQKhlMIFQ
+- FOC meeting, Jan 2026 (the "couple years" line): youtube.com/watch?v=KIpUd7i_5Xk
+
+**Why this is the sharper beat:** the district built the oversight body *because* the warning lights were
+already on (negative UAB, SBRC), a board member let it go dark for two years, and that dormancy maps exactly
+onto the false "recovery" narrative and the worst of the breakdown (the $10M loan, the failed reconciliations,
+the missed audits).
 
 ## 4. The staff finance function — where the decline is real (cross-ref to news file)
 
@@ -115,7 +152,9 @@ At the moment the finances broke down, **none of the three layers that should ca
 
 1. **Professional staff** — lost its experienced CFO (Finger, 2023); successor under-credentialed; controls
    (reconciliation, monthly reporting, segregation of duties) collapsed.
-2. **Independent committee** — none existed until one was created *after* the crisis (2026).
+2. **Independent committee** — the Financial Oversight Committee was formed Nov 2023 for exactly this
+   purpose, then cancelled and left dormant for ~2 years (under Eastham, from 2024), reconvening only after
+   the crisis broke. It was built and then switched off during the window it was most needed.
 3. **The board itself** — structurally lacked independent financial expertise to question the numbers, and
    was, by the SBRC's account, operating on **"bad information… not complete, not accurate, not viable."**
 
@@ -132,10 +171,11 @@ If you want these filled, here's what I need and the format to return:
 1. **Pre-2013 board composition & any finance professionals.** *Need:* board rosters ~2005–2013 with
    occupations; specifically whether any member was a CPA/accountant/banker/CFO. *Format:* name | years |
    occupation | source URL.
-2. **Definitive confirmation there was no prior finance/audit committee.** *Need:* a check of ICCSD board
-   policy series (200-series governance) and BoardDocs for any standing finance/audit committee before
-   2026, or board minutes showing one that lapsed. *Format:* committee name | years active | last meeting |
-   source.
+2. **Exact FOC meeting dates and who chaired (from the video/minutes record).** The FOC existed (formed
+   Nov 2023, dormant 2024–2025, reconvened Jan 2026). *Need:* the date of each FOC meeting in the video
+   record, who chaired each, and the date Eastham cancelled/last met, plus the public minutes if posted.
+   This lets the public piece cite dates without relying on the off-record account. *Format:* meeting date |
+   chair | topics | video/minutes URL.
 3. **The 2026 oversight committee specifics.** *Need:* exact board-approval date, member names/backgrounds,
    first meeting date, and charter text. *Format:* date | member | background | source.
 4. **Primary-source board bios** to upgrade Section 1 from medium → high confidence (district board-member
