@@ -23,6 +23,7 @@ SOURCES = {
     "kcrg-feb": "KCRG-TV9, 'Iowa City Schools face budget crisis after $10 million transfer without board approval,' Feb 2026.",
     "gz-bond":  "The Gazette, 'Iowa City School District voters pass $191.5 million school bond Tuesday,' Sept 2017.",
     "gz-act":   "The Gazette, 'Iowa City schools purchases ACT's Tyler Building for $8.7 million,' 2022.",
+    "di-act":   "The Daily Iowan, 'Iowa City Community School District to purchase Tyler Building on ACT campus,' June 19 2022.",
     "gz-contract": "The Gazette, 'Iowa City schools Superintendent Matt Degner gets new 3-year contract,' July 2025.",
     "gz-rating": "Moody's withdrawal of the district's bond rating, October 2024, as reported by The Gazette (2026).",
     "gz-emails": "The Gazette, 'Emails: Fundamental errors in Iowa City schools accounting flagged in 2024,' June 15 2026.",
@@ -40,6 +41,7 @@ SOURCES = {
     "acfr":     "Iowa City CSD Annual Comprehensive Financial Reports (audited), FY2015-FY2024.",
     "dom":      "Iowa Department of Management, Unspent Authorized Budget Report (state-computed), FY2017-FY2025.",
     "fhr":      "Iowa City CSD, Annual Financial Health Report, prepared by CFO Leslie Finger, Nov 26 2019.",
+    "fhr-series": "Iowa City CSD Annual Financial Health Reports, FY2015 through FY2025 (Ten Point Financial Condition Test, ratios scored green / yellow / red against board targets). The FY2015-FY2022 reports run 22-23 pages each; the FY2025 report is a single page.",
     "fy24":     "Iowa City CSD FY2024 audited Annual Comprehensive Financial Report (RSM US LLP, filed June 10 2026), incl. Schedule of Findings 2024-007 and 2024-008.",
     "car25":    "Iowa City CSD FY2025 Certified Annual Report, Treasurer's Report by Fund (self-reported, unaudited).",
     "foc-videos": "Iowa City CSD Financial Oversight Committee meeting recordings, 2023-2024 (public video).",
@@ -345,7 +347,7 @@ the state, most of its penny-sales-tax revenue pledged to bond payments for year
 {chart_debt()}
 
 <p><b>It also spent capital cash closer to home.</b> In 2022 the district paid $8.7M for ACT's Tyler Building,
-using its physical-plant levy, and moved its central offices there.{cite("gz-act")} The price came in well
+using its physical-plant levy, and moved its central offices there.{cite("gz-act")}{cite("di-act")} The price came in well
 above the building's $5.4M assessed value, and the purchase drew public objection at the time. Some of the
 residents who questioned it would spend the next three years warning the board, in writing, about nearly
 everything else that went wrong.</p>
@@ -492,7 +494,7 @@ accountants, lawyers, auditors, and finance professionals, and the school board 
 constantly. On the money, people were paying close attention the whole way down.</p>
 
 <p><b>They were watching when the district paid $8.7M for the ACT building, well above its $5.4M assessed
-value.{cite("gz-act")} They were watching when the audits stopped arriving on time, and when items left the
+value.{cite("gz-act")}{cite("di-act")} They were watching when the audits stopped arriving on time, and when items left the
 board agenda without explanation right before votes to authorize tens of millions in new spending.</b> The
 questions residents raised, in public and in writing, named the board's fiduciary duty directly.{cite("emails")}</p>
 
@@ -563,8 +565,20 @@ recent years rest on unaudited figures.</p>
 actually meets and bites. Whether the new CFO gets the audits and the monthly reporting current. And whether the
 forensic audit finds error or intent.{cite("gz-statebd")}</p>
 
-<p><b>One last number for context.</b> A district that graded its own books in green, yellow, and red in 2019
-could not produce a balance sheet by 2025. Everything in between is in the sources below.</p>
+<p><b>The district used to grade its own books, and the grades trace the whole arc.</b> Every fall the finance
+office published a financial health report, twenty-two pages scoring ten ratios green, yellow, or red against the
+board's own targets.{cite("fhr-series")} Through 2017 the ratios that measure cash and reserves held. Solvency
+graded green, days of cash and the unspent balance graded yellow, none of them red.</p>
+
+<p><b>After the building program, those same ratios went red, and stayed red.</b> By FY2020 the solvency and
+unspent-balance ratios had turned red. By FY2022 days of cash had joined them, every reserve measure below the
+board's own target.{cite("fhr-series")} The marks never recovered.</p>
+
+<p><b>By FY2025 the report itself had collapsed.</b> The twenty-two-page document was down to a single page, and
+the district could not close its books in time to produce an audited balance sheet at all. The FY2024 audit did
+not arrive until June 2026.{cite("fhr-series")}{cite("fy24")} A district that once graded its own cash and
+reserves in green and yellow could not, by 2025, produce the audited balance sheet those grades are built on.
+Everything in between is in the sources below.</p>
 </section>'''
 
 SECTIONS = [sec_0, sec_1, sec_2, sec_3, sec_4, sec_5, sec_6, sec_7, sec_8, sec_9, sec_10, sec_11, sec_12]

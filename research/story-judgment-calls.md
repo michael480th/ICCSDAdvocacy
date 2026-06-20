@@ -27,6 +27,19 @@ Read this first when we review. Compiled overnight, June 2026.
   The narrative states only the plain fact that the audits were late, with no securities-law framing.
 - **Extended the debt chart back to 2015** using the audited FY2015-2019 debt already in the project.
 
+- **Rewrote the ending (section 12) on the district's own Financial Health Reports.** Using the multi-year
+  reports now in `ICCSD_FinancialHealth/` (FY2015, 2016, 2017, 2019, FY20, FY22, FY25), I read the color-coded
+  Ten Point Financial Condition Test scorecards directly. Verified trajectory: through 2017 the cash/reserve
+  ratios held (solvency green; days of cash and unspent balance yellow; no red on those). By FY2020 solvency and
+  unspent balance had turned red; by FY2022 days of cash joined them. The reports ran 22-23 pages through FY2022,
+  then the FY2025 report is a single page. The ending ties this to the late audits (FY2024 audit not delivered
+  until June 2026). NOTE on accuracy: I did **not** claim "all ten ratios green/yellow until 2017." The Employee
+  Cost ratio graded red even in 2015-2016 (structurally high salaries are normal for any district), so the
+  defensible claim is scoped to the cash and reserve ratios, which is exactly the story the piece tells. Source
+  added as `fhr-series`.
+- **Added the Daily Iowan ACT citation** (June 19 2022) alongside the Gazette on both ACT-building mentions
+  (sections 2 and 9), per owner request. Source key `di-act`.
+
 ## 1. Privacy and exclusion decisions (please confirm)
 - **Held the voice profile OUT of the repo.** You said put all the files you gave me in the repo. I did not
   commit `mike_voice_profile_long.md`, because this repo is likely public (it serves a live GitHub Pages site)
