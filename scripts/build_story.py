@@ -459,6 +459,13 @@ vote before one fund lends to another, full repayment by October 1 of the next y
 The district did none of those.{cite("fy24")} The board had not approved the loans. The deadline passed. No
 interest was paid.</p>
 
+<p><b>The fund that pays for early retirement shows how the borrowing happened.</b> The district granted
+early-retirement buyouts in waves: about $6M of new obligations in 2019 and $7.2M in 2023, against a normal year
+of one to two million.{cite("acfr")} The 2023 wave was paid out in 2024, about $8.2M in cash, from a Management
+Levy Fund whose own tax levy could not cover it. By mid-2024 that single fund owed the shared pool $11.4M, close
+to a third of the district's $38.2M in unauthorized interfund loans.{cite("fy24")}
+<br><a class="more" href="early-retirement.html">Follow the early-retirement money &rarr;</a></p>
+
 <p><b>One fund went underwater and could not be rescued.</b> The student-activity fund overspent by about $1M
 and ended 2024 nearly $1M in the red, owing the other funds $1.5M.{cite("fy24")} State law bars topping it up
 with a transfer, so the hole just sat there.</p>
@@ -631,6 +638,10 @@ text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Ar
 .note{max-width:720px;margin:24px auto;padding:14px 18px;background:#fff;border:1px solid #ececec;border-left:4px solid #94a3b8;border-radius:8px;font:400 14.5px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#444}
 .callout{margin:24px 0;padding:4px 20px;background:#fff7f6;border:1px solid #f3d4cf;border-left:4px solid #b91c1c;border-radius:8px}
 .callout p{font-size:18px;margin:16px 0}
+.more{display:inline-block;margin-top:2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#b91c1c;text-decoration:none;border-bottom:2px solid #f3d4cf}
+.more:hover{border-bottom-color:#b91c1c}
+.backlink{max-width:720px;margin:6px auto 0;padding:0 22px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.backlink a{color:#b91c1c;text-decoration:none}
 """
 
 JS = """
@@ -669,5 +680,168 @@ payroll. The two are connected, and they are not the same problem.</p>
     open(out, "w").write(html)
     print(f"Wrote how-it-happened.html ({len(html)//1024} KB), {len(SECTIONS)} sections, {len(CITES)} sources")
 
+# ===================================================================
+# Companion deep-dive page: the early-retirement program and the Management Levy Fund.
+# Self-contained citations so footnote numbers do not collide with the main page.
+# ===================================================================
+
+# New early-retirement obligations granted each year ($M), from Note 5 "Additions" lines,
+# Iowa City CSD audited ACFRs FY2016-FY2024. Two buyout waves: 2019 and 2023.
+GRANTS = {2016: 2.07, 2017: 1.43, 2018: 2.37, 2019: 5.96, 2020: 0.83,
+          2021: 2.38, 2022: 1.21, 2023: 7.21, 2024: 3.43}
+
+# Funds owing the shared cash pool at June 30, 2024 ($M), from the FY2024 interfund detail.
+LEVY_SHARE = [("Management Levy Fund", 11.37, True), ("General Fund", 20.07, False),
+              ("Nonmajor enterprise", 4.07, False), ("Nonmajor governmental", 1.55, False),
+              ("Capital Projects", 1.10, False)]
+
+def chart_grants():
+    W, H = 920, 320; L, R, T, B = 50, 24, 28, 38; iw, ih = W-L-R, H-T-B
+    yrs = sorted(GRANTS); ymax = 8; bw = iw/len(yrs)*0.6
+    def X(i): return L+iw*(i+0.5)/len(yrs)
+    def Y(v): return T+ih*(ymax-v)/ymax
+    s = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="new early retirement obligations by year">']
+    for g in (0, 2, 4, 6, 8):
+        s.append(f'<line x1="{L}" y1="{Y(g):.1f}" x2="{L+iw}" y2="{Y(g):.1f}" stroke="#eef2f7"/>')
+        s.append(_t(L-8, Y(g)+4, f"${g}M", "tick", "end"))
+    for i, y in enumerate(yrs):
+        v = GRANTS[y]; x = X(i)-bw/2
+        spike = y in (2019, 2023)
+        col = "#b91c1c" if spike else "#cbd5e1"
+        s.append(f'<rect x="{x:.1f}" y="{Y(v):.1f}" width="{bw:.1f}" height="{Y(0)-Y(v):.1f}" fill="{col}"/>')
+        s.append(_t(X(i), Y(v)-6, f"${v:.1f}M", "val", "middle", 10,
+                    fill="#b91c1c" if spike else "#64748b"))
+        s.append(_t(X(i), T+ih+18, str(y), "tick"))
+    s.append('</svg>')
+    return ('<figure class="figwrap"><figcaption><b>The district granted early retirement in waves.</b> '
+            'New early-retirement obligations awarded each year. A normal year is one to two million dollars. '
+            '2019 ran to about $6M, and 2023 to about $7.2M, the largest in the decade.'
+            '</figcaption>' + "".join(s) + '</figure>')
+
+def chart_levy_share():
+    W, H = 920, 250; L, R, T, B = 170, 70, 16, 30; iw, ih = W-L-R, H-T-B
+    xmax = 22; rows = LEVY_SHARE; rh = ih/len(rows)
+    def X(v): return L+iw*v/xmax
+    s = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="funds owing the shared cash pool 2024">']
+    for g in (0, 5, 10, 15, 20):
+        s.append(f'<line x1="{X(g):.1f}" y1="{T}" x2="{X(g):.1f}" y2="{T+ih}" stroke="#eef2f7"/>')
+        s.append(_t(X(g), T+ih+20, f"${g}M", "tick"))
+    for i, (name, v, hot) in enumerate(rows):
+        y = T+rh*i+rh*0.5; bh = rh*0.5
+        col = "#b91c1c" if hot else "#cbd5e1"
+        s.append(f'<rect x="{L}" y="{y-bh/2:.1f}" width="{X(v)-L:.1f}" height="{bh:.1f}" fill="{col}" rx="2"/>')
+        s.append(_t(L-10, y+4, name, "rowlab", "end"))
+        s.append(_t(X(v)+6, y+4, f"${v:.1f}M", "val", "start", 11,
+                    fill="#b91c1c" if hot else "#64748b"))
+    s.append('</svg>')
+    return ('<figure class="figwrap"><figcaption><b>The early-retirement fund was one of the biggest borrowers.</b> '
+            'Amounts each fund owed the shared cash pool at mid-2024. The Management Levy Fund, which pays early '
+            'retirement, owed $11.4M of the district-wide $38.2M total.'
+            '</figcaption>' + "".join(s) + '</figure>')
+
+ER_SOURCES = {
+    "er-note5":     "Iowa City CSD audited Annual Comprehensive Financial Reports, FY2016-FY2024, Note 5 (Long-Term Liabilities) changes schedules; the early-retirement 'Additions' line is the new obligations granted each year.",
+    "er-fy24":      "Iowa City CSD FY2024 ACFR, Note 5 narrative: early-retirement benefits paid of $8,177,763 in FY2024; 54 new employee elections; 58 participants owed at year end; remaining liability $3,333,899; benefit terms (85-100% of final base salary into a Special Pay Deferral Plan, plus up to 20 sick days).",
+    "er-interfund": "Iowa City CSD FY2024 ACFR, interfund-balances detail: Management Levy Fund due to other funds $11,373,033; district-wide interfund total $38,166,276; and Schedule of Findings 2024-008 (interfund balances not authorized by formal board resolution).",
+    "er-restate":   "Iowa City CSD FY2024 ACFR, Note 15 (Restatement): the prior-year early-retirement liability was under-accrued by $870,324 because a 20-day sick-day benefit was excluded from the calculation.",
+}
+
+def build_early_retirement():
+    cites = []
+    def c(k):
+        if k not in cites:
+            cites.append(k)
+        n = cites.index(k)+1
+        return f'<sup class="fn"><a href="#fn{n}" id="ref{n}">{n}</a></sup>'
+    def fns():
+        rows = []
+        for i, k in enumerate(cites, 1):
+            rows.append(f'<li id="fn{i}"><span class="fnn">{i}.</span> {ER_SOURCES.get(k,k)} '
+                        f'<a class="fnback" href="#ref{i}">&#8617;</a></li>')
+        return '<ol class="fnlist">' + "".join(rows) + "</ol>"
+
+    body = f'''
+<section class="sec reveal">
+<p class="lead"><b>The clearest way to see how Iowa City came to borrow from itself is to follow one cost the
+board controlled directly: early retirement.</b> It is a discretionary buyout, set by board policy, paid from a
+dedicated property-tax levy. Tracing it from 2016 to 2024 shows a program granted in waves, paid out of a fund
+that could not cover it, and plugged with the same unauthorized interfund borrowing the audit later flagged.</p>
+</section>
+
+{chart_grants()}
+
+<section class="sec reveal">
+<h2>A program granted in waves</h2>
+<p><b>Most years the district awarded one to two million dollars of new early-retirement benefits.</b> Twice it
+did far more. In 2019 it granted about $6M, and in 2023 about $7.2M, the largest single year in the
+decade.{c("er-note5")} These were not drift. An early-retirement buyout is a deliberate decision: the board sets
+the terms and reserves the right to limit the number.</p>
+
+<p><b>The 2023 wave is the one that mattered most.</b> It landed in the same year the district's books came apart
+and its long-time chief financial officer retired. The benefit itself is generous: a district contribution worth
+85% to 100% of the employee's final base salary, paid into a deferral plan, plus up to twenty sick days cashed
+out.{c("er-fy24")}</p>
+</section>
+
+<section class="sec reveal">
+<h2>Paid out just as the cash ran low</h2>
+<p><b>The 2023 wave came due in 2024, and the bill was large.</b> The district paid $8.18M in early-retirement
+benefits in fiscal 2024 alone, with 54 new employees electing in that single year.{c("er-fy24")} It was writing
+some of its biggest retirement checks in the same months it was struggling to cover ordinary payroll.</p>
+</section>
+
+{chart_levy_share()}
+
+<section class="sec reveal">
+<h2>A levy that could not keep up</h2>
+<p><b>Early retirement is paid from the Management Levy Fund, financed by its own property-tax levy.</b> In a
+normal year the levy covers the payouts. An $8M payout year is not a normal year, and the levy could not keep
+up.</p>
+
+<p><b>So the fund borrowed the difference from the shared cash pool.</b> At mid-2024 the Management Levy Fund
+owed other funds $11.4M, close to a third of the district-wide $38.2M of interfund loans the auditors flagged as
+made without the board votes Iowa law requires.{c("er-interfund")} The cost the board controlled most directly
+turned into one of the largest pieces of the borrowing nobody voted for.</p>
+
+<p><b>The records understated it on the way in.</b> The 2024 audit also found the prior year's early-retirement
+liability had been under-recorded by $870,324, because a twenty-day sick-day benefit was left out of the
+calculation.{c("er-restate")}</p>
+</section>
+
+<section class="sec reveal">
+<h2>What this shows, and what it does not</h2>
+<p><b>This is not an accusation, and the audit does not name a policy violation.</b> No audit finding flags early
+retirement, and there is no documented dollar figure for retirements granted beyond board policy. What the
+audited records do show is a pattern worth the board's attention: a discretionary cost, granted in two large
+waves, paid from a levy that could not fund it, and bridged with unauthorized interfund borrowing, while the
+liability itself was understated until the cleanup.{c("er-note5")}{c("er-interfund")}</p>
+
+<p><b>It is the whole story in miniature.</b> A controllable decision, made in good years and paid for in bad
+ones, that ended up drawing on money the district did not have.</p>
+</section>
+
+<div class="backlink"><a href="how-it-happened.html">&larr; Back to the main story</a></div>
+'''
+    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Follow the early-retirement money</title>
+<meta name="robots" content="noindex">
+<style>{CSS}</style></head><body>
+<div class="bar"></div>
+<p class="draft">DRAFT &middot; not yet published &middot; under review</p>
+<div class="kicker">Iowa City Community School District &middot; a closer look</div>
+<h1>Follow the early-retirement money</h1>
+<p class="dek">How a cost the board controlled directly became one of the largest pieces of the borrowing nobody
+voted for.</p>
+<p class="byline">A companion to "How Iowa City ran out of room," built from the district's audited reports.</p>
+{body}
+<div class="fnsec"><h2>Sources</h2>{fns()}</div>
+<script>{JS}</script>
+</body></html>'''
+    out = os.path.join(ROOT, "early-retirement.html")
+    open(out, "w").write(html)
+    print(f"Wrote early-retirement.html ({len(html)//1024} KB), {len(cites)} sources")
+
 if __name__ == "__main__":
     build()
+    build_early_retirement()
