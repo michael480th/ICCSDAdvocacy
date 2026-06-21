@@ -666,7 +666,6 @@ def build():
 <meta name="robots" content="noindex">
 <style>{CSS}</style></head><body>
 <div class="bar"></div>
-<p class="draft">DRAFT &middot; not yet published &middot; under review</p>
 <div class="kicker">Iowa City Community School District</div>
 <h1>How Iowa City ran out of room</h1>
 <p class="dek">A district built the biggest school project in state history, then went looking for cash to make
@@ -829,7 +828,6 @@ ones, that ended up drawing on money the district did not have.</p>
 <meta name="robots" content="noindex">
 <style>{CSS}</style></head><body>
 <div class="bar"></div>
-<p class="draft">DRAFT &middot; not yet published &middot; under review</p>
 <div class="kicker">Iowa City Community School District &middot; a closer look</div>
 <h1>Follow the early-retirement money</h1>
 <p class="dek">How a cost the board controlled directly became one of the largest pieces of the borrowing nobody
@@ -949,7 +947,6 @@ scramble could be true at the same time.</p>
 <meta name="robots" content="noindex">
 <style>{CSS}</style></head><body>
 <div class="bar"></div>
-<p class="draft">DRAFT &middot; not yet published &middot; under review</p>
 <div class="kicker">Iowa City Community School District &middot; a closer look</div>
 <h1>The headquarters they bought, and the one they sold</h1>
 <p class="dek">An $8.7M building bought going into the squeeze, and a $3.2M sale coming out of it.</p>
