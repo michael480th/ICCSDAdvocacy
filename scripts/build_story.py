@@ -42,7 +42,7 @@ SOURCES = {
     "dom":      "Iowa Department of Management, Unspent Authorized Budget Report (state-computed), FY2017-FY2025.",
     "fhr":      "Iowa City CSD, Annual Financial Health Report, prepared by CFO Leslie Finger, Nov 26 2019.",
     "fhr-series": "Iowa City CSD Annual Financial Health Reports, FY2015 through FY2025 (Ten Point Financial Condition Test, ratios scored green / yellow / red against board targets). The FY2015-FY2022 reports run 22-23 pages each; the FY2025 report is a single page.",
-    "fy24":     "Iowa City CSD FY2024 audited Annual Comprehensive Financial Report (RSM US LLP, filed June 10 2026), incl. Schedule of Findings 2024-007 and 2024-008.",
+    "fy24":     "Iowa City CSD FY2024 audited Annual Comprehensive Financial Report (RSM US LLP, filed June 2026), incl. Note 15 (Restatement of beginning net position) and Schedule of Findings 2024-001 (payroll material weakness), 2024-007 and 2024-008.",
     "car25":    "Iowa City CSD FY2025 Certified Annual Report, Treasurer's Report by Fund (self-reported, unaudited).",
     "foc-videos": "Iowa City CSD Financial Oversight Committee meeting recordings, 2023-2024 (public video).",
     "foc-jan26": "Iowa City CSD Financial Oversight Committee meeting, January 2026 (public video); opening remarks by director Mitch Lingo.",
@@ -462,6 +462,12 @@ interest was paid.</p>
 <p><b>One fund went underwater and could not be rescued.</b> The student-activity fund overspent by about $1M
 and ended 2024 nearly $1M in the red, owing the other funds $1.5M.{cite("fy24")} State law bars topping it up
 with a transfer, so the hole just sat there.</p>
+
+<p><b>The same audit had to correct the district's prior books in three separate places.</b> Its restatement
+reset the 2023 starting balance for three unrelated errors: income surtax revenue recognized in the wrong year,
+general-obligation bond premiums over-amortized, and an early-retirement benefit under-recorded by
+$870,324.{cite("fy24")} Three independent corrections in a single restatement is a measure of how far the
+records had drifted from the actual numbers.</p>
 </section>'''
 
 def sec_8():
@@ -474,9 +480,10 @@ successor, the state later testified, lacked the school-business-official creden
 district's financial leader.{cite("gz-cline")}</p>
 
 <p><b>Bank reconciliations were not done for about three years.</b> One finance officer could set up vendors,
-approve invoices, record the entries, and release the cash, with no second set of eyes.{cite("fy24")} A staffer
-who joined in 2024 warned leadership of fundamental errors that October. The recorded reply was a two-word
-thank-you.{cite("gz-emails")}</p>
+approve invoices, record the entries, and release the cash, with no second set of eyes. The auditors named the
+payroll cycle itself a material weakness: the same person could carry a payroll run from start to finish without
+an independent check.{cite("fy24")} A staffer who joined in 2024 warned leadership of fundamental errors that
+October. The recorded reply was a two-word thank-you.{cite("gz-emails")}</p>
 
 <p><b>The superintendent's contract carried no performance measures and was not tied to the district's
 goals.</b> The board renewed it in July 2025, weeks before the crisis surfaced.{cite("gz-contract")} When the

@@ -40,6 +40,19 @@ Read this first when we review. Compiled overnight, June 2026.
 - **Added the Daily Iowan ACT citation** (June 19 2022) alongside the Gazette on both ACT-building mentions
   (sections 2 and 9), per owner request. Source key `di-act`.
 
+- **Added two FY24-audit beats, verified against the ACFR itself.** (1) Section 7 now notes the Note 15
+  restatement: the audit reset the 2023 beginning net position for three unrelated prior-period errors (income
+  surtax recognized in the wrong year +$7,976,285; GO bond premiums over-amortized −$955,100; early-retirement
+  benefit under-accrued −$870,324). (2) Section 8 now names the payroll cycle a material weakness (Finding
+  2024-001). Both cite the `fy24` source, whose text was expanded to list Note 15 and Findings 2024-001/007/008.
+- **Rejected an external claim that did NOT check out.** A separate AI write-up (shared by the owner) asserted
+  the district "retroactively adjusted $14,568,267 of omitted OPEB" and "omitted $15,438,591 in HR/retiree
+  liabilities." Verified against the FY24 ACFR: there is **no** OPEB restatement. Note 15 contains only the three
+  items above; the OPEB beginning balance ($13,009,704) carries forward unchanged from FY23 ending (so it was not
+  restated). The OPEB liability did rise to $16,819,043 (+$3.81M in-year) but that is ordinary prospective GASB 75
+  movement (service cost, interest, experience, assumption change), not a retroactive correction. The figures
+  $14,568,267 and $15,438,591 appear nowhere in the 124-page document. Kept these OUT of the narrative.
+
 ## 1. Privacy and exclusion decisions (please confirm)
 - **Held the voice profile OUT of the repo.** You said put all the files you gave me in the repo. I did not
   commit `mike_voice_profile_long.md`, because this repo is likely public (it serves a live GitHub Pages site)
