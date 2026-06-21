@@ -350,7 +350,8 @@ the state, most of its penny-sales-tax revenue pledged to bond payments for year
 using its physical-plant levy, and moved its central offices there.{cite("gz-act")}{cite("di-act")} The price came in well
 above the building's $5.4M assessed value, and the purchase drew public objection at the time. Some of the
 residents who questioned it would spend the next three years warning the board, in writing, about nearly
-everything else that went wrong.</p>
+everything else that went wrong.
+<br><a class="more" href="act-building.html">The headquarters they bought, and the one they sold &rarr;</a></p>
 </section>'''
 
 def sec_3():
@@ -842,6 +843,126 @@ voted for.</p>
     open(out, "w").write(html)
     print(f"Wrote early-retirement.html ({len(html)//1024} KB), {len(cites)} sources")
 
+# ===================================================================
+# Companion deep-dive page: the ACT building purchase and the headquarters trade.
+# ===================================================================
+
+# The headquarters trade, in dollars ($M). Confirmed facts.
+ACT_BARS = [("Paid for ACT building, 2022", 8.7, True),
+            ("Its county-assessed value", 5.4, False),
+            ("Old headquarters sold, 2026", 3.2, False)]
+
+def chart_act():
+    W, H = 920, 220; L, R, T, B = 230, 70, 16, 28; iw, ih = W-L-R, H-T-B
+    xmax = 10; rows = ACT_BARS; rh = ih/len(rows)
+    def X(v): return L+iw*v/xmax
+    s = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="the headquarters trade in dollars">']
+    for g in (0, 2, 4, 6, 8, 10):
+        s.append(f'<line x1="{X(g):.1f}" y1="{T}" x2="{X(g):.1f}" y2="{T+ih}" stroke="#eef2f7"/>')
+        s.append(_t(X(g), T+ih+20, f"${g}M", "tick"))
+    for i, (name, v, hot) in enumerate(rows):
+        y = T+rh*i+rh*0.5; bh = rh*0.5
+        col = "#b91c1c" if hot else "#cbd5e1"
+        s.append(f'<rect x="{L}" y="{y-bh/2:.1f}" width="{X(v)-L:.1f}" height="{bh:.1f}" fill="{col}" rx="2"/>')
+        s.append(_t(L-10, y+4, name, "rowlab", "end"))
+        s.append(_t(X(v)+6, y+4, f"${v:.1f}M", "val", "start", 11,
+                    fill="#b91c1c" if hot else "#64748b"))
+    s.append('</svg>')
+    return ('<figure class="figwrap"><figcaption><b>The headquarters trade.</b> The district paid $8.7M for an '
+            'administrative building assessed at about $5.4M, then four years later sold its old headquarters for '
+            '$3.2M to raise cash during the crisis.'
+            '</figcaption>' + "".join(s) + '</figure>')
+
+ACT_SOURCES = {
+    "act-buy":   "The Gazette and The Daily Iowan, 2022: Iowa City CSD purchased ACT's Tyler Building for about $8.7M, funded from the Physical Plant and Equipment Levy (PPEL). The building, roughly 85,000 square feet on 7.9 acres at 301 ACT Drive, became the district's Center for Innovation and central administrative offices. (thegazette.com; dailyiowan.com, June 19 2022.)",
+    "act-quest": "Contemporaneous coverage of the 2022 vote, which reported the board approved the purchase 'not without questions,' against a county-assessed value of about $5.4M.",
+    "act-sell":  "KCRG-TV9 / The Daily Iowan, April-May 2026: the district sold its former headquarters at 1725 North Dodge Street to the City of Iowa City for $3.2M during the financial crisis.",
+}
+
+def build_act():
+    cites = []
+    def c(k):
+        if k not in cites:
+            cites.append(k)
+        n = cites.index(k)+1
+        return f'<sup class="fn"><a href="#fn{n}" id="ref{n}">{n}</a></sup>'
+    def fns():
+        rows = []
+        for i, k in enumerate(cites, 1):
+            rows.append(f'<li id="fn{i}"><span class="fnn">{i}.</span> {ACT_SOURCES.get(k,k)} '
+                        f'<a class="fnback" href="#ref{i}">&#8617;</a></li>')
+        return '<ol class="fnlist">' + "".join(rows) + "</ol>"
+
+    body = f'''
+<section class="sec reveal">
+<p class="lead"><b>In 2022, with the building program already underway, the district bought itself a bigger
+headquarters.</b> It paid about $8.7M for ACT's Tyler Building and moved its central offices in. Four years
+later, short of cash, it sold its old headquarters for $3.2M. The two transactions, read together, are a small
+study in how the district spent.</p>
+</section>
+
+{chart_act()}
+
+<section class="sec reveal">
+<h2>What it bought, and for how much</h2>
+<p><b>The purchase was an $8.7M administrative building, paid from the physical-plant levy.</b> The Tyler
+Building, about 85,000 square feet on roughly eight acres, became the district's Center for Innovation and the
+home of its central administration.{c("act-buy")}</p>
+
+<p><b>The price sat well above the building's assessed value.</b> The county assessed it at about $5.4M. The
+board approved the purchase, in the words of contemporaneous coverage, "not without questions."{c("act-quest")}
+The physical-plant levy that paid for it is restricted to buildings and equipment, so the money was legally
+available for this even as the operating budget tightened. That is the point worth sitting with: the rules let
+the district buy an $8.7M headquarters in the same window its General Fund cushion was thinning.</p>
+</section>
+
+<section class="sec reveal">
+<h2>The timing</h2>
+<p><b>The purchase came during the most expensive stretch in the district's history.</b> The 2017 bond was being
+spent down, capital balances were already committed, and the operating reserves had been sliding since 2018.
+Buying a larger administrative home in that window was a choice about priorities, made with restricted dollars
+that could not have closed the operating gap, but that still signaled where attention was going.</p>
+</section>
+
+<section class="sec reveal">
+<h2>The reversal</h2>
+<p><b>By 2026 the district was selling property to raise cash.</b> It sold its former headquarters at 1725 North
+Dodge Street to the City of Iowa City for $3.2M.{c("act-sell")} The sequence is hard to miss: $8.7M for a bigger
+headquarters going into the squeeze, $3.2M for the old one coming out of it.</p>
+</section>
+
+<section class="sec reveal">
+<h2>What this shows, and what it does not</h2>
+<p><b>The purchase was legal and the levy was the right one to use.</b> This is not a finding of wrongdoing, and
+nothing here turns on who sold the building. It is a capital-allocation decision, made in public, that residents
+questioned at the time and that reads differently next to what came after.{c("act-buy")}{c("act-sell")} The
+broader story is the same one the rest of the project tells: the district had room to spend in some places and
+no room at all in others, and the walls between those pots of money meant a handsome headquarters and a payroll
+scramble could be true at the same time.</p>
+</section>
+
+<div class="backlink"><a href="how-it-happened.html">&larr; Back to the main story</a></div>
+'''
+    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The headquarters they bought, and the one they sold</title>
+<meta name="robots" content="noindex">
+<style>{CSS}</style></head><body>
+<div class="bar"></div>
+<p class="draft">DRAFT &middot; not yet published &middot; under review</p>
+<div class="kicker">Iowa City Community School District &middot; a closer look</div>
+<h1>The headquarters they bought, and the one they sold</h1>
+<p class="dek">An $8.7M building bought going into the squeeze, and a $3.2M sale coming out of it.</p>
+<p class="byline">A companion to "How Iowa City ran out of room," built from contemporaneous reporting.</p>
+{body}
+<div class="fnsec"><h2>Sources</h2>{fns()}</div>
+<script>{JS}</script>
+</body></html>'''
+    out = os.path.join(ROOT, "act-building.html")
+    open(out, "w").write(html)
+    print(f"Wrote act-building.html ({len(html)//1024} KB), {len(cites)} sources")
+
 if __name__ == "__main__":
     build()
     build_early_retirement()
+    build_act()
