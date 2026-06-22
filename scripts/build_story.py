@@ -42,7 +42,7 @@ SOURCES = {
     "dom":      "Iowa Department of Management, Unspent Authorized Budget Report (state-computed), FY2017-FY2025.",
     "fhr":      "Iowa City CSD, Annual Financial Health Report, prepared by CFO Leslie Finger, Nov 26 2019.",
     "fhr-series": "Iowa City CSD Annual Financial Health Reports, FY2015 through FY2025 (Ten Point Financial Condition Test, ratios scored green / yellow / red against board targets). The FY2015-FY2022 reports run 22-23 pages each; the FY2025 report is a single page.",
-    "fy24":     "Iowa City CSD FY2024 audited Annual Comprehensive Financial Report (RSM US LLP, filed June 2026), incl. Note 15 (Restatement of beginning net position) and Schedule of Findings 2024-001 (payroll material weakness), 2024-007 and 2024-008.",
+    "fy24":     "Iowa City CSD FY2024 audited Annual Comprehensive Financial Report (Bohnsack & Frommelt LLP, June 10 2026), incl. Note 15 (Restatement of beginning net position) and Schedule of Findings 2024-001 (payroll material weakness), 2024-007 and 2024-008.",
     "car25":    "Iowa City CSD FY2025 Certified Annual Report, Treasurer's Report by Fund (self-reported, unaudited).",
     "foc-videos": "Iowa City CSD Financial Oversight Committee meeting recordings, 2023-2024 (public video).",
     "foc-jan26": "Iowa City CSD Financial Oversight Committee meeting, January 2026 (public video); opening remarks by director Mitch Lingo.",
@@ -744,6 +744,7 @@ ER_SOURCES = {
     "er-fy24":      "Iowa City CSD FY2024 ACFR, Note 5 narrative: early-retirement benefits paid of $8,177,763 in FY2024; 54 new employee elections; 58 participants owed at year end; remaining liability $3,333,899; benefit terms (85-100% of final base salary into a Special Pay Deferral Plan, plus up to 20 sick days).",
     "er-interfund": "Iowa City CSD FY2024 ACFR, interfund-balances detail: Management Levy Fund due to other funds $11,373,033; district-wide interfund total $38,166,276; and Schedule of Findings 2024-008 (interfund balances not authorized by formal board resolution).",
     "er-restate":   "Iowa City CSD FY2024 ACFR, Note 15 (Restatement): the prior-year early-retirement liability was under-accrued by $870,324 because a 20-day sick-day benefit was excluded from the calculation.",
+    "er-control":   "Iowa City CSD FY2024 auditor's communication of control deficiencies (Bohnsack & Frommelt LLP, June 10 2026), 'Early Retirement': the benefit packages offered to employees were not specifically board-approved and differed from the board-approved policy posted on the district website; the 2023 packages (cash-in-lieu plus sick-day payout) raised the liability $870,324 beyond board policy and the 2024 packages (vacation, sick, and cash-in-lieu) a further $389,019; 2024 payouts of vacation and compensatory time had no documentation or approval from the Management Fund.",
 }
 
 def build_early_retirement():
@@ -803,21 +804,34 @@ owed other funds $11.4M, close to a third of the district-wide $38.2M of interfu
 made without the board votes Iowa law requires.{c("er-interfund")} The cost the board controlled most directly
 turned into one of the largest pieces of the borrowing nobody voted for.</p>
 
-<p><b>The records understated it on the way in.</b> The 2024 audit also found the prior year's early-retirement
-liability had been under-recorded by $870,324, because a twenty-day sick-day benefit was left out of the
-calculation.{c("er-restate")}</p>
 </section>
 
 <section class="sec reveal">
-<h2>What this shows, and what it does not</h2>
-<p><b>This is not an accusation, and the audit does not name a policy violation.</b> No audit finding flags early
-retirement, and there is no documented dollar figure for retirements granted beyond board policy. What the
-audited records do show is a pattern worth the board's attention: a discretionary cost, granted in two large
-waves, paid from a levy that could not fund it, and bridged with unauthorized interfund borrowing, while the
-liability itself was understated until the cleanup.{c("er-note5")}{c("er-interfund")}</p>
+<h2>Benefits beyond what the board approved</h2>
+<p><b>The auditors found the benefits had drifted past board policy.</b> The board approved an early-retirement
+policy, but the packages actually offered to employees were not specifically approved by the board, and they
+differed from the policy posted on the district website.{c("er-control")}</p>
+
+<p><b>Two years of packages exceeded the board's own policy by about $1.26M.</b> The 2023 offer added a
+cash-in-lieu provision and a sick-day payout that raised the liability $870,324 beyond board policy. The 2024
+offer added vacation, sick, and cash-in-lieu provisions for a further $389,019.{c("er-control")} Some 2024
+payouts of vacation and compensatory time were made with no documentation or approval as early retirement from
+the Management Fund.</p>
+
+<p><b>That same $870,324 is the figure the audit had to restate.</b> The prior-year liability had been
+under-recorded by exactly that amount, because the twenty-day sick-day benefit was left out of the
+calculation.{c("er-restate")} The benefit that ran past policy was also the benefit the books had missed.</p>
+</section>
+
+<section class="sec reveal">
+<h2>What this shows</h2>
+<p><b>The audit does not allege fraud, and an early-retirement program is a legitimate tool.</b> What the record
+shows is a discretionary cost that ran past the board's own policy by about $1.26M, granted in two large waves,
+paid from a levy that could not fund it, and bridged with unauthorized interfund borrowing, while the liability
+was under-recorded until the cleanup.{c("er-control")}{c("er-interfund")}</p>
 
 <p><b>It is the whole story in miniature.</b> A controllable decision, made in good years and paid for in bad
-ones, that ended up drawing on money the district did not have.</p>
+ones, that ran past board policy and ended up drawing on money the district did not have.</p>
 </section>
 
 <div class="backlink"><a href="how-it-happened.html">&larr; Back to the main story</a></div>

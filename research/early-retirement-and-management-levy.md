@@ -57,15 +57,38 @@ The Management Levy Fund owed **$11,373,033** to other funds — nearly a third 
 interfund loans the FY2024 audit flagged as unauthorized (Finding 2024-008). Its dedicated property-tax levy
 could not cover the $8.18M of early-retirement payouts, so it drew the difference from the pooled cash.
 
-## What is NOT supported
+## Benefits beyond board policy — CONFIRMED (corrects an earlier note)
 
-- No audit *finding* (2024-001 through 014) addresses early retirement.
-- The "$1.26M in early retirements beyond board policy" figure circulated by another tool appears **nowhere** in
-  any of the ten ICCSD audits (FY2015–FY2024). Do not use it.
+An earlier version of this file said the "$1.26M beyond board policy" figure appeared nowhere and should not be
+used. **That was wrong.** It is documented in the FY2024 auditor's **Control Deficiency Letter** (Bohnsack &
+Frommelt LLP, June 10 2026) — a communication that sits alongside the ACFR, not inside it, which is why a
+search of the ACFR alone missed it. Under "Early Retirement":
+
+- The board approved an early-retirement *policy*, but the benefit packages actually offered to employees were
+  **not specifically approved by the board** and **differed from the board-approved policy posted on the
+  district website.**
+- **2023 retirees:** a cash-in-lieu provision plus sick-day payout raised the liability **$870,324 beyond board
+  policy.**
+- **2024 retirees:** vacation, sick, and cash-in-lieu provisions raised it a further **$389,019.**
+- 2024 payouts of vacation and compensatory time had **no documentation or approval** as early retirement from
+  the Management Fund.
+- **$870,324 + $389,019 = $1,259,343 ≈ $1.26M.** The $870,324 is the same dollar amount as the Note 15
+  restatement, so the accounting under-accrual and the policy overage are two views of the same money.
+
+## Still not supported / out of scope
+
+- No numbered *finding* in the Schedule of Findings (2024-001 through 014) is captioned "early retirement"; the
+  beyond-policy item is a control deficiency in the management letter, below significant-deficiency level.
 - The audits do not publish a Management-Levy budget-to-actual, so no precise "over the certified budget" dollar
-  figure can be stated. The defensible claims are the grant-rate waves, the FY2024 payout and election count,
-  the $870K restatement, and the $11.37M interfund position.
+  figure can be stated.
 
 ## Sources
 - Iowa City CSD audited ACFRs FY2015–FY2024, Note 5 (Long-Term Liabilities) changes schedules.
 - FY2024 ACFR: interfund balances detail; Note 5 early-retirement narrative; Note 15 restatement.
+- FY2024 auditor's **Control Deficiency Letter** (Bohnsack & Frommelt LLP, June 10 2026): "Early Retirement"
+  section ($870,324 / $389,019 beyond board policy; packages differed from posted policy; undocumented payouts).
+  Saved at `research/sources/documents/FY2024_Control_Deficiency_Letter.pdf`.
+- FY2024 auditor's **Communication With Those Charged With Governance** (Bohnsack & Frommelt LLP, June 10 2026),
+  incl. Proposed Adjusting Journal Entries — entry 44 records OPEB liability of $14,568,267 in Fund 09; entry 45
+  net pension $49,170,399; entry 32 early-retirement liability $3,333,899. Saved at
+  `research/sources/documents/FY2024_Communication_With_Governance.pdf`.

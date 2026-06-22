@@ -45,13 +45,23 @@ Read this first when we review. Compiled overnight, June 2026.
   surtax recognized in the wrong year +$7,976,285; GO bond premiums over-amortized −$955,100; early-retirement
   benefit under-accrued −$870,324). (2) Section 8 now names the payroll cycle a material weakness (Finding
   2024-001). Both cite the `fy24` source, whose text was expanded to list Note 15 and Findings 2024-001/007/008.
-- **Rejected an external claim that did NOT check out.** A separate AI write-up (shared by the owner) asserted
-  the district "retroactively adjusted $14,568,267 of omitted OPEB" and "omitted $15,438,591 in HR/retiree
-  liabilities." Verified against the FY24 ACFR: there is **no** OPEB restatement. Note 15 contains only the three
-  items above; the OPEB beginning balance ($13,009,704) carries forward unchanged from FY23 ending (so it was not
-  restated). The OPEB liability did rise to $16,819,043 (+$3.81M in-year) but that is ordinary prospective GASB 75
-  movement (service cost, interest, experience, assumption change), not a retroactive correction. The figures
-  $14,568,267 and $15,438,591 appear nowhere in the 124-page document. Kept these OUT of the narrative.
+- **CORRECTION (June 22 2026): an external claim I had rejected turned out to be substantially right.** I earlier
+  said the "$14,568,267 omitted OPEB" and "$1.26M early retirements beyond board policy" figures appeared nowhere
+  in the FY24 audit. That was because I only had the published **ACFR** — not the two companion auditor letters
+  the owner later supplied (Control Deficiency Letter and Communication With Those Charged With Governance,
+  Bohnsack & Frommelt LLP, June 10 2026, now saved in `research/sources/documents/`). With those:
+  - **$14,568,267 OPEB is real** — it is the auditor's Proposed Adjusting Journal Entry 44, "To record OPEB
+    Liability in Fund 09." The district had not booked the OPEB liability in its long-term-liability ledger and
+    the auditor posted ~$14.6M to record it. It is an audit *adjustment*, not a Note 15 restatement, and the
+    total OPEB disclosed in Note 6 is $16.8M (the $14.6M is the net amount booked to the account group).
+  - **$1.26M beyond board policy is real** — the Control Deficiency Letter's "Early Retirement" section: $870,324
+    (2023) + $389,019 (2024) = $1,259,343, packages not board-approved and differing from the posted policy.
+  - The **$15,438,591** figure still does not reconcile to any single audit number; the supportable pieces are
+    the $14.6M OPEB entry and the $0.87M early-retirement restatement.
+  - **Auditor name corrected:** the FY24 auditor is **Bohnsack & Frommelt LLP**, not RSM US LLP (the `fy24`
+    citation was wrong and has been fixed).
+  - Lesson: the ACFR is not the whole audit. The management/governance letters carry control deficiencies and
+    adjusting entries that never appear in the financial statements or the Schedule of Findings.
 
 ## 1. Privacy and exclusion decisions (please confirm)
 - **Held the voice profile OUT of the repo.** You said put all the files you gave me in the repo. I did not
