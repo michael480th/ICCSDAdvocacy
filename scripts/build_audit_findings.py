@@ -264,6 +264,27 @@ def fed_chart_rows(summ, fed_peak, fed_worst, scale):
     return "\n".join(out)
 
 
+def emit_federal_site():
+    """Copy the federal-findings data to the repo root with display names applied,
+    so the live page (audit-findings-live.html) can fetch and render it. _config.yml
+    excludes data/ from the published site, hence the root copy (same as the CSV)."""
+    src = os.path.join(ROOT, "data", "federal-findings.csv")
+    dst = os.path.join(ROOT, "federal-findings.csv")
+    if not os.path.exists(src):
+        return
+    with open(src, newline="") as fh:
+        reader = csv.DictReader(fh)
+        cols = reader.fieldnames
+        out = []
+        for r in reader:
+            r["district"] = NAME_FIX.get(r["district"].strip(), r["district"].strip())
+            out.append(r)
+    with open(dst, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cols)
+        w.writeheader()
+        w.writerows(out)
+
+
 def load_prior_persistence():
     """Pooled 'still Not corrected a year later' from the prior-findings schedules."""
     path = os.path.join(ROOT, "data", "prior-findings-status.csv")
@@ -303,6 +324,7 @@ def mw_chart_rows(summ, peak_fin, scale):
 def build():
     rows = load_rows()
     write_csv(rows)
+    emit_federal_site()
     summ = summarize(rows)
 
     n_dist = len(summ)
