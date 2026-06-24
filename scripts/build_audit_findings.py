@@ -402,10 +402,10 @@ def build():
         auditor found none</strong>, and only {len(mw_dist)} of the {n_dist} large districts drew even one
         material-weakness year in FY2020&ndash;2025 ({mw_names}). Iowa City is one of them &mdash; so a material
         weakness <em>by itself</em> wouldn't make it an outlier. What follows is why it is.</span></li>
-      <li><span class="ic">&#128201;</span><span><strong>The volume and severity are what stand out.</strong>
-        Iowa City's FY2024 audit carried <strong>14 numbered findings, five of them financial-statement
-        material weaknesses</strong> &mdash; the heaviest single-year load of any district in any year here.
-        The next-worst peak at any peer was {summ[1]['peak']} findings.</span></li>
+      <li><span class="ic">&#128201;</span><span><strong>The severity is what stands out.</strong>
+        Iowa City's FY2024 audit carried <strong>five financial-statement material weaknesses at once</strong>
+        &mdash; the heaviest single-year load of any district in any year here. The most any peer ever showed in
+        one year was two.</span></li>
       <li><span class="ic">&#127968;</span><span><strong>On the federal side, it is nearly alone.</strong>
         When an auditor reviews how federal money was spent, it issues an opinion on compliance. A
         <em>qualified</em> opinion &mdash; the auditor saying the district did <em>not</em> follow the rules in all
@@ -474,32 +474,39 @@ def build():
   year &mdash; qualified on two program clusters at once and carrying <strong>{ic_fed_mw} federal material
   weaknesses</strong> &mdash; and, unlike Davenport's, it has not yet been worked back to clean.</p>
 
-  <h2>Do these get fixed? Severity, not repetition</h2>
-  <p class="section-sub">A natural follow-up: don't districts just fix these the next year? Mostly &mdash; no,
-  and that turns out <em>not</em> to be what separates Iowa City.</p>
+  <h2>The significant issues, in plain English</h2>
+  <p class="section-sub">The two charts above show <em>where</em> Iowa City stands out. This is <em>what</em> those
+  findings actually were &mdash; translated out of audit language. All are from the district's FY2024 audit
+  (findings 2024-001 through 2024-014).</p>
   <div class="tldr">
-    <div class="k">What the prior-findings schedules show</div>
+    <div class="k">What the auditor actually found</div>
     <ul>
-      <li><span class="ic">&#8635;</span><span><strong>Repeat findings are common, not rare.</strong> Across the
-        large districts, roughly <strong>{peer_pct}% of one year's findings are still &ldquo;Not corrected&rdquo;
-        a year later</strong> &mdash; most are low-level items that recur: segregation-of-duties deficiencies in
-        small business offices, and statutory budget/enrollment variances. On the bare repeat rate, Iowa City
-        is <em>not</em> unusual.</span></li>
-      <li><span class="ic">&#9888;&#65039;</span><span><strong>Severity is the difference.</strong> Those recurring
-        peer findings are almost never material weaknesses &mdash; only {len(mw_dist)} districts ever had one at all.
-        Iowa City's uncorrected items <em>are</em> material weaknesses: of its <strong>{ic_tot} prior findings,
-        {ic_nc} were still &ldquo;Not corrected&rdquo;</strong> in FY2024, including the financial-reporting
-        material weakness carried straight over from FY2023.</span></li>
-      <li><span class="ic">&#9989;</span><span><strong>Compare Davenport &mdash; the one real precedent.</strong>
-        Davenport had material weaknesses three years running (FY2020&ndash;2022) and <strong>fixed them</strong>:
-        down to a significant deficiency by FY2023 and a clean schedule (zero findings) by FY2025. Iowa City went
-        the other way &mdash; one material weakness in FY2023 became five in FY2024.</span></li>
+      <li><span class="ic">&#127974;</span><span><strong>The bank accounts weren't being reconciled.</strong>
+        Reconciling a bank account is critical because it is the one routine check that proves the district's own
+        records match the money the bank actually holds &mdash; it's how missing, duplicated, or stolen funds get
+        caught early. For FY2024 those reconciliations weren't done on time, so that check simply wasn't
+        happening. In the auditor's words, errors or &ldquo;misappropriations of assets&rdquo; could occur and go
+        undetected. (A repeat finding; the stated cause was turnover in key accounting staff.)</span></li>
+      <li><span class="ic">&#128202;</span><span><strong>The year-end statements were materially wrong as first
+        prepared.</strong> Receivables, payables, and capital assets weren't properly adjusted, so the financial
+        statements were misstated and needed material corrections caught during the audit &mdash; not by the
+        district's own process. (Also a repeat finding.)</span></li>
+      <li><span class="ic">&#128100;</span><span><strong>One person could run an entire money cycle.</strong>
+        The district lacked segregation of duties over payroll, cash disbursements, and school receipts &mdash;
+        the basic separation that keeps a single error or theft from slipping through unnoticed.</span></li>
+      <li><span class="ic">&#127970;</span><span><strong>Federal COVID money went to unallowable costs &mdash;
+        and records were missing.</strong> The district charged the ESSER program for costs that weren't allowed,
+        and for one program couldn't produce the expenditure records at all. These are the findings behind the
+        qualified federal opinion above.</span></li>
+      <li><span class="ic">&#9203;</span><span><strong>The audit was about two years late &mdash; and it cost the
+        bond rating.</strong> The district didn't complete its FY2023 and FY2024 single audits within the required
+        nine months. The delay left lenders and the public without current numbers, and the district's bond
+        rating was withdrawn.</span></li>
+      <li><span class="ic">&#128184;</span><span><strong>Smaller, but telling.</strong> A student activity fund
+        ran a deficit, and money was moved between funds without the formal authorization the rules
+        require.</span></li>
     </ul>
   </div>
-  <p class="section-sub">So the honest distinction isn't that Iowa City fails to fix findings faster than its
-  peers, or even that it has the most repeats (Johnston carried more low-level items forward). It is the only
-  district where the <strong>most serious</strong> class of finding is both <strong>multiplying and going
-  uncorrected</strong>.</p>
 
   <h2>Case study: how Davenport climbed out</h2>
   <p class="section-sub">Davenport is the one large district that has been somewhere like where Iowa City is now
@@ -545,42 +552,12 @@ def build():
     floor on the effort, not a ceiling.</p>
   </div>
 
-  <h2>Findings per district &mdash; peak and typical</h2>
-  <p class="section-sub">Each bar is a district's <strong>average</strong> findings per filed audit, FY2020&ndash;2025;
-  the black tick marks its <strong>worst single year</strong> (the number at right). Iowa City is shown in red.
-  Sorted by worst year.</p>
-  <div class="chart">
-    {chart_rows(summ, scale_max)}
-    <div class="legend">
-      <span><span class="sw" style="background:var(--bar)"></span>average findings / year</span>
-      <span><span class="sw" style="background:#0f172a;width:3px;height:15px"></span>worst single year</span>
-      <span><span class="sw" style="background:var(--red)"></span>Iowa City CSD</span>
-    </div>
-  </div>
-  <p class="section-sub">Iowa City's FY2024 (14) and FY2023 (7) sit at the top; its earlier years (2&ndash;3
-  findings) were unremarkable. The jump is recent, not chronic &mdash; which is its own kind of warning sign.</p>
-
-  <h2>Who has had a material weakness</h2>
-  <p class="section-sub">The most serious internal-control flag short of a wrong number. Across FY2020&ndash;2025,
-  these are the district-years that drew one. {len(mw_dist)} of {n_dist} districts appear at least once;
-  Davenport ran a three-year stretch, but only Iowa City's FY2024 stacked five in a single year.</p>
-  <table>
-    <thead><tr><th>District</th><th>Fiscal year</th><th>Total findings that year</th></tr></thead>
-    <tbody>
-    {mw_table}
-    </tbody>
-  </table>
-  <p class="section-sub">The table counts material-weakness <em>years</em>. Iowa City's FY2024 is one row here,
-  but it contained <strong>five</strong> financial-statement material weaknesses at once (plus three more on
-  the federal side) &mdash; a concentration no other district-year in the group approaches.</p>
-
   <h2>What actually makes Iowa City the outlier</h2>
   <p class="section-sub">Not any single finding, but four things together &mdash; each compared with the peer group:</p>
   <table>
     <thead><tr><th>Measure</th><th>Iowa City</th><th>The other 14 large districts</th></tr></thead>
     <tbody>
-      <tr class="me"><td>Most findings in one year</td><td>14 (FY2024)</td><td>Peak {summ[1]['peak']} (Davenport, FY2021); most are 0&ndash;4</td></tr>
-      <tr><td>Material weaknesses in one year</td><td>5 (FY2024)</td><td>At most 1&ndash;2 in any year</td></tr>
+      <tr class="me"><td>Material weaknesses in one year</td><td>5 (FY2024)</td><td>At most 1&ndash;2 in any year</td></tr>
       <tr><td>Federal program opinion</td><td>Qualified on two programs (FY2024)</td><td>Almost all clean / no single-audit findings</td></tr>
       <tr><td>Audit filed on time</td><td>~2 years late (FY2023 &amp; FY2024); FY2025 still unfiled</td><td>Effectively all on time</td></tr>
       <tr><td>Bond rating</td><td>Withdrawn for late information</td><td>Retained</td></tr>
