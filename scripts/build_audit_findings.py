@@ -27,8 +27,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTRACT_GLOB = os.path.join(ROOT, "data", "district-extractions", "*.csv")
 OUT_CSV = os.path.join(ROOT, "data", "audit-findings-distribution.csv")
 # A second copy at the repo root, because _config.yml excludes data/ from the
-# published GitHub Pages site. The live page (audit-findings-live.html) fetches
-# THIS copy so the auto-refresh works on the deployed site, not just in the repo.
+# published GitHub Pages site. Kept as the machine-readable companion served
+# alongside the page (the data baked into the page itself comes from load_rows).
 OUT_CSV_SITE = os.path.join(ROOT, "audit-findings-distribution.csv")
 OUT_HTML = os.path.join(ROOT, "audit-findings-distribution.html")
 # A fully self-contained, single-file copy with the data baked in and the site
@@ -264,27 +264,6 @@ def fed_chart_rows(summ, fed_peak, fed_worst, scale):
     return "\n".join(out)
 
 
-def emit_federal_site():
-    """Copy the federal-findings data to the repo root with display names applied,
-    so the live page (audit-findings-live.html) can fetch and render it. _config.yml
-    excludes data/ from the published site, hence the root copy (same as the CSV)."""
-    src = os.path.join(ROOT, "data", "federal-findings.csv")
-    dst = os.path.join(ROOT, "federal-findings.csv")
-    if not os.path.exists(src):
-        return
-    with open(src, newline="") as fh:
-        reader = csv.DictReader(fh)
-        cols = reader.fieldnames
-        out = []
-        for r in reader:
-            r["district"] = NAME_FIX.get(r["district"].strip(), r["district"].strip())
-            out.append(r)
-    with open(dst, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=cols)
-        w.writeheader()
-        w.writerows(out)
-
-
 def load_prior_persistence():
     """Pooled 'still Not corrected a year later' from the prior-findings schedules."""
     path = os.path.join(ROOT, "data", "prior-findings-status.csv")
@@ -324,7 +303,6 @@ def mw_chart_rows(summ, peak_fin, scale):
 def build():
     rows = load_rows()
     write_csv(rows)
-    emit_federal_site()
     summ = summarize(rows)
 
     n_dist = len(summ)
