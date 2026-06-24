@@ -26,6 +26,10 @@ from _nav import nav  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTRACT_GLOB = os.path.join(ROOT, "data", "district-extractions", "*.csv")
 OUT_CSV = os.path.join(ROOT, "data", "audit-findings-distribution.csv")
+# A second copy at the repo root, because _config.yml excludes data/ from the
+# published GitHub Pages site. The live page (audit-findings-live.html) fetches
+# THIS copy so the auto-refresh works on the deployed site, not just in the repo.
+OUT_CSV_SITE = os.path.join(ROOT, "audit-findings-distribution.csv")
 OUT_HTML = os.path.join(ROOT, "audit-findings-distribution.html")
 
 # Display names are slightly long in the raw extractions; tidy for the chart.
@@ -77,11 +81,13 @@ def write_csv(rows):
         "significant_deficiency",
         "repeat_finding",
     ]
-    with open(OUT_CSV, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=cols)
-        w.writeheader()
-        for r in sorted(rows, key=lambda x: (x["district"], x["fiscal_year"])):
-            w.writerow({c: ("Y" if r[c] is True else "N" if r[c] is False else r[c]) for c in cols})
+    ordered = sorted(rows, key=lambda x: (x["district"], x["fiscal_year"]))
+    for path in (OUT_CSV, OUT_CSV_SITE):
+        with open(path, "w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=cols)
+            w.writeheader()
+            for r in ordered:
+                w.writerow({c: ("Y" if r[c] is True else "N" if r[c] is False else r[c]) for c in cols})
 
 
 def summarize(rows):
@@ -311,7 +317,8 @@ def build():
     # console summary
     print(f"districts: {n_dist}  |  with >=1 material-weakness year: {len(mw_dist)} ({mw_names})")
     print(f"ICCSD peak findings: {iccsd['peak']}  avg: {iccsd['avg']:.1f}  MW years: {iccsd['mw_years']}")
-    print(f"wrote {os.path.relpath(OUT_CSV, ROOT)} and {os.path.relpath(OUT_HTML, ROOT)}")
+    print(f"wrote {os.path.relpath(OUT_CSV, ROOT)}, {os.path.relpath(OUT_CSV_SITE, ROOT)} "
+          f"and {os.path.relpath(OUT_HTML, ROOT)}")
 
 
 if __name__ == "__main__":
