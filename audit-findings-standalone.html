@@ -36,6 +36,11 @@ a{color:var(--accent)}
 .pk{position:absolute;top:-3px;height:24px;width:2px;background:#0f172a;opacity:.55}
 .row .val{font-weight:700;color:var(--ink);text-align:left}
 .row.me .val{color:var(--red)}
+.fedchart .bartrack{overflow:visible}
+.ftag{position:absolute;right:.45rem;top:50%;transform:translateY(-50%);font-size:.62rem;font-weight:700;
+letter-spacing:.03em;text-transform:uppercase;padding:.1rem .45rem;border-radius:999px;white-space:nowrap;line-height:1.4}
+.ftag.fq{background:var(--red-soft);color:var(--red);border:1px solid var(--red-line)}
+.ftag.fm{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-line)}
 .legend{font-size:.8rem;color:var(--ink-mute);margin:.5rem 0 0;display:flex;gap:1.1rem;flex-wrap:wrap}
 .legend span{display:inline-flex;align-items:center;gap:.35rem}
 .sw{width:13px;height:13px;border-radius:3px;display:inline-block}
@@ -68,13 +73,22 @@ tr.me td{background:var(--red-soft);font-weight:700;color:var(--ink)}
   <div class="tldr">
     <div class="k">The short version</div>
     <ul>
-      <li><span class="ic">&#9888;&#65039;</span><span><strong>A material weakness by itself is not unique.</strong>
-        4 of the 15 large districts had at least one material-weakness year in
-        FY2020&ndash;2025 (Davenport CSD, Des Moines CSD, Iowa City CSD, Waterloo CSD). So &ldquo;had a material weakness&rdquo; alone would not make Iowa City an outlier.</span></li>
+      <li><span class="ic">&#9888;&#65039;</span><span><strong>A material weakness is serious &mdash; it's just
+        not unique to Iowa City.</strong> Think of it like failing a class: not rare enough to be shocking, but
+        never a good sign. In <strong>91% of the district-years here (81 of 89) the
+        auditor found none</strong>, and only 4 of the 15 large districts drew even one
+        material-weakness year in FY2020&ndash;2025 (Davenport CSD, Des Moines CSD, Iowa City CSD, Waterloo CSD). Iowa City is one of them &mdash; so a material
+        weakness <em>by itself</em> wouldn't make it an outlier. What follows is why it is.</span></li>
       <li><span class="ic">&#128201;</span><span><strong>The volume and severity are what stand out.</strong>
         Iowa City's FY2024 audit carried <strong>14 numbered findings, five of them financial-statement
         material weaknesses</strong> &mdash; the heaviest single-year load of any district in any year here.
         The next-worst peak at any peer was 8 findings.</span></li>
+      <li><span class="ic">&#127968;</span><span><strong>On the federal side, it is nearly alone.</strong>
+        When an auditor reviews how federal money was spent, it issues an opinion on compliance. A
+        <em>qualified</em> opinion &mdash; the auditor saying the district did <em>not</em> follow the rules in all
+        material respects &mdash; is rare: across 15 districts and six years, only
+        <strong>2</strong> ever received one (Davenport CSD, Iowa City CSD). Iowa City's FY2024 was qualified on
+        <strong>two</strong> program clusters at once, with three federal material weaknesses on top.</span></li>
       <li><span class="ic">&#128681;</span><span><strong>And nothing else combines all of it.</strong>
         Most findings + five material weaknesses in one year + qualified federal opinions + repeat
         uncorrected items + an audit filed about two years late (which cost the district its bond rating).
@@ -119,6 +133,52 @@ tr.me td{background:var(--red-soft);font-weight:700;color:var(--ink)}
   next-highest the group has ever shown (2, Davenport in FY2020). This is the chart where Iowa City
   is genuinely an outlier: not that it has <em>a</em> material weakness, but <em>how many at once</em>.</p>
 
+  <h2>What is a &ldquo;federal finding&rdquo;?</h2>
+  <div class="tldr" style="border-left-color:var(--gold)">
+    <div class="k" style="color:var(--gold)">The federal audit, in plain English</div>
+    <p style="margin:0 0 .6em">Any district that spends enough federal money in a year (think Title I, special
+    education/IDEA, school nutrition, and the COVID-era ESSER funds) gets a second, separate audit called a
+    <strong>Single Audit</strong>, run under federal rules (the Uniform Guidance). It asks a different question
+    than the regular audit: not &ldquo;are the books right?&rdquo; but <strong>&ldquo;did the district follow the
+    rules that come attached to the federal dollars?&rdquo;</strong></p>
+    <p style="margin:0">The auditor then issues an <strong>opinion on compliance</strong> for each major federal
+    program. &ldquo;Unmodified&rdquo; is the clean result. A <strong>&ldquo;qualified&rdquo;</strong> opinion is
+    the auditor formally stating the district did <em>not</em> comply, in some material way, with the federal
+    requirements &mdash; and it can come with &ldquo;questioned costs,&rdquo; dollars the auditor flags as
+    possibly spent improperly. A qualified opinion is the federal equivalent of the material-weakness warning above.</p>
+  </div>
+  <p class="section-sub">Below is each district's <strong>worst federal result</strong>, FY2020&ndash;2025. Most
+  have a Single Audit every year and sail through clean. A handful drew a minor federal finding but kept a clean
+  opinion. Only <strong>two</strong> districts ever drew a <strong>qualified opinion</strong> &mdash; and Iowa City
+  is one. Bars show federal material weaknesses in the district's worst year; Iowa City in red.</p>
+  <div class="chart fedchart">
+    <div class="row me"><div class="nm">Iowa City CSD</div><div class="bartrack"><div class="bar" style="width:100%"></div><span class="ftag fq">qualified opinion</span></div><div class="val">3</div></div>
+<div class="row"><div class="nm">Davenport CSD</div><div class="bartrack"><div class="bar" style="width:33%"></div><span class="ftag fq">qualified opinion</span></div><div class="val">1</div></div>
+<div class="row"><div class="nm">Cedar Rapids CSD</div><div class="bartrack"><span class="ftag fm">minor finding</span></div><div class="val">0</div></div>
+<div class="row"><div class="nm">Des Moines CSD</div><div class="bartrack"><span class="ftag fm">minor finding</span></div><div class="val">0</div></div>
+<div class="row"><div class="nm">Waukee CSD</div><div class="bartrack"><span class="ftag fm">minor finding</span></div><div class="val">0</div></div>
+<div class="row"><div class="nm">Ankeny CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Burlington CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">College CSD (Prairie)</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Dubuque CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Johnston CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Linn-Mar CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Muscatine CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Pleasant Valley CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">Waterloo CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+<div class="row"><div class="nm">West Des Moines CSD</div><div class="bartrack"></div><div class="val">&mdash;</div></div>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--bar)"></span>federal material weaknesses (worst year)</span>
+      <span><span class="ftag fq" style="position:static">qualified opinion</span></span>
+      <span><span class="ftag fm" style="position:static">minor finding</span></span>
+      <span><span class="sw" style="background:var(--red)"></span>Iowa City CSD</span>
+    </div>
+  </div>
+  <p class="section-sub">The two qualified opinions tell the whole story of how rare this is: Davenport CSD, Iowa City CSD.
+  Both were on the COVID-era Education Stabilization (ESSER) funds. Iowa City's FY2024 went further than any peer
+  year &mdash; qualified on two program clusters at once and carrying <strong>3 federal material
+  weaknesses</strong> &mdash; and, unlike Davenport's, it has not yet been worked back to clean.</p>
+
   <h2>Do these get fixed? Severity, not repetition</h2>
   <p class="section-sub">A natural follow-up: don't districts just fix these the next year? Mostly &mdash; no,
   and that turns out <em>not</em> to be what separates Iowa City.</p>
@@ -145,6 +205,50 @@ tr.me td{background:var(--red-soft);font-weight:700;color:var(--ink)}
   peers, or even that it has the most repeats (Johnston carried more low-level items forward). It is the only
   district where the <strong>most serious</strong> class of finding is both <strong>multiplying and going
   uncorrected</strong>.</p>
+
+  <h2>Case study: how Davenport climbed out</h2>
+  <p class="section-sub">Davenport is the one large district that has been somewhere like where Iowa City is now
+  &mdash; and worked its way back. It had material weaknesses <strong>three years running</strong> and a qualified
+  federal opinion, then drove its findings to <strong>zero</strong>. The arc is worth studying because the
+  weaknesses were strikingly similar to Iowa City's.</p>
+  <table>
+    <thead><tr><th>Fiscal year</th><th>Financial MWs</th><th>Federal MWs</th><th>Federal opinion</th><th>Total findings</th></tr></thead>
+    <tbody>
+      <tr><td>FY2020</td><td>2</td><td>1</td><td>Unmodified</td><td>6</td></tr>
+      <tr><td>FY2021</td><td>1</td><td>1</td><td><strong>Qualified</strong> (ESSER)</td><td>8</td></tr>
+      <tr><td>FY2022</td><td>1</td><td>0</td><td>Unmodified</td><td>7</td></tr>
+      <tr><td>FY2023</td><td>0</td><td>0</td><td>Unmodified</td><td>3</td></tr>
+      <tr><td>FY2024</td><td>0</td><td>0</td><td>Unmodified</td><td>2</td></tr>
+      <tr><td>FY2025</td><td>0</td><td>0</td><td>Unmodified</td><td><strong>0</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="tldr">
+    <div class="k">What the weaknesses were &mdash; and how they fixed them</div>
+    <ul>
+      <li><span class="ic">&#128269;</span><span><strong>Year-end close (2020-001).</strong> The audit turned up
+        material corrections in capital assets, accrued liabilities, and accounts payable that Davenport's own
+        controls would never have caught &mdash; &ldquo;inadequate reconciliation and internal review.&rdquo;
+        <em>Fix:</em> they built reconciliation and review procedures over the balance-sheet accounts.</span></li>
+      <li><span class="ic">&#127963;&#65039;</span><span><strong>Federal reporting (2020-002).</strong> Their
+        Schedule of Expenditures of Federal Awards was misstated by <strong>$1.84 million</strong> &mdash; it
+        didn't reconcile to the books, mostly mis-coded ESSER money. <em>Fix:</em> reconcile the schedule to the
+        general ledger with a separate Finance review before anything is certified to the state.</span></li>
+      <li><span class="ic">&#128176;</span><span><strong>Payroll charged to federal funds (2020-005, the federal
+        material weakness).</strong> Timesheets weren't being approved before payroll ran, and the time-clock
+        didn't talk to the general ledger. <em>Fix:</em> require supervisory approval of time and move toward
+        integrated, batch-processed payroll.</span></li>
+    </ul>
+  </div>
+  <p class="section-sub">Those are nearly the same failure points in Iowa City's FY2024 report: year-end close,
+  federal-award reporting and allowable costs, and payroll controls. Davenport shows the climb is doable &mdash;
+  findings dropped and downgraded every single year (material weakness &rarr; significant deficiency &rarr;
+  resolved) on the back of assigned ownership and review-before-certify discipline, not a single dramatic move.</p>
+  <div class="note">
+    <strong>The honest caveat.</strong> Davenport is a fair role model, not a perfect mirror. Even its
+    <em>worst</em> year (FY2020: three material weaknesses) was milder than Iowa City's FY2024 (eight, five of
+    them financial). Iowa City is starting from a deeper hole &mdash; so Davenport's roughly four-year climb is a
+    floor on the effort, not a ceiling.</p>
+  </div>
 
   <h2>Findings per district &mdash; peak and typical</h2>
   <p class="section-sub">Each bar is a district's <strong>average</strong> findings per filed audit, FY2020&ndash;2025;
