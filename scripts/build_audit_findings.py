@@ -27,8 +27,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTRACT_GLOB = os.path.join(ROOT, "data", "district-extractions", "*.csv")
 OUT_CSV = os.path.join(ROOT, "data", "audit-findings-distribution.csv")
 # A second copy at the repo root, because _config.yml excludes data/ from the
-# published GitHub Pages site. The live page (audit-findings-live.html) fetches
-# THIS copy so the auto-refresh works on the deployed site, not just in the repo.
+# published GitHub Pages site. Kept as the machine-readable companion served
+# alongside the page (the data baked into the page itself comes from load_rows).
 OUT_CSV_SITE = os.path.join(ROOT, "audit-findings-distribution.csv")
 OUT_HTML = os.path.join(ROOT, "audit-findings-distribution.html")
 # A fully self-contained, single-file copy with the data baked in and the site
@@ -153,6 +153,11 @@ a{color:var(--accent)}
 .pk{position:absolute;top:-3px;height:24px;width:2px;background:#0f172a;opacity:.55}
 .row .val{font-weight:700;color:var(--ink);text-align:left}
 .row.me .val{color:var(--red)}
+.fedchart .bartrack{overflow:visible}
+.ftag{position:absolute;right:.45rem;top:50%;transform:translateY(-50%);font-size:.62rem;font-weight:700;
+letter-spacing:.03em;text-transform:uppercase;padding:.1rem .45rem;border-radius:999px;white-space:nowrap;line-height:1.4}
+.ftag.fq{background:var(--red-soft);color:var(--red);border:1px solid var(--red-line)}
+.ftag.fm{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-line)}
 .legend{font-size:.8rem;color:var(--ink-mute);margin:.5rem 0 0;display:flex;gap:1.1rem;flex-wrap:wrap}
 .legend span{display:inline-flex;align-items:center;gap:.35rem}
 .sw{width:13px;height:13px;border-radius:3px;display:inline-block}
@@ -186,6 +191,115 @@ def chart_rows(summ, scale_max):
     return "\n".join(out)
 
 
+def load_mw_counts():
+    """Validated material-weakness counts per district-year (auditor-stated)."""
+    path = os.path.join(ROOT, "data", "material-weakness-counts.csv")
+    peak_fin, peak_tot = {}, {}
+    if os.path.exists(path):
+        for r in csv.DictReader(open(path)):
+            d = NAME_FIX.get(r["district"].strip(), r["district"].strip())
+            fin = int(r["mw_financial"])
+            tot = fin + int(r["mw_federal"])
+            peak_fin[d] = max(peak_fin.get(d, 0), fin)
+            peak_tot[d] = max(peak_tot.get(d, 0), tot)
+    return peak_fin, peak_tot
+
+
+def load_federal():
+    """Per-district federal single-audit outcomes, FY2020-2025 (auditor-stated).
+
+    Returns:
+      fed_peak: worst-year federal material-weakness count per district
+      fed_worst: worst federal outcome rank per district (0 clean .. 3 qualified)
+      qualified: list of (district, fy) with a qualified/adverse federal opinion
+    """
+    path = os.path.join(ROOT, "data", "federal-findings.csv")
+    fed_peak, fed_worst, qualified = {}, {}, []
+    RANK = {"clean": 0, "finding": 1, "mw": 2, "qualified": 3}
+    if not os.path.exists(path):
+        return fed_peak, fed_worst, qualified
+    for r in csv.DictReader(open(path)):
+        d = NAME_FIX.get(r["district"].strip(), r["district"].strip())
+        mw = int(r["fed_mw"] or 0)
+        op = (r["fed_compliance_opinion"] or "").strip().lower()
+        finding = (r["fed_finding"] or "").strip().upper() == "Y"
+        fed_peak[d] = max(fed_peak.get(d, 0), mw)
+        if op in ("qualified", "adverse", "disclaimer"):
+            rank = RANK["qualified"]
+            qualified.append((d, int(r["fiscal_year"])))
+        elif mw > 0:
+            rank = RANK["mw"]
+        elif finding:
+            rank = RANK["finding"]
+        else:
+            rank = RANK["clean"]
+        fed_worst[d] = max(fed_worst.get(d, 0), rank)
+    return fed_peak, fed_worst, qualified
+
+
+def fed_chart_rows(summ, fed_peak, fed_worst, scale):
+    """Bars = worst-year federal material weaknesses; a tag marks the rarer
+    'qualified federal opinion' tier. Mirrors the financial MW chart."""
+    LABEL = {3: "qualified opinion", 2: "material weakness", 1: "minor finding", 0: "clean"}
+    out = []
+    for s in sorted(summ, key=lambda x: (-fed_worst.get(x["district"], 0),
+                                         -fed_peak.get(x["district"], 0), x["district"])):
+        d = s["district"]
+        v = fed_peak.get(d, 0)
+        rank = fed_worst.get(d, 0)
+        cls = " me" if s["is_iccsd"] else ""
+        w = max(3, round(100 * v / scale)) if v else 0
+        bar = f'<div class="bar" style="width:{w}%"></div>' if v else ""
+        tag = ""
+        if rank == 3:
+            tag = '<span class="ftag fq">qualified opinion</span>'
+        elif rank == 1:
+            tag = '<span class="ftag fm">minor finding</span>'
+        rightval = v if v else ("&mdash;" if rank == 0 else "0")
+        out.append(
+            f'<div class="row{cls}"><div class="nm">{d}</div>'
+            f'<div class="bartrack">{bar}{tag}</div>'
+            f'<div class="val">{rightval}</div></div>'
+        )
+    return "\n".join(out)
+
+
+def load_prior_persistence():
+    """Pooled 'still Not corrected a year later' from the prior-findings schedules."""
+    path = os.path.join(ROOT, "data", "prior-findings-status.csv")
+    peer_nc = peer_tot = 0
+    ic_rows = []
+    if os.path.exists(path):
+        for r in csv.DictReader(open(path)):
+            if not (r.get("prior_total") or "").strip():
+                continue
+            t, nc = int(r["prior_total"]), int(r["prior_not_corrected"])
+            if r["district"] == ICCSD:
+                ic_rows.append((int(r["audit_fy"]), t, nc))
+            else:
+                peer_nc += nc; peer_tot += t
+    peer_pct = round(100 * peer_nc / peer_tot) if peer_tot else 0
+    # ICCSD's most recent audit (FY2024) specifically — the headline 6-of-7
+    ic_rows.sort()
+    ic_tot, ic_nc = (ic_rows[-1][1], ic_rows[-1][2]) if ic_rows else (0, 0)
+    return peer_pct, ic_nc, ic_tot
+
+
+def mw_chart_rows(summ, peak_fin, scale):
+    out = []
+    for s in sorted(summ, key=lambda x: (-peak_fin.get(x["district"], 0), x["district"])):
+        v = peak_fin.get(s["district"], 0)
+        cls = " me" if s["is_iccsd"] else ""
+        w = max(3, round(100 * v / scale)) if v else 0
+        bar = f'<div class="bar" style="width:{w}%"></div>' if v else ""
+        out.append(
+            f'<div class="row{cls}"><div class="nm">{s["district"]}</div>'
+            f'<div class="bartrack">{bar}</div>'
+            f'<div class="val">{v}</div></div>'
+        )
+    return "\n".join(out)
+
+
 def build():
     rows = load_rows()
     write_csv(rows)
@@ -196,12 +310,39 @@ def build():
     iccsd = next(s for s in summ if s["is_iccsd"])
     scale_max = max(s["peak"] for s in summ)
 
+    # severity layer: validated material-weakness counts + finding persistence
+    peak_fin, peak_tot = load_mw_counts()
+    peer_pct, ic_nc, ic_tot = load_prior_persistence()
+    mw_scale = max(peak_fin.values()) if peak_fin else 1
+    ic_mw = peak_fin.get(ICCSD, 0)            # 5 financial-statement MWs (FY24)
+    ic_mw_tot = peak_tot.get(ICCSD, 0)        # 8 incl. federal
+    n_with_mw = sum(1 for s in summ if peak_fin.get(s["district"], 0) > 0)
+    n_zero_mw = n_dist - n_with_mw
+    # next-highest peer peak (financial MWs)
+    peer_peaks = sorted((peak_fin.get(s["district"], 0) for s in summ if not s["is_iccsd"]),
+                        reverse=True)
+    next_mw = peer_peaks[0] if peer_peaks else 0
+
     # material-weakness incidence rows (district-years)
     mw_events = []
     for r in rows:
         if r["material_weakness"]:
             mw_events.append((r["district"], r["fiscal_year"], r["findings_count"]))
     mw_events.sort(key=lambda x: (x[0], x[1]))
+
+    # per-year base rate: how ordinary is a clean (no material-weakness) year?
+    n_dy = len(rows)
+    n_mw_years = len(mw_events)
+    n_clean_years = n_dy - n_mw_years
+    pct_clean = round(100 * n_clean_years / n_dy) if n_dy else 0
+
+    # federal single-audit outcomes
+    fed_peak, fed_worst, qualified = load_federal()
+    fed_scale = max(fed_peak.values()) if fed_peak else 1
+    ic_fed_mw = fed_peak.get(ICCSD, 0)
+    qual_names = sorted({d for d, _ in qualified})
+    qual_other = [d for d in qual_names if d != ICCSD]
+    n_qual = len(qual_names)
     mw_table = "\n".join(
         f'<tr class="{"me" if d==ICCSD else ""}"><td>{d}</td><td>FY{fy}</td>'
         f'<td>{c if c is not None else "&mdash;"}</td></tr>'
@@ -222,9 +363,10 @@ def build():
 <header class="hero"><div class="container">
   <div class="eyebrow">Iowa's 15 largest districts &middot; FY2020&ndash;FY2025</div>
   <h1>How many audit findings is normal?</h1>
-  <p class="sub">Iowa City's recent audits drew an unusual number of findings &mdash; including
-  material weaknesses. This puts that count in context: every large Iowa district's audit findings,
-  side by side, so you can see what's typical and where Iowa City actually stands.</p>
+  <p class="sub">Iowa City's recent audits drew an unusual number of findings &mdash; including several
+  &ldquo;material weaknesses,&rdquo; an auditor's most serious red flag about how a district controls its
+  money. This puts that in context: every large Iowa district, side by side, so you can see what's typical
+  and where Iowa City actually stands.</p>
 </div></header>
 
 <main class="container">
@@ -232,13 +374,22 @@ def build():
   <div class="tldr">
     <div class="k">The short version</div>
     <ul>
-      <li><span class="ic">&#9888;&#65039;</span><span><strong>A material weakness by itself is not unique.</strong>
-        {len(mw_dist)} of the {n_dist} large districts had at least one material-weakness year in
-        FY2020&ndash;2025 ({mw_names}). So &ldquo;had a material weakness&rdquo; alone would not make Iowa City an outlier.</span></li>
-      <li><span class="ic">&#128201;</span><span><strong>The volume and severity are what stand out.</strong>
-        Iowa City's FY2024 audit carried <strong>14 numbered findings, five of them financial-statement
-        material weaknesses</strong> &mdash; the heaviest single-year load of any district in any year here.
-        The next-worst peak at any peer was {summ[1]['peak']} findings.</span></li>
+      <li><span class="ic">&#9888;&#65039;</span><span><strong>A material weakness is serious &mdash; it's just
+        not unique to Iowa City.</strong> Think of it like failing a class: not rare enough to be shocking, but
+        never a good sign. In <strong>{pct_clean}% of the district-years here ({n_clean_years} of {n_dy}) the
+        auditor found none</strong>, and only {len(mw_dist)} of the {n_dist} large districts drew even one
+        material-weakness year in FY2020&ndash;2025 ({mw_names}). Iowa City is one of them &mdash; so a material
+        weakness <em>by itself</em> wouldn't make it an outlier. What follows is why it is.</span></li>
+      <li><span class="ic">&#128201;</span><span><strong>The severity is what stands out.</strong>
+        Iowa City's FY2024 audit carried <strong>five financial-statement material weaknesses at once</strong>
+        &mdash; the heaviest single-year load of any district in any year here. The most any peer ever showed in
+        one year was two.</span></li>
+      <li><span class="ic">&#127968;</span><span><strong>On the federal side, it is nearly alone.</strong>
+        When an auditor reviews how federal money was spent, it issues an opinion on compliance. A
+        <em>qualified</em> opinion &mdash; the auditor saying the district did <em>not</em> follow the rules in all
+        material respects &mdash; is rare: across {n_dist} districts and six years, only
+        <strong>{n_qual}</strong> ever received one ({", ".join(qual_names)}). Iowa City's FY2024 was qualified on
+        <strong>two</strong> program clusters at once, with three federal material weaknesses on top.</span></li>
       <li><span class="ic">&#128681;</span><span><strong>And nothing else combines all of it.</strong>
         Most findings + five material weaknesses in one year + qualified federal opinions + repeat
         uncorrected items + an audit filed about two years late (which cost the district its bond rating).
@@ -246,42 +397,145 @@ def build():
     </ul>
   </div>
 
-  <h2>Findings per district &mdash; peak and typical</h2>
-  <p class="section-sub">Each bar is a district's <strong>average</strong> findings per filed audit, FY2020&ndash;2025;
-  the black tick marks its <strong>worst single year</strong> (the number at right). Iowa City is shown in red.
-  Sorted by worst year.</p>
+  <h2>Material weaknesses by district &mdash; worst single year</h2>
+  <div class="tldr" style="border-left-color:var(--gold)">
+    <div class="k" style="color:var(--gold)">What's a &ldquo;material weakness&rdquo;?</div>
+    <p style="margin:0">It's an auditor's most serious warning short of finding an actual wrong number.
+    It means the checks a district relies on to catch a big mistake &mdash; or theft &mdash; in its own
+    books are broken badly enough that one could slip through unnoticed. The books may still be right;
+    the <em>safeguards</em> around them are not.</p>
+  </div>
+  <p class="section-sub">Below is how many material weaknesses an auditor found in each district's
+  <strong>financial statements</strong> in its worst single year, FY2020&ndash;2025. {n_zero_mw} of the
+  {n_dist} large districts never had a single one. Iowa City in red.</p>
   <div class="chart">
-    {chart_rows(summ, scale_max)}
+    {mw_chart_rows(summ, peak_fin, mw_scale)}
     <div class="legend">
-      <span><span class="sw" style="background:var(--bar)"></span>average findings / year</span>
-      <span><span class="sw" style="background:#0f172a;width:3px;height:15px"></span>worst single year</span>
+      <span><span class="sw" style="background:var(--bar)"></span>material weaknesses (worst year)</span>
       <span><span class="sw" style="background:var(--red)"></span>Iowa City CSD</span>
     </div>
   </div>
-  <p class="section-sub">Iowa City's FY2024 (14) and FY2023 (7) sit at the top; its earlier years (2&ndash;3
-  findings) were unremarkable. The jump is recent, not chronic &mdash; which is its own kind of warning sign.</p>
+  <p class="section-sub">Iowa City's FY2024 had <strong>{ic_mw} material weaknesses in its financial
+  statements at once</strong> (and {ic_mw_tot} including its federal programs) &mdash; more than double the
+  next-highest the group has ever shown ({next_mw}, Davenport in FY2020). This is the chart where Iowa City
+  is genuinely an outlier: not that it has <em>a</em> material weakness, but <em>how many at once</em>.</p>
 
-  <h2>Who has had a material weakness</h2>
-  <p class="section-sub">The most serious internal-control flag short of a wrong number. Across FY2020&ndash;2025,
-  these are the district-years that drew one. {len(mw_dist)} of {n_dist} districts appear at least once;
-  Davenport ran a three-year stretch, but only Iowa City's FY2024 stacked five in a single year.</p>
+  <h2>What is a &ldquo;federal finding&rdquo;?</h2>
+  <div class="tldr" style="border-left-color:var(--gold)">
+    <div class="k" style="color:var(--gold)">The federal audit, in plain English</div>
+    <p style="margin:0 0 .6em">Any district that spends enough federal money in a year (think Title I, special
+    education/IDEA, school nutrition, and the COVID-era ESSER funds) gets a second, separate audit called a
+    <strong>Single Audit</strong>, run under federal rules (the Uniform Guidance). It asks a different question
+    than the regular audit: not &ldquo;are the books right?&rdquo; but <strong>&ldquo;did the district follow the
+    rules that come attached to the federal dollars?&rdquo;</strong></p>
+    <p style="margin:0">The auditor then issues an <strong>opinion on compliance</strong> for each major federal
+    program. &ldquo;Unmodified&rdquo; is the clean result. A <strong>&ldquo;qualified&rdquo;</strong> opinion is
+    the auditor formally stating the district did <em>not</em> comply, in some material way, with the federal
+    requirements &mdash; and it can come with &ldquo;questioned costs,&rdquo; dollars the auditor flags as
+    possibly spent improperly. A qualified opinion is the federal equivalent of the material-weakness warning above.</p>
+  </div>
+  <p class="section-sub">Below is each district's <strong>worst federal result</strong>, FY2020&ndash;2025. Most
+  have a Single Audit every year and sail through clean. A handful drew a minor federal finding but kept a clean
+  opinion. Only <strong>two</strong> districts ever drew a <strong>qualified opinion</strong> &mdash; and Iowa City
+  is one. Bars show federal material weaknesses in the district's worst year; Iowa City in red.</p>
+  <div class="chart fedchart">
+    {fed_chart_rows(summ, fed_peak, fed_worst, fed_scale)}
+    <div class="legend">
+      <span><span class="sw" style="background:var(--bar)"></span>federal material weaknesses (worst year)</span>
+      <span><span class="ftag fq" style="position:static">qualified opinion</span></span>
+      <span><span class="ftag fm" style="position:static">minor finding</span></span>
+      <span><span class="sw" style="background:var(--red)"></span>Iowa City CSD</span>
+    </div>
+  </div>
+  <p class="section-sub">The two qualified opinions tell the whole story of how rare this is: {", ".join(qual_names)}.
+  Both were on the COVID-era Education Stabilization (ESSER) funds. Iowa City's FY2024 went further than any peer
+  year &mdash; qualified on two program clusters at once and carrying <strong>{ic_fed_mw} federal material
+  weaknesses</strong> &mdash; and, unlike Davenport's, it has not yet been worked back to clean.</p>
+
+  <h2>The significant issues, in plain English</h2>
+  <p class="section-sub">The two charts above show <em>where</em> Iowa City stands out. This is <em>what</em> those
+  findings actually were &mdash; translated out of audit language. All are from the district's FY2024 audit
+  (findings 2024-001 through 2024-014).</p>
+  <div class="tldr">
+    <div class="k">What the auditor actually found</div>
+    <ul>
+      <li><span class="ic">&#127974;</span><span><strong>The bank accounts weren't being reconciled.</strong>
+        Reconciling a bank account is critical because it is the one routine check that proves the district's own
+        records match the money the bank actually holds &mdash; it's how missing, duplicated, or stolen funds get
+        caught early. For FY2024 those reconciliations weren't done on time, so that check simply wasn't
+        happening. In the auditor's words, errors or &ldquo;misappropriations of assets&rdquo; could occur and go
+        undetected. (A repeat finding; the stated cause was turnover in key accounting staff.)</span></li>
+      <li><span class="ic">&#128202;</span><span><strong>The year-end statements were materially wrong as first
+        prepared.</strong> Receivables, payables, and capital assets weren't properly adjusted, so the financial
+        statements were misstated and needed material corrections caught during the audit &mdash; not by the
+        district's own process. (Also a repeat finding.)</span></li>
+      <li><span class="ic">&#128100;</span><span><strong>One person could run an entire money cycle.</strong>
+        The district lacked segregation of duties over payroll, cash disbursements, and school receipts &mdash;
+        the basic separation that keeps a single error or theft from slipping through unnoticed.</span></li>
+      <li><span class="ic">&#127970;</span><span><strong>Federal COVID money went to unallowable costs &mdash;
+        and records were missing.</strong> The district charged the ESSER program for costs that weren't allowed,
+        and for one program couldn't produce the expenditure records at all. These are the findings behind the
+        qualified federal opinion above.</span></li>
+      <li><span class="ic">&#9203;</span><span><strong>The audit was about two years late &mdash; and it cost the
+        bond rating.</strong> The district didn't complete its FY2023 and FY2024 single audits within the required
+        nine months. The delay left lenders and the public without current numbers, and the district's bond
+        rating was withdrawn.</span></li>
+      <li><span class="ic">&#128184;</span><span><strong>Smaller, but telling.</strong> A student activity fund
+        ran a deficit, and money was moved between funds without the formal authorization the rules
+        require.</span></li>
+    </ul>
+  </div>
+
+  <h2>Case study: how Davenport climbed out</h2>
+  <p class="section-sub">Davenport is the one large district that has been somewhere like where Iowa City is now
+  &mdash; and worked its way back. It had material weaknesses <strong>three years running</strong> and a qualified
+  federal opinion, then drove its findings to <strong>zero</strong>. The arc is worth studying because the
+  weaknesses were strikingly similar to Iowa City's.</p>
   <table>
-    <thead><tr><th>District</th><th>Fiscal year</th><th>Total findings that year</th></tr></thead>
+    <thead><tr><th>Fiscal year</th><th>Financial MWs</th><th>Federal MWs</th><th>Federal opinion</th><th>Total findings</th></tr></thead>
     <tbody>
-    {mw_table}
+      <tr><td>FY2020</td><td>2</td><td>1</td><td>Unmodified</td><td>6</td></tr>
+      <tr><td>FY2021</td><td>1</td><td>1</td><td><strong>Qualified</strong> (ESSER)</td><td>8</td></tr>
+      <tr><td>FY2022</td><td>1</td><td>0</td><td>Unmodified</td><td>7</td></tr>
+      <tr><td>FY2023</td><td>0</td><td>0</td><td>Unmodified</td><td>3</td></tr>
+      <tr><td>FY2024</td><td>0</td><td>0</td><td>Unmodified</td><td>2</td></tr>
+      <tr><td>FY2025</td><td>0</td><td>0</td><td>Unmodified</td><td><strong>0</strong></td></tr>
     </tbody>
   </table>
-  <p class="section-sub">The table counts material-weakness <em>years</em>. Iowa City's FY2024 is one row here,
-  but it contained <strong>five</strong> financial-statement material weaknesses at once (plus three more on
-  the federal side) &mdash; a concentration no other district-year in the group approaches.</p>
+  <div class="tldr">
+    <div class="k">What the weaknesses were &mdash; and how they fixed them</div>
+    <ul>
+      <li><span class="ic">&#128269;</span><span><strong>Year-end close (2020-001).</strong> The audit turned up
+        material corrections in capital assets, accrued liabilities, and accounts payable that Davenport's own
+        controls would never have caught &mdash; &ldquo;inadequate reconciliation and internal review.&rdquo;
+        <em>Fix:</em> they built reconciliation and review procedures over the balance-sheet accounts.</span></li>
+      <li><span class="ic">&#127963;&#65039;</span><span><strong>Federal reporting (2020-002).</strong> Their
+        Schedule of Expenditures of Federal Awards was misstated by <strong>$1.84 million</strong> &mdash; it
+        didn't reconcile to the books, mostly mis-coded ESSER money. <em>Fix:</em> reconcile the schedule to the
+        general ledger with a separate Finance review before anything is certified to the state.</span></li>
+      <li><span class="ic">&#128176;</span><span><strong>Payroll charged to federal funds (2020-005, the federal
+        material weakness).</strong> Timesheets weren't being approved before payroll ran, and the time-clock
+        didn't talk to the general ledger. <em>Fix:</em> require supervisory approval of time and move toward
+        integrated, batch-processed payroll.</span></li>
+    </ul>
+  </div>
+  <p class="section-sub">Those are nearly the same failure points in Iowa City's FY2024 report: year-end close,
+  federal-award reporting and allowable costs, and payroll controls. Davenport shows the climb is doable &mdash;
+  findings dropped and downgraded every single year (material weakness &rarr; significant deficiency &rarr;
+  resolved) on the back of assigned ownership and review-before-certify discipline, not a single dramatic move.</p>
+  <div class="note">
+    <strong>The honest caveat.</strong> Davenport is a fair role model, not a perfect mirror. Even its
+    <em>worst</em> year (FY2020: three material weaknesses) was milder than Iowa City's FY2024 (eight, five of
+    them financial). Iowa City is starting from a deeper hole &mdash; so Davenport's roughly four-year climb is a
+    floor on the effort, not a ceiling.</p>
+  </div>
 
   <h2>What actually makes Iowa City the outlier</h2>
   <p class="section-sub">Not any single finding, but four things together &mdash; each compared with the peer group:</p>
   <table>
     <thead><tr><th>Measure</th><th>Iowa City</th><th>The other 14 large districts</th></tr></thead>
     <tbody>
-      <tr class="me"><td>Most findings in one year</td><td>14 (FY2024)</td><td>Peak {summ[1]['peak']} (Davenport, FY2021); most are 0&ndash;4</td></tr>
-      <tr><td>Material weaknesses in one year</td><td>5 (FY2024)</td><td>At most 1&ndash;2 in any year</td></tr>
+      <tr class="me"><td>Material weaknesses in one year</td><td>5 (FY2024)</td><td>At most 1&ndash;2 in any year</td></tr>
       <tr><td>Federal program opinion</td><td>Qualified on two programs (FY2024)</td><td>Almost all clean / no single-audit findings</td></tr>
       <tr><td>Audit filed on time</td><td>~2 years late (FY2023 &amp; FY2024); FY2025 still unfiled</td><td>Effectively all on time</td></tr>
       <tr><td>Bond rating</td><td>Withdrawn for late information</td><td>Retained</td></tr>
