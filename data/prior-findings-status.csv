@@ -1,0 +1,75 @@
+district,audit_fy,prior_total,prior_not_corrected,prior_partially,prior_corrected,prior_no_longer,pct_not_corrected,note
+Ankeny CSD,2021,3,1,0,2,0,33.3,"check(ids=2,tok=3)"
+Burlington CSD,2021,,,,,,,no_schedule_found
+Cedar Rapids CSD,2021,,,,,,,no_schedule_found
+College CSD,2021,2,0,0,2,0,0.0,"check(ids=0,tok=2)"
+Davenport CSD,2021,8,1,0,7,0,12.5,
+Des Moines Independent CSD,2021,1,0,0,1,0,0.0,"check(ids=2,tok=1)"
+Dubuque CSD,2021,,,,,,,no_schedule_found
+Iowa City CSD,2021,0,0,0,0,0,,
+Johnston CSD,2021,,,,,,,no_schedule_found
+Linn-Mar CSD,2021,5,2,0,3,0,40.0,"check(ids=4,tok=5)"
+Muscatine CSD,2021,5,1,0,4,0,20.0,"check(ids=4,tok=5)"
+Pleasant Valley CSD,2021,1,0,0,1,0,0.0,
+Waterloo CSD,2021,,,,,,,no_schedule_found
+Waukee CSD,2021,,,,,,,no_schedule_found
+West Des Moines CSD,2021,,,,,,,no_schedule_found
+Ankeny CSD,2022,2,1,0,1,0,50.0,"check(ids=1,tok=2)"
+Burlington CSD,2022,,,,,,,no_schedule_found
+Cedar Rapids CSD,2022,,,,,,,no_schedule_found
+College CSD,2022,3,1,0,2,0,33.3,"check(ids=2,tok=3)"
+Davenport CSD,2022,9,4,0,5,0,44.4,
+Des Moines Independent CSD,2022,1,0,0,1,0,0.0,"check(ids=2,tok=1)"
+Dubuque CSD,2022,,,,,,,no_schedule_found
+Iowa City CSD,2022,,,,,,,no_schedule_found
+Johnston CSD,2022,,,,,,,no_schedule_found
+Linn-Mar CSD,2022,3,3,0,0,0,100.0,
+Muscatine CSD,2022,1,1,0,0,0,100.0,
+Pleasant Valley CSD,2022,,,,,,,no_schedule_found
+Waterloo CSD,2022,,,,,,,no_schedule_found
+Waukee CSD,2022,1,1,0,0,0,100.0,
+West Des Moines CSD,2022,2,2,0,0,0,100.0,
+Ankeny CSD,2023,3,1,0,2,0,33.3,
+Burlington CSD,2023,,,,,,,no_schedule_found
+Cedar Rapids CSD,2023,,,,,,,no_schedule_found
+College CSD,2023,3,1,0,2,0,33.3,
+Davenport CSD,2023,8,1,0,7,0,12.5,
+Des Moines Independent CSD,2023,2,0,0,2,0,0.0,
+Dubuque CSD,2023,,,,,,,no_schedule_found
+Iowa City CSD,2023,2,1,0,1,0,50.0,
+Johnston CSD,2023,,,,,,,no_schedule_found
+Linn-Mar CSD,2023,5,2,0,3,0,40.0,"check(ids=4,tok=5)"
+Muscatine CSD,2023,1,1,0,0,0,100.0,
+Pleasant Valley CSD,2023,1,1,0,0,0,100.0,
+Waterloo CSD,2023,,,,,,,no_schedule_found
+Waukee CSD,2023,2,1,0,1,0,50.0,
+West Des Moines CSD,2023,3,3,0,0,0,100.0,
+Ankeny CSD,2024,2,2,0,0,0,100.0,
+Burlington CSD,2024,,,,,,,no_schedule_found
+Cedar Rapids CSD,2024,1,0,0,1,0,0.0,
+College CSD,2024,1,1,0,0,0,100.0,
+Davenport CSD,2024,6,3,0,3,0,50.0,
+Des Moines Independent CSD,2024,1,0,0,1,0,0.0,"check(ids=2,tok=1)"
+Dubuque CSD,2024,,,,,,,no_schedule_found
+Iowa City CSD,2024,7,6,0,1,0,85.7,
+Johnston CSD,2024,4,4,0,0,0,100.0,
+Linn-Mar CSD,2024,3,2,0,1,0,66.7,
+Muscatine CSD,2024,1,1,0,0,0,100.0,
+Pleasant Valley CSD,2024,2,1,0,1,0,50.0,
+Waterloo CSD,2024,,,,,,,no_schedule_found
+Waukee CSD,2024,2,2,0,0,0,100.0,
+West Des Moines CSD,2024,3,3,0,0,0,100.0,
+Ankeny CSD,2025,,,,,,,no_schedule_found
+Burlington CSD,2025,,,,,,,no_schedule_found
+Cedar Rapids CSD,2025,,,,,,,no_schedule_found
+College CSD,2025,3,2,0,1,0,66.7,
+Davenport CSD,2025,,,,,,,no_schedule_found
+Des Moines Independent CSD,2025,0,0,0,0,0,,"check(ids=1,tok=0)"
+Dubuque CSD,2025,,,,,,,no_schedule_found
+Johnston CSD,2025,8,7,0,1,0,87.5,
+Linn-Mar CSD,2025,,,,,,,no_schedule_found
+Muscatine CSD,2025,,,,,,,no_schedule_found
+Pleasant Valley CSD,2025,,,,,,,no_schedule_found
+Waterloo CSD,2025,,,,,,,no_schedule_found
+Waukee CSD,2025,,,,,,,no_schedule_found
+West Des Moines CSD,2025,,,,,,,no_schedule_found
