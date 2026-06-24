@@ -186,6 +186,56 @@ def chart_rows(summ, scale_max):
     return "\n".join(out)
 
 
+def load_mw_counts():
+    """Validated material-weakness counts per district-year (auditor-stated)."""
+    path = os.path.join(ROOT, "data", "material-weakness-counts.csv")
+    peak_fin, peak_tot = {}, {}
+    if os.path.exists(path):
+        for r in csv.DictReader(open(path)):
+            d = NAME_FIX.get(r["district"].strip(), r["district"].strip())
+            fin = int(r["mw_financial"])
+            tot = fin + int(r["mw_federal"])
+            peak_fin[d] = max(peak_fin.get(d, 0), fin)
+            peak_tot[d] = max(peak_tot.get(d, 0), tot)
+    return peak_fin, peak_tot
+
+
+def load_prior_persistence():
+    """Pooled 'still Not corrected a year later' from the prior-findings schedules."""
+    path = os.path.join(ROOT, "data", "prior-findings-status.csv")
+    peer_nc = peer_tot = 0
+    ic_rows = []
+    if os.path.exists(path):
+        for r in csv.DictReader(open(path)):
+            if not (r.get("prior_total") or "").strip():
+                continue
+            t, nc = int(r["prior_total"]), int(r["prior_not_corrected"])
+            if r["district"] == ICCSD:
+                ic_rows.append((int(r["audit_fy"]), t, nc))
+            else:
+                peer_nc += nc; peer_tot += t
+    peer_pct = round(100 * peer_nc / peer_tot) if peer_tot else 0
+    # ICCSD's most recent audit (FY2024) specifically — the headline 6-of-7
+    ic_rows.sort()
+    ic_tot, ic_nc = (ic_rows[-1][1], ic_rows[-1][2]) if ic_rows else (0, 0)
+    return peer_pct, ic_nc, ic_tot
+
+
+def mw_chart_rows(summ, peak_fin, scale):
+    out = []
+    for s in sorted(summ, key=lambda x: (-peak_fin.get(x["district"], 0), x["district"])):
+        v = peak_fin.get(s["district"], 0)
+        cls = " me" if s["is_iccsd"] else ""
+        w = max(3, round(100 * v / scale)) if v else 0
+        bar = f'<div class="bar" style="width:{w}%"></div>' if v else ""
+        out.append(
+            f'<div class="row{cls}"><div class="nm">{s["district"]}</div>'
+            f'<div class="bartrack">{bar}</div>'
+            f'<div class="val">{v}</div></div>'
+        )
+    return "\n".join(out)
+
+
 def build():
     rows = load_rows()
     write_csv(rows)
@@ -195,6 +245,19 @@ def build():
     mw_dist = [s for s in summ if s["mw_count"] > 0]
     iccsd = next(s for s in summ if s["is_iccsd"])
     scale_max = max(s["peak"] for s in summ)
+
+    # severity layer: validated material-weakness counts + finding persistence
+    peak_fin, peak_tot = load_mw_counts()
+    peer_pct, ic_nc, ic_tot = load_prior_persistence()
+    mw_scale = max(peak_fin.values()) if peak_fin else 1
+    ic_mw = peak_fin.get(ICCSD, 0)            # 5 financial-statement MWs (FY24)
+    ic_mw_tot = peak_tot.get(ICCSD, 0)        # 8 incl. federal
+    n_with_mw = sum(1 for s in summ if peak_fin.get(s["district"], 0) > 0)
+    n_zero_mw = n_dist - n_with_mw
+    # next-highest peer peak (financial MWs)
+    peer_peaks = sorted((peak_fin.get(s["district"], 0) for s in summ if not s["is_iccsd"]),
+                        reverse=True)
+    next_mw = peer_peaks[0] if peer_peaks else 0
 
     # material-weakness incidence rows (district-years)
     mw_events = []
@@ -222,9 +285,10 @@ def build():
 <header class="hero"><div class="container">
   <div class="eyebrow">Iowa's 15 largest districts &middot; FY2020&ndash;FY2025</div>
   <h1>How many audit findings is normal?</h1>
-  <p class="sub">Iowa City's recent audits drew an unusual number of findings &mdash; including
-  material weaknesses. This puts that count in context: every large Iowa district's audit findings,
-  side by side, so you can see what's typical and where Iowa City actually stands.</p>
+  <p class="sub">Iowa City's recent audits drew an unusual number of findings &mdash; including several
+  &ldquo;material weaknesses,&rdquo; an auditor's most serious red flag about how a district controls its
+  money. This puts that in context: every large Iowa district, side by side, so you can see what's typical
+  and where Iowa City actually stands.</p>
 </div></header>
 
 <main class="container">
@@ -245,6 +309,56 @@ def build():
         No peer district shows that combination.</span></li>
     </ul>
   </div>
+
+  <h2>Material weaknesses by district &mdash; worst single year</h2>
+  <div class="tldr" style="border-left-color:var(--gold)">
+    <div class="k" style="color:var(--gold)">What's a &ldquo;material weakness&rdquo;?</div>
+    <p style="margin:0">It's an auditor's most serious warning short of finding an actual wrong number.
+    It means the checks a district relies on to catch a big mistake &mdash; or theft &mdash; in its own
+    books are broken badly enough that one could slip through unnoticed. The books may still be right;
+    the <em>safeguards</em> around them are not.</p>
+  </div>
+  <p class="section-sub">Below is how many material weaknesses an auditor found in each district's
+  <strong>financial statements</strong> in its worst single year, FY2020&ndash;2025. {n_zero_mw} of the
+  {n_dist} large districts never had a single one. Iowa City in red.</p>
+  <div class="chart">
+    {mw_chart_rows(summ, peak_fin, mw_scale)}
+    <div class="legend">
+      <span><span class="sw" style="background:var(--bar)"></span>material weaknesses (worst year)</span>
+      <span><span class="sw" style="background:var(--red)"></span>Iowa City CSD</span>
+    </div>
+  </div>
+  <p class="section-sub">Iowa City's FY2024 had <strong>{ic_mw} material weaknesses in its financial
+  statements at once</strong> (and {ic_mw_tot} including its federal programs) &mdash; more than double the
+  next-highest the group has ever shown ({next_mw}, Davenport in FY2020). This is the chart where Iowa City
+  is genuinely an outlier: not that it has <em>a</em> material weakness, but <em>how many at once</em>.</p>
+
+  <h2>Do these get fixed? Severity, not repetition</h2>
+  <p class="section-sub">A natural follow-up: don't districts just fix these the next year? Mostly &mdash; no,
+  and that turns out <em>not</em> to be what separates Iowa City.</p>
+  <div class="tldr">
+    <div class="k">What the prior-findings schedules show</div>
+    <ul>
+      <li><span class="ic">&#8635;</span><span><strong>Repeat findings are common, not rare.</strong> Across the
+        large districts, roughly <strong>{peer_pct}% of one year's findings are still &ldquo;Not corrected&rdquo;
+        a year later</strong> &mdash; most are low-level items that recur: segregation-of-duties deficiencies in
+        small business offices, and statutory budget/enrollment variances. On the bare repeat rate, Iowa City
+        is <em>not</em> unusual.</span></li>
+      <li><span class="ic">&#9888;&#65039;</span><span><strong>Severity is the difference.</strong> Those recurring
+        peer findings are almost never material weaknesses &mdash; only {len(mw_dist)} districts ever had one at all.
+        Iowa City's uncorrected items <em>are</em> material weaknesses: of its <strong>{ic_tot} prior findings,
+        {ic_nc} were still &ldquo;Not corrected&rdquo;</strong> in FY2024, including the financial-reporting
+        material weakness carried straight over from FY2023.</span></li>
+      <li><span class="ic">&#9989;</span><span><strong>Compare Davenport &mdash; the one real precedent.</strong>
+        Davenport had material weaknesses three years running (FY2020&ndash;2022) and <strong>fixed them</strong>:
+        down to a significant deficiency by FY2023 and a clean schedule (zero findings) by FY2025. Iowa City went
+        the other way &mdash; one material weakness in FY2023 became five in FY2024.</span></li>
+    </ul>
+  </div>
+  <p class="section-sub">So the honest distinction isn't that Iowa City fails to fix findings faster than its
+  peers, or even that it has the most repeats (Johnston carried more low-level items forward). It is the only
+  district where the <strong>most serious</strong> class of finding is both <strong>multiplying and going
+  uncorrected</strong>.</p>
 
   <h2>Findings per district &mdash; peak and typical</h2>
   <p class="section-sub">Each bar is a district's <strong>average</strong> findings per filed audit, FY2020&ndash;2025;
