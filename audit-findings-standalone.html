@@ -1,126 +1,9 @@
-#!/usr/bin/env python3
-"""Build the audit-findings distribution page for the 15 large Iowa districts.
-
-Answers a single question: across Iowa's large school districts, how many audit
-findings — and how many *material weaknesses* — is normal in a year, and where does
-Iowa City sit in that distribution?
-
-Reads the per-district audit extractions in ``data/district-extractions/*.csv``
-(one row per district per fiscal year, FY2020-2025), writes a tidy machine-readable
-companion ``data/audit-findings-distribution.csv``, and emits the static page
-``audit-findings-distribution.html`` in the repo root.
-
-Run from the repo root:  ``python scripts/build_audit_findings.py``
-"""
-from __future__ import annotations
-
-import csv
-import glob
-import os
-import sys
-from collections import defaultdict
-
-sys.path.insert(0, os.path.dirname(__file__))
-from _nav import nav  # noqa: E402
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXTRACT_GLOB = os.path.join(ROOT, "data", "district-extractions", "*.csv")
-OUT_CSV = os.path.join(ROOT, "data", "audit-findings-distribution.csv")
-# A second copy at the repo root, because _config.yml excludes data/ from the
-# published GitHub Pages site. The live page (audit-findings-live.html) fetches
-# THIS copy so the auto-refresh works on the deployed site, not just in the repo.
-OUT_CSV_SITE = os.path.join(ROOT, "audit-findings-distribution.csv")
-OUT_HTML = os.path.join(ROOT, "audit-findings-distribution.html")
-# A fully self-contained, single-file copy with the data baked in and the site
-# nav removed — meant to be downloaded/emailed and opened directly (no server,
-# no CSV, no working links to the rest of the site). Regenerate it on each update.
-OUT_STANDALONE = os.path.join(ROOT, "audit-findings-standalone.html")
-
-# Display names are slightly long in the raw extractions; tidy for the chart.
-NAME_FIX = {
-    "College Community School District (Prairie)": "College CSD (Prairie)",
-    "College Community School District": "College CSD (Prairie)",
-    "College CSD": "College CSD (Prairie)",
-    "Des Moines Independent CSD": "Des Moines CSD",
-}
-ICCSD = "Iowa City CSD"
-
-
-def _int(x):
-    try:
-        return int(str(x).strip())
-    except (TypeError, ValueError):
-        return None
-
-
-def load_rows():
-    rows = []
-    for path in sorted(glob.glob(EXTRACT_GLOB)):
-        with open(path, newline="") as fh:
-            for r in csv.DictReader(fh, delimiter="|"):
-                name = NAME_FIX.get(r["district"].strip(), r["district"].strip())
-                rows.append(
-                    {
-                        "district": name,
-                        "fiscal_year": r["fiscal_year"].strip(),
-                        "report_date": (r.get("report_date") or "").strip(),
-                        "opinion": (r.get("opinion_type") or "").strip(),
-                        "findings_count": _int(r.get("findings_count")),
-                        "material_weakness": (r.get("material_weakness") or "").strip().upper() == "Y",
-                        "significant_deficiency": (r.get("significant_deficiency") or "").strip().upper() == "Y",
-                        "repeat_finding": (r.get("repeat_finding") or "").strip().upper() == "Y",
-                    }
-                )
-    return rows
-
-
-def write_csv(rows):
-    cols = [
-        "district",
-        "fiscal_year",
-        "report_date",
-        "opinion",
-        "findings_count",
-        "material_weakness",
-        "significant_deficiency",
-        "repeat_finding",
-    ]
-    ordered = sorted(rows, key=lambda x: (x["district"], x["fiscal_year"]))
-    for path in (OUT_CSV, OUT_CSV_SITE):
-        with open(path, "w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=cols)
-            w.writeheader()
-            for r in ordered:
-                w.writerow({c: ("Y" if r[c] is True else "N" if r[c] is False else r[c]) for c in cols})
-
-
-def summarize(rows):
-    by = defaultdict(list)
-    for r in rows:
-        by[r["district"]].append(r)
-    out = []
-    for d, rs in by.items():
-        filed = [r for r in rs if r["findings_count"] is not None]
-        counts = [r["findings_count"] for r in filed]
-        mw_years = sorted(r["fiscal_year"] for r in rs if r["material_weakness"])
-        out.append(
-            {
-                "district": d,
-                "years_filed": len(filed),
-                "peak": max(counts) if counts else 0,
-                "avg": (sum(counts) / len(counts)) if counts else 0.0,
-                "mw_years": mw_years,
-                "mw_count": len(mw_years),
-                "is_iccsd": d == ICCSD,
-            }
-        )
-    out.sort(key=lambda x: (-x["peak"], -x["avg"]))
-    return out
-
-
-# ---- HTML ------------------------------------------------------------------
-
-CSS = """
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>How many audit findings is normal? | Iowa large districts</title>
+<style>
 :root{--ink:#0f172a;--ink-soft:#334155;--ink-mute:#64748b;--bg:#f7f9fc;--hero:#0b1426;
 --accent:#2c5fa1;--red:#b03a2e;--red-soft:#fdecec;--red-line:#f5b7b1;--gold:#b58220;
 --gold-soft:#fdf3df;--gold-line:#ecd49a;--green:#1e7a3a;--green-soft:#e7f5ec;--bar:#9db8de;}
@@ -168,57 +51,9 @@ tr.me td{background:var(--red-soft);font-weight:700;color:var(--ink)}
 .sources{border-top:1px solid #e2e8f0;margin-top:2.4rem;padding-top:1.1rem;font-size:.84rem;color:var(--ink-mute)}
 .footer{text-align:center;padding:1.4rem 0 3rem;color:var(--ink-mute);font-size:.82rem}
 @media(max-width:600px){.hero h1{font-size:1.75rem}.row{grid-template-columns:96px 1fr 30px}}
-"""
-
-
-def chart_rows(summ, scale_max):
-    out = []
-    for s in summ:
-        cls = " me" if s["is_iccsd"] else ""
-        avg_w = max(2, round(100 * s["avg"] / scale_max))
-        pk_l = min(99.0, 100 * s["peak"] / scale_max)
-        out.append(
-            f'<div class="row{cls}"><div class="nm">{s["district"]}</div>'
-            f'<div class="bartrack"><div class="bar" style="width:{avg_w}%"></div>'
-            f'<div class="pk" style="left:{pk_l:.1f}%" title="peak {s["peak"]}"></div></div>'
-            f'<div class="val">{s["peak"]}</div></div>'
-        )
-    return "\n".join(out)
-
-
-def build():
-    rows = load_rows()
-    write_csv(rows)
-    summ = summarize(rows)
-
-    n_dist = len(summ)
-    mw_dist = [s for s in summ if s["mw_count"] > 0]
-    iccsd = next(s for s in summ if s["is_iccsd"])
-    scale_max = max(s["peak"] for s in summ)
-
-    # material-weakness incidence rows (district-years)
-    mw_events = []
-    for r in rows:
-        if r["material_weakness"]:
-            mw_events.append((r["district"], r["fiscal_year"], r["findings_count"]))
-    mw_events.sort(key=lambda x: (x[0], x[1]))
-    mw_table = "\n".join(
-        f'<tr class="{"me" if d==ICCSD else ""}"><td>{d}</td><td>FY{fy}</td>'
-        f'<td>{c if c is not None else "&mdash;"}</td></tr>'
-        for d, fy, c in mw_events
-    )
-
-    mw_names = ", ".join(s["district"] for s in sorted(mw_dist, key=lambda x: x["district"]))
-
-    navbar = nav("more")
-    html = f"""<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>How many audit findings is normal? | Iowa large districts</title>
-<style>{CSS}</style>
+</style>
 </head><body>
-{navbar}
+<!-- standalone build: site nav removed -->
 <header class="hero"><div class="container">
   <div class="eyebrow">Iowa's 15 largest districts &middot; FY2020&ndash;FY2025</div>
   <h1>How many audit findings is normal?</h1>
@@ -233,12 +68,12 @@ def build():
     <div class="k">The short version</div>
     <ul>
       <li><span class="ic">&#9888;&#65039;</span><span><strong>A material weakness by itself is not unique.</strong>
-        {len(mw_dist)} of the {n_dist} large districts had at least one material-weakness year in
-        FY2020&ndash;2025 ({mw_names}). So &ldquo;had a material weakness&rdquo; alone would not make Iowa City an outlier.</span></li>
+        4 of the 15 large districts had at least one material-weakness year in
+        FY2020&ndash;2025 (Davenport CSD, Des Moines CSD, Iowa City CSD, Waterloo CSD). So &ldquo;had a material weakness&rdquo; alone would not make Iowa City an outlier.</span></li>
       <li><span class="ic">&#128201;</span><span><strong>The volume and severity are what stand out.</strong>
         Iowa City's FY2024 audit carried <strong>14 numbered findings, five of them financial-statement
         material weaknesses</strong> &mdash; the heaviest single-year load of any district in any year here.
-        The next-worst peak at any peer was {summ[1]['peak']} findings.</span></li>
+        The next-worst peak at any peer was 8 findings.</span></li>
       <li><span class="ic">&#128681;</span><span><strong>And nothing else combines all of it.</strong>
         Most findings + five material weaknesses in one year + qualified federal opinions + repeat
         uncorrected items + an audit filed about two years late (which cost the district its bond rating).
@@ -251,7 +86,21 @@ def build():
   the black tick marks its <strong>worst single year</strong> (the number at right). Iowa City is shown in red.
   Sorted by worst year.</p>
   <div class="chart">
-    {chart_rows(summ, scale_max)}
+    <div class="row me"><div class="nm">Iowa City CSD</div><div class="bartrack"><div class="bar" style="width:40%"></div><div class="pk" style="left:99.0%" title="peak 14"></div></div><div class="val">14</div></div>
+<div class="row"><div class="nm">Davenport CSD</div><div class="bartrack"><div class="bar" style="width:31%"></div><div class="pk" style="left:57.1%" title="peak 8"></div></div><div class="val">8</div></div>
+<div class="row"><div class="nm">Ankeny CSD</div><div class="bartrack"><div class="bar" style="width:21%"></div><div class="pk" style="left:42.9%" title="peak 6"></div></div><div class="val">6</div></div>
+<div class="row"><div class="nm">Linn-Mar CSD</div><div class="bartrack"><div class="bar" style="width:23%"></div><div class="pk" style="left:28.6%" title="peak 4"></div></div><div class="val">4</div></div>
+<div class="row"><div class="nm">Des Moines CSD</div><div class="bartrack"><div class="bar" style="width:17%"></div><div class="pk" style="left:28.6%" title="peak 4"></div></div><div class="val">4</div></div>
+<div class="row"><div class="nm">Cedar Rapids CSD</div><div class="bartrack"><div class="bar" style="width:16%"></div><div class="pk" style="left:28.6%" title="peak 4"></div></div><div class="val">4</div></div>
+<div class="row"><div class="nm">Muscatine CSD</div><div class="bartrack"><div class="bar" style="width:14%"></div><div class="pk" style="left:28.6%" title="peak 4"></div></div><div class="val">4</div></div>
+<div class="row"><div class="nm">West Des Moines CSD</div><div class="bartrack"><div class="bar" style="width:19%"></div><div class="pk" style="left:21.4%" title="peak 3"></div></div><div class="val">3</div></div>
+<div class="row"><div class="nm">Johnston CSD</div><div class="bartrack"><div class="bar" style="width:17%"></div><div class="pk" style="left:21.4%" title="peak 3"></div></div><div class="val">3</div></div>
+<div class="row"><div class="nm">Waterloo CSD</div><div class="bartrack"><div class="bar" style="width:14%"></div><div class="pk" style="left:21.4%" title="peak 3"></div></div><div class="val">3</div></div>
+<div class="row"><div class="nm">Pleasant Valley CSD</div><div class="bartrack"><div class="bar" style="width:8%"></div><div class="pk" style="left:14.3%" title="peak 2"></div></div><div class="val">2</div></div>
+<div class="row"><div class="nm">Waukee CSD</div><div class="bartrack"><div class="bar" style="width:5%"></div><div class="pk" style="left:14.3%" title="peak 2"></div></div><div class="val">2</div></div>
+<div class="row"><div class="nm">College CSD (Prairie)</div><div class="bartrack"><div class="bar" style="width:2%"></div><div class="pk" style="left:7.1%" title="peak 1"></div></div><div class="val">1</div></div>
+<div class="row"><div class="nm">Burlington CSD</div><div class="bartrack"><div class="bar" style="width:2%"></div><div class="pk" style="left:7.1%" title="peak 1"></div></div><div class="val">1</div></div>
+<div class="row"><div class="nm">Dubuque CSD</div><div class="bartrack"><div class="bar" style="width:2%"></div><div class="pk" style="left:0.0%" title="peak 0"></div></div><div class="val">0</div></div>
     <div class="legend">
       <span><span class="sw" style="background:var(--bar)"></span>average findings / year</span>
       <span><span class="sw" style="background:#0f172a;width:3px;height:15px"></span>worst single year</span>
@@ -263,12 +112,19 @@ def build():
 
   <h2>Who has had a material weakness</h2>
   <p class="section-sub">The most serious internal-control flag short of a wrong number. Across FY2020&ndash;2025,
-  these are the district-years that drew one. {len(mw_dist)} of {n_dist} districts appear at least once;
+  these are the district-years that drew one. 4 of 15 districts appear at least once;
   Davenport ran a three-year stretch, but only Iowa City's FY2024 stacked five in a single year.</p>
   <table>
     <thead><tr><th>District</th><th>Fiscal year</th><th>Total findings that year</th></tr></thead>
     <tbody>
-    {mw_table}
+    <tr class=""><td>Davenport CSD</td><td>FY2020</td><td>6</td></tr>
+<tr class=""><td>Davenport CSD</td><td>FY2021</td><td>8</td></tr>
+<tr class=""><td>Davenport CSD</td><td>FY2022</td><td>7</td></tr>
+<tr class=""><td>Des Moines CSD</td><td>FY2025</td><td>3</td></tr>
+<tr class="me"><td>Iowa City CSD</td><td>FY2023</td><td>7</td></tr>
+<tr class="me"><td>Iowa City CSD</td><td>FY2024</td><td>14</td></tr>
+<tr class=""><td>Waterloo CSD</td><td>FY2021</td><td>2</td></tr>
+<tr class=""><td>Waterloo CSD</td><td>FY2023</td><td>3</td></tr>
     </tbody>
   </table>
   <p class="section-sub">The table counts material-weakness <em>years</em>. Iowa City's FY2024 is one row here,
@@ -280,7 +136,7 @@ def build():
   <table>
     <thead><tr><th>Measure</th><th>Iowa City</th><th>The other 14 large districts</th></tr></thead>
     <tbody>
-      <tr class="me"><td>Most findings in one year</td><td>14 (FY2024)</td><td>Peak {summ[1]['peak']} (Davenport, FY2021); most are 0&ndash;4</td></tr>
+      <tr class="me"><td>Most findings in one year</td><td>14 (FY2024)</td><td>Peak 8 (Davenport, FY2021); most are 0&ndash;4</td></tr>
       <tr><td>Material weaknesses in one year</td><td>5 (FY2024)</td><td>At most 1&ndash;2 in any year</td></tr>
       <tr><td>Federal program opinion</td><td>Qualified on two programs (FY2024)</td><td>Almost all clean / no single-audit findings</td></tr>
       <tr><td>Audit filed on time</td><td>~2 years late (FY2023 &amp; FY2024); FY2025 still unfiled</td><td>Effectively all on time</td></tr>
@@ -290,8 +146,8 @@ def build():
 
   <div class="note">
     <strong>Reading this honestly.</strong> If the question is &ldquo;is Iowa City the only large
-    district that ever had a material weakness?&rdquo; the answer is <em>no</em> &mdash; {len(mw_dist)} of
-    {n_dist} did. The defensible claim is narrower and stronger: <strong>Iowa City's FY2024 is the most
+    district that ever had a material weakness?&rdquo; the answer is <em>no</em> &mdash; 4 of
+    15 did. The defensible claim is narrower and stronger: <strong>Iowa City's FY2024 is the most
     severe single-year audit result in the large-district group</strong>, and the surrounding pattern
     (late filing, lost rating, repeat findings, federal qualifications) is unmatched by any peer.
   </div>
@@ -314,23 +170,4 @@ def build():
   </div>
   <div class="footer">Unofficial community analysis of public audit documents. Not produced by ICCSD or any rating agency.</div>
 </main>
-</body></html>"""
-
-    with open(OUT_HTML, "w") as fh:
-        fh.write(html)
-
-    # Standalone single file: same baked-in content, just no site nav (so there
-    # are no dead links when it's opened on its own).
-    standalone = html.replace(navbar, "<!-- standalone build: site nav removed -->")
-    with open(OUT_STANDALONE, "w") as fh:
-        fh.write(standalone)
-
-    # console summary
-    print(f"districts: {n_dist}  |  with >=1 material-weakness year: {len(mw_dist)} ({mw_names})")
-    print(f"ICCSD peak findings: {iccsd['peak']}  avg: {iccsd['avg']:.1f}  MW years: {iccsd['mw_years']}")
-    print(f"wrote {os.path.relpath(OUT_CSV, ROOT)}, {os.path.relpath(OUT_CSV_SITE, ROOT)}, "
-          f"{os.path.relpath(OUT_HTML, ROOT)} and {os.path.relpath(OUT_STANDALONE, ROOT)}")
-
-
-if __name__ == "__main__":
-    build()
+</body></html>
