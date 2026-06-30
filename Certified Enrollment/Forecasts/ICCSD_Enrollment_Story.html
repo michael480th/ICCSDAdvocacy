@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iowa City Schools Enrollment: A Decade in Review and the Road Ahead</title>
+<style>
+  :root{
+    --navy:#1f3864; --navy2:#2e5496; --ink:#1a2230; --muted:#5b6675;
+    --paper:#ffffff; --bg:#f4f6fb; --line:#dfe4ee;
+    --hot:#c0392b; --green:#2e7d4f; --gold:#bf9000; --accent:#2e5496;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.2;color:var(--navy)}
+  .hero{background:linear-gradient(160deg,#16294b 0%,#27406e 60%,#33527f 100%);color:#fff;padding:78px 0 64px}
+  .hero h1{color:#fff;font-size:2.25rem;margin:0 0 14px;letter-spacing:-.5px}
+  .hero .kq{font-size:1.12rem;color:#cdd9f0;max-width:690px;margin:0 0 30px}
+  .hero .ans{display:block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+       border-radius:10px;padding:16px 18px;font-size:1.0rem;color:#eef3fb;max-width:720px}
+  .hero .ans b{color:#fff}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+  .tile{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 14px}
+  .tile .n{font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-.5px}
+  .tile .l{font-size:.78rem;color:#bcc9e3;margin-top:3px;line-height:1.35}
+  .bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:9px;padding-bottom:9px}
+  .bar a{font-size:.74rem;color:var(--muted);text-decoration:none;padding:4px 9px;border-radius:20px;white-space:nowrap}
+  .bar a:hover{background:var(--bg);color:var(--navy)}
+  #prog{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:60}
+  section{padding:54px 0;border-bottom:1px solid var(--line);background:var(--paper)}
+  section:nth-child(even){background:var(--bg)}
+  .chap{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .chap .num{font-size:.78rem;font-weight:800;letter-spacing:1.5px;color:var(--accent);border:1.5px solid var(--accent);border-radius:30px;padding:3px 11px}
+  .chap .tag{font-size:.78rem;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+  section h2{font-size:1.6rem;margin:.1rem 0 .5rem}
+  section p{font-size:1.04rem;color:#33404f;margin:.7rem 0}
+  .lead{font-size:1.12rem;color:#222;font-weight:500}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:22px 0;box-shadow:0 1px 3px rgba(20,40,80,.05)}
+  section:nth-child(even) .card{background:#fff}
+  figure{margin:22px 0}
+  figcaption{font-size:.86rem;color:var(--muted);margin-top:8px;text-align:center}
+  .chartbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 14px 6px;box-shadow:0 1px 3px rgba(20,40,80,.05)}
+  svg{width:100%;height:auto;display:block}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:8px 0 2px;font-size:.82rem;color:#3a4656}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block;border-radius:2px}
+  .swd{border-top-style:dashed}
+  .callout{border-left:4px solid var(--accent);background:#eef2fb;border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0}
+  .callout.good{border-left-color:var(--green);background:#eef7f1}
+  .callout.warn{border-left-color:var(--gold);background:#fef9ec}
+  .callout b{color:var(--navy)}
+  .quote{font-style:italic;color:#3a3a3a;border-left:3px solid var(--line);padding-left:14px;margin:14px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .stat{font-size:2rem;font-weight:800;color:var(--accent);letter-spacing:-.5px}
+  .timeline{position:relative;margin:24px 0 6px}
+  .ev{display:grid;grid-template-columns:96px 22px 1fr;align-items:start}
+  .ev .d{font-size:.82rem;font-weight:700;color:var(--navy);text-align:right;padding:14px 12px 0 0}
+  .ev .rail{position:relative}
+  .ev .rail:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--line)}
+  .ev .dot{position:absolute;left:3px;top:18px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--navy2)}
+  .ev.bond .dot{border-color:var(--hot);background:var(--hot)}
+  .ev.gap .dot{border-color:#aab2c0;background:#fff;width:11px;height:11px;left:5px;top:20px}
+  .ev .body{padding:11px 0 14px 14px}
+  .ev .body .t{font-weight:700;color:var(--ink)}
+  .ev.bond .body .t{color:var(--hot)}
+  .ev .body .s{font-size:.9rem;color:var(--muted)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:20px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+  .pill.f{background:#e7eefb;color:var(--navy2)}
+  .pill.b{background:#fbe6e2;color:var(--hot)}
+  .summary{background:linear-gradient(160deg,#1f3864,#33527f);color:#fff;border-radius:16px;padding:26px 26px}
+  .summary h3{color:#fff;margin:0 0 12px;font-size:1.25rem}
+  .summary ul{margin:0;padding-left:20px}
+  .summary li{color:#e7edf8;margin:9px 0;font-size:1.02rem}
+  .summary li b{color:#ffe1bf}
+  .now .card{border-top:4px solid var(--accent)}
+  .impact{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  .impact .ic{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .impact .ic h4{margin:.1rem 0 .3rem;color:var(--navy);font-size:1.02rem}
+  .impact .ic p{font-size:.95rem;margin:.2rem 0;color:#3a4656}
+  footer{background:#13233f;color:#aeb9cf;padding:40px 0 56px;font-size:.85rem;border:none}
+  footer h3{color:#fff;font-size:1rem;margin:0 0 8px}
+  .src{font-size:.8rem;line-height:1.6;color:#9fb0cc}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:720px){
+    .hero h1{font-size:1.7rem}.tiles{grid-template-columns:1fr 1fr}
+    .grid2,.impact{grid-template-columns:1fr}.ev{grid-template-columns:74px 22px 1fr}.stat{font-size:1.6rem}
+  }
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Iowa City schools: a decade of enrollment forecasts, and what comes next</h1>
+    <p class="kq">Enrollment drives the district's budget and its building plans. This is a plain look at how the forecasts compared with what happened, why they differed, and what it means for the years ahead.</p>
+    <div class="ans"><b>During the district's growth years, the forecasts pointed toward roughly 16,000 students, and a $191.5M bond built schools for that growth.</b> Actual enrollment leveled off near 14,400, and the State of Iowa's independent projections were consistently more conservative. The cause was demographic. Local births peaked in 2016, and rising immigration cushioned the slowdown. The newest forecast is the first to project a decline, toward about 13,600 by 2034-35. Funding follows enrollment in Iowa, so budget pressure has arrived, including $7.5M in cuts for 2026-27. The path forward is to plan in ranges and refresh the forecast often.</div>
+    <div class="tiles">
+      <div class="tile"><div class="n">16,317</div><div class="l">Students the 2015 forecast projected for 2024-25</div></div>
+      <div class="tile"><div class="n">14,415</div><div class="l">Students who actually enrolled in 2024-25</div></div>
+      <div class="tile"><div class="n">~13,600</div><div class="l">Newest forecast for 2034-35, the first to show decline</div></div>
+      <div class="tile"><div class="n">$7.5M</div><div class="l">Budget cuts approved for 2026-27 as funding follows enrollment</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="bar"><div class="wrap">
+  <a href="#c1">1 &middot; Why look back</a>
+  <a href="#c2">2 &middot; Forecasts and reality</a>
+  <a href="#c3">3 &middot; The 2017 bond</a>
+  <a href="#c4">4 &middot; An independent check</a>
+  <a href="#c5">5 &middot; The bond disclosures</a>
+  <a href="#c6">6 &middot; Why it happened</a>
+  <a href="#c7">7 &middot; What we learned</a>
+  <a href="#c8">8 &middot; The road ahead</a>
+</div></nav>
+
+<section id="c1" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 1</span><span class="tag">Why look back</span></div>
+    <h2>Learning from a decade of forecasts</h2>
+    <p class="lead">Enrollment is the single biggest driver of a school budget and its building plans. Looking honestly at how past projections compared with reality is one of the most useful things a district can do. The goal is better planning, not blame.</p>
+    <p>This review pulls together every enrollment forecast the district commissioned from 2010 to 2025. It adds the actual counts, the State of Iowa's own projections, the demographic forces behind them, the 2017 bond timeline, and the disclosures filed with bond investors.</p>
+    <p>Lined up side by side, the numbers tell a clear story. They also point to a few practical ways to sharpen planning going forward.</p>
+  </div>
+</section>
+
+<section id="c2" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 2</span><span class="tag">Forecasts and reality</span></div>
+    <h2>What the forecasts projected, and what happened</h2>
+    <p class="lead">The forecasts made in 2015 and 2016, the bond-planning years, pointed toward roughly 16,000 students. Actual enrollment leveled off near 14,400.</p>
+    <p>The district hires demographers to project enrollment ten years out. The chart below plots each forecast against what actually happened. The more recent forecasts, in 2023 and especially 2025, came back in line. The newest one is the first to expect a gentle decline.</p>
+    <figure>
+      <div class="chartbox"><div id="chart_main"></div></div>
+      <div class="legend" id="leg_main"></div>
+      <figcaption>Each colored line is a forecast made in a given year. The thick navy line is actual enrollment. Counting methods differ by a few hundred students, so the shape matters more than the exact figure.</figcaption>
+    </figure>
+    <div class="callout"><b>The 2015 forecast sat about 1,900 students above what 2024-25 actually brought.</b> That is roughly a large high school. A ten-year horizon moves a lot, which is why projections deserve a regular refresh.</div>
+  </div>
+</section>
+
+<section id="c3" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 3</span><span class="tag">The 2017 bond</span></div>
+    <h2>How the forecasts lined up with the bond</h2>
+    <p>In September 2017, voters approved a $191.5M facilities bond, the largest in Iowa history at the time. The money built and renovated schools for an expected influx of students. The timeline shows the forecasts, the vote, and the borrowing together. Forecasts are in blue, bond events in red.</p>
+    <div class="timeline" id="timeline"></div>
+    <div class="callout"><b>The projections behind the facilities plan used the demographer's most optimistic scenario.</b> That is normal for capacity planning, because you build for the high case to avoid overcrowding. The next district-wide projection came several years later, after the building program was underway. A regular refresh cycle keeps big decisions tied to the latest data.</div>
+  </div>
+</section>
+
+<section id="c4" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 4</span><span class="tag">An independent check</span></div>
+    <h2>A fair comparison: two 2015 forecasts, side by side</h2>
+    <p>The State of Iowa makes its own enrollment projection for every district. To compare the two fairly, the chart puts both 2015 forecasts on the same starting point, the district's actual enrollment that year. Each line then shows the growth it expected, not differences in how students are counted.</p>
+    <figure>
+      <div class="chartbox"><div id="chart_state"></div></div>
+      <div class="legend" id="leg_state"></div>
+      <figcaption>Both forecasts were made in 2015. They are rebased to the district's actual 2015-16 enrollment so they sit on equal footing. The State's outlook tracked what happened. The district's pointed higher.</figcaption>
+    </figure>
+    <p>The State's 2015 projection landed within a few students of reality through 2019-20, near 14,600. The district's 2015 projection kept climbing toward roughly 16,600.</p>
+    <p>The State refreshes its projection every year. Stacking those updates, shown every two years below, walks the outlook down over a decade. The early vintages expected growth. The recent ones expect decline.</p>
+    <figure>
+      <div class="chartbox"><div id="chart_evo"></div></div>
+      <div class="legend" id="leg_evo"></div>
+      <figcaption>Each short line is a State of Iowa projection from a different year. The 2015 and 2017 outlooks pointed up. By 2021 the outlook flattened, and the 2023 and 2025 outlooks point down. All of them stay close to the actual line.</figcaption>
+    </figure>
+    <p>This is not about one forecaster being right and another wrong. Watching several independent projections, and refreshing them often, gives a steadier read than any single number.</p>
+  </div>
+</section>
+
+<section id="c5" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 5</span><span class="tag">The bond disclosures</span></div>
+    <h2>What the district told bond investors</h2>
+    <p>When the district borrowed the money, it filed official statements with investors. Different documents used different figures. The facilities capacity plan used the higher growth scenario, near 16,300. The investor disclosures used a more conservative projection, near 15,000.</p>
+    <div class="grid2">
+      <div class="card"><div class="stat">~15,000</div><p style="margin:.3rem 0 0">The projection in the district's <b>bond disclosures</b> to investors.</p></div>
+      <div class="card"><div class="stat">16,317</div><p style="margin:.3rem 0 0">The higher scenario used for <b>facilities capacity</b> planning.</p></div>
+    </div>
+    <div class="callout good"><b>From the 2019 disclosure to investors:</b><div class="quote">"Although DeJong-Richter projected enrollment increases of 300+ students on October 1, 2018, the actual increase was 87 students."</div></div>
+    <p>The district demonstrated good financial stewardship by notifying investors that recent projections had run ahead of actual results, as is required for bonds like this. The disclosure is both good practice and a standard legal obligation for municipal bonds. The figures themselves were measured, which helps keep trust with the community and the market.</p>
+  </div>
+</section>
+
+<section id="c6" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 6</span><span class="tag">Why it happened</span></div>
+    <h2>Two forces: a baby slowdown, cushioned by newcomers</h2>
+    <p>Enrollment forecasting comes down to two things. How many babies are born locally, who reach kindergarten about five years later. And how many families move in or out. Both shifted in ways that were hard to see during the growth years.</p>
+    <div class="grid2">
+      <figure style="margin:6px 0"><div class="chartbox"><div id="chart_births"></div></div><figcaption>Johnson County births peaked in <b>2016</b>, then eased. The kindergarten pipeline started to thin about five years later.</figcaption></figure>
+      <figure style="margin:6px 0"><div class="chartbox"><div id="chart_imm"></div></div><figcaption>Immigrant students grew from near zero to about <b>1,390</b>. That inflow cushioned the slowdown, though it varies year to year.</figcaption></figure>
+    </div>
+    <div class="callout"><b>Growing immigration kept total enrollment steady even as the youngest grades got smaller.</b> Elementary K-5 fell roughly 400 students since 2019-20. Newcomer families filled that gap, a real strength of the community. They enroll across all ages, so they do not fully refill the youngest grades, and the inflow can shift from year to year. Both births and migration are worth watching in every future forecast.</div>
+  </div>
+</section>
+
+<section id="c7" class="reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 7</span><span class="tag">What we learned</span></div>
+    <h2>Takeaways for stronger planning</h2>
+    <div class="summary">
+      <h3>Four practical lessons</h3>
+      <ul>
+        <li><b>Ten-year forecasts are hard.</b> A decade is long enough for births and migration to change direction, so even careful projections can miss. Plan in ranges, not single numbers.</li>
+        <li><b>The growth-era forecasts leaned optimistic.</b> They used the higher of the demographer's scenarios and ran above the State's projections. That was understandable during a boom, and worth balancing with more conservative cases.</li>
+        <li><b>Independent benchmarks are valuable.</b> The State's projections and local birth trends were useful early signals. Reviewing several forecasts together beats relying on one.</li>
+        <li><b>Refresh forecasts on a regular cadence.</b> Updating every year or two, especially around major decisions, keeps planning tied to current reality.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="c8" class="now reveal">
+  <div class="wrap">
+    <div class="chap"><span class="num">CH 8</span><span class="tag">The road ahead</span></div>
+    <h2>What this means going forward</h2>
+    <p class="lead">The past forecasts are settled. The job now is to plan well for a different chapter, one the budget is already entering.</p>
+    <div class="card">
+      <p style="margin-top:0">Iowa funds schools largely <b>per student</b>. When enrollment edges down, state funding follows, while the debt for buildings from the growth years stays fixed. That makes careful planning more important than before.</p>
+      <div class="impact">
+        <div class="ic"><h4>A new direction</h4><p>The newest forecast projects enrollment easing to about 13,600 by 2034-35. The district saw a <b>181-student</b> decline in 2025-26.</p></div>
+        <div class="ic"><h4>Budget pressure is here</h4><p>In March 2026 the board approved <b>$7.5M</b> in savings, through retirements, route consolidation, and a pause on administrator raises, aimed at protecting classrooms.</p></div>
+        <div class="ic"><h4>Right-sizing facilities</h4><p>Capacity was built for strong growth. The district is weighing how best to use its buildings. Hills Elementary closed in 2024. Clear enrollment data will guide those choices.</p></div>
+        <div class="ic"><h4>Watching the swing factors</h4><p>Newcomer enrollment and birth trends now matter most. Tracking them closely makes each future forecast more reliable.</p></div>
+      </div>
+    </div>
+    <div class="callout warn"><b>Iowa City is shifting from planning for growth to planning for a steadier, likely smaller student body.</b> The questions change from where to build, to how to use buildings and dollars wisely for the students the district has. Getting enrollment projections right, neither rosy nor alarmist and refreshed often, is one of the highest-value things the district can do. The decisions they guide affect students and families for years.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3>Sources and method</h3>
+    <p class="src">
+    Forecasts: DeJong-Richter (Spring 2013, Feb 2015, Nov 2016), Granville (Jan 2023), Cooperative Strategies / Woolpert (Feb 2025) demographic reports presented to the ICCSD Board. &nbsp;
+    Actual and independent projections: Iowa Department of Education certified enrollment and district-level certified-enrollment projections (Iowa City is district 3141). District headcount from the Feb 2026 Enrollment Board Report. &nbsp;
+    Demographic drivers: Iowa DoE birth rates by county and K-12 immigrant counts by district. &nbsp;
+    Bond: ICCSD FY22 audited financial statements (issuance dates and amounts). The Gazette (Sept 12, 2017 vote). &nbsp;
+    Investor disclosures: GO Bond Official Statements, Series 2017C, 2019, and 2020 (MSRB EMMA). &nbsp;
+    Current finances: The Daily Iowan and CBS2 Iowa (2026 budget actions, enrollment change, facilities).
+    </p>
+    <p class="src" style="margin-top:14px;color:#7e8eaa">A note on counting methods. Enrollment is measured several ways (certified or resident, building headcount, and total served) that differ by a few hundred students. Forecasts and actuals are shown on their own published bases, and the Chapter 4 comparison rebases both 2015 forecasts to a common starting point so they compare on equal footing. Companion workbook: ICCSD_Enrollment_Forecast_vs_Actual.xlsx. Prepared as an independent review to support sound planning.</p>
+  </div>
+</footer>
+
+<script>
+const ACT = {2013:12775,2014:12930,2015:13202,2016:13516,2017:13850,2018:13990,2019:14276,2020:13947,2021:14241,2022:14262,2023:14455,2024:14415,2025:14227};
+const DJ15 = {2015:13445,2016:13841,2017:14186,2018:14546,2019:14852,2020:15222,2021:15547,2022:15803,2023:16103,2024:16317};
+const DJ16 = {2017:13941,2018:14261,2019:14561,2020:14818,2021:15092,2022:15260,2023:15495,2024:15671,2025:15814,2026:15879};
+const GRAN = {2023:14758,2024:14917,2025:14973,2026:14995,2027:15081,2028:15046,2029:15064,2030:15018,2031:14954,2032:14916};
+const WOOL = {2024:14415,2025:14367,2026:14339,2027:14346,2028:14228,2029:14135,2030:14049,2031:13946,2032:13872,2033:13749,2034:13609};
+const ACTC = {2015:13671,2016:13982,2017:14198,2018:14285,2019:14572,2020:14284,2021:14395,2022:14440,2023:14379,2024:14551,2025:14370};
+const ST15_RB = {2015:13671,2016:13940,2017:14179,2018:14379,2019:14584};
+const STV = {
+ '2015':{2016:13906,2017:14097,2018:14287,2019:14430,2020:14629},
+ '2017':{2018:14469,2019:14606,2020:14781,2021:14894,2022:15006},
+ '2019':{2020:14686,2021:14815,2022:14859,2023:14942,2024:14945},
+ '2021':{2022:14352,2023:14429,2024:14404,2025:14311,2026:14215},
+ '2023':{2024:14270,2025:14219,2026:14134,2027:14090,2028:13899},
+ '2025':{2026:14226,2027:14144,2028:13980,2029:13835,2030:13720}
+};
+const DJ15_RB = {2015:13671,2016:14074,2017:14425,2018:14791,2019:15102,2020:15478,2021:15809,2022:16069,2023:16374,2024:16592};
+const BIRTHS = {2001:1372,2002:1443,2003:1514,2004:1560,2005:1457,2006:1615,2007:1650,2008:1719,2009:1711,2010:1792,2011:1733,2012:1830,2013:1767,2014:1824,2015:1808,2016:1856,2017:1723,2018:1735,2019:1739,2020:1621};
+const IMM = {2009:21,2010:15,2011:5,2012:179,2013:329,2014:552,2015:715,2016:836,2017:966,2018:950,2019:1149,2020:1164,2021:1076,2022:1084,2023:1142,2024:1390,2025:1052};
+
+function lineChart(el, opts){
+  const W=opts.w||800,H=opts.h||430, m={t:18,r:opts.mr||18,b:46,l:54};
+  const x0=m.l,x1=W-m.r,y0=H-m.b,y1=m.t;
+  const years=opts.years, yMin=opts.yMin,yMax=opts.yMax;
+  const xp=y=> x0+(x1-x0)*(y-years[0])/(years[years.length-1]-years[0]);
+  const yp=v=> y0+(y1-y0)*(v-yMin)/(yMax-yMin);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  const ticks=opts.yticks||5;
+  for(let i=0;i<=ticks;i++){const v=yMin+(yMax-yMin)*i/ticks;const y=yp(v);
+    s+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#eceef3" stroke-width="1"/>`;
+    s+=`<text x="${x0-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#8a93a3">${Math.round(v).toLocaleString()}</text>`;}
+  years.forEach(yr=>{ if(opts.xevery && (yr-years[0])%opts.xevery!==0 && yr!==years[years.length-1]) return;
+    const x=xp(yr); s+=`<text x="${x}" y="${y0+22}" text-anchor="middle" font-size="10.5" fill="#8a93a3">'${String(yr+1).slice(2)}</text>`;});
+  (opts.series||[]).forEach(se=>{
+    const pts=years.map(yr=> se.data[yr]!=null?[xp(yr),yp(se.data[yr])]:null);
+    let d="",pen=false;
+    pts.forEach(p=>{ if(!p){pen=false;return;} d+=(pen?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)+" ";pen=true;});
+    s+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.w||3}" stroke-linejoin="round" stroke-linecap="round" ${se.dash?`stroke-dasharray="6 5"`:""} opacity="${se.op||1}"/>`;
+    if(se.dots){ pts.forEach(p=>{ if(p) s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${se.r||3.4}" fill="${se.color}"/>`; }); }
+    if(se.endlabel){ for(let k=pts.length-1;k>=0;k--){ if(pts[k]){ s+=`<text x="${(pts[k][0]+6).toFixed(1)}" y="${(pts[k][1]+3).toFixed(1)}" font-size="10.5" font-weight="700" fill="${se.color}">${se.endlabel}</text>`; break; } } }
+  });
+  s+=`</svg>`; el.innerHTML=s;
+}
+function barChart(el,opts){
+  const W=opts.w||800,H=opts.h||300,m={t:16,r:14,b:40,l:46};
+  const x0=m.l,x1=W-m.r,y0=H-m.b,y1=m.t;const years=opts.years,yMax=opts.yMax,yMin=opts.yMin||0;
+  const n=years.length,bw=(x1-x0)/n*0.66;
+  const yp=v=> y0+(y1-y0)*(v-yMin)/(yMax-yMin);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let i=0;i<=4;i++){const v=yMin+(yMax-yMin)*i/4;const y=yp(v);
+    s+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#eceef3"/>`;
+    s+=`<text x="${x0-7}" y="${y+4}" text-anchor="end" font-size="11" fill="#8a93a3">${Math.round(v).toLocaleString()}</text>`;}
+  years.forEach((yr,i)=>{const cx=x0+(x1-x0)*(i+0.5)/n;const v=opts.data[yr];const y=yp(v);
+    const col=(opts.hi&&opts.hi===yr)?opts.hiColor:opts.color;
+    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${y0-y}" rx="2" fill="${col}"/>`;
+    if(opts.xevery&&(i%opts.xevery===0||i===n-1)) s+=`<text x="${cx}" y="${y0+20}" text-anchor="middle" font-size="10" fill="#8a93a3">${yr}</text>`;
+    if(opts.hi&&opts.hi===yr) s+=`<text x="${cx}" y="${y-6}" text-anchor="middle" font-size="11" font-weight="700" fill="${opts.hiColor}">${v}</text>`;});
+  s+=`</svg>`; el.innerHTML=s;
+}
+function legend(el,items){ el.innerHTML=items.map(i=>`<span><span class="sw ${i.dash?'swd':''}" style="border-top-color:${i.color}"></span>${i.label}</span>`).join(""); }
+
+lineChart(document.getElementById('chart_main'),{
+  years:Array.from({length:22},(_,i)=>2013+i), yMin:12500,yMax:16600,yticks:4,xevery:2,
+  series:[
+    {data:DJ15,color:'#c0392b',w:3.2},{data:DJ16,color:'#e07a3a',w:3},
+    {data:GRAN,color:'#2e7d4f',w:2.6,dash:true},{data:WOOL,color:'#7b4fb5',w:3,dash:true},
+    {data:ACT,color:'#1f3864',w:4.2,dots:true}
+  ]});
+legend(document.getElementById('leg_main'),[
+  {color:'#1f3864',label:'Actual enrollment'},{color:'#c0392b',label:'Forecast made 2015'},
+  {color:'#e07a3a',label:'Forecast made 2016'},{color:'#2e7d4f',label:'Forecast made 2023',dash:true},
+  {color:'#7b4fb5',label:'Forecast made 2025',dash:true}]);
+
+lineChart(document.getElementById('chart_state'),{
+  years:Array.from({length:11},(_,i)=>2015+i), yMin:13000,yMax:16800,yticks:4,xevery:2,
+  series:[
+    {data:DJ15_RB,color:'#c0392b',w:3.4},
+    {data:ST15_RB,color:'#2e7d4f',w:3,dash:true,dots:true},
+    {data:ACTC,color:'#1f3864',w:4,dots:true}
+  ]});
+legend(document.getElementById('leg_state'),[
+  {color:'#1f3864',label:'Actual enrollment'},
+  {color:'#c0392b',label:'District forecast made 2015'},
+  {color:'#2e7d4f',label:'State of Iowa forecast made 2015',dash:true}]);
+
+lineChart(document.getElementById('chart_evo'),{
+  years:Array.from({length:16},(_,i)=>2015+i), yMin:13600,yMax:15200,yticks:4,xevery:3,mr:34,
+  series:[
+    {data:STV['2015'],color:'#1f78b4',w:2.4,dots:true,r:2.6,endlabel:"'15"},
+    {data:STV['2017'],color:'#33a02c',w:2.4,dots:true,r:2.6,endlabel:"'17"},
+    {data:STV['2019'],color:'#bf9000',w:2.4,dots:true,r:2.6,endlabel:"'19"},
+    {data:STV['2021'],color:'#e08214',w:2.4,dots:true,r:2.6,endlabel:"'21"},
+    {data:STV['2023'],color:'#d6604d',w:2.4,dots:true,r:2.6,endlabel:"'23"},
+    {data:STV['2025'],color:'#b2182b',w:2.4,dots:true,r:2.6,endlabel:"'25"},
+    {data:ACTC,color:'#1f3864',w:4,dots:true,r:3}
+  ]});
+legend(document.getElementById('leg_evo'),[
+  {color:'#1f3864',label:'Actual'},
+  {color:'#1f78b4',label:'State 2015'},{color:'#33a02c',label:'State 2017'},
+  {color:'#bf9000',label:'State 2019'},{color:'#e08214',label:'State 2021'},
+  {color:'#d6604d',label:'State 2023'},{color:'#b2182b',label:'State 2025'}]);
+
+barChart(document.getElementById('chart_births'),{
+  years:Object.keys(BIRTHS).map(Number),data:BIRTHS,yMin:1300,yMax:1900,color:'#c9a96a',hi:2016,hiColor:'#c0392b',xevery:3,h:300});
+lineChart(document.getElementById('chart_imm'),{
+  years:Object.keys(IMM).map(Number),yMin:0,yMax:1500,yticks:3,xevery:3,h:300,
+  series:[{data:IMM,color:'#2e5496',w:3.4,dots:true}]});
+
+const TL=[
+  ['Mar 2013','Forecast: about 15,400 by 2022-23','Demographer projects continued growth','f'],
+  ['Dec 2013','Facilities Master Plan adopted','The blueprint for the bond projects','f'],
+  ['Feb 2015','Forecast: 16,317 by 2024-25','Capacity planning used this growth scenario','f'],
+  ['Nov 2016','Forecast: 15,879','Most recent projection before the vote','f'],
+  ['Sep 12 2017','Bond approved, $191.5M','About 65% yes, 60% needed. Largest in Iowa history','b'],
+  ['Nov 2017','Borrowed $59.0M','First tranche, shortly after the vote','b'],
+  ['Jan 2019','Borrowed $66.6M','Second tranche','b'],
+  ['Feb 2020','Borrowed $65.9M','Final tranche, full $191.5M now issued','b'],
+  ['2017 to 2022','Next district-wide forecast pending','A multi-year gap during the building program','g'],
+  ['Jan 2023','Forecast updated to about 15,000','Brought projections closer to recent trends','f'],
+  ['Feb 2025','Forecast: gentle decline to about 13,600','First projection of easing enrollment','f']
+];
+document.getElementById('timeline').innerHTML=TL.map(e=>{
+  const cls=e[3]==='b'?'ev bond':(e[3]==='g'?'ev gap':'ev');
+  const pill=e[3]==='b'?'<span class="pill b">BOND</span>':(e[3]==='g'?'':'<span class="pill f">FORECAST</span>');
+  return `<div class="${cls}"><div class="d">${e[0]}</div><div class="rail"><div class="dot"></div></div><div class="body"><div class="t">${e[1]}${pill}</div><div class="s">${e[2]}</div></div></div>`;
+}).join("");
+
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+'%';},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
