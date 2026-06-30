@@ -95,22 +95,22 @@ double (2×), because recent patterns are more predictive than older ones.</p>
   <li><strong>Baseline scenario:</strong> uses all available years with the COVID discounts
   described above. Kindergarten share stays at 0.728 — the current calibrated level.</li>
   <li><strong>Low scenario:</strong> uses only the most recent two school years (2023–2025),
-  giving more weight to the post-voucher environment. Combined with a lower K-entry share
-  (0.680), this tests the case where migration slows and voucher use grows.</li>
+  giving more weight to the recently observed pattern. Combined with a lower K-entry share
+  (0.680), this tests the case where in-migration slows and the share decline continues.</li>
 </ul>
 
 <p><strong>Smoothed rates used in each scenario:</strong></p>
 <table class="tab">
   <tr><th>Grade transition</th>
-      <th>Pre-voucher avg<br><small>2016–2022</small></th>
-      <th>Post-voucher avg<br><small>2023–2025</small></th>
+      <th>2016–2022 avg</th>
+      <th>2023–2025 avg</th>
       <th style="color:#fca5a5">Low scenario</th>
       <th style="color:#93c5fd">Baseline</th>
       <th style="color:#a7f3d0">High scenario</th></tr>
   <tr><td style="font-family:monospace;font-weight:600">K→1</td><td><span style="color:#b91c1c;font-weight:600">0.997</span></td><td><span style="color:#16a34a;font-weight:600">1.018</span><br><small style="color:#16a34a">+0.021</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.018</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.006</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.006</span></td></tr><tr><td style="font-family:monospace;font-weight:600">1→2</td><td><span style="color:#b91c1c;font-weight:600">0.994</span></td><td><span style="color:#b91c1c;font-weight:600">0.986</span><br><small style="color:#b91c1c">-0.008</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.986</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.989</span></td><td style="color:#15803d;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.989</span></td></tr><tr><td style="font-family:monospace;font-weight:600">2→3</td><td><span style="color:#b91c1c;font-weight:600">0.996</span></td><td><span style="color:#16a34a;font-weight:600">1.010</span><br><small style="color:#16a34a">+0.014</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.010</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.003</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.003</span></td></tr><tr><td style="font-family:monospace;font-weight:600">3→4</td><td><span style="color:#b91c1c;font-weight:600">0.994</span></td><td><span style="color:#16a34a;font-weight:600">1.010</span><br><small style="color:#16a34a">+0.016</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.010</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.001</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.001</span></td></tr><tr><td style="font-family:monospace;font-weight:600">4→5</td><td><span style="color:#b91c1c;font-weight:600">0.993</span></td><td><span style="color:#16a34a;font-weight:600">1.003</span><br><small style="color:#16a34a">+0.010</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.003</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.997</span></td><td style="color:#15803d;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.997</span></td></tr><tr><td style="font-family:monospace;font-weight:600">5→6</td><td><span style="color:#16a34a;font-weight:600">1.000</span></td><td><span style="color:#16a34a;font-weight:600">1.002</span><br><small style="color:#64748b">+0.002</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.002</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.001</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.001</span></td></tr><tr><td style="font-family:monospace;font-weight:600">6→7</td><td><span style="color:#16a34a;font-weight:600">1.023</span></td><td><span style="color:#16a34a;font-weight:600">1.003</span><br><small style="color:#b91c1c">-0.020</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.003</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.013</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.013</span></td></tr><tr><td style="font-family:monospace;font-weight:600">7→8</td><td><span style="color:#16a34a;font-weight:600">1.006</span></td><td><span style="color:#16a34a;font-weight:600">1.010</span><br><small style="color:#64748b">+0.004</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.010</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.006</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.006</span></td></tr><tr><td style="font-family:monospace;font-weight:600">8→9</td><td><span style="color:#16a34a;font-weight:600">1.043</span></td><td><span style="color:#16a34a;font-weight:600">1.055</span><br><small style="color:#16a34a">+0.012</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.055</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.049</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.049</span></td></tr><tr><td style="font-family:monospace;font-weight:600">9→10</td><td><span style="color:#16a34a;font-weight:600">1.017</span></td><td><span style="color:#16a34a;font-weight:600">1.025</span><br><small style="color:#16a34a">+0.007</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.025</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.023</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.023</span></td></tr><tr><td style="font-family:monospace;font-weight:600">10→11</td><td><span style="color:#16a34a;font-weight:600">1.009</span></td><td><span style="color:#b91c1c;font-weight:600">0.998</span><br><small style="color:#b91c1c">-0.011</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#b91c1c;font-weight:600">0.998</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.004</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.004</span></td></tr><tr><td style="font-family:monospace;font-weight:600">11→12</td><td><span style="color:#16a34a;font-weight:600">1.047</span></td><td><span style="color:#16a34a;font-weight:600">1.040</span><br><small style="color:#b91c1c">-0.007</small></td><td style="color:#b91c1c;font-weight:700"><span style="color:#16a34a;font-weight:600">1.040</span></td><td style="color:#1e3a5f;font-weight:700"><span style="color:#16a34a;font-weight:600">1.045</span></td><td style="color:#15803d;font-weight:700"><span style="color:#16a34a;font-weight:600">1.045</span></td></tr>
 </table>
-<p class="note">A positive shift (post-voucher vs. pre-voucher) means grade retention has
-<em>improved</em> since the voucher program started. Negative means more attrition.</p>
+<p class="note">A positive shift (2023–2025 vs. 2016–2022) means grade retention has
+<em>improved</em> in recent years. Negative means more attrition. Cause of any shift is not established.</p>
 </div>
 
 <h2>Step 3: Project kindergarten from birth data</h2>
@@ -141,16 +141,14 @@ were 1,356 babies born to Johnson County residents. So:</p>
     in Iowa City schools five years later.</span></div>
 </div>
 
-<p><strong>What Iowa's voucher program has done so far.</strong> Iowa enacted a school-choice
-voucher program in 2023 (Educational Savings Accounts, or ESAs) that allows families to use
-roughly $7,600 in state education funding for private school tuition. About 41,000 Iowa students
-used it statewide in 2024-25. The kindergarten count has declined three straight years (1,035 in
-fall 2022 → 998 → 992 → 987 in fall 2025), and the effective district share of county births
-has fallen from a pre-voucher average of about 0.742 to a post-voucher average of 0.718. The
-2025 figure (0.728) sits between these averages — the trend is down but the in-migration from
-fast-growing North Liberty and Tiffin (both partly inside Iowa City's attendance boundary) is
-partially offsetting the voucher effect. Whether that offset holds, grows, or reverses is the
-central question driving the three scenarios.</p>
+<p><strong>The observed shift since 2023.</strong> The kindergarten count has declined three
+straight years (1,035 in fall 2022 → 998 → 992 → 987 in fall 2025). The effective district
+share of county births has fallen from a 2016–2022 average of about 0.742 to a 2023–2025
+average of 0.718. The 2025 figure (0.728) sits between these averages. Multiple factors can
+affect this share simultaneously — migration, private-school enrollment, open enrollment across
+district lines, and the geographic mismatch between county and district boundaries. We do not
+have enrollment-transfer data to isolate any single factor as the cause. The three scenarios
+test different assumptions about where the share goes next, without asserting why it moved.</p>
 
 <p><strong>Forecast kindergarten counts, by scenario:</strong></p>
 <table class="tab">
@@ -192,8 +190,8 @@ in the growth corridors.</p>
 
 <div class="scen-card bl">
 <h3 style="color:#1e3a5f">Baseline — "Current trajectory holds"</h3>
-<p><strong>What has to be true:</strong> Roughly what's happening now continues. Migration into
-the district keeps pace with voucher-program growth, so the district's share of county
+<p><strong>What has to be true:</strong> Roughly what's happening now continues. In-migration
+from the growth corridors continues at roughly today's pace. The district's share of county
 kindergarteners stays at 0.728 — the same rate calibrated from the 2025 actual data. Birth
 counts keep falling gradually. No major disruption in either direction.</p>
 <p><strong>2030 enrollment: 13,475</strong> (-752 from 2025,
@@ -203,14 +201,13 @@ or a financial crisis.</p>
 </div>
 
 <div class="scen-card lo">
-<h3 style="color:#b91c1c">Low — "Migration slows, voucher use grows"</h3>
-<p><strong>What has to be true:</strong> Two things happen at once. First, new construction in
-North Liberty and Tiffin slows as the most buildable land fills in — fewer families moving in.
-Second, voucher-program participation keeps growing past today's ~41,000 statewide, and Iowa
-City families start taking more of those slots than currently. The district's share of county
-kindergarteners falls to 0.680 — about 35 fewer kindergarteners per year than the birth trend
-would predict. Grade-to-grade retention follows the post-2023 pattern, which already shows
-slightly more attrition than before the voucher program.</p>
+<h3 style="color:#b91c1c">Low — "In-migration slows, share declines"</h3>
+<p><strong>What has to be true:</strong> New construction in North Liberty and Tiffin slows as
+the most buildable land fills in — fewer families moving into the district each year. The
+district's share of county kindergarteners falls to 0.680 — about 35 fewer kindergarteners per
+year than births would predict. Grade-to-grade retention follows the post-2023 pattern, which
+shows slightly more attrition than earlier years. The cause of the share decline is not assumed;
+this scenario tests the lower bound of the observed range.</p>
 <p><strong>2030 enrollment: 13,306</strong> (-921 from 2025,
 -6.5%). Roughly the equivalent of closing one elementary
 school's worth of enrollment from the current level.</p>
@@ -230,9 +227,9 @@ school's worth of enrollment from the current level.</p>
 
   <li><strong>The district share (0.728) is one number capturing many things.</strong> It
   combines the geographic mismatch between county and district boundaries, private school
-  choice, Iowa's open-enrollment policy (students can cross district lines), and the current
-  voucher effect. A richer model would track each of these separately. For now, the three
-  scenarios capture the range of how that single number might shift.</li>
+  choice, Iowa's open-enrollment policy (students can cross district lines), and any
+  structural shifts in who enrolls. A richer model would track each of these separately.
+  For now, the three scenarios capture the range of how that single number might shift.</li>
 
   <li><strong>Johnson County births for 2023 and 2024 are still estimates.</strong> The CDC's
   national birth records typically lag two years before becoming final. These figures will be
