@@ -133,7 +133,7 @@ HTML = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Enrollment → Revenue Bridge — ICCSD</title>
+<title>ICCSD Enrollment to Revenue Bridge</title>
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff}}
 *{{box-sizing:border-box}}
@@ -181,94 +181,97 @@ table.dt tr:nth-child(even){{background:#f8fafc}}
 <div class="wrap">
 
 <h1>From Fewer Students to Fewer Dollars</h1>
-<p class="sub">Translating the K-12 enrollment forecast into a recurring revenue headwind —
-and laying it against the district's cash cushion</p>
+<p class="sub">The K-12 enrollment forecast turned into a recurring revenue headwind, set against
+the district's cash cushion</p>
 
 <div class="callout">
-  <strong>Why this matters.</strong> Iowa funds districts on a per-pupil basis. ICCSD's own
-  cohort-survival forecast projects roughly <strong>750 fewer students by 2030</strong> (Baseline).
-  At the state foundation rate that is a <strong>recurring ~${headwind_2030/1e6:.1f}M/year</strong>
-  hole in the operating budget — arriving while the district already runs one of the thinnest cash
-  cushions of any large Iowa district.
+  <strong>Fewer students means less money, every year.</strong> Iowa funds districts per pupil.
+  ICCSD's own cohort-survival forecast projects roughly <strong>750 fewer students by 2030</strong>
+  under the Baseline. At the state foundation rate that is a
+  <strong>recurring ~${headwind_2030/1e6:.1f}M/year</strong> hole in the operating budget. It arrives
+  while the district already runs one of the thinnest cash cushions of any large Iowa district.
 </div>
 
 <div class="kpi-row">
   <div class="kpi red"><div class="label">Projected enrollment decline by 2030</div>
-    <div class="val">−{drop_2030:,}</div><div class="note">Baseline: {BASE_ENROLL:,} → {SCEN_2030['Baseline']:,} K-12</div></div>
+    <div class="val">−{drop_2030:,}</div><div class="note">Baseline: {BASE_ENROLL:,} to {SCEN_2030['Baseline']:,} K-12</div></div>
   <div class="kpi amber"><div class="label">Recurring revenue headwind by 2030</div>
     <div class="val">~${headwind_2030/1e6:.1f}M/yr</div><div class="note">at ${PER_PUPIL:,}/student</div></div>
   <div class="kpi red"><div class="label">Current cash cushion</div>
-    <div class="val">{CURRENT_DAYS} days</div><div class="note">≈${CURRENT_CASH_M}M GF · target 90+ days</div></div>
+    <div class="val">{CURRENT_DAYS} days</div><div class="note">about ${CURRENT_CASH_M}M GF, target 90+ days</div></div>
 </div>
 
 <h2>The bridge, in four steps</h2>
 <div class="steps">
-  <div class="step"><b>Enrollment falls ~{drop_2030:,} students</b> by 2030 under the Baseline
-  scenario ({BASE_ENROLL:,} K-12 in 2025 → {SCEN_2030['Baseline']:,} in 2030). The decline is
-  demographic — Johnson County births peaked in 2016 and feed smaller kindergarten classes.</div>
-  <div class="step"><b>Each lost student removes ~${PER_PUPIL:,} of revenue.</b> Iowa's
-  funding formula pays districts per pupil; fewer students means a smaller combined state-aid +
-  property-tax foundation entitlement the following year.</div>
+  <div class="step"><b>Enrollment falls about {drop_2030:,} students</b> by 2030 under the Baseline
+  scenario, from {BASE_ENROLL:,} K-12 in 2025 to {SCEN_2030['Baseline']:,} in 2030. The decline is
+  demographic. Johnson County births peaked in 2016 and feed smaller kindergarten classes.</div>
+  <div class="step"><b>Each lost student takes about ${PER_PUPIL:,} of revenue with it.</b> Iowa's
+  funding formula pays districts per pupil. Fewer students means a smaller combined state-aid and
+  property-tax foundation amount the following year.</div>
   <div class="step"><b>That compounds to a recurring ~${headwind_2030/1e6:.1f}M/year</b> shortfall
-  by 2030 versus the 2025 revenue base — and roughly <b>${cum_dollars/1e6:.0f}M cumulative</b>
-  ({cum_student_years:,} student-years) of foregone state aid over 2026–2030 as the decline phases in.</div>
+  by 2030 against the 2025 revenue base. It also adds up to roughly
+  <b>${cum_dollars/1e6:.0f}M total</b> ({cum_student_years:,} student-years) of lost state aid over
+  2026 to 2030 as the decline phases in.</div>
   <div class="step"><b>It lands on a thin cushion.</b> ICCSD holds about {CURRENT_DAYS} days of net
-  cash (≈${CURRENT_CASH_M}M in the General Fund) versus a 90-day target (≈${CASH_DAYS[90]}M). A
-  recurring ${headwind_2030/1e6:.1f}M/year drain is roughly <b>a third of the district's entire
-  current cash balance — every year.</b></div>
+  cash, around ${CURRENT_CASH_M}M in the General Fund, against a 90-day target of about
+  ${CASH_DAYS[90]}M. A recurring ${headwind_2030/1e6:.1f}M/year drain is roughly
+  <b>a third of the district's entire current cash balance, every year.</b></div>
 </div>
 
 <h2>Annual revenue headwind vs. 2025 (Baseline)</h2>
 <div class="chart-box">
-  <div class="title">Foregone operating revenue, ${PER_PUPIL:,}/student · 2026–2030</div>
+  <div class="title">Lost operating revenue, ${PER_PUPIL:,}/student, 2026 to 2030</div>
   {headwind_svg()}
 </div>
 
-<h2>It depends on the scenario — but every path is negative</h2>
+<h2>It depends on the scenario, but every path points down</h2>
 {scenario_table()}
 <p class="src">Enrollment from the ICCSD cohort-survival forecast (iccsd-enrollment-forecast.html),
 K-12 BEDS basis. Per-pupil revenue uses the site-standard ${PER_PUPIL:,} all-in state foundation
-figure; at the narrower regular-program district cost per pupil (~${PER_PUPIL_LOW:,}) the Baseline
-headwind is about ${drop_2030*PER_PUPIL_LOW/1e6:.1f}M/year — still a structural drag.</p>
+figure. At the narrower regular-program district cost per pupil of about ${PER_PUPIL_LOW:,}, the
+Baseline headwind is about ${drop_2030*PER_PUPIL_LOW/1e6:.1f}M/year. Still a structural drag.</p>
 
 <h2>Against the cushion</h2>
 <div class="chart-box">
   <div class="title">General-fund cash cushion vs. the recurring headwind ($M)</div>
   {cushion_svg()}
 </div>
-<p>The district is already ~${CASH_DAYS[90]-CURRENT_CASH_M}M below a 90-day cushion. A recurring
-revenue decline doesn't just block rebuilding that cushion — left unmatched by spending reductions,
-it <em>erodes</em> what little remains. This is why the enrollment forecast is a financial document,
-not just a demographic one.</p>
+<p>The district is already about ${CASH_DAYS[90]-CURRENT_CASH_M}M below a 90-day cushion. A recurring
+revenue decline does not just block rebuilding that cushion. Left unmatched by spending cuts, it
+eats into what little remains. That is why the enrollment forecast is a financial document, not just
+a demographic one.</p>
 
 <div class="callout warn">
-  <strong>Bottom line.</strong> The ~{drop_2030:,}-student Baseline decline translates to a
-  <strong>recurring ~${headwind_2030/1e6:.1f}M/year</strong> revenue headwind by 2030
-  (range ~${headwind_low/1e6:.1f}M–${headwind_high/1e6:.1f}M across scenarios), against a General
-  Fund holding only ~{CURRENT_DAYS} days of cash. Closing the gap requires either reversing the
-  enrollment trend (largely demographic, hard to move) or cutting recurring operating costs by a
-  comparable amount. Doing neither spends down a cushion that is already the thinnest among large
-  Iowa districts.
+  <strong>The decline costs the district a cash cushion's worth of revenue every year.</strong>
+  The {drop_2030:,}-student Baseline decline works out to a
+  <strong>recurring ~${headwind_2030/1e6:.1f}M/year</strong> revenue headwind by 2030, a range of
+  about ${headwind_low/1e6:.1f}M to ${headwind_high/1e6:.1f}M across scenarios, against a General
+  Fund holding only about {CURRENT_DAYS} days of cash. Closing the gap means either reversing the
+  enrollment trend, which is largely demographic and hard to move, or cutting recurring operating
+  costs by a similar amount. Doing neither spends down a cushion that is already the thinnest among
+  large Iowa districts.
 </div>
 
 <h2>Caveats</h2>
 <ul style="max-width:760px">
-  <li>Iowa's formula uses prior-year certified enrollment with a budget guarantee and a declining-
-  enrollment supplement that soften single-year swings; the figures here are the gross per-pupil
-  impact, not a line-item budget projection.</li>
-  <li>Per-pupil revenue is an all-in approximation; categorical funding that scales with enrollment
-  is included in the ${PER_PUPIL:,} figure, and a conservative ${PER_PUPIL_LOW:,} alternative is shown.</li>
-  <li>The cushion translation (days → $M) uses the district's own General Fund benchmark table;
-  the {CURRENT_DAYS}-day figure is the FY2025 all-funds Day's Net Cash ratio (adjusted).</li>
+  <li>Iowa's formula uses prior-year certified enrollment with a budget guarantee and a
+  declining-enrollment supplement that soften single-year swings. The figures here are the gross
+  per-pupil impact, not a line-item budget projection.</li>
+  <li>Per-pupil revenue is an all-in approximation. Categorical funding that scales with enrollment
+  is included in the ${PER_PUPIL:,} figure, and a more conservative ${PER_PUPIL_LOW:,} alternative
+  is shown.</li>
+  <li>The cushion translation from days to dollars uses the district's own General Fund benchmark
+  table. The {CURRENT_DAYS}-day figure is the FY2025 all-funds Day's Net Cash ratio (adjusted).</li>
 </ul>
 
 <p style="margin-top:24px">
-  <a href="iccsd-enrollment-forecast.html">→ The enrollment forecast behind these numbers</a><br>
-  <a href="iccsd-cushion.html">→ Does ICCSD have a cushion? (the cash side)</a>
+  <a href="iccsd-enrollment-forecast.html">The enrollment forecast behind these numbers &rarr;</a><br>
+  <a href="iccsd-cushion.html">Does ICCSD have a cushion? The cash side &rarr;</a>
 </p>
 
-<p class="src">Sources: ICCSD cohort-survival enrollment forecast; Iowa DOE BEDS; Iowa school
-foundation formula (state cost per pupil); ICCSD_FinancialHealth/Healthy Cash Levels.xlsx and
+<p class="src">Sources: ICCSD cohort-survival enrollment forecast. Iowa DOE BEDS. Iowa school
+foundation formula (state cost per pupil). ICCSD_FinancialHealth/Healthy Cash Levels.xlsx and
 FY15-FY25 Summary.xlsx (Day's Net Cash). Built {OUT} via scripts/build_revenue_bridge.py.</p>
 
 </div>

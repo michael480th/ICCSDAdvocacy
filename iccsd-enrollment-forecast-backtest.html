@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Forecast Validation & Calibration — ICCSD Enrollment</title>
+<title>ICCSD Enrollment Forecast Validation</title>
 <style>
 :root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff}
 *{box-sizing:border-box}
@@ -47,30 +47,30 @@ ul{max-width:760px} li{margin:4px 0}
 <div class="wrap">
 
 <h1>Forecast Validation &amp; Calibration</h1>
-<p class="sub">Three accuracy upgrades to the cohort-survival enrollment forecast —
-backtest, multi-year share calibration, and open-enrollment adjustment ·
-all recomputed from Iowa DOE BEDS, births, and certified open-enrollment data</p>
+<p class="sub">Three accuracy upgrades to the cohort-survival enrollment forecast: backtest,
+multi-year share calibration, and open-enrollment adjustment. All recomputed from Iowa DOE BEDS,
+births, and certified open-enrollment data.</p>
 
 <div class="callout">
-  <strong>Why this page exists.</strong> The <a href="iccsd-enrollment-forecast.html">enrollment
-  forecast</a> projects ICCSD K-12 enrollment with a cohort-survival model. This page stress-tests
-  that model three ways: (1) how accurate has it been on held-out history, (2) is the kindergarten
-  share calibrated on enough data, and (3) how much of that share is open enrollment we can measure
-  directly rather than leaving inside a black box. The headline: the model is <strong>accurate
-  (MAPE &lt;1.5%)</strong>, but its confidence band was too narrow and its share slightly too high.
+  <strong>The model is accurate, but it can be tightened.</strong> The
+  <a href="iccsd-enrollment-forecast.html">enrollment forecast</a> projects ICCSD K-12 enrollment
+  with a cohort-survival model. This page tests it three ways. How accurate has it been on held-out
+  history. Is the kindergarten share calibrated on enough data. And how much of that share is open
+  enrollment we can measure directly instead of leaving it in a black box. The model holds up
+  (MAPE under 1.5%), but its confidence band was too narrow and its share a little too high.
 </div>
 
 <div class="kpi-row">
   <div class="kpi green"><div class="label">Backtest accuracy (5-yr horizon)</div>
-    <div class="val">±1.2%</div><div class="note">MAPE on held-out years · ≈±162 students</div></div>
+    <div class="val">±1.2%</div><div class="note">MAPE on held-out years, about ±162 students</div></div>
   <div class="kpi blue"><div class="label">Recalibrated K-entry share</div>
-    <div class="val">0.718</div><div class="note">trailing-3yr vs single-year 0.728</div></div>
+    <div class="val">0.718</div><div class="note">trailing 3-year, vs single-year 0.728</div></div>
   <div class="kpi amber"><div class="label">Recalibrated 2030 Baseline</div>
     <div class="val">13,414</div><div class="note">was 13,479 (-65)</div></div>
 </div>
 
-<h2>#1 — Backtest: how accurate has the model been?</h2>
-<p>We hold out recent history and re-run the model honestly: for each origin year, fit the
+<h2>How accurate has the model been?</h2>
+<p>The honest test is to hold out recent history and re-run the model. For each origin year, fit the
 grade-progression ratios and K-entry share using <em>only</em> data available up to that year, then
 project forward and compare to what actually happened. Errors are the percent miss on total K-12
 enrollment.</p>
@@ -78,90 +78,95 @@ enrollment.</p>
   <div class="title">Mean absolute % error by forecast horizon (across 6 origin years)</div>
   <svg viewBox="0 0 760 250" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="50" y1="210.0" x2="744" y2="210.0" stroke="#eef2f7"/><text x="44" y="214.0" text-anchor="end" font-size="11" fill="#94a3b8">0.0%</text><line x1="50" y1="162.5" x2="744" y2="162.5" stroke="#eef2f7"/><text x="44" y="166.5" text-anchor="end" font-size="11" fill="#94a3b8">0.5%</text><line x1="50" y1="115.0" x2="744" y2="115.0" stroke="#eef2f7"/><text x="44" y="119.0" text-anchor="end" font-size="11" fill="#94a3b8">1.0%</text><line x1="50" y1="67.5" x2="744" y2="67.5" stroke="#eef2f7"/><text x="44" y="71.5" text-anchor="end" font-size="11" fill="#94a3b8">1.5%</text><line x1="50" y1="20.0" x2="744" y2="20.0" stroke="#eef2f7"/><text x="44" y="24.0" text-anchor="end" font-size="11" fill="#94a3b8">2.0%</text><rect x="84.7" y="100.9" width="69.4" height="109.1" rx="3" fill="#1e3a5f"/><text x="119.4" y="94.9" text-anchor="middle" font-size="12" font-weight="800" fill="#1e3a5f">1.15%</text><text x="119.4" y="227" text-anchor="middle" font-size="11.5" fill="#64748b">1 yr out</text><rect x="223.5" y="120.2" width="69.4" height="89.8" rx="3" fill="#1e3a5f"/><text x="258.2" y="114.2" text-anchor="middle" font-size="12" font-weight="800" fill="#1e3a5f">0.95%</text><text x="258.2" y="227" text-anchor="middle" font-size="11.5" fill="#64748b">2 yr out</text><rect x="362.3" y="133.2" width="69.4" height="76.8" rx="3" fill="#1e3a5f"/><text x="397.0" y="127.2" text-anchor="middle" font-size="12" font-weight="800" fill="#1e3a5f">0.81%</text><text x="397.0" y="227" text-anchor="middle" font-size="11.5" fill="#64748b">3 yr out</text><rect x="501.1" y="70.9" width="69.4" height="139.1" rx="3" fill="#1e3a5f"/><text x="535.8" y="64.9" text-anchor="middle" font-size="12" font-weight="800" fill="#1e3a5f">1.46%</text><text x="535.8" y="227" text-anchor="middle" font-size="11.5" fill="#64748b">4 yr out</text><rect x="639.9" y="95.0" width="69.4" height="115.0" rx="3" fill="#1e3a5f"/><text x="674.6" y="89.0" text-anchor="middle" font-size="12" font-weight="800" fill="#1e3a5f">1.21%</text><text x="674.6" y="227" text-anchor="middle" font-size="11.5" fill="#64748b">5 yr out</text></svg>
 </div>
-<table class="dt"><tr><th>Fit through</th><th>Share</th><th>+1</th><th>+2</th><th>+3</th><th>+4</th><th>+5</th><th>+6</th></tr><tr><td>2019</td><td>0.745</td><td style="color:#b91c1c">+3.4</td><td style="color:#b45309">+1.9</td><td style="color:#b45309">+1.9</td><td style="color:#b91c1c">+2.5</td><td style="color:#b45309">+1.3</td><td style="color:#b45309">+2.0</td></tr><tr><td>2020</td><td>0.748</td><td style="color:#b45309">-1.2</td><td style="color:#b45309">-1.3</td><td style="color:#15803d">-0.6</td><td style="color:#b45309">-1.8</td><td style="color:#b45309">-1.1</td><td>—</td></tr><tr><td>2021</td><td>0.736</td><td style="color:#15803d">-0.1</td><td style="color:#15803d">+0.6</td><td style="color:#15803d">-0.6</td><td style="color:#15803d">+0.1</td><td>—</td><td>—</td></tr><tr><td>2022</td><td>0.728</td><td style="color:#15803d">+0.5</td><td style="color:#15803d">-0.8</td><td style="color:#15803d">-0.1</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2023</td><td>0.719</td><td style="color:#15803d">-1.0</td><td style="color:#15803d">-0.1</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>2024</td><td>0.718</td><td style="color:#15803d">+0.8</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr style="border-top:2px solid #1e3a5f"><td><b>MAPE %</b></td><td>—</td><td><b>1.15</b></td><td><b>0.95</b></td><td><b>0.81</b></td><td><b>1.46</b></td><td><b>1.21</b></td><td><b>1.98</b></td></tr><tr><td>Mean bias %</td><td>—</td><td>+0.39</td><td>+0.06</td><td>+0.15</td><td>+0.29</td><td>+0.07</td><td>+1.98</td></tr></table>
-<p>Two things stand out. First, accuracy is strong — <strong>MAPE stays under 1.5%</strong> through
-five years, comparable to professional demographer benchmarks. Second, the misses are
-<strong>almost all positive</strong> for the 2019 origin (+1.3% to +3.4%): a model fit before COVID
-over-predicted, because it couldn't foresee the 2020–21 enrollment dip. Origins from 2021 on — the
-post-COVID regime the live forecast actually uses — miss by well under 1%.</p>
+<table class="dt"><tr><th>Fit through</th><th>Share</th><th>+1</th><th>+2</th><th>+3</th><th>+4</th><th>+5</th><th>+6</th></tr><tr><td>2019</td><td>0.745</td><td style="color:#b91c1c">+3.4</td><td style="color:#b45309">+1.9</td><td style="color:#b45309">+1.9</td><td style="color:#b91c1c">+2.5</td><td style="color:#b45309">+1.3</td><td style="color:#b45309">+2.0</td></tr><tr><td>2020</td><td>0.748</td><td style="color:#b45309">-1.2</td><td style="color:#b45309">-1.3</td><td style="color:#15803d">-0.6</td><td style="color:#b45309">-1.8</td><td style="color:#b45309">-1.1</td><td>n/a</td></tr><tr><td>2021</td><td>0.736</td><td style="color:#15803d">-0.1</td><td style="color:#15803d">+0.6</td><td style="color:#15803d">-0.6</td><td style="color:#15803d">+0.1</td><td>n/a</td><td>n/a</td></tr><tr><td>2022</td><td>0.728</td><td style="color:#15803d">+0.5</td><td style="color:#15803d">-0.8</td><td style="color:#15803d">-0.1</td><td>n/a</td><td>n/a</td><td>n/a</td></tr><tr><td>2023</td><td>0.719</td><td style="color:#15803d">-1.0</td><td style="color:#15803d">-0.1</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td></tr><tr><td>2024</td><td>0.718</td><td style="color:#15803d">+0.8</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td></tr><tr style="border-top:2px solid #1e3a5f"><td><b>MAPE %</b></td><td>n/a</td><td><b>1.15</b></td><td><b>0.95</b></td><td><b>0.81</b></td><td><b>1.46</b></td><td><b>1.21</b></td><td><b>1.98</b></td></tr><tr><td>Mean bias %</td><td>n/a</td><td>+0.39</td><td>+0.06</td><td>+0.15</td><td>+0.29</td><td>+0.07</td><td>+1.98</td></tr></table>
+<p>Two things stand out. First, accuracy is strong. <strong>MAPE stays under 1.5%</strong> through
+five years, in line with what professional demographers hit. Second, the big misses come from the
+2019 origin (+1.3% to +3.4%). A model fit before COVID over-predicted, because it could not see the
+2020 and 2021 enrollment dip coming. Origins from 2021 on, the post-COVID regime the live forecast
+actually uses, miss by well under 1%.</p>
 <div class="callout warn">
-  <strong>The fix this implies.</strong> The live forecast's High/Low scenarios span only about
-  ±0.9% at 2030 (13,306–13,551) — <em>narrower than the model's own measured error</em>. The
-  honest band is the empirical one: about <strong>±1.2% at five years</strong>. The
-  scenario fan should be widened to match what the model actually does on held-out data.
+  <strong>The scenario band is too narrow.</strong> The live forecast's High and Low scenarios span
+  only about ±0.9% at 2030 (13,306 to 13,551). That is narrower than the model's own measured error.
+  The honest band is the empirical one, about <strong>±1.2% at five years</strong>. The
+  scenario fan should widen to match what the model actually does on held-out data.
 </div>
 
-<h2>#2 — Multi-year share calibration</h2>
-<p>Kindergarten is the foot of the whole model: <code>K = Johnson County births (−5 yr) × share</code>.
-The live model calibrates that share on a <em>single</em> year (2025 K ÷ 2020 births = 0.728).
-A single year can be noisy. The full series tells a steadier story:</p>
+<h2>Calibrating the share on three years, not one</h2>
+<p>Kindergarten is the foot of the whole model. K equals Johnson County births from five years
+earlier, times the district share. The live model sets that share from a <em>single</em> year, the
+2025 K count over 2020 births, which works out to 0.728. A single year can be noisy.
+The full series tells a steadier story.</p>
 <div class="chart-box">
-  <div class="title">K-entry share of county births, 2016–2025 (raw vs open-enrollment-adjusted)</div>
+  <div class="title">K-entry share of county births, 2016 to 2025 (raw vs open-enrollment-adjusted)</div>
   <svg viewBox="0 0 760 290" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="50" y1="211.7" x2="640" y2="211.7" stroke="#eef2f7"/><text x="44" y="215.7" text-anchor="end" font-size="11" fill="#94a3b8">0.68</text><line x1="50" y1="173.3" x2="640" y2="173.3" stroke="#eef2f7"/><text x="44" y="177.3" text-anchor="end" font-size="11" fill="#94a3b8">0.70</text><line x1="50" y1="135.0" x2="640" y2="135.0" stroke="#eef2f7"/><text x="44" y="139.0" text-anchor="end" font-size="11" fill="#94a3b8">0.72</text><line x1="50" y1="96.7" x2="640" y2="96.7" stroke="#eef2f7"/><text x="44" y="100.7" text-anchor="end" font-size="11" fill="#94a3b8">0.74</text><line x1="50" y1="58.3" x2="640" y2="58.3" stroke="#eef2f7"/><text x="44" y="62.3" text-anchor="end" font-size="11" fill="#94a3b8">0.76</text><text x="50.0" y="267" text-anchor="middle" font-size="10" fill="#64748b">16</text><text x="115.6" y="267" text-anchor="middle" font-size="10" fill="#64748b">17</text><text x="181.1" y="267" text-anchor="middle" font-size="10" fill="#64748b">18</text><text x="246.7" y="267" text-anchor="middle" font-size="10" fill="#64748b">19</text><text x="312.2" y="267" text-anchor="middle" font-size="10" fill="#64748b">20</text><text x="377.8" y="267" text-anchor="middle" font-size="10" fill="#64748b">21</text><text x="443.3" y="267" text-anchor="middle" font-size="10" fill="#64748b">22</text><text x="508.9" y="267" text-anchor="middle" font-size="10" fill="#64748b">23</text><text x="574.4" y="267" text-anchor="middle" font-size="10" fill="#64748b">24</text><text x="640.0" y="267" text-anchor="middle" font-size="10" fill="#64748b">25</text><line x1="50" y1="100.6" x2="640" y2="100.6" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 3"/><text x="646" y="104.6" font-size="10.5" font-weight="700" fill="#94a3b8">pre-2023 0.738</text><line x1="50" y1="139.2" x2="640" y2="139.2" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="5 3"/><text x="646" y="143.2" font-size="10.5" font-weight="700" fill="#1d4ed8">trailing-3yr 0.718</text><polyline points="50.0,122.1 115.6,99.7 181.1,58.9 246.7,103.5 312.2,168.6 377.8,54.2 443.3,119.0 508.9,155.5 574.4,142.2 640.0,119.9" fill="none" stroke="#dc2626" stroke-width="2.5"/><circle cx="50.0" cy="122.1" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="115.6" cy="99.7" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="181.1" cy="58.9" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="246.7" cy="103.5" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="312.2" cy="168.6" r="3.5" fill="#fff" stroke="#dc2626" stroke-width="1.5"/><circle cx="377.8" cy="54.2" r="3.5" fill="#fff" stroke="#dc2626" stroke-width="1.5"/><circle cx="443.3" cy="119.0" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="508.9" cy="155.5" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="574.4" cy="142.2" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><circle cx="640.0" cy="119.9" r="3.5" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/><polyline points="115.6,71.9 181.1,35.2 246.7,84.4 312.2,149.5 377.8,50.1 443.3,114.6 508.9,156.9 574.4,143.4 640.0,121.3" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="2 2"/><circle cx="115.6" cy="71.9" r="2.8" fill="#15803d"/><circle cx="181.1" cy="35.2" r="2.8" fill="#15803d"/><circle cx="246.7" cy="84.4" r="2.8" fill="#15803d"/><circle cx="312.2" cy="149.5" r="2.8" fill="#15803d"/><circle cx="377.8" cy="50.1" r="2.8" fill="#15803d"/><circle cx="443.3" cy="114.6" r="2.8" fill="#15803d"/><circle cx="508.9" cy="156.9" r="2.8" fill="#15803d"/><circle cx="574.4" cy="143.4" r="2.8" fill="#15803d"/><circle cx="640.0" cy="121.3" r="2.8" fill="#15803d"/><text x="646" y="32" font-size="10.5" font-weight="700" fill="#dc2626">raw share</text><text x="646" y="48" font-size="10.5" font-weight="700" fill="#15803d">OE-adjusted</text><text x="646" y="60" font-size="9" fill="#94a3b8">(residential)</text></svg>
 </div>
-<table class="dt"><tr><th>K year</th><th>K enroll</th><th>Births (−5)</th><th>Raw share</th><th>OE-adj</th></tr><tr><td>2016</td><td>1,125</td><td>1,548</td><td>0.727</td><td>—</td></tr><tr><td>2017</td><td>1,146</td><td>1,552</td><td>0.738</td><td>0.753</td></tr><tr><td>2018</td><td>1,157</td><td>1,523</td><td>0.760</td><td>0.772</td></tr><tr><td>2019</td><td>1,101</td><td>1,495</td><td>0.736</td><td>0.746</td></tr><tr><td>2020 <span style="color:#b45309">COVID</span></td><td>1,027</td><td>1,462</td><td>0.702</td><td>0.712</td></tr><tr><td>2021 <span style="color:#b45309">COVID</span></td><td>1,096</td><td>1,438</td><td>0.762</td><td>0.764</td></tr><tr><td>2022</td><td>1,035</td><td>1,421</td><td>0.728</td><td>0.731</td></tr><tr><td>2023</td><td>998</td><td>1,407</td><td>0.709</td><td>0.709</td></tr><tr><td>2024</td><td>992</td><td>1,385</td><td>0.716</td><td>0.716</td></tr><tr><td>2025</td><td>987</td><td>1,356</td><td>0.728</td><td>0.727</td></tr></table>
-<p>The pre-2023 average was <strong>0.738</strong>; since the 2023 trend break the share
-has settled at a trailing-3-year mean of <strong>0.718</strong> — and it is remarkably
-stable there (σ = 0.008). The single-year 0.728 anchor sits <em>above</em> the
-current regime, because 2025 happened to be the high year of the last three. A trailing-mean
-calibration of <strong>0.718</strong> is the more robust Baseline.</p>
+<table class="dt"><tr><th>K year</th><th>K enroll</th><th>Births (−5)</th><th>Raw share</th><th>OE-adj</th></tr><tr><td>2016</td><td>1,125</td><td>1,548</td><td>0.727</td><td>n/a</td></tr><tr><td>2017</td><td>1,146</td><td>1,552</td><td>0.738</td><td>0.753</td></tr><tr><td>2018</td><td>1,157</td><td>1,523</td><td>0.760</td><td>0.772</td></tr><tr><td>2019</td><td>1,101</td><td>1,495</td><td>0.736</td><td>0.746</td></tr><tr><td>2020 <span style="color:#b45309">COVID</span></td><td>1,027</td><td>1,462</td><td>0.702</td><td>0.712</td></tr><tr><td>2021 <span style="color:#b45309">COVID</span></td><td>1,096</td><td>1,438</td><td>0.762</td><td>0.764</td></tr><tr><td>2022</td><td>1,035</td><td>1,421</td><td>0.728</td><td>0.731</td></tr><tr><td>2023</td><td>998</td><td>1,407</td><td>0.709</td><td>0.709</td></tr><tr><td>2024</td><td>992</td><td>1,385</td><td>0.716</td><td>0.716</td></tr><tr><td>2025</td><td>987</td><td>1,356</td><td>0.728</td><td>0.727</td></tr></table>
+<p>The pre-2023 average was <strong>0.738</strong>. Since the 2023 trend break the share
+has settled at a trailing 3-year mean of <strong>0.718</strong>, and it is very stable
+there (standard deviation 0.008). The single-year 0.728 anchor sits above the
+current level, because 2025 happened to be the high year of the last three. A trailing-mean
+calibration of <strong>0.718</strong> is the steadier Baseline.</p>
 
-<h2>#3 — Pulling open enrollment out of the share</h2>
-<p>The share bundles four things: boundary mismatch (district ≠ county), migration, private-school
-choice, and <em>open enrollment</em>. We can measure the last one directly. Net open enrollment
-(in − out) for ICCSD swung from <strong>−272 in 2017 to +15 by 2025</strong> — a +287 recovery.
-Removing the per-grade open-enrollment slice gives a "residential" share driven only by resident
-births (green dashed line above).</p>
+<h2>Pulling open enrollment out of the share</h2>
+<p>The share bundles four things together. Boundary mismatch (the district is not the county),
+migration, private-school choice, and open enrollment. The last one we can measure directly. Net
+open enrollment for ICCSD swung from <strong>down 272 in 2017 to up 15 by 2025</strong>, a 287-student
+recovery. Take the per-grade open-enrollment slice out and you get a "residential" share driven only
+by resident births (the green dashed line above).</p>
 <div class="callout">
-  <strong>What it reveals.</strong> In 2017–2020, ICCSD was bleeding students to open enrollment, so
-  its <em>residential</em> demand was actually <em>higher</em> than enrolled counts showed
-  (residential share ≈ 0.75 vs raw ≈ 0.74). As that bleed stopped, enrolled counts were
-  <em>propped up</em> by the recovery. So the raw share fell only 1.1
-  points (2017→2025) while the residential share fell 2.6 points.
-  The open-enrollment recovery was a one-time tailwind — and it is now spent (net OE ≈ 0, with little
-  room to rise further). Projecting forward on the raw 0.728 therefore borrows from a
-  cushion that won't repeat; the residential trailing-3yr share (0.717) ≈ the recalibrated
-  0.718, confirming it as the right forward anchor.
+  <strong>An open-enrollment recovery has been propping up the count.</strong> From 2017 to 2020,
+  ICCSD was losing students to open enrollment, so its residential demand was actually higher than
+  the enrolled counts showed (residential share about 0.75 vs raw about 0.74). As that bleed stopped,
+  the enrolled counts got propped up by the recovery. So the raw share fell only
+  1.1 points from 2017 to 2025, while the residential share fell
+  2.6 points. That recovery was a one-time tailwind, and it is now
+  spent. Net open enrollment is near zero, with little room to rise. Projecting forward on the raw
+  0.728 borrows from a cushion that will not repeat. The residential trailing-3-year
+  share (0.717) lands right on the recalibrated 0.718, which confirms it as the
+  right forward anchor.
 </div>
 
-<h2>Putting it together: the recalibrated forecast</h2>
-<p>Adopting the trailing-mean share (0.718) and the empirically-measured bands moves the
-Baseline down modestly and widens the cone of uncertainty to its honest width:</p>
+<h2>The recalibrated forecast</h2>
+<p>Adopt the trailing-mean share (0.718) and the measured bands, and the Baseline moves
+down a little while the cone of uncertainty widens to its honest width.</p>
 <div class="chart-box">
   <div class="title">Recalibrated Baseline (share 0.718) with empirical confidence band</div>
   <svg viewBox="0 0 760 280" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="52" y1="244.0" x2="744" y2="244.0" stroke="#eef2f7"/><text x="46" y="248.0" text-anchor="end" font-size="10.5" fill="#94a3b8">13.0k</text><line x1="52" y1="187.5" x2="744" y2="187.5" stroke="#eef2f7"/><text x="46" y="191.5" text-anchor="end" font-size="10.5" fill="#94a3b8">13.4k</text><line x1="52" y1="131.0" x2="744" y2="131.0" stroke="#eef2f7"/><text x="46" y="135.0" text-anchor="end" font-size="10.5" fill="#94a3b8">13.8k</text><line x1="52" y1="74.5" x2="744" y2="74.5" stroke="#eef2f7"/><text x="46" y="78.5" text-anchor="end" font-size="10.5" fill="#94a3b8">14.2k</text><line x1="52" y1="18.0" x2="744" y2="18.0" stroke="#eef2f7"/><text x="46" y="22.0" text-anchor="end" font-size="10.5" fill="#94a3b8">14.6k</text><text x="52.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">18</text><text x="109.7" y="260" text-anchor="middle" font-size="10" fill="#64748b">19</text><text x="167.3" y="260" text-anchor="middle" font-size="10" fill="#64748b">20</text><text x="225.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">21</text><text x="282.7" y="260" text-anchor="middle" font-size="10" fill="#64748b">22</text><text x="340.3" y="260" text-anchor="middle" font-size="10" fill="#64748b">23</text><text x="398.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">24</text><text x="455.7" y="260" text-anchor="middle" font-size="10" fill="#64748b">25</text><text x="513.3" y="260" text-anchor="middle" font-size="10" fill="#64748b">26</text><text x="571.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">27</text><text x="628.7" y="260" text-anchor="middle" font-size="10" fill="#64748b">28</text><text x="686.3" y="260" text-anchor="middle" font-size="10" fill="#64748b">29</text><text x="744.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">30</text><polygon points="455.7,70.7 513.3,64.2 571.0,83.5 628.7,115.5 686.3,131.6 744.0,162.6 744.0,208.4 686.3,187.8 628.7,147.1 571.0,120.8 513.3,110.0 455.7,70.7" fill="#3b82f6" fill-opacity="0.12"/><polyline points="52.0,104.2 109.7,63.8 167.3,110.2 225.0,68.7 282.7,65.7 340.3,65.5 398.0,44.1 455.7,70.7" fill="none" stroke="#0f172a" stroke-width="2.5"/><circle cx="52.0" cy="104.2" r="3" fill="#0f172a"/><circle cx="109.7" cy="63.8" r="3" fill="#0f172a"/><circle cx="167.3" cy="110.2" r="3" fill="#0f172a"/><circle cx="225.0" cy="68.7" r="3" fill="#0f172a"/><circle cx="282.7" cy="65.7" r="3" fill="#0f172a"/><circle cx="340.3" cy="65.5" r="3" fill="#0f172a"/><circle cx="398.0" cy="44.1" r="3" fill="#0f172a"/><circle cx="455.7" cy="70.7" r="3" fill="#0f172a"/><polyline points="455.7,70.7 513.3,87.1 571.0,102.2 628.7,131.3 686.3,159.7 744.0,185.5" fill="none" stroke="#1d4ed8" stroke-width="2.5" stroke-dasharray="7 4"/><circle cx="513.3" cy="87.1" r="3" fill="#1d4ed8"/><circle cx="571.0" cy="102.2" r="3" fill="#1d4ed8"/><circle cx="628.7" cy="131.3" r="3" fill="#1d4ed8"/><circle cx="686.3" cy="159.7" r="3" fill="#1d4ed8"/><circle cx="744.0" cy="185.5" r="3" fill="#1d4ed8"/><text x="744.0" y="201.5" text-anchor="end" font-size="11" font-weight="800" fill="#1d4ed8">13,414</text><text x="744.0" y="156.6" text-anchor="end" font-size="10" fill="#3b82f6">13,576</text><text x="744.0" y="222.4" text-anchor="end" font-size="10" fill="#3b82f6">13,252</text></svg>
 </div>
-<table class="dt"><tr><th>Year</th><th>Old base (0.728)</th><th>Recal. base (0.718)</th><th>Empirical band</th><th>Range</th></tr><tr><td>2026</td><td>14,124</td><td>14,111</td><td>±1.15%</td><td>13,949 – 14,273</td></tr><tr><td>2027</td><td>14,030</td><td>14,004</td><td>±0.95%</td><td>13,872 – 14,136</td></tr><tr><td>2028</td><td>13,837</td><td>13,798</td><td>±0.81%</td><td>13,686 – 13,910</td></tr><tr><td>2029</td><td>13,649</td><td>13,597</td><td>±1.46%</td><td>13,398 – 13,796</td></tr><tr><td>2030</td><td>13,479</td><td>13,414</td><td>±1.21%</td><td>13,252 – 13,576</td></tr></table>
+<table class="dt"><tr><th>Year</th><th>Old base (0.728)</th><th>Recal. base (0.718)</th><th>Empirical band</th><th>Range</th></tr><tr><td>2026</td><td>14,124</td><td>14,111</td><td>±1.15%</td><td>13,949 to 14,273</td></tr><tr><td>2027</td><td>14,030</td><td>14,004</td><td>±0.95%</td><td>13,872 to 14,136</td></tr><tr><td>2028</td><td>13,837</td><td>13,798</td><td>±0.81%</td><td>13,686 to 13,910</td></tr><tr><td>2029</td><td>13,649</td><td>13,597</td><td>±1.46%</td><td>13,398 to 13,796</td></tr><tr><td>2030</td><td>13,479</td><td>13,414</td><td>±1.21%</td><td>13,252 to 13,576</td></tr></table>
 <div class="callout good">
-  <strong>Net effect.</strong> The recalibrated 2030 Baseline is <strong>13,414</strong>
-  (vs the current 13,479) — about 65 students lower, a
-  ~0.5% change. Small, because the engine and
-  data are sound; the value is that the Baseline is now anchored on three years instead of one, the
-  band reflects measured rather than guessed error, and the open-enrollment tailwind is no longer
-  silently propping up the projection. The enrollment decline is, if anything, marginally steeper —
-  pushing the revenue headwind from ~$6.7M to ~$7.3M/year by 2030.
+  <strong>The change is small, and that is the point.</strong> The recalibrated 2030 Baseline is
+  <strong>13,414</strong>, against the current 13,479. About
+  65 students lower, a
+  0.5% change. It stays small because the
+  engine and the data are sound. What changes is the footing. The Baseline is now anchored on three
+  years instead of one, the band reflects measured error instead of a guess, and the open-enrollment
+  tailwind is no longer quietly holding the projection up. The decline is if anything a little
+  steeper, which pushes the revenue headwind from about $6.7M to about
+  $7.3M/year by 2030.
 </div>
 
-<h2>What still would help (not done here)</h2>
+<h2>What would still help</h2>
 <ul>
-  <li><strong>Corridor building permits</strong> (North Liberty / Tiffin / Coralville) — the only
-  true leading indicator for in-migration; would replace the share <em>guess</em> with a data series.</li>
-  <li><strong>Sub-county / resident births</strong> — shrinks the boundary-mismatch part of the share.</li>
-  <li><strong>Finalized 2023–24 births</strong> — currently estimated; firms up the 2028–29 K cohorts.</li>
+  <li><strong>Corridor building permits</strong> in North Liberty, Tiffin, and Coralville. The only
+  real leading indicator for in-migration. It would replace the share guess with a data series.</li>
+  <li><strong>Sub-county or resident births.</strong> Shrinks the boundary-mismatch part of the share.</li>
+  <li><strong>Finalized 2023 and 2024 births.</strong> Currently estimated. Firms up the 2028 and
+  2029 K cohorts.</li>
 </ul>
 
 <p style="margin-top:24px">
-  <a href="iccsd-enrollment-forecast.html">→ The live enrollment forecast</a><br>
-  <a href="iccsd-enrollment-forecast-methodology.html">→ Full model methodology</a><br>
-  <a href="iccsd-enrollment-revenue-bridge.html">→ Enrollment → revenue bridge</a>
+  <a href="iccsd-enrollment-forecast.html">The live enrollment forecast &rarr;</a><br>
+  <a href="iccsd-enrollment-forecast-methodology.html">Full model methodology &rarr;</a><br>
+  <a href="iccsd-enrollment-revenue-bridge.html">Enrollment to revenue bridge &rarr;</a>
 </p>
 
 <p class="src">All figures recomputed by scripts/build_forecast_backtest.py from: Iowa DOE BEDS
-grade vectors 2016–2025; Johnson County births (CDC WONDER / Iowa Vital Statistics, lagged 5 yr);
-Iowa DOE certified enrollment net open-enrollment 2017–2025. Backtest uses origin years
-2019–2024, GPRs and share calibrated only on data available at each origin.
-Open-enrollment is allocated to kindergarten pro-rata by enrollment (a measurable approximation,
-not a grade-level census).</p>
+grade vectors 2016 to 2025. Johnson County births (CDC WONDER / Iowa Vital Statistics, lagged 5
+years). Iowa DOE certified enrollment net open enrollment 2017 to 2025. Backtest uses origin years
+2019 to 2024, with GPRs and share calibrated only on data available at each
+origin. Open enrollment is allocated to kindergarten pro-rata by enrollment, a measurable
+approximation, not a grade-level census.</p>
 
 </div>
 </body>

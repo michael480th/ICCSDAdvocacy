@@ -51,10 +51,10 @@ def funnel_svg():
     W, rowh, gap, top, left, barmax = 760, 46, 16, 16, 250, 460
     rows = [
         ("All ICCSD-resident ESA users", ESA_TOTAL, "#64748b", "2025-26 headline count"),
-        ("Already private (inframarginal)", INFRAMARGINAL, "#94a3b8", "~78% — subsidy, no enrollment effect"),
+        ("Already private", INFRAMARGINAL, "#94a3b8", "about 78%, a subsidy with no enrollment effect"),
         ("Upper-bound net move to private", EXCESS_PRIVATE, "#f59e0b", "constant-share counterfactual"),
-        ("…minus newly-accredited schools", NEWLY_ACCRED, "#cbd5e1", "already non-public students"),
-        ("Defensible public→private transfer", NET_TRANSFER, "#dc2626", "Regina +130, Faith +39"),
+        ("Minus newly-accredited schools", NEWLY_ACCRED, "#cbd5e1", "already non-public students"),
+        ("Real move from public to private", NET_TRANSFER, "#dc2626", "Regina +130, Faith +39"),
     ]
     H = top * 2 + len(rows) * rowh + (len(rows) - 1) * gap
     parts = [f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" '
@@ -106,7 +106,7 @@ def share_svg():
 
 def table_html():
     def row(label, vals, fmt="{:,}"):
-        cells = "".join(f"<td>{fmt.format(v) if v is not None else '—'}</td>" for v in vals)
+        cells = "".join(f"<td>{fmt.format(v) if v is not None else 'n/a'}</td>" for v in vals)
         return f"<tr><td>{label}</td>{cells}</tr>"
     head = "".join(f"<th>{y}</th>" for y in YEARS)
     return (f'<table class="dt"><tr><th>ICCSD-resident pool (dist 3141)</th>{head}</tr>'
@@ -122,7 +122,7 @@ HTML = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Is ESA Draining ICCSD Enrollment? — Decomposition</title>
+<title>Is ESA Draining ICCSD Enrollment?</title>
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff}}
 *{{box-sizing:border-box}}
@@ -166,104 +166,101 @@ li{{margin:4px 0}}
 {NAV}
 <div class="wrap">
 
-<h1>Is ESA Draining ICCSD Enrollment?</h1>
-<p class="sub">A decomposition of Education Savings Account use vs. actual public→private movement ·
-ICCSD boundary (Iowa DE district 3141), 2022-23 → 2025-26</p>
+<h1>Is ESA draining ICCSD enrollment?</h1>
+<p class="sub">Education Savings Account use vs. actual movement from public to private ·
+ICCSD boundary (Iowa DE district 3141), 2022-23 to 2025-26</p>
 
 <div class="callout">
-  <strong>The question.</strong> ICCSD has 1,440 resident students using an Iowa Education Savings
-  Account (ESA) voucher in 2025-26. A high ESA count is often read as proof that vouchers are
-  pulling students out of public schools. But that only holds if those students <em>would have
-  enrolled in ICCSD</em> without the program. How many actually would have?
+  <strong>A high voucher count is not the same as students leaving.</strong> ICCSD has 1,440
+  resident students on an Iowa Education Savings Account (ESA) voucher in 2025-26. That number only
+  means a public loss if those students would have enrolled in ICCSD without the program. Most of
+  them would not have. They were already in private school.
 </div>
 
 <div class="kpi-row">
   <div class="kpi"><div class="label">ICCSD-resident ESA users (2025-26)</div>
     <div class="val">1,440</div><div class="note">headline voucher count</div></div>
-  <div class="kpi green"><div class="label">Already private (inframarginal)</div>
-    <div class="val">~78%</div><div class="note">≈1,130 students — no enrollment effect</div></div>
-  <div class="kpi red"><div class="label">Defensible public→private transfer</div>
-    <div class="val">~120–190</div><div class="note">over 3 years — &lt;1.5% of the district</div></div>
+  <div class="kpi green"><div class="label">Already private</div>
+    <div class="val">~78%</div><div class="note">about 1,130 students, no enrollment effect</div></div>
+  <div class="kpi red"><div class="label">Real move from public to private</div>
+    <div class="val">120-190</div><div class="note">over 3 years, under 1.5% of the district</div></div>
 </div>
 
-<h2>The funnel — from 1,440 vouchers to ~175 transfers</h2>
-<p>The headline ESA count cannot, by itself, show a transfer. Most of it is the eligibility
-phase-in (income-capped in 2023, universal by 2025) reaching families who were <strong>already in
-private school</strong>. Stripping out the students who were never going to be in ICCSD leaves a
-much smaller figure for genuine public→private movement.</p>
+<h2>From 1,440 vouchers down to about 175 transfers</h2>
+<p>The headline ESA count cannot show a transfer by itself. Most of it is the eligibility phase-in,
+income-capped in 2023 and universal by 2025, reaching families who were <strong>already in private
+school</strong>. Take out the students who were never going to be in ICCSD and a much smaller number
+is left for real movement from public to private.</p>
 <div class="chart-box">
-  <div class="title">ESA users → defensible transfers (2025-26)</div>
+  <div class="title">ESA users down to real transfers (2025-26)</div>
   {funnel_svg()}
 </div>
-<p class="src">Funnel logic from ESA_ICCSD_Decomposition.xlsx. "Upper-bound net move" = excess private
-enrollment above what the pre-ESA private <em>share</em> would predict. "Newly-accredited schools"
-= Montessori, Hillside, and the Tamarack microschool entering the certified count by getting
-accredited for ESA — students already non-public.</p>
+<p class="src">Funnel logic from ESA_ICCSD_Decomposition.xlsx. "Upper-bound net move" is the private
+enrollment above what the pre-ESA private share would predict. "Newly-accredited schools" are
+Montessori, Hillside, and the Tamarack microschool entering the certified count by getting
+accredited for ESA. Those students were already non-public.</p>
 
 <h2>Why the count overstates the effect</h2>
 <div class="chart-box">
   <div class="title">Private share of the resident school-age pool</div>
   {share_svg()}
 </div>
-<p>The private <em>share</em> of the ICCSD-resident pool rose from 7.6% to 9.6% over the ESA
-period — real, but modest. Holding the pre-ESA share constant and applying it to each year's
-resident pool, the "excess" private enrollment (the part not explained by population size) is
-about <strong>+311 by 2025-26</strong>. That is the <em>upper bound</em> on would-be-public
-families moving to private. Most of the 1,440 ESA users sit below this line — they were private
-already.</p>
+<p>The private <em>share</em> of the ICCSD-resident pool rose from 7.6% to 9.6% over the ESA period.
+Real, but modest. Hold the pre-ESA share constant, apply it to each year's resident pool, and the
+"excess" private enrollment (the part population growth does not explain) is about
+<strong>+311 by 2025-26</strong>. That is the upper bound on would-be-public families moving to
+private. Most of the 1,440 ESA users sit below that line. They were private already.</p>
 
 {table_html()}
 
-<h2>Five reasons the hypothesis holds</h2>
+<h2>Five reasons it holds</h2>
 <ul>
-  <li><strong>ESA counts can't show transfer.</strong> The 471→1,440 ramp tracks the eligibility
-  phase-in (income-capped → universal), not students moving.</li>
-  <li><strong>Private enrollment grew only modestly.</strong> +331 over three years; the
-  share-adjusted "excess" is +311, and ~136 of that is schools that simply got accredited.</li>
-  <li><strong>The public side didn't crater.</strong> ICCSD public was roughly flat (−70) across
-  the period; in 2024-25 it actually <em>rose</em> while ESA grew. No co-movement of
-  public-down with ESA-up.</li>
-  <li><strong>No new private capacity.</strong> No new K-12 private school opened in the ESA era;
-  the only physical expansions (Regina's 2020 wing, 2021 early-childhood center) predate ESA.</li>
-  <li><strong>The plateau predates ESA.</strong> Pre-ESA 2015-16 forecasts over-projected 2024-25
-  by 1,100–1,800 students; the Nov-2023 forecast (just after ESA launched) was within ~200.
-  Johnson County births peaked in 2016, feeding smaller kindergarten classes from ~2022 on.</li>
+  <li><strong>The count tracks eligibility, not moves.</strong> The 471 to 1,440 ramp follows the
+  phase-in from income-capped to universal, not students changing schools.</li>
+  <li><strong>Private enrollment grew only a little.</strong> Up 331 over three years. The
+  share-adjusted excess is 311, and about 136 of that is schools that simply got accredited.</li>
+  <li><strong>The public side did not crater.</strong> ICCSD public was roughly flat, down 70 across
+  the period. In 2024-25 it actually rose while ESA grew. Public-down does not move with ESA-up.</li>
+  <li><strong>No new private capacity opened.</strong> No new K-12 private school opened in the ESA
+  era. The only physical expansions, Regina's 2020 wing and 2021 early-childhood center, predate it.</li>
+  <li><strong>The plateau predates ESA.</strong> Pre-ESA 2015-16 forecasts overshot 2024-25 by
+  1,100 to 1,800 students. The Nov-2023 forecast, just after ESA launched, was within about 200.
+  Johnson County births peaked in 2016 and feed smaller kindergarten classes from about 2022 on.</li>
 </ul>
 
 <div class="callout warn">
-  <strong>Bottom line.</strong> "ESA use is high, therefore it is lowering ICCSD enrollment" does
-  not hold for Iowa City. ESA use is high mainly because families <em>already</em> in private
-  school became eligible for a subsidy. The defensible public→private transfer attributable to
-  ESA is on the order of <strong>120–190 students over three years (&lt;1.5% of the district)</strong> —
-  small, concentrated at Regina, and not the driver of ICCSD's enrollment plateau. The plateau is
-  demographic.
+  <strong>The voucher count is not the cause of the plateau.</strong> ESA use is high mainly because
+  families already in private school became eligible for a subsidy. The real move from public to
+  private that ESA can account for is about <strong>120 to 190 students over three years, under 1.5%
+  of the district</strong>. It is small, concentrated at Regina, and not what flattened ICCSD
+  enrollment. The plateau is demographic.
 </div>
 
 <h2>What would have changed the conclusion</h2>
-<p>If private schools had grown sharply (new buildings, new K-12 schools, waitlists) <em>and</em>
-ICCSD had fallen below its post-ESA demographic forecast at the same time, that would signal a real
-mix shift. We don't see it: the private growth that occurred is modest and demographically
+<p>Two things together would signal a real mix shift. Private schools growing sharply, with new
+buildings, new K-12 schools, or waitlists. And ICCSD falling below its post-ESA demographic
+forecast at the same time. Neither happened. The private growth was modest and demographically
 plausible, and the public count held.</p>
 
 <h2>Caveats</h2>
 <ul>
-  <li>District-3141 private enrollment is a close proxy for, but not identical to, the ICCSD-resident
-  ESA population (some residents attend out-of-area private; some boundary-private students are
-  non-residents). Directional, not a census.</li>
-  <li>The constant-share counterfactual is a simplification — we report a range, not a point.</li>
-  <li>ESA-by-school-of-attendance and open-enrollment-by-receiving-district were not obtainable
-  from public sources and would tighten the estimate.</li>
-  <li>A cross-check supports the pool measurement: public + private (dist 3141) ≈ ACS school-age
-  population each year, so homeschool/other is small.</li>
+  <li>District-3141 private enrollment is a close proxy for the ICCSD-resident ESA population, but
+  not identical. Some residents attend private school out of the area, and some boundary-private
+  students are non-residents. Directional, not a census.</li>
+  <li>The constant-share counterfactual is a simplification, so the page reports a range, not a point.</li>
+  <li>ESA by school of attendance and open enrollment by receiving district were not available from
+  public sources. Either would tighten the estimate.</li>
+  <li>A cross-check supports the pool measurement. Public plus private (dist 3141) tracks the ACS
+  school-age population each year, so homeschool and other is small.</li>
 </ul>
 
 <p style="margin-top:24px">
-  <a href="iccsd-enrollment-decomposition.html">→ What's driving ICCSD enrollment? Full factor decomposition</a><br>
-  <a href="iccsd-enrollment-forecast.html">→ ICCSD enrollment forecast (three scenarios)</a>
+  <a href="iccsd-enrollment-decomposition.html">What's driving ICCSD enrollment? Full factor decomposition &rarr;</a><br>
+  <a href="iccsd-enrollment-forecast.html">ICCSD enrollment forecast, three scenarios &rarr;</a>
 </p>
 
 <p class="src">Source: Iowa DOE Certified Enrollment by District (public &amp; non-public, dist 3141),
-2022-23 through 2025-26; Iowa Dept. of Education ESA program counts; ICCSD ESA Private Study
+2022-23 through 2025-26. Iowa Dept. of Education ESA program counts. ICCSD ESA Private Study
 (ESA_ICCSD_Decomposition.xlsx, FINDINGS.md). Built {OUT} via scripts/build_esa_decomposition.py.</p>
 
 </div>
