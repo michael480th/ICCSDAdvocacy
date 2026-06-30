@@ -22,25 +22,20 @@ and Financial Health datasets — June 2026.
   SVG chart + table comparing Iowa DOE 2025, Woolpert Feb 2025, and our Baseline. All three
   converge on the mid-13,000s by 2030; Iowa DOE and our model land within 245 students.
 
+- **✅ ESA decomposition page** *(was item #2)* — `iccsd-esa-decomposition.html`
+  (built by `scripts/build_esa_decomposition.py`). Funnel from 1,440 ICCSD-resident ESA
+  vouchers → ~311 upper-bound → ~175 defensible public→private transfers (~78% inframarginal).
+  Inline-SVG funnel + private-share trend. Linked from the forecast and decomposition pages
+  and the Other-analyses hub.
+
+- **✅ Enrollment → revenue bridge** *(was item #4)* — `iccsd-enrollment-revenue-bridge.html`
+  (built by `scripts/build_revenue_bridge.py`). ~752-student Baseline decline by 2030 →
+  ~$6.8M/yr recurring headwind at $9,000/student (~$18M cumulative 2026–2030), laid against
+  the ~31-day / ~$18M GF cash cushion vs. a 90-day / ~$52M target.
+
 ---
 
 ## Queued
-
-### 2. ESA decomposition page
-*Data in hand: `Certified Enrollment/ESA Private Study/FINDINGS.md` + `.xlsx`*
-
-Build a proper HTML page from the completed FINDINGS.md. The central finding —
-~78% of ESA users were already private (inframarginal); net public→private movement
-is ~120–190 students over 3 years, under 1.5% of the district — resolves the open
-question on the forecast page and deserves its own citable analysis.
-
-### 4. Enrollment → revenue bridge
-*Derivable from enrollment projections + Iowa per-pupil foundation aid rate (~$9,000)*
-
-Short analysis: Baseline 2030 scenario = ~700 fewer students than 2025 × $9,000
-state foundation aid = ~$6M/year revenue headwind. Layer against current thin
-cash position (31 days net cash vs. 90-day target). Makes the enrollment decline
-financially consequential in concrete terms.
 
 ### 5. Ten-Point Test trend (FY2014–2025)
 *Data in hand: `ICCSD_FinancialHealth/FY15-FY25 Summary.xlsx`*
