@@ -9,10 +9,10 @@ DATA PROVENANCE:
     All values are Iowa City Community School District K-12 headcount by grade,
     October 1 count date.
 
-ESA FINDING: K enrollment has declined three consecutive years (1,035→998→992→987).
-  The post-ESA effective share (avg 0.718) is below the pre-ESA avg (0.742).
-  Corridor in-migration (North Liberty / Tiffin) is currently partially offsetting voucher
-  leakage, but the net trend is downward. The three scenarios test how that offset evolves.
+OBSERVED TREND: K enrollment has declined three consecutive years (1,035→998→992→987).
+  The 2023–2025 average district share (0.718) is below the 2016–2022 average (0.742).
+  Multiple factors interact — births, in-migration, open enrollment, program participation —
+  and we do not have enrollment-transfer data to isolate any single cause.
 
 Run:  python3 scripts/build_enrollment_forecast.py
 """
@@ -29,7 +29,7 @@ GRADES = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 NG = len(GRADES)  # 13
 
 # ── PARAMETERS ─────────────────────────────────────────────────────────────────
-ESA_BREAK_TRANS = 2022        # last "pre-ESA" transition origin year
+TREND_BREAK_YEAR = 2022       # last year before observed K-share decline (2023+)
 FORECAST_START = 2026
 FORECAST_YEARS = 5
 
@@ -37,7 +37,8 @@ FORECAST_YEARS = 5
 # Observed from actual BEDS K counts (excl. 2020 COVID year):
 #   2016:0.727  2017:0.738  2018:0.760  2019:0.736  2021:0.762
 #   2022:0.729  2023:0.710  2024:0.716  2025:0.728
-# Pre-ESA avg (excl. COVID): 0.740. Post-ESA avg (2023-25): 0.718.
+# 2016–2022 avg (excl. COVID): ~0.742. 2023–2025 avg: ~0.718.
+# Cause of the shift is unknown — births, migration, open enrollment, program participation.
 # Baseline = 0.728 (2025 most-recent actual). Used only for forecasting K.
 ICCSD_COUNTY_SHARE = 0.728
 
@@ -120,34 +121,33 @@ def smooth_gprs(gprs, year_filter=None):
 
 
 # ── SCENARIOS ──────────────────────────────────────────────────────────────────
-# ESA finding: K enrollment has declined 3 straight years; post-ESA share avg (0.718)
-# is below pre-ESA avg (0.742). Corridor in-migration partially offsets voucher leakage.
-# Scenarios test whether that offset holds, grows, or reverses.
+# K enrollment has declined 3 straight years; 2023–2025 share avg is below 2016–2022 avg.
+# Cause is unknown. Scenarios bracket the range of plausible share trajectories.
 
-PRE_ESA_YEARS  = list(range(2016, ESA_BREAK_TRANS + 1))   # origin years 2016-2022
-POST_ESA_YEARS = list(range(ESA_BREAK_TRANS + 1, 2025))   # origin years 2023-2024
+PRE_2023_YEARS  = list(range(2016, TREND_BREAK_YEAR + 1))   # origin years 2016-2022
+POST_2023_YEARS = list(range(TREND_BREAK_YEAR + 1, 2025))   # origin years 2023-2024
 
 SCENARIOS = {
     'High': {
         'gpr_filter': None,   # all years; same retention as Baseline; higher K share
-        'k_share': 0.740,   # growth accelerates; more corridor families enroll
+        'k_share': 0.740,   # in-migration strengthens; share recovers above 2025 level
         'color': '#15803d',
         'dash': '',
-        'desc': 'Corridor in-migration strengthens; effective K-entry share rises to 0.740',
+        'desc': 'In-migration strengthens; effective K-entry share rises to 0.740',
     },
     'Baseline': {
         'gpr_filter': None,   # all years; COVID 0.3×
-        'k_share': 0.728,     # current calibration holds
+        'k_share': 0.728,     # 2025 calibrated share holds
         'color': '#1e3a5f',
         'dash': '8,4',
-        'desc': 'Corridor growth continues to offset ESA; effective share holds at 0.728',
+        'desc': '2025 share holds at 0.728; grade retention follows all-years pattern',
     },
     'Low': {
-        'gpr_filter': POST_ESA_YEARS,
-        'k_share': 0.680,   # migration slows; ESA overtakes; net leakage ~7%
+        'gpr_filter': POST_2023_YEARS,
+        'k_share': 0.680,   # in-migration slows; share falls further
         'color': '#b91c1c',
         'dash': '',
-        'desc': 'Migration slows; ESA leakage outpaces growth; effective share falls to 0.68',
+        'desc': 'In-migration slows; district share of county births falls to 0.680',
     },
 }
 
@@ -240,7 +240,7 @@ def build_fan_chart():
     esa_x = cx(2022.5)
     esa_line = (f'<line x1="{esa_x:.1f}" y1="{PAD_T}" x2="{esa_x:.1f}" y2="{H-PAD_B}" '
                 f'stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>'
-                f'<text x="{esa_x+3:.1f}" y="{PAD_T+10}" font-size="9" fill="#92400e">ESA ▶</text>')
+                f'<text x="{esa_x+3:.1f}" y="{PAD_T+10}" font-size="9" fill="#92400e">2023 ▶</text>')
 
     div_x = cx(2025)
     div_line = (f'<line x1="{div_x:.1f}" y1="{PAD_T}" x2="{div_x:.1f}" y2="{H-PAD_B}" '
@@ -317,7 +317,7 @@ def build_grade_table():
         e = ENROLLMENT[y]
         src_label = '<span class="actual-tag">BEDS actual</span>'
         yr_note = ' <span class="yr-tag">COVID</span>' if y in (2020, 2021) else ''
-        yr_note += ' <span class="yr-tag" style="background:#fef3c7;color:#92400e">ESA▶</span>' if y == 2023 else ''
+        yr_note += ' <span class="yr-tag" style="background:#fef3c7;color:#92400e">2023▶</span>' if y == 2023 else ''
         cells = ''.join(
             f'<td style="background:{cell_bg(e[gi],g_min[gi],g_max[gi])}">{e[gi]:,}</td>'
             for gi in range(NG)
@@ -330,8 +330,8 @@ def build_grade_table():
 # ── GPR TABLE ─────────────────────────────────────────────────────────────────
 
 def build_gpr_table():
-    pre  = smooth_gprs(gprs_all, year_filter=PRE_ESA_YEARS)
-    post = smooth_gprs(gprs_all, year_filter=POST_ESA_YEARS)
+    pre  = smooth_gprs(gprs_all, year_filter=PRE_2023_YEARS)
+    post = smooth_gprs(gprs_all, year_filter=POST_2023_YEARS)
     base = scenario_gprs['Baseline']
 
     def fmt(v):
@@ -341,8 +341,8 @@ def build_gpr_table():
         return f'<span style="color:{c};font-weight:600">{v:.3f}</span>'
 
     header = ('<tr><th>Transition</th>'
-              '<th>Pre-ESA avg<br><small>2016–2022</small></th>'
-              '<th>Post-ESA avg<br><small>2023–2025</small></th>'
+              '<th>2016–2022 avg</th>'
+              '<th>2023–2025 avg</th>'
               '<th>Baseline blend</th></tr>')
     rows = ''
     for gi in range(NG - 1):
@@ -382,10 +382,10 @@ def build_forecast_table():
 def build_k_table():
     _ks = {by+5: ENROLLMENT[by+5][0]/BIRTHS[by]
            for by in BIRTHS if (by+5) in ENROLLMENT and BIRTHS[by]}
-    _pre  = [v for y,v in _ks.items() if y < 2023 and y != 2020]
-    _post = [v for y,v in _ks.items() if y >= 2023]
-    _avg_pre  = sum(_pre)  / len(_pre)  if _pre  else ICCSD_COUNTY_SHARE
-    _avg_post = sum(_post) / len(_post) if _post else ICCSD_COUNTY_SHARE
+    _pre_2023  = [v for y,v in _ks.items() if y < 2023 and y != 2020]
+    _post_2023 = [v for y,v in _ks.items() if y >= 2023]
+    _avg_pre  = sum(_pre_2023)  / len(_pre_2023)  if _pre_2023  else ICCSD_COUNTY_SHARE
+    _avg_post = sum(_post_2023) / len(_post_2023) if _post_2023 else ICCSD_COUNTY_SHARE
 
     header = ('<tr><th>Birth yr</th><th>Johnson Co.<br>births</th>'
               '<th>K entry yr</th><th>Actual K<br>(BEDS)</th>'
@@ -399,9 +399,9 @@ def build_k_table():
             share = act / b
             sc = '#16a34a' if share >= 0.728 else '#b91c1c'
             note = 'COVID — K suppressed' if ky == 2020 else (
-                   'ESA year 1' if ky == 2023 else (
-                   'ESA year 2' if ky == 2024 else (
-                   'ESA year 3 · calibration point' if ky == 2025 else '')))
+                   'trend break begins' if ky == 2023 else (
+                   '' if ky == 2024 else (
+                   'calibration point' if ky == 2025 else '')))
             rows += (f'<tr><td>{by}</td><td>{b:,}</td><td>{ky}</td>'
                      f'<td style="font-weight:700">{act:,}</td>'
                      f'<td style="color:{sc};font-weight:700">{share:.3f}</td>'
@@ -420,8 +420,8 @@ def build_k_table():
             f'<p style="font-size:11.5px;color:#64748b;margin:6px 0 0">'
             f'All historical K values from Iowa DOE BEDS (verified). '
             f'Share = actual K ÷ Johnson County births 5 years prior. '
-            f'Pre-ESA avg (excl. COVID 2020): {_avg_pre:.3f}. '
-            f'Post-ESA avg (2023–25): {_avg_post:.3f}.</p>')
+            f'2016–2022 avg share (excl. COVID 2020): {_avg_pre:.3f}. '
+            f'2023–2025 avg share: {_avg_post:.3f}. Cause of shift unknown.</p>')
 
 
 # ── RAW GPR MATRIX (for methodology page) ─────────────────────────────────────
@@ -469,8 +469,8 @@ def build_raw_gpr_matrix():
 def build_methodology_page():
     raw_gpr_matrix = build_raw_gpr_matrix()
 
-    pre  = smooth_gprs(gprs_all, year_filter=PRE_ESA_YEARS)
-    post = smooth_gprs(gprs_all, year_filter=POST_ESA_YEARS)
+    pre  = smooth_gprs(gprs_all, year_filter=PRE_2023_YEARS)
+    post = smooth_gprs(gprs_all, year_filter=POST_2023_YEARS)
 
     def fg(v):
         if v is None: return '—'
@@ -606,22 +606,22 @@ double (2×), because recent patterns are more predictive than older ones.</p>
   <li><strong>Baseline scenario:</strong> uses all available years with the COVID discounts
   described above. Kindergarten share stays at 0.728 — the current calibrated level.</li>
   <li><strong>Low scenario:</strong> uses only the most recent two school years (2023–2025),
-  giving more weight to the post-voucher environment. Combined with a lower K-entry share
-  (0.680), this tests the case where migration slows and voucher use grows.</li>
+  giving more weight to the recently observed pattern. Combined with a lower K-entry share
+  (0.680), this tests the case where in-migration slows and the share decline continues.</li>
 </ul>
 
 <p><strong>Smoothed rates used in each scenario:</strong></p>
 <table class="tab">
   <tr><th>Grade transition</th>
-      <th>Pre-voucher avg<br><small>2016–2022</small></th>
-      <th>Post-voucher avg<br><small>2023–2025</small></th>
+      <th>2016–2022 avg</th>
+      <th>2023–2025 avg</th>
       <th style="color:#fca5a5">Low scenario</th>
       <th style="color:#93c5fd">Baseline</th>
       <th style="color:#a7f3d0">High scenario</th></tr>
   {smooth_rows}
 </table>
-<p class="note">A positive shift (post-voucher vs. pre-voucher) means grade retention has
-<em>improved</em> since the voucher program started. Negative means more attrition.</p>
+<p class="note">A positive shift (2023–2025 vs. 2016–2022) means grade retention has
+<em>improved</em> in recent years. Negative means more attrition. Cause of any shift is not established.</p>
 </div>
 
 <h2>Step 3: Project kindergarten from birth data</h2>
@@ -652,16 +652,14 @@ were 1,356 babies born to Johnson County residents. So:</p>
     in Iowa City schools five years later.</span></div>
 </div>
 
-<p><strong>What Iowa's voucher program has done so far.</strong> Iowa enacted a school-choice
-voucher program in 2023 (Educational Savings Accounts, or ESAs) that allows families to use
-roughly $7,600 in state education funding for private school tuition. About 41,000 Iowa students
-used it statewide in 2024-25. The kindergarten count has declined three straight years (1,035 in
-fall 2022 → 998 → 992 → 987 in fall 2025), and the effective district share of county births
-has fallen from a pre-voucher average of about 0.742 to a post-voucher average of 0.718. The
-2025 figure (0.728) sits between these averages — the trend is down but the in-migration from
-fast-growing North Liberty and Tiffin (both partly inside Iowa City's attendance boundary) is
-partially offsetting the voucher effect. Whether that offset holds, grows, or reverses is the
-central question driving the three scenarios.</p>
+<p><strong>The observed shift since 2023.</strong> The kindergarten count has declined three
+straight years (1,035 in fall 2022 → 998 → 992 → 987 in fall 2025). The effective district
+share of county births has fallen from a 2016–2022 average of about 0.742 to a 2023–2025
+average of 0.718. The 2025 figure (0.728) sits between these averages. Multiple factors can
+affect this share simultaneously — migration, private-school enrollment, open enrollment across
+district lines, and the geographic mismatch between county and district boundaries. We do not
+have enrollment-transfer data to isolate any single factor as the cause. The three scenarios
+test different assumptions about where the share goes next, without asserting why it moved.</p>
 
 <p><strong>Forecast kindergarten counts, by scenario:</strong></p>
 <table class="tab">
@@ -703,8 +701,8 @@ in the growth corridors.</p>
 
 <div class="scen-card bl">
 <h3 style="color:#1e3a5f">Baseline — "Current trajectory holds"</h3>
-<p><strong>What has to be true:</strong> Roughly what's happening now continues. Migration into
-the district keeps pace with voucher-program growth, so the district's share of county
+<p><strong>What has to be true:</strong> Roughly what's happening now continues. In-migration
+from the growth corridors continues at roughly today's pace. The district's share of county
 kindergarteners stays at 0.728 — the same rate calibrated from the 2025 actual data. Birth
 counts keep falling gradually. No major disruption in either direction.</p>
 <p><strong>2030 enrollment: {bl_2030:,}</strong> ({bl_2030-base_2025:+,} from 2025,
@@ -714,14 +712,13 @@ or a financial crisis.</p>
 </div>
 
 <div class="scen-card lo">
-<h3 style="color:#b91c1c">Low — "Migration slows, voucher use grows"</h3>
-<p><strong>What has to be true:</strong> Two things happen at once. First, new construction in
-North Liberty and Tiffin slows as the most buildable land fills in — fewer families moving in.
-Second, voucher-program participation keeps growing past today's ~41,000 statewide, and Iowa
-City families start taking more of those slots than currently. The district's share of county
-kindergarteners falls to 0.680 — about 35 fewer kindergarteners per year than the birth trend
-would predict. Grade-to-grade retention follows the post-2023 pattern, which already shows
-slightly more attrition than before the voucher program.</p>
+<h3 style="color:#b91c1c">Low — "In-migration slows, share declines"</h3>
+<p><strong>What has to be true:</strong> New construction in North Liberty and Tiffin slows as
+the most buildable land fills in — fewer families moving into the district each year. The
+district's share of county kindergarteners falls to 0.680 — about 35 fewer kindergarteners per
+year than births would predict. Grade-to-grade retention follows the post-2023 pattern, which
+shows slightly more attrition than earlier years. The cause of the share decline is not assumed;
+this scenario tests the lower bound of the observed range.</p>
 <p><strong>2030 enrollment: {lo_2030:,}</strong> ({lo_2030-base_2025:+,} from 2025,
 {100*(lo_2030-base_2025)/base_2025:+.1f}%). Roughly the equivalent of closing one elementary
 school's worth of enrollment from the current level.</p>
@@ -741,9 +738,9 @@ school's worth of enrollment from the current level.</p>
 
   <li><strong>The district share (0.728) is one number capturing many things.</strong> It
   combines the geographic mismatch between county and district boundaries, private school
-  choice, Iowa's open-enrollment policy (students can cross district lines), and the current
-  voucher effect. A richer model would track each of these separately. For now, the three
-  scenarios capture the range of how that single number might shift.</li>
+  choice, Iowa's open-enrollment policy (students can cross district lines), and any
+  structural shifts in who enrolls. A richer model would track each of these separately.
+  For now, the three scenarios capture the range of how that single number might shift.</li>
 
   <li><strong>Johnson County births for 2023 and 2024 are still estimates.</strong> The CDC's
   national birth records typically lag two years before becoming final. These figures will be
@@ -781,12 +778,12 @@ bl_chg_pct  = 100 * (bl_2030 - base_2025) / base_2025
 k_2026_bl   = scenario_results['Baseline'][2026][0]
 
 # K-entry share summary from actual BEDS data
-k_share_actuals = {by+5: ENROLLMENT[by+5][0]/BIRTHS[by]
-                   for by in BIRTHS if (by+5) in ENROLLMENT and by in BIRTHS and BIRTHS[by]}
-pre_esa_shares  = [v for y,v in k_share_actuals.items() if y < 2023 and y != 2020]
-post_esa_shares = [v for y,v in k_share_actuals.items() if y >= 2023]
-avg_pre_esa_share  = sum(pre_esa_shares)  / len(pre_esa_shares)  if pre_esa_shares  else ICCSD_COUNTY_SHARE
-avg_post_esa_share = sum(post_esa_shares) / len(post_esa_shares) if post_esa_shares else ICCSD_COUNTY_SHARE
+k_share_actuals  = {by+5: ENROLLMENT[by+5][0]/BIRTHS[by]
+                    for by in BIRTHS if (by+5) in ENROLLMENT and by in BIRTHS and BIRTHS[by]}
+pre_2023_shares  = [v for y,v in k_share_actuals.items() if y < 2023 and y != 2020]
+post_2023_shares = [v for y,v in k_share_actuals.items() if y >= 2023]
+avg_pre_2023_share  = sum(pre_2023_shares)  / len(pre_2023_shares)  if pre_2023_shares  else ICCSD_COUNTY_SHARE
+avg_post_2023_share = sum(post_2023_shares) / len(post_2023_shares) if post_2023_shares else ICCSD_COUNTY_SHARE
 
 DOC = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -896,13 +893,12 @@ p{{margin:0 0 10px;max-width:780px}}
 </div>
 
 <div class="data-banner data-warn">
-  <strong>Voucher program finding:</strong> Iowa's school-choice voucher program (Educational
-  Savings Accounts) took effect in 2023-24. The kindergarten count has declined three years
-  running (1,035 → 998 → 992 → 987), and the effective district share of county births has
-  fallen from a pre-voucher average of {avg_pre_esa_share:.3f} to a post-voucher average of
-  {avg_post_esa_share:.3f}. New housing in North Liberty and Tiffin is partially offsetting
-  voucher departures, but the net trend is downward. Whether the offset holds, grows, or
-  reverses is the central question in the three scenarios.
+  <strong>Observed trend since 2023:</strong> The kindergarten count has declined three years
+  running (1,035 → 998 → 992 → 987). The effective district share of county births has fallen
+  from a 2016–2022 average of {avg_pre_2023_share:.3f} to a 2023–2025 average of
+  {avg_post_2023_share:.3f}. The cause of this shift is not established — births, migration,
+  open enrollment, and private-school participation all interact. The three scenarios bracket
+  the range of how that share might evolve.
 </div>
 
 <div class="kpi-row">
@@ -950,7 +946,7 @@ p{{margin:0 0 10px;max-width:780px}}
   </div>
   {fan_chart}
   <div class="chart-note">Open circle at 2025 = verified BEDS anchor. Shaded band = High–Low range.
-  Amber dashes = ESA structural break. Dashed blue = forecast baseline.</div>
+  Amber dashes = 2023 trend break. Dashed blue = forecast baseline.</div>
 </div>
 
 <h2>Three-scenario forecast</h2>
@@ -960,7 +956,7 @@ p{{margin:0 0 10px;max-width:780px}}
   <p style="font-size:12.5px;color:#64748b;margin:8px 0 0">
     High: growth corridors strengthen; effective K-entry share rises to 0.740. &nbsp;
     Baseline: share holds at 0.728 (current). &nbsp;
-    Low: migration slows; ESA overtakes; effective share falls to 0.680.
+    Low: in-migration decelerates; effective share falls to 0.680.
   </p>
 </div>
 
@@ -979,8 +975,8 @@ p{{margin:0 0 10px;max-width:780px}}
     </div>
     <div style="flex:1;min-width:220px;border:2px solid #93c5fd;border-radius:10px;background:#eff6ff;padding:13px 15px">
       <div style="font-weight:800;color:#1e3a5f;font-size:15px;margin-bottom:5px">Baseline</div>
-      <p style="font-size:13.5px;margin:0 0 5px">Current trends hold. Corridor in-migration
-      keeps offsetting voucher departures at roughly today's rate. The main headwind is
+      <p style="font-size:13.5px;margin:0 0 5px">Current trends hold. In-migration from the
+      growth corridors continues at roughly today's rate. The main headwind is
       declining birth counts, not school closures.</p>
       <div style="font-size:12px;color:#1e40af"><strong>2030: {bl_2030:,}
       ({bl_chg_pct:+.1f}%)</strong></div>
@@ -988,9 +984,8 @@ p{{margin:0 0 10px;max-width:780px}}
     <div style="flex:1;min-width:220px;border:2px solid #fca5a5;border-radius:10px;background:#fef2f2;padding:13px 15px">
       <div style="font-weight:800;color:#b91c1c;font-size:15px;margin-bottom:5px">Low</div>
       <p style="font-size:13.5px;margin:0 0 5px">New construction in the corridors slows as
-      buildable land fills in. Voucher-program use keeps growing. Fewer families move in to
-      offset those who leave for private school — about 35 fewer kindergarteners per year
-      than births would predict.</p>
+      buildable land fills in. In-migration decelerates, and the district's effective share
+      of county kindergarteners falls — about 35 fewer per year than births would predict.</p>
       <div style="font-size:12px;color:#991b1b"><strong>2030: {lo_2030:,}</strong></div>
     </div>
   </div>
@@ -1004,8 +999,8 @@ p{{margin:0 0 10px;max-width:780px}}
 <div class="sec">
   <p>All rows are verified Iowa DOE BEDS fall enrollment counts from the district's October 1
   headcount, school years 2016-17 through 2025-26. Green tag = BEDS actual. COVID disruption
-  years 2020 and 2021 are flagged; 2023 marks the first year of Iowa's school-choice voucher
-  program.</p>
+  years 2020 and 2021 are flagged; 2023 is marked because K-share trends shifted starting
+  that year.</p>
   <div class="gtab-wrap">{grade_table}</div>
 </div>
 
@@ -1024,39 +1019,42 @@ p{{margin:0 0 10px;max-width:780px}}
   <p>Kindergarten is modeled from Johnson County resident births lagged five years, scaled by the
   ICCSD effective share (0.728). This share is calibrated from the 2025 BEDS actual (K=987) against
   2020 Johnson County births (1,356): 987/1356 = 0.728.</p>
-  <p><strong>ESA finding:</strong> The kindergarten count has declined three straight years
-  (1,035 → 998 → 992 → 987 from fall 2022 through fall 2025). The effective district share of
-  county births fell from a pre-voucher average of {avg_pre_esa_share:.3f} to a post-voucher
-  average of {avg_post_esa_share:.3f}. New housing in North Liberty and Tiffin is partially
-  offsetting voucher departures, but the net trend is downward. Whether the in-migration offset
-  holds, grows, or reverses is the central question driving the three scenarios.</p>
+  <p><strong>Observed trend since 2023:</strong> The kindergarten count has declined three
+  straight years (1,035 → 998 → 992 → 987 from fall 2022 through fall 2025). The effective
+  district share of county births fell from a 2016–2022 average of {avg_pre_2023_share:.3f}
+  to a 2023–2025 average of {avg_post_2023_share:.3f}. The cause of this shift has not been
+  established — multiple factors interact (births, migration, open enrollment, private-school
+  choice). The three scenarios bracket the range of how this share might evolve.</p>
   {k_table}
   <p style="font-size:12.5px;color:#64748b;margin:8px 0 0">
     <strong>Geography caveat:</strong> Johnson County births overstate the ICCSD-relevant pool because
     the district boundary does not equal the county line. The 0.728 share corrects for this and also
-    embeds any current ESA offset.
+    reflects any structural factors (open enrollment, private-school choice, migration) that currently
+    affect district enrollment.
   </p>
 </div>
 
-<h2>The ESA picture for ICCSD</h2>
+<h2>What we can observe — and what we can't</h2>
 <div class="sec">
-  <p>Iowa Students First ESA participation reached roughly 41,000 statewide in 2024–25. However, ICCSD's
-  situation differs from many Iowa districts in a structural way:</p>
+  <p>ICCSD's kindergarten share of Johnson County births has shifted since 2023. What the data shows clearly:</p>
   <ul style="font-size:14px;padding-left:20px;margin:6px 0 14px">
+    <li>The 2016–2022 average share (excluding COVID) was {avg_pre_2023_share:.3f}. The 2023–2025
+    average is {avg_post_2023_share:.3f} — a decline of about {avg_pre_2023_share - avg_post_2023_share:.3f}
+    percentage points.</li>
     <li>The North Liberty and Tiffin corridors — both partly inside ICCSD boundaries — are among the
     fastest-growing areas in Iowa. New housing drives in-migration of families with young children,
-    adding K-entry demand that is independent of the birth trend.</li>
-    <li>As a result, the district-level K enrollment has held near or above the births-based expectation
-    even as ESA voucher use has grown statewide.</li>
-    <li>This is a <strong>masking effect, not an absence of ESA leakage</strong>: some ICCSD families
-    are using vouchers for nonpublic schools, but the net district count is supported by new arrivals.</li>
+    adding K-entry demand independent of the birth trend.</li>
+    <li>Multiple factors simultaneously affect the share: the district boundary doesn't match the county
+    line, families can open-enroll across district lines, some choose private schools, and migration
+    adds or removes families.</li>
   </ul>
-  <p>The risk in the Low scenario is that in-migration decelerates (housing market cools, new-home
-  supply in the corridor saturates) while ESA take-up continues to compound. That combination would
-  reduce the effective K-entry share below the current 0.728.</p>
-  <p>Building-permit data from North Liberty, Tiffin, and Coralville should be added as a
-  leading indicator to test this — a quarterly permit series predicts K entry about 5-6 years
-  ahead.</p>
+  <p>What the data does <em>not</em> tell us is <strong>why</strong> the share changed. Coincidence of
+  timing with any particular event is not evidence of causation. Attributing the shift to any single
+  factor would require enrollment-transfer data we do not currently have. The three scenarios are
+  designed to bracket the range without asserting a cause.</p>
+  <p>Building-permit data from North Liberty, Tiffin, and Coralville should be added as a leading
+  indicator — a quarterly permit series predicts K entry about 5–6 years ahead and would help
+  separate migration effects from enrollment-choice effects.</p>
 </div>
 
 <h2>What this model needs to mature</h2>
@@ -1071,9 +1069,10 @@ p{{margin:0 0 10px;max-width:780px}}
     <li><strong>Open-enrollment in/out.</strong> Iowa DOE publishes annual district-level
     open-enrollment flows. Adding these separates in-district retention from cross-district
     transfers and improves GPR attribution.</li>
-    <li><strong>Private-school enrollment data.</strong> If Iowa DOE begins publishing
-    ESA-recipient enrollment by school and district of residence, it will allow direct
-    measurement of voucher-driven leakage rather than inferring it from the K share trend.</li>
+    <li><strong>Private-school and open-enrollment data.</strong> Iowa DOE open-enrollment in/out
+    flows by district are published annually. If recipient-level enrollment data by district of
+    residence also becomes available, it would allow direct measurement of private-school
+    enrollment shifts rather than inferring them from the K share trend.</li>
   </ol>
 </div>
 
@@ -1097,9 +1096,9 @@ p{{margin:0 0 10px;max-width:780px}}
       District K-12 headcount by grade, October 1 count date. Downloaded 30 June 2026.</li>
     <li><strong>Johnson County births:</strong> CDC WONDER natality data, final through birth year 2022;
       estimated for 2023-2024. Lag 5 years to K entry year.</li>
-    <li><strong>ESA context:</strong> Iowa Department of Education (statewide ESA enrollment counts, 2023–25).</li>
+    <li><strong>Statewide program context:</strong> Iowa Department of Education (statewide Educational Savings Account enrollment counts, 2023–25).</li>
     <li><strong>State projection benchmark:</strong> Iowa DOE District Enrollment Projections 2026–27 to
-      2030–31 (developed May 2022; predates ESA). Use as comparison baseline, not as a forecast.</li>
+      2030–31 (developed May 2022). Use as comparison baseline, not as a forecast.</li>
   </ul>
 </div>
 
