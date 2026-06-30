@@ -1,0 +1,337 @@
+jurisdiction,period,period_type,structure_bucket,units,source,flag
+Coralville,2010,annual,1-unit,40,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2010,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2010,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2010,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2011,annual,1-unit,71,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2011,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2011,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2011,annual,5+,122,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2012,annual,1-unit,77,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2012,annual,2-unit,10,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2012,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2012,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2013,annual,1-unit,66,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2013,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2013,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2013,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2014,annual,1-unit,89,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2014,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2014,annual,3-4,3,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2014,annual,5+,72,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2015,annual,1-unit,29,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2015,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2015,annual,3-4,7,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2015,annual,5+,102,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2016,annual,1-unit,18,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2016,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2016,annual,3-4,28,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2016,annual,5+,340,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2017,annual,1-unit,19,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2017,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2017,annual,3-4,23,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2017,annual,5+,311,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2018,annual,1-unit,25,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2018,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2018,annual,3-4,20,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2018,annual,5+,445,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2019,annual,1-unit,17,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2019,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2019,annual,3-4,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2019,annual,5+,89,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2020,annual,1-unit,24,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2020,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2020,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2020,annual,5+,289,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2021,annual,1-unit,42,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2021,annual,2-unit,6,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2021,annual,3-4,15,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2021,annual,5+,111,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2022,annual,1-unit,69,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2022,annual,2-unit,12,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2022,annual,3-4,16,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2022,annual,5+,300,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2023,annual,1-unit,79,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2023,annual,2-unit,10,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2023,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2023,annual,5+,65,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2024,annual,1-unit,59,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2024,annual,2-unit,12,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2024,annual,3-4,12,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2024,annual,5+,37,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2025,annual,1-unit,62,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2025,annual,2-unit,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2025,annual,3-4,22,"Census BPS Place file (mwYYYYa.txt), represented units",
+Coralville,2025,annual,5+,168,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2010,annual,1-unit,153,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2010,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2010,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2010,annual,5+,57,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2011,annual,1-unit,126,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2011,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2011,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2011,annual,5+,99,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2012,annual,1-unit,223,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2012,annual,2-unit,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2012,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2012,annual,5+,172,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2013,annual,1-unit,219,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2013,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2013,annual,3-4,3,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2013,annual,5+,476,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2014,annual,1-unit,226,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2014,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2014,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2014,annual,5+,213,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2015,annual,1-unit,151,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2015,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2015,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2015,annual,5+,537,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2016,annual,1-unit,263,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2016,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2016,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2016,annual,5+,815,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2017,annual,1-unit,213,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2017,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2017,annual,3-4,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2017,annual,5+,297,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2018,annual,1-unit,132,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2018,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2018,annual,3-4,3,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2018,annual,5+,186,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2019,annual,1-unit,98,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2019,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2019,annual,3-4,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2019,annual,5+,463,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2020,annual,1-unit,116,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2020,annual,2-unit,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2020,annual,3-4,11,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2020,annual,5+,24,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2021,annual,1-unit,137,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2021,annual,2-unit,6,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2021,annual,3-4,14,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2021,annual,5+,137,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2022,annual,1-unit,104,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2022,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2022,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2022,annual,5+,356,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2023,annual,1-unit,79,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2023,annual,2-unit,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2023,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2023,annual,5+,419,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2024,annual,1-unit,133,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2024,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2024,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2024,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2025,annual,1-unit,89,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2025,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2025,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Iowa City,2025,annual,5+,72,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2010,annual,1-unit,136,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2010,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2010,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2010,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2011,annual,1-unit,157,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2011,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2011,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2011,annual,5+,20,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2012,annual,1-unit,136,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2012,annual,2-unit,16,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2012,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2012,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2013,annual,1-unit,71,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2013,annual,2-unit,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2013,annual,3-4,11,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2013,annual,5+,28,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2014,annual,1-unit,162,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2014,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2014,annual,3-4,7,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2014,annual,5+,86,"Census BPS Place file (mwYYYYa.txt), represented units",11 of 12 mo reported; BPS imputed 1 mo
+North Liberty,2015,annual,1-unit,126,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2015,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2015,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2015,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2016,annual,1-unit,120,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2016,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2016,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2016,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2017,annual,1-unit,178,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2017,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2017,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2017,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2018,annual,1-unit,73,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2018,annual,2-unit,20,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2018,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2018,annual,5+,27,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2019,annual,1-unit,72,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2019,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2019,annual,3-4,16,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2019,annual,5+,5,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2020,annual,1-unit,113,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2020,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2020,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2020,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2021,annual,1-unit,186,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2021,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2021,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2021,annual,5+,92,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2022,annual,1-unit,126,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2022,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2022,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2022,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2023,annual,1-unit,136,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2023,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2023,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2023,annual,5+,172,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2024,annual,1-unit,134,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2024,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2024,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2024,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2025,annual,1-unit,169,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2025,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2025,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+North Liberty,2025,annual,5+,351,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2010,annual,1-unit,13,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2010,annual,2-unit,12,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2010,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2010,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2011,annual,1-unit,23,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2011,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2011,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2011,annual,5+,48,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2012,annual,1-unit,19,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2012,annual,2-unit,10,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2012,annual,3-4,8,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2012,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2013,annual,1-unit,34,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2013,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2013,annual,3-4,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2013,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2014,annual,1-unit,19,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2014,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2014,annual,3-4,12,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2014,annual,5+,60,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2015,annual,1-unit,35,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2015,annual,2-unit,70,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2015,annual,3-4,42,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2015,annual,5+,36,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2016,annual,1-unit,36,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2016,annual,2-unit,62,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2016,annual,3-4,37,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2016,annual,5+,40,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2017,annual,1-unit,120,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2017,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2017,annual,3-4,26,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2017,annual,5+,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2018,annual,1-unit,151,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2018,annual,2-unit,68,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2018,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2018,annual,5+,36,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2019,annual,1-unit,134,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2019,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2019,annual,3-4,71,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2019,annual,5+,6,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2020,annual,1-unit,146,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2020,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2020,annual,3-4,44,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2020,annual,5+,90,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2021,annual,1-unit,163,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2021,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2021,annual,3-4,4,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2021,annual,5+,104,"Census BPS Place file (mwYYYYa.txt), represented units",0 mo reported; FULLY IMPUTED by BPS
+Tiffin,2022,annual,1-unit,67,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2022,annual,2-unit,60,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2022,annual,3-4,39,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2022,annual,5+,119,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2023,annual,1-unit,116,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2023,annual,2-unit,14,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2023,annual,3-4,11,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2023,annual,5+,31,"Census BPS Place file (mwYYYYa.txt), represented units",
+Tiffin,2024,annual,1-unit,113,"Census BPS Place file (mwYYYYa.txt), represented units",10 of 12 mo reported; partially imputed
+Tiffin,2024,annual,2-unit,2,"Census BPS Place file (mwYYYYa.txt), represented units",10 of 12 mo reported; partially imputed
+Tiffin,2024,annual,3-4,8,"Census BPS Place file (mwYYYYa.txt), represented units",10 of 12 mo reported; partially imputed
+Tiffin,2024,annual,5+,121,"Census BPS Place file (mwYYYYa.txt), represented units",10 of 12 mo reported; partially imputed
+Tiffin,2025,annual,1-unit,111,"Census BPS Place file (mwYYYYa.txt), represented units",4 of 12 mo reported; HEAVILY IMPUTED; treat as preliminary
+Tiffin,2025,annual,2-unit,0,"Census BPS Place file (mwYYYYa.txt), represented units",4 of 12 mo reported; HEAVILY IMPUTED; treat as preliminary
+Tiffin,2025,annual,3-4,13,"Census BPS Place file (mwYYYYa.txt), represented units",4 of 12 mo reported; HEAVILY IMPUTED; treat as preliminary
+Tiffin,2025,annual,5+,82,"Census BPS Place file (mwYYYYa.txt), represented units",4 of 12 mo reported; HEAVILY IMPUTED; treat as preliminary
+Johnson Co. (uninc.),2010,annual,1-unit,38,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2010,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2010,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2010,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2010,annual,manufactured,5,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2011,annual,1-unit,38,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2011,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2011,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2011,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2011,annual,manufactured,4,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2012,annual,1-unit,66,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2012,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2012,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2012,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2012,annual,manufactured,5,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2013,annual,1-unit,71,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2013,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2013,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2013,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2013,annual,manufactured,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2014,annual,1-unit,47,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2014,annual,2-unit,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),1 duplex permit(s) x2 units
+Johnson Co. (uninc.),2014,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2014,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2014,annual,manufactured,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2015,annual,1-unit,76,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2015,annual,2-unit,12,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),6 duplex permit(s) x2 units
+Johnson Co. (uninc.),2015,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2015,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2015,annual,manufactured,4,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2016,annual,1-unit,66,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2016,annual,2-unit,4,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),2 duplex permit(s) x2 units
+Johnson Co. (uninc.),2016,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2016,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2016,annual,manufactured,18,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2017,annual,1-unit,38,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2017,annual,2-unit,10,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),5 duplex permit(s) x2 units
+Johnson Co. (uninc.),2017,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2017,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2017,annual,manufactured,8,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2018,annual,1-unit,49,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2018,annual,2-unit,8,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),4 duplex permit(s) x2 units
+Johnson Co. (uninc.),2018,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2018,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2018,annual,manufactured,13,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2019,annual,1-unit,52,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2019,annual,2-unit,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),1 duplex permit(s) x2 units
+Johnson Co. (uninc.),2019,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2019,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2019,annual,manufactured,15,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2020,annual,1-unit,44,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2020,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2020,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2020,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2020,annual,manufactured,27,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2021,annual,1-unit,40,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2021,annual,2-unit,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),1 duplex permit(s) x2 units
+Johnson Co. (uninc.),2021,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2021,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2021,annual,manufactured,6,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2022,annual,1-unit,48,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2022,annual,2-unit,6,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),3 duplex permit(s) x2 units
+Johnson Co. (uninc.),2022,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2022,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2022,annual,manufactured,11,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2023,annual,1-unit,50,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2023,annual,2-unit,4,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),2 duplex permit(s) x2 units
+Johnson Co. (uninc.),2023,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2023,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2023,annual,manufactured,28,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2024,annual,1-unit,41,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2024,annual,2-unit,4,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),2 duplex permit(s) x2 units
+Johnson Co. (uninc.),2024,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2024,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2024,annual,manufactured,14,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
+Johnson Co. (uninc.),2025,annual,1-unit,58,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),SF detached incl. occasional cabin/ADU
+Johnson Co. (uninc.),2025,annual,2-unit,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),0 duplex permit(s) x2 units
+Johnson Co. (uninc.),2025,annual,3-4,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2025,annual,5+,0,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),
+Johnson Co. (uninc.),2025,annual,manufactured,2,Johnson County CitizenServe 'Issued Permits' report (issue-date basis),"Mobile-home-park placements; NOT a BPS bucket; many are replacements, not net-new"
