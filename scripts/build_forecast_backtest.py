@@ -262,13 +262,13 @@ def backtest_table():
                 col = "#b91c1c" if abs(e) >= 2 else ("#b45309" if abs(e) >= 1 else "#15803d")
                 cells += f'<td style="color:{col}">{e:+.1f}</td>'
             else:
-                cells += "<td>—</td>"
+                cells += "<td>n/a</td>"
         rows += f'<tr><td>{r["T"]}</td><td>{r["share"]:.3f}</td>{cells}</tr>'
     mape_cells = "".join(f"<td><b>{MAPE[h]:.2f}</b></td>" for h in range(1, 7))
     bias_cells = "".join(f"<td>{BIAS[h]:+.2f}</td>" for h in range(1, 7))
     return (f'<table class="dt"><tr><th>Fit through</th><th>Share</th>{hdr}</tr>{rows}'
-            f'<tr style="border-top:2px solid #1e3a5f"><td><b>MAPE %</b></td><td>—</td>{mape_cells}</tr>'
-            f'<tr><td>Mean bias %</td><td>—</td>{bias_cells}</tr></table>')
+            f'<tr style="border-top:2px solid #1e3a5f"><td><b>MAPE %</b></td><td>n/a</td>{mape_cells}</tr>'
+            f'<tr><td>Mean bias %</td><td>n/a</td>{bias_cells}</tr></table>')
 
 
 def share_table():
@@ -277,7 +277,7 @@ def share_table():
         if y not in SHARE:
             continue
         tag = ' <span style="color:#b45309">COVID</span>' if y in COVID_K else ""
-        rv = f"{RESID[y]:.3f}" if y in RESID else "—"
+        rv = f"{RESID[y]:.3f}" if y in RESID else "n/a"
         rows += (f"<tr><td>{y}{tag}</td><td>{BEDS[y][0]:,}</td><td>{BIRTHS[y-5]:,}</td>"
                  f"<td>{SHARE[y]:.3f}</td><td>{rv}</td></tr>")
     return (f'<table class="dt"><tr><th>K year</th><th>K enroll</th><th>Births (−5)</th>'
@@ -290,7 +290,7 @@ def recal_table():
         h = y - 2025
         rows += (f"<tr><td>{y}</td><td>{LIVE_OLD[y]:,}</td><td>{LIVE_NEW[y]:,}</td>"
                  f"<td>±{MAPE[h]:.2f}%</td>"
-                 f"<td>{round(LIVE_NEW[y]*(1-MAPE[h]/100)):,} – {round(LIVE_NEW[y]*(1+MAPE[h]/100)):,}</td></tr>")
+                 f"<td>{round(LIVE_NEW[y]*(1-MAPE[h]/100)):,} to {round(LIVE_NEW[y]*(1+MAPE[h]/100)):,}</td></tr>")
     return (f'<table class="dt"><tr><th>Year</th><th>Old base (0.728)</th>'
             f'<th>Recal. base (0.718)</th><th>Empirical band</th><th>Range</th></tr>{rows}</table>')
 
@@ -319,7 +319,7 @@ HTML = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Forecast Validation & Calibration — ICCSD Enrollment</title>
+<title>ICCSD Enrollment Forecast Validation</title>
 <style>
 :root{{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff}}
 *{{box-sizing:border-box}}
@@ -363,30 +363,30 @@ ul{{max-width:760px}} li{{margin:4px 0}}
 <div class="wrap">
 
 <h1>Forecast Validation &amp; Calibration</h1>
-<p class="sub">Three accuracy upgrades to the cohort-survival enrollment forecast —
-backtest, multi-year share calibration, and open-enrollment adjustment ·
-all recomputed from Iowa DOE BEDS, births, and certified open-enrollment data</p>
+<p class="sub">Three accuracy upgrades to the cohort-survival enrollment forecast: backtest,
+multi-year share calibration, and open-enrollment adjustment. All recomputed from Iowa DOE BEDS,
+births, and certified open-enrollment data.</p>
 
 <div class="callout">
-  <strong>Why this page exists.</strong> The <a href="iccsd-enrollment-forecast.html">enrollment
-  forecast</a> projects ICCSD K-12 enrollment with a cohort-survival model. This page stress-tests
-  that model three ways: (1) how accurate has it been on held-out history, (2) is the kindergarten
-  share calibrated on enough data, and (3) how much of that share is open enrollment we can measure
-  directly rather than leaving inside a black box. The headline: the model is <strong>accurate
-  (MAPE &lt;1.5%)</strong>, but its confidence band was too narrow and its share slightly too high.
+  <strong>The model is accurate, but it can be tightened.</strong> The
+  <a href="iccsd-enrollment-forecast.html">enrollment forecast</a> projects ICCSD K-12 enrollment
+  with a cohort-survival model. This page tests it three ways. How accurate has it been on held-out
+  history. Is the kindergarten share calibrated on enough data. And how much of that share is open
+  enrollment we can measure directly instead of leaving it in a black box. The model holds up
+  (MAPE under 1.5%), but its confidence band was too narrow and its share a little too high.
 </div>
 
 <div class="kpi-row">
   <div class="kpi green"><div class="label">Backtest accuracy (5-yr horizon)</div>
-    <div class="val">±{MAPE[5]:.1f}%</div><div class="note">MAPE on held-out years · ≈±{round(MAPE[5]/100*LIVE_NEW[2030]):,} students</div></div>
+    <div class="val">±{MAPE[5]:.1f}%</div><div class="note">MAPE on held-out years, about ±{round(MAPE[5]/100*LIVE_NEW[2030]):,} students</div></div>
   <div class="kpi blue"><div class="label">Recalibrated K-entry share</div>
-    <div class="val">{SHARE_T3:.3f}</div><div class="note">trailing-3yr vs single-year {SHARE_SINGLE:.3f}</div></div>
+    <div class="val">{SHARE_T3:.3f}</div><div class="note">trailing 3-year, vs single-year {SHARE_SINGLE:.3f}</div></div>
   <div class="kpi amber"><div class="label">Recalibrated 2030 Baseline</div>
     <div class="val">{LIVE_NEW[2030]:,}</div><div class="note">was {LIVE_OLD[2030]:,} ({LIVE_NEW[2030]-LIVE_OLD[2030]:+,})</div></div>
 </div>
 
-<h2>#1 — Backtest: how accurate has the model been?</h2>
-<p>We hold out recent history and re-run the model honestly: for each origin year, fit the
+<h2>How accurate has the model been?</h2>
+<p>The honest test is to hold out recent history and re-run the model. For each origin year, fit the
 grade-progression ratios and K-entry share using <em>only</em> data available up to that year, then
 project forward and compare to what actually happened. Errors are the percent miss on total K-12
 enrollment.</p>
@@ -395,89 +395,94 @@ enrollment.</p>
   {mape_chart()}
 </div>
 {backtest_table()}
-<p>Two things stand out. First, accuracy is strong — <strong>MAPE stays under 1.5%</strong> through
-five years, comparable to professional demographer benchmarks. Second, the misses are
-<strong>almost all positive</strong> for the 2019 origin (+1.3% to +3.4%): a model fit before COVID
-over-predicted, because it couldn't foresee the 2020–21 enrollment dip. Origins from 2021 on — the
-post-COVID regime the live forecast actually uses — miss by well under 1%.</p>
+<p>Two things stand out. First, accuracy is strong. <strong>MAPE stays under 1.5%</strong> through
+five years, in line with what professional demographers hit. Second, the big misses come from the
+2019 origin (+1.3% to +3.4%). A model fit before COVID over-predicted, because it could not see the
+2020 and 2021 enrollment dip coming. Origins from 2021 on, the post-COVID regime the live forecast
+actually uses, miss by well under 1%.</p>
 <div class="callout warn">
-  <strong>The fix this implies.</strong> The live forecast's High/Low scenarios span only about
-  ±0.9% at 2030 (13,306–13,551) — <em>narrower than the model's own measured error</em>. The
-  honest band is the empirical one: about <strong>±{MAPE[5]:.1f}% at five years</strong>. The
-  scenario fan should be widened to match what the model actually does on held-out data.
+  <strong>The scenario band is too narrow.</strong> The live forecast's High and Low scenarios span
+  only about ±0.9% at 2030 (13,306 to 13,551). That is narrower than the model's own measured error.
+  The honest band is the empirical one, about <strong>±{MAPE[5]:.1f}% at five years</strong>. The
+  scenario fan should widen to match what the model actually does on held-out data.
 </div>
 
-<h2>#2 — Multi-year share calibration</h2>
-<p>Kindergarten is the foot of the whole model: <code>K = Johnson County births (−5 yr) × share</code>.
-The live model calibrates that share on a <em>single</em> year (2025 K ÷ 2020 births = {SHARE_SINGLE:.3f}).
-A single year can be noisy. The full series tells a steadier story:</p>
+<h2>Calibrating the share on three years, not one</h2>
+<p>Kindergarten is the foot of the whole model. K equals Johnson County births from five years
+earlier, times the district share. The live model sets that share from a <em>single</em> year, the
+2025 K count over 2020 births, which works out to {SHARE_SINGLE:.3f}. A single year can be noisy.
+The full series tells a steadier story.</p>
 <div class="chart-box">
-  <div class="title">K-entry share of county births, 2016–2025 (raw vs open-enrollment-adjusted)</div>
+  <div class="title">K-entry share of county births, 2016 to 2025 (raw vs open-enrollment-adjusted)</div>
   {share_chart()}
 </div>
 {share_table()}
-<p>The pre-2023 average was <strong>{SHARE_PRE:.3f}</strong>; since the 2023 trend break the share
-has settled at a trailing-3-year mean of <strong>{SHARE_T3:.3f}</strong> — and it is remarkably
-stable there (σ = {SD_POST:.3f}). The single-year {SHARE_SINGLE:.3f} anchor sits <em>above</em> the
-current regime, because 2025 happened to be the high year of the last three. A trailing-mean
-calibration of <strong>{SHARE_T3:.3f}</strong> is the more robust Baseline.</p>
+<p>The pre-2023 average was <strong>{SHARE_PRE:.3f}</strong>. Since the 2023 trend break the share
+has settled at a trailing 3-year mean of <strong>{SHARE_T3:.3f}</strong>, and it is very stable
+there (standard deviation {SD_POST:.3f}). The single-year {SHARE_SINGLE:.3f} anchor sits above the
+current level, because 2025 happened to be the high year of the last three. A trailing-mean
+calibration of <strong>{SHARE_T3:.3f}</strong> is the steadier Baseline.</p>
 
-<h2>#3 — Pulling open enrollment out of the share</h2>
-<p>The share bundles four things: boundary mismatch (district ≠ county), migration, private-school
-choice, and <em>open enrollment</em>. We can measure the last one directly. Net open enrollment
-(in − out) for ICCSD swung from <strong>−272 in 2017 to +15 by 2025</strong> — a +287 recovery.
-Removing the per-grade open-enrollment slice gives a "residential" share driven only by resident
-births (green dashed line above).</p>
+<h2>Pulling open enrollment out of the share</h2>
+<p>The share bundles four things together. Boundary mismatch (the district is not the county),
+migration, private-school choice, and open enrollment. The last one we can measure directly. Net
+open enrollment for ICCSD swung from <strong>down 272 in 2017 to up 15 by 2025</strong>, a 287-student
+recovery. Take the per-grade open-enrollment slice out and you get a "residential" share driven only
+by resident births (the green dashed line above).</p>
 <div class="callout">
-  <strong>What it reveals.</strong> In 2017–2020, ICCSD was bleeding students to open enrollment, so
-  its <em>residential</em> demand was actually <em>higher</em> than enrolled counts showed
-  (residential share ≈ 0.75 vs raw ≈ 0.74). As that bleed stopped, enrolled counts were
-  <em>propped up</em> by the recovery. So the raw share fell only {abs(SHARE[2025]-SHARE[2017])*100:.1f}
-  points (2017→2025) while the residential share fell {abs(RESID[2025]-RESID[2017])*100:.1f} points.
-  The open-enrollment recovery was a one-time tailwind — and it is now spent (net OE ≈ 0, with little
-  room to rise further). Projecting forward on the raw {SHARE_SINGLE:.3f} therefore borrows from a
-  cushion that won't repeat; the residential trailing-3yr share ({RESID_T3:.3f}) ≈ the recalibrated
-  {SHARE_T3:.3f}, confirming it as the right forward anchor.
+  <strong>An open-enrollment recovery has been propping up the count.</strong> From 2017 to 2020,
+  ICCSD was losing students to open enrollment, so its residential demand was actually higher than
+  the enrolled counts showed (residential share about 0.75 vs raw about 0.74). As that bleed stopped,
+  the enrolled counts got propped up by the recovery. So the raw share fell only
+  {abs(SHARE[2025]-SHARE[2017])*100:.1f} points from 2017 to 2025, while the residential share fell
+  {abs(RESID[2025]-RESID[2017])*100:.1f} points. That recovery was a one-time tailwind, and it is now
+  spent. Net open enrollment is near zero, with little room to rise. Projecting forward on the raw
+  {SHARE_SINGLE:.3f} borrows from a cushion that will not repeat. The residential trailing-3-year
+  share ({RESID_T3:.3f}) lands right on the recalibrated {SHARE_T3:.3f}, which confirms it as the
+  right forward anchor.
 </div>
 
-<h2>Putting it together: the recalibrated forecast</h2>
-<p>Adopting the trailing-mean share ({SHARE_T3:.3f}) and the empirically-measured bands moves the
-Baseline down modestly and widens the cone of uncertainty to its honest width:</p>
+<h2>The recalibrated forecast</h2>
+<p>Adopt the trailing-mean share ({SHARE_T3:.3f}) and the measured bands, and the Baseline moves
+down a little while the cone of uncertainty widens to its honest width.</p>
 <div class="chart-box">
   <div class="title">Recalibrated Baseline (share {SHARE_T3:.3f}) with empirical confidence band</div>
   {fan_chart()}
 </div>
 {recal_table()}
 <div class="callout good">
-  <strong>Net effect.</strong> The recalibrated 2030 Baseline is <strong>{LIVE_NEW[2030]:,}</strong>
-  (vs the current {LIVE_OLD[2030]:,}) — about {abs(LIVE_NEW[2030]-LIVE_OLD[2030])} students lower, a
-  ~{abs(LIVE_NEW[2030]-LIVE_OLD[2030])/LIVE_OLD[2030]*100:.1f}% change. Small, because the engine and
-  data are sound; the value is that the Baseline is now anchored on three years instead of one, the
-  band reflects measured rather than guessed error, and the open-enrollment tailwind is no longer
-  silently propping up the projection. The enrollment decline is, if anything, marginally steeper —
-  pushing the revenue headwind from ~$6.7M to ~${(BASE_2025-LIVE_NEW[2030])*9000/1e6:.1f}M/year by 2030.
+  <strong>The change is small, and that is the point.</strong> The recalibrated 2030 Baseline is
+  <strong>{LIVE_NEW[2030]:,}</strong>, against the current {LIVE_OLD[2030]:,}. About
+  {abs(LIVE_NEW[2030]-LIVE_OLD[2030])} students lower, a
+  {abs(LIVE_NEW[2030]-LIVE_OLD[2030])/LIVE_OLD[2030]*100:.1f}% change. It stays small because the
+  engine and the data are sound. What changes is the footing. The Baseline is now anchored on three
+  years instead of one, the band reflects measured error instead of a guess, and the open-enrollment
+  tailwind is no longer quietly holding the projection up. The decline is if anything a little
+  steeper, which pushes the revenue headwind from about $6.7M to about
+  ${(BASE_2025-LIVE_NEW[2030])*9000/1e6:.1f}M/year by 2030.
 </div>
 
-<h2>What still would help (not done here)</h2>
+<h2>What would still help</h2>
 <ul>
-  <li><strong>Corridor building permits</strong> (North Liberty / Tiffin / Coralville) — the only
-  true leading indicator for in-migration; would replace the share <em>guess</em> with a data series.</li>
-  <li><strong>Sub-county / resident births</strong> — shrinks the boundary-mismatch part of the share.</li>
-  <li><strong>Finalized 2023–24 births</strong> — currently estimated; firms up the 2028–29 K cohorts.</li>
+  <li><strong>Corridor building permits</strong> in North Liberty, Tiffin, and Coralville. The only
+  real leading indicator for in-migration. It would replace the share guess with a data series.</li>
+  <li><strong>Sub-county or resident births.</strong> Shrinks the boundary-mismatch part of the share.</li>
+  <li><strong>Finalized 2023 and 2024 births.</strong> Currently estimated. Firms up the 2028 and
+  2029 K cohorts.</li>
 </ul>
 
 <p style="margin-top:24px">
-  <a href="iccsd-enrollment-forecast.html">→ The live enrollment forecast</a><br>
-  <a href="iccsd-enrollment-forecast-methodology.html">→ Full model methodology</a><br>
-  <a href="iccsd-enrollment-revenue-bridge.html">→ Enrollment → revenue bridge</a>
+  <a href="iccsd-enrollment-forecast.html">The live enrollment forecast &rarr;</a><br>
+  <a href="iccsd-enrollment-forecast-methodology.html">Full model methodology &rarr;</a><br>
+  <a href="iccsd-enrollment-revenue-bridge.html">Enrollment to revenue bridge &rarr;</a>
 </p>
 
 <p class="src">All figures recomputed by scripts/build_forecast_backtest.py from: Iowa DOE BEDS
-grade vectors 2016–2025; Johnson County births (CDC WONDER / Iowa Vital Statistics, lagged 5 yr);
-Iowa DOE certified enrollment net open-enrollment 2017–2025. Backtest uses origin years
-{BT_ORIGINS[0]}–{BT_ORIGINS[-1]}, GPRs and share calibrated only on data available at each origin.
-Open-enrollment is allocated to kindergarten pro-rata by enrollment (a measurable approximation,
-not a grade-level census).</p>
+grade vectors 2016 to 2025. Johnson County births (CDC WONDER / Iowa Vital Statistics, lagged 5
+years). Iowa DOE certified enrollment net open enrollment 2017 to 2025. Backtest uses origin years
+{BT_ORIGINS[0]} to {BT_ORIGINS[-1]}, with GPRs and share calibrated only on data available at each
+origin. Open enrollment is allocated to kindergarten pro-rata by enrollment, a measurable
+approximation, not a grade-level census.</p>
 
 </div>
 </body>
