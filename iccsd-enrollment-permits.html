@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Building Permits as an Early Signal for ICCSD Enrollment</title>
+<style>
+:root{--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff}
+*{box-sizing:border-box}
+body{font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);margin:0;background:var(--bg)}
+a{color:#1d4ed8}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 60px}
+h1{font-size:24px;margin:0 0 4px;color:#1e3a5f}
+.sub{color:var(--mut);font-size:14px;margin:0 0 24px}
+h2{font-size:17px;margin:36px 0 6px;color:#1e3a5f;border-bottom:2px solid #e2e8f0;padding-bottom:4px}
+p{margin:0 0 12px;max-width:760px}
+.kpi-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;min-width:150px;flex:1}
+.kpi .label{font-size:12px;color:var(--mut);margin-bottom:3px}
+.kpi .val{font-size:22px;font-weight:800;line-height:1}
+.kpi .note{font-size:11.5px;color:var(--mut);margin-top:3px}
+.kpi.green .val{color:#15803d}
+.kpi.blue .val{color:#1e3a5f}
+.kpi.red .val{color:#b91c1c}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0}
+.chart-box .title{font-size:13px;font-weight:700;color:var(--mut);margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em}
+.callout{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#0c4a6e;margin:16px 0;max-width:760px}
+.callout strong{color:#075985}
+.warn{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
+.warn strong{color:#9a3412}
+.good{background:#f0fdf4;border-color:#bbf7d0;color:#14532d}
+.good strong{color:#15803d}
+.src{font-size:11px;color:var(--mut);margin-top:8px}
+table.dt{border-collapse:collapse;font-size:11.5px;width:100%;margin:12px 0}
+table.dt th{background:#1e3a5f;color:#fff;padding:4px 5px;text-align:right;font-size:11px}
+table.dt th:first-child{text-align:left}
+table.dt td{padding:3px 5px;border-bottom:1px solid #f1f5f9;text-align:right}
+table.dt td:first-child{text-align:left;font-weight:600}
+table.dt tr:nth-child(even){background:#f8fafc}
+ul{max-width:760px} li{margin:4px 0}
+.sitenav{max-width:900px;margin:0 auto;padding:14px 18px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:600 13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}.sitenav .brand{color:#0f172a;margin-right:4px;font-weight:800}.sitenav a,.sitenav .cur{display:inline-block;padding:6px 13px;border-radius:999px;text-decoration:none;border:1px solid #e2e8f0}.sitenav a{color:#2563eb;background:#fff}.sitenav a:hover{background:#eff6ff;border-color:#bfdbfe}.sitenav .cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}.sitenav .sep{flex-basis:100%;height:0;margin:0}.sitenav .more{color:#64748b;border-color:#eef2f7;background:#fff;font-weight:600}.sitenav .more:hover{background:#f8fafc;border-color:#e2e8f0}.sitenav .more.cur{color:#0f172a;background:#f1f5f9;border-color:#cbd5e1}
+</style>
+</head>
+<body>
+<nav class="sitenav"><span class="brand">Iowa City CSD finances</span><a href="index.html">How ICCSD compares</a><a href="iccsd-cushion.html">Does it have a cushion?</a><a href="iowa-district-financial-benchmark.html">Dig into the data</a><span class="sep"></span><a class="more cur" href="other-analyses.html">Other analyses</a><a class="more" href="making-the-foc-work.html">Oversight committee</a></nav>
+<div class="wrap">
+
+<h1>Building permits as an early signal for ICCSD enrollment</h1>
+<p class="sub">Corridor housing permits, 2010 to 2025, as a leading indicator for the kindergarten
+share that drives the enrollment forecast</p>
+
+<div class="callout">
+  <strong>New single-family homes today become kindergarteners in about five years.</strong> The
+  enrollment forecast turns on one number, the share of county births that enrolls in ICCSD
+  kindergarten. That share moves with where families build and buy. Building permits give an early
+  read on it. In the ICCSD corridor, single-family permits lead the kindergarten share by about five
+  years, with a correlation of <strong>+0.65</strong> (and +0.76 at a four-year lag).
+</div>
+
+<div class="kpi-row">
+  <div class="kpi blue"><div class="label">Lead correlation</div>
+    <div class="val">+0.65</div><div class="note">corridor single-family permits to K share, 5-yr lag</div></div>
+  <div class="kpi red"><div class="label">ICCSD share of corridor single-family</div>
+    <div class="val">64%</div><div class="note">2019 trough, down from 97% in 2010</div></div>
+  <div class="kpi green"><div class="label">Recovered to</div>
+    <div class="val">77%</div><div class="note">2025, as Tiffin cooled</div></div>
+</div>
+
+<h2>Where the family housing is getting built</h2>
+<p>Single-family detached homes are the housing that brings school-age children. Multifamily, mostly
+student and young-professional rentals near the university, brings very few. So the single-family
+permit trend is the part that matters for enrollment.</p>
+<div class="chart-box">
+  <div class="title">Single-family permits by city, 2010 to 2025</div>
+  <svg viewBox="0 0 760 280" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="44" y1="244.0" x2="650" y2="244.0" stroke="#eef2f7"/><text x="38" y="248.0" text-anchor="end" font-size="10.5" fill="#94a3b8">0</text><line x1="44" y1="168.7" x2="650" y2="168.7" stroke="#eef2f7"/><text x="38" y="172.7" text-anchor="end" font-size="10.5" fill="#94a3b8">100</text><line x1="44" y1="93.3" x2="650" y2="93.3" stroke="#eef2f7"/><text x="38" y="97.3" text-anchor="end" font-size="10.5" fill="#94a3b8">200</text><line x1="44" y1="18.0" x2="650" y2="18.0" stroke="#eef2f7"/><text x="38" y="22.0" text-anchor="end" font-size="10.5" fill="#94a3b8">300</text><text x="44.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">10</text><text x="124.8" y="260" text-anchor="middle" font-size="10" fill="#64748b">12</text><text x="205.6" y="260" text-anchor="middle" font-size="10" fill="#64748b">14</text><text x="286.4" y="260" text-anchor="middle" font-size="10" fill="#64748b">16</text><text x="367.2" y="260" text-anchor="middle" font-size="10" fill="#64748b">18</text><text x="448.0" y="260" text-anchor="middle" font-size="10" fill="#64748b">20</text><text x="528.8" y="260" text-anchor="middle" font-size="10" fill="#64748b">22</text><text x="609.6" y="260" text-anchor="middle" font-size="10" fill="#64748b">24</text><polyline points="44.0,128.7 84.4,149.1 124.8,76.0 165.2,79.0 205.6,73.7 246.0,130.2 286.4,45.9 326.8,83.5 367.2,144.6 407.6,170.2 448.0,156.6 488.4,140.8 528.8,165.7 569.2,184.5 609.6,143.8 650.0,177.0" fill="none" stroke="#1e3a5f" stroke-width="2.5"/><text x="656" y="181.0" font-size="10.5" font-weight="700" fill="#1e3a5f">Iowa City</text><polyline points="44.0,141.5 84.4,125.7 124.8,141.5 165.2,190.5 205.6,122.0 246.0,149.1 286.4,153.6 326.8,109.9 367.2,189.0 407.6,189.8 448.0,158.9 488.4,103.9 528.8,149.1 569.2,141.5 609.6,143.1 650.0,116.7" fill="none" stroke="#2563eb" stroke-width="2.5"/><text x="656" y="120.7" font-size="10.5" font-weight="700" fill="#2563eb">North Liberty</text><polyline points="44.0,213.9 84.4,190.5 124.8,186.0 165.2,194.3 205.6,177.0 246.0,222.2 286.4,230.4 326.8,229.7 367.2,225.2 407.6,231.2 448.0,225.9 488.4,212.4 528.8,192.0 569.2,184.5 609.6,199.6 650.0,197.3" fill="none" stroke="#0891b2" stroke-width="2.5"/><text x="656" y="201.3" font-size="10.5" font-weight="700" fill="#0891b2">Coralville</text><polyline points="44.0,234.2 84.4,226.7 124.8,229.7 165.2,218.4 205.6,229.7 246.0,217.6 286.4,216.9 326.8,153.6 367.2,130.2 407.6,143.1 448.0,134.0 488.4,121.2 528.8,193.5 569.2,156.6 609.6,158.9 650.0,160.4" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5 3"/><text x="656" y="164.4" font-size="10.5" font-weight="700" fill="#dc2626">Tiffin</text></svg>
+</div>
+<p>Three things show up. Iowa City proper is largely built out, and its single-family permits have
+drifted down. North Liberty is the ICCSD growth engine and keeps building at a steady pace. And
+Tiffin, which sits in Clear Creek Amana, surged from about 36 single-family permits in 2016 to
+120 to 163 a year from 2017 through 2021, then cooled back to about 110.</p>
+
+<h2>The Tiffin capture, visible in permits</h2>
+<p>The decomposition analysis argued that ICCSD's lost ground is geographic, families forming in
+Tiffin rather than leaving the district. The permits show it directly. ICCSD's share of all corridor
+single-family building held above 90% through 2016, then fell to a trough near
+64% from 2018 to 2020 as Tiffin surged. As Tiffin cooled, it recovered to
+about 77%.</p>
+<div class="chart-box">
+  <div class="title">ICCSD-corridor share of single-family permits (rest is Tiffin / CCA)</div>
+  <svg viewBox="0 0 760 260" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="44" y1="201.1" x2="740" y2="201.1" stroke="#eef2f7"/><text x="38" y="205.1" text-anchor="end" font-size="10.5" fill="#94a3b8">60%</text><line x1="44" y1="155.3" x2="740" y2="155.3" stroke="#eef2f7"/><text x="38" y="159.3" text-anchor="end" font-size="10.5" fill="#94a3b8">70%</text><line x1="44" y1="109.6" x2="740" y2="109.6" stroke="#eef2f7"/><text x="38" y="113.6" text-anchor="end" font-size="10.5" fill="#94a3b8">80%</text><line x1="44" y1="63.8" x2="740" y2="63.8" stroke="#eef2f7"/><text x="38" y="67.8" text-anchor="end" font-size="10.5" fill="#94a3b8">90%</text><line x1="44" y1="18.0" x2="740" y2="18.0" stroke="#eef2f7"/><text x="38" y="22.0" text-anchor="end" font-size="10.5" fill="#94a3b8">100%</text><text x="44.0" y="240" text-anchor="middle" font-size="10" fill="#64748b">10</text><text x="136.8" y="240" text-anchor="middle" font-size="10" fill="#64748b">12</text><text x="229.6" y="240" text-anchor="middle" font-size="10" fill="#64748b">14</text><text x="322.4" y="240" text-anchor="middle" font-size="10" fill="#64748b">16</text><text x="415.2" y="240" text-anchor="middle" font-size="10" fill="#64748b">18</text><text x="508.0" y="240" text-anchor="middle" font-size="10" fill="#64748b">20</text><text x="600.8" y="240" text-anchor="middle" font-size="10" fill="#64748b">22</text><text x="693.6" y="240" text-anchor="middle" font-size="10" fill="#64748b">24</text><rect x="368.8" y="18" width="185.6" height="206" fill="#fee2e2" fill-opacity="0.5"/><text x="461.6" y="30" text-anchor="middle" font-size="9.5" fill="#b91c1c">Tiffin capture surge</text><polyline points="44.0,33.7 90.4,43.4 136.8,34.7 183.2,51.8 229.6,34.0 276.0,56.4 322.4,50.8 368.8,114.7 415.2,178.8 461.6,182.5 508.0,168.9 554.4,149.4 600.8,92.1 647.2,133.4 693.6,125.8 740.0,121.9" fill="none" stroke="#1e3a5f" stroke-width="2.8"/><circle cx="44.0" cy="33.7" r="3" fill="#1e3a5f"/><circle cx="90.4" cy="43.4" r="3" fill="#1e3a5f"/><circle cx="136.8" cy="34.7" r="3" fill="#1e3a5f"/><circle cx="183.2" cy="51.8" r="3" fill="#1e3a5f"/><circle cx="229.6" cy="34.0" r="3" fill="#1e3a5f"/><circle cx="276.0" cy="56.4" r="3" fill="#1e3a5f"/><circle cx="322.4" cy="50.8" r="3" fill="#1e3a5f"/><circle cx="368.8" cy="114.7" r="3" fill="#1e3a5f"/><circle cx="415.2" cy="178.8" r="3" fill="#1e3a5f"/><circle cx="461.6" cy="182.5" r="3" fill="#1e3a5f"/><circle cx="508.0" cy="168.9" r="3" fill="#1e3a5f"/><circle cx="554.4" cy="149.4" r="3" fill="#1e3a5f"/><circle cx="600.8" cy="92.1" r="3" fill="#1e3a5f"/><circle cx="647.2" cy="133.4" r="3" fill="#1e3a5f"/><circle cx="693.6" cy="125.8" r="3" fill="#1e3a5f"/><circle cx="740.0" cy="121.9" r="3" fill="#1e3a5f"/><text x="44.0" y="24.7" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e3a5f">97%</text><text x="461.6" y="173.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e3a5f">64%</text><text x="740.0" y="112.9" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e3a5f">77%</text></svg>
+</div>
+<p>Lag that five years and the timing lines up with the kindergarten share. The Tiffin surge of
+2017 to 2021 is what fed the K-share decline of 2023 to 2025. That is the same mechanism the
+headcount decomposition found, now confirmed by an independent dataset.</p>
+
+<h2>The permits lead the kindergarten share</h2>
+<div class="chart-box">
+  <div class="title">ICCSD-corridor single-family permits (lagged 5 yr) vs the K-entry share</div>
+  <svg viewBox="0 0 760 270" width="100%" role="img" font-family="-apple-system,Segoe UI,Roboto,sans-serif"><line x1="48" y1="189.2" x2="708" y2="189.2" stroke="#eef2f7"/><text x="42" y="193.2" text-anchor="end" font-size="10" fill="#1e3a5f">0.70</text><line x1="48" y1="146.4" x2="708" y2="146.4" stroke="#eef2f7"/><text x="42" y="150.4" text-anchor="end" font-size="10" fill="#1e3a5f">0.72</text><line x1="48" y1="103.6" x2="708" y2="103.6" stroke="#eef2f7"/><text x="42" y="107.6" text-anchor="end" font-size="10" fill="#1e3a5f">0.74</text><line x1="48" y1="60.8" x2="708" y2="60.8" stroke="#eef2f7"/><text x="42" y="64.8" text-anchor="end" font-size="10" fill="#1e3a5f">0.76</text><text x="48.0" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">16</text><text x="121.3" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">17</text><text x="194.7" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">18</text><text x="268.0" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">19</text><text x="488.0" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">22</text><text x="561.3" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">23</text><text x="634.7" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">24</text><text x="708.0" y="247" text-anchor="middle" font-size="9.5" fill="#64748b">25</text><polyline points="48.0,117.9 121.3,52.5 194.7,97.1 268.0,39.4 341.3,123.8 414.7,73.3 488.0,84.6 561.3,185.0 634.7,208.8 708.0,174.3" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="5 3"/><polyline points="48.0,132.0 121.3,107.0 194.7,61.5 268.0,111.2 488.0,128.5 561.3,169.3 634.7,154.4 708.0,129.5" fill="none" stroke="#1e3a5f" stroke-width="2.8"/><circle cx="48.0" cy="132.0" r="3" fill="#1e3a5f"/><circle cx="121.3" cy="107.0" r="3" fill="#1e3a5f"/><circle cx="194.7" cy="61.5" r="3" fill="#1e3a5f"/><circle cx="268.0" cy="111.2" r="3" fill="#1e3a5f"/><circle cx="488.0" cy="128.5" r="3" fill="#1e3a5f"/><circle cx="561.3" cy="169.3" r="3" fill="#1e3a5f"/><circle cx="634.7" cy="154.4" r="3" fill="#1e3a5f"/><circle cx="708.0" cy="129.5" r="3" fill="#1e3a5f"/><text x="712" y="30" font-size="10" font-weight="700" fill="#1e3a5f">K share</text><text x="712" y="46" font-size="10" font-weight="700" fill="#16a34a">SF permits</text><text x="712" y="58" font-size="8.5" fill="#94a3b8">(lagged 5 yr)</text></svg>
+</div>
+<p>The two lines move together. When corridor single-family building is strong, the kindergarten
+share five years later is high. When it dips, the share dips. That is what makes permits a usable
+early signal, and the relationship is strong enough (+0.65 at five years) to lean on for
+direction even with a short history.</p>
+
+<h2>What it says about the forecast</h2>
+<div class="callout good">
+  <strong>The permits point to stabilization, not further decline.</strong> The kindergarten classes
+  of 2026 to 2030 draw on permits from about 2020 to 2025. Over those years ICCSD-corridor
+  single-family permits held steady (around 297 to 405 a year, no further drop),
+  and ICCSD's share of corridor single-family building recovered from its 64%
+  trough back to about 77%. The thing that pulled the share down, the Tiffin
+  surge, has passed its peak. This supports the <strong>Baseline (a flat share near 0.718)</strong>
+  and argues against the <strong>Low scenario</strong>, which assumes the share keeps falling toward
+  0.680. The leading indicator says the decline is leveling off, not accelerating.
+</div>
+
+<table class="dt"><tr><th>Single-family permits</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th></tr><tr><td>Iowa City</td><td>153</td><td>126</td><td>223</td><td>219</td><td>226</td><td>151</td><td>263</td><td>213</td><td>132</td><td>98</td><td>116</td><td>137</td><td>104</td><td>79</td><td>133</td><td>89</td></tr><tr><td>North Liberty</td><td>136</td><td>157</td><td>136</td><td>71</td><td>162</td><td>126</td><td>120</td><td>178</td><td>73</td><td>72</td><td>113</td><td>186</td><td>126</td><td>136</td><td>134</td><td>169</td></tr><tr><td>Coralville</td><td>40</td><td>71</td><td>77</td><td>66</td><td>89</td><td>29</td><td>18</td><td>19</td><td>25</td><td>17</td><td>24</td><td>42</td><td>69</td><td>79</td><td>59</td><td>62</td></tr><tr><td>Johnson Co. uninc.</td><td>38</td><td>38</td><td>66</td><td>71</td><td>47</td><td>76</td><td>66</td><td>38</td><td>49</td><td>52</td><td>44</td><td>40</td><td>48</td><td>50</td><td>41</td><td>58</td></tr><tr style="border-top:2px solid #1e3a5f"><td><b>ICCSD-corridor total</b></td><td><b>367</b></td><td><b>392</b></td><td><b>502</b></td><td><b>427</b></td><td><b>524</b></td><td><b>382</b></td><td><b>467</b></td><td><b>448</b></td><td><b>279</b></td><td><b>239</b></td><td><b>297</b></td><td><b>405</b></td><td><b>347</b></td><td><b>344</b></td><td><b>367</b></td><td><b>378</b></td></tr><tr><td>Tiffin (CCA)</td><td>13</td><td>23</td><td>19</td><td>34</td><td>19</td><td>35</td><td>36</td><td>120</td><td>151</td><td>134</td><td>146</td><td>163</td><td>67</td><td>116</td><td>113</td><td>111</td></tr></table>
+
+<h2>The honest limit</h2>
+<div class="callout warn">
+  <strong>These are whole-city totals, not an ICCSD count.</strong> North Liberty and Coralville
+  straddle the ICCSD and Clear Creek Amana line, and Tiffin is mostly CCA. Splitting each city's
+  permits into ICCSD vs CCA needs an address-level pull and a spatial join against the district
+  boundary, which was not done this round. So this is a corridor-level signal that points to a
+  direction, not a precise input to the share. Done properly, the address-level join would let the
+  permits feed the kindergarten module directly instead of confirming it after the fact.
+</div>
+<ul>
+  <li>Multifamily permits are excluded on purpose. They bring few school-age children.</li>
+  <li>Census Building Permits Survey figures for thin-reporting places (Tiffin 2024 to 2025) are
+  partly imputed and should be read as preliminary.</li>
+  <li>The lead correlation rests on eight non-COVID kindergarten years, so it is directional, not a
+  fitted model.</li>
+</ul>
+
+<p style="margin-top:24px">
+  <a href="iccsd-enrollment-forecast.html">The enrollment forecast &rarr;</a><br>
+  <a href="iccsd-enrollment-forecast-backtest.html">Forecast validation and calibration &rarr;</a><br>
+  <a href="iccsd-enrollment-decomposition.html">What's driving ICCSD enrollment? &rarr;</a>
+</p>
+
+<p class="src">Source: Building Permits/Building Permits (Tier 1)/fact_units_ts.csv. U.S. Census
+Bureau Building Permits Survey, place-level annual files (Iowa City, Coralville, North Liberty,
+Tiffin), plus Johnson County CitizenServe issued-permits report for the unincorporated balance.
+Single-family is the BPS 1-unit bucket. Pulled 2026-06-30. Built iccsd-enrollment-permits.html via
+scripts/build_permit_indicator.py.</p>
+
+</div>
+</body>
+</html>

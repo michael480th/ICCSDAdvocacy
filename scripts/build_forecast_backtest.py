@@ -464,8 +464,11 @@ down a little while the cone of uncertainty widens to its honest width.</p>
 
 <h2>What would still help</h2>
 <ul>
-  <li><strong>Corridor building permits</strong> in North Liberty, Tiffin, and Coralville. The only
-  real leading indicator for in-migration. It would replace the share guess with a data series.</li>
+  <li><strong>Corridor building permits, now started.</strong> Single-family permits in the corridor
+  lead the kindergarten share by about five years (correlation +0.65), and the recent years point to
+  stabilization. See <a href="iccsd-enrollment-permits.html">building permits as an early enrollment
+  signal</a>. The next step is the address-level spatial join that would split each city into ICCSD
+  vs CCA and feed the share directly.</li>
   <li><strong>Sub-county or resident births.</strong> Shrinks the boundary-mismatch part of the share.</li>
   <li><strong>Finalized 2023 and 2024 births.</strong> Currently estimated. Firms up the 2028 and
   2029 K cohorts.</li>
