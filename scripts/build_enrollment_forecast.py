@@ -1,31 +1,20 @@
 #!/usr/bin/env python3
 """ICCSD Enrollment Forecast — cohort-survival (grade-progression) model.
 
-Generates iccsd-enrollment-forecast.html.
-
-Methodology: grade-progression ratios (GPRs) computed from Iowa DOE BEDS grade-level
-enrollment history; kindergarten module uses Johnson County resident births (CDC WONDER)
-lagged 5 years, scaled by ICCSD's effective share of county K entry.
+Generates iccsd-enrollment-forecast.html and iccsd-enrollment-forecast-methodology.html.
 
 DATA PROVENANCE:
-  2025-26 grade vector: ACTUAL — Iowa DOE BEDS (Student Reporting in Iowa fall enrollment),
-    downloaded 2026-06-30. Source: "2025-2026 PK-12 Iowa Public School Enrollment by
-    District, Grade, Race/Ethnicity and Sex."
-  2017-24 grade vectors: ESTIMATED — K entry from lagged Johnson County births × share
-    (0.728, calibrated on 2025 actual); grades 1-12 scaled from the 2025 BEDS template
-    to match the K-12 headcount implied by dom budget-enrollment data. Replace with
-    actual BEDS grade-level exports for prior years when available.
-  Budget-enrollment to K-12 headcount conversion: K12 ≈ budget_enrollment − 143
-    (derived: K12_2025=14,227; PK=644 at 0.5 weight adds 322; net open-enroll out ≈ −179;
-    offset = 322 − 179 = 143).
+  Grade vectors 2016-2025: ACTUAL — Iowa DOE Student Reporting in Iowa (SRI) fall
+    enrollment files for school years 2016-17 through 2025-26, downloaded 2026-06-30.
+    All values are Iowa City Community School District K-12 headcount by grade,
+    October 1 count date.
 
-ESA FINDING: The 2025 actual K (987) aligns with births × 0.728 with no ESA discount.
-  Corridor growth in North Liberty / Tiffin (partly inside ICCSD boundaries) appears to
-  absorb voucher leakage at the kindergarten level. The Low scenario tests the case where
-  migration eventually slows while ESA take-up continues to grow.
+ESA FINDING: K enrollment has declined three consecutive years (1,035→998→992→987).
+  The post-ESA effective share (avg 0.718) is below the pre-ESA avg (0.742).
+  Corridor in-migration (North Liberty / Tiffin) is currently partially offsetting voucher
+  leakage, but the net trend is downward. The three scenarios test how that offset evolves.
 
 Run:  python3 scripts/build_enrollment_forecast.py
-Output: iccsd-enrollment-forecast.html
 """
 
 import sys, os, csv, datetime, statistics as stat
@@ -44,9 +33,12 @@ ESA_BREAK_TRANS = 2022        # last "pre-ESA" transition origin year
 FORECAST_START = 2026
 FORECAST_YEARS = 5
 
-# ICCSD effective share of Johnson County public K enrollment.
-# Recalibrated on 2025 BEDS actual: K=987, births(2020)=1356 → 987/1356 = 0.728.
-# Accounts for: district boundary ≠ county line, private pre-K choice, migration offset.
+# ICCSD effective share of Johnson County resident births that enroll in ICCSD 5 years later.
+# Observed from actual BEDS K counts (excl. 2020 COVID year):
+#   2016:0.727  2017:0.738  2018:0.760  2019:0.736  2021:0.762
+#   2022:0.729  2023:0.710  2024:0.716  2025:0.728
+# Pre-ESA avg (excl. COVID): 0.740. Post-ESA avg (2023-25): 0.718.
+# Baseline = 0.728 (2025 most-recent actual). Used only for forecasting K.
 ICCSD_COUNTY_SHARE = 0.728
 
 COVID_TRANS = {(2019, 2020), (2020, 2021)}
@@ -61,76 +53,27 @@ BIRTHS = {
     2022: 1298, 2023: 1280, 2024: 1265,
 }
 
-# ── DOM BUDGET ENROLLMENT → ESTIMATED K-12 HEADCOUNT ─────────────────────────
-# Iowa DOM certified enrollment (budget enrollment, weighted FTE) by fiscal year.
-# Iowa fiscal year Y uses the October (Y-2) enrollment count for budget purposes:
-#   dom FY2021 = Oct 2019 count; dom FY2022 = Oct 2020; ...; dom FY2025 = Oct 2023.
-# K-12 headcount ≈ budget_enrollment − 143 (PK 0.5-weight contribution minus open-enroll net).
-DOM_BUDGET = {
-    # Oct_count_year: budget_enrollment
-    2018: 14285,   # dom FY2020
-    2019: 14572,   # dom FY2021
-    2020: 14284,   # dom FY2022
-    2021: 14395,   # dom FY2023
-    2022: 14440,   # dom FY2024
-    2023: 14379,   # dom FY2025
-    # 2024: dom FY2026 not yet in file; interpolated
+# ── ACTUAL BEDS GRADE VECTORS ─────────────────────────────────────────────────
+# Source: Iowa DOE Student Reporting in Iowa (SRI) fall enrollment files, all years.
+# year key = October count year = school-year start (2025 = SY 2025-26, Oct 2025 count).
+# Format: [K, Gr1, Gr2, Gr3, Gr4, Gr5, Gr6, Gr7, Gr8, Gr9, Gr10, Gr11, Gr12]
+BEDS_ACTUAL = {
+    2016: [1125, 1166, 1062, 1118, 1081, 1049,  976, 1046,  953, 1000,  988,  952, 1000],
+    2017: [1146, 1112, 1164, 1051, 1125, 1065, 1058,  987, 1050, 1027, 1026, 1007, 1032],
+    2018: [1157, 1139, 1081, 1156, 1036, 1120, 1063, 1061,  978, 1076, 1060, 1029, 1034],
+    2019: [1101, 1174, 1131, 1107, 1154, 1047, 1116, 1108, 1055, 1021, 1115, 1059, 1088],
+    2020: [1027, 1016, 1085, 1086, 1058, 1129, 1016, 1098, 1096, 1095, 1030, 1119, 1092],
+    2021: [1096, 1087, 1074, 1089, 1109, 1052, 1121, 1037, 1099, 1140, 1125, 1033, 1179],
+    2022: [1035, 1097, 1092, 1070, 1091, 1093, 1059, 1136, 1063, 1157, 1148, 1133, 1088],
+    2023: [ 998, 1028, 1089, 1082, 1052, 1086, 1092, 1106, 1143, 1092, 1164, 1167, 1165],
+    2024: [ 992, 1038, 1023, 1105, 1099, 1063, 1096, 1108, 1139, 1227, 1150, 1164, 1211],
+    2025: [ 987,  988, 1013, 1029, 1110, 1094, 1058, 1087, 1098, 1181, 1222, 1146, 1214],
 }
-DOM_OFFSET = 143   # budget_enrollment − K-12_headcount (calibrated on 2025 actual)
-
-def est_k12_total(year):
-    """Estimated K-12 headcount from dom budget enrollment."""
-    if year == 2025:
-        return 14227   # actual from BEDS
-    if year in DOM_BUDGET:
-        return DOM_BUDGET[year] - DOM_OFFSET
-    if year == 2017:
-        return 13950   # pre-dom estimate; slight growth toward 2019 peak
-    if year == 2024:
-        # Interpolate: 14236 (2023) → 14227 (2025); linear midpoint
-        return round((14236 + 14227) / 2)
-    return None
-
-# ── 2025 ACTUAL BEDS GRADE VECTOR ─────────────────────────────────────────────
-# Source: Iowa DOE 2025-26 BEDS file (October 2025 count).
-BEDS_2025 = {
-    'K':   987,  '1':  988, '2': 1013, '3': 1029, '4': 1110, '5': 1094,
-    '6': 1058,  '7': 1087, '8': 1098, '9': 1181, '10': 1222, '11': 1146, '12': 1214,
-}
-K12_2025_NONCOV = [BEDS_2025[g] for g in GRADES[1:]]   # grades 1-12 template
-K12_2025_NONK = sum(K12_2025_NONCOV)                   # = 13240
-
-def k_from_births(year, covid_factor=1.0):
-    """K entry from lagged births × ICCSD share × optional COVID factor."""
-    birth_year = year - 5
-    if birth_year in BIRTHS and BIRTHS[birth_year]:
-        b = BIRTHS[birth_year]
-    else:
-        known = sorted(y for y in BIRTHS if BIRTHS[y])
-        ys = known[-4:]
-        bs = [BIRTHS[y] for y in ys]
-        n = len(ys); mx = sum(ys)/n; mb = sum(bs)/n
-        slope = (sum((ys[i]-mx)*(bs[i]-mb) for i in range(n))
-                 / sum((y-mx)**2 for y in ys))
-        b = max(BIRTHS[known[-1]] + slope*(birth_year - known[-1]), 900)
-    return round(b * ICCSD_COUNTY_SHARE * covid_factor)
-
-def build_est_vector(year):
-    """Estimate the grade vector for a non-BEDS year."""
-    if year == 2025:
-        return [BEDS_2025[g] for g in GRADES]
-    covid = 0.933 if year == 2020 else 1.0   # COVID K-entry dip ~6.7%
-    k = k_from_births(year, covid)
-    k12_total = est_k12_total(year)
-    nk = k12_total - k
-    scaled = [round(v * nk / K12_2025_NONK) for v in K12_2025_NONCOV]
-    return [k] + scaled
 
 # ── HISTORICAL ENROLLMENT ──────────────────────────────────────────────────────
-# 2025: ACTUAL (Iowa DOE BEDS). 2017-2024: ESTIMATED from births + dom budget enrollment.
-# year key = October count year (2017 = Oct 2017, school year 2017-18).
-HIST_YEARS_ALL = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-ENROLLMENT = {y: build_est_vector(y) for y in HIST_YEARS_ALL}
+# All years: Iowa DOE BEDS actual. year key = October count year.
+HIST_YEARS_ALL = sorted(BEDS_ACTUAL.keys())
+ENROLLMENT = {y: BEDS_ACTUAL[y] for y in HIST_YEARS_ALL}
 HIST_YEARS = HIST_YEARS_ALL
 
 # ── GPR COMPUTATION ────────────────────────────────────────────────────────────
@@ -177,20 +120,20 @@ def smooth_gprs(gprs, year_filter=None):
 
 
 # ── SCENARIOS ──────────────────────────────────────────────────────────────────
-# ESA finding: 2025 actual K (987) = births(2020) × 0.728 with NO ESA discount.
-# Corridor growth (North Liberty / Tiffin) is currently absorbing voucher leakage.
-# Scenarios test whether that offset holds, strengthens, or reverses.
+# ESA finding: K enrollment has declined 3 straight years; post-ESA share avg (0.718)
+# is below pre-ESA avg (0.742). Corridor in-migration partially offsets voucher leakage.
+# Scenarios test whether that offset holds, grows, or reverses.
 
-PRE_ESA_YEARS  = list(range(2017, ESA_BREAK_TRANS + 1))
-POST_ESA_YEARS = list(range(ESA_BREAK_TRANS + 1, 2025))
+PRE_ESA_YEARS  = list(range(2016, ESA_BREAK_TRANS + 1))   # origin years 2016-2022
+POST_ESA_YEARS = list(range(ESA_BREAK_TRANS + 1, 2025))   # origin years 2023-2024
 
 SCENARIOS = {
     'High': {
-        'gpr_filter': PRE_ESA_YEARS,
-        'k_share': 0.740,   # growth accelerates; migration exceeds births decline
+        'gpr_filter': None,   # all years; same retention as Baseline; higher K share
+        'k_share': 0.740,   # growth accelerates; more corridor families enroll
         'color': '#15803d',
         'dash': '',
-        'desc': 'Growth corridors stay strong; effective share rises to 0.74',
+        'desc': 'Corridor in-migration strengthens; effective K-entry share rises to 0.740',
     },
     'Baseline': {
         'gpr_filter': None,   # all years; COVID 0.3×
@@ -372,9 +315,9 @@ def build_grade_table():
     rows = ''
     for y in HIST_YEARS:
         e = ENROLLMENT[y]
-        is_actual = (y == 2025)
-        src_label = '<span class="actual-tag">BEDS actual</span>' if is_actual else '<span class="est-tag">estimated</span>'
+        src_label = '<span class="actual-tag">BEDS actual</span>'
         yr_note = ' <span class="yr-tag">COVID</span>' if y in (2020, 2021) else ''
+        yr_note += ' <span class="yr-tag" style="background:#fef3c7;color:#92400e">ESA▶</span>' if y == 2023 else ''
         cells = ''.join(
             f'<td style="background:{cell_bg(e[gi],g_min[gi],g_max[gi])}">{e[gi]:,}</td>'
             for gi in range(NG)
@@ -398,7 +341,7 @@ def build_gpr_table():
         return f'<span style="color:{c};font-weight:600">{v:.3f}</span>'
 
     header = ('<tr><th>Transition</th>'
-              '<th>Pre-ESA avg<br><small>2017–2022</small></th>'
+              '<th>Pre-ESA avg<br><small>2016–2022</small></th>'
               '<th>Post-ESA avg<br><small>2023–2025</small></th>'
               '<th>Baseline blend</th></tr>')
     rows = ''
@@ -437,34 +380,48 @@ def build_forecast_table():
 # ── K MODULE TABLE ─────────────────────────────────────────────────────────────
 
 def build_k_table():
+    _ks = {by+5: ENROLLMENT[by+5][0]/BIRTHS[by]
+           for by in BIRTHS if (by+5) in ENROLLMENT and BIRTHS[by]}
+    _pre  = [v for y,v in _ks.items() if y < 2023 and y != 2020]
+    _post = [v for y,v in _ks.items() if y >= 2023]
+    _avg_pre  = sum(_pre)  / len(_pre)  if _pre  else ICCSD_COUNTY_SHARE
+    _avg_post = sum(_post) / len(_post) if _post else ICCSD_COUNTY_SHARE
+
     header = ('<tr><th>Birth yr</th><th>Johnson Co.<br>births</th>'
-              '<th>K entry yr</th><th>× 0.728<br>(expected K)</th>'
-              '<th>Model K<br>(actual/est)</th><th>Gap</th></tr>')
+              '<th>K entry yr</th><th>Actual K<br>(BEDS)</th>'
+              '<th>Actual share<br>K ÷ births</th><th>Notes</th></tr>')
     rows = ''
-    for by in sorted(y for y in BIRTHS if BIRTHS[y] and y >= 2012):
+    for by in sorted(y for y in BIRTHS if BIRTHS[y] and y >= 2011):
         b = BIRTHS[by]
         ky = by + 5
-        exp = round(b * ICCSD_COUNTY_SHARE)
-        act = ENROLLMENT.get(ky, [None])[0] if ky in ENROLLMENT else None
-        is_beds = (ky == 2025)
+        act = ENROLLMENT[ky][0] if ky in ENROLLMENT else None
         if act is not None:
-            gap = act - exp
-            gsign = '+' if gap >= 0 else ''
-            gap_str = f'{gsign}{gap}'
-            gap_c = '#16a34a' if gap >= 0 else '#dc2626'
-            act_str = f'{act:,}{"*" if is_beds else ""}'
-            act_style = 'font-weight:700;color:#1e3a5f' if is_beds else ''
+            share = act / b
+            sc = '#16a34a' if share >= 0.728 else '#b91c1c'
+            note = 'COVID — K suppressed' if ky == 2020 else (
+                   'ESA year 1' if ky == 2023 else (
+                   'ESA year 2' if ky == 2024 else (
+                   'ESA year 3 · calibration point' if ky == 2025 else '')))
+            rows += (f'<tr><td>{by}</td><td>{b:,}</td><td>{ky}</td>'
+                     f'<td style="font-weight:700">{act:,}</td>'
+                     f'<td style="color:{sc};font-weight:700">{share:.3f}</td>'
+                     f'<td style="font-size:12px;color:#64748b">{note}</td></tr>')
         else:
-            act_str = '<em>forecast</em>'
-            gap_str = ''; gap_c = '#64748b'; act_style = ''
-        cov = ' <span style="font-size:9px;background:#fef3c7;padding:1px 4px;border-radius:3px">COVID</span>' if ky == 2020 else ''
-        rows += (f'<tr><td>{by}</td><td>{b:,}</td>'
-                 f'<td>{ky}{cov}</td><td>{exp:,}</td>'
-                 f'<td style="{act_style}">{act_str}</td>'
-                 f'<td style="color:{gap_c}">{gap_str}</td></tr>')
+            # Forecast year — show projected range
+            hi_k  = round(b * 0.740)
+            bl_k  = round(b * 0.728)
+            lo_k  = round(b * 0.680)
+            rows += (f'<tr style="background:#f8fafc"><td>{by}</td><td>{b:,}</td><td>{ky}</td>'
+                     f'<td style="color:#64748b"><em>forecast</em></td>'
+                     f'<td style="color:#64748b"><em>TBD</em></td>'
+                     f'<td style="font-size:12px;color:#64748b">'
+                     f'High {hi_k} · Base {bl_k} · Low {lo_k}</td></tr>')
     return (f'<table class="k-tab">{header}{rows}</table>'
             f'<p style="font-size:11.5px;color:#64748b;margin:6px 0 0">'
-            f'* = 2025 actual from Iowa DOE BEDS. All other rows estimated.</p>')
+            f'All historical K values from Iowa DOE BEDS (verified). '
+            f'Share = actual K ÷ Johnson County births 5 years prior. '
+            f'Pre-ESA avg (excl. COVID 2020): {_avg_pre:.3f}. '
+            f'Post-ESA avg (2023–25): {_avg_post:.3f}.</p>')
 
 
 # ── RAW GPR MATRIX (for methodology page) ─────────────────────────────────────
@@ -481,8 +438,7 @@ def build_raw_gpr_matrix():
         v = gprs_all[key]
         color = '#16a34a' if v >= 1.0 else '#b91c1c'
         is_covid = (y1, y1+1) in COVID_TRANS
-        is_semi = (y1 == 2024)
-        bg = ';background:#fef9c3' if is_covid else (';background:#f0fdf4' if is_semi else '')
+        bg = ';background:#fef9c3' if is_covid else ''
         return f'<td style="color:{color};font-weight:600{bg}">{v:.3f}</td>'
 
     col_hdrs = ''
@@ -490,8 +446,6 @@ def build_raw_gpr_matrix():
         label = f"{y1}→'{str(y2)[-2:]}"
         if (y1, y2) in COVID_TRANS:
             label += ' 🟡'
-        elif y1 == 2024:
-            label += ' ★'
         col_hdrs += f'<th style="font-size:10px">{label}</th>'
 
     rows = ''
@@ -506,9 +460,8 @@ def build_raw_gpr_matrix():
             f'<table style="border-collapse:collapse;font-size:11.5px;white-space:nowrap">'
             f'<tr><th style="background:#334155;color:#fff;padding:5px 8px;text-align:left">Grade</th>'
             f'{col_hdrs}</tr>{rows}</table></div>'
-            f'<p style="font-size:11px;color:#64748b;margin:5px 0 0">🟡 COVID year (weighted 0.3× in smoothing).  '
-            f'★ 2024→2025: destination is real BEDS data — the most reliable column.  '
-            f'All other origin years are estimated.</p>')
+            f'<p style="font-size:11px;color:#64748b;margin:5px 0 0">🟡 COVID year (weighted 0.3× in smoothing). '
+            f'All columns use verified Iowa DOE BEDS data for both origin and destination years.</p>')
 
 
 # ── METHODOLOGY PAGE ───────────────────────────────────────────────────────────
@@ -632,8 +585,7 @@ losses.</p>
 
 <p><strong>The full table of rates, every year and grade.</strong>
 Yellow shading = school years disrupted by COVID (these years are given only 30% weight in the
-average). The 2024→2025 column (★) has a real verified enrollment count as its
-destination — it's the most reliable column in the table.</p>
+average). All columns use verified Iowa DOE fall enrollment counts for both years.</p>
 {raw_gpr_matrix}
 </div>
 
@@ -647,19 +599,21 @@ double (2×), because recent patterns are more predictive than older ones.</p>
 
 <p>Each of the three scenarios uses a different set of years:</p>
 <ul>
-  <li><strong>High scenario:</strong> uses only the 2017–2022 school years — the period
-  before Iowa's school-choice voucher program (Educational Savings Accounts) began.
-  This reflects the assumption that pre-voucher grade retention patterns will return.</li>
+  <li><strong>High scenario:</strong> uses all available years (same grade-retention rates as
+  the Baseline), but assumes in-migration from Iowa City's growth corridors strengthens enough
+  to push the effective K-entry share up to 0.740. Grade-to-grade retention is the same as
+  the Baseline; the difference is in kindergarten headcount only.</li>
   <li><strong>Baseline scenario:</strong> uses all available years with the COVID discounts
-  described above.</li>
-  <li><strong>Low scenario:</strong> uses only the most recent three years (2023–2025),
-  which reflect the post-voucher environment and already show signs of increased attrition.</li>
+  described above. Kindergarten share stays at 0.728 — the current calibrated level.</li>
+  <li><strong>Low scenario:</strong> uses only the most recent two school years (2023–2025),
+  giving more weight to the post-voucher environment. Combined with a lower K-entry share
+  (0.680), this tests the case where migration slows and voucher use grows.</li>
 </ul>
 
 <p><strong>Smoothed rates used in each scenario:</strong></p>
 <table class="tab">
   <tr><th>Grade transition</th>
-      <th>Pre-voucher avg<br><small>2017–2022</small></th>
+      <th>Pre-voucher avg<br><small>2016–2022</small></th>
       <th>Post-voucher avg<br><small>2023–2025</small></th>
       <th style="color:#fca5a5">Low scenario</th>
       <th style="color:#93c5fd">Baseline</th>
@@ -698,16 +652,16 @@ were 1,356 babies born to Johnson County residents. So:</p>
     in Iowa City schools five years later.</span></div>
 </div>
 
-<p><strong>A key finding about Iowa's voucher program.</strong> Iowa enacted a school-choice
+<p><strong>What Iowa's voucher program has done so far.</strong> Iowa enacted a school-choice
 voucher program in 2023 (Educational Savings Accounts, or ESAs) that allows families to use
 roughly $7,600 in state education funding for private school tuition. About 41,000 Iowa students
-used it statewide in 2024-25. You might expect that to reduce the district share below 0.728 —
-but the 2025 actual shows no such reduction. Why? The North Liberty and Tiffin areas, both
-partly inside Iowa City's attendance boundary, are among the fastest-growing in Iowa. New-home
-construction is bringing in families with young children who enroll in Iowa City schools,
-and that in-migration is currently canceling out any families who are leaving for private
-schools. This is a masking effect, not proof that there's no voucher impact. Whether it
-lasts is the central question driving the three scenarios.</p>
+used it statewide in 2024-25. The kindergarten count has declined three straight years (1,035 in
+fall 2022 → 998 → 992 → 987 in fall 2025), and the effective district share of county births
+has fallen from a pre-voucher average of about 0.742 to a post-voucher average of 0.718. The
+2025 figure (0.728) sits between these averages — the trend is down but the in-migration from
+fast-growing North Liberty and Tiffin (both partly inside Iowa City's attendance boundary) is
+partially offsetting the voucher effect. Whether that offset holds, grows, or reverses is the
+central question driving the three scenarios.</p>
 
 <p><strong>Forecast kindergarten counts, by scenario:</strong></p>
 <table class="tab">
@@ -737,10 +691,11 @@ point estimate.</p>
 <div class="scen-card hi">
 <h3 style="color:#15803d">High — "Growth holds"</h3>
 <p><strong>What has to be true:</strong> The North Liberty and Tiffin growth corridors keep
-building homes and attracting young families at today's pace. More children moving into new
-houses than the birth trend would predict, so the district's effective share of county
-kindergarteners rises slightly to 0.740. Grade-to-grade retention looks like the period before
-the voucher program — which means the voucher-era pattern so far is an anomaly that fades.</p>
+building homes and attracting young families at today's pace or faster. More children move into
+new houses than the birth trend would predict, pushing the district's effective share of county
+kindergarteners slightly above today's level — to 0.740. Grade-to-grade retention for students
+already in the system follows the same overall pattern as the Baseline. The scenario differs
+from the Baseline only in how many new kindergarteners enter each year.</p>
 <p><strong>2030 enrollment: {hi_2030:,}.</strong> Still below the 2025 level due to falling
 birth counts, but the decline is modest. This scenario requires sustained housing construction
 in the growth corridors.</p>
@@ -776,13 +731,13 @@ school's worth of enrollment from the current level.</p>
 <h2>What could make this wrong</h2>
 <div class="sec">
 <ul>
-  <li><strong>The historical grade-by-grade counts are estimated, not measured.</strong> Only
-  2025 has a verified grade-level breakdown from the state. The 2017-2024 rows were estimated
-  by scaling the 2025 grade proportions to match the known district totals from each year. This
-  means the grade-progression rates computed from those years are approximations — they'll
-  correctly reflect whether the district was gaining or losing students overall, but the
-  grade-specific patterns are less reliable. Getting the actual grade-level state data files
-  from the Iowa DOE for each prior school year would significantly improve this.</li>
+  <li><strong>The grade-progression rates rest on 10 school years of verified Iowa DOE
+  enrollment data (2016–2025).</strong> The main remaining structural uncertainty is
+  open-enrollment flow: Iowa lets students attend school outside their home district, and
+  if Iowa City's net in/out balance changes — for example, because a neighboring district
+  opens a new school or becomes more attractive — the grade-progression rates won't
+  capture it cleanly. Adding annual open-enrollment in/out data (published by the Iowa DOE)
+  would separate in-district retention from cross-district transfers.</li>
 
   <li><strong>The district share (0.728) is one number capturing many things.</strong> It
   combines the geographic mismatch between county and district boundaries, private school
@@ -825,11 +780,13 @@ lo_2030     = scen_totals['Low'][2030]
 bl_chg_pct  = 100 * (bl_2030 - base_2025) / base_2025
 k_2026_bl   = scenario_results['Baseline'][2026][0]
 
-# Births-based K vs actual K: calibration summary
-calib_rows = [(by, BIRTHS[by], by+5, round(BIRTHS[by]*ICCSD_COUNTY_SHARE),
-               ENROLLMENT.get(by+5,[None])[0])
-              for by in [2018, 2019, 2020, 2021, 2022] if (by+5) in ENROLLMENT]
-avg_calib_gap = round(sum(abs((a or 0) - e) for _,_,_,e,a in calib_rows) / len(calib_rows))
+# K-entry share summary from actual BEDS data
+k_share_actuals = {by+5: ENROLLMENT[by+5][0]/BIRTHS[by]
+                   for by in BIRTHS if (by+5) in ENROLLMENT and by in BIRTHS and BIRTHS[by]}
+pre_esa_shares  = [v for y,v in k_share_actuals.items() if y < 2023 and y != 2020]
+post_esa_shares = [v for y,v in k_share_actuals.items() if y >= 2023]
+avg_pre_esa_share  = sum(pre_esa_shares)  / len(pre_esa_shares)  if pre_esa_shares  else ICCSD_COUNTY_SHARE
+avg_post_esa_share = sum(post_esa_shares) / len(post_esa_shares) if post_esa_shares else ICCSD_COUNTY_SHARE
 
 DOC = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -932,26 +889,27 @@ p{{margin:0 0 10px;max-width:780px}}
 </p>
 
 <div class="data-banner">
-  <strong>Starting point: Iowa DOE verified fall 2025 count.</strong>
-  Iowa City enrolled 987 kindergarteners and 14,227 students in grades K–12 as of October 1, 2025
-  (Iowa DOE Student Reporting in Iowa, downloaded 30 June 2026).
-  Historical counts for 2017-2024 are <em>estimated</em> from birth data and state funding totals;
-  they will be replaced when the Iowa DOE provides grade-level files for prior years.
+  <strong>All historical data: Iowa DOE verified fall enrollment counts, 2016–2025.</strong>
+  Grade-level October 1 counts from Iowa DOE Student Reporting in Iowa fall files for school
+  years 2016-17 through 2025-26, downloaded 30 June 2026. Every grade-progression rate in
+  this model is computed from verified data.
 </div>
 
 <div class="data-banner data-warn">
-  <strong>Voucher program finding:</strong> The 2025 kindergarten count (987) matches the birth-based
-  forecast exactly — no reduction due to Iowa's school-choice voucher program (Educational Savings
-  Accounts). New housing construction in North Liberty and Tiffin is currently bringing in enough
-  new families to offset any voucher departures. Whether that offset holds is the key question
-  driving the three scenarios below.
+  <strong>Voucher program finding:</strong> Iowa's school-choice voucher program (Educational
+  Savings Accounts) took effect in 2023-24. The kindergarten count has declined three years
+  running (1,035 → 998 → 992 → 987), and the effective district share of county births has
+  fallen from a pre-voucher average of {avg_pre_esa_share:.3f} to a post-voucher average of
+  {avg_post_esa_share:.3f}. New housing in North Liberty and Tiffin is partially offsetting
+  voucher departures, but the net trend is downward. Whether the offset holds, grows, or
+  reverses is the central question in the three scenarios.
 </div>
 
 <div class="kpi-row">
   <div class="kpi">
     <div class="label">Fall 2025 enrollment <small>(verified)</small></div>
     <div class="val">{base_2025:,}</div>
-    <div class="note">Grades K–12 · vs ~14,429 peak (2019 est.)</div>
+    <div class="note">Grades K–12 · down from 14,415 peak (2024)</div>
   </div>
   <div class="kpi">
     <div class="label">Baseline 2030 forecast</div>
@@ -971,7 +929,7 @@ p{{margin:0 0 10px;max-width:780px}}
 </div>
 
 <div class="chart-card">
-  <div class="chart-title">Total K–12 enrollment — historical (estimated 2017-24, BEDS actual 2025) and three-scenario forecast</div>
+  <div class="chart-title">Total K–12 enrollment — Iowa DOE BEDS actual 2016–2025 and three-scenario forecast 2026–2030</div>
   <div class="legend-row">
     <span class="chip">
       <svg width="24" height="3"><line x1="0" y1="1.5" x2="24" y2="1.5" stroke="#1e3a5f" stroke-width="2.5"/></svg>
@@ -1014,8 +972,9 @@ p{{margin:0 0 10px;max-width:780px}}
     <div style="flex:1;min-width:220px;border:2px solid #86efac;border-radius:10px;background:#f0fdf4;padding:13px 15px">
       <div style="font-weight:800;color:#15803d;font-size:15px;margin-bottom:5px">High</div>
       <p style="font-size:13.5px;margin:0 0 5px">The North Liberty and Tiffin growth corridors
-      keep building homes at today's pace. New families moving in push kindergarten counts
-      slightly above what births alone predict. Grade retention looks like pre-2023.</p>
+      keep building homes at today's pace or faster. New families push the district's share of
+      county kindergarteners up to 0.740. Grade retention follows the same overall pattern as
+      the Baseline — only kindergarten headcount differs.</p>
       <div style="font-size:12px;color:#166534"><strong>2030: {hi_2030:,}</strong></div>
     </div>
     <div style="flex:1;min-width:220px;border:2px solid #93c5fd;border-radius:10px;background:#eff6ff;padding:13px 15px">
@@ -1043,9 +1002,10 @@ p{{margin:0 0 10px;max-width:780px}}
 
 <h2>Historical enrollment by grade</h2>
 <div class="sec">
-  <p>2025 is verified BEDS data. 2017–2024 are estimated from lagged births (K) and dom budget-enrollment
-  totals (grades 1–12 scaled from 2025 BEDS grade template). Replace with actual BEDS exports for prior
-  years to compute meaningful per-year GPRs.</p>
+  <p>All rows are verified Iowa DOE BEDS fall enrollment counts from the district's October 1
+  headcount, school years 2016-17 through 2025-26. Green tag = BEDS actual. COVID disruption
+  years 2020 and 2021 are flagged; 2023 marks the first year of Iowa's school-choice voucher
+  program.</p>
   <div class="gtab-wrap">{grade_table}</div>
 </div>
 
@@ -1054,14 +1014,8 @@ p{{margin:0 0 10px;max-width:780px}}
   <p>A rate above 1.0 means the cohort grew going into the next grade (students transferring in
   or new families arriving). The 8th-to-9th transition consistently shows a gain as students
   from smaller schools consolidate into Iowa City High and West High. Rates below 1.0 reflect
-  attrition — the 9th-to-10th and 10th-to-11th transitions typically show small losses.</p>
-  <p style="font-size:13px;color:#b45309;background:#fef3c7;padding:8px 12px;border-radius:8px;max-width:680px">
-    <strong>Data note:</strong> 2017–2024 grade counts are estimated, not from a verified
-    state file. The estimates are built by scaling the 2025 verified grade proportions to match
-    each year's known total enrollment — so the rates below reflect year-to-year total changes
-    more than true grade-specific patterns. The 2024→2025 column is the most reliable because
-    the 2025 destination is a verified count.
-  </p>
+  attrition — the 9th-to-10th and 10th-to-11th transitions typically show small losses. All
+  rates computed from verified Iowa DOE BEDS data.</p>
   {gpr_table}
 </div>
 
@@ -1070,10 +1024,12 @@ p{{margin:0 0 10px;max-width:780px}}
   <p>Kindergarten is modeled from Johnson County resident births lagged five years, scaled by the
   ICCSD effective share (0.728). This share is calibrated from the 2025 BEDS actual (K=987) against
   2020 Johnson County births (1,356): 987/1356 = 0.728.</p>
-  <p><strong>Key finding:</strong> The share (0.728) matches the 2025 actual without an ESA discount,
-  meaning that corridor growth in North Liberty, Tiffin, and Coralville (areas partly within ICCSD
-  boundaries) is fully offsetting any voucher-program leakage at the kindergarten level.
-  Whether that offset persists is the central uncertainty in the forecast — hence the three scenarios.</p>
+  <p><strong>ESA finding:</strong> The kindergarten count has declined three straight years
+  (1,035 → 998 → 992 → 987 from fall 2022 through fall 2025). The effective district share of
+  county births fell from a pre-voucher average of {avg_pre_esa_share:.3f} to a post-voucher
+  average of {avg_post_esa_share:.3f}. New housing in North Liberty and Tiffin is partially
+  offsetting voucher departures, but the net trend is downward. Whether the in-migration offset
+  holds, grows, or reverses is the central question driving the three scenarios.</p>
   {k_table}
   <p style="font-size:12.5px;color:#64748b;margin:8px 0 0">
     <strong>Geography caveat:</strong> Johnson County births overstate the ICCSD-relevant pool because
@@ -1106,17 +1062,18 @@ p{{margin:0 0 10px;max-width:780px}}
 <h2>What this model needs to mature</h2>
 <div class="sec">
   <ol style="font-size:14px;padding-left:18px;margin:6px 0 14px">
-    <li><strong>Historical BEDS grade-level files.</strong> Download the Iowa DOE grade-level export for
-    school years 2017-18 through 2024-25. Each file follows the same format as the 2025-26 file.
-    Replace the estimated 2017-2024 rows in <code>data/iccsd-enrollment-by-grade.csv</code> with
-    actual data to produce reliable per-grade GPRs.</li>
-    <li><strong>Backtest.</strong> Once historical BEDS data is loaded, fit GPRs on data through 2020 and
-    predict 2021–2025 actuals. Target: MAPE ≈ 1–2% at year 1, widening to 4–5% at year 5.</li>
-    <li><strong>Corridor building permits.</strong> Add a quarterly permit-count series from North Liberty,
-    Tiffin, and Coralville as a leading indicator for K-entry in the High and Baseline scenarios.</li>
-    <li><strong>Open-enrollment in/out.</strong> Iowa DOE publishes annual district-level open-enrollment
-    flows. Adding these allows modeling of the resident vs. attendance distinction and improving
-    the GPR attribution.</li>
+    <li><strong>Backtest.</strong> Fit GPRs on data through 2020 and predict 2021–2025 actuals.
+    Target: MAPE ≈ 1–2% at year 1, widening to 4–5% at year 5. This validates the
+    smoothing weights before relying on the 2030 range.</li>
+    <li><strong>Corridor building permits.</strong> Add a quarterly permit-count series from North
+    Liberty, Tiffin, and Coralville as a leading indicator for K-entry in the High and Baseline
+    scenarios — residential permits predict enrollment about 5-6 years ahead.</li>
+    <li><strong>Open-enrollment in/out.</strong> Iowa DOE publishes annual district-level
+    open-enrollment flows. Adding these separates in-district retention from cross-district
+    transfers and improves GPR attribution.</li>
+    <li><strong>Private-school enrollment data.</strong> If Iowa DOE begins publishing
+    ESA-recipient enrollment by school and district of residence, it will allow direct
+    measurement of voucher-driven leakage rather than inferring it from the K share trend.</li>
   </ol>
 </div>
 
@@ -1124,9 +1081,9 @@ p{{margin:0 0 10px;max-width:780px}}
 <div class="sec">
   <p>Rebuild every <strong>December</strong> when the new October BEDS file is released. Steps:</p>
   <ol style="font-size:14px;padding-left:18px;margin:6px 0">
-    <li>Download the new Iowa DOE BEDS grade-level export.</li>
-    <li>Update <code>BEDS_2025</code> → <code>BEDS_<em>new_year</em></code> in the script, or add a CSV-loading path.</li>
-    <li>Update <code>BIRTHS</code> with latest CDC WONDER county data.</li>
+    <li>Download the new Iowa DOE BEDS grade-level export (Iowa DOE Student Reporting in Iowa).</li>
+    <li>Add the new year's grade vector to <code>BEDS_ACTUAL</code> in the script.</li>
+    <li>Update <code>BIRTHS</code> with the latest CDC WONDER Johnson County natality data.</li>
     <li>Recalibrate <code>ICCSD_COUNTY_SHARE</code> from the new K actual vs. lagged births.</li>
     <li>Run <code>python3 scripts/build_enrollment_forecast.py</code>.</li>
   </ol>
@@ -1135,14 +1092,11 @@ p{{margin:0 0 10px;max-width:780px}}
 <h2>Data sources</h2>
 <div class="sec">
   <ul class="src-list">
-    <li><strong>2025-26 grade-level enrollment (BEDS actual):</strong> Iowa DOE Student Reporting in Iowa
-      fall enrollment file, "2025-2026 PK-12 Iowa Public School Enrollment by District, Grade,
-      Race/Ethnicity and Sex." Downloaded 30 June 2026.</li>
-    <li><strong>District budget enrollment totals (FY2020–2025):</strong> Iowa DOM certified enrollment,
-      extracted to data/dom/certified-enrollment.csv. Used to anchor K-12 headcount estimates for
-      2018–2023 (K-12 ≈ budget enrollment − 143).</li>
-    <li><strong>Johnson County births:</strong> CDC WONDER natality data, final through birth year 2024.
-      Lag 5 years to K entry year.</li>
+    <li><strong>Grade-level enrollment (BEDS actual, all years):</strong> Iowa DOE Student Reporting in Iowa
+      fall enrollment files for school years 2016-17 through 2025-26, Iowa City Community School
+      District K-12 headcount by grade, October 1 count date. Downloaded 30 June 2026.</li>
+    <li><strong>Johnson County births:</strong> CDC WONDER natality data, final through birth year 2022;
+      estimated for 2023-2024. Lag 5 years to K entry year.</li>
     <li><strong>ESA context:</strong> Iowa Department of Education (statewide ESA enrollment counts, 2023–25).</li>
     <li><strong>State projection benchmark:</strong> Iowa DOE District Enrollment Projections 2026–27 to
       2030–31 (developed May 2022; predates ESA). Use as comparison baseline, not as a forecast.</li>
@@ -1166,9 +1120,8 @@ print(f"  Range 2030: {lo_2030:,} – {hi_2030:,}")
 print(f"\nK entry 2026-2030 (baseline, share=0.728):")
 for yr in FCST_YEARS:
     print(f"  {yr}: {scenario_results['Baseline'][yr][0]}")
-print(f"\nHistorical K-12 totals:")
+print(f"\nHistorical K-12 totals (all BEDS actual):")
 for y in HIST_YEARS:
-    src = "ACTUAL" if y == 2025 else "est."
-    print(f"  {y}: {hist_totals[y]:,} ({src})")
+    print(f"  {y}: {hist_totals[y]:,}")
 
 build_methodology_page()
