@@ -1,0 +1,90 @@
+district,fiscal_year,report_date,opinion,findings_count,material_weakness,significant_deficiency,repeat_finding
+Ankeny CSD,2020,2020-10-29,unmodified,2,N,N,Y
+Ankeny CSD,2021,2022-01-19,unmodified,1,N,N,Y
+Ankeny CSD,2022,2022-11-15,unmodified,3,N,N,Y
+Ankeny CSD,2023,2023-11-13,unmodified,2,N,N,Y
+Ankeny CSD,2024,2024-12-05,unmodified,4,N,N,Y
+Ankeny CSD,2025,2025-11-24,unmodified,6,N,Y,Y
+Burlington CSD,2020,2021-03-15,unmodified,0,N,N,N
+Burlington CSD,2021,2022-03-24,unmodified,0,N,N,N
+Burlington CSD,2022,2023-04-03,unmodified,0,N,N,N
+Burlington CSD,2023,2024-03-12,unmodified,1,N,Y,N
+Burlington CSD,2024,2025-03-13,unmodified,0,N,N,N
+Burlington CSD,2025,2026-02-26,unmodified,0,N,N,N
+Cedar Rapids CSD,2020,2021-01-18,unmodified,4,N,N,Y
+Cedar Rapids CSD,2021,2022-01-14,unmodified,2,N,N,Y
+Cedar Rapids CSD,2022,2022-12-07,unmodified,1,N,N,N
+Cedar Rapids CSD,2023,2024-01-25,unmodified,2,N,Y,N
+Cedar Rapids CSD,2024,2025-01-29,unmodified,2,N,N,Y
+Cedar Rapids CSD,2025,2025-12-19,unmodified,,N,N,N
+College CSD (Prairie),2020,2021-01-04,unmodified,0,N,N,N
+College CSD (Prairie),2021,2021-12-21,unmodified,1,N,Y,N
+College CSD (Prairie),2022,2023-01-17,unmodified,0,N,N,Y
+College CSD (Prairie),2023,2024-01-31,unmodified,0,N,N,Y
+College CSD (Prairie),2024,2025-02-20,unmodified,0,N,N,Y
+College CSD (Prairie),2025,2026-02-16,unmodified,1,N,Y,Y
+Davenport CSD,2020,"December 18, 2020",unmodified,6,Y,Y,Y
+Davenport CSD,2021,"January 25, 2022",unmodified,8,Y,Y,Y
+Davenport CSD,2022,"December 16, 2022",unmodified,7,Y,Y,Y
+Davenport CSD,2023,"December 18, 2023",unmodified,3,N,Y,Y
+Davenport CSD,2024,"November 11, 2024",unmodified,2,N,Y,Y
+Davenport CSD,2025,"November 24, 2025",unmodified,0,N,N,Y
+Des Moines CSD,2020,2021-01-11,unmodified,2,N,N,Y
+Des Moines CSD,2021,2021-12-17,unmodified,2,N,N,Y
+Des Moines CSD,2022,2022-11-29,unmodified,2,N,N,Y
+Des Moines CSD,2023,2024-03-22,unmodified,4,N,Y,Y
+Des Moines CSD,2024,2025-01-17,unmodified,1,N,Y,N
+Des Moines CSD,2025,2026-03-04,unmodified,3,Y,N,N
+Dubuque CSD,2020,2020-12-14,unmodified,0,N,N,Y
+Dubuque CSD,2021,2021-12-13,unmodified,0,N,N,Y
+Dubuque CSD,2022,2022-12-12,unmodified,0,N,N,Y
+Dubuque CSD,2023,2023-12-11,unmodified,0,N,N,Y
+Dubuque CSD,2024,2024-12-09,unmodified,0,N,N,Y
+Dubuque CSD,2025,2026-01-12,unmodified,0,N,N,Y
+Iowa City CSD,2020,2021-01-15,unmodified,2,N,N,N
+Iowa City CSD,2021,2022-01-19,unmodified,2,N,N,N
+Iowa City CSD,2022,2022-12-20,unmodified,3,N,Y,N
+Iowa City CSD,2023,2025-08-27,unmodified,7,Y,Y,Y
+Iowa City CSD,2024,2026-06-10,unmodified,14,Y,Y,Y
+Johnston CSD,2020,BLANK-in-PDF,unmodified,2,N,N,N
+Johnston CSD,2021,2021-11-15,unmodified,2,N,N,Y
+Johnston CSD,2022,2023-01-09,unmodified,1,N,N,N
+Johnston CSD,2023,2024-03-18,unmodified,3,N,N,Y
+Johnston CSD,2024,2024-12-13,unmodified,3,N,Y,N
+Johnston CSD,2025,2026-03-13,unmodified,3,N,Y,Y
+Linn-Mar CSD,2020,2020-11-20,unmodified,4,N,Y,Y
+Linn-Mar CSD,2021,2021-11-18,unmodified,3,N,Y,Y
+Linn-Mar CSD,2022,2022-12-20,unmodified,4,N,Y,Y
+Linn-Mar CSD,2023,2023-12-04,unmodified,3,N,N,Y
+Linn-Mar CSD,2024,2024-12-12,unmodified,2,N,N,Y
+Linn-Mar CSD,2025,2025-11-11,unmodified,3,N,Y,Y
+Muscatine CSD,2020,2021-01-15,unmodified,4,N,N,Y
+Muscatine CSD,2021,2022-01-28,unmodified,1,N,N,Y
+Muscatine CSD,2022,2023-01-10,unmodified,1,N,N,Y
+Muscatine CSD,2023,2023-12-06,unmodified,1,N,N,Y
+Muscatine CSD,2024,2024-11-08,unmodified,3,N,N,Y
+Muscatine CSD,2025,2025-10-17,unmodified,2,N,N,Y
+Pleasant Valley CSD,2020,2020-11-04,unmodified,1,N,N,N
+Pleasant Valley CSD,2021,2021-11-18,unmodified,0,N,N,N
+Pleasant Valley CSD,2022,2022-11-28,unmodified,1,N,N,N
+Pleasant Valley CSD,2023,2023-12-13,unmodified,2,N,N,Y
+Pleasant Valley CSD,2024,2024-11-19,unmodified,2,N,N,Y
+Pleasant Valley CSD,2025,2025-10-03,unmodified,1,N,N,Y
+Waterloo CSD,2020,2020-11-03,unmodified,,N,N,N
+Waterloo CSD,2021,2021-11-09,unmodified,2,Y,N,N
+Waterloo CSD,2022,2022-11-07,unmodified,1,N,N,Y
+Waterloo CSD,2023,2023-11-22,unmodified,3,Y,N,N
+Waterloo CSD,2024,2024-11-11,unmodified,,N,N,N
+Waterloo CSD,2025,2025-11-14,unmodified,,N,N,N
+Waukee CSD,2020,2020-11-11,unmodified,2,N,Y,N
+Waukee CSD,2021,2021-11-16,unmodified,0,N,N,Y
+Waukee CSD,2022,2022-12-05,unmodified,1,N,N,Y
+Waukee CSD,2023,2023-11-27,unmodified,0,N,N,Y
+Waukee CSD,2024,2024-11-19,unmodified,0,N,N,Y
+Waukee CSD,2025,2025-11-17,unmodified,1,N,N,Y
+West Des Moines CSD,2020,2020-11-23,unmodified,3,N,N,Y
+West Des Moines CSD,2021,2021-11-18,unmodified,2,N,N,Y
+West Des Moines CSD,2022,2022-11-30,unmodified,3,N,N,Y
+West Des Moines CSD,2023,2023-11-29,unmodified,3,N,N,Y
+West Des Moines CSD,2024,2024-11-25,unmodified,3,N,N,Y
+West Des Moines CSD,2025,2025-11-19,unmodified,2,N,N,Y

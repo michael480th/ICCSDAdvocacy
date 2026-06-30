@@ -18,6 +18,13 @@ exclude:
   - AtRiskFormula/
   - PropertyTaxRateFiles/
   - FinalCashReserveLevies/
+  - ICCSD_AuditDetails/           # ~7 MB of FY24 audit PDFs (incl. 6 MB ACFR)
+  - Budgets/                      # ~3 MB budget PDFs
+  - CreditAgencies/               # ~3 MB rating-agency PDFs
+  - ICCSD_FinancialHealth/        # ~3 MB source PDFs
+  - research/                     # ~2 MB source PDFs + notes (not linked by the site)
+  - "Annual Financial Report SEC 15c2-12/"  # ~0.7 MB filing PDFs
+  - Policies/                     # source policy PDFs (not linked by the site)
   - emails/
   - data/                         # derived CSVs (kept in repo, not needed by the site)
   - scripts/

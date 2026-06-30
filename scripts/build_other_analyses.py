@@ -43,6 +43,11 @@ DEEP = [
      "its audited books, headlined on Iowa City's FY2023 gap. The detail behind the trust screen."),
 ]
 NARROW = [
+    ("iccsd-enrollment-forecast.html", "Enrollment forecast — cohort-survival model",
+     "A grade-progression-ratio (cohort-survival) forecast for ICCSD K–12 enrollment through 2030, "
+     "with three scenarios (High / Baseline / Low). Kindergarten entry modeled from Johnson County "
+     "resident births lagged five years; ESA structural break (2023) modeled separately to capture "
+     "voucher-program leakage. Architecture complete; refreshes with each October BEDS release."),
     ("activity-fund.html", "Student Activities fund",
      "Year-end balance of each district's student-activity fund — self-reported, audited, and per "
      "student. Iowa City carries the thinnest cushion of the 15."),

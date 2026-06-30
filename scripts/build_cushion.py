@@ -57,6 +57,16 @@ for r in csv.DictReader(open("data/iowa-district-financials.csv")):
         solv.setdefault(d, {})[fy] = float(v)
 SOLV_YEARS = list(range(2020, 2026))
 
+# Iowa City's FY2025 audit is not yet filed, so the audited file above carries no FY2025 reserves figure.
+# Pull the district's own management-unaudited solvency from the KPI dataset so the reserves line can show
+# the FY2025 estimate, flagged (and rendered) as unaudited.
+IC_SOLV_UNAUDITED = set()
+for r in csv.DictReader(open("data/kpi-three-methodologies.csv")):
+    if (r["district"] == IC and int(r["fiscal_year"]) == 2025
+            and r.get("data_basis") == "management-unaudited" and r.get("solvency_ratio")):
+        solv.setdefault(IC, {}).setdefault(2025, float(r["solvency_ratio"]))
+        IC_SOLV_UNAUDITED.add(2025)
+
 # ---------- 3. Operating cash -> days-cash, FY2020-2025 ----------
 DAYS_YEARS = list(range(2020, 2026))   # end at FY2025 (last actual); FY2026 projection omitted — too uncertain
 exp = {}
@@ -100,7 +110,7 @@ def peer_avg(series, year):
 
 
 # ---------- generic line-chart renderer (UAB + solvency) ----------
-def chart(series, years, ymin, ymax, refs, title, ylab, healthy=None):
+def chart(series, years, ymin, ymax, refs, title, ylab, healthy=None, ic_unaudited=frozenset()):
     W, H = 860, 420
     L, R, T, B = 64, 150, 28, 46
     pw, ph = W - L - R, H - T - B
@@ -142,12 +152,38 @@ def chart(series, years, ymin, ymax, refs, title, ylab, healthy=None):
     pts = [(X(i), Y(avg[y])) for i, y in enumerate(years) if y in avg]
     d = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
     s.append(f'<polyline points="{d}" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="7 4"/>')
-    s.append(poly(IC, "#dc2626", 3.4))
     ys = [y for y in years if y in series.get(IC, {})]
+    if ic_unaudited:
+        aud = [y for y in ys if y not in ic_unaudited]
+        if aud:
+            apts = [(X(years.index(y)), Y(series[IC][y])) for y in aud]
+            dd = " ".join(f"{x:.1f},{y:.1f}" for x, y in apts)
+            s.append(f'<polyline points="{dd}" fill="none" stroke="#dc2626" stroke-width="3.4"/>')
+            s.extend(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.4" fill="#dc2626"/>' for x, y in apts)
+        for y in ys:
+            if y not in ic_unaudited:
+                continue
+            xi, yi = X(years.index(y)), Y(series[IC][y])
+            prev = [p for p in ys if years.index(p) < years.index(y)]
+            if prev:
+                px, pyv = X(years.index(prev[-1])), Y(series[IC][prev[-1]])
+                s.append(f'<polyline points="{px:.1f},{pyv:.1f} {xi:.1f},{yi:.1f}" fill="none" '
+                         f'stroke="#dc2626" stroke-width="3" stroke-dasharray="2 4" opacity="0.9"/>')
+            s.append(f'<circle cx="{xi:.1f}" cy="{yi:.1f}" r="4.6" fill="#fff" stroke="#dc2626" stroke-width="2.4"/>')
+            s.append(f'<text x="{xi:.1f}" y="{yi+17:.1f}" class="endlab2" fill="#b91c1c" '
+                     f'text-anchor="middle" style="font-weight:700">~{series[IC][y]:.0f}% unaudited</text>')
+    else:
+        s.append(poly(IC, "#dc2626", 3.4))
     if ys:
-        ly, lx = series[IC][ys[-1]], X(years.index(ys[-1]))
-        s.append(f'<text x="{lx+8:.1f}" y="{Y(ly)+4:.1f}" class="endlab" fill="#dc2626" '
-                 f'style="font-weight:700">Iowa City</text>')
+        lab_years = [y for y in ys if y not in ic_unaudited] or ys
+        ay = lab_years[-1]
+        ly, lx = series[IC][ay], X(years.index(ay))
+        if ic_unaudited:
+            s.append(f'<text x="{lx-8:.1f}" y="{Y(ly)+4:.1f}" class="endlab" fill="#dc2626" '
+                     f'text-anchor="end" style="font-weight:700">Iowa City</text>')
+        else:
+            s.append(f'<text x="{lx+8:.1f}" y="{Y(ly)+4:.1f}" class="endlab" fill="#dc2626" '
+                     f'style="font-weight:700">Iowa City</text>')
     la_y = avg[max(avg)]
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(la_y)+4:.1f}" class="endlab" fill="#2563eb">Peer average</text>')
     s.append(f'<text x="{L+pw+8:.1f}" y="{Y(la_y)+20:.1f}" class="endlab2" fill="#94a3b8">(other large districts)</text>')
@@ -223,6 +259,7 @@ ic17, ic_uab25 = uab[IC][2017], uab[IC][2025]
 pa17, pa_uab25 = peer_avg(uab, 2017), peer_avg(uab, 2025)
 ic_solv20, ic_solv23 = solv[IC][2020], solv[IC][2023]
 ic_solv24 = solv[IC].get(2024)
+ic_solv25 = solv[IC].get(2025)
 pa_solv23 = peer_avg(solv, 2023)
 pa_solv24 = peer_avg(solv, 2024)
 icd20, icd23 = days[IC][2020], days[IC][2023]
@@ -234,9 +271,10 @@ chart1 = chart(uab, UAB_YEARS, -8, 35,
                "Spending-authority cushion, FY2017–FY2025",
                "Unspent Authorized Budget, as a % of the district's budget — higher is more cushion")
 chart2 = chart(solv, SOLV_YEARS, -8, 36, [(0, "0%", "danger")],
-               "True cash reserves (audited), FY2020–FY2025",
-               "General-fund solvency ratio — reserves as a % of one year's revenue — higher is more cushion",
-               healthy=(5, 15))
+               "True cash reserves, FY2020–FY2025",
+               "General-fund solvency ratio — reserves as a % of one year's revenue — higher is more cushion "
+               "· FY2020–24 audited; FY2025 is the district's unaudited estimate",
+               healthy=(5, 15), ic_unaudited=IC_SOLV_UNAUDITED)
 chart3 = days_chart()
 
 date = datetime.date(2026, 6, 18).strftime("%B %Y")
@@ -348,16 +386,17 @@ was roughly a <b>seventh</b> of the peer average.</p>
 <h3>2. Reserves in the bank — the audited view (2020–2025)</h3>
 <p class="what"><b>What it is:</b> the actual rainy-day cushion — the district's general-fund reserves
 measured against one year of revenue (the "solvency ratio"), straight from the audited financial reports.
-In Iowa, <b>5–15% is considered healthy</b>. It only exists for years a district has finished its audit —
-which is why Iowa City's line stops at 2024 (its FY2025 audit isn't filed yet).</p>
+In Iowa, <b>5–15% is considered healthy</b>. Iowa City's audited line runs through 2024; because its FY2025
+audit still isn't filed, the 2025 point (hollow) is the district's own unaudited estimate.</p>
 <p class="why"><b>Why it matters:</b> reserves are what absorb a bad budget year, a late state payment, or
 an emergency repair. A thin cushion means little margin for error.</p>
 {chart2}
 <p class="take">Same story: Iowa City sat at <b>{ic_solv20:.1f}% in 2020</b> and slipped to a low of
-<b>{ic_solv23:.1f}% in 2023</b>, the thinnest of any large district. Its newly filed <b>FY2024 audit shows a
+<b>{ic_solv23:.1f}% in 2023</b>, the thinnest of any large district. Its <b>FY2024 audit shows a
 partial rebound to {ic_solv24:.1f}%</b> (the cash-reserve levy at work), but that is still below the 5–15%
-healthy range and well under the peer average (~<b>{pa_solv24:.0f}%</b> in 2024). The line stops at 2024 because
-<b>Iowa City's FY2025 audit still isn't filed</b> — it remains the furthest behind of the large districts.</p>
+healthy range and well under the peer average (~<b>{pa_solv24:.0f}%</b> in 2024). The district's own <b>unaudited
+FY2025 figure slips back to about {ic_solv25:.0f}%</b>, and its <b>FY2025 audit still isn't filed</b> — Iowa City
+remains the furthest behind of the large districts.</p>
 </div>
 
 <div class="card">
@@ -390,7 +429,8 @@ back to 2015 against a 90–120 day target), plus the deep-dive
 <footer>
 <b>Sources.</b> <b>Spending room:</b> Iowa Department of Management <i>Unspent Authorized Budget Report</i>
 (state-computed, FY2017–FY2025). <b>Reserves:</b> each district's audited ACFR (FY2020–FY2025); solvency
-ratio = assigned + unassigned general-fund balance ÷ general-fund revenue. <b>Cash:</b> General Fund "cash
+ratio = assigned + unassigned general-fund balance ÷ general-fund revenue. Iowa City's FY2025 reserves point is
+the district's own unaudited management figure (its FY2025 audit is not yet filed). <b>Cash:</b> General Fund "cash
 &amp; investments" from each district's audited Balance Sheet — Governmental Funds (FY2020–FY2025). Iowa
 City's <b>FY2024 is now audited</b> (General Fund cash $22.5M, filed June 2026). FY2025 (~$19.4M) is the district's
 own stated figure from PFM's Exhibit 1 (unaudited actual). FY2026 is omitted as too uncertain (it depends on planned

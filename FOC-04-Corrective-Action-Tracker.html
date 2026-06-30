@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Corrective Action Tracker — As of October 31, 2026</title>
+<title>Corrective Action Tracker (FY24 Audit) — As of June 24, 2026</title>
 <style>
   @page { size: letter; margin: 0.75in 0.85in; }
   * { box-sizing: border-box; }
@@ -21,16 +21,17 @@
   .summary-tile { border: 1px solid #cbd5e1; border-radius: 3pt; padding: 7pt 9pt; }
   .summary-tile .label { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.4pt; text-transform: uppercase; color: #64748b; }
   .summary-tile .value { font-size: 18pt; font-weight: 800; color: #0f172a; line-height: 1; margin-top: 2pt; }
-  .summary-tile.past .value { color: #b03a2e; }
-  .summary-tile.open .value { color: #b58220; }
-  .summary-tile.closed .value { color: #1e7a3a; }
+  .summary-tile.mw .value { color: #b03a2e; }
+  .summary-tile.nc .value { color: #b58220; }
+  .summary-tile.stat .value { color: #4338ca; }
 
   table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-bottom: 10pt; }
   th, td { padding: 4pt 6pt; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
   th { background: #f8fafc; font-weight: 700; color: #0f172a; font-size: 7.5pt; letter-spacing: 0.3pt; border-bottom: 1.5pt solid #cbd5e1; text-transform: uppercase; }
   td.target { font-variant-numeric: tabular-nums; white-space: nowrap; }
-  tr.past td { background: #fdecec; }
-  tr.past td:first-child { border-left: 3pt solid #b03a2e; }
+  tr.mw td { background: #fdecec; }
+  tr.mw td:first-child { border-left: 3pt solid #b03a2e; }
+  td .fid { font-size: 7pt; font-weight: 700; letter-spacing: 0.4pt; color: #64748b; display: block; }
   .pill { display: inline-block; font-size: 7pt; font-weight: 700; letter-spacing: 0.3pt; padding: 1pt 4pt; border-radius: 2pt; text-transform: uppercase; white-space: nowrap; }
   .pill.gold { background: #fdf3df; color: #b58220; }
   .pill.red { background: #fdecec; color: #b03a2e; }
@@ -38,8 +39,15 @@
   .pill.green { background: #e7f5ec; color: #1e7a3a; }
   .pill.gray { background: #e2e8f0; color: #64748b; }
 
+  .section-label { font-size: 8pt; font-weight: 700; letter-spacing: 0.5pt; text-transform: uppercase; color: #475569; margin: 14pt 0 5pt; border-bottom: 1px solid #e2e8f0; padding-bottom: 3pt; }
+
   .commentary { background: #fdecec; border: 1px solid #f5b7b1; padding: 7pt 11pt; margin-bottom: 10pt; font-size: 9.5pt; color: #334155; border-radius: 3pt; }
   .commentary .title { font-weight: 700; color: #0f172a; margin-bottom: 3pt; display: block; }
+
+  .other { font-size: 8.5pt; color: #334155; margin-bottom: 10pt; }
+  .other ul { margin: 4pt 0 0; padding-left: 16pt; }
+  .other li { margin-bottom: 2pt; }
+  .other li strong { color: #0f172a; }
 
   .footer { border-top: 1px solid #cbd5e1; padding-top: 6pt; font-size: 8pt; color: #64748b; line-height: 1.5; }
   .footer strong { color: #334155; }
@@ -51,155 +59,213 @@
   <div class="header">
     <div class="agency">Financial Oversight Committee</div>
     <div class="district">Iowa City Community School District</div>
-    <h1>Corrective Action Tracker</h1>
-    <div class="meta">As of October 31, 2026 &nbsp;&middot;&nbsp; Reviewed at FOC meeting of November 4, 2026 &nbsp;&middot;&nbsp; Report ID: FOC-CAT-2026-10</div>
+    <h1>Corrective Action Tracker &mdash; FY2024 Audit</h1>
+    <div class="meta">As of June 24, 2026 &nbsp;&middot;&nbsp; Based on the June 30, 2024 audit (Bohnsack &amp; Frommelt LLP, issued June 10, 2026) and the district&rsquo;s action plan (Pat Moore, CFO) &nbsp;&middot;&nbsp; Report ID: FOC-CAT-2026-06</div>
   </div>
 
   <div class="summary-row">
     <div class="summary-tile">
-      <div class="label">Total tracked</div>
-      <div class="value">23</div>
+      <div class="label">Audit findings tracked</div>
+      <div class="value">19</div>
     </div>
-    <div class="summary-tile closed">
-      <div class="label">Closed</div>
-      <div class="value">15</div>
+    <div class="summary-tile mw">
+      <div class="label">Material weaknesses</div>
+      <div class="value">8</div>
     </div>
-    <div class="summary-tile open">
-      <div class="label">In progress</div>
+    <div class="summary-tile nc">
+      <div class="label">Noncompliance / sig. def.</div>
       <div class="value">6</div>
     </div>
-    <div class="summary-tile past">
-      <div class="label">Past due</div>
-      <div class="value">2</div>
+    <div class="summary-tile stat">
+      <div class="label">Statutory reporting</div>
+      <div class="value">5</div>
     </div>
   </div>
+
+  <div class="section-label">Schedule of Findings &mdash; material weaknesses, noncompliance &amp; significant deficiency</div>
 
   <table>
     <thead>
       <tr>
-        <th style="width: 40%;">Item</th>
-        <th style="width: 19%;">Source</th>
+        <th style="width: 40%;">Finding &amp; corrective action</th>
+        <th style="width: 19%;">Classification</th>
         <th style="width: 14%;">Owner</th>
         <th style="width: 10%;">Target</th>
         <th style="width: 17%;">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="past">
-        <td><strong>Bank account segregation</strong> &mdash; separate accounts established for Debt Service Fund and Schoolhouse Fund per Ahlers &amp; Cooney guidance</td>
-        <td>FY23 audit material weakness</td>
-        <td>CFO</td>
+      <tr class="mw">
+        <td><span class="fid">2024-001</span><strong>Insufficient segregation of duties &mdash; payroll cycle.</strong> Duties split across three staff in ASANA with dated task calendars; controller approves the payroll file.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>Controller / Payroll</td>
         <td class="target">9/30/26</td>
-        <td><span class="pill red">Past due (1 month)</span></td>
+        <td><span class="pill blue">In progress</span></td>
       </tr>
-      <tr class="past">
-        <td><strong>Health Insurance Fund interfund loan repayment</strong> &mdash; $10M principal + accrued interest</td>
-        <td>Board direction 6/2/26</td>
-        <td>CFO</td>
-        <td class="target">10/1/26</td>
-        <td><span class="pill red">Past due (1 month)</span></td>
+      <tr class="mw">
+        <td><span class="fid">2024-002</span><strong>Insufficient segregation of duties &mdash; cash disbursement.</strong> Multi-step requisition approval in place; ongoing staff training on codes and procedures.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Business Office</td>
+        <td class="target">12/31/26</td>
+        <td><span class="pill blue">In progress</span></td>
       </tr>
-      <tr>
-        <td>FY24 audit findings response letter to independent auditor</td>
-        <td>FY24 audit</td>
-        <td>CFO</td>
-        <td class="target">12/15/26</td>
+      <tr class="mw">
+        <td><span class="fid">2024-003</span><strong>Insufficient segregation of duties &mdash; receipt process (buildings).</strong> Building a staff training document on funds and revenue/expenditure codes, posted to an internal reference site.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Business Office</td>
+        <td class="target">12/31/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr class="mw">
+        <td><span class="fid">2024-004</span><strong>Insufficient reconciling &amp; monitoring &mdash; cash accounts &amp; CDs.</strong> All investments now shown in finance software; cross-training under way toward daily, real-time reconciliation.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Business Office</td>
+        <td class="target">6/30/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr class="mw">
+        <td><span class="fid">2024-005</span><strong>Improper identification &amp; adjustment of funds.</strong> Year-end adjusting entries not made timely. Multi-layer journal-entry segregation (code / approve / enter / post); two CPAs and two SBOs on staff.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Controller</td>
+        <td class="target">6/30/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr class="mw">
+        <td><span class="fid">2024-009</span><strong>Lacked adequate processes &mdash; federal programs.</strong> Moving most purchases through the requisition/encumbrance workflow with multi-layer approval; PD on federal coding.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Business Office</td>
+        <td class="target">12/31/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr class="mw">
+        <td><span class="fid">2024-010</span><strong>Lacked process to identify federal capital assets.</strong> Two ESF-funded vehicles over the $5K threshold not capitalized or pre-approved by the State. Going live with the SUI fixed-asset module in FY27.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Business Office</td>
+        <td class="target">FY27</td>
+        <td><span class="pill gold">Planned (FY27)</span></td>
+      </tr>
+      <tr class="mw">
+        <td><span class="fid">2024-011</span><strong>Lacked process to document Special Ed high-cost claims.</strong> Turnover left claims undocumented; staff will retain all claims support and complete PD on Sped expenditure policy/compliance.</td>
+        <td><span class="pill red">Material weakness</span></td>
+        <td>CFO / Sped Director</td>
+        <td class="target">6/30/27</td>
         <td><span class="pill blue">In progress</span></td>
       </tr>
       <tr>
-        <td>Monthly close calendar published and tracked; close target 15 business days after period end</td>
-        <td>Internal controls plan</td>
+        <td><span class="fid">2024-006</span><strong>2023 &amp; 2024 single audits not filed timely.</strong> Neither filed within 9 months of year-end. FY24 filed June 2026; FY25 targeted Nov 2026; FY26 by the March 30, 2027 deadline.</td>
+        <td><span class="pill gold">Noncompliance</span></td>
+        <td>CFO</td>
+        <td class="target">3/30/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td><span class="fid">2024-007</span><strong>Student Activity Fund &mdash; deficit fund balance.</strong> COO and CFO presented the fund to the Board (June 2026) and met with ADs/principals 6/17/26; staff PD on coding scheduled mid-July 2026.</td>
+        <td><span class="pill gold">Noncompliance</span></td>
+        <td>COO / CFO</td>
+        <td class="target">Ongoing</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td><span class="fid">2024-008</span><strong>Interfund payables/receivables not authorized by Board resolution.</strong> Not approved before occurring, not repaid by Oct 1 of the following year, interest owed. Going forward, all such transactions go to the Board first.</td>
+        <td><span class="pill gold">Noncompliance</span></td>
+        <td>CFO / Board</td>
+        <td class="target">9/30/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td><span class="fid">2024-012</span><strong>Lacks process for report preparation &amp; review.</strong> Reports were prepared and submitted by the same employee without documented review; multiple staff now involved with documented preparer/reviewer sign-off.</td>
+        <td><span class="pill gray">Significant deficiency</span></td>
         <td>Controller</td>
-        <td class="target">11/30/26</td>
+        <td class="target">9/30/26</td>
         <td><span class="pill blue">In progress</span></td>
       </tr>
       <tr>
-        <td>School Budget Review Committee corrective action plan quarterly update</td>
-        <td>State oversight (SBRC)</td>
-        <td>CFO + Board</td>
+        <td><span class="fid">2024-013</span><strong>Unallowable expenditures charged to ESF (COVID) programs.</strong> PD on allowed vs. unallowed one-time funding expenditures so staff stay within program parameters.</td>
+        <td><span class="pill gold">Noncompliance (material)</span></td>
+        <td>CFO / Business Office</td>
         <td class="target">12/31/26</td>
         <td><span class="pill blue">In progress</span></td>
       </tr>
       <tr>
-        <td>Restated FY23 financial statements filed via continuing disclosure with EMMA</td>
-        <td>FY24 audit / bond covenant</td>
-        <td>CFO + Bond counsel</td>
-        <td class="target">1/15/27</td>
+        <td><span class="fid">2024-014</span><strong>Unable to provide program documentation.</strong> Same root cause and remediation as 2024-011 (Special Ed claims documentation and PD).</td>
+        <td><span class="pill gold">Noncompliance (material)</span></td>
+        <td>CFO / Sped Director</td>
+        <td class="target">6/30/27</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">Findings relating to statutory reporting</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 40%;">Finding &amp; corrective action</th>
+        <th style="width: 19%;">Classification</th>
+        <th style="width: 14%;">Owner</th>
+        <th style="width: 10%;">Target</th>
+        <th style="width: 17%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="fid">IV-A-24</span><strong>Certified budget exceeded.</strong> Exceeded in the support and other functions. Monthly monitoring of all four functional areas; amendments with public hearing and Board approval by the May 31 deadline.</td>
+        <td><span class="pill blue">Statutory</span></td>
+        <td>CFO / Board</td>
+        <td class="target">5/31/27</td>
         <td><span class="pill blue">In progress</span></td>
       </tr>
       <tr>
-        <td>FY24 continuing disclosure annual filing submitted to EMMA</td>
-        <td>Bond covenant</td>
+        <td><span class="fid">IV-H-24</span><strong>Certified enrollment variances.</strong> Variances noted to the DE in Oct 2023; processes to be reviewed with all involved staff to ensure accuracy before submission (affects aid/levy).</td>
+        <td><span class="pill blue">Statutory</span></td>
+        <td>CFO / Registrar</td>
+        <td class="target">10/15/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td><span class="fid">IV-I-24</span><strong>Supplementary weighting variances.</strong> Tied to the certified-enrollment remediation in IV-H-24.</td>
+        <td><span class="pill blue">Statutory</span></td>
+        <td>CFO / Registrar</td>
+        <td class="target">10/15/26</td>
+        <td><span class="pill blue">In progress</span></td>
+      </tr>
+      <tr>
+        <td><span class="fid">IV-J-24</span><strong>District lacked a formal depository resolution.</strong> CFO will provide an annual depository resolution naming institutions and maximum deposit limits.</td>
+        <td><span class="pill blue">Statutory</span></td>
         <td>CFO</td>
-        <td class="target">3/31/27</td>
-        <td><span class="pill blue">In progress</span></td>
-      </tr>
-      <tr>
-        <td>SAVE Fund deficit corrective plan presented to Board</td>
-        <td>FY24 audit (pending finding)</td>
-        <td>CFO + Bond counsel</td>
-        <td class="target">TBD</td>
-        <td><span class="pill gray">Awaiting audit</span></td>
-      </tr>
-      <tr>
-        <td>Open meeting and open records training, all new FOC members</td>
-        <td>Iowa Code Ch. 21 / Ch. 22</td>
-        <td>FOC Chair</td>
-        <td class="target">8/15/26</td>
-        <td><span class="pill green">Closed 8/12/26</span></td>
-      </tr>
-      <tr>
-        <td>Reserves policy adopted by Board (Policy 401.5 draft)</td>
-        <td>Recovery plan</td>
-        <td>FOC + Board</td>
         <td class="target">9/30/26</td>
-        <td><span class="pill green">Closed 9/22/26</span></td>
+        <td><span class="pill gold">Planned</span></td>
       </tr>
       <tr>
-        <td>Debt management policy adopted by Board</td>
-        <td>Recovery plan</td>
-        <td>FOC + Board</td>
-        <td class="target">11/30/26</td>
-        <td><span class="pill blue">In progress</span></td>
-      </tr>
-      <tr>
-        <td>Property tax disbursement segregation protocol established with Johnson County Auditor</td>
-        <td>K.02.01 memo finding</td>
-        <td>CFO + County</td>
-        <td class="target">2/28/26</td>
-        <td><span class="pill green">Closed 2/14/26</span></td>
-      </tr>
-      <tr>
-        <td>ISJIT investment account opened for proper segregation of restricted funds</td>
-        <td>K.02.01 memo finding</td>
+        <td><span class="fid">IV-N-24</span><strong>509A certificate of compliance not filed timely.</strong> 2024 and 2025 certificates now filed; 2026 and later to be filed as required under Ch. 509A.15.</td>
+        <td><span class="pill blue">Statutory</span></td>
         <td>CFO</td>
-        <td class="target">3/31/26</td>
-        <td><span class="pill green">Closed 3/18/26</span></td>
-      </tr>
-      <tr>
-        <td>FY24 Revenue Anticipation Warrant retired</td>
-        <td>FY26 cash flow plan</td>
-        <td>CFO</td>
-        <td class="target">5/15/27</td>
-        <td><span class="pill blue">On track</span></td>
-      </tr>
-      <tr>
-        <td>... 9 additional items, all closed prior to September 1, 2026 (closure dates on file)</td>
-        <td>Various</td>
-        <td>&mdash;</td>
-        <td class="target">&mdash;</td>
-        <td><span class="pill green">Closed</span></td>
+        <td class="target">Annual</td>
+        <td><span class="pill green">Substantially addressed</span></td>
       </tr>
     </tbody>
   </table>
 
   <div class="commentary">
-    <span class="title">Past-due commentary &mdash; committee action required</span>
-    Both past-due items are tied to the August 2025 interfund transfer story and are sequentially linked: <strong>bank account segregation is the precondition for clean Health Insurance Fund repayment.</strong> The Chief Financial Officer has committed to a revised target of <strong>November 15, 2026</strong> for both items, contingent on the completion of the bank account opening process with the district's primary depository. <strong>Recommended committee action:</strong> accept the revised target with the condition that any further slip beyond November 15 triggers an immediate ad-hoc committee meeting and written notice to the full Board.
+    <span class="title">Committee commentary &mdash; FY24 audit findings</span>
+    The FY2024 audit was issued <strong>June 10, 2026 &mdash; roughly two years after the June 30, 2024 year-end</strong> &mdash; and carries <strong>eight material weaknesses</strong>, with the late filing itself cited as an instance of noncompliance (2024-006). The most severe cluster is around <strong>segregation of duties, cash reconciliation, and year-end fund adjustment</strong> (2024-001 through 005), which the auditor links to business-office turnover. <strong>Recommended committee action:</strong> require the CFO to report against this tracker at each FOC meeting, hold the FY25-filed-by-November-2026 and FY26-filed-by-March-2027 commitments (2024-006) as hard deadlines, and request documented closure evidence for each material weakness before it is marked closed.
+  </div>
+
+  <div class="other">
+    <strong>Other control deficiencies (auditor management letter, below significant-deficiency level).</strong> The auditor separately identified lower-level recommendations the committee should track to completion:
+    <ul>
+      <li><strong>Disbursements</strong> &mdash; 9 of 25 sampled disbursements lacked a purchase order; 4 not on the Board bill listing; travel pre-approvals and credit-card receipts missing; ESSER coding errors.</li>
+      <li><strong>Payroll</strong> &mdash; no HR-to-payroll contract reconciliation; I-9s held in payroll; unsigned contracts processed after pay; an FY23 rate used for FY24 overtime; lunch-break export discrepancy.</li>
+      <li><strong>Receipts</strong> &mdash; nutrition price/POS reconciliation gaps (variances $202&ndash;$41,076); athletics gate receipts paid by check to ADs; admin-building receipt segregation.</li>
+      <li><strong>Journal entries / Technology</strong> &mdash; no formal JE approval; GL software administrator should move to IT; underutilized, non-integrated software.</li>
+      <li><strong>Stale-dated checks &amp; capital assets</strong> &mdash; outstanding checks from FY2004&ndash;FY2023; manual Excel asset/depreciation tracking; capitalization-threshold policy update (GASB 87/96).</li>
+      <li><strong>Child Nutrition &amp; Early Retirement</strong> &mdash; non-public-purpose meeting food; undocumented meal-claim adjustments; early-retirement packages exceeding Board policy by $870,324 (2023) and $389,019 (2024) without Board approval.</li>
+    </ul>
   </div>
 
   <div class="footer">
-    <strong>Update process:</strong> Item ownership cannot be changed without notice to the committee. Status changes require documentation. <strong>Publication:</strong> tracker is published on iccsd.org/foc and updated within 5 business days of each FOC meeting. <strong>Sources rolled into the tracker:</strong> FY23 audit findings, FY24 audit (preliminary), recovery plan items, K.02.01 memo follow-ups, SBRC corrective action plan, bond continuing disclosure obligations.
+    <strong>Sources:</strong> Schedule of Findings and Questioned Costs, Iowa City CSD year ended June 30, 2024, Bohnsack &amp; Frommelt LLP (issued June 10, 2026); district management action plan (Pat Moore, CFO, to the Board through Supt. Matt Degner); independent auditor&rsquo;s control-deficiency / management letter. <strong>Update process:</strong> status changes require documentation; closure of a material weakness requires evidence the control operated for a full cycle. <strong>Note:</strong> targets and statuses are derived from the district&rsquo;s stated action plan; no formal closure dates had been certified as of this report.
   </div>
 
 </div>
