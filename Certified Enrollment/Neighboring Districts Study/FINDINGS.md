@@ -112,7 +112,39 @@ This is a **revenue-equivalent figure**: at Iowa's ~$9,000/student foundation-ai
 4,135 student-years × $9,000 ≈ **$37M in foregone state aid** since 2011, relative to
 what ICCSD would have received if county share had held.
 
-### Step 6 — Comparison to ESA effect
+### Step 6 — Open enrollment cross-check
+
+If the geographic-capture story were partly masking active district-flight (families inside
+ICCSD choosing to drive their kids to CCA), open enrollment data would show it: ICCSD's
+"OE Out" count would be rising and CCA's "OE In" count would be rising in tandem.
+
+Iowa DOE certified enrollment files provide district-level open enrollment totals (not
+district-pair detail, which is no longer published). The data show the opposite pattern:
+
+| Year | ICCSD net OE | CCA net OE |
+|---|--:|--:|
+| 2017-18 | −272 | +161 |
+| 2019-20 | −193 | +87 |
+| 2021-22 | −40 | +12 |
+| 2022-23 | −45 | −8 |
+| 2023-24 | +15 | −41 |
+| 2024-25 | +13 | −74 |
+| 2025-26 | +15 | −104 |
+
+*Net OE = Open Enrollment In minus Open Enrollment Out, from Iowa DOE certified enrollment
+ Row 8 minus Row 2. Source: Iowa DOE Certified Enrollment by District files.*
+
+ICCSD has flipped from a net open-enrollment loser (−272/year in 2017-18) to roughly
+neutral/positive. CCA has flipped the other direction: it was pulling in 161 net
+open-enrollees annually in 2017-18; by 2025-26 it is losing 104/year. As CCA's enrollment
+base has grown with new residents, those residents are increasingly open-enrolling *out* of
+CCA — likely back into ICCSD.
+
+This is a direct cross-check on the geographic-capture hypothesis: **families who have an
+active choice are increasingly choosing ICCSD**, not fleeing it. The enrollment gap is
+driven by housing geography, not school quality or programming.
+
+### Step 7 — Comparison to ESA effect
 
 | Driver | Students affected | Period | Scale vs. ESA |
 |---|---|---|---|
@@ -128,18 +160,27 @@ compounds as CCA continues to build out Tiffin and adjacent growth corridors.
 The ESA analysis is about families who were inside ICCSD boundaries and left (or were
 subsidized to stay in private). The CCA effect is different in mechanism:
 
-- **No transfer occurs.** These families bought homes in Tiffin's ZIP code rather than
-  Iowa City. They were never ICCSD students — they never crossed a boundary. ICCSD
-  never "had" them to lose.
+- **No transfer event ever occurs.** Iowa's open enrollment system records a flow only when
+  a student crosses a district line by choice while remaining a resident of the sending
+  district. None of the typical CCA-growth scenarios generate that event:
+  - A family relocates to the Iowa City area from out of state and buys a house in Tiffin
+    — they enroll directly in CCA with no prior Iowa district on record.
+  - A couple moves to Tiffin before having children, starts a family, and their kids enter
+    CCA at kindergarten — there is no prior district to transfer from.
+  - A family in Coralville upsizes into a larger Tiffin home when their kids are young —
+    if the move happens before school age or at a natural grade transition, no open
+    enrollment record is triggered.
+  In all three cases ICCSD never "had" the student. The loss is invisible to open
+  enrollment data and visible only in the aggregate headcount divergence.
 - **The mechanism is housing price and availability**, not district reputation or
   programming. New subdivisions in Tiffin (CCA boundary) offer larger lots, newer
   construction, and lower price per square foot than comparable Iowa City inventory,
-  attracting families with children who then naturally enroll in CCA.
+  attracting family-formation households who then naturally enroll in CCA.
 - **But the fiscal impact is identical.** State foundation aid is per-pupil. Whether a
   student never enrolled (geographic miss) or transferred out (ESA/open enrollment), the
   effect on ICCSD's general fund is the same: one fewer student = ~$9,000 less revenue.
 
-The geographic effect is therefore harder to mitigate — ICCSD can't run a programming
+The geographic effect is therefore harder to mitigate — ICCSD cannot run a programming
 counter-offer to parents who bought houses before their kids were born — but it is
 quantifiable and has been consistently underweighted in the public narrative about ICCSD
 enrollment.
@@ -148,11 +189,12 @@ enrollment.
 
 If Tiffin's growth had been driven primarily by ICCSD boundary families who moved to avoid
 the district (motivated by programming, safety, or perceived quality), we would expect to
-see open-enrollment-out numbers surge alongside CCA growth. Iowa DOE open-enrollment data
-(not analyzed here) would show ICCSD students requesting to attend CCA via open enrollment.
-If that pattern were present, the geographic effect would overstate new-resident capture
-and understate transfer-flight. Analyzing open enrollment between these districts would
-sharpen the attribution.
+see ICCSD's open-enrollment-out count rise while CCA's open-enrollment-in count rose in
+tandem. Step 6 above shows the opposite: ICCSD's net open enrollment position improved by
+~287 students over eight years (from −272 to +15), and CCA flipped from a net gainer to
+a net loser of open-enrollment students. The families who have an *active choice* are
+choosing ICCSD more than before. That pattern rules out the "families fleeing ICCSD" story
+as a meaningful driver of the enrollment gap.
 
 ## Caveats
 
@@ -166,10 +208,11 @@ sharpen the attribution.
 - **Solon:** Solon CSD (6093) sits east of ICCSD. Its near-stagnation (+6.6% over 14 years)
   confirms it is not absorbing meaningful enrollment from the Iowa City labor market.
   Solon is excluded from the headline figures.
-- **Open-enrollment flows not included.** Iowa DOE open-enrollment data would show whether
-  any CCA enrollment gains reflect inbound open-enrollments from ICCSD families. This
-  analysis uses resident headcount only (BEDS), which includes open-enrollment receivers
-  but does not isolate them.
+- **Open enrollment district-pair detail not available.** Iowa DOE no longer publishes
+  sending-district → receiving-district open enrollment breakdowns. Step 6 uses
+  district-level totals (OE In, OE Out) from the certified enrollment files, which is
+  sufficient to rule out the "district-flight" alternative explanation but cannot confirm
+  what fraction of ICCSD's out-transfers specifically go to CCA.
 
 ## Bottom line
 
