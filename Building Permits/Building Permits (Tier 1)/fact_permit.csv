@@ -1,1 +1,306 @@
-permit_id,jurisdiction,source_system,issue_date,address_raw,lat,lon,structure_type,net_units,iccsd_flag,elem_area,jh_area,hs_area,status
+permit_id,jurisdiction,source_system,issue_date,address_raw,lat,lon,structure_type,net_units,iccsd_flag,school_district,elem_area,jh_area,hs_area,status
+BLD-24-33100,Johnson Co. (uninc.),CitizenServe,2025-01-03,4021 Maier AVE SW,41.641230,-91.600006,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33157,Johnson Co. (uninc.),CitizenServe,2025-02-27,230 Howard AVE NW,41.849947,-91.697730,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32978,Johnson Co. (uninc.),CitizenServe,2025-03-10,4752 Rapid Creek RD NE,41.701337,-91.467966,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33174,Johnson Co. (uninc.),CitizenServe,2025-03-11,4218 Pleasant Valley DR SE,41.614316,-91.520353,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33183,Johnson Co. (uninc.),CitizenServe,2025-03-17,2236 Clay Studio CT NW,41.834314,-91.711996,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33206,Johnson Co. (uninc.),CitizenServe,2025-03-18,3004 Forest Ridge DR NE,41.838348,-91.636505,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33178,Johnson Co. (uninc.),CitizenServe,2025-03-21,4296 Nursery LN SE,41.607640,-91.512262,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33205,Johnson Co. (uninc.),CitizenServe,2025-03-24,1308 Upper Old Highway 6 RD NW,41.746578,-91.802551,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-25-33202,Johnson Co. (uninc.),CitizenServe,2025-03-25,3042 355th ST SW,41.675638,-91.635971,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-25-33188,Johnson Co. (uninc.),CitizenServe,2025-04-02,408 Marner DR,41.493715,-91.432136,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-25-33220,Johnson Co. (uninc.),CitizenServe,2025-04-09,3766 Cottage Reserve RD NE,41.794091,-91.564246,SF detached,1,N,Solon Community School District,,,,issued
+BLD-25-33259,Johnson Co. (uninc.),CitizenServe,2025-04-11,4779 180th ST NE,41.801236,-91.465223,SF detached,1,N,Solon Community School District,,,,issued
+BLD-25-33203,Johnson Co. (uninc.),CitizenServe,2025-04-14,3883 Locust Ridge Rd NE,41.735217,-91.552615,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33280,Johnson Co. (uninc.),CitizenServe,2025-04-23,6305 Sioux AVE SE,41.474379,-91.484028,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-25-33290,Johnson Co. (uninc.),CitizenServe,2025-04-25,1598 Cou Falls RD NW,41.819244,-91.674953,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33302,Johnson Co. (uninc.),CitizenServe,2025-04-25,170 Pleasant Hill DR NW,41.849663,-91.695558,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33315,Johnson Co. (uninc.),CitizenServe,2025-05-02,141 Maple ST SW,41.841045,-91.696828,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33306,Johnson Co. (uninc.),CitizenServe,2025-05-02,3802 Sierra TER SW,41.623670,-91.559849,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33275,Johnson Co. (uninc.),CitizenServe,2025-05-06,2235 Hemann WAY NE,41.770113,-91.474086,SF detached,1,N,Solon Community School District,,,,issued
+BLD-25-33313,Johnson Co. (uninc.),CitizenServe,2025-05-12,5559 580th ST SE,41.509462,-91.389302,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-25-33187,Johnson Co. (uninc.),CitizenServe,2025-05-13,1173 Mill ST NE,41.849734,-91.648022,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33347,Johnson Co. (uninc.),CitizenServe,2025-05-19,1176 Council ST NE,41.849711,-91.648765,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33312,Johnson Co. (uninc.),CitizenServe,2025-05-21,2494 120th ST NW,41.848158,-91.686172,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33291,Johnson Co. (uninc.),CitizenServe,2025-06-03,4625 Sharon Center RD SW,41.596389,-91.625669,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33373,Johnson Co. (uninc.),CitizenServe,2025-06-11,1313 120TH ST NW,41.846919,-91.800944,SF detached,1,N,College Community School District,,,,issued
+BLD-25-33384,Johnson Co. (uninc.),CitizenServe,2025-06-13,2032 Redtop CT SW,41.566778,-91.729171,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-25-33404,Johnson Co. (uninc.),CitizenServe,2025-06-20,1690 520th ST SW,41.554584,-91.761579,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-25-33437,Johnson Co. (uninc.),CitizenServe,2025-06-23,1813 Lower Old Highway 6 RD NW Lot 30,41.723640,-91.752541,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-25-33434,Johnson Co. (uninc.),CitizenServe,2025-07-07,1586 Volmert LN NE,41.818444,-91.536448,SF detached,1,N,Solon Community School District,,,,issued
+BLD-25-33420,Johnson Co. (uninc.),CitizenServe,2025-07-07,4677 Yellow Rock Rd NE,41.699218,-91.475190,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33482,Johnson Co. (uninc.),CitizenServe,2025-07-11,145 Pleasant Hill Dr NW,41.849317,-91.696527,SF detached,1,N,College Community School District,,,,issued
+RES25-000005,Johnson Co. (uninc.),CitizenServe,2025-07-28,1570 Volmert LN NE,41.819591,-91.536786,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000008,Johnson Co. (uninc.),CitizenServe,2025-07-28,2041 Silvergrass LN SW,41.567578,-91.727627,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+RES25-000006,Johnson Co. (uninc.),CitizenServe,2025-08-01,4669 Yellow Rock RD NE,41.699163,-91.475939,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-25-33378,Johnson Co. (uninc.),CitizenServe,2025-08-04,3470 Highway 1 SW,41.627161,-91.592238,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000022,Johnson Co. (uninc.),CitizenServe,2025-08-19,5260 340th ST NE,41.687159,-91.419167,SF detached,1,N,West Branch Community School District,,,,issued
+RES25-000077,Johnson Co. (uninc.),CitizenServe,2025-08-22,3141 Lincolns LN NW,41.706283,-91.698299,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+RES25-000057,Johnson Co. (uninc.),CitizenServe,2025-08-26,5633 Sand RD SE,41.525014,-91.506645,SF detached,1,N,Lone Tree Community School District,,,,issued
+RES25-000099,Johnson Co. (uninc.),CitizenServe,2025-08-27,4494 Taft AVE SE LOT B23,41.606603,-91.461336,manufactured,1,Y,Iowa City Community School District,,,,issued
+RES25-000043,Johnson Co. (uninc.),CitizenServe,2025-08-29,2327 Lakeridge PL NE,41.764663,-91.587155,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000047,Johnson Co. (uninc.),CitizenServe,2025-09-02,2378 Lakeridge PL NE,41.760796,-91.586938,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000102,Johnson Co. (uninc.),CitizenServe,2025-09-05,3832 Palisade PL SW,41.621039,-91.557004,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000100,Johnson Co. (uninc.),CitizenServe,2025-09-05,250 Howard AVE NW,41.850374,-91.698202,SF detached,1,N,College Community School District,,,,issued
+RES25-000107,Johnson Co. (uninc.),CitizenServe,2025-09-05,2530 120th ST NW,41.848448,-91.683644,SF detached,1,N,College Community School District,,,,issued
+RES25-000110,Johnson Co. (uninc.),CitizenServe,2025-09-08,3803 Sierra TER SW,41.622369,-91.559437,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000074,Johnson Co. (uninc.),CitizenServe,2025-09-12,1311 WILDER WAY,41.835250,-91.642201,SF detached,1,N,College Community School District,,,,issued
+RES25-000120,Johnson Co. (uninc.),CitizenServe,2025-09-23,2375 Cedar Cv NE,41.761180,-91.592612,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000144,Johnson Co. (uninc.),CitizenServe,2025-09-23,120 Howard AVE NW,41.848374,-91.696530,SF detached,1,N,College Community School District,,,,issued
+RES25-000063,Johnson Co. (uninc.),CitizenServe,2025-10-01,1612 Cou Falls RD NW,41.818570,-91.671508,SF detached,1,N,College Community School District,,,,issued
+RES25-000085,Johnson Co. (uninc.),CitizenServe,2025-10-01,2467 QUINCY RD NE,41.753952,-91.487240,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000186,Johnson Co. (uninc.),CitizenServe,2025-10-09,1579 Mineart LN NE,41.818748,-91.539443,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000197,Johnson Co. (uninc.),CitizenServe,2025-10-13,1997 Alex WAY SW,41.642913,-91.737072,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+RES25-000131,Johnson Co. (uninc.),CitizenServe,2025-10-14,3014 Forest Ridge DR NE,41.838734,-91.634014,SF detached,1,N,College Community School District,,,,issued
+RES25-000220,Johnson Co. (uninc.),CitizenServe,2025-10-22,241 Howard AVE NW,41.849669,-91.698423,SF detached,1,N,College Community School District,,,,issued
+RES25-000228,Johnson Co. (uninc.),CitizenServe,2025-10-23,4228 180th ST NE,41.803853,-91.517324,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000226,Johnson Co. (uninc.),CitizenServe,2025-10-27,2298 ZELL CT NE,41.767278,-91.619896,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+RES25-000224,Johnson Co. (uninc.),CitizenServe,2025-10-28,2093 Poplar AVE NE,41.779176,-91.528531,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000244,Johnson Co. (uninc.),CitizenServe,2025-11-14,3796 Cottage Reserve RD NE,41.794281,-91.560628,SF detached,1,N,Solon Community School District,,,,issued
+RES25-000254,Johnson Co. (uninc.),CitizenServe,2025-11-17,4680 Rapid Creek RD NE,41.700628,-91.475130,SF detached,1,Y,Iowa City Community School District,,,,issued
+RES25-000295,Johnson Co. (uninc.),CitizenServe,2025-11-24,4236 Pleasant Valley DR SE,41.614662,-91.518096,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32355,Johnson Co. (uninc.),CitizenServe,2024-01-19,4494 Taft AVE SE LOT B39,41.606290,-91.459309,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32362,Johnson Co. (uninc.),CitizenServe,2024-01-30,4494 Taft AVE SE LOT B34,41.606547,-91.459777,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32361,Johnson Co. (uninc.),CitizenServe,2024-01-30,4494 Taft AVE SE LOT C3,41.605851,-91.462702,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32360,Johnson Co. (uninc.),CitizenServe,2024-01-30,4494 Taft AVE SE LOT B14,41.606603,-91.461336,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32319,Johnson Co. (uninc.),CitizenServe,2024-02-02,2300 540th St SW,41.541794,-91.705521,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-24-32367,Johnson Co. (uninc.),CitizenServe,2024-02-13,3136 Half Moon Ave NW,41.707066,-91.689924,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32386,Johnson Co. (uninc.),CitizenServe,2024-02-14,1813 Lower Old Highway 6 RD NW Lot 242,41.723139,-91.750725,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32385,Johnson Co. (uninc.),CitizenServe,2024-02-14,4494 Taft AVE SE LOT E3,41.605664,-91.462737,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32389,Johnson Co. (uninc.),CitizenServe,2024-03-06,2961 120th St NE,41.847279,-91.640356,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32410,Johnson Co. (uninc.),CitizenServe,2024-03-06,2783 MILLERS POND CT NW,41.732939,-91.771037,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32437,Johnson Co. (uninc.),CitizenServe,2024-03-18,3020 Forest Ridge Dr NE,41.838534,-91.632527,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32464,Johnson Co. (uninc.),CitizenServe,2024-04-11,2210 Hemann Way NE,41.772125,-91.473283,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32490,Johnson Co. (uninc.),CitizenServe,2024-04-26,5021 Bluestem St SW,41.568647,-91.731233,duplex,2,N,Mid-Prairie Community School District,,,,issued
+BLD-24-32561,Johnson Co. (uninc.),CitizenServe,2024-05-10,2209 HENDERSHOT RD NE,41.780643,-91.622256,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32551,Johnson Co. (uninc.),CitizenServe,2024-05-20,4212 Pleasant Valley Dr SE,41.614118,-91.520789,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32606,Johnson Co. (uninc.),CitizenServe,2024-06-11,3707 475th ST SW,41.585881,-91.569902,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32592,Johnson Co. (uninc.),CitizenServe,2024-06-21,4128 200th ST NE,41.788836,-91.527872,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32614,Johnson Co. (uninc.),CitizenServe,2024-06-25,5169 210th St NE,41.777407,-91.427225,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32656,Johnson Co. (uninc.),CitizenServe,2024-07-01,4494 Taft AVE SE LOT C38,41.606123,-91.459771,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32675,Johnson Co. (uninc.),CitizenServe,2024-07-08,2108 Johnson Washington Rd SW,41.513724,-91.722949,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-24-32722,Johnson Co. (uninc.),CitizenServe,2024-07-29,4644 Harpers Trl NE,41.770330,-91.473375,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32648,Johnson Co. (uninc.),CitizenServe,2024-08-01,4173 Landon Ave SW,41.629682,-91.609629,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32751,Johnson Co. (uninc.),CitizenServe,2024-08-05,2373 Mehaffey Bridge Rd NE,41.760183,-91.589344,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32728,Johnson Co. (uninc.),CitizenServe,2024-08-08,3210 Ever Tree Ln NE,41.810393,-91.609799,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32764,Johnson Co. (uninc.),CitizenServe,2024-08-12,2219 Andrew Ct NE,41.772214,-91.539385,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32795,Johnson Co. (uninc.),CitizenServe,2024-08-20,3018 Forest Ridge DR NE,41.838843,-91.632948,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32709,Johnson Co. (uninc.),CitizenServe,2024-08-22,3149 Lincolns LN NW,41.705603,-91.698354,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32804,Johnson Co. (uninc.),CitizenServe,2024-08-26,1635 Polk Ave NE,41.814472,-91.531049,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32843,Johnson Co. (uninc.),CitizenServe,2024-08-29,1813 Lower Old Highway 6 RD NW Lot 64,41.723120,-91.752891,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32842,Johnson Co. (uninc.),CitizenServe,2024-08-29,4494 Taft AVE SE LOT B21,41.606293,-91.460818,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32844,Johnson Co. (uninc.),CitizenServe,2024-09-06,217 North St,41.726293,-91.788206,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32879,Johnson Co. (uninc.),CitizenServe,2024-09-23,527 ELKHORN TRL,41.607654,-91.545556,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32900,Johnson Co. (uninc.),CitizenServe,2024-09-26,4494 Taft AVE SE LOT C29,41.606603,-91.461336,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32899,Johnson Co. (uninc.),CitizenServe,2024-09-26,4494 Taft AVE SE LOT E1,41.605659,-91.462964,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32846,Johnson Co. (uninc.),CitizenServe,2024-09-30,6524 Sioux Ave SE,41.458633,-91.481127,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-24-32663,Johnson Co. (uninc.),CitizenServe,2024-10-01,1774 Curtis Bridge RD NE,41.806931,-91.644210,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32912,Johnson Co. (uninc.),CitizenServe,2024-10-09,2633 Newport RD NE,41.741631,-91.482511,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32898,Johnson Co. (uninc.),CitizenServe,2024-10-15,6363 River Junction RD SE,41.470038,-91.489557,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-24-32954,Johnson Co. (uninc.),CitizenServe,2024-10-17,1334-1336 FOREST RIDGE CT NE,41.838431,-91.638149,duplex,2,N,College Community School District,,,,issued
+BLD-24-32961,Johnson Co. (uninc.),CitizenServe,2024-10-21,150 Pleasant Hill Dr NW,41.849012,-91.695844,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32949,Johnson Co. (uninc.),CitizenServe,2024-10-24,2473 140th St NW,41.831675,-91.686262,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32970,Johnson Co. (uninc.),CitizenServe,2024-10-24,160 Pleasant Hill DR NW,41.849357,-91.695657,SF detached,1,N,College Community School District,,,,issued
+BLD-24-32922,Johnson Co. (uninc.),CitizenServe,2024-10-30,1991 500th ST SW,41.569321,-91.733165,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-24-32957,Johnson Co. (uninc.),CitizenServe,2024-11-04,2627 Newport RD NE,41.742189,-91.481144,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-32931,Johnson Co. (uninc.),CitizenServe,2024-11-15,2198 Sugar Bottom Rd NE,41.774316,-91.539420,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-33009,Johnson Co. (uninc.),CitizenServe,2024-11-25,1326 Marak RD NW,41.837776,-91.679094,SF detached,1,N,College Community School District,,,,issued
+BLD-24-33065,Johnson Co. (uninc.),CitizenServe,2024-12-03,515 Elkhorn TRL,41.608615,-91.545728,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-24-33054,Johnson Co. (uninc.),CitizenServe,2024-12-03,260 Howard AVE NW,41.850557,-91.698600,SF detached,1,N,College Community School District,,,,issued
+BLD-24-33052,Johnson Co. (uninc.),CitizenServe,2024-12-03,4661 Yellow Rock RD NE,41.699205,-91.476586,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32988,Johnson Co. (uninc.),CitizenServe,2024-12-04,3146 Lincolns LN NW,41.705624,-91.697372,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-24-32926,Johnson Co. (uninc.),CitizenServe,2024-12-05,5488 Highway 22 SE,41.496276,-91.398116,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-24-33063,Johnson Co. (uninc.),CitizenServe,2024-12-10,3139 Ryans Rd NE,41.824510,-91.624797,SF detached,1,N,Solon Community School District,,,,issued
+BLD-24-33057,Johnson Co. (uninc.),CitizenServe,2024-12-10,2847 Highway 1 NE,41.725910,-91.478465,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-32711,Johnson Co. (uninc.),CitizenServe,2024-12-16,3149 Oasis RD NE,41.704065,-91.385970,SF detached,1,N,West Branch Community School District,,,,issued
+BLD-24-33058,Johnson Co. (uninc.),CitizenServe,2024-12-19,2661 Woodfield LN NE,41.739483,-91.558275,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-24-33060,Johnson Co. (uninc.),CitizenServe,2024-12-23,3586 Highway 1 SW,41.629555,-91.580308,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31457,Johnson Co. (uninc.),CitizenServe,2023-01-05,1898 UTAH AVE NE,41.795004,-91.429999,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31392,Johnson Co. (uninc.),CitizenServe,2023-01-06,2884 Sydney Ct NE,41.837707,-91.647759,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31510,Johnson Co. (uninc.),CitizenServe,2023-01-06,315 CHEROKEE TRL,41.607584,-91.543959,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31460,Johnson Co. (uninc.),CitizenServe,2023-01-19,3765 475th St SW,41.586103,-91.564775,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31499,Johnson Co. (uninc.),CitizenServe,2023-01-25,1442 Deer Woods Dr NE,41.829038,-91.649065,SF detached,1,N,College Community School District,,,,issued
+BLD-22-31452,Johnson Co. (uninc.),CitizenServe,2023-02-02,4021 Maier AVE SW,41.641230,-91.600006,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31567,Johnson Co. (uninc.),CitizenServe,2023-02-15,139 APACHE TRL,41.606292,-91.542280,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31565,Johnson Co. (uninc.),CitizenServe,2023-02-15,104 APACHE TRL,41.608707,-91.542269,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31568,Johnson Co. (uninc.),CitizenServe,2023-02-24,131 W Main St,41.722940,-91.791965,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-31474,Johnson Co. (uninc.),CitizenServe,2023-03-02,4494 Taft AVE SE LOT E7,41.605672,-91.462420,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31586,Johnson Co. (uninc.),CitizenServe,2023-03-07,3007 Forest Ridge Dr NE,41.837905,-91.635212,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31525,Johnson Co. (uninc.),CitizenServe,2023-03-08,781 Linder Rd NE,41.689016,-91.531089,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31583,Johnson Co. (uninc.),CitizenServe,2023-03-13,3129 W Hauer Dr NE,41.731285,-91.621951,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-31537,Johnson Co. (uninc.),CitizenServe,2023-03-14,5043 3rd St SW B,41.567648,-91.735334,duplex,2,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31571,Johnson Co. (uninc.),CitizenServe,2023-03-16,510 S Center St,41.482389,-91.424103,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-23-31570,Johnson Co. (uninc.),CitizenServe,2023-03-16,3835 Palisade Pl SW,41.620693,-91.556723,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31608,Johnson Co. (uninc.),CitizenServe,2023-03-16,123 APACHE TRL,41.607243,-91.542334,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31609,Johnson Co. (uninc.),CitizenServe,2023-03-20,526 ELKHORN TRL,41.607770,-91.545129,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31617,Johnson Co. (uninc.),CitizenServe,2023-03-20,110 APACHE TRL,41.608296,-91.542137,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31622,Johnson Co. (uninc.),CitizenServe,2023-03-20,209 BLACKFOOT TRL,41.608137,-91.543340,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31627,Johnson Co. (uninc.),CitizenServe,2023-03-21,34 EROBI LN,41.642091,-91.479749,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31626,Johnson Co. (uninc.),CitizenServe,2023-03-21,16 DATA DR,41.642018,-91.480807,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31629,Johnson Co. (uninc.),CitizenServe,2023-03-22,17 VIDEO CT,41.641113,-91.480526,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31634,Johnson Co. (uninc.),CitizenServe,2023-03-22,606 BEACH VIEW DR,41.628905,-91.550405,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31632,Johnson Co. (uninc.),CitizenServe,2023-03-22,304 Moss Wood LN,41.631011,-91.550698,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31633,Johnson Co. (uninc.),CitizenServe,2023-03-22,334 Moss Wood LN,41.630889,-91.553900,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31630,Johnson Co. (uninc.),CitizenServe,2023-03-22,922 SPRING RIDGE DR,41.626845,-91.549966,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31631,Johnson Co. (uninc.),CitizenServe,2023-03-22,529 MINERAL POINT LN,41.629131,-91.553226,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31603,Johnson Co. (uninc.),CitizenServe,2023-03-23,3012 Forest Ridge Dr NE,41.838615,-91.634587,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31620,Johnson Co. (uninc.),CitizenServe,2023-03-30,4003 Seven Sisters Rd NE,41.859965,-91.539893,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-31691,Johnson Co. (uninc.),CitizenServe,2023-04-11,20 REMOTE ST,41.644576,-91.480445,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31690,Johnson Co. (uninc.),CitizenServe,2023-04-11,12 METRIC RD,41.641376,-91.481174,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31689,Johnson Co. (uninc.),CitizenServe,2023-04-11,19 APPOLLO PL,41.643045,-91.480342,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31662,Johnson Co. (uninc.),CitizenServe,2023-04-18,4018 Ivy Ave SW,41.642373,-91.674491,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31722,Johnson Co. (uninc.),CitizenServe,2023-04-20,64 INDIAN TRL,41.608925,-91.544471,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31619,Johnson Co. (uninc.),CitizenServe,2023-04-24,2369 Lakeridge Pl NE,41.760910,-91.587780,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31734,Johnson Co. (uninc.),CitizenServe,2023-05-11,2015 Redtop Ct SW,41.567144,-91.730936,duplex,2,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31746,Johnson Co. (uninc.),CitizenServe,2023-05-17,2611 Quincy Rd NE,41.742867,-91.481590,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-31652,Johnson Co. (uninc.),CitizenServe,2023-05-18,2324 Alpine Ave NW,41.765115,-91.822605,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-31723,Johnson Co. (uninc.),CitizenServe,2023-05-19,2379 Mehaffey Bridge Rd NE,41.761447,-91.590579,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31790,Johnson Co. (uninc.),CitizenServe,2023-05-23,2660 Peryton Ln NE,41.740057,-91.491743,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-31784,Johnson Co. (uninc.),CitizenServe,2023-06-02,2765 Neuzil Rd SW,41.660920,-91.660904,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-31755,Johnson Co. (uninc.),CitizenServe,2023-06-07,1675 500th St SW,41.569370,-91.764335,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31729,Johnson Co. (uninc.),CitizenServe,2023-06-07,2511 Highway 1 SW,41.596178,-91.684326,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31724,Johnson Co. (uninc.),CitizenServe,2023-06-09,1553 IWV RD SW,41.657888,-91.780215,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-31838,Johnson Co. (uninc.),CitizenServe,2023-06-13,3681 Baxter Ave SW,41.667369,-91.814621,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-31885,Johnson Co. (uninc.),CitizenServe,2023-06-14,519 ELKHORN TRL,41.608327,-91.545734,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31889,Johnson Co. (uninc.),CitizenServe,2023-06-15,232 BLACKFOOT TRL,41.606605,-91.542630,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31871,Johnson Co. (uninc.),CitizenServe,2023-06-21,3006 Forest Ridge Dr NE,41.838431,-91.635901,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31918,Johnson Co. (uninc.),CitizenServe,2023-06-26,4494 Taft AVE SE LOT C33,41.606603,-91.461336,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31917,Johnson Co. (uninc.),CitizenServe,2023-06-26,4494 Taft AVE SE LOT E11,41.605671,-91.462002,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31916,Johnson Co. (uninc.),CitizenServe,2023-06-26,4494 Taft AVE SE LOT B22,41.606538,-91.460858,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31786,Johnson Co. (uninc.),CitizenServe,2023-06-26,1581 Courtney Ln NW,41.819468,-91.673840,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31928,Johnson Co. (uninc.),CitizenServe,2023-06-28,101 APACHE TRL,41.608760,-91.542731,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31934,Johnson Co. (uninc.),CitizenServe,2023-07-05,515 ELKHORN TRL,41.608615,-91.545728,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-31890,Johnson Co. (uninc.),CitizenServe,2023-07-10,413 Marner Dr,41.493279,-91.432599,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-23-31933,Johnson Co. (uninc.),CitizenServe,2023-07-17,4928 Walnut Rd SW,41.574409,-91.733591,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31936,Johnson Co. (uninc.),CitizenServe,2023-07-18,2015 REDTOP CT SW,41.567144,-91.730936,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31937,Johnson Co. (uninc.),CitizenServe,2023-07-27,5335 Kansas Ave SW,41.544341,-91.637403,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31957,Johnson Co. (uninc.),CitizenServe,2023-08-01,4917 Cosgrove Rd SW,41.576255,-91.733035,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-23-31990,Johnson Co. (uninc.),CitizenServe,2023-08-17,2605 Quincy Rd NE,41.743431,-91.481951,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-32049,Johnson Co. (uninc.),CitizenServe,2023-08-21,1684 Amana Rd NW,41.802970,-91.763744,SF detached,1,N,College Community School District,,,,issued
+BLD-23-31820,Johnson Co. (uninc.),CitizenServe,2023-08-29,3773 Cottage Reserve RD NE,41.793441,-91.562740,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-32044,Johnson Co. (uninc.),CitizenServe,2023-09-05,304 W Linn St,41.485483,-91.430242,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-23-32086,Johnson Co. (uninc.),CitizenServe,2023-09-13,4190 140th St NE,41.833039,-91.521363,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-32022,Johnson Co. (uninc.),CitizenServe,2023-09-14,3786 Cottage Reserve Rd NE,41.794213,-91.561952,SF detached,1,N,Solon Community School District,,,,issued
+BLD-23-31549,Johnson Co. (uninc.),CitizenServe,2023-09-20,4813 Rapid Creek Rd NE,41.701887,-91.462649,SF detached,1,N,West Branch Community School District,,,,issued
+BLD-23-32129,Johnson Co. (uninc.),CitizenServe,2023-09-25,1224 Yellow Pine Ave NE,41.843827,-91.368314,SF detached,1,N,Lisbon Community School District,,,,issued
+BLD-23-32120,Johnson Co. (uninc.),CitizenServe,2023-09-25,2365 Lakeridge Pl NE,41.761571,-91.588138,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32090,Johnson Co. (uninc.),CitizenServe,2023-09-28,2635 Hidden Ridge Ct NW,41.828099,-91.671979,SF detached,1,N,College Community School District,,,,issued
+BLD-23-32089,Johnson Co. (uninc.),CitizenServe,2023-09-28,2630 Hidden Ridge CT NW,41.828537,-91.671614,SF detached,1,N,College Community School District,,,,issued
+BLD-23-32088,Johnson Co. (uninc.),CitizenServe,2023-09-28,2626 Hidden Ridge CT NW,41.829105,-91.672361,SF detached,1,N,College Community School District,,,,issued
+BLD-23-32110,Johnson Co. (uninc.),CitizenServe,2023-09-28,1721 Lower Old Highway 6 Rd NW,41.725111,-91.761914,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-23-32041,Johnson Co. (uninc.),CitizenServe,2023-09-29,13 Linder Valley Cir NE,41.692803,-91.529334,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32155,Johnson Co. (uninc.),CitizenServe,2023-10-11,4764 Rapid Creek Rd NE,41.703451,-91.466445,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32124,Johnson Co. (uninc.),CitizenServe,2023-10-20,2231 Clay Studio Ct NW,41.833681,-91.712031,SF detached,1,N,College Community School District,,,,issued
+BLD-23-32256,Johnson Co. (uninc.),CitizenServe,2023-11-14,1257 WINCHESTER DR NE,41.842898,-91.647939,SF detached,1,N,College Community School District,,,,issued
+BLD-23-32217,Johnson Co. (uninc.),CitizenServe,2023-11-28,4126 Ivy AVE SW,41.634115,-91.675866,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32316,Johnson Co. (uninc.),CitizenServe,2023-12-06,15 NAVAJO TRL,41.609157,-91.543631,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-23-32291,Johnson Co. (uninc.),CitizenServe,2023-12-07,3185 Dubuque St NE,41.701547,-91.546329,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30559,Johnson Co. (uninc.),CitizenServe,2022-01-03,2367 Sugar Bottom Rd NE,41.760710,-91.524297,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30630,Johnson Co. (uninc.),CitizenServe,2022-01-27,1457 HIGHWAY 965 NW,41.826209,-91.675100,SF detached,1,N,College Community School District,,,,issued
+BLD-21-30521,Johnson Co. (uninc.),CitizenServe,2022-02-04,743 N Perkins St,41.495087,-91.431713,duplex,2,N,Lone Tree Community School District,,,,issued
+BLD-22-30654,Johnson Co. (uninc.),CitizenServe,2022-02-24,4012 Erica Blvd SW,41.642341,-91.741219,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30266,Johnson Co. (uninc.),CitizenServe,2022-03-02,5661 OAK CREST HILL RD SE,41.520746,-91.542994,SF detached,1,N,Highland Community School District,,,,issued
+BLD-22-30653,Johnson Co. (uninc.),CitizenServe,2022-03-03,1337 Forest Ridge Ct NE,41.838465,-91.637522,duplex,2,N,College Community School District,,,,issued
+BLD-21-30593,Johnson Co. (uninc.),CitizenServe,2022-03-04,2442 Copi Rd NW,41.709566,-91.692035,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-30677,Johnson Co. (uninc.),CitizenServe,2022-03-14,4612 Elynn Ln NE,41.771587,-91.476708,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30746,Johnson Co. (uninc.),CitizenServe,2022-04-08,1998 Scales Bend Rd NE,41.789535,-91.594993,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30745,Johnson Co. (uninc.),CitizenServe,2022-04-12,3009 Forest Ridge Dr NE,41.838124,-91.634778,SF detached,1,N,College Community School District,,,,issued
+BLD-22-30792,Johnson Co. (uninc.),CitizenServe,2022-04-15,1813 Lower Old Highway 6 RD NW Lot 77,41.722840,-91.753440,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-30767,Johnson Co. (uninc.),CitizenServe,2022-04-15,1375 Spencer Ct NE,41.835034,-91.647140,SF detached,1,N,College Community School District,,,,issued
+BLD-22-30765,Johnson Co. (uninc.),CitizenServe,2022-04-27,1495 Curtis Bridge Rd NE,41.826527,-91.642948,SF detached,1,N,College Community School District,,,,issued
+BLD-22-30656,Johnson Co. (uninc.),CitizenServe,2022-04-29,5505 180th St NE,41.807290,-91.394459,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30468,Johnson Co. (uninc.),CitizenServe,2022-05-02,4931 Johnson Muscatine Rd SE,41.573647,-91.367490,SF detached,1,N,West Liberty Community School District,,,,issued
+BLD-22-30833,Johnson Co. (uninc.),CitizenServe,2022-05-06,2263 Scales Bend Rd NE,41.771447,-91.610136,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30750,Johnson Co. (uninc.),CitizenServe,2022-05-06,3625 140th St NE,41.832085,-91.577209,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30675,Johnson Co. (uninc.),CitizenServe,2022-05-09,3576 Campground Ct NE,41.768149,-91.583820,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30760,Johnson Co. (uninc.),CitizenServe,2022-05-10,4242 Pleasant Valley Dr SE,41.614379,-91.517481,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30798,Johnson Co. (uninc.),CitizenServe,2022-05-18,1792 Rosewood Blvd NE,41.804606,-91.640489,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-30882,Johnson Co. (uninc.),CitizenServe,2022-05-24,4086 Rolling Prairie Dr SE,41.635483,-91.432312,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30919,Johnson Co. (uninc.),CitizenServe,2022-06-03,1428 Amana Rd NW,41.807153,-91.788792,SF detached,1,N,College Community School District,,,,issued
+BLD-22-30916,Johnson Co. (uninc.),CitizenServe,2022-06-07,3631 Half Moon Ave SW,41.670390,-91.687408,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-30866,Johnson Co. (uninc.),CitizenServe,2022-06-13,4615 Elynn Ln NE,41.770308,-91.477138,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30884,Johnson Co. (uninc.),CitizenServe,2022-06-13,2549 Quincy Rd NE,41.747702,-91.484090,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30957,Johnson Co. (uninc.),CitizenServe,2022-06-22,1982 Mill View Cir SW,41.568853,-91.734211,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-22-30967,Johnson Co. (uninc.),CitizenServe,2022-07-05,1560 Upper Old Highway 6 Rd NW,41.740916,-91.779587,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-30985,Johnson Co. (uninc.),CitizenServe,2022-07-07,2355 Sussex Ln NE,41.690777,-91.515922,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31000,Johnson Co. (uninc.),CitizenServe,2022-07-07,4673 Murphy Ln SW,41.595965,-91.632438,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31034,Johnson Co. (uninc.),CitizenServe,2022-07-14,3480 Sandy Beach Rd NE,41.830662,-91.590436,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-30691,Johnson Co. (uninc.),CitizenServe,2022-07-15,14 Briar Ridge Dr NE,41.715059,-91.513058,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30751,Johnson Co. (uninc.),CitizenServe,2022-07-18,1823 Lake Manor RD NE,41.802494,-91.615177,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31029,Johnson Co. (uninc.),CitizenServe,2022-07-28,3888 Lake Vista Dr NE,41.809618,-91.558945,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31112,Johnson Co. (uninc.),CitizenServe,2022-08-01,4494 Taft AVE SE LOT C15,41.605845,-91.461662,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31134,Johnson Co. (uninc.),CitizenServe,2022-08-08,25 Modern WAY,41.641701,-91.482448,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31106,Johnson Co. (uninc.),CitizenServe,2022-08-08,4096 Rolling Prairie Dr SE,41.635054,-91.432487,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31087,Johnson Co. (uninc.),CitizenServe,2022-08-10,5542 Lackender Ave SW,41.529778,-91.622000,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-22-31042,Johnson Co. (uninc.),CitizenServe,2022-08-10,1500 500th St SW,41.569905,-91.780508,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-22-31010,Johnson Co. (uninc.),CitizenServe,2022-08-12,3055 500th St SW,41.560546,-91.632052,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31175,Johnson Co. (uninc.),CitizenServe,2022-08-19,330 Moss Wood LN,41.630956,-91.553450,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31196,Johnson Co. (uninc.),CitizenServe,2022-08-25,335 CHEROKEE TRL,41.606267,-91.543820,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31197,Johnson Co. (uninc.),CitizenServe,2022-08-26,434 Dakota TRL,41.606326,-91.544156,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-30991,Johnson Co. (uninc.),CitizenServe,2022-09-07,6071 Otter Creek Rd SE,41.491223,-91.497017,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-22-31229,Johnson Co. (uninc.),CitizenServe,2022-09-09,504 ELKHORN TRL,41.609364,-91.545195,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31199,Johnson Co. (uninc.),CitizenServe,2022-09-13,4129 Shagbark Ln NE,41.812581,-91.528286,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31233,Johnson Co. (uninc.),CitizenServe,2022-09-16,4506 Black Hawk Ave SW,41.607048,-91.807267,SF detached,1,N,Williamsburg Community School District,,,,issued
+BLD-22-31136,Johnson Co. (uninc.),CitizenServe,2022-09-16,1385 James Ave NE,41.834090,-91.656598,SF detached,1,N,College Community School District,,,,issued
+BLD-22-31126,Johnson Co. (uninc.),CitizenServe,2022-09-19,2327 Lakeridge PL NE,41.764663,-91.587155,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31250,Johnson Co. (uninc.),CitizenServe,2022-09-27,4741 540th St SE,41.539235,-91.469610,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-22-31273,Johnson Co. (uninc.),CitizenServe,2022-09-30,2891 Sydney Ct NE,41.837455,-91.646838,SF detached,1,N,College Community School District,,,,issued
+BLD-22-31238,Johnson Co. (uninc.),CitizenServe,2022-10-17,309 JAMES BLVD,41.720838,-91.783243,duplex,2,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-31341,Johnson Co. (uninc.),CitizenServe,2022-10-26,4077 Hill Haven Ct NE,41.810420,-91.531753,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31390,Johnson Co. (uninc.),CitizenServe,2022-11-02,24 NAVAJO TRL,41.609510,-91.544428,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31397,Johnson Co. (uninc.),CitizenServe,2022-11-04,229 BLACKFOOT TRL,41.606836,-91.543072,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31403,Johnson Co. (uninc.),CitizenServe,2022-11-07,511 ELKHORN TRL,41.608894,-91.545701,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-22-31314,Johnson Co. (uninc.),CitizenServe,2022-11-08,1954 Jordan Creek Rd NE,41.791791,-91.510299,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31393,Johnson Co. (uninc.),CitizenServe,2022-11-09,2914 Sydney Ct NE,41.838038,-91.645340,SF detached,1,N,College Community School District,,,,issued
+BLD-22-31356,Johnson Co. (uninc.),CitizenServe,2022-11-09,3448 Ivy Ave SW,41.684086,-91.673351,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-31357,Johnson Co. (uninc.),CitizenServe,2022-11-10,2024 Silvergrass Ln SW,41.568967,-91.729839,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-22-31388,Johnson Co. (uninc.),CitizenServe,2022-11-14,2465 Quincy Rd NE,41.754538,-91.488348,SF detached,1,N,Solon Community School District,,,,issued
+BLD-22-31416,Johnson Co. (uninc.),CitizenServe,2022-11-14,1813 Lower Old Highway 6 RD NW Lot 61,41.723079,-91.752308,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-22-31313,Johnson Co. (uninc.),CitizenServe,2022-12-12,1915 Rohret Rd SW,41.627630,-91.745220,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-29756,Johnson Co. (uninc.),CitizenServe,2021-03-01,2718 Newport Rd NE,41.734623,-91.496444,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-29766,Johnson Co. (uninc.),CitizenServe,2021-03-03,2635 Swan Lake Rd NW,41.774603,-91.672946,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-29807,Johnson Co. (uninc.),CitizenServe,2021-03-10,2100 S Scott BLVD LOT 64,41.638505,-91.481057,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-21-29806,Johnson Co. (uninc.),CitizenServe,2021-03-10,2100 S Scott BLVD LOT 79,41.638158,-91.482015,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-21-29786,Johnson Co. (uninc.),CitizenServe,2021-03-11,1772 Rosewood Blvd NE,41.806142,-91.638306,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-29799,Johnson Co. (uninc.),CitizenServe,2021-03-16,316 Taylor Dr,41.489670,-91.430956,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-21-29825,Johnson Co. (uninc.),CitizenServe,2021-03-25,1364 Spencer Ct NE,41.835999,-91.646298,SF detached,1,N,College Community School District,,,,issued
+BLD-21-29735,Johnson Co. (uninc.),CitizenServe,2021-03-30,3777 Cottage Reserve Rd NE,41.793547,-91.562406,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-29717,Johnson Co. (uninc.),CitizenServe,2021-04-06,2747 Lake View Dr NE,41.732625,-91.528332,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-29845,Johnson Co. (uninc.),CitizenServe,2021-04-15,2343 Sterling Ct NE,41.762746,-91.521817,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-29978,Johnson Co. (uninc.),CitizenServe,2021-05-05,405 N OHIO AVE,41.726699,-91.789173,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30008,Johnson Co. (uninc.),CitizenServe,2021-05-19,201 N Devoe St,41.488436,-91.426012,duplex,2,N,Lone Tree Community School District,,,,issued
+BLD-21-30025,Johnson Co. (uninc.),CitizenServe,2021-05-20,504 MINERAL POINT LN,41.629599,-91.550629,manufactured,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30024,Johnson Co. (uninc.),CitizenServe,2021-05-20,1813 Lower Old Highway 6 RD NW Lot 105,41.722583,-91.753732,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30023,Johnson Co. (uninc.),CitizenServe,2021-05-20,1813 Lower Old Highway 6 RD NW Lot 78,41.722829,-91.753242,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-29963,Johnson Co. (uninc.),CitizenServe,2021-06-04,3016 Forest Ridge Dr NE,41.838736,-91.633517,SF detached,1,N,College Community School District,,,,issued
+BLD-21-30032,Johnson Co. (uninc.),CitizenServe,2021-06-10,3975 Hendricks Ln NE,41.820760,-91.545446,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-29952,Johnson Co. (uninc.),CitizenServe,2021-06-11,2748 Anchorage Rd NE,41.734002,-91.525533,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30014,Johnson Co. (uninc.),CitizenServe,2021-06-17,2342 Sterling Ct NE,41.763030,-91.521050,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30048,Johnson Co. (uninc.),CitizenServe,2021-06-18,4604 Elynn Ln NE,41.771621,-91.477199,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30070,Johnson Co. (uninc.),CitizenServe,2021-06-24,3887 West Overlook Rd NE,41.719679,-91.552696,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30103,Johnson Co. (uninc.),CitizenServe,2021-07-08,3005 Forest Ridge Dr NE,41.837774,-91.635758,SF detached,1,N,College Community School District,,,,issued
+BLD-21-30005,Johnson Co. (uninc.),CitizenServe,2021-07-12,5695 Naples Ave SW,41.518592,-91.581956,SF detached,1,N,Highland Community School District,,,,issued
+BLD-21-30120,Johnson Co. (uninc.),CitizenServe,2021-07-16,2387 Copi Rd NW,41.707033,-91.696396,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30166,Johnson Co. (uninc.),CitizenServe,2021-07-23,2603 Johnsons Xing NE,41.743691,-91.497313,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30183,Johnson Co. (uninc.),CitizenServe,2021-07-28,2326 Lakeridge Pl NE,41.764449,-91.586311,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30126,Johnson Co. (uninc.),CitizenServe,2021-07-30,1288 James Ave NE,41.841278,-91.655548,SF detached,1,N,College Community School District,,,,issued
+BLD-21-30226,Johnson Co. (uninc.),CitizenServe,2021-08-23,1994 Alex Way SW,41.643461,-91.737515,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30181,Johnson Co. (uninc.),CitizenServe,2021-08-30,5552 480th St SE,41.585767,-91.390238,SF detached,1,N,Lone Tree Community School District,,,,issued
+BLD-21-30270,Johnson Co. (uninc.),CitizenServe,2021-09-01,1769 Sugar Maple Ave NE,41.806438,-91.640280,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30268,Johnson Co. (uninc.),CitizenServe,2021-09-02,4747 American Legion Rd SE,41.646017,-91.468623,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30283,Johnson Co. (uninc.),CitizenServe,2021-09-08,3802 Peterson Pl NE,41.731441,-91.559451,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30260,Johnson Co. (uninc.),CitizenServe,2021-09-08,1745 Sugar Maple Ave NE,41.808334,-91.640891,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30291,Johnson Co. (uninc.),CitizenServe,2021-09-10,1500 Heim Strasze SW,41.536936,-91.779876,SF detached,1,N,Mid-Prairie Community School District,,,,issued
+BLD-21-30326,Johnson Co. (uninc.),CitizenServe,2021-09-17,3976 Eagle Ave SW,41.645094,-91.768203,SF detached,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30382,Johnson Co. (uninc.),CitizenServe,2021-09-29,1813 Lower Old Highway 6 RD NW Lot 107,41.722617,-91.754117,manufactured,1,N,Clear Creek-Amana Community School District,,,,issued
+BLD-21-30359,Johnson Co. (uninc.),CitizenServe,2021-10-07,1296 Draper Ln NE,41.841900,-91.641509,SF detached,1,N,College Community School District,,,,issued
+BLD-21-30416,Johnson Co. (uninc.),CitizenServe,2021-10-13,2571 Sugar Bottom Rd NE,41.744740,-91.508117,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30410,Johnson Co. (uninc.),CitizenServe,2021-10-20,2365 Sugar Bottom Rd NE,41.760545,-91.531166,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30419,Johnson Co. (uninc.),CitizenServe,2021-10-20,3923 Woods Ln NE,41.718922,-91.547482,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30412,Johnson Co. (uninc.),CitizenServe,2021-10-20,4564 Dane Rd SW,41.601266,-91.560143,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30385,Johnson Co. (uninc.),CitizenServe,2021-10-26,3806 Sierra Ter SW,41.623017,-91.559138,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30450,Johnson Co. (uninc.),CitizenServe,2021-11-01,3974 Macbride Pl NE,41.819515,-91.542478,SF detached,1,N,Solon Community School District,,,,issued
+BLD-21-30460,Johnson Co. (uninc.),CitizenServe,2021-11-03,3907 Woods Ln NE,41.719596,-91.550803,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30351,Johnson Co. (uninc.),CitizenServe,2021-11-08,4477 Sioux Ave SE,41.606645,-91.483289,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30493,Johnson Co. (uninc.),CitizenServe,2021-11-16,3826 Palisade Pl SW,41.620886,-91.557764,SF detached,1,Y,Iowa City Community School District,,,,issued
+BLD-21-30545,Johnson Co. (uninc.),CitizenServe,2021-12-09,3818 Palisade Pl SW,41.620988,-91.558492,SF detached,1,Y,Iowa City Community School District,,,,issued
