@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <title>FOC Onboarding — Iowa City Community School District</title>
 <style>
-  @page { size: letter; margin: 0.52in 0.7in; }
+  @page { size: letter; margin: 0.45in 0.65in; }
   * { box-sizing: border-box; }
   html, body { background: #fff; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #0f172a; line-height: 1.35; font-size: 9.5pt; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #0f172a; line-height: 1.28; font-size: 9.1pt; }
 
-  .doc { max-width: 7.1in; margin: 0 auto; }
+  .doc { max-width: 7.3in; margin: 0 auto; }
   .page { break-after: page; }
   .page:last-child { break-after: auto; }
 
@@ -27,15 +27,15 @@
   .pagehead .sec { font-size: 8pt; font-weight: 700; letter-spacing: 1.2pt; text-transform: uppercase; color: #475569; }
   .pagehead .docref { font-size: 8pt; color: #94a3b8; }
 
-  h2 { font-size: 12.5pt; font-weight: 800; margin: 0 0 6pt; letter-spacing: -0.2pt; line-height: 1.2; }
-  h3 { font-size: 10pt; font-weight: 700; margin: 7pt 0 3pt; }
+  h2 { font-size: 11.8pt; font-weight: 800; margin: 0 0 5pt; letter-spacing: -0.2pt; line-height: 1.2; }
+  h3 { font-size: 9.6pt; font-weight: 700; margin: 6pt 0 2.5pt; }
   h3 .range { font-weight: 500; color: #94a3b8; font-size: 8.5pt; }
-  p { margin: 0 0 4pt; color: #1e293b; }
+  p { margin: 0 0 3.5pt; color: #1e293b; }
   strong { color: #0f172a; }
   .muted { color: #64748b; }
   .small { font-size: 8.5pt; }
 
-  .bluf { background: #f1f5f9; border-left: 3pt solid #2c5fa1; padding: 8pt 10pt; margin: 0 0 10pt; font-size: 10pt; color: #1e293b; }
+  .bluf { background: #f1f5f9; border-left: 3pt solid #2c5fa1; padding: 7pt 9pt; margin: 0 0 8pt; font-size: 9.3pt; color: #1e293b; }
   .bluf .title { font-weight: 700; color: #0f172a; display: block; margin-bottom: 3pt; font-size: 8.5pt; letter-spacing: 0.8pt; text-transform: uppercase; }
 
   .claims { margin: 0 0 10pt; }
@@ -46,7 +46,7 @@
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6pt; margin-bottom: 8pt; }
   .tile { border: 1px solid #cbd5e1; border-radius: 4pt; padding: 6pt 8pt 7pt; background: #fff; break-inside: avoid; }
   .tile .label { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.5pt; text-transform: uppercase; color: #64748b; margin-bottom: 1pt; }
-  .tile .value { font-size: 17pt; font-weight: 800; line-height: 1.05; color: #0f172a; }
+  .tile .value { font-size: 15.5pt; font-weight: 800; line-height: 1.05; color: #0f172a; }
   .tile .value .unit { font-size: 8.5pt; color: #64748b; font-weight: 600; margin-left: 1pt; }
   .tile .ctx { font-size: 8pt; color: #475569; margin-top: 2pt; line-height: 1.3; }
   .badge { font-size: 7pt; font-weight: 700; letter-spacing: 0.5pt; padding: 1pt 4pt; border-radius: 2pt; text-transform: uppercase; }
@@ -54,17 +54,17 @@
   .badge.yellow { background: #fdf3df; color: #b58220; }
   .badge.red { background: #fdecec; color: #b03a2e; }
 
-  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt 14pt; }
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt 12pt; }
   .cols2 h3 { margin-top: 0; }
 
-  .callout { background: #f1f5f9; border-left: 3pt solid #2c5fa1; padding: 7pt 9pt; margin: 8pt 0; font-size: 9pt; color: #334155; break-inside: avoid; }
+  .callout { background: #f1f5f9; border-left: 3pt solid #2c5fa1; padding: 6pt 8pt; margin: 6pt 0; font-size: 8.6pt; color: #334155; break-inside: avoid; }
   .callout .title { font-weight: 700; color: #0f172a; display: block; margin-bottom: 2pt; }
   .callout.warn { border-left-color: #b58220; background: #fbf3da; }
   .callout.alert { border-left-color: #b03a2e; background: #fdecec; }
 
-  table { border-collapse: collapse; width: 100%; font-size: 8.5pt; margin: 4pt 0 8pt; break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.1pt; margin: 3pt 0 6pt; break-inside: avoid; }
   th { text-align: left; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.4pt; text-transform: uppercase; color: #64748b; border-bottom: 1.5px solid #94a3b8; padding: 2pt 6pt 2pt 0; }
-  td { border-bottom: 1px solid #e2e8f0; padding: 2pt 6pt 2pt 0; color: #1e293b; vertical-align: top; }
+  td { border-bottom: 1px solid #e2e8f0; padding: 1.6pt 5pt 1.6pt 0; color: #1e293b; vertical-align: top; }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr.hl td { background: #fdecec; }
 
@@ -86,11 +86,11 @@
   .bval .peer { color: #2c5fa1; }
 
   .qa { margin: 0; padding-left: 0; list-style: none; counter-reset: q; column-count: 2; column-gap: 16pt; }
-  .qa li { counter-increment: q; padding: 1.8pt 0 1.8pt 18pt; position: relative; color: #1e293b; font-size: 8.3pt; line-height: 1.3; border-bottom: 1px solid #f1f5f9; break-inside: avoid; }
+  .qa li { counter-increment: q; padding: 1.4pt 0 1.4pt 17pt; position: relative; color: #1e293b; font-size: 8.3pt; line-height: 1.3; border-bottom: 1px solid #f1f5f9; break-inside: avoid; }
   .qa li::before { content: counter(q); position: absolute; left: 0; top: 3pt; width: 13pt; height: 13pt; border-radius: 50%; background: #f1f5f9; color: #334155; font-size: 8pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
-  .gloss dt { font-weight: 700; font-size: 8.4pt; color: #0f172a; margin-top: 3pt; }
-  .gloss dd { margin: 0 0 1pt; font-size: 8.1pt; color: #334155; line-height: 1.3; }
+  .gloss dt { font-weight: 700; font-size: 8.1pt; color: #0f172a; margin-top: 1.5pt; }
+  .gloss dd { margin: 0 0 1pt; font-size: 7.9pt; color: #334155; line-height: 1.26; }
 
   .figure { margin: 6pt 0 8pt; break-inside: avoid; }
   .figure .ftitle { font-size: 9pt; font-weight: 700; color: #0f172a; margin-bottom: 1pt; }
@@ -98,11 +98,11 @@
   .figure svg { width: 100%; height: auto; display: block; }
   .fnote { font-size: 7.8pt; color: #64748b; margin-top: 2pt; line-height: 1.35; }
 
-  .pfoot { border-top: 1px solid #cbd5e1; margin-top: 7pt; padding-top: 3pt; font-size: 7.8pt; color: #94a3b8; display: flex; justify-content: space-between; }
+  .pfoot { border-top: 1px solid #cbd5e1; margin-top: 4pt; padding-top: 2.5pt; font-size: 7.8pt; color: #94a3b8; display: flex; justify-content: space-between; }
 
   .sig { font-size: 8pt; color: #475569; }
   ul.tight { margin: 2pt 0 5pt; padding-left: 13pt; }
-  ul.tight li { margin-bottom: 2pt; font-size: 8.6pt; color: #1e293b; }
+  ul.tight li { margin-bottom: 1.6pt; font-size: 8.4pt; color: #1e293b; }
 </style>
 </head>
 <body>
@@ -119,13 +119,14 @@
 
   <div class="bluf">
     <span class="title">The one-paragraph version</span>
-    Iowa City CSD is a wealthy district that ran itself out of room. Its tax base is strong ($14.6B actual valuation), its enrollment is flat rather than falling, and its long-term debt sits at just 1.07% of valuation &mdash; yet by 2026 the district was down to days of cash, borrowing from its own health-insurance fund, and unable to borrow from a bank. Two unrelated problems &mdash; a debt-financed building program and a structural operating deficit &mdash; drained one shared cash pool from both sides while the board's oversight, which depended entirely on information from the office being overseen, failed to see it. <strong>This is a controls-and-oversight crisis in a fundamentally solvent community, which means it is fixable &mdash; and the Financial Oversight Committee exists to make the fix verifiable.</strong>
+    Iowa City CSD is a wealthy district that ran itself out of room. Its tax base is strong ($14.6B actual valuation) and its long-term debt uses just 1.07% of that base &mdash; about a fifth of the legal limit &mdash; yet by 2026 the district was down to days of cash, borrowing from its own health-insurance fund, and unable to borrow from a bank. Two unrelated problems &mdash; a debt-financed building program and a structural operating deficit &mdash; drained one shared cash pool from both sides while the board's oversight, which depended entirely on information from the office being overseen, failed to see it. <strong>This is a controls-and-oversight failure in a community that can still afford its schools, which means it is fixable.</strong> But the forward problem is now two problems, not one: the ~$6M structural deficit is joined by a projected enrollment decline worth roughly as much again in recurring revenue by 2030. The Financial Oversight Committee exists to make the recovery verifiable &mdash; and to make sure the second problem is not discovered the way the first one was.
   </div>
 
   <div class="claims">
     <div class="claim"><div class="n">1</div><p><strong>How it happened:</strong> the 2017 $191.5M bond program (the largest school bond in Iowa history) pushed debt to a $322M peak and drained capital cash, while payroll ran $13.5M (9%) over budget on the operating side. All funds share one bank account, so both failures emptied the same pool &mdash; ending in $38.2M of unauthorized interfund loans and a hidden $10M transfer. <span class="muted">(Page 2)</span></p></div>
     <div class="claim"><div class="n">2</div><p><strong>Where the district stands:</strong> the FY24 audit found clean books but broken controls &mdash; no missing money, but five material weaknesses at once, more than double any large-district peer in a decade. On every cushion measure ICCSD is the thinnest of Iowa's 15 large districts. <span class="muted">(Page 3)</span></p></div>
-    <div class="claim"><div class="n">3</div><p><strong>Where it's headed:</strong> the district is on a &ldquo;warrant treadmill.&rdquo; A $25M cash-flow warrant bridges fall 2026, but its repayment moves the real low point to <strong>June 2027</strong>, and base-case solvency stays below the board's 5% floor through FY2029. Borrowed cash manages liquidity; it does not fix the operating deficit. <span class="muted">(Page 4)</span></p></div>
+    <div class="claim"><div class="n">3</div><p><strong>The forward gap is two problems:</strong> a ~$6M structural operating deficit that keeps base-case solvency below the board's 5% floor through FY2029, plus a projected loss of <strong>750&ndash;815 students by 2030</strong> worth <strong>$6.8&ndash;7.3M a year</strong> in recurring revenue. <span class="muted">(Page 4)</span></p></div>
+    <div class="claim"><div class="n">4</div><p><strong>Meanwhile, cash is borrowed:</strong> a $25M warrant bridges fall 2026, but its repayment moves the real low point to <strong>June 2027</strong>. Borrowed cash manages liquidity; it does not close the gap. And the credit story is its own warning &mdash; <strong>Aaa when the district borrowed $191.5M in 2017; unrated by 2024</strong>. <span class="muted">(Pages 5&ndash;6)</span></p></div>
   </div>
 
   <h3 style="margin-top:0;">State of the district at a glance</h3>
@@ -151,25 +152,25 @@
       <div class="ctx">91% of peer audit-years have zero; prior peer max was 2. Several are repeat findings. <span class="badge red">Red</span></div>
     </div>
     <div class="tile">
-      <div class="label">Interfund loans, mid-2024</div>
-      <div class="value">$38.2<span class="unit">M</span></div>
-      <div class="ctx">Without the board approval, repayment dates, or interest Iowa law requires. <span class="badge red">Red</span></div>
-    </div>
-    <div class="tile">
       <div class="label">FY26 operating result</div>
       <div class="value">&minus;$6.0<span class="unit">M</span></div>
       <div class="ctx">PFM base case (~$225M spend vs. $212M printed budget, which had implied a surplus). <span class="badge red">Red</span></div>
+    </div>
+    <div class="tile">
+      <div class="label">Enrollment headwind by 2030</div>
+      <div class="value">&minus;$7<span class="unit">M / year</span></div>
+      <div class="ctx">750&ndash;815 students projected lost; $6.8&ndash;7.3M recurring, ~$18M cumulative 2026&ndash;30. <span class="badge red">Red</span></div>
     </div>
   </div>
 
   <div class="callout">
     <span class="title">How to use this memo</span>
-    Pages 2&ndash;4 tell the story top-down: how it happened, where things stand, where they're headed. Pages 5&ndash;6 cover the committee itself &mdash; mandate, mechanics, what to watch, and the questions worth asking early. Page 7 is a reference appendix: glossary, who's who, and where to find every source. Every figure traces to an audited financial report or an official state filing; figures from years not yet audited are labeled <em>unaudited</em> wherever they appear.
+    Pages 2&ndash;3 tell the story: how it happened, and where the audited record leaves things. Pages 4&ndash;6 are the forward view &mdash; the structural gap, the cash position, and the debt/rating/disclosure picture. Page 7 covers the committee's mandate and mechanics; pages 8&ndash;9 are the working reference (the legal calendar, what to watch, what to ask). Page 10 is the appendix: glossary, who's who, sources. Every figure traces to an audited report, an official filing, or a rating agency document; figures from years not yet audited are labeled <em>unaudited</em>, and open questions are marked as questions rather than findings.
   </div>
 
   <p class="sig">This is an unofficial onboarding document prepared by a community member. It was not produced by ICCSD, the Financial Oversight Committee, the board, or any rating agency. Corrections welcome: michael@480th.com.</p>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 1 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 1 of 10</span></div>
 </section>
 
 <!-- ============================================================ PAGE 2 -->
@@ -182,7 +183,7 @@
   <div class="cols2">
     <div>
       <h3>The capital side: a building program outran its funding</h3>
-      <p>Voters approved a <strong>$191.5M bond in 2017</strong> &mdash; the largest school bond in Iowa history. With follow-on GO issues and new sales-tax (SAVE) bonds of $66M (2022) and $71M (2023), total debt stacked to a <strong>$322M peak in FY2023</strong>. Construction spending kept running ahead of the revenue meant to repay it: in FY2025 alone the SAVE fund spent $55.7M against $19.1M of revenue, draining from <strong>$45.8M to $9.2M in a single year</strong>. Along the way the district paid <strong>$8.7M</strong> for an office building assessed at $5.4M. By mid-2025, total pooled cash had fallen ~42% in one year, from roughly <strong>$108M to $62M</strong>.</p>
+      <p>Voters approved a <strong>$191.5M bond in 2017</strong> &mdash; the largest school bond in Iowa history, issued in three series totalling $191,525,000. With new sales-tax (SAVE) bonds of $65.8M (2022) and $71.5M (2023), total debt stacked to a <strong>$322M peak in FY2023</strong>. Construction spending kept running ahead of the revenue meant to repay it: in FY2025 alone the SAVE fund spent $55.7M against $19.1M of revenue, draining from <strong>$45.8M to $9.2M in a single year</strong>. Along the way the district paid <strong>$8.7M</strong> for an office building assessed at $5.4M. By mid-2025, total pooled cash had fallen ~42% in one year, from roughly <strong>$108M to $62M</strong>.</p>
     </div>
     <div>
       <h3>The operating side: a structural deficit, unwatched</h3>
@@ -202,7 +203,8 @@
     <div class="tl-title">Timeline &mdash; the short version</div>
     <div class="tl-row"><span class="d">2017</span><span class="e">$191.5M bond approved; district healthy on every measure at the time.</span></div>
     <div class="tl-row"><span class="d">Jun 2023</span><span class="e">Long-tenured CFO retires, leaving written warnings to the successor: tax penalties, missing reports, a special-ed deficit &ldquo;growing by millions.&rdquo;</span></div>
-    <div class="tl-row"><span class="d">Oct 2024</span><span class="e">Credit rating withdrawn (Moody's); no public rating since.</span></div>
+    <div class="tl-row"><span class="d">Jun 2023</span><span class="e">Moody's affirms Aa3 but <strong>assigns a negative outlook</strong>, citing &ldquo;declining fund balance and cash&rdquo; &mdash; a written warning 16 months before the withdrawal (page 6).</span></div>
+    <div class="tl-row"><span class="d">Oct 2024</span><span class="e">Credit rating withdrawn (Moody's) for lack of current audits; no public rating since.</span></div>
     <div class="tl-row"><span class="d">Aug 2025</span><span class="e">Undisclosed $10M health-fund&rarr;General Fund transfer to cover payroll; omitted from the next quarterly report.</span></div>
     <div class="tl-row"><span class="d">Nov 2025</span><span class="e">CFO departs; finance office effectively leaderless entering the crisis.</span></div>
     <div class="tl-row"><span class="d">Jan 2026</span><span class="e">Board learns of the situation; press breaks the $10M transfer; oversight committee reconvenes after ~2 years dormant.</span></div>
@@ -212,7 +214,7 @@
     <div class="tl-row"><span class="d">Jun 2026</span><span class="e">District appears before the state School Budget Review Committee; FY24 audit finally delivered June 10 &mdash; roughly two years late.</span></div>
   </div>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 2 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 2 of 10</span></div>
 </section>
 
 <!-- ============================================================ PAGE 3 -->
@@ -267,20 +269,20 @@
     <li>FY25 opened the General Fund <strong>~$314K above</strong> the audited FY24 closing balance. When is the correction booked?</li>
   </ul>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 3 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 3 of 10</span></div>
 </section>
 
 <!-- ============================================================ PAGE 4 -->
 <section class="page">
-  <div class="pagehead"><span class="sec">3 &middot; Where it's headed</span><span class="docref">Forecast base case = PFM (district's own advisor)</span></div>
+  <div class="pagehead"><span class="sec">3 &middot; The structural gap</span><span class="docref">Forecast base case = PFM (district's own advisor)</span></div>
 
-  <h2>The warrant treadmill: liquidity is being managed; solvency is not</h2>
-  <p>The forecast below takes <strong>PFM's own seven-year model as the base case</strong> &mdash; deliberately not the printed budget, because the FY26 budget implied a ~$6M <em>surplus</em> while PFM projects ~$225M of spending against the $212M budget: a <strong>~$6M operating deficit</strong>. That single correction pulls the whole path down.</p>
+  <h2>Two gaps, not one &mdash; and the second one grows</h2>
+  <p>The forecast below uses <strong>PFM's own seven-year model as the base case</strong> &mdash; not the printed budget, which implied a ~$6M <em>surplus</em> where PFM projects ~$225M of spending against a $212M budget: a <strong>~$6M operating deficit</strong>. That correction pulls the whole path down. Then a second, slower force arrives underneath it: <strong>enrollment is now projected to fall</strong>, and in Iowa funding follows the student.</p>
 
   <div class="figure">
     <div class="ftitle">General Fund solvency ratio, FY2020&ndash;FY2029</div>
     <div class="fsub">Reserves as % of revenue &middot; solid = audited &middot; open marker = unaudited estimate &middot; dashed = projection, shaded band = conservative&harr;optimistic &middot; board target 10&ndash;15%, floor 5%</div>
-    <svg viewBox="0 0 680 200" role="img" aria-label="Solvency ratio line chart, FY2020 to FY2029">
+    <svg viewBox="0 0 680 200" style="max-width:5.5in;margin:0 auto;" role="img" aria-label="Solvency ratio line chart, FY2020 to FY2029">
       <rect x="40" y="32.3" width="640" height="28.9" fill="#e7f5ec"/>
       <text x="44" y="41" font-size="8" fill="#1e7a3a">target 10&#8211;15%</text>
       <line x1="40" y1="90" x2="680" y2="90" stroke="#b58220" stroke-width="1" stroke-dasharray="4 3"/>
@@ -305,6 +307,49 @@
     </svg>
     <p class="fnote">Audited FY20&ndash;24: 4.2%, 6.4%, 2.8%, 2.5%, 8.1%. FY25 shown at the model estimate (4.1%); the district's own unaudited estimate is ~6%. Projections FY26&ndash;29 (base): 0.5%, 1.2%, 2.4%, 3.5% &mdash; <strong>below the 5% floor every year through FY2029</strong>, even before the conservative band. The FY24 rebound was driven by an unusually low spend year and the cash-reserve levy; it did not hold.</p>
   </div>
+
+  <h3>The second gap: enrollment is projected to decline, and every forecast now agrees</h3>
+  <p>Enrollment was roughly flat for five years &mdash; 14,572 at its FY21 peak, 14,379 in FY25 &mdash; which is why it has not featured in the crisis story. That period is over. The district's own demographer reversed a decade of growth projections in February 2025, and three independent methods now converge on the mid-13,000s by 2030.</p>
+
+  <table>
+    <tr><th style="width:38%;">Forecast</th><th class="num">Base</th><th class="num">~2030</th><th class="num">Change</th></tr>
+    <tr><td>Cohort-survival model (baseline)</td><td class="num">14,227</td><td class="num">13,475</td><td class="num">&minus;752 (&minus;5.3%)</td></tr>
+    <tr><td>Same model, recalibrated</td><td class="num">14,227</td><td class="num">13,414</td><td class="num">&minus;813 (&minus;5.7%)</td></tr>
+    <tr><td>Iowa Dept. of Education, 2025 vintage</td><td class="num">14,370</td><td class="num">13,720</td><td class="num">&minus;649</td></tr>
+    <tr><td>Woolpert / Cooperative Strategies, Feb 2025 <span class="muted">(district's demographer)</span></td><td class="num">14,415</td><td class="num">14,049</td><td class="num">&minus;806 by 2034-35</td></tr>
+  </table>
+  <p class="fnote" style="margin-top:-4pt;">Bases differ (BEDS headcount vs. certified vs. total-served), explaining most of the spread; the demographer runs ~570 higher at 2030 but reaches the same range by 2031&ndash;32. The 181-student drop already recorded in 2025-26 is the leading edge.</p>
+
+  <div class="callout alert">
+    <span class="title">Why this belongs in a financial memo, not a demographic one</span>
+    At roughly <strong>$9,000 per student</strong>, a loss of 750&ndash;815 students is a <strong>$6.8&ndash;7.3M recurring annual revenue headwind by 2030</strong> &mdash; about <strong>$18M cumulative over 2026&ndash;2030</strong>, the same order of magnitude as the ~$6M operating deficit. <strong>The forward hole is not ~$6M a year; it is ~$6M now, trending toward ~$13M by 2030 unless recurring costs come down by a similar amount.</strong> Iowa's formula smooths the hit via prior-year enrollment, a budget guarantee and a declining-enrollment supplement &mdash; which makes it easier to under-react to.
+  </div>
+
+  <div class="cols2">
+    <div>
+      <h3 style="margin-top:2pt;">What is actually driving it</h3>
+      <p><strong>Births, overwhelmingly.</strong> Johnson County births peaked at 1,856 in 2016 and fell to ~1,265 by 2024; kindergarten has fallen four years running (1,035&rarr;987). That pipeline is already fixed for this decade &mdash; those children are born.</p>
+      <p><strong>Not vouchers</strong> &mdash; which matters, because the public narrative says otherwise. Of ~1,440 ESA users, roughly <strong>78% were already in private school</strong>; the defensible public&rarr;private transfer is about <strong>175 students</strong>.</p>
+      <p><strong>Two offsetting forces:</strong> immigration masked the decline (1,390 in FY25, easing to 1,052 in FY26), while <strong>building permits argue for stabilization</strong> &mdash; supporting the baseline over the pessimistic case.</p>
+    </div>
+    <div>
+      <div class="callout warn" style="margin-top:2pt;">
+        <span class="title">The solvency path above is probably optimistic</span>
+        The model underlying it assumes enrollment declines <strong>~0.3%/yr</strong> through FY31. The demographer evidence implies roughly <strong>1.1%/yr</strong>, and the model's own risk register flags &ldquo;run a scenario at 1&ndash;2% annual decline&rdquo; as work not yet done. <strong>That scenario has never been run, and it is the one the evidence supports</strong> &mdash; a reasonable early request from the committee.
+        <br><br>Read everything FY2024-forward as unaudited: the fund-balance anchor carries ~&plusmn;$3M of slack (solvency &plusmn;1.5 points), and the <strong>1725 N. Dodge sale is excluded from all base lines</strong> &mdash; the biggest unmodeled upside.
+      </div>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 4 of 10</span></div>
+</section>
+
+<!-- ============================================================ PAGE 5 -->
+<section class="page">
+  <div class="pagehead"><span class="sec">4 &middot; Cash and borrowing capacity</span><span class="docref">The warrant treadmill &middot; through June 2027</span></div>
+
+  <h2>Liquidity is being managed; solvency is not</h2>
+  <p>The gap above is a <em>solvency</em> problem &mdash; the district spends more than it takes in. What the district has been managing is something different and more urgent: <em>liquidity</em>, the question of whether there is cash in the account on payroll day. Those are not the same problem, and the tools that fix one do not fix the other.</p>
 
   <div class="figure">
     <div class="ftitle">General Fund month-end cash, April 2026 &ndash; June 2027 ($M, with $25M warrant and interfund flows)</div>
@@ -334,21 +379,112 @@
 
   <div class="cols2">
     <div>
-      <h3>Credit and capital consequences</h3>
-      <p>A hypothetical 2028 Moody's application scores around <strong>Baa1/Baa2</strong> (&ldquo;strong tax base, weak finances, broken reporting&rdquo;) &mdash; with roughly a <strong>20% chance the district couldn't be rated at all</strong>. The reserve gap to the Aa2 median is ~$37M. PFM's capital analysis concludes the district <strong>cannot responsibly borrow for capital before spring 2028</strong>, and only with liquidity resolved, zero interfund loans outstanding, timely audits, and restored credit &mdash; gating ~$18.5M of planned PPEL work.</p>
+      <h3 style="margin-top:2pt;">What the warrant does and doesn't do</h3>
+      <p>A revenue anticipation warrant is short-term borrowing against taxes not yet received. It moves cash <em>within</em> a year; it adds no resources and must be repaid the same cycle. The $25M warrant does its job &mdash; it gets the district through the autumn trough. But repayment lands in spring 2027, which is why the genuine low point is <strong>June 2027, not September 2026</strong>, and why a second warrant is already planned.</p>
+      <p>Note also that the &ldquo;healthy&rdquo; $13.1M March 2026 balance was itself propped up by the $10M loan from the health-insurance fund &mdash; the transaction that started the crisis.</p>
     </div>
     <div>
-      <h3>Read the forecast with care</h3>
-      <p>Everything FY2024-forward is unaudited. The fund-balance anchor carries ~&plusmn;$3M of slack (read solvency &plusmn;1.5 points). FY26 budget authority is estimated, so the UAB band is wide &mdash; but every plausible authority sits below PFM's $225M spend, so the sign (at-or-over the legal limit) holds. The <strong>1725 N. Dodge sale is excluded from all base lines</strong> and is the biggest unmodeled upside. The teaching point stands regardless: <strong>warrants and interfund loans manage liquidity; only closing the ~$6M structural deficit fixes solvency.</strong></p>
+      <div class="callout alert" style="margin-top:8pt;">
+        <span class="title">The distinction to hold onto</span>
+        <strong>Warrants and interfund loans manage liquidity. Only closing the structural gap fixes solvency.</strong> A district can borrow its way through every cash trough and still be insolvent on an operating basis &mdash; and the borrowing itself gets more expensive and harder to arrange each year, as the refused $25M bank bid showed. Watch for the moment when a liquidity fix is presented as if it were a solvency fix.
+      </div>
     </div>
   </div>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 4 of 7</span></div>
+  <h3>Debt structure &mdash; capacity is not the problem</h3>
+  <div class="cols2">
+    <div>
+      <ul class="tight" style="margin-top:0;">
+        <li><strong>GO debt:</strong> $141.25M outstanding at 6/30/25, of $191,525,000 issued across three series. At <strong>1.07% of the $14.62B valuation</strong>, that is roughly <strong>a fifth of the 5% statutory limit</strong>.</li>
+        <li><strong>SAVE (sales-tax) debt:</strong> $146.93M outstanding, payable <em>&ldquo;solely from the sales taxes received by the District&rdquo;</em> &mdash; a revenue pledge, not a claim on the General Fund.</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="tight" style="margin-top:0;">
+        <li><strong>Coverage</strong> on the SAVE pledge has run <strong>1.25&ndash;1.62&times;</strong> from FY2018 through FY2026 and has never approached 1.00&times;. The construction fund's drawdown from $45.8M to $9.2M is a capital-program problem &mdash; nothing left to build with &mdash; not, on the evidence available, a bondholder security problem.</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:2pt;">So the borrowing constraint is not debt capacity. It is that <strong>no one will underwrite a borrower without current audited financials</strong> &mdash; which is exactly why the $25M bank request failed in April 2026, and why PFM concludes no capital borrowing is responsible before <strong>spring 2028</strong>, gating ~$18.5M of planned PPEL work.</p>
+
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 5 of 10</span></div>
+</section>
+
+<!-- ============================================================ PAGE 6 -->
+<section class="page">
+  <div class="pagehead"><span class="sec">5 &middot; Rating and disclosure</span><span class="docref">Moody's actions &middot; SEC Rule 15c2-12</span></div>
+
+  <h2>Top-rated when it borrowed; unrated seven years later</h2>
+  <p>The district's credit history is the clearest outside verdict on what happened &mdash; and the agency put its warning in writing well before the crisis broke.</p>
+
+  <div class="figure">
+    <div class="ftitle">Moody's rating history, 2017&ndash;2028</div>
+    <div class="fsub">Issuer / GO unlimited tax rating &middot; solid = actual rating actions &middot; dashed = hypothetical future application, not an agency view</div>
+    <svg viewBox="0 0 680 200" role="img" aria-label="Moody's rating history step chart, Aaa in 2017 down to withdrawn in 2024">
+      <g font-size="7.5" fill="#94a3b8">
+        <line x1="52" y1="28" x2="672" y2="28" stroke="#f1f5f9"/><text x="4" y="31" fill="#475569" font-weight="700">Aaa</text>
+        <line x1="52" y1="52" x2="672" y2="52" stroke="#f1f5f9"/><text x="4" y="55">Aa1</text>
+        <line x1="52" y1="67" x2="672" y2="67" stroke="#f1f5f9"/><text x="4" y="70">Aa2</text>
+        <line x1="52" y1="82" x2="672" y2="82" stroke="#f1f5f9"/><text x="4" y="85">Aa3</text>
+        <line x1="52" y1="108" x2="672" y2="108" stroke="#f1f5f9"/><text x="4" y="111">A</text>
+        <line x1="52" y1="128" x2="672" y2="128" stroke="#f1f5f9"/><text x="4" y="131">Baa</text>
+        <line x1="52" y1="156" x2="672" y2="156" stroke="#fdecec"/><text x="4" y="159" fill="#b03a2e" font-weight="700">none</text>
+      </g>
+      <path d="M62,28 H232 V52 H318 V82 H524" fill="none" stroke="#b91c1c" stroke-width="2.4" stroke-linejoin="miter"/>
+      <path d="M524,82 V156" fill="none" stroke="#b91c1c" stroke-width="2.4" stroke-dasharray="3 2"/>
+      <path d="M524,156 H600 V128 H648" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3"/>
+      <circle cx="62" cy="28" r="3.2" fill="#b91c1c"/><circle cx="150" cy="28" r="3.2" fill="#b91c1c"/>
+      <circle cx="232" cy="52" r="3.2" fill="#b91c1c"/><circle cx="318" cy="82" r="3.2" fill="#b91c1c"/>
+      <circle cx="430" cy="82" r="4.6" fill="#fff" stroke="#b58220" stroke-width="2.4"/>
+      <circle cx="524" cy="156" r="4" fill="#b03a2e"/>
+      <circle cx="648" cy="128" r="3.2" fill="#fff" stroke="#94a3b8" stroke-width="1.6"/>
+      <g font-size="7.5" fill="#475569" text-anchor="middle">
+        <text x="62" y="18">Nov 2017</text><text x="150" y="18">Dec 2018</text>
+        <text x="232" y="42">Jan 2020</text><text x="318" y="72">Mar 2021</text>
+      </g>
+      <text x="430" y="70" font-size="7.5" fill="#b58220" text-anchor="middle" font-weight="700">Jun 2023</text>
+      <text x="430" y="62" font-size="7.5" fill="#b58220" text-anchor="middle">negative outlook</text>
+      <text x="524" y="174" font-size="7.5" fill="#b03a2e" text-anchor="middle" font-weight="700">9 Oct 2024 withdrawn</text>
+      <text x="478" y="96" font-size="7" fill="#64748b" text-anchor="middle">review opened 27 Jun 2024</text>
+      <text x="648" y="120" font-size="7.5" fill="#64748b" text-anchor="middle">2028?</text>
+      <text x="318" y="96" font-size="7" fill="#64748b" text-anchor="middle">two-notch cut</text>
+    </svg>
+    <p class="fnote">Sources: Series 2017C, 2019 and 2020 Official Statements (rating at issuance); Moody's rating actions of 23 Mar 2021, 14 Jun 2023 and 9 Oct 2024, the last with its List of Affected Credit Ratings confirming ICCSD's prior rating as <strong>Aa3</strong> across the issuer rating and all four GO series. The 2028 point is <em>this project's own model output</em> (central estimate Baa1/Baa2, ~20% chance of no rating) &mdash; not a Moody's opinion.</p>
+  </div>
+
+  <div class="cols2">
+    <div>
+      <h3 style="margin-top:0;">The warning, in the agency's own words</h3>
+      <div class="callout warn">
+        <span class="title">Moody's, 14 June 2023 &mdash; affirming Aa3, assigning a negative outlook</span>
+        &ldquo;The negative outlook reflects the district's trend of <strong>declining fund balance and cash</strong>. If reserves do not begin to meaningfully improve, the rating will likely move downward.&rdquo;
+      </div>
+      <p>The force of this is easy to miss. The March 2021 action states that Moody's <em>&ldquo;does not usually assign outlooks to local governments with this amount of debt.&rdquo;</em> In June 2023 it assigned one anyway, and made it negative. That was a deliberate signal &mdash; <strong>16 months before the withdrawal</strong>, naming precisely the deterioration the FY24 audit and the 2026 cash crisis went on to confirm.</p>
+      <p><strong>Two honest qualifications.</strong> The 2021 two-notch cut concluded a sector-wide methodology review Moody's opened that January, so it is not purely district-specific &mdash; though even then the rationale cited the district's &ldquo;narrow financial position.&rdquo; And the 2024 withdrawal was a <strong>batch action covering 61 local-government issuers</strong> (~$3.7B of debt) whose reviews had been opened on 27 June 2024: ICCSD was not singled out. What put it in that group is not in doubt, though &mdash; Moody's states it withdrew because it had <em>&ldquo;insufficient or otherwise inadequate information to support the maintenance of the rating.&rdquo;</em> For a school district, that means the audits.</p>
+      <p>Worth noting too that the June 2023 action counted <strong>&ldquo;growing enrollment&rdquo; as a credit strength</strong> &mdash; a premise since reversed (page 4).</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0;">Continuing disclosure &mdash; stated precisely</h3>
+      <p>Because the district has public bonds, it signed undertakings under <strong>SEC Rule 15c2-12</strong>. This is the one part of the compliance picture where the counterparty is federal securities regulation rather than a state agency, so it is worth getting exactly right.</p>
+      <div class="callout">
+        <span class="title">What is required</span>
+        Annual financial information within <strong>210 days of year end &mdash; January 26</strong>. Notice of listed events within <strong>10 business days</strong>; a <strong>rating change is listed with no materiality qualifier</strong>. Breach is expressly <em>not</em> a bond default &mdash; the sole remedy is an action to compel performance.
+      </div>
+      <p><strong>On the record, the district filed on time.</strong> All five annual filings FY2021&ndash;FY2025 met the deadline, and the undertaking <strong>expressly permits</strong> unaudited statements at the deadline with audited ones to follow &ldquo;when they become available.&rdquo; <strong>There is therefore no clean claim that the late audits breached the Rule</strong> &mdash; worth knowing before anyone asserts otherwise in a public meeting.</p>
+      <p><strong>What did happen is narrower but real.</strong> In its FY2023 filing the district promised the audited report <em>&ldquo;within 90 days.&rdquo;</em> It arrived <strong>~16 months late</strong>, and in FY2024&ndash;25 the language quietly became <em>&ldquo;as soon as it is available.&rdquo;</em> A promise to the market, made and then dropped, is fair to ask about.</p>
+      <div class="callout warn" style="margin-top:4pt;">
+        <span class="title">Open, not established</span>
+        Was a material-event notice filed for the withdrawal, and when? What do the 2022/2023 SAVE undertakings require &mdash; those statements are not in the record this memo was built from? Did S&amp;P, which rated the SAVE debt A+, act separately? None is an allegation; all three are unanswered.
+      </div>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 6 of 10</span></div>
 </section>
 
 <!-- ============================================================ PAGE 5 -->
 <section class="page">
-  <div class="pagehead"><span class="sec">4 &middot; The committee</span><span class="docref">Charter adopted May 26, 2026 (Policy 200.3G4)</span></div>
+  <div class="pagehead"><span class="sec">6 &middot; The committee</span><span class="docref">Charter adopted May 26, 2026 (Policy 200.3G4)</span></div>
 
   <h2>A real audit committee, built from a failed one &mdash; with its habits still to be formed</h2>
 
@@ -387,12 +523,62 @@
     </div>
   </div>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 5 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 7 of 10</span></div>
 </section>
 
-<!-- ============================================================ PAGE 6 -->
+<!-- ============================================================ PAGE 8 -->
 <section class="page">
-  <div class="pagehead"><span class="sec">5 &middot; What to watch, and what to ask</span><span class="docref">Metrics &middot; calendar &middot; first-meeting questions</span></div>
+  <div class="pagehead"><span class="sec">7 &middot; The calendar</span><span class="docref">Statutory cycle &middot; live district obligations</span></div>
+
+  <h2>The year has a legal shape &mdash; most of what went wrong was a missed date</h2>
+  <p>Nearly every failure in this story is a deadline that passed: audits filed years late, a certified budget exceeded, interfund loans never repaid by October 1. A committee that knows the calendar can see trouble coming, because the calendar is the same every year.</p>
+
+  <h3 style="margin-top:6pt;">The recurring statutory cycle</h3>
+  <table>
+    <tr><th style="width:16%;">When</th><th style="width:38%;">Obligation</th><th>Basis and why it matters</th></tr>
+    <tr><td><strong>Sept 15</strong></td><td>Certified Annual Report (CAR) filed with the Iowa Dept. of Education</td><td>Board Policy 701.5. The district's own unaudited numbers, months before any audit &mdash; and at ICCSD, wrong two years running.</td></tr>
+    <tr><td><strong>Oct 1</strong></td><td>Certified enrollment count date; <strong>interfund loans repaid with interest</strong></td><td>Policy 701.2 requires board approval <em>in advance</em>, a repayment date, and interest. This is the rule the $10M transfer and the $38.2M of loans broke.</td></tr>
+    <tr><td><strong>Jan 15</strong></td><td>Dropout-prevention MSA request certified to the DE</td><td>Board action required annually; the FY27 request was $7.66M.</td></tr>
+    <tr><td><strong>Jan 26</strong></td><td>Continuing-disclosure annual filing (210 days after FYE)</td><td>SEC Rule 15c2-12 undertaking. Listed events &mdash; including any rating change &mdash; within <strong>10 business days</strong>.</td></tr>
+    <tr><td><strong>Mar 15 / Mar 20</strong></td><td>Property-tax data to Dept. of Management; county mails hearing statements</td><td>Policy 703.1. Starts the levy-hearing clock; hearing notice 10&ndash;20 days ahead, as a standalone meeting.</td></tr>
+    <tr class="hl"><td><strong>Mar 31</strong></td><td><strong>Annual audit filed with the Auditor of State</strong></td><td>Iowa Code §11.6(1)(a) &mdash; 9 months after June 30 close. The hardest date in the calendar, and the one whose failure cost the rating and bank access.</td></tr>
+    <tr><td><strong>Apr 30</strong></td><td>Certified budget adopted and filed with the county auditor / DOM</td><td>Policy 703.1, Iowa Code ch. 24. The legal spending ceiling <em>by function</em> &mdash; the law FY24 violated, distinct from FY23's spending-authority breach.</td></tr>
+    <tr><td><strong>May 31</strong></td><td>Certified budget amendment filed</td><td>An amendment is a warning sign, not a cure: FY24's $19.5M overage came <em>after</em> a $24.2M amendment.</td></tr>
+    <tr><td><strong>Dec 31</strong></td><td>Audit presented to the board &mdash; <em>6 months after FY close</em></td><td>Board Policy 707.4 &mdash; the district's own standard, three months tighter than the statute. Also: auditor RFP at least every 5 years.</td></tr>
+  </table>
+
+  <div class="cols2">
+    <div>
+      <h3>Live obligations the committee inherits</h3>
+      <ul class="tight">
+        <li><strong>Monthly financial reports to the board, the auditor, and the SBRC</strong> &mdash; required by SBRC vote, June 9, 2026.</li>
+        <li><strong>Return appearance at the SBRC's October 2026 meeting.</strong></li>
+        <li><strong>FY25 audit</strong> &mdash; and note the three different dates on record: the CFO's plan says <strong>November 2026</strong>, PFM says <em>&ldquo;no later than December 31, 2026,&rdquo;</em> and the audit firm's outer bound is <em>&ldquo;no later than May 2027.&rdquo;</em> Worth tracking as one item with three answers.</li>
+        <li><strong>FY26 audit by March 31, 2027</strong> &mdash; which would make the district current again. <span class="muted">(The district's own action plan writes &ldquo;March 30&rdquo;; the statutory date is the 31st.)</span></li>
+        <li><strong>FY23 restatement</strong> in progress; <strong>forensic audit</strong> committed after the FY24&ndash;25 audits; <strong>State Auditor reaudit</strong> requested under §11.6(4).</li>
+      </ul>
+      <p class="small muted">CAR compliance, for context: FY2024 was filed Jan 22, 2025 and FY2025 on Nov 20, 2025 &mdash; against a Sept 15 deadline, so both were late, but the trend is sharply improving. Dates are read from the DE form stamps.</p>
+    </div>
+    <div>
+      <div class="callout alert" style="margin-top:8pt;">
+        <span class="title">The SBRC, and why it is not a formality</span>
+        The state School Budget Review Committee has statutory power over spending authority. ICCSD's June 9, 2026 appearance was triggered by the <strong>categorical-balance test</strong>, not simply negative unspent authority: a regular-program balance of <strong>&minus;$22,958,507</strong>, less the <strong>$18,373,455</strong> special-education deficit MSA, leaving <strong>&minus;$4,585,052</strong> on the appearance test.
+        <br><br>
+        Two things to carry from that. First, <strong>an MSA grants spending authority, not cash</strong> &mdash; the revenue arrives roughly a full fiscal year later, which the CFO has described as &ldquo;a three-year process to get back to whole.&rdquo; Requests run on a fall and spring cycle, processed as a class action across districts.
+        <br><br>
+        Second, and more pointedly: <strong>a January 8, 2025 SBRC hearing had already directed the district to file monthly financial reports &mdash; and they were never provided.</strong> The June 2026 order repeats that requirement. Whether it is now actually being met is a reasonable standing question for this committee.
+        <br><br>
+        For scale: the district's finances went to the <strong>State Board of Education on June 18, 2026</strong> &mdash; the only body that can move toward a state takeover.
+      </div>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 8 of 10</span></div>
+</section>
+
+<!-- ============================================================ PAGE 9 -->
+<section class="page">
+  <div class="pagehead"><span class="sec">8 &middot; What to watch, and what to ask</span><span class="docref">Metrics &middot; first-meeting questions</span></div>
 
   <h2>Five or six numbers, watched relentlessly, would have caught all of it</h2>
   <p>Board Policy 701.5R1 (Dec 2023) already sets targets for solvency and UAB. The framework below extends that into a <strong>proposed</strong> limits system &mdash; zones with consequences pre-committed in policy, so a breach triggers a defined response instead of a debate. Each metric maps to a failure that happened.</p>
@@ -409,15 +595,15 @@
 
   <div class="cols2">
     <div>
-      <h3>The next 12 months &mdash; calendar to hold</h3>
+      <h3>The four tests worth watching this year</h3>
       <table>
-        <tr><th style="width:34%;">When</th><th>What</th></tr>
-        <tr><td>Oct 1, 2026</td><td>SAVE repays $7.76M to the GF; property-tax wave arrives (other wave: April)</td></tr>
-        <tr><td>Fall 2026</td><td><strong>FY25 audit due (~Nov)</strong> &mdash; the test of whether FY24's problems were one-time</td></tr>
-        <tr><td>FY2027</td><td>Second ~$10M warrant planned; 1725 N. Dodge proceeds (TBD) the biggest upside</td></tr>
-        <tr><td>Mar 31, 2027</td><td>FY26 audit statutory deadline &mdash; district current again; FY23 restatement in progress</td></tr>
-        <tr><td>After FY25 files</td><td>Rating application contemplated; capital borrowing not before <strong>spring 2028</strong> per PFM</td></tr>
+        <tr><th style="width:30%;">Test</th><th>What a good answer looks like</th></tr>
+        <tr><td><strong>The FY25 audit</strong> <span class="muted">(~Nov 2026)</span></td><td>Material weaknesses down from five; no new findings; the FY25 CAR anomalies (page 3) explained. This is the direct test of whether FY24 was a one-time cleanup or a pattern.</td></tr>
+        <tr><td><strong>June 2027 cash</strong></td><td>The trough comes in above the base case without a third warrant. Watch the monthly reports, not the annual ones.</td></tr>
+        <tr><td><strong>Recurring cost reduction</strong></td><td>Cuts that lower the ongoing run-rate rather than deferring spend &mdash; the only thing that closes a structural gap that enrollment is widening.</td></tr>
+        <tr><td><strong>Zero new interfund loans</strong></td><td>Any loan without prior board approval is automatic red. This is the tripwire on the event that started the crisis.</td></tr>
       </table>
+      <p class="small muted">The full statutory and district calendar is on page 8.</p>
     </div>
     <div>
       <h3>Definition of done</h3>
@@ -437,14 +623,18 @@
     <li>What is counsel's position on Iowa Code 279.29 &mdash; can community members perform claims review, or must allowance rest with board designees?</li>
     <li>Is there a documented, anonymous channel for staff to raise financial concerns to the committee &mdash; the early warning missing in 2024?</li>
     <li>What, precisely, is the public definition of &ldquo;recovered&rdquo; &mdash; which metrics, what targets, sustained how long?</li>
+    <li>What enrollment assumption underlies the multi-year projections, and has anyone run the 1&ndash;2%/yr decline scenario the demographer evidence supports?</li>
+    <li>Was a material-event notice filed for the October 2024 rating withdrawal, and on what date?</li>
+    <li>Are the monthly reports the SBRC ordered in June 2026 actually going to the board, the auditor, and the SBRC &mdash; every month?</li>
+    <li>Which FY25 audit date is real: the CFO's November 2026, PFM's December 31, or the audit firm's May 2027?</li>
   </ol>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 6 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026</span><span>Page 9 of 10</span></div>
 </section>
 
 <!-- ============================================================ PAGE 7 -->
 <section class="page">
-  <div class="pagehead"><span class="sec">6 &middot; Reference</span><span class="docref">Glossary &middot; who's who &middot; where to find things</span></div>
+  <div class="pagehead"><span class="sec">9 &middot; Reference</span><span class="docref">Glossary &middot; who's who &middot; where to find things</span></div>
 
   <h2>The reference page</h2>
 
@@ -453,29 +643,39 @@
       <h3 style="margin-top:0;">Iowa school-finance glossary</h3>
       <dl class="gloss">
         <dt>Spending authority / Unspent Authorized Budget (UAB)</dt>
-        <dd>Iowa caps what a district may <em>spend</em> each year (ch. 257), separate from cash held. UAB is the unused room under that cap, % of budget; negative UAB is unlawful and brings in the SBRC. The most-watched Iowa district health metric.</dd>
+        <dd>Iowa caps what a district may <em>spend</em> each year (ch. 257), separate from cash held. UAB is the unused room under that cap; negative UAB is unlawful and brings in the SBRC. The most-watched Iowa health metric.</dd>
         <dt>Solvency ratio</dt>
-        <dd>Assigned + unassigned GF balance &divide; GF revenue (less AEA flow-through). Policy target 10&ndash;15%, floor 5%.</dd>
+        <dd>Assigned + unassigned GF balance &divide; GF revenue (less AEA flow-through). Target 10&ndash;15%, floor 5%.</dd>
         <dt>Days cash on hand</dt>
-        <dd>GF cash &divide; average daily spending; GFOA guideline ~60. (The district's internal &ldquo;Day's Net Cash&rdquo; KPI, target 90&ndash;120, is a different formula &mdash; label which one you mean.)</dd>
+        <dd>GF cash &divide; average daily spending; GFOA guideline ~60. (The district's internal &ldquo;Day's Net Cash&rdquo; KPI, target 90&ndash;120, is a different formula.)</dd>
         <dt>CAR vs. ACFR</dt>
-        <dd>The <strong>CAR</strong> is the district's own unaudited state filing, due months before the <strong>ACFR</strong> (audited report). FY23's CAR overstated the GF balance by $844K (8.3%) vs. audit &mdash; the largest gap among large districts. Treat CAR figures as provisional.</dd>
+        <dd>The <strong>CAR</strong> is the district's own unaudited state filing, due months before the <strong>ACFR</strong> (audited report). FY23's CAR overstated the GF balance by $844K (8.3%) &mdash; the largest gap among large districts. Treat CAR figures as provisional.</dd>
         <dt>Aid &amp; Levy</dt>
-        <dd>The state worksheet setting each district's funding: per-pupil state aid + local levies. Funding follows certified enrollment.</dd>
+        <dd>The worksheet setting each district's funding: per-pupil state aid + local levies. Funding follows certified enrollment.</dd>
         <dt>SAVE</dt>
         <dd>Statewide penny sales tax for school infrastructure. Capital only &mdash; cannot pay operating costs.</dd>
         <dt>PPEL &amp; Management Levy</dt>
-        <dd>Levies restricted to facilities/equipment (PPEL) and to insurance/early-retirement costs (Management). Not general operating money.</dd>
+        <dd>Levies restricted to facilities/equipment (PPEL) and insurance/early-retirement costs (Management). Not operating money.</dd>
         <dt>Cash reserve levy</dt>
-        <dd>A levy that raises cash (not spending authority) to rebuild GF reserves &mdash; the tool behind the FY24 solvency rebound.</dd>
+        <dd>Raises cash (not spending authority) to rebuild GF reserves &mdash; the tool behind the FY24 solvency rebound.</dd>
         <dt>SBRC</dt>
-        <dd>The state School Budget Review Committee &mdash; statutory power over spending authority. Negative UAB lands a district on its docket. Not the FOC.</dd>
+        <dd>State School Budget Review Committee &mdash; statutory power over spending authority. Negative UAB lands a district on its docket. Not the FOC.</dd>
         <dt>Revenue anticipation warrant</dt>
-        <dd>Short-term borrowing against taxes not yet received, bridging cash timing inside a year. Repaid the same cycle &mdash; adds no resources.</dd>
+        <dd>Short-term borrowing against taxes not yet received. Repaid the same cycle &mdash; adds no resources.</dd>
         <dt>Material weakness</dt>
-        <dd>The most serious control flag an auditor gives short of a misstatement: a gap that could let a material error or fraud go uncaught.</dd>
+        <dd>The most serious control flag short of a misstatement: a gap that could let a material error or fraud go uncaught.</dd>
         <dt>Single audit / low-risk auditee</dt>
-        <dd>The federal-grant audit layered on the financial audit. Clean history earns lighter testing; ICCSD lost that status in FY24.</dd>
+        <dd>The federal-grant audit layered on the financial audit. Clean history earns lighter testing; ICCSD lost it in FY24.</dd>
+        <dt>MSA (Modified Supplemental Amount)</dt>
+        <dd>Extra spending authority from the SBRC for defined causes &mdash; special-ed deficits, dropout prevention, English learners, enrollment growth. <strong>Grants authority, not cash</strong>; revenue follows about a year later.</dd>
+        <dt>SEC Rule 15c2-12 / continuing disclosure</dt>
+        <dd>The undertaking a bond issuer signs to file annual financial information (here within <strong>210 days</strong>) and notice &ldquo;listed events&rdquo; within <strong>10 business days</strong>. Filed to EMMA, the MSRB's public repository.</dd>
+        <dt>Listed event</dt>
+        <dd>One of 16 occurrences requiring prompt notice to bondholders. A <strong>rating change is listed with no materiality qualifier</strong> &mdash; reportable regardless of judgement.</dd>
+        <dt>GOULT</dt>
+        <dd>General obligation, unlimited tax &mdash; backed by full faith and credit with authority to levy property taxes without limit as to rate or amount. The strongest municipal security form.</dd>
+        <dt>Debt service coverage</dt>
+        <dd>Pledged revenue &divide; maximum annual debt service. ICCSD's SAVE coverage runs 1.25&ndash;1.62&times;; below 1.00&times; the pledge would not cover the payment.</dd>
       </dl>
     </div>
     <div>
@@ -483,7 +683,7 @@
       <ul class="tight">
         <li><strong>Board of Directors (7):</strong> Ruthina Malone (president), Molly Abraham (vice president), Charlie Eastham, Jayne Finch, Jennifer Horn-Frasier, Mitch Lingo, Lisa Williams. Two serve as non-voting FOC liaisons.</li>
         <li><strong>CFO &amp; board treasurer:</strong> Pat Moore (joined 2026 from Solon CSD; author of the audit corrective-action plan and catch-up schedule).</li>
-        <li><strong>Superintendent:</strong> in transition &mdash; an interim search was underway as of June 2026.</li>
+        <li><strong>Superintendent:</strong> in transition; an interim search was underway as of June 2026.</li>
         <li><strong>Independent auditor:</strong> Bohnsack &amp; Frommelt LLP (engaged for FY2024&ndash;2028 after a 2026 RFP).</li>
         <li><strong>Financial advisor:</strong> PFM &mdash; source of the 7-year fiscal model and the capital-capacity analysis this memo's forecast uses as its base case.</li>
         <li><strong>State actors:</strong> Iowa Dept. of Management (UAB, levies), Iowa Dept. of Education (CAR), Auditor of State (notified Feb 2026), SBRC.</li>
@@ -491,20 +691,20 @@
 
       <h3>Where to find things</h3>
       <ul class="tight">
-        <li><strong>The benchmark site</strong> (michael480th.github.io/ICCSD_Financial_Benchmarking): <em>How ICCSD compares</em> (13 KPIs vs. peers), <em>Does it have a cushion?</em>, <em>Dig into the data</em> (all 15 districts, FY2015&ndash;25), and <em>Other analyses</em> &mdash; incl. the full &ldquo;How it happened&rdquo; narrative and the FY24/FY25 audit explainers. Every number links to its source.</li>
-        <li><strong>The forecast</strong> (github.com/michael480th/ICCSD_Forecasting): solvency &amp; monthly-cash model, bond-rating assessment, and a source-trace report recomputing every figure from primary documents.</li>
-        <li><strong>Primary sources:</strong> district board portal (Simbli/eBoard) for packets and the charter; Iowa DOM for UAB and levy files; EMMA for continuing disclosure; the district's audit corrective-action plan.</li>
-        <li><strong>FOC-01&ndash;07 example artifacts</strong> (same series as this memo): illustrative one-pagers &mdash; limits dashboard, claims-exception report, 13-week cash forecast, corrective-action tracker (built on real FY24 findings), quarterly scorecard, phase-change certification, auditor-independence confirmation. Placeholder numbers; the point is form and cadence.</li>
+        <li><strong>The benchmark site</strong> (michael480th.github.io/ICCSD_Financial_Benchmarking): <em>How ICCSD compares</em>, <em>Does it have a cushion?</em>, <em>Dig into the data</em> (all 15 districts, FY2015&ndash;25), and <em>Other analyses</em> &mdash; incl. the &ldquo;How it happened&rdquo; narrative, the audit explainers and the enrollment forecasts. Every number links to its source.</li>
+        <li><strong>The forecast</strong> (github.com/michael480th/ICCSD_Forecasting): solvency and monthly-cash model, bond-rating assessment, and a source-trace report recomputing every figure from primary documents.</li>
+        <li><strong>Primary sources:</strong> Simbli/eBoard for board packets and the charter; Iowa DOM for UAB and levy files; <strong>EMMA</strong> (emma.msrb.org) for official statements, continuing disclosure and material-event notices; Moody's rating actions (repo folder <em>CreditAgencies/</em>).</li>
+        <li><strong>FOC-01&ndash;07 example artifacts:</strong> illustrative one-pagers &mdash; limits dashboard, claims-exception report, 13-week cash forecast, corrective-action tracker, quarterly scorecard, phase-change certification, auditor-independence confirmation. <strong>All names, dates and figures in them are placeholders</strong> &mdash; the point is form and cadence, so never cite a date from them.</li>
       </ul>
 
       <div class="callout" style="margin-top:5pt;">
         <span class="title">Sources and standing</span>
-        Figures trace to audited ACFRs, official Iowa DOM/DE filings, the FY24 audit and corrective-action plan, PFM's 2026 analyses, and the board record; years without a completed audit are labeled unaudited. This is an unofficial community document &mdash; not produced by ICCSD, the FOC, the board, or any rating agency. Corrections are welcome and will be made publicly.
+        Figures trace to audited ACFRs, Iowa DOM/DE filings, the FY24 audit and corrective-action plan, bond official statements and continuing-disclosure filings, Moody's rating actions of 2021, 2023 and 2024, PFM's 2026 analyses, and the board record; unaudited years are labeled. Rating-agency material is quoted for commentary and remains its publisher's property. Forward figures are projections; the 2028 rating estimate is this project's model, not any agency's opinion. Unofficial community document &mdash; not produced by ICCSD, the FOC, the board, or any rating agency. Corrections welcome.
       </div>
     </div>
   </div>
 
-  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026 &middot; michael@480th.com</span><span>Page 7 of 7</span></div>
+  <div class="pfoot"><span>FOC Onboarding &middot; unofficial community document &middot; August 2026 &middot; michael@480th.com</span><span>Page 10 of 10</span></div>
 </section>
 
 </div>
