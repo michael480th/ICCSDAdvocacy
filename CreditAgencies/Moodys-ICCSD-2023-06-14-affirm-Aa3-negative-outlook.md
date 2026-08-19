@@ -72,9 +72,14 @@ of Des Moines. Fiscal 2023 enrollment approximately 14,000 students (basis not s
    | 20 Jan 2020 | **Aa1** | Series 2020 Official Statement |
    | 23 Mar 2021 | **Aa3** (downgraded from Aa1) | Moody's action, in this folder |
    | 14 Jun 2023 | **Aa3, negative outlook** | this document |
-   | Oct 2024 | **Withdrawn** | press reporting; no Moody's document held |
+   | 27 Jun 2024 | review opened, direction uncertain | Moody's action of 9 Oct 2024 |
+   | 9 Oct 2024 | **Withdrawn** (prior rating Aa3) | `Moodys-ICCSD-2024-10-09-rating-withdrawn.pdf` + List of Affected Credit Ratings |
 
    This corrects `data/confirmed-rating-actions.csv`, which recorded the prior rating at withdrawal as Aa2.
+   Moody's own List of Affected Credit Ratings shows **Aa3** for the issuer rating and all four GO series.
+   Note the withdrawal was a batch action covering **61 local-government issuers** (~$3.7B of debt), not an
+   ICCSD-specific action — though the stated reason, *"insufficient or otherwise inadequate information to
+   support the maintenance of the rating,"* is the audits.
 
 2. **Moody's assigned an outlook it would not normally assign.** The 23 March 2021 action states: *"Moody's does
    not usually assign outlooks to local governments with this amount of debt."* Assigning a negative outlook in
@@ -89,8 +94,12 @@ of Des Moines. Fiscal 2023 enrollment approximately 14,000 students (basis not s
 
 ## Still outstanding
 
-- The **source PDF** of this June 2023 action.
-- The **October 2024 withdrawal notice**, if published — the withdrawal currently rests only on press reporting.
-- The **2022A ($65,815,000) and 2023 ($71,470,000) SAVE official statements**, which carry the SAVE continuing-
-  disclosure undertakings. Their absence is why no conclusion can be drawn about disclosure compliance on the
-  revenue bonds.
+- The **source PDF** of this June 2023 action (this file is a screenshot transcription).
+- The **August 2022** ($65,815,000, final maturity 6/37) and **June 2023** ($71,470,000, maturity 6/38)
+  **SAVE official statements**, which carry the SAVE continuing-disclosure undertakings. Their absence is
+  why no conclusion can be drawn about disclosure compliance on the revenue bonds. Best obtained from bond
+  counsel or the municipal advisor; EMMA blocks automated retrieval. The district's FY2025 15c2-12 filing
+  labels these issues simply "8/22" and "6/23" — there is no "2022A" designation.
+- An **EMMA check** for whether a material-event notice was filed for the 9 Oct 2024 rating withdrawal.
+  A rating change is a listed event with no materiality qualifier, due within 10 business days. The district
+  demonstrably files such notices — it posted one within three days for a $3M warrant in March 2026.
